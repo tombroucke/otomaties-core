@@ -10,5 +10,9 @@
     ],
     "require": {
         "yahnis-elsts/plugin-update-checker": "^4.9"
+    },
+    "source": {
+        "url": "git@bitbucket.org:tombro/otomaties-core.git",
+        "type": "git"
     }
 }
