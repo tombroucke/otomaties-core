@@ -11,6 +11,5 @@
     ],
     "require": {
         "yahnis-elsts/plugin-update-checker": "^4.9"
-    },
-    "minimum-stability": "dev"
+    }
 }
