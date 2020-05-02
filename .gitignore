@@ -1,0 +1,6 @@
+# Hidden system files
+*.DS_Store
+*[Tt]humbs.db
+*.Trashes
+*node_modules
+__MACOSX

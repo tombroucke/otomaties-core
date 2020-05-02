@@ -1,0 +1,14 @@
+{
+    "name": "tombroucke/otomaties-core",
+    "description": "Optimize WordPress install",
+    "type": "wordpress-muplugin",
+    "authors": [
+        {
+            "name": "Tom Broucke",
+            "email": "tom@tombroucke.be"
+        }
+    ],
+    "require": {
+        "yahnis-elsts/plugin-update-checker": "^4.9"
+    }
+}
