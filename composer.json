@@ -2,6 +2,7 @@
     "name": "tombroucke/otomaties-core",
     "description": "Optimize WordPress install",
     "type": "wordpress-muplugin",
+    "version": "1.1.0",
     "authors": [
         {
             "name": "Tom Broucke",
