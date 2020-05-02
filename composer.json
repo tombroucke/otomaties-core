@@ -9,7 +9,6 @@
         }
     ],
     "require": {
-        "yahnis-elsts/plugin-update-checker": "^4.9",
-        "composer/installers": "^1.0"
+        "yahnis-elsts/plugin-update-checker": "^4.9"
     }
 }
