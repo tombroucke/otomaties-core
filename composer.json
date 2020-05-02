@@ -1,22 +1,14 @@
 {
-	"name": "tombroucke/otomaties-core",
-	"description": "Optimize WordPress install",
-	"type": "wordpress-muplugin",
-	"authors": [
-		{
-			"name": "Tom Broucke",
-			"email": "tom@tombroucke.be"
-		}
-	],
-	"require": {
-		"yahnis-elsts/plugin-update-checker": "^4.9"
-	},
-	"extra": {
-		"installer-paths": {
-			"web/app/mu-plugins/{$name}/": ["type:wordpress-muplugin"],
-			"web/app/plugins/{$name}/": ["type:wordpress-plugin"],
-			"web/app/themes/{$name}/": ["type:wordpress-theme"]
-		},
-		"wordpress-install-dir": "web/wp"
-	}
+    "name": "tombroucke/otomaties-core",
+    "description": "Optimize WordPress install",
+    "type": "wordpress-muplugin",
+    "authors": [
+        {
+            "name": "Tom Broucke",
+            "email": "tom@tombroucke.be"
+        }
+    ],
+    "require": {
+        "yahnis-elsts/plugin-update-checker": "^4.9"
+    }
 }
