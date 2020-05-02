@@ -55,7 +55,7 @@ class Core {
 	 */
 	private function init() {
 		$myUpdateChecker = \Puc_v4_Factory::buildUpdateChecker(
-			'https://bitbucket.org/tombro/otomaties-core',
+			'https://github.com/tombroucke/otomaties-core',
 			__FILE__,
 			'otomaties-core'
 		);
