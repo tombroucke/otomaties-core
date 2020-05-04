@@ -4,3 +4,5 @@
 *.Trashes
 *node_modules
 __MACOSX
+vendor
+node_modules

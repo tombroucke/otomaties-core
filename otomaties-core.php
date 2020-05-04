@@ -41,7 +41,9 @@ class Core {
 	 * Include classes
 	 */
 	private function includes() {
-		require 'vendor/autoload.php';
+		if ( is_readable( __DIR__ . '/vendor/autoload.php' ) ) {
+			require __DIR__ . '/vendor/autoload.php';
+		}
 		include 'includes/class-admin.php';
 		include 'includes/class-emojis.php';
 		include 'includes/class-theme.php';
@@ -55,7 +57,7 @@ class Core {
 	 */
 	private function init() {
 		$myUpdateChecker = \Puc_v4_Factory::buildUpdateChecker(
-			'https://github.com/tombroucke/otomaties-core',
+			'https://github.com/tombroucke/otomaties-core/',
 			__FILE__,
 			'otomaties-core'
 		);
