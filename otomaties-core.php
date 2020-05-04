@@ -56,11 +56,6 @@ class Core {
 	 * Load textdomain, check for updates
 	 */
 	private function init() {
-		$myUpdateChecker = \Puc_v4_Factory::buildUpdateChecker(
-			'https://github.com/tombroucke/otomaties-core/',
-			__FILE__,
-			'otomaties-core'
-		);
 		add_action( 'plugins_loaded', array( $this, 'load_plugin_textdomain' ) );
 	}
 
