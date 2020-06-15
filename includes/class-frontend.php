@@ -40,9 +40,9 @@ class Frontend {
 	 * Redirect to result's single page when there is only 1 search result
 	 */
 	public function single_search_result() {
-		if ( is_search( )) {
+		if ( is_search() && apply_filters( 'otomaties_redirect_single_search_result', true ) ) {
 			global $wp_query;
-			if ( $wp_query->post_count == 1 ) {
+			if ( $wp_query->found_posts == 1 ) {
 				wp_redirect( get_permalink( $wp_query->posts['0']->ID ) );
 			}
 		}

@@ -2,8 +2,8 @@
 Contributors: tompoezie
 Tags: core privacy performance branding
 Requires at least: 4.9
-Tested up to: 5.4.1
-Stable tag: 1.0.0
+Tested up to: 5.4.2
+Stable tag: 1.0.1
 
 Boosts WordPress performance, secures install & adds branding. 
 
@@ -48,6 +48,9 @@ e.g.
 2. Add \`otomaties-core.php\` to your mu-plugin loader
 
 == Changelog ==
+
+= 1.0.1 =
+* Fix for pagination with single search result
 
 = 1.0.0 =
 * Initial plugin
