@@ -26,8 +26,11 @@ class Admin {
 		$menus = array(
 			'edit-comments.php'
 		);
+
 		if( apply_filters( 'otomaties_open_comments', false ) ) {
-			unset( $menus['comments'] );
+			if (($key = array_search('edit-comments.php', $menus)) !== false) {
+				unset($menus[$key]);
+			}
 		}
 		foreach ( apply_filters( 'otomaties_admin_bar_unnecessary_menus', $menus ) as $menu) {
 			remove_menu_page( $menu );

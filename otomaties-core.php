@@ -6,7 +6,7 @@
  * Author URI:      https://tombroucke.be
  * Text Domain:     otomaties
  * Domain Path:     /languages
- * Version:         1.0.3
+ * Version:         1.0.4
  *
  * @package         Core
  */
