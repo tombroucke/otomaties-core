@@ -51,7 +51,10 @@ class Security {
 	 * @return string
 	 */
 	public function generic_login_errors( $errors ) {
-		return apply_filters( 'otomaties_generic_login_error', sprintf( __( 'Could not log you in. If this problem persists, <a href="%s">try resetting your password</a>', 'otomaties' ), wp_lostpassword_url() ) );
+		if( apply_filters( 'otomaties_generic_login_error', true ) ) {
+			return sprintf( __( 'Could not log you in. If this problem persists, <a href="%s">try resetting your password</a>', 'otomaties' ), wp_lostpassword_url() );
+		}
+		return $errors;
 	}
 
 	/**
