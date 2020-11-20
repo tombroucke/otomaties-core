@@ -4,67 +4,35 @@
  * Description:     Optimize WordPress install
  * Author:          Tom Broucke
  * Author URI:      https://tombroucke.be
- * Text Domain:     otomaties
+ * Text Domain:     otomaties-core
  * Domain Path:     /languages
- * Version:         1.0.4
+ * Version:         1.1.0
  *
  * @package         Core
  */
 
-namespace Otomaties\Core;
-
-if ( ! defined( 'ABSPATH' ) ) exit;
-
-class Core {
-
-	private static $instance = null;
-
-	/**
-	 * Creates or returns an instance of this class.
-	 * @since  1.0.0
-	 * @return Core A single instance of this class.
-	 */
-	public static function get_instance() {
-		if ( null === self::$instance ) {
-			self::$instance = new self;
-		}
-
-		return self::$instance;
-	}
-
-	private function __construct() {
-		$this->includes();
-		$this->init();
-	}
-
-	/**
-	 * Include classes
-	 */
-	private function includes() {
-		if ( is_readable( __DIR__ . '/vendor/autoload.php' ) ) {
-			require __DIR__ . '/vendor/autoload.php';
-		}
-		include 'includes/class-admin.php';
-		include 'includes/class-emojis.php';
-		include 'includes/class-theme.php';
-		include 'includes/class-frontend.php';
-		include 'includes/class-performance.php';
-		include 'includes/class-security.php';
-	}
-
-	/**
-	 * Load textdomain, check for updates
-	 */
-	private function init() {
-		add_action( 'plugins_loaded', array( $this, 'load_plugin_textdomain' ) );
-	}
-
-	/**
-	 * Load textdomain otomaties
-	 */
-	public function load_plugin_textdomain() {
-		load_muplugin_textdomain( 'otomaties', plugin_basename( dirname( __FILE__ ) ) . '/languages' ); 
-	}
+// If this file is called directly, abort.
+if ( ! defined( 'WPINC' ) ) {
+	die;
 }
 
-Core::get_instance();
+if ( file_exists( dirname( __FILE__ ) . '/vendor/autoload.php' ) ) {
+	require 'vendor/autoload.php';
+}
+
+/**
+ * Begins execution of the plugin.
+ *
+ * Since everything within the plugin is registered via hooks,
+ * then kicking off the plugin from this point in the file does
+ * not affect the page life cycle.
+ *
+ * @since    1.0.0
+ */
+add_action(
+	'plugins_loaded',
+	function() {
+		$plugin = Otomaties\Core\Plugin::instance();
+		$plugin->run();
+	}
+);

@@ -1,19 +1,22 @@
-<?php
+<?php //phpcs:ignore
 namespace Otomaties\Core;
 
-if ( ! defined( 'ABSPATH' ) ) exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 class Frontend {
-	public function __construct() {
-		$this->clean_up_head();
 
-		add_filter( 'comments_open', array( $this, 'open_comments' ), 50 , 2 );
-		add_action( 'template_redirect', array( $this, 'single_search_result' ) );
+	public function init() {
 		add_filter( 'widget_text', 'do_shortcode' );
+	}
 
+	public function set_defaults() {
+    	update_option( 'image_default_link_type', 'file' );
 	}
 
 	public function clean_up_head() {
+
 		remove_action( 'wp_head', 'feed_links_extra', 3 );
 		remove_action( 'wp_head', 'feed_links', 2 );
 		remove_action( 'wp_head', 'rsd_link' );
@@ -24,16 +27,14 @@ class Frontend {
 		remove_action( 'wp_head', 'start_post_rel_link' );
 		remove_action( 'wp_head', 'index_rel_link' );
 		remove_action( 'wp_head', 'adjacent_posts_rel_link' );
+        remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head', 10 );
+        remove_action( 'wp_head', 'rest_output_link_wp_head', 10);
 		remove_action( 'wp_head', 'wp_shortlink_wp_head' );
-		remove_action( 'wp_head', 'print_emoji_detection_script', 7);
-		remove_action( 'wp_print_styles', 'print_emoji_styles' );
-	}
+        remove_action( 'wp_head', 'wp_oembed_add_discovery_links');
+        remove_action( 'wp_head', 'wp_oembed_add_host_js');
 
-	/**
-	 * Close comments
-	 */
-	public function open_comments() {
-		return apply_filters( 'otomaties_open_comments', false );
+		add_filter('the_generator', '__return_false');
+
 	}
 
 	/**
@@ -42,10 +43,10 @@ class Frontend {
 	public function single_search_result() {
 		if ( is_search() && apply_filters( 'otomaties_redirect_single_search_result', true ) ) {
 			global $wp_query;
-			if ( $wp_query->found_posts == 1 ) {
+			if ( 1 == $wp_query->found_posts ) {
 				wp_redirect( get_permalink( $wp_query->posts['0']->ID ) );
 			}
 		}
 	}
+
 }
-new Frontend;

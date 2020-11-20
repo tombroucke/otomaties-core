@@ -1,6 +1,5 @@
 {
-    "name": "tombroucke/otomaties-core",
-    "description": "Optimize WordPress install",
+    "name": "tombroucke/projectname-functionality",
     "type": "wordpress-muplugin",
     "authors": [
         {
@@ -8,6 +7,11 @@
             "email": "tom@tombroucke.be"
         }
     ],
+	"autoload": {
+		"psr-4": {
+			"Otomaties\\Core\\": "app/"
+		}
+	},
     "require": {
         "composer/installers": "^1.0"
     }
