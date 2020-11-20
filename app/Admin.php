@@ -68,7 +68,7 @@ class Admin {
 
 		if ( ! apply_filters( 'otomaties_whitelabel', false ) ) {
 			ob_start();
-			include( dirname( dirname( plugin_dir_path( __FILE__ ) ) ) . '/assets/img/minilogo.svg' );
+			include( dirname(  plugin_dir_path( __FILE__ ) ) . '/assets/img/minilogo.svg' );
 			$minilogo = ob_get_clean();
 			$args = array(
 				'id'    => 'otomaties-core',
@@ -128,7 +128,7 @@ class Admin {
 	 */
 	public function login_logo() {
 
-		$logo = dirname( dirname( plugin_dir_url( __FILE__ ) ) ) . '/assets/img/logo.svg';
+		$logo = dirname( plugin_dir_url( __FILE__ ) ) . '/assets/img/logo.svg';
 		if ( ! apply_filters( 'otomaties_whitelabel', false ) ) {
 			?>
 			<style type="text/css">
