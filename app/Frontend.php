@@ -12,7 +12,14 @@ class Frontend {
 	}
 
 	public function set_defaults() {
-    	update_option( 'image_default_link_type', 'file' );
+		$options = array(
+			'image_default_link_type' => 'file'
+		);
+		foreach ($options as $key => $value) {
+			if(apply_filters( 'otomaties_set_default_' . $key, true )) {
+				update_option( $key, $value );
+			}
+		}
 	}
 
 	public function clean_up_head() {
