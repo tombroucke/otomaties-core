@@ -90,6 +90,8 @@ class Plugin {
 		$this->loader->add_filter( 'comments_open', $discussion, 'close_comments', 50, 2 );
 		$this->loader->add_action( 'after_setup_theme', $discussion, 'set_defaults', 999 );
 
+		$shortcodes = new Shortcodes();
+		add_shortcode('email', [$shortcodes, 'obfuscateEmail']);
 	}
 
 	/**
