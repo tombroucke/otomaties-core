@@ -5,19 +5,19 @@
  * Author:          Tom Broucke
  * Author URI:      https://tombroucke.be
  * Text Domain:     otomaties-core
- * Domain Path:     /languages
- * Version:         1.1.0
+ * Domain Path:     /lang
+ * Version:         1.1.3
  *
  * @package         Core
  */
 
 // If this file is called directly, abort.
-if ( ! defined( 'WPINC' ) ) {
-	die;
+if (! defined('WPINC')) {
+    die;
 }
 
-if ( file_exists( dirname( __FILE__ ) . '/vendor/autoload.php' ) ) {
-	require 'vendor/autoload.php';
+if (file_exists(dirname(__FILE__) . '/vendor/autoload.php')) {
+    require 'vendor/autoload.php';
 }
 
 /**
@@ -30,9 +30,9 @@ if ( file_exists( dirname( __FILE__ ) . '/vendor/autoload.php' ) ) {
  * @since    1.0.0
  */
 add_action(
-	'plugins_loaded',
-	function() {
-		$plugin = Otomaties\Core\Plugin::instance();
-		$plugin->run();
-	}
+    'plugins_loaded',
+    function () {
+        $plugin = Otomaties\Core\Plugin::instance();
+        $plugin->run();
+    }
 );

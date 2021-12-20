@@ -1,0 +1,101 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Otomaties Core\n"
+"POT-Creation-Date: 2021-12-20 14:06+0100\n"
+"PO-Revision-Date: 2021-12-20 14:08+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fr_FR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 3.0.1\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: otomaties-core.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.min.js\n"
+
+#: app/Admin.php:121
+msgid ""
+"Some of these settings are controlled by the theme. To change these, please "
+"contact the theme author."
+msgstr ""
+"Certains de ces paramètres sont contrôlés par le thème. Pour les modifier, "
+"veuillez contacter l'auteur du thème."
+
+#: app/Admin.php:158
+msgid "Website by"
+msgstr "Site internet par"
+
+#: app/Security.php:14
+msgid ""
+"Disable debugging for better security. Add <code>define( 'WP_DEBUG', false );"
+"</code> to wp-config.php"
+msgstr ""
+"Désactivez le débogage pour une meilleure sécurité. Ajoutez "
+"<code>define('WP_DEBUG', false) ;</code> à wp-config.php"
+
+#: app/Security.php:17
+msgid ""
+"Your debug.log file is publicly accessible. Remove <code>wp-content/debug."
+"log</code>"
+msgstr ""
+"Votre fichier debug.log est accessible au public. Supprimer <code>wp-content/"
+"debug.log</code>"
+
+#: app/Security.php:20
+msgid ""
+"Disallow file editing for better security. Add "
+"<code>define( 'DISALLOW_FILE_EDIT', true );</code> to wp-config.php"
+msgstr ""
+"Interdire l'édition de fichiers pour une meilleure sécurité. Ajoutez "
+"<code>define( 'DISALLOW_FILE_EDIT', true ) ;</code> à wp-config.php"
+
+#: app/Security.php:23
+msgid "Install & activate Wordfence or Sucuri Security for optimal security."
+msgstr ""
+"Installez et activez Wordfence ou Sucuri Security pour une sécurité optimale."
+
+#: app/Security.php:32
+msgid "You have some security concerns"
+msgstr "Vous avez des problèmes de sécurité"
+
+#. translators: %s is the lost password url.
+#: app/Security.php:63
+#, php-format
+msgid ""
+"Could not log you in. If this problem persists, <a href=\"%s\">try resetting "
+"your password</a>"
+msgstr ""
+"Impossible de vous connecter. Si ce problème persiste, <a href=\"%s"
+"\">essayez de réinitialiser votre mot de passe</a>"
+
+#: app/Security.php:101
+msgid ""
+"Otomaties core has disabled updating of <code>users_can_register</code> & "
+"<code>default_role</code>."
+msgstr ""
+"Otomaties core a désactivé la mise à jour de <code>users_can_register</code> "
+"& <code>default_role</code>."
+
+#. Plugin Name of the plugin/theme
+msgid "Otomaties Core"
+msgstr "Otomaties Core"
+
+#. Description of the plugin/theme
+msgid "Optimize WordPress install"
+msgstr "Optimiser l'installation de WordPress"
+
+#. Author of the plugin/theme
+msgid "Tom Broucke"
+msgstr "Tom Broucke"
+
+#. Author URI of the plugin/theme
+msgid "https://tombroucke.be"
+msgstr "https://tombroucke.be"
