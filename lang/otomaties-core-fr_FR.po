@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Otomaties Core\n"
-"POT-Creation-Date: 2021-12-20 14:06+0100\n"
-"PO-Revision-Date: 2021-12-20 14:08+0100\n"
+"POT-Creation-Date: 2021-12-28 11:24+0100\n"
+"PO-Revision-Date: 2021-12-28 11:25+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -21,7 +21,7 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.min.js\n"
 
-#: app/Admin.php:121
+#: app/Admin.php:116
 msgid ""
 "Some of these settings are controlled by the theme. To change these, please "
 "contact the theme author."
@@ -29,9 +29,17 @@ msgstr ""
 "Certains de ces paramètres sont contrôlés par le thème. Pour les modifier, "
 "veuillez contacter l'auteur du thème."
 
-#: app/Admin.php:158
+#: app/Admin.php:154
 msgid "Website by"
 msgstr "Site internet par"
+
+#: app/Admin.php:166
+msgid "Timestamp"
+msgstr "Horodatage"
+
+#: app/Admin.php:166 app/Admin.php:168
+msgid "Revision"
+msgstr "Révision"
 
 #: app/Security.php:14
 msgid ""

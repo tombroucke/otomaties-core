@@ -69,6 +69,7 @@ class Plugin
         $this->loader->addAction('admin_notices', $admin, 'discussionNotice');
         $this->loader->addAction('login_head', $admin, 'loginLogo', 100);
         $this->loader->addFilter('admin_footer_text', $admin, 'adminFooterBranding', 1);
+        $this->loader->addFilter('update_footer', $admin, 'showRevision', 999);
 
         $security = new Security();
         $this->loader->addAction('admin_notices', $security, 'debugNotice');

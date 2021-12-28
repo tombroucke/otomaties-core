@@ -153,11 +153,21 @@ class Admin
 
         $text = sprintf('<a target="_blank" href="%s">%s</a>', 'https://tombroucke.be', __('Website by', 'otomaties-core') . ' Tom Broucke');
 
+        return $text;
+    }
+
+    public function showRevision($text)
+    {
         $revisionFile = get_home_path() . 'revision.txt';
         if (file_exists($revisionFile) && file_get_contents($revisionFile)) {
-            $text .= ' | Revision:' . substr(file_get_contents($revisionFile), 0, 7);
+            $revisionFileContent = file_get_contents($revisionFile);
+            $release = explode(' ', $revisionFileContent);
+            if (is_array($release) && count($release) >= 2) {
+                $text .= sprintf(' | %s: <strong>%s</strong> | %s: <strong>%s</strong>', __('Timestamp', 'otomaties-core'), $release[0], __('Revision', 'otomaties-core'), substr($release[1], 0, 7));
+            } else {
+                $text .= sprintf(' | %s: <strong>%s</strong>', __('Revision', 'otomaties-core'), $revisionFileContent);
+            }
         }
-
         return $text;
     }
 }
