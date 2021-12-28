@@ -150,7 +150,14 @@ class Admin
         if (apply_filters('otomaties_whitelabel', false)) {
             return $text;
         }
+
         $text = sprintf('<a target="_blank" href="%s">%s</a>', 'https://tombroucke.be', __('Website by', 'otomaties-core') . ' Tom Broucke');
+
+        $revisionFile = get_home_path() . 'revision.txt';
+        if (file_exists($revisionFile) && file_get_contents($revisionFile)) {
+            $text .= ' | Revision:' . substr(file_get_contents($revisionFile), 0, 7);
+        }
+
         return $text;
     }
 }
