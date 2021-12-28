@@ -10,6 +10,7 @@ composer require tombroucke/otomaties-core
 
 ## Admin
 - Disable comments, remove from admin. To enable comments: `add_filter('otomaties_open_comments', '__return_true');`
+- Add information from revision.txt to footer if file this exists. Content of this file should be "timestamp revision", e.g.: "20211228102819 21828faf52149f5a7f9752617d50789e97e2bb96".
 
 ## Branding
 - Logo on login screen
