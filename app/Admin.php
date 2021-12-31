@@ -6,13 +6,19 @@ namespace Otomaties\Core;
  */
 class Admin
 {
+    private $wpEnv = 'production';
+
+    public function __construct(string $wpEnv)
+    {
+        $this->wpEnv = $wpEnv;
+    }
 
     /**
      * Hide acf in production environments, hide welcome panel
      */
     public function init()
     {
-        if (! defined('WP_ENV') || WP_ENV == 'production' || WP_ENV == 'staging') {
+        if ('development' != $this->wpEnv) {
             add_filter('acf/settings/show_admin', '__return_false');
         }
         remove_action('welcome_panel', 'wp_welcome_panel');
@@ -153,21 +159,6 @@ class Admin
 
         $text = sprintf('<a target="_blank" href="%s">%s</a>', 'https://tombroucke.be', __('Website by', 'otomaties-core') . ' Tom Broucke');
 
-        return $text;
-    }
-
-    public function showRevision($text)
-    {
-        $revisionFile = get_home_path() . 'revision.txt';
-        if (file_exists($revisionFile) && file_get_contents($revisionFile)) {
-            $revisionFileContent = file_get_contents($revisionFile);
-            $release = explode(' ', $revisionFileContent);
-            if (is_array($release) && count($release) >= 2) {
-                $text .= sprintf(' | %s: <strong>%s</strong> | %s: <strong>%s</strong>', __('Timestamp', 'otomaties-core'), $release[0], __('Revision', 'otomaties-core'), substr($release[1], 0, 7));
-            } else {
-                $text .= sprintf(' | %s: <strong>%s</strong>', __('Revision', 'otomaties-core'), $revisionFileContent);
-            }
-        }
         return $text;
     }
 }

@@ -10,7 +10,6 @@ composer require tombroucke/otomaties-core
 
 ## Admin
 - Disable comments, remove from admin. To enable comments: `add_filter('otomaties_open_comments', '__return_true');`
-- Add information from revision.txt to footer if file this exists. Content of this file should be "timestamp revision", e.g.: "20211228102819 21828faf52149f5a7f9752617d50789e97e2bb96".
 
 ## Branding
 - Logo on login screen
@@ -41,4 +40,11 @@ To disable: `add_filter('otomaties_whitelabel', false);`
 
 ### General
 - Disable updating of critical options `users_can_register` & `default_role`. To disable: `add_filter('otomaties_disable_update_critical_options', '__return_false');`
+
+## Revision
+- revision.txt needs to be in web root
+- Show revision in admin footer for administrator role
+- Show revision in console for all environments except production
+
+To disable revisions: `add_filter('otomaties_display_revision', '__return_false');`
 

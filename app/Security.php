@@ -3,6 +3,12 @@ namespace Otomaties\Core;
 
 class Security
 {
+    private $wpEnv = 'production';
+
+    public function __construct(string $wpEnv)
+    {
+        $this->wpEnv = $wpEnv;
+    }
 
     /**
      * Add notices for different security issues
@@ -24,7 +30,7 @@ class Security
         }
         if (! empty($security_issues)) :
             $class = 'notice-warning';
-            if (! defined('WP_ENV') || WP_ENV == 'production') {
+            if ('production' == $this->wpEnv) {
                 $class = 'notice-error';
             }
             ?>

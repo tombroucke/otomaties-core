@@ -61,7 +61,8 @@ class Plugin
      */
     private function defineHooks()
     {
-        $admin = new Admin();
+        $wpEnv = $this->getWpEnv();
+        $admin = new Admin($wpEnv);
         $admin->init();
         $this->loader->addAction('admin_menu', $admin, 'removeMenus');
         $this->loader->addAction('admin_bar_menu', $admin, 'removeFromAdminBar', 999);
@@ -69,9 +70,8 @@ class Plugin
         $this->loader->addAction('admin_notices', $admin, 'discussionNotice');
         $this->loader->addAction('login_head', $admin, 'loginLogo', 100);
         $this->loader->addFilter('admin_footer_text', $admin, 'adminFooterBranding', 1);
-        $this->loader->addFilter('update_footer', $admin, 'showRevision', 999);
 
-        $security = new Security();
+        $security = new Security($wpEnv);
         $this->loader->addAction('admin_notices', $security, 'debugNotice');
         $this->loader->addFilter('login_errors', $security, 'genericLoginErrors');
         $this->loader->addFilter('wp_get_attachment_url', $security, 'forceAttachmentHttps');
@@ -94,8 +94,28 @@ class Plugin
         $this->loader->addFilter('comments_open', $discussion, 'closeComments', 50, 2);
         $this->loader->addAction('after_setup_theme', $discussion, 'setDefaults', 999);
 
+        $revision = new Revision($wpEnv);
+        $this->loader->addFilter('update_footer', $revision, 'showRevisionInAdminFooter', 999);
+
+        if (apply_filters('otomaties_display_revision', true)) {
+            $this->loader->addAction('wp_footer', $revision, 'showRevisionInConsole', 999);
+        }
+
         $shortcodes = new Shortcodes();
         add_shortcode('email', [$shortcodes, 'obfuscateEmail']);
+    }
+
+    /**
+     * Get WP_ENV, assume production
+     *
+     * @return string
+     */
+    public function getWpEnv() : string
+    {
+        if (defined('WP_ENV')) {
+            return constant('WP_ENV');
+        }
+        return 'production';
     }
 
     /**
