@@ -102,7 +102,8 @@ class Security
     public function showSecurityNotices()
     {
         global $pagenow;
-        if ('options-general.php' == $pagenow) {
+        $page = filter_input(INPUT_GET, 'page', FILTER_SANITIZE_STRING);
+        if ('options-general.php' == $pagenow && !$page) {
             echo '<div class="notice">';
             echo '<p>' . __('Otomaties core has disabled updating of <code>users_can_register</code> & <code>default_role</code>.', 'otomaties-core') . '</p>';
             echo '</div>';
