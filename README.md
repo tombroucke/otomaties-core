@@ -43,6 +43,7 @@ To disable: `add_filter('otomaties_whitelabel', false);`
 
 ## Revision
 - revision.txt needs to be in web root
+- format: 'YmdHis {{commit hash}}'
 - Show revision in admin footer for administrator role
 - Show revision in console for all environments except production
 
