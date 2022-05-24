@@ -1,5 +1,6 @@
 {
     "name": "tombroucke/otomaties-core",
+    "description": "Optimize WordPress installation for performance, security etc.",
     "type": "wordpress-muplugin",
     "authors": [
         {
