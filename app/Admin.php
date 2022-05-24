@@ -119,7 +119,7 @@ class Admin
         if ('options-discussion.php' == $pagenow) {
             ?>
             <div class="notice notice-warning">
-                <p><?php esc_html_e('Some of these settings are controlled by the theme. To change these, please contact the theme author.', 'otomaties-core'); ?></p>
+                <p><?php esc_html_e('Some of these settings are controlled by the theme. To change these, please contact the theme author.', 'otomaties-core'); // phpcs:ignore Generic.Files.LineLength ?></p>
             </div>
             <?php
         }
@@ -157,7 +157,7 @@ class Admin
             return $text;
         }
 
-        $text = sprintf('<a target="_blank" href="%s">%s</a>', 'https://tombroucke.be', __('Website by', 'otomaties-core') . ' Tom Broucke');
+        $text = sprintf('<a target="_blank" href="%s">%s</a>', 'https://tombroucke.be', __('Website by', 'otomaties-core') . ' Tom Broucke'); // phpcs:ignore Generic.Files.LineLength
 
         return $text;
     }

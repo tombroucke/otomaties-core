@@ -15,20 +15,32 @@ class Security
      */
     public function debugNotice()
     {
-        $security_issues = array();
+        $securityIssues = array();
         if (! defined('WP_DEBUG') || constant('WP_DEBUG') === true) {
-            array_push($security_issues, __('Disable debugging for better security. Add <code>define( \'WP_DEBUG\', false );</code> to wp-config.php', 'otomaties-core'));
+            array_push(
+                $securityIssues,
+                __('Disable debugging for better security. Add <code>define( \'WP_DEBUG\', false );</code> to wp-config.php', 'otomaties-core'), // phpcs:ignore Generic.Files.LineLength
+            );
         }
         if (file_exists(constant('WP_CONTENT_DIR') . '/debug.log')) {
-            array_push($security_issues, __('Your debug.log file is publicly accessible. Remove <code>wp-content/debug.log</code>', 'otomaties-core'));
+            array_push(
+                $securityIssues,
+                sprintf(__('Your debug.log file is publicly accessible. Remove <code>%s</code>', 'otomaties-core'), constant('WP_CONTENT_DIR') . '/debug.log'), // phpcs:ignore Generic.Files.LineLength
+            );
         }
         if (! defined('DISALLOW_FILE_EDIT') || constant('DISALLOW_FILE_EDIT') === false) {
-            array_push($security_issues, __('Disallow file editing for better security. Add <code>define( \'DISALLOW_FILE_EDIT\', true );</code> to wp-config.php', 'otomaties-core'));
+            array_push(
+                $securityIssues,
+                __('Disallow file editing for better security. Add <code>define( \'DISALLOW_FILE_EDIT\', true );</code> to wp-config.php', 'otomaties-core'), // phpcs:ignore Generic.Files.LineLength
+            );
         }
         if (! is_plugin_active('sucuri-scanner/sucuri.php') && ! is_plugin_active('wordfence/wordfence.php')) {
-            array_push($security_issues, __('Install & activate Wordfence or Sucuri Security for optimal security.', 'otomaties-core'));
+            array_push(
+                $securityIssues,
+                __('Install & activate Wordfence or Sucuri Security for optimal security.', 'otomaties-core'),
+            );
         }
-        if (! empty($security_issues)) :
+        if (! empty($securityIssues)) :
             $class = 'notice-warning';
             if ('production' == $this->wpEnv) {
                 $class = 'notice-error';
@@ -37,7 +49,7 @@ class Security
             <div class="notice <?php echo esc_html($class); ?>">
                 <h4><?php esc_html_e('You have some security concerns', 'otomaties-core'); ?></h4>
                 <ol>
-                    <?php foreach ($security_issues as $issue) : ?>
+                    <?php foreach ($securityIssues as $issue) : ?>
                         <li>
                         <?php
                         echo wp_kses(
@@ -48,7 +60,7 @@ class Security
                             )
                         );
                         ?>
-                            </li>
+                        </li>
                     <?php endforeach; ?>
                 </ol>
             </div>
@@ -66,7 +78,10 @@ class Security
     {
         if (apply_filters('otomaties_generic_login_error', true)) {
             // translators: %s is the lost password url.
-            return sprintf(__('Could not log you in. If this problem persists, <a href="%s">try resetting your password</a>', 'otomaties-core'), wp_lostpassword_url());
+            return sprintf(
+                __('Could not log you in. If this problem persists, <a href="%s">try resetting your password</a>', 'otomaties-core'), // phpcs:ignore Generic.Files.LineLength
+                wp_lostpassword_url()
+            );
         }
         return $errors;
     }
@@ -78,14 +93,14 @@ class Security
      * @return string
      */
     public function forceAttachmentHttps($url)
-    {    
+    {
         if (is_ssl()) {
             $url = str_replace('http://', 'https://', $url);
         }
         return $url;
     }
 
-    public function disableUpdateCriticalOptions($value, $option, $old_value)
+    public function disableUpdateCriticalOptions($value, $option, $oldValue = null)
     {
         if (!apply_filters('otomaties_disable_update_critical_options', true)) {
             return $value;
@@ -103,9 +118,11 @@ class Security
     {
         global $pagenow;
         if ('options-general.php' == $pagenow) {
-            echo '<div class="notice">';
-            echo '<p>' . __('Otomaties core has disabled updating of <code>users_can_register</code> & <code>default_role</code>.', 'otomaties-core') . '</p>';
-            echo '</div>';
+            ?>
+            <div class="notice">
+                <p><?php _e('Otomaties core has disabled updating of <code>users_can_register</code> & <code>default_role</code>.', 'otomaties-core'); // phpcs:ignore Generic.Files.LineLength ?></p>
+            </div>
+            <?php
         }
     }
 }
