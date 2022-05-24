@@ -2,6 +2,7 @@
     "name": "tombroucke/otomaties-core",
     "description": "Optimize WordPress installation for performance, security etc.",
     "type": "wordpress-muplugin",
+    "license": "MIT",
     "authors": [
         {
             "name": "Tom Broucke",
