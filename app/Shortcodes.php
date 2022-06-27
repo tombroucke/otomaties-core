@@ -10,7 +10,7 @@ class Shortcodes
      * @param string $content Content between start & end tag
      * @return string
      */
-    public function obfuscateEmail(array $atts = [], string $content = null) : ?string
+    public function obfuscateEmail((array|string $atts = [], string $content = null) : ?string
     {
         $a = shortcode_atts(
             [
