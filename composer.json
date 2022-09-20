@@ -28,7 +28,11 @@
     "scripts": {
         "test": [
             "phpunit --colors=always --verbose",
-            "phpcs --standard=PSR2 app"
+            "phpcs --standard=PSR2 app",
+            "vendor/bin/phpstan analyze app --memory-limit 512M"
         ]
+    },
+    "require-dev": {
+        "szepeviktor/phpstan-wordpress": "^1.1"
     }
 }

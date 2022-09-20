@@ -1,14 +1,15 @@
-<?php //phpcs:ignore
+<?php
 namespace Otomaties\Core;
-
-if (! defined('ABSPATH')) {
-    exit;
-}
 
 class Emojis
 {
 
-    public function init()
+    /**
+     * Remove emojis
+     *
+     * @return void
+     */
+    public function init() : void
     {
         if (! $this->disableEmojis()) {
             return;
@@ -24,33 +25,35 @@ class Emojis
         add_filter('emoji_svg_url', '__return_false');
     }
 
-    public function disableEmojisTinymce($plugins)
+
+    public function disableEmojisTinymce(array $plugins) : array
     {
         if (! $this->disableEmojis()) {
-            return;
+            return $plugins;
         }
 
-        if (is_array($plugins)) {
-            return array_diff($plugins, array( 'wpemoji' ));
-        } else {
-            return array();
-        }
+        return array_diff($plugins, ['wpemoji']);
     }
 
-    public function disableEmojisRemoveDnsPrefetch($urls, $relation_type)
+    public function disableEmojisRemoveDnsPrefetch(array $urls, string $relation_type) : array
     {
         if (! $this->disableEmojis()) {
-            return;
+            return $urls;
         }
 
         if ('dns-prefetch' == $relation_type) {
             $emoji_svg_url = apply_filters('emoji_svg_url', 'https://s.w.org/images/core/emoji/2/svg/');
-            $urls = array_diff($urls, array( $emoji_svg_url ));
+            $urls = array_diff($urls, [$emoji_svg_url]);
         }
         return $urls;
     }
 
-    private function disableEmojis()
+    /**
+     * Allow for theme to enable emojis
+     *
+     * @return boolean
+     */
+    private function disableEmojis() : bool
     {
         return apply_filters('otomaties_disable_emojis', true);
     }

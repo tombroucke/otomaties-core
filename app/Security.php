@@ -1,4 +1,4 @@
-<?php //phpcs:ignore
+<?php
 namespace Otomaties\Core;
 
 class Security
@@ -13,7 +13,7 @@ class Security
     /**
      * Add notices for different security issues
      */
-    public function debugNotice()
+    public function debugNotice() : void
     {
         $securityIssues = array();
         if (! defined('WP_DEBUG') || constant('WP_DEBUG') === true) {
@@ -74,7 +74,7 @@ class Security
      * @param  string $errors
      * @return string
      */
-    public function genericLoginErrors($errors)
+    public function genericLoginErrors($errors) : string
     {
         if (apply_filters('otomaties_generic_login_error', true)) {
             // translators: %s is the lost password url.
@@ -92,7 +92,7 @@ class Security
      * @param  string $url
      * @return string
      */
-    public function forceAttachmentHttps($url)
+    public function forceAttachmentHttps($url) : string
     {
         if (is_ssl()) {
             $url = str_replace('http://', 'https://', $url);
@@ -100,7 +100,15 @@ class Security
         return $url;
     }
 
-    public function disableUpdateCriticalOptions($value, $option, $oldValue = null)
+    /**
+     * Disable update of critical options
+     *
+     * @param mixed $value
+     * @param string $option
+     * @param mixed $oldValue
+     * @return mixed
+     */
+    public function disableUpdateCriticalOptions(mixed $value, string $option, mixed $oldValue = null) : mixed
     {
         if (!apply_filters('otomaties_disable_update_critical_options', true)) {
             return $value;
@@ -114,7 +122,12 @@ class Security
         return $value;
     }
 
-    public function showSecurityNotices()
+    /**
+     * Show security notices
+     *
+     * @return void
+     */
+    public function showSecurityNotices() : void
     {
         global $pagenow;
         if ('options-general.php' == $pagenow) {

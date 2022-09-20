@@ -11,30 +11,37 @@ function _e(string $string, string $textdomain)
     echo $string;
 }
 
-function is_plugin_active(string $plugin) {
+function is_plugin_active(string $plugin)
+{
     return false;
 }
 
-function esc_html(string $string) {
+function esc_html(string $string)
+{
     return $string;
 }
 
-function esc_html_e(string $string) {
+function esc_html_e(string $string)
+{
     echo $string;
 }
 
-function wp_kses(string $string, array $allow) {
+function wp_kses(string $string, array $allow)
+{
     return $string;
 }
 
-function apply_filters($filter, ...$vars) {
+function apply_filters($filter, ...$vars)
+{
     return $vars[0];
 }
 
-function wp_lostpassword_url() {
+function wp_lostpassword_url()
+{
     return 'https://example.com/login';
 }
 
-function is_ssl() {
+function is_ssl()
+{
     return true;
 }

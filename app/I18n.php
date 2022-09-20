@@ -12,7 +12,7 @@ class I18n
      *
      * @return void
      */
-    public function loadTextdomain()
+    public function loadTextdomain() : void
     {
         load_muplugin_textdomain('otomaties-core', plugin_basename(dirname(__FILE__, 2)) . '/lang');
     }

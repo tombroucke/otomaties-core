@@ -1,4 +1,4 @@
-<?php //phpcs:ignore
+<?php
 namespace Otomaties\Core;
 
 /**
@@ -26,7 +26,7 @@ class Plugin
      *
      * @return Plugin
      */
-    public static function instance()
+    public static function instance() : Plugin
     {
         if (! isset(self::$instance)) {
             self::$instance = new self();
@@ -47,8 +47,10 @@ class Plugin
 
     /**
      * Set local
+     *
+     * @return void
      */
-    private function setLocale()
+    private function setLocale() : void
     {
         $plugin_i18n = new I18n();
         $plugin_i18n->loadTextdomain();
@@ -59,7 +61,7 @@ class Plugin
      *
      * @return void
      */
-    private function defineHooks()
+    private function defineHooks() : void
     {
         $wpEnv = $this->getWpEnv();
         $admin = new Admin($wpEnv);
@@ -70,6 +72,7 @@ class Plugin
         $this->loader->addAction('admin_notices', $admin, 'discussionNotice');
         $this->loader->addAction('login_head', $admin, 'loginLogo', 100);
         $this->loader->addFilter('admin_footer_text', $admin, 'adminFooterBranding', 1);
+        $this->loader->addAction('updated_option', $admin, 'setDefaults', 999);
 
         $security = new Security($wpEnv);
         $this->loader->addAction('admin_notices', $security, 'debugNotice');
@@ -88,11 +91,10 @@ class Plugin
         $frontend->cleanUpHead();
 
         $this->loader->addAction('template_redirect', $frontend, 'redirectSingleSearchResult');
-        $this->loader->addAction('after_setup_theme', $frontend, 'setDefaults', 999);
 
         $discussion = new Discussion();
         $this->loader->addFilter('comments_open', $discussion, 'closeComments', 50, 2);
-        $this->loader->addAction('after_setup_theme', $discussion, 'setDefaults', 999);
+        $this->loader->addAction('updated_option', $discussion, 'setDefaults', 999);
 
         $revision = new Revision($wpEnv);
         $this->loader->addFilter('update_footer', $revision, 'showRevisionInAdminFooter', 999);
@@ -115,7 +117,7 @@ class Plugin
      */
     public function getWpEnv() : string
     {
-        if (defined('WP_ENV')) {
+        if (defined('WP_ENV') && is_string(constant('WP_ENV'))) {
             return constant('WP_ENV');
         }
         return 'production';
@@ -126,7 +128,7 @@ class Plugin
      *
      * @return void
      */
-    public function run()
+    public function run() : void
     {
         $this->loader->run();
     }
@@ -136,7 +138,7 @@ class Plugin
      *
      * @return Loader
      */
-    public function getLoader()
+    public function getLoader() : Loader
     {
         return $this->loader;
     }

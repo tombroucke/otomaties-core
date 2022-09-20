@@ -1,4 +1,4 @@
-<?php //phpcs:ignore
+<?php
 namespace Otomaties\Core;
 
 class Shortcodes
@@ -6,7 +6,7 @@ class Shortcodes
     /**
      * Obfuscate email address with [email address="tom@tombroucke.be" class="btn btn-primary"]
      *
-     * @param string\array $atts
+     * @param array|string $atts
      * @param string $content Content between start & end tag
      * @return string
      */
@@ -20,16 +20,18 @@ class Shortcodes
             $atts
         );
 
-        if (! is_email($a['address'])) {
+        $address = $a['address'] ?: '';
+
+        if (! is_email($address)) {
             return null;
         }
 
         $class = $a['class'] ? sprintf(' class="%s"', $a['class']) : '';
         return sprintf(
             '<a href="%s"%s>%s</a>',
-            esc_url('mailto:' . antispambot($a['address'])),
+            esc_url('mailto:' . antispambot($address)),
             $class,
-            esc_html(antispambot($a['address']))
+            esc_html(antispambot($address))
         );
     }
 }

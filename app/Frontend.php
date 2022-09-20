@@ -1,31 +1,15 @@
-<?php //phpcs:ignore
+<?php
 namespace Otomaties\Core;
-
-if (! defined('ABSPATH')) {
-    exit;
-}
 
 class Frontend
 {
 
-    public function init()
+    public function init() : void
     {
         add_filter('widget_text', 'do_shortcode');
     }
 
-    public function setDefaults()
-    {
-        $options = array(
-            'image_default_link_type' => 'file'
-        );
-        foreach ($options as $key => $value) {
-            if (apply_filters('otomaties_set_default_' . $key, true)) {
-                update_option($key, $value);
-            }
-        }
-    }
-
-    public function cleanUpHead()
+    public function cleanUpHead() : void
     {
         remove_action('wp_head', 'feed_links_extra', 3);
         remove_action('wp_head', 'feed_links', 2);
@@ -49,12 +33,17 @@ class Frontend
     /**
      * Redirect to result's single page when there is only 1 search result
      */
-    public function redirectSingleSearchResult()
+    public function redirectSingleSearchResult() : void
     {
-        if (is_search() && apply_filters('otomaties_redirect_single_search_result', true)) {
-            global $wp_query;
-            if (1 == $wp_query->found_posts) {
-                wp_redirect(get_permalink($wp_query->posts['0']->ID));
+        if (!is_search() || !apply_filters('otomaties_redirect_single_search_result', true)) {
+            return;
+        }
+
+        global $wp_query;
+        if (1 == $wp_query->found_posts) {
+            $redirect = get_permalink($wp_query->posts['0']->ID);
+            if ($redirect) {
+                wp_redirect($redirect);
             }
         }
     }

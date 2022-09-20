@@ -1,17 +1,20 @@
-<?php //phpcs:ignore
+<?php
 namespace Otomaties\Core;
-
-if (! defined('ABSPATH')) {
-    exit;
-}
 
 class Gdpr
 {
-    public function replaceYoutubeWithYoutubeNoCookie($cached_html, $url = null)
+    public function replaceYoutubeWithYoutubeNoCookie(string $cachedHtml, string $url) : string
     {
-        if (apply_filters('otomaties_replace_youtube_with_youtube_nocookie', true) && strpos($url, 'youtu')) {
-            $cached_html = preg_replace('/youtube\.com\/(v|embed)\//s', 'youtube-nocookie.com/$1/', $cached_html);
+        if (!apply_filters('otomaties_replace_youtube_with_youtube_nocookie', true) || !strpos($url, 'youtu')) {
+            return $cachedHtml;
         }
-        return $cached_html;
+
+        $replacedCachedHtml = preg_replace('/youtube\.com\/(v|embed)\//s', 'youtube-nocookie.com/$1/', $cachedHtml);
+
+        if ($replacedCachedHtml) {
+            $cachedHtml = $replacedCachedHtml;
+        }
+
+        return $cachedHtml;
     }
 }

@@ -1,4 +1,4 @@
-<?php //phpcs:ignore
+<?php
 namespace Otomaties\Core;
 
 /**
@@ -15,8 +15,10 @@ class Admin
 
     /**
      * Hide acf in production environments, hide welcome panel
+     *
+     * @return void
      */
-    public function init()
+    public function init() : void
     {
         if ('development' != $this->wpEnv) {
             add_filter('acf/settings/show_admin', '__return_false');
@@ -25,9 +27,28 @@ class Admin
     }
 
     /**
-     * Remove comments menu
+     * Set default image link type
+     *
+     * @return void
      */
-    public function removeMenus()
+    public function setDefaults() : void
+    {
+        $options = array(
+            'image_default_link_type' => 'file'
+        );
+        foreach ($options as $key => $value) {
+            if (apply_filters('otomaties_set_default_' . $key, true)) {
+                update_option($key, $value);
+            }
+        }
+    }
+
+    /**
+     * Remove comments menu
+     *
+     * @return void
+     */
+    public function removeMenus() : void
     {
         $menus = array(
             'edit-comments.php',
@@ -47,16 +68,18 @@ class Admin
     /**
      * Remove wp-logo & comments from admin bar
      *
-     * @param  object $wp_admin_bar admin bar object.
+     * @param \WP_Admin_Bar $wp_admin_bar admin bar object.
+     *
+     * @return void
      */
-    public function removeFromAdminBar($wp_admin_bar)
+    public function removeFromAdminBar(\WP_Admin_Bar $wp_admin_bar) : void
     {
-        $nodes = array(
+        $nodes = [
             'wp-logo',
             'comments',
-        );
-        if (apply_filters('otomaties_open_comments', false)) {
-            unset($nodes['comments']);
+        ];
+        if (apply_filters('otomaties_open_comments', false) && ($key = array_search('comment', $nodes)) !== false) {
+            unset($nodes[$key]);
         }
         foreach (apply_filters('otomaties_admin_bar_unnecessary_nodes', $nodes) as $node) {
             $wp_admin_bar->remove_node($node);
@@ -66,9 +89,11 @@ class Admin
     /**
      * Add tb logo to admin bar
      *
-     * @param  object $wp_admin_bar admin bar object.
+     * @param  \WP_Admin_Bar $wp_admin_bar admin bar object.
+     *
+     * @return void
      */
-    public function adminBarLogo($wp_admin_bar)
+    public function adminBarLogo(\WP_Admin_Bar $wp_admin_bar) : void
     {
         if (! apply_filters('otomaties_whitelabel', false)) {
             ob_start();
@@ -76,7 +101,7 @@ class Admin
             $minilogo = ob_get_clean();
             $args = array(
                 'id'    => 'otomaties-core',
-                'title' => $minilogo,
+                'title' => (string)$minilogo,
                 'href'  => 'mailto:tom@tombroucke.be',
                 'meta'  => array(
                     'class' => 'tb-logo',
@@ -127,8 +152,10 @@ class Admin
 
     /**
      * TB logo on login page
+     *
+     * @return void
      */
-    public function loginLogo()
+    public function loginLogo() : void
     {
         $logo = dirname(plugin_dir_url(__FILE__)) . '/assets/img/logo.svg';
         if (! apply_filters('otomaties_whitelabel', false)) {
@@ -151,7 +178,7 @@ class Admin
      * @param  string $text default text.
      * @return string
      */
-    public function adminFooterBranding($text)
+    public function adminFooterBranding(string $text) : string
     {
         if (apply_filters('otomaties_whitelabel', false)) {
             return $text;

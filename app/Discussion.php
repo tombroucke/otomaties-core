@@ -1,20 +1,29 @@
-<?php //phpcs:ignore
+<?php
 namespace Otomaties\Core;
 
 class Discussion
 {
-    public function setDefaults()
+    public function setDefaults() : void
     {
-        update_option('default_comment_status', '0');
-        update_option('default_ping_status', '0');
-        update_option('moderation_notify', '0');
-        update_option('comments_notify', '0');
+        $options = array(
+            'default_comment_status' => '0',
+            'default_ping_status' => '0',
+            'moderation_notify' => '0',
+            'comments_notify' => '0',
+        );
+        foreach ($options as $key => $value) {
+            if (apply_filters('otomaties_set_default_' . $key, true)) {
+                update_option($key, $value);
+            }
+        }
     }
 
     /**
      * Close comments
+     *
+     * @return boolean
      */
-    public function closeComments()
+    public function closeComments() : bool
     {
         return apply_filters('otomaties_open_comments', false);
     }
