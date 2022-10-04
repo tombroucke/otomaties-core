@@ -14,7 +14,7 @@ final class SecurityTest extends TestCase
         $this->assertNotEmpty($debugNotice);
         $this->assertStringContainsString('Disable debugging for better security', $debugNotice);
         $this->assertStringContainsString('Disallow file editing for better security', $debugNotice);
-        $this->assertStringContainsString('Install & activate Wordfence, Sucuri Security or Defe for optimal security.', $debugNotice);
+        $this->assertStringContainsString('Install & activate Wordfence, Sucuri Security or WP Defender for optimal security.', $debugNotice);
     }
     
     public function testLoginHasGenericErrors()

@@ -41,7 +41,7 @@ class Security
         ) {
             array_push(
                 $securityIssues,
-                __('Install & activate Wordfence, Sucuri Security or Defe for optimal security.', 'otomaties-core'),
+                __('Install & activate Wordfence, Sucuri Security or WP Defender for optimal security.', 'otomaties-core'), // phpcs:ignore Generic.Files.LineLength
             );
         }
         if (!empty($securityIssues)) :
