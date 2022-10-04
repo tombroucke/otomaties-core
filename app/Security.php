@@ -16,7 +16,7 @@ class Security
     public function debugNotice() : void
     {
         $securityIssues = array();
-        if (! defined('WP_DEBUG') || constant('WP_DEBUG') === true) {
+        if (!defined('WP_DEBUG') || constant('WP_DEBUG') === true) {
             array_push(
                 $securityIssues,
                 __('Disable debugging for better security. Add <code>define( \'WP_DEBUG\', false );</code> to wp-config.php', 'otomaties-core'), // phpcs:ignore Generic.Files.LineLength
@@ -28,19 +28,23 @@ class Security
                 sprintf(__('Your debug.log file is publicly accessible. Remove <code>%s</code>', 'otomaties-core'), constant('WP_CONTENT_DIR') . '/debug.log'), // phpcs:ignore Generic.Files.LineLength
             );
         }
-        if (! defined('DISALLOW_FILE_EDIT') || constant('DISALLOW_FILE_EDIT') === false) {
+        if (!defined('DISALLOW_FILE_EDIT') || constant('DISALLOW_FILE_EDIT') === false) {
             array_push(
                 $securityIssues,
                 __('Disallow file editing for better security. Add <code>define( \'DISALLOW_FILE_EDIT\', true );</code> to wp-config.php', 'otomaties-core'), // phpcs:ignore Generic.Files.LineLength
             );
         }
-        if (! is_plugin_active('sucuri-scanner/sucuri.php') && ! is_plugin_active('wordfence/wordfence.php')) {
+        if (!is_plugin_active('sucuri-scanner/sucuri.php')
+            && !is_plugin_active('wordfence/wordfence.php')
+            && !is_plugin_active('wp-defender/wp-defender.php')
+            && !is_plugin_active('defender-security/wp-defender.php')
+        ) {
             array_push(
                 $securityIssues,
-                __('Install & activate Wordfence or Sucuri Security for optimal security.', 'otomaties-core'),
+                __('Install & activate Wordfence, Sucuri Security or Defe for optimal security.', 'otomaties-core'),
             );
         }
-        if (! empty($securityIssues)) :
+        if (!empty($securityIssues)) :
             $class = 'notice-warning';
             if ('production' == $this->wpEnv) {
                 $class = 'notice-error';
