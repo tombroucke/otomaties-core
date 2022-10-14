@@ -34,4 +34,32 @@ class Shortcodes
             esc_html(antispambot($address))
         );
     }
+
+    /**
+     * Obfuscate telephone number with [tel number="tom@tombroucke.be" class="btn btn-primary"]
+     *
+     * @param array|string $atts
+     * @param string $content Content between start & end tag
+     * @return string
+     */
+    public function obfuscateTel(array|string $atts = [], string $content = null) : ?string
+    {
+        $a = shortcode_atts(
+            [
+                'class' => null,
+                'number' => $content
+            ],
+            $atts
+        );
+
+        $number = $a['number'] ?: '';
+
+        $class = $a['class'] ? sprintf(' class="%s"', $a['class']) : '';
+        return sprintf(
+            '<a href="%s"%s>%s</a>',
+            esc_url('tel:' . antispambot($number)),
+            $class,
+            esc_html(antispambot($number))
+        );
+    }
 }

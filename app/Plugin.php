@@ -108,6 +108,7 @@ class Plugin
 
         $shortcodes = new Shortcodes();
         add_shortcode('email', [$shortcodes, 'obfuscateEmail']);
+        add_shortcode('tel', [$shortcodes, 'obfuscateTel']);
     }
 
     /**
