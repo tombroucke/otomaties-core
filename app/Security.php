@@ -133,8 +133,8 @@ class Security
      */
     public function showSecurityNotices() : void
     {
-        global $pagenow;
-        if ('options-general.php' == $pagenow) {
+        $currentScreen = get_current_screen();
+        if (property_exists($currentScreen, 'base') && 'options-general' == $currentScreen->base) {
             ?>
             <div class="notice">
                 <p><?php _e('Otomaties core has disabled updating of <code>users_can_register</code> & <code>default_role</code>.', 'otomaties-core'); // phpcs:ignore Generic.Files.LineLength ?></p>

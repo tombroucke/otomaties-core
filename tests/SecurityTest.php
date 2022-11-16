@@ -42,15 +42,17 @@ final class SecurityTest extends TestCase
 
     public function testIfCriticalOptionsUpdateNoticeIsDisplayed()
     {
-        global $pagenow;
-        $pagenow = 'options-general.php';
         $security = new Security('production');
         ob_start();
         $security->showSecurityNotices();
         $notices = ob_get_clean();
         $this->assertStringContainsString('Otomaties core has disabled updating of', $notices);
 
-        $pagenow = 'plugins.php';
+        custom_change_current_screen((object) [
+            'id' => 'plugins',
+            'base' => 'plugins',
+        ]);
+
         ob_start();
         $security->showSecurityNotices();
         $notices = ob_get_clean();

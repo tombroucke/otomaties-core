@@ -45,3 +45,19 @@ function is_ssl()
 {
     return true;
 }
+
+$currentScreen = (object) [
+    'id' => 'options-general',
+    'base' => 'options-general',
+];
+function get_current_screen()
+{
+    global $currentScreen;
+    return $currentScreen;
+}
+
+function custom_change_current_screen(object $screen)
+{
+    global $currentScreen;
+    $currentScreen = $screen;
+}
