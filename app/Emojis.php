@@ -25,19 +25,31 @@ class Emojis
         add_filter('emoji_svg_url', '__return_false');
     }
 
-
+    /**
+     * Disable emojis in tinymce
+     *
+     * @param array<string> $plugins
+     * @return array<string>
+     */
     public function disableEmojisTinymce(array $plugins) : array
     {
-        if (! $this->disableEmojis()) {
+        if (!$this->disableEmojis()) {
             return $plugins;
         }
 
         return array_diff($plugins, ['wpemoji']);
     }
 
+    /**
+     * Remove dns prefetch for emojis
+     *
+     * @param array<string, string> $urls
+     * @param string $relation_type
+     * @return array<string, string>
+     */
     public function disableEmojisRemoveDnsPrefetch(array $urls, string $relation_type) : array
     {
-        if (! $this->disableEmojis()) {
+        if (!$this->disableEmojis()) {
             return $urls;
         }
 

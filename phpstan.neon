@@ -3,9 +3,13 @@
 includes:
     - vendor/szepeviktor/phpstan-wordpress/extension.neon
 parameters:
-    level: 5
+    level: 8
     inferPrivatePropertyTypeFromConstructor: true
     paths:
         - inc/
+    ignoreErrors:
+        - '#Parameter \#2 \$callback of function add_filter expects callable\(\): mixed, array{mixed, mixed} given.#'
+        - '#Parameter \#2 \$callback of function add_action expects callable\(\): mixed, array{mixed, mixed} given.#'
+        - '#Parameter \#2 \$atts of function shortcode_atts expects array, array<string, string>\|string given.#'
 
 # See full example in phpstan-full.neon

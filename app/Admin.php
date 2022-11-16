@@ -137,8 +137,10 @@ class Admin
 
     /**
      * Show discussion notice
+     *
+     * @return void
      */
-    public function discussionNotice()
+    public function discussionNotice() : void
     {
         global $pagenow;
         if ('options-discussion.php' == $pagenow) {

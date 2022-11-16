@@ -6,7 +6,7 @@ class Shortcodes
     /**
      * Obfuscate email address with [email address="tom@tombroucke.be" class="btn btn-primary"]
      *
-     * @param array|string $atts
+     * @param array<string, string>|string $atts
      * @param string $content Content between start & end tag
      * @return string
      */
@@ -38,7 +38,7 @@ class Shortcodes
     /**
      * Obfuscate telephone number with [tel number="tom@tombroucke.be" class="btn btn-primary"]
      *
-     * @param array|string $atts
+     * @param array<string, string>|string $atts
      * @param string $content Content between start & end tag
      * @return string
      */
