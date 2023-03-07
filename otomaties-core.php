@@ -16,8 +16,8 @@ if (! defined('WPINC')) {
     die;
 }
 
-if (file_exists(dirname(__FILE__) . '/vendor/autoload.php')) {
-    require 'vendor/autoload.php';
+if (file_exists(__DIR__ . '/vendor/autoload.php')) {
+    require_once realpath(__DIR__ . '/vendor/autoload.php');
 }
 
 /**
