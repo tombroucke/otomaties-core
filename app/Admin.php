@@ -190,4 +190,18 @@ class Admin
 
         return $text;
     }
+
+    /**
+     * Move Yoast to bottom
+     *
+     * @param string $priority
+     * @return string
+     */
+    public function yoastSeoToBottom(string $priority) : string
+    {
+        if (!apply_filters('otomaties_yoast_seo_to_bottom', true)) {
+            return $priority;
+        }
+        return 'low';
+    }
 }

@@ -73,6 +73,7 @@ class Plugin
         $this->loader->addAction('login_head', $admin, 'loginLogo', 100);
         $this->loader->addFilter('admin_footer_text', $admin, 'adminFooterBranding', 1);
         $this->loader->addAction('updated_option', $admin, 'setDefaults', 999);
+        $this->loader->addAction('wpseo_metabox_prio', $admin, 'yoastSeoToBottom');
 
         $security = new Security($wpEnv);
         $this->loader->addAction('admin_notices', $security, 'debugNotice');
