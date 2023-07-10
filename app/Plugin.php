@@ -74,6 +74,7 @@ class Plugin
         $this->loader->addFilter('admin_footer_text', $admin, 'adminFooterBranding', 1);
         $this->loader->addAction('updated_option', $admin, 'setDefaults', 999);
         $this->loader->addAction('wpseo_metabox_prio', $admin, 'yoastSeoToBottom');
+        $this->loader->addAction('admin_head', $admin, 'removeUpdateNag', 1);
 
         $security = new Security($wpEnv);
         $this->loader->addAction('admin_notices', $security, 'debugNotice');
