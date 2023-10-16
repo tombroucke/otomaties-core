@@ -66,7 +66,7 @@ class Connect
             ->security()
                 ->debugLog(!defined('WP_DEBUG') || constant('WP_DEBUG') === true)
                 ->debugLogFile(file_exists($debugLogFileLocation) ? $debugLogFileUrl : false)
-                ->disallowFileEdit(!defined('DISALLOW_FILE_EDIT') || constant('DISALLOW_FILE_EDIT') === false)
+                ->disallowFileEdit(defined('DISALLOW_FILE_EDIT') && constant('DISALLOW_FILE_EDIT') === true)
             ->endSecurity();
 
         if (is_plugin_active('wordfence/wordfence.php')) {
