@@ -41,6 +41,18 @@ To disable: `add_filter('otomaties_whitelabel', false);`
 ### General
 - Disable updating of critical options `users_can_register` & `default_role`. To disable: `add_filter('otomaties_disable_update_critical_options', '__return_false');`
 
+### Otomaties Connect
+- Otomaties connect can fetch data over the rest API. Secured authentication with a public/private key pair.
+
+#### Connection
+In your `.env` file or `wp-config.php` file, add the `OTOMATIES_CONNECT_KEY` constant from the Otomaties connect portal.
+```
+OTOMATIES_CONNECT_KEY='XXXX-XXXX-XXXX-XXXX'
+```
+```php
+define('OTOMATIES_CONNECT_KEY', 'XXXX-XXXX-XXXX-XXXX');
+```
+
 ## Revision
 - revision.txt needs to be in web root
 - format: 'YmdHis {{commit hash}}'
