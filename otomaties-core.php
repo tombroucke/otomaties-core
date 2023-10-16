@@ -32,7 +32,10 @@ if (file_exists(__DIR__ . '/vendor/autoload.php')) {
 add_action(
     'plugins_loaded',
     function () {
-        $plugin = Otomaties\Core\Plugin::instance();
+        $pluginData = \get_plugin_data(__FILE__);
+        $pluginData['pluginName'] = basename(__FILE__, '.php');
+
+        $plugin = Otomaties\Core\Plugin::instance($pluginData);
         $plugin->run();
     }
 );

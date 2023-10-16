@@ -24,12 +24,13 @@ class Plugin
     /**
      * Get plugin instance
      *
-     * @return Plugin
+     * @param array<string, mixed> $pluginData
+    * @return Plugin
      */
-    public static function instance() : Plugin
+    public static function instance(array $pluginData) : Plugin
     {
         if (! isset(self::$instance)) {
-            self::$instance = new self();
+            self::$instance = new self($pluginData);
         }
 
         return self::$instance;
@@ -37,8 +38,10 @@ class Plugin
 
     /**
      * Initialize plugin
+     *
+     * @param array<string, mixed> $pluginData
      */
-    public function __construct()
+    public function __construct(private array $pluginData)
     {
         $this->loader = new Loader();
         $this->setLocale();
@@ -93,6 +96,9 @@ class Plugin
         $frontend->cleanUpHead();
 
         $this->loader->addAction('template_redirect', $frontend, 'redirectSingleSearchResult');
+
+        $connect = new Connect($this->pluginData['Version'], $wpEnv);
+        $this->loader->addAction('rest_api_init', $connect, 'registerRestRoutes');
 
         $discussion = new Discussion();
         $this->loader->addFilter('comments_open', $discussion, 'closeComments', 50, 2);
