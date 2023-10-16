@@ -55,18 +55,18 @@ class Connect
             ->version()
                 ->php(phpversion())
                 ->wordpress(get_bloginfo('version'))
-                ->otomaties_core($this->otomatiesCoreVersion)
+                ->otomatiesCore($this->otomatiesCoreVersion)
             ->endVersion()
             ->plugins()
                 ->active(get_option('active_plugins'))
             ->endPlugins()
             ->reading()
-                ->disable_indexing(!get_option('blog_public'))
+                ->disableIndexing(!get_option('blog_public'))
             ->endReading()
             ->security()
-                ->debug_log(!defined('WP_DEBUG') || constant('WP_DEBUG') === true)
-                ->debug_log_file(file_exists($debugLogFileLocation) ? $debugLogFileUrl : false)
-                ->disallow_file_edit(!defined('DISALLOW_FILE_EDIT') || constant('DISALLOW_FILE_EDIT') === false)
+                ->debugLog(!defined('WP_DEBUG') || constant('WP_DEBUG') === true)
+                ->debugLogFile(file_exists($debugLogFileLocation) ? $debugLogFileUrl : false)
+                ->disallowFileEdit(!defined('DISALLOW_FILE_EDIT') || constant('DISALLOW_FILE_EDIT') === false)
             ->endSecurity();
 
         if (is_plugin_active('wordfence/wordfence.php')) {
@@ -79,7 +79,7 @@ class Connect
             
             $builder->security()
                 ->wordfence()
-                ->firewall_active(!$wordfenceFirewallInactive)
+                ->firewallActive(!$wordfenceFirewallInactive)
                 ->report($wfActivityReport->getFullReport())
                 ->endWordfence()
             ->endSecurity();

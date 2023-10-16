@@ -61,3 +61,29 @@ function custom_change_current_screen(object $screen)
     global $currentScreen;
     $currentScreen = $screen;
 }
+
+function content_url()
+{
+    return 'https://example.com/wp-content';
+}
+
+function get_bloginfo(string $info)
+{
+    $bloginfo = [
+        'version' => '5.8',
+    ];
+    return $bloginfo[$info];
+}
+
+function get_option(string $option)
+{
+    $options = [
+        'active_plugins' => [
+            'advanced-custom-fields-pro/acf.php',
+            'woocommerce/woocommerce.php',
+            'wordfence/wordfence.php'
+        ],
+        'blog_public' => true,
+    ];
+    return $options[$option];
+}

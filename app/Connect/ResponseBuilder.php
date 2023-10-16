@@ -1,6 +1,8 @@
 <?php
 namespace Otomaties\Core\Connect;
 
+use Otomaties\Core\Helpers\Str;
+
 /**
  * Response builder
  *
@@ -29,6 +31,8 @@ class ResponseBuilder
      */
     public function __call(string $name, array $arguments) : ResponseBuilder|ResponseBuilderItem
     {
+        $name = Str::snake($name);
+
         if (count($arguments) == 1) {
             $this->response[$name] = $arguments[0];
             return $this;
@@ -37,7 +41,7 @@ class ResponseBuilder
         if (!isset($this->response[$name])) {
             $this->response[$name] = new ResponseBuilderItem($this);
         }
-
+        
         return $this->response[$name] instanceof ResponseBuilderItem ? $this->response[$name] : $this;
     }
     
