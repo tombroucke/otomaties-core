@@ -32,6 +32,9 @@ if (file_exists(__DIR__ . '/vendor/autoload.php')) {
 add_action(
     'plugins_loaded',
     function () {
+        if (! function_exists('get_plugin_data')) {
+            require_once(ABSPATH . 'wp-admin/includes/plugin.php');
+        }
         $pluginData = \get_plugin_data(__FILE__);
         $pluginData['pluginName'] = basename(__FILE__, '.php');
 
