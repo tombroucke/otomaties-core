@@ -84,6 +84,7 @@ function get_option(string $option)
             'wordfence/wordfence.php'
         ],
         'blog_public' => true,
+        'admin_email' => 'tom@tombroucke.be',
     ];
     return $options[$option];
 }

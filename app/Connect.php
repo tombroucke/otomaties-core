@@ -52,6 +52,7 @@ class Connect
         $builder
             ->env($this->wpEnv)
             ->bedrock(class_exists('\\Roots\\WPConfig\\Config'))
+            ->administratorEmail(get_option('admin_email'))
             ->version()
                 ->php(phpversion())
                 ->wordpress(get_bloginfo('version'))
@@ -77,10 +78,14 @@ class Connect
                 && !\wfConfig::get('dismissAutoPrependNotice')
                 && !\wfConfig::get('touppPromptNeeded');
             
+            $scanResults = \wfIssues::shared()->getIssues();
+            $scanResults['last-scan-time'] = \wfConfig::get('scanTime');
+
             $builder->security()
                 ->wordfence()
                 ->firewallActive(!$wordfenceFirewallInactive)
                 ->report($wfActivityReport->getFullReport())
+                ->scanResults($scanResults)
                 ->endWordfence()
             ->endSecurity();
         }
