@@ -108,14 +108,18 @@ class Revision
      * @param string $text
      * @return string
      */
-    public function showRevisionInAdminFooter(string $text) : string
+    public function showRevisionInAdminFooter(?string $text = '') : string
     {
+        $text = $text ?? '';
+
         if (empty($this->releaseInformation) || !current_user_can('manage_options')) {
             return $text;
         }
+
         foreach ($this->releaseInformation as $key => $value) {
             $text .= sprintf(' | %s: <strong>%s</strong>', $key, $value);
         }
+        
         return $text;
     }
 }
