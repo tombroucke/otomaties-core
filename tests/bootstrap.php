@@ -88,3 +88,13 @@ function get_option(string $option)
     ];
     return $options[$option];
 }
+
+global $wpdb;
+
+class Wpdb {
+    public function get_results() {
+        return [];
+    }
+}
+
+$wpdb = new Wpdb();

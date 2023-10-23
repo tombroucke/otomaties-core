@@ -68,6 +68,7 @@ class Connect
                 ->debugLog(!defined('WP_DEBUG') || constant('WP_DEBUG') === true)
                 ->debugLogFile(file_exists($debugLogFileLocation) ? $debugLogFileUrl : false)
                 ->disallowFileEdit(defined('DISALLOW_FILE_EDIT') && constant('DISALLOW_FILE_EDIT') === true)
+                ->sqlTriggers($this->sqlTriggers())
             ->endSecurity();
 
         if (is_plugin_active('wordfence/wordfence.php')) {
@@ -104,6 +105,17 @@ class Connect
             }
         }
         return $builder->build();
+    }
+
+    /**
+     * Get all SQL triggers
+     *
+     * @return array<int, mixed>
+     */
+    private function sqlTriggers() : array
+    {
+        global $wpdb;
+        return $wpdb->get_results("SHOW TRIGGERS");
     }
 
     /**
