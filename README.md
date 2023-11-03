@@ -16,7 +16,7 @@ composer require tombroucke/otomaties-core
 - Logo in toolbar
 - Admin footer
 
-To disable: `add_filter('otomaties_whitelabel', false);`
+To disable: `add_filter('otomaties_whitelabel', '__return_true');`
 
 ## Frontend
 - Disable emojis. To enable: `add_filter('otomaties_disable_emojis', '__return_false');`
