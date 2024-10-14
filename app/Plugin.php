@@ -110,6 +110,9 @@ class Plugin
         $gdpr = new Gdpr();
         $this->loader->addFilter('embed_oembed_html', $gdpr, 'replaceYoutubeWithYoutubeNoCookie', 10, 2);
 
+        $woocommerce = new WooCommerce();
+        $this->loader->addFilter('woocommerce_generate_order_key', $woocommerce, 'rejectPatternsInOrderKey', 10, 2);
+
         if (apply_filters('otomaties_display_revision', true)) {
             $this->loader->addAction('wp_footer', $revision, 'showRevisionInConsole', 999);
         }
