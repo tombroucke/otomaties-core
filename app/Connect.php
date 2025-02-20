@@ -161,8 +161,8 @@ class Connect
         if (isset($_SERVER['OTOMATIES_CONNECT_KEY'])) {
             return $_SERVER['OTOMATIES_CONNECT_KEY'];
         }
-        if (isset($_ENV['OTOMATIES_CONNECT_KEY'])) {
-            return $_ENV['OTOMATIES_CONNECT_KEY'];
+        if (function_exists('env') && env('OTOMATIES_CONNECT_KEY')) {
+            return env('OTOMATIES_CONNECT_KEY');
         }
 
         return null;

@@ -101,6 +101,7 @@ class Plugin
 
         $revision = new Revision($wpEnv);
         $this->loader->addFilter('update_footer', $revision, 'showRevisionInAdminFooter', 999);
+        $this->loader->addAction('wp_footer', $revision, 'showRevisionInConsole', 999);
 
         $gdpr = new Gdpr;
         $this->loader->addFilter('embed_oembed_html', $gdpr, 'replaceYoutubeWithYoutubeNoCookie', 10, 2);
@@ -110,10 +111,6 @@ class Plugin
 
         $mollie = new Mollie;
         $this->loader->addFilter('mollie-payments-for-woocommerce_webhook_url', $mollie, 'webhookBasicAuth', 10, 2);
-
-        if (apply_filters('otomaties_display_revision', true)) {
-            $this->loader->addAction('wp_footer', $revision, 'showRevisionInConsole', 999);
-        }
 
         $shortcodes = new Shortcodes;
         add_shortcode('email', [$shortcodes, 'obfuscateEmail']);

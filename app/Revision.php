@@ -87,6 +87,10 @@ class Revision
      */
     public function showRevisionInConsole(): void
     {
+        if (! apply_filters('otomaties_display_revision', true)) {
+            return;
+        }
+
         if (empty($this->releaseInformation) || $this->wpEnv == 'production') {
             return;
         }
