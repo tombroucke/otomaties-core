@@ -12,7 +12,10 @@ class ResponseBuilderItem
     /**
      * Set the parent object
      */
-    public function __construct(private ResponseBuilderItem|ResponseBuilder $parent) {}
+    public function __construct(private ResponseBuilderItem|ResponseBuilder $parent)
+    {
+        //
+    }
 
     /**
      * Magic method to set and get response items

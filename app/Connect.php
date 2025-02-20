@@ -17,7 +17,10 @@ class Connect
     /**
      * Set up the Connect class
      */
-    public function __construct(private string $otomatiesCoreVersion, private string $wpEnv = 'production') {}
+    public function __construct(private string $otomatiesCoreVersion, private string $wpEnv = 'production')
+    {
+        //
+    }
 
     /**
      * Register the REST API routes

@@ -49,8 +49,3 @@ class wfIssues
         return [];
     }
 }
-
-function WC(): stdClass
-{
-    return new stdClass;
-}

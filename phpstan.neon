@@ -5,6 +5,7 @@ parameters:
     level: 8
     inferPrivatePropertyTypeFromConstructor: true
     bootstrapFiles:
+        - vendor/php-stubs/woocommerce-stubs/woocommerce-stubs.php
         - phpstan-bootstrap.php
     paths:
         - inc/
