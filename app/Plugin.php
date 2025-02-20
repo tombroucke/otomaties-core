@@ -108,6 +108,9 @@ class Plugin
         $woocommerce = new WooCommerce;
         $this->loader->addFilter('woocommerce_generate_order_key', $woocommerce, 'rejectPatternsInOrderKey', 10, 2);
 
+        $mollie = new Mollie;
+        $this->loader->addFilter('mollie-payments-for-woocommerce_webhook_url', $mollie, 'webhookBasicAuth', 10, 2);
+
         if (apply_filters('otomaties_display_revision', true)) {
             $this->loader->addAction('wp_footer', $revision, 'showRevisionInConsole', 999);
         }
