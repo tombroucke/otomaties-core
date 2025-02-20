@@ -1,11 +1,12 @@
 <?php
+
 namespace Otomaties\Core;
 
 class Gdpr
 {
-    public function replaceYoutubeWithYoutubeNoCookie(string $cachedHtml, string $url) : string
+    public function replaceYoutubeWithYoutubeNoCookie(string $cachedHtml, string $url): string
     {
-        if (!apply_filters('otomaties_replace_youtube_with_youtube_nocookie', true) || !strpos($url, 'youtu')) {
+        if (! apply_filters('otomaties_replace_youtube_with_youtube_nocookie', true) || ! strpos($url, 'youtu')) {
             return $cachedHtml;
         }
 

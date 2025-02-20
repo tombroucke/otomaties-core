@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Plugin Name:     Otomaties Core
  * Description:     Optimize WordPress install
@@ -7,13 +8,11 @@
  * Text Domain:     otomaties-core
  * Domain Path:     /lang
  * Version:           1.8.1
- *
- * @package         Core
  */
 
 // If this file is called directly, abort.
 if (! defined('WPINC')) {
-    die;
+    exit;
 }
 
 if (file_exists(__DIR__ . '/vendor/autoload.php')) {
@@ -33,7 +32,7 @@ add_action(
     'plugins_loaded',
     function () {
         if (! function_exists('get_plugin_data')) {
-            require_once(ABSPATH . 'wp-admin/includes/plugin.php');
+            require_once ABSPATH . 'wp-admin/includes/plugin.php';
         }
         $pluginData = \get_plugin_data(__FILE__, false, false);
         $pluginData['pluginName'] = basename(__FILE__, '.php');

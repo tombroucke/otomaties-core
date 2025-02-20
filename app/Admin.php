@@ -1,4 +1,5 @@
 <?php
+
 namespace Otomaties\Core;
 
 /**
@@ -15,12 +16,10 @@ class Admin
 
     /**
      * Hide acf in production environments, hide welcome panel
-     *
-     * @return void
      */
-    public function init() : void
+    public function init(): void
     {
-        if ('development' != $this->wpEnv) {
+        if ($this->wpEnv != 'development') {
             add_filter('acf/settings/show_admin', '__return_false');
         }
         remove_action('welcome_panel', 'wp_welcome_panel');
@@ -28,14 +27,12 @@ class Admin
 
     /**
      * Set default image link type
-     *
-     * @return void
      */
-    public function setDefaults() : void
+    public function setDefaults(): void
     {
-        $options = array(
-            'image_default_link_type' => 'file'
-        );
+        $options = [
+            'image_default_link_type' => 'file',
+        ];
         foreach ($options as $key => $value) {
             if (apply_filters('otomaties_set_default_' . $key, true)) {
                 update_option($key, $value);
@@ -45,19 +42,17 @@ class Admin
 
     /**
      * Remove comments menu
-     *
-     * @return void
      */
-    public function removeMenus() : void
+    public function removeMenus(): void
     {
-        $menus = array(
+        $menus = [
             'edit-comments.php',
-        );
+        ];
 
         if (apply_filters('otomaties_open_comments', false)) {
             $key = array_search('edit-comments.php', $menus);
-            if (false !== $key) {
-                unset($menus[ $key ]);
+            if ($key !== false) {
+                unset($menus[$key]);
             }
         }
         foreach (apply_filters('otomaties_admin_bar_unnecessary_menus', $menus) as $menu) {
@@ -68,11 +63,9 @@ class Admin
     /**
      * Remove wp-logo & comments from admin bar
      *
-     * @param \WP_Admin_Bar $wp_admin_bar admin bar object.
-     *
-     * @return void
+     * @param  \WP_Admin_Bar  $wp_admin_bar  admin bar object.
      */
-    public function removeFromAdminBar(\WP_Admin_Bar $wp_admin_bar) : void
+    public function removeFromAdminBar(\WP_Admin_Bar $wp_admin_bar): void
     {
         $nodes = [
             'wp-logo',
@@ -89,21 +82,19 @@ class Admin
     /**
      * Add tb logo to admin bar
      *
-     * @param  \WP_Admin_Bar $wp_admin_bar admin bar object.
-     *
-     * @return void
+     * @param  \WP_Admin_Bar  $wp_admin_bar  admin bar object.
      */
-    public function adminBarLogo(\WP_Admin_Bar $wp_admin_bar) : void
+    public function adminBarLogo(\WP_Admin_Bar $wp_admin_bar): void
     {
         if (! apply_filters('otomaties_whitelabel', false)) {
             ob_start();
-            include(dirname(plugin_dir_path(__FILE__)) . '/assets/img/minilogo.svg');
+            include dirname(plugin_dir_path(__FILE__)) . '/assets/img/minilogo.svg';
             $minilogo = ob_get_clean();
-            $args = array(
-                'id'    => 'otomaties-core',
-                'title' => (string)$minilogo,
-                'href'  => 'mailto:tom@tombroucke.be',
-                'meta'  => array(
+            $args = [
+                'id' => 'otomaties-core',
+                'title' => (string) $minilogo,
+                'href' => 'mailto:tom@tombroucke.be',
+                'meta' => [
                     'class' => 'tb-logo',
                     'html' => '<style type="text/css">
 								.tb-logo .ab-item {
@@ -129,24 +120,22 @@ class Admin
 									fill: #fff;
 								}
 							</style>',
-                ),
-            );
+                ],
+            ];
             $wp_admin_bar->add_node($args);
         }
     }
 
     /**
      * Show discussion notice
-     *
-     * @return void
      */
-    public function discussionNotice() : void
+    public function discussionNotice(): void
     {
         global $pagenow;
-        if ('options-discussion.php' == $pagenow) {
+        if ($pagenow == 'options-discussion.php') {
             ?>
             <div class="notice notice-warning">
-                <p><?php esc_html_e('Some of these settings are controlled by the theme. To change these, please contact the theme author.', 'otomaties-core'); // phpcs:ignore Generic.Files.LineLength ?></p>
+                <p><?php esc_html_e('Some of these settings are controlled by the theme. To change these, please contact the theme author.', 'otomaties-core'); // phpcs:ignore Generic.Files.LineLength?></p>
             </div>
             <?php
         }
@@ -154,10 +143,8 @@ class Admin
 
     /**
      * TB logo on login page
-     *
-     * @return void
      */
-    public function loginLogo() : void
+    public function loginLogo(): void
     {
         $logo = dirname(plugin_dir_url(__FILE__)) . '/assets/img/logo.svg';
         if (! apply_filters('otomaties_whitelabel', false)) {
@@ -177,10 +164,9 @@ class Admin
     /**
      * Custom footer branding
      *
-     * @param  string $text default text.
-     * @return string
+     * @param  string  $text  default text.
      */
-    public function adminFooterBranding(string $text) : string
+    public function adminFooterBranding(string $text): string
     {
         if (apply_filters('otomaties_whitelabel', false)) {
             return $text;
@@ -193,26 +179,22 @@ class Admin
 
     /**
      * Move Yoast to bottom
-     *
-     * @param string $priority
-     * @return string
      */
-    public function yoastSeoToBottom(string $priority) : string
+    public function yoastSeoToBottom(string $priority): string
     {
-        if (!apply_filters('otomaties_yoast_seo_to_bottom', true)) {
+        if (! apply_filters('otomaties_yoast_seo_to_bottom', true)) {
             return $priority;
         }
+
         return 'low';
     }
 
     /**
      * Remove update nag
-     *
-     * @return void
      */
-    public function removeUpdateNag() : void
+    public function removeUpdateNag(): void
     {
-        if (!current_user_can('administrator')) {
+        if (! current_user_can('administrator')) {
             remove_action('admin_notices', 'update_nag', 3);
         }
     }

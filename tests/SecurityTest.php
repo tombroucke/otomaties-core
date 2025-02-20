@@ -1,11 +1,13 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 use Otomaties\Core\Security;
 use PHPUnit\Framework\TestCase;
 
 final class SecurityTest extends TestCase
 {
-    public function testIfHasDebugNotices()
+    public function test_if_has_debug_notices()
     {
         $security = new Security('production');
         ob_start();
@@ -16,8 +18,8 @@ final class SecurityTest extends TestCase
         $this->assertStringContainsString('Disallow file editing for better security', $debugNotice);
         $this->assertStringContainsString('Install & activate Wordfence, Sucuri Security or WP Defender for optimal security.', $debugNotice);
     }
-    
-    public function testLoginHasGenericErrors()
+
+    public function test_login_has_generic_errors()
     {
         $security = new Security('production');
         $this->assertNotEmpty($security->genericLoginErrors([]));
@@ -25,14 +27,14 @@ final class SecurityTest extends TestCase
         $this->assertStringContainsString('https://example.com/login', $security->genericLoginErrors([]));
     }
 
-    public function testIfAttachmentIsHttps()
+    public function test_if_attachment_is_https()
     {
         $security = new Security('production');
         $attachment = $security->forceAttachmentHttps('http://example.com/test.jpg');
         $this->assertEquals('https://example.com/test.jpg', $attachment);
     }
 
-    public function testIfCriticalOptionsCantBeUpdated()
+    public function test_if_critical_options_cant_be_updated()
     {
         $security = new Security('production');
         $this->assertEquals(0, $security->disableUpdateCriticalOptions(1, 'users_can_register'));
@@ -40,7 +42,7 @@ final class SecurityTest extends TestCase
         $this->assertEquals('other_value', $security->disableUpdateCriticalOptions('other_value', 'other_key'));
     }
 
-    public function testIfCriticalOptionsUpdateNoticeIsDisplayed()
+    public function test_if_critical_options_update_notice_is_displayed()
     {
         $security = new Security('production');
         ob_start();

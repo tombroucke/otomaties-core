@@ -6,8 +6,8 @@ define('WFWAF_SUBDIRECTORY_INSTALL', rand(0, 1) == 1);
 class wfConfig
 {
     /**
-    * @phpstan-return mixed
-    */
+     * @phpstan-return mixed
+     */
     public static function get(string $key)
     {
         return null;
@@ -17,11 +17,11 @@ class wfConfig
 class wfActivityReport
 {
     /**
-    * Get full report
-    *
-    * @return array<string, mixed>
-    */
-    public function getFullReport() : array
+     * Get full report
+     *
+     * @return array<string, mixed>
+     */
+    public function getFullReport(): array
     {
         return [];
     }
@@ -30,24 +30,27 @@ class wfActivityReport
 class wfIssues
 {
     /**
-    * Returns the singleton wfIssues.
-    *
-    * @return wfIssues
-    */
-    public static function shared() {
+     * Returns the singleton wfIssues.
+     *
+     * @return wfIssues
+     */
+    public static function shared()
+    {
         static $_issues = null;
         if ($_issues === null) {
-            $_issues = new wfIssues();
+            $_issues = new wfIssues;
         }
+
         return $_issues;
     }
-    
-    public function getIssues($offset = 0, $limit = 100, $ignoredOffset = 0, $ignoredLimit = 100) {
+
+    public function getIssues($offset = 0, $limit = 100, $ignoredOffset = 0, $ignoredLimit = 100)
+    {
         return [];
     }
 }
 
-function WC() : stdClass
+function WC(): stdClass
 {
-    return new stdClass();
+    return new stdClass;
 }

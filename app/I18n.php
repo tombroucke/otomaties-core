@@ -1,4 +1,5 @@
 <?php
+
 namespace Otomaties\Core;
 
 /**
@@ -6,13 +7,10 @@ namespace Otomaties\Core;
  */
 class I18n
 {
-
     /**
      * Load must use plugin textdomain
-     *
-     * @return void
      */
-    public function loadTextdomain() : void
+    public function loadTextdomain(): void
     {
         load_muplugin_textdomain('otomaties-core', plugin_basename(dirname(__FILE__, 2)) . '/lang');
     }

@@ -53,6 +53,7 @@ $currentScreen = (object) [
 function get_current_screen()
 {
     global $currentScreen;
+
     return $currentScreen;
 }
 
@@ -72,6 +73,7 @@ function get_bloginfo(string $info)
     $bloginfo = [
         'version' => '5.8',
     ];
+
     return $bloginfo[$info];
 }
 
@@ -81,20 +83,23 @@ function get_option(string $option)
         'active_plugins' => [
             'advanced-custom-fields-pro/acf.php',
             'woocommerce/woocommerce.php',
-            'wordfence/wordfence.php'
+            'wordfence/wordfence.php',
         ],
         'blog_public' => true,
         'admin_email' => 'tom@tombroucke.be',
     ];
+
     return $options[$option];
 }
 
 global $wpdb;
 
-class Wpdb {
-    public function get_results() {
+class Wpdb
+{
+    public function get_results()
+    {
         return [];
     }
 }
 
-$wpdb = new Wpdb();
+$wpdb = new Wpdb;

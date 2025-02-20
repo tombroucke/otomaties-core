@@ -1,4 +1,5 @@
 <?php
+
 namespace Otomaties\Core;
 
 class Revision
@@ -23,10 +24,10 @@ class Revision
      *
      * @return array<string, string>
      */
-    private function parseRevisionFileContent(string $revisionFileContent) : array
+    private function parseRevisionFileContent(string $revisionFileContent): array
     {
         $return = [];
-        
+
         $revisionFileContent = str_replace(PHP_EOL, '', $revisionFileContent);
         $revisionFileContentArray = explode(' ', $revisionFileContent);
         if (count($revisionFileContentArray) >= 2) {
@@ -39,57 +40,54 @@ class Revision
             }
             $return[__('Revision', 'otomaties-core')] = $revisionFileContentArray[1];
         } else {
-             $return[__('Revision', 'otomaties-core')] = $revisionFileContent;
+            $return[__('Revision', 'otomaties-core')] = $revisionFileContent;
         }
+
         return $return;
     }
 
     /**
      * Get revision file content
-     *
-     * @return string|null
      */
-    private function getRevisionFileContent() : ?string
+    private function getRevisionFileContent(): ?string
     {
         $revisionFilePath = $this->findRevisionFilePath();
-        if (!$revisionFilePath || !file_get_contents($revisionFilePath)) {
+        if (! $revisionFilePath || ! file_get_contents($revisionFilePath)) {
             return null;
         }
         $resource = fopen($revisionFilePath, 'r');
-        if (!$resource) {
+        if (! $resource) {
             return null;
         }
         $content = fgets($resource);
+
         return $content ? $content : '';
     }
 
     /**
      * Find revision file path
-     *
-     * @return string|null
      */
-    private function findRevisionFilePath() : ?string
+    private function findRevisionFilePath(): ?string
     {
         $possibleLocations = [
             ABSPATH . 'revision.txt',
-            str_replace('/wp/', '/', ABSPATH . 'revision.txt')
+            str_replace('/wp/', '/', ABSPATH . 'revision.txt'),
         ];
         foreach ($possibleLocations as $location) {
             if (file_exists($location)) {
                 return $location;
             }
         }
+
         return null;
     }
 
     /**
      * Show revision in console
-     *
-     * @return void
      */
-    public function showRevisionInConsole() : void
+    public function showRevisionInConsole(): void
     {
-        if (empty($this->releaseInformation) || 'production' == $this->wpEnv) {
+        if (empty($this->releaseInformation) || $this->wpEnv == 'production') {
             return;
         }
         ?>
@@ -104,22 +102,19 @@ class Revision
 
     /**
      * Show revision in admin footer
-     *
-     * @param string $text
-     * @return string
      */
-    public function showRevisionInAdminFooter(?string $text = '') : string
+    public function showRevisionInAdminFooter(?string $text = ''): string
     {
         $text = $text ?? '';
 
-        if (empty($this->releaseInformation) || !current_user_can('manage_options')) {
+        if (empty($this->releaseInformation) || ! current_user_can('manage_options')) {
             return $text;
         }
 
         foreach ($this->releaseInformation as $key => $value) {
             $text .= sprintf(' | %s: <strong>%s</strong>', $key, $value);
         }
-        
+
         return $text;
     }
 }

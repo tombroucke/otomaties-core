@@ -1,4 +1,5 @@
 <?php
+
 namespace Otomaties\Core\Connect;
 
 use Otomaties\Core\Helpers\Str;
@@ -10,24 +11,18 @@ class ResponseBuilderItem
 {
     /**
      * Set the parent object
-     *
-     * @param ResponseBuilderItem|ResponseBuilder $parent
      */
-    public function __construct(private ResponseBuilderItem|ResponseBuilder $parent)
-    {
-    }
+    public function __construct(private ResponseBuilderItem|ResponseBuilder $parent) {}
 
     /**
      * Magic method to set and get response items
      *
-     * @param string $name
-     * @param array<int, mixed> $arguments
-     * @return ResponseBuilderItem|ResponseBuilder
+     * @param  array<int, mixed>  $arguments
      */
-    public function __call(string $name, array $arguments) : ResponseBuilderItem|ResponseBuilder
+    public function __call(string $name, array $arguments): ResponseBuilderItem|ResponseBuilder
     {
         $name = Str::snake($name);
-        
+
         if (substr($name, 0, 4) == 'end_') {
             return $this->end();
         }
@@ -35,8 +30,10 @@ class ResponseBuilderItem
             $this->$name = $arguments[0];
         } else {
             $this->$name = new ResponseBuilderItem($this);
+
             return $this->$name;
         }
+
         return $this;
     }
 
@@ -45,7 +42,7 @@ class ResponseBuilderItem
      *
      * @return array<string, mixed>
      */
-    public function toArray() : array
+    public function toArray(): array
     {
         $response = get_object_vars($this);
         unset($response['parent']);
@@ -54,15 +51,14 @@ class ResponseBuilderItem
                 $response[$key] = $value->toArray();
             }
         }
+
         return $response;
     }
 
     /**
      * End the current item and return the parent
-     *
-     * @return ResponseBuilderItem|ResponseBuilder
      */
-    public function end() : ResponseBuilderItem|ResponseBuilder
+    public function end(): ResponseBuilderItem|ResponseBuilder
     {
         return $this->parent;
     }

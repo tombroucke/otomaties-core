@@ -1,15 +1,15 @@
 <?php
+
 namespace Otomaties\Core;
 
 class Frontend
 {
-
-    public function init() : void
+    public function init(): void
     {
         add_filter('widget_text', 'do_shortcode');
     }
 
-    public function cleanUpHead() : void
+    public function cleanUpHead(): void
     {
         remove_action('wp_head', 'feed_links_extra', 3);
         remove_action('wp_head', 'feed_links', 2);
@@ -33,14 +33,14 @@ class Frontend
     /**
      * Redirect to result's single page when there is only 1 search result
      */
-    public function redirectSingleSearchResult() : void
+    public function redirectSingleSearchResult(): void
     {
-        if (!is_search() || !apply_filters('otomaties_redirect_single_search_result', true)) {
+        if (! is_search() || ! apply_filters('otomaties_redirect_single_search_result', true)) {
             return;
         }
 
         global $wp_query;
-        if (1 == $wp_query->found_posts) {
+        if ($wp_query->found_posts == 1) {
             $redirect = get_permalink($wp_query->posts['0']->ID);
             if ($redirect) {
                 wp_redirect($redirect);

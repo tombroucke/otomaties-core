@@ -9,17 +9,15 @@ class Str
 {
     /**
      * Convert a string to snake case
-     *
-     * @param string $name
-     * @return string
      */
-    public static function snake(string $name) : string
+    public static function snake(string $name): string
     {
         $nameWithUnderscores = preg_replace('/(?<!^)[A-Z]/', '_$0', $name);
-        if (!$nameWithUnderscores) {
+        if (! $nameWithUnderscores) {
             return $name;
         }
         $lowerCase = strtolower($nameWithUnderscores);
+
         return $lowerCase;
     }
 }

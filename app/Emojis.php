@@ -1,15 +1,13 @@
 <?php
+
 namespace Otomaties\Core;
 
 class Emojis
 {
-
     /**
      * Remove emojis
-     *
-     * @return void
      */
-    public function init() : void
+    public function init(): void
     {
         if (! $this->disableEmojis()) {
             return;
@@ -28,12 +26,12 @@ class Emojis
     /**
      * Disable emojis in tinymce
      *
-     * @param array<string> $plugins
+     * @param  array<string>  $plugins
      * @return array<string>
      */
-    public function disableEmojisTinymce(array $plugins) : array
+    public function disableEmojisTinymce(array $plugins): array
     {
-        if (!$this->disableEmojis()) {
+        if (! $this->disableEmojis()) {
             return $plugins;
         }
 
@@ -43,29 +41,27 @@ class Emojis
     /**
      * Remove dns prefetch for emojis
      *
-     * @param array<string, string> $urls
-     * @param string $relation_type
+     * @param  array<string, string>  $urls
      * @return array<string, string>
      */
-    public function disableEmojisRemoveDnsPrefetch(array $urls, string $relation_type) : array
+    public function disableEmojisRemoveDnsPrefetch(array $urls, string $relation_type): array
     {
-        if (!$this->disableEmojis()) {
+        if (! $this->disableEmojis()) {
             return $urls;
         }
 
-        if ('dns-prefetch' == $relation_type) {
+        if ($relation_type == 'dns-prefetch') {
             $emoji_svg_url = apply_filters('emoji_svg_url', 'https://s.w.org/images/core/emoji/2/svg/');
             $urls = array_diff($urls, [$emoji_svg_url]);
         }
+
         return $urls;
     }
 
     /**
      * Allow for theme to enable emojis
-     *
-     * @return boolean
      */
-    private function disableEmojis() : bool
+    private function disableEmojis(): bool
     {
         return apply_filters('otomaties_disable_emojis', true);
     }

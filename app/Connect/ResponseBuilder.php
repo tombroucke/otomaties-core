@@ -1,4 +1,5 @@
 <?php
+
 namespace Otomaties\Core\Connect;
 
 use Otomaties\Core\Helpers\Str;
@@ -16,41 +17,40 @@ use Otomaties\Core\Helpers\Str;
 class ResponseBuilder
 {
     /**
-    * The response array
-    *
-    * @var array<string, mixed>
-    */
+     * The response array
+     *
+     * @var array<string, mixed>
+     */
     private array $response = [];
-    
+
     /**
      * Magic method to set and get response items
      *
-     * @param string $name
-     * @param array<int, mixed> $arguments
-     * @return self|ResponseBuilderItem
+     * @param  array<int, mixed>  $arguments
      */
-    public function __call(string $name, array $arguments) : ResponseBuilder|ResponseBuilderItem
+    public function __call(string $name, array $arguments): ResponseBuilder|ResponseBuilderItem
     {
         $name = Str::snake($name);
 
         if (count($arguments) == 1) {
             $this->response[$name] = $arguments[0];
+
             return $this;
         }
 
-        if (!isset($this->response[$name])) {
+        if (! isset($this->response[$name])) {
             $this->response[$name] = new ResponseBuilderItem($this);
         }
-        
+
         return $this->response[$name] instanceof ResponseBuilderItem ? $this->response[$name] : $this;
     }
-    
+
     /**
      * Build the response array
      *
      * @return array<string, mixed>
      */
-    public function build() : array
+    public function build(): array
     {
         // convert all ResponseBuilderItem objects to arrays recursively
         array_walk_recursive($this->response, function (&$item) {
@@ -58,6 +58,7 @@ class ResponseBuilder
                 $item = $item->toArray();
             }
         });
+
         return $this->response;
     }
 }

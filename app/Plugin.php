@@ -1,4 +1,5 @@
 <?php
+
 namespace Otomaties\Core;
 
 /**
@@ -6,7 +7,6 @@ namespace Otomaties\Core;
  */
 class Plugin
 {
-
     /**
      * Action and filter loader
      *
@@ -24,10 +24,9 @@ class Plugin
     /**
      * Get plugin instance
      *
-     * @param array<string, mixed> $pluginData
-    * @return Plugin
+     * @param  array<string, mixed>  $pluginData
      */
-    public static function instance(array $pluginData) : Plugin
+    public static function instance(array $pluginData): Plugin
     {
         if (! isset(self::$instance)) {
             self::$instance = new self($pluginData);
@@ -39,32 +38,28 @@ class Plugin
     /**
      * Initialize plugin
      *
-     * @param array<string, mixed> $pluginData
+     * @param  array<string, mixed>  $pluginData
      */
     public function __construct(private array $pluginData)
     {
-        $this->loader = new Loader();
+        $this->loader = new Loader;
         $this->setLocale();
         $this->defineHooks();
     }
 
     /**
      * Set local
-     *
-     * @return void
      */
-    private function setLocale() : void
+    private function setLocale(): void
     {
-        $plugin_i18n = new I18n();
+        $plugin_i18n = new I18n;
         $plugin_i18n->loadTextdomain();
     }
 
     /**
      * Define hooks
-     *
-     * @return void
      */
-    private function defineHooks() : void
+    private function defineHooks(): void
     {
         $wpEnv = $this->getWpEnv();
         $admin = new Admin($wpEnv);
@@ -86,12 +81,12 @@ class Plugin
         $this->loader->addFilter('pre_update_option', $security, 'disableUpdateCriticalOptions', 10, 3);
         $this->loader->addAction('admin_notices', $security, 'showSecurityNotices', 10, 3);
 
-        $emojis = new Emojis();
+        $emojis = new Emojis;
         $emojis->init();
         $this->loader->addFilter('tiny_mce_plugins', $emojis, 'disableEmojisTinymce');
         $this->loader->addFilter('wp_resource_hints', $emojis, 'disableEmojisRemoveDnsPrefetch', 10, 2);
 
-        $frontend = new Frontend();
+        $frontend = new Frontend;
         $frontend->init();
         $frontend->cleanUpHead();
 
@@ -100,57 +95,52 @@ class Plugin
         $connect = new Connect($this->pluginData['Version'], $wpEnv);
         $this->loader->addAction('rest_api_init', $connect, 'registerRestRoutes');
 
-        $discussion = new Discussion();
+        $discussion = new Discussion;
         $this->loader->addFilter('comments_open', $discussion, 'closeComments', 50, 2);
         $this->loader->addAction('updated_option', $discussion, 'setDefaults', 999);
 
         $revision = new Revision($wpEnv);
         $this->loader->addFilter('update_footer', $revision, 'showRevisionInAdminFooter', 999);
 
-        $gdpr = new Gdpr();
+        $gdpr = new Gdpr;
         $this->loader->addFilter('embed_oembed_html', $gdpr, 'replaceYoutubeWithYoutubeNoCookie', 10, 2);
 
-        $woocommerce = new WooCommerce();
+        $woocommerce = new WooCommerce;
         $this->loader->addFilter('woocommerce_generate_order_key', $woocommerce, 'rejectPatternsInOrderKey', 10, 2);
 
         if (apply_filters('otomaties_display_revision', true)) {
             $this->loader->addAction('wp_footer', $revision, 'showRevisionInConsole', 999);
         }
 
-        $shortcodes = new Shortcodes();
+        $shortcodes = new Shortcodes;
         add_shortcode('email', [$shortcodes, 'obfuscateEmail']);
         add_shortcode('tel', [$shortcodes, 'obfuscateTel']);
     }
 
     /**
      * Get WP_ENV, assume production
-     *
-     * @return string
      */
-    public function getWpEnv() : string
+    public function getWpEnv(): string
     {
         if (defined('WP_ENV') && is_string(constant('WP_ENV'))) {
             return constant('WP_ENV');
         }
+
         return 'production';
     }
 
     /**
      * Run actions and filters
-     *
-     * @return void
      */
-    public function run() : void
+    public function run(): void
     {
         $this->loader->run();
     }
 
     /**
      * Get loader
-     *
-     * @return Loader
      */
-    public function getLoader() : Loader
+    public function getLoader(): Loader
     {
         return $this->loader;
     }
