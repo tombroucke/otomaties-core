@@ -80,15 +80,19 @@ class Security
      */
     public function genericLoginErrors($errors): string
     {
-        if (apply_filters('otomaties_generic_login_error', true)) {
-            // translators: %s is the lost password url.
-            return sprintf(
-                __('Could not log you in. If this problem persists, <a href="%s">try resetting your password</a>', 'otomaties-core'), // phpcs:ignore Generic.Files.LineLength
-                wp_lostpassword_url()
-            );
+        if (!apply_filters('otomaties_generic_login_error', true)) {
+            return $errors;
         }
 
-        return $errors;
+        if (strpos($_SERVER['QUERY_STRING'] ?? '', 'action=lostpassword') !== false) {
+            return __('Could not reset your password.', 'otomaties-core');
+        }
+
+        // translators: %s is the lost password url.
+        return sprintf(
+            __('Could not log you in. If this problem persists, <a href="%s">try resetting your password</a>', 'otomaties-core'), // phpcs:ignore Generic.Files.LineLength
+            wp_lostpassword_url()
+        );
     }
 
     /**
