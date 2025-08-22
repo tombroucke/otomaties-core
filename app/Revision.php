@@ -9,14 +9,26 @@ class Revision
      *
      * @var array<string, string>
      */
-    private array $releaseInformation = [];
+    private ?array $releaseInformation = null;
 
     public function __construct(private string $wpEnv = 'production')
     {
-        $revisionFileContent = $this->getRevisionFileContent();
-        if ($revisionFileContent) {
-            $this->releaseInformation = $this->parseRevisionFileContent($revisionFileContent);
+        //
+    }
+
+    /**
+     * Get release information and store it
+     */
+    private function releaseInformation(): array
+    {
+        if ($this->releaseInformation) {
+            return $this->releaseInformation;
         }
+
+        $revisionFileContent = $this->getRevisionFileContent();
+        $this->releaseInformation = $revisionFileContent ? $this->parseRevisionFileContent($revisionFileContent) : [];
+
+        return $this->releaseInformation;
     }
 
     /**
@@ -91,12 +103,14 @@ class Revision
             return;
         }
 
-        if (empty($this->releaseInformation) || $this->wpEnv == 'production') {
+        $releaseInformation = $this->releaseInformation();
+
+        if (empty($releaseInformation) || $this->wpEnv == 'production') {
             return;
         }
         ?>
         <script>
-            let revisionData = <?php echo json_encode($this->releaseInformation); ?>;
+            let revisionData = <?php echo json_encode($releaseInformation); ?>;
             for(const key in revisionData) {
                 console.log(`${key}: ${revisionData[key]}`);
             }
@@ -110,12 +124,13 @@ class Revision
     public function showRevisionInAdminFooter(?string $text = ''): string
     {
         $text = $text ?? '';
+        $releaseInformation = $this->releaseInformation();
 
-        if (empty($this->releaseInformation) || ! current_user_can('manage_options')) {
+        if (empty($releaseInformation) || ! current_user_can('manage_options')) {
             return $text;
         }
 
-        foreach ($this->releaseInformation as $key => $value) {
+        foreach ($releaseInformation as $key => $value) {
             $text .= sprintf(' | %s: <strong>%s</strong>', $key, $value);
         }
 
