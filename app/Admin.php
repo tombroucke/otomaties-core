@@ -2,6 +2,8 @@
 
 namespace Otomaties\Core;
 
+use Otomaties\Core\Helpers\View;
+
 /**
  * Clean up admin section
  */
@@ -132,13 +134,17 @@ class Admin
     public function discussionNotice(): void
     {
         global $pagenow;
-        if ($pagenow == 'options-discussion.php') {
-            ?>
-            <div class="notice notice-warning">
-                <p><?php esc_html_e('Some of these settings are controlled by the theme. To change these, please contact the theme author.', 'otomaties-core'); // phpcs:ignore Generic.Files.LineLength?></p>
-            </div>
-            <?php
+        if ($pagenow !== 'options-discussion.php') {
+            return;
         }
+
+        echo View::render(
+            'admin/notice.php',
+            [
+                'type' => 'notice',
+                'message' => __('Some of these settings are controlled by the theme. To change these, please contact the theme author.', 'otomaties-core'),
+            ]
+        );
     }
 
     /**
@@ -197,5 +203,27 @@ class Admin
         if (! current_user_can('administrator')) {
             remove_action('admin_notices', 'update_nag', 3);
         }
+    }
+
+    public function cacheTtlNotice(): void
+    {
+        global $sw_cloudflare_pagecache;
+        if (! $sw_cloudflare_pagecache || ! method_exists($sw_cloudflare_pagecache, 'get_single_config')) {
+            return;
+        }
+
+        $ttl = $sw_cloudflare_pagecache->get_single_config('cf_fallback_cache_ttl', 0);
+
+        if ($ttl !== 0) {
+            return;
+        }
+
+        echo View::render(
+            'admin/notice.php',
+            [
+                'type' => 'warning',
+                'message' => sprintf(__('Super page cache TTL is not set. Please configure it in the plugin settings to ensure optimal caching performance. Recommendation: %s hours.', 'otomaties-core'), 8),
+            ]
+        );
     }
 }

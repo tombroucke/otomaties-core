@@ -73,6 +73,7 @@ class Plugin
         $this->loader->addAction('updated_option', $admin, 'setDefaults', 999);
         $this->loader->addAction('wpseo_metabox_prio', $admin, 'yoastSeoToBottom');
         $this->loader->addAction('admin_head', $admin, 'removeUpdateNag', 1);
+        $this->loader->addAction('admin_notices', $admin, 'cacheTtlNotice');
 
         $security = new Security($wpEnv);
         $this->loader->addAction('admin_notices', $security, 'debugNotice');
@@ -94,6 +95,7 @@ class Plugin
 
         $connect = new Connect($this->pluginData['Version'], $wpEnv);
         $this->loader->addAction('rest_api_init', $connect, 'registerRestRoutes');
+        $this->loader->addAction('wp_mail_failed', $connect, 'notifyMailFailure');
 
         $discussion = new Discussion;
         $this->loader->addFilter('comments_open', $discussion, 'closeComments', 50, 2);

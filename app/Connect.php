@@ -167,4 +167,36 @@ class Connect
 
         return null;
     }
+
+    public function notifyMailFailure(\WP_Error $wpError): void
+    {
+        try {
+            $connectionKey = $this->findConnectionKey();
+            if (! $connectionKey) {
+                return;
+            }
+
+            $endpoint = 'https://connect.otomaties.be/api/v1/wp/mail-failed';
+            $body = [
+                'site_url' => get_site_url(),
+                'error' => $wpError->get_error_message(),
+                'email' => $wpError->get_error_data(),
+            ];
+
+            $headers = [
+                'Content-Type' => 'application/json',
+                'X-Otomaties-Connection-Key' => $connectionKey,
+            ];
+
+            $result = wp_remote_post($endpoint, [
+                'headers' => $headers,
+                'body' => wp_json_encode($body),
+                'timeout' => 5,
+                'sslverify' => $this->wpEnv === 'production',
+            ]);
+
+        } catch (\Exception $e) {
+            // Silent fail
+        }
+    }
 }

@@ -2,6 +2,8 @@
 
 namespace Otomaties\Core;
 
+use Otomaties\Core\Helpers\View;
+
 class Security
 {
     private $wpEnv = 'production';
@@ -46,30 +48,24 @@ class Security
             );
         }
         if (! empty($securityIssues)) {
-            $class = 'notice-warning';
+            $type = 'warning';
             if ($this->wpEnv == 'production') {
-                $class = 'notice-error';
+                $type = 'error';
             }
-            ?>
-            <div class="notice <?php echo esc_html($class); ?>">
-                <h4><?php esc_html_e('You have some security concerns', 'otomaties-core'); ?></h4>
-                <ol>
-                    <?php foreach ($securityIssues as $issue) { ?>
-                        <li>
-                        <?php
-                        echo wp_kses(
-                            $issue,
-                            [
-                                'a' => [],
-                                'code' => [],
-                            ]
-                        );
-                        ?>
-                        </li>
-                    <?php } ?>
-                </ol>
-            </div>
-            <?php
+
+            $message = '<h4>' . __('You have some security concerns', 'otomaties-core') . '</h4><ol>';
+            foreach ($securityIssues as $issue) {
+                $message .= '<li>' . $issue . '</li>';
+            }
+            $message .= '</ol>';
+
+            echo View::render(
+                'admin/notice.php',
+                [
+                    'type' => $type,
+                    'message' => $message,
+                ]
+            );
         }
     }
 
@@ -80,7 +76,7 @@ class Security
      */
     public function genericLoginErrors($errors): string
     {
-        if (!apply_filters('otomaties_generic_login_error', true)) {
+        if (! apply_filters('otomaties_generic_login_error', true)) {
             return $errors;
         }
 
@@ -117,9 +113,11 @@ class Security
         if (! apply_filters('otomaties_disable_update_critical_options', true)) {
             return $value;
         }
+
         if ($option == 'users_can_register') {
             return 0;
         }
+
         if ($option == 'default_role') {
             return 'subscriber';
         }
@@ -134,11 +132,13 @@ class Security
     {
         $currentScreen = get_current_screen();
         if ($currentScreen && property_exists($currentScreen, 'base') && $currentScreen->base == 'options-general') {
-            ?>
-            <div class="notice">
-                <p><?php _e('Otomaties core has disabled updating of <code>users_can_register</code> & <code>default_role</code>.', 'otomaties-core'); // phpcs:ignore Generic.Files.LineLength?></p>
-            </div>
-            <?php
+            echo View::render(
+                'admin/notice.php',
+                [
+                    'type' => 'notice',
+                    'message' => __('Otomaties core has disabled updating of <code>users_can_register</code> & <code>default_role</code>.', 'otomaties-core'),
+                ]
+            );
         }
     }
 }
