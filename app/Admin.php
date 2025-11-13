@@ -222,7 +222,7 @@ class Admin
             'admin/notice.php',
             [
                 'type' => 'warning',
-                'message' => sprintf(__('Super page cache TTL is not set. Please configure it in the plugin settings to ensure optimal caching performance. Recommendation: %s hours.', 'otomaties-core'), 8),
+                'message' => sprintf(__('Super page cache TTL is not set. Please configure it in the plugin settings to ensure optimal caching performance. Recommendation: %s seconds.', 'otomaties-core'), 28800),
             ]
         );
     }
