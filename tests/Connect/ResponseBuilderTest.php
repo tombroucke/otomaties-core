@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use Otomaties\Core\Connect\ResponseBuilder;
+use Otomaties\Core\Modules\Connect\ResponseBuilder;
 use PHPUnit\Framework\TestCase;
 
 final class ResponseBuilderTest extends TestCase

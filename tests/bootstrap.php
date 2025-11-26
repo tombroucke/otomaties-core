@@ -103,3 +103,19 @@ class Wpdb
 }
 
 $wpdb = new Wpdb;
+
+function otomatiesCore()
+{
+    return new class
+    {
+        public function environment()
+        {
+            return 'production';
+        }
+
+        public function version()
+        {
+            return '1.13.0';
+        }
+    };
+}

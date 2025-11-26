@@ -1,0 +1,103 @@
+<?php
+
+namespace Otomaties\Core\Illuminate\Support;
+
+use Otomaties\Core\Carbon\CarbonInterface;
+use Otomaties\Core\Carbon\CarbonInterval;
+use Otomaties\Core\Illuminate\Support\Defer\DeferredCallback;
+use Otomaties\Core\Illuminate\Support\Defer\DeferredCallbackCollection;
+use Otomaties\Core\Illuminate\Support\Facades\Date;
+use Otomaties\Core\Symfony\Component\Process\PhpExecutableFinder;
+if (!function_exists('Otomaties\Core\Illuminate\Support\defer')) {
+    /**
+     * Defer execution of the given callback.
+     *
+     * @param  callable|null  $callback
+     * @param  string|null  $name
+     * @param  bool  $always
+     * @return ($callback is null ? \Illuminate\Support\Defer\DeferredCallbackCollection : \Illuminate\Support\Defer\DeferredCallback)
+     */
+    function defer(?callable $callback = null, ?string $name = null, bool $always = \false): DeferredCallback|DeferredCallbackCollection
+    {
+        if ($callback === null) {
+            return app(DeferredCallbackCollection::class);
+        }
+        return tap(new DeferredCallback($callback, $name, $always), fn($deferred) => app(DeferredCallbackCollection::class)[] = $deferred);
+    }
+}
+if (!function_exists('Otomaties\Core\Illuminate\Support\php_binary')) {
+    /**
+     * Determine the PHP Binary.
+     */
+    function php_binary(): string
+    {
+        return (new PhpExecutableFinder())->find(\false) ?: 'php';
+    }
+}
+if (!function_exists('Otomaties\Core\Illuminate\Support\artisan_binary')) {
+    /**
+     * Determine the proper Artisan executable.
+     */
+    function artisan_binary(): string
+    {
+        return defined('ARTISAN_BINARY') ? ARTISAN_BINARY : 'artisan';
+    }
+}
+// Time functions...
+if (!function_exists('Otomaties\Core\Illuminate\Support\now')) {
+    /**
+     * Create a new Carbon instance for the current time.
+     *
+     * @param  \DateTimeZone|\UnitEnum|string|null  $tz
+     * @return \Illuminate\Support\Carbon
+     */
+    function now($tz = null): CarbonInterface
+    {
+        return Date::now(enum_value($tz));
+    }
+}
+if (!function_exists('Otomaties\Core\Illuminate\Support\seconds')) {
+    /**
+     * Get the current date / time plus the given number of seconds.
+     */
+    function seconds(int $seconds): CarbonInterval
+    {
+        return CarbonInterval::seconds($seconds);
+    }
+}
+if (!function_exists('Otomaties\Core\Illuminate\Support\minutes')) {
+    /**
+     * Get the current date / time plus the given number of minutes.
+     */
+    function minutes(int $minutes): CarbonInterval
+    {
+        return CarbonInterval::minutes($minutes);
+    }
+}
+if (!function_exists('Otomaties\Core\Illuminate\Support\hours')) {
+    /**
+     * Get the current date / time plus the given number of hours.
+     */
+    function hours(int $hours): CarbonInterval
+    {
+        return CarbonInterval::hours($hours);
+    }
+}
+if (!function_exists('Otomaties\Core\Illuminate\Support\days')) {
+    /**
+     * Get the current date / time plus the given number of days.
+     */
+    function days(int $days): CarbonInterval
+    {
+        return CarbonInterval::days($days);
+    }
+}
+if (!function_exists('Otomaties\Core\Illuminate\Support\years')) {
+    /**
+     * Get the current date / time plus the given number of years.
+     */
+    function years(int $years): CarbonInterval
+    {
+        return CarbonInterval::years($years);
+    }
+}

@@ -1,18 +1,12 @@
-#$ vendor/bin/phpstan analyze
-
-includes:
+#includes:
+#    - vendor/szepeviktor/phpstan-wordpress/extension.neon
 parameters:
-    level: 8
-    inferPrivatePropertyTypeFromConstructor: true
-    bootstrapFiles:
-        - vendor/php-stubs/woocommerce-stubs/woocommerce-stubs.php
-        - phpstan-bootstrap.php
-    paths:
-        - inc/
-    ignoreErrors:
-        - '#Parameter \#2 \$callback of function add_filter expects callable\(\): mixed, array{mixed, mixed} given.#'
-        - '#Parameter \#2 \$callback of function add_action expects callable\(\): mixed, array{mixed, mixed} given.#'
-        - '#Parameter \#2 \$atts of function shortcode_atts expects array, array<string, string>\|string given.#'
-    checkGenericClassInNonGenericObjectType: false
-
-# See full example in phpstan-full.neon
+	level: 5
+	paths:
+		- app
+		- otomaties-core.php
+	bootstrapFiles:
+		- vendor_prefixed/vendor/autoload.php
+		- phpstan-bootstrap.php
+		- vendor/php-stubs/woocommerce-stubs/woocommerce-stubs.php
+		- vendor/php-stubs/wp-cli-stubs/wp-cli-stubs.php

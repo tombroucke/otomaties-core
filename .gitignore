@@ -4,7 +4,7 @@
 *.Trashes
 *node_modules
 __MACOSX
-vendor
+# vendor
 node_modules
 .phpunit.result.cache
 composer.lock

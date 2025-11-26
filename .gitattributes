@@ -5,6 +5,10 @@
 /.github export-ignore
 /.gitignore export-ignore
 /phpstan.neon export-ignore
+/phpstan-bootstrap.php export-ignore
 /phpunit.xml.dist export-ignore
 /README.md export-ignore
+/pint.json export-ignore
+/scoper.sh export-ignore
+/scoper.inc.php export-ignore
 /tests export-ignore

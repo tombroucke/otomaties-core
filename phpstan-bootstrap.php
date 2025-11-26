@@ -27,6 +27,21 @@ class wfActivityReport
     }
 }
 
+class wfFirewall
+{
+    const PROTECTION_MODE_EXTENDED = 'extended';
+
+    public function isSubDirectoryInstallation(): bool
+    {
+        return true;
+    }
+
+    public function protectionMode(): string
+    {
+        return 'basic';
+    }
+}
+
 class wfIssues
 {
     /**

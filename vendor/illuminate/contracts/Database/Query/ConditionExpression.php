@@ -1,0 +1,7 @@
+<?php
+
+namespace Otomaties\Core\Illuminate\Contracts\Database\Query;
+
+interface ConditionExpression extends Expression
+{
+}

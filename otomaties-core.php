@@ -15,29 +15,35 @@ if (! defined('WPINC')) {
     exit;
 }
 
-if (file_exists(__DIR__ . '/vendor/autoload.php')) {
-    require_once realpath(__DIR__ . '/vendor/autoload.php');
-}
+require_once __DIR__ . '/vendor/autoload.php';
 
 /**
- * Begins execution of the plugin.
+ * Get main plugin class instance
  *
- * Since everything within the plugin is registered via hooks,
- * then kicking off the plugin from this point in the file does
- * not affect the page life cycle.
- *
- * @since    1.0.0
+ * @return Plugin
  */
-add_action(
-    'plugins_loaded',
-    function () {
-        if (! function_exists('get_plugin_data')) {
-            require_once ABSPATH . 'wp-admin/includes/plugin.php';
-        }
-        $pluginData = \get_plugin_data(__FILE__, false, false);
-        $pluginData['pluginName'] = basename(__FILE__, '.php');
+function otomatiesCore()
+{
+    static $plugin;
 
-        $plugin = Otomaties\Core\Plugin::instance($pluginData);
-        $plugin->run();
+    if (! $plugin) {
+        $version = \get_plugin_data(__FILE__, false, false)['Version'];
+        $environment = defined('WP_ENV') && is_string(constant('WP_ENV')) ? constant('WP_ENV') : null;
+
+        $plugin = new \Otomaties\Core\Plugin(
+            $version,
+            $environment
+        );
+        do_action('plugin_boilerplate_functionality', $plugin);
     }
-);
+
+    return $plugin;
+}
+
+add_action('plugin_boilerplate_functionality', function ($plugin) {
+    $plugin->initialize();
+}, 9999);
+
+add_action('plugins_loaded', function () {
+    otomatiesCore();
+});

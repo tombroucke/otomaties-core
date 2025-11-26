@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use Otomaties\Core\Connect;
+use Otomaties\Core\Modules\Connect;
 use PHPUnit\Framework\TestCase;
 
 final class ConnectTest extends TestCase
