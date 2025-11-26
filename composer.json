@@ -16,11 +16,7 @@
   },
   "require": {
     "php": "^8.0",
-    "composer/installers": "^1.0 || ^2.0",
-    "illuminate/container": "^12.40",
-    "illuminate/support": "^12.40",
-    "illuminate/config": "^12.40",
-    "sniccowp/php-scoper-wordpress-excludes": "^6.8"
+    "composer/installers": "^1.0 || ^2.0"
   },
   "config": {
     "allow-plugins": {
@@ -49,6 +45,7 @@
     "php-stubs/woocommerce-stubs": "^9.5",
     "php-stubs/wp-cli-stubs": "^2.12",
     "humbug/php-scoper": "^0.18.18",
-    "phpunit/phpunit": "^12.4"
+    "phpunit/phpunit": "^12.4",
+    "sniccowp/php-scoper-wordpress-excludes": "^6.8"
   }
 }

@@ -3,7 +3,7 @@
         'name' => 'tombroucke/otomaties-core',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => 'b95ba61de63cee59358c8ba8c8a485e9c5f39223',
+        'reference' => '95cdcfb966173da475e9ed778b163dab2e767111',
         'type' => 'wordpress-muplugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -148,15 +148,6 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
-        'sniccowp/php-scoper-wordpress-excludes' => array(
-            'pretty_version' => '6.8.1',
-            'version' => '6.8.1.0',
-            'reference' => 'c2c18f89a9aa2d7ef1998d233b9ed00d0deff5dd',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../sniccowp/php-scoper-wordpress-excludes',
-            'aliases' => array(),
-            'dev_requirement' => false,
-        ),
         'spatie/once' => array(
             'dev_requirement' => false,
             'replaced' => array(
@@ -244,7 +235,7 @@
         'tombroucke/otomaties-core' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => 'b95ba61de63cee59358c8ba8c8a485e9c5f39223',
+            'reference' => '95cdcfb966173da475e9ed778b163dab2e767111',
             'type' => 'wordpress-muplugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

@@ -107,6 +107,10 @@ return [
     // For more information see: https://github.com/humbug/php-scoper/blob/master/docs/configuration.md#excluded-symbols
     'exclude-namespaces' => [
         'Otomaties\Core\*',
+        'PHPUnit\Framework\*',
+        'PHPStan/*',
+        'PHPStan/*',
+        'PhpCsFixer/*',
         // '~^$~',
         // 'Acme\Foo'                     // The Acme\Foo namespace (and sub-namespaces)
         // '~^PHPUnit\\\\Framework$~',    // The whole namespace PHPUnit\Framework (but not sub-namespaces)

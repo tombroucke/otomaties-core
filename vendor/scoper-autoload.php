@@ -1087,7 +1087,7 @@ humbug_phpscoper_expose_class('ActionScheduler_IntervalSchedule', 'Otomaties\Cor
 humbug_phpscoper_expose_class('ActionScheduler_NullSchedule', 'Otomaties\Core\ActionScheduler_NullSchedule');
 humbug_phpscoper_expose_class('ActionScheduler_LoggerSchema', 'Otomaties\Core\ActionScheduler_LoggerSchema');
 humbug_phpscoper_expose_class('ActionScheduler_StoreSchema', 'Otomaties\Core\ActionScheduler_StoreSchema');
-humbug_phpscoper_expose_class('ComposerAutoloaderInite6e78479329228e4c55ba81cfa6d5929', 'Otomaties\Core\ComposerAutoloaderInite6e78479329228e4c55ba81cfa6d5929');
+humbug_phpscoper_expose_class('ComposerAutoloaderInit99fad428834d57990ec442b537dbc6e7', 'Otomaties\Core\ComposerAutoloaderInit99fad428834d57990ec442b537dbc6e7');
 humbug_phpscoper_expose_class('Svn', 'Otomaties\Core\Svn');
 humbug_phpscoper_expose_class('SvnWc', 'Otomaties\Core\SvnWc');
 humbug_phpscoper_expose_class('SvnWcSchedule', 'Otomaties\Core\SvnWcSchedule');

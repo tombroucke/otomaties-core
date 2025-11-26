@@ -992,56 +992,6 @@
             "install-path": "../psr/simple-cache"
         },
         {
-            "name": "sniccowp/php-scoper-wordpress-excludes",
-            "version": "6.8.1",
-            "version_normalized": "6.8.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/snicco/php-scoper-wordpress-excludes.git",
-                "reference": "c2c18f89a9aa2d7ef1998d233b9ed00d0deff5dd"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/snicco/php-scoper-wordpress-excludes/zipball/c2c18f89a9aa2d7ef1998d233b9ed00d0deff5dd",
-                "reference": "c2c18f89a9aa2d7ef1998d233b9ed00d0deff5dd",
-                "shasum": ""
-            },
-            "require-dev": {
-                "php": "^7.4",
-                "php-stubs/wordpress-globals": "0.2.0",
-                "php-stubs/wordpress-stubs": "6.8.1",
-                "sniccowp/php-scoper-excludes": "dev-master"
-            },
-            "time": "2025-05-03T00:01:53+00:00",
-            "type": "library",
-            "installation-source": "dist",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Calvin Alkan",
-                    "email": "calvin@snicco.de"
-                },
-                {
-                    "name": "Marlon Alkan",
-                    "email": "marlon@snicco.de"
-                }
-            ],
-            "description": "A list of all WordPress core classes, functions and constants. Meant to be used with the PHP-Scoper exclusion functionality.",
-            "keywords": [
-                "php-scoper",
-                "scoping WordPress",
-                "wordpress"
-            ],
-            "support": {
-                "issues": "https://github.com/snicco/php-scoper-wordpress-excludes/issues",
-                "source": "https://github.com/snicco/php-scoper-wordpress-excludes/tree/6.8.1"
-            },
-            "install-path": "../sniccowp/php-scoper-wordpress-excludes"
-        },
-        {
             "name": "symfony/clock",
             "version": "v7.3.0",
             "version_normalized": "7.3.0.0",
