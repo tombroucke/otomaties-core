@@ -2,8 +2,8 @@
 
 namespace Otomaties\Core;
 
-use Otomaties\Core\Illuminate\Config\Repository;
-use Otomaties\Core\Illuminate\Support\Collection;
+use OtomatiesCoreVendor\Illuminate\Config\Repository;
+use OtomatiesCoreVendor\Illuminate\Support\Collection;
 
 class Config extends Repository
 {

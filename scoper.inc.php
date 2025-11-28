@@ -11,36 +11,14 @@ use Isolated\Symfony\Component\Finder\Finder;
 // to auto-load any code here: it can result in a conflict or even corrupt
 // the PHP-Scoper analysis.
 
-// Example of collecting files to include in the scoped build but to not scope
-// leveraging the isolated finder.
-$excludedFiles = array_map(
-    static fn (SplFileInfo $fileInfo) => $fileInfo->getPathName(),
-    iterator_to_array(
-        Finder::create()->files()->in(__DIR__),
-        false,
-    ),
-);
 
-function getWpExcludedSymbols(string $fileName): array
-{
-    $filePath = __DIR__ . '/vendor/sniccowp/php-scoper-wordpress-excludes/generated/' . $fileName;
-
-    return json_decode(
-        file_get_contents($filePath),
-        true,
-    );
-}
-
-$wpConstants = getWpExcludedSymbols('exclude-wordpress-constants.json');
-$wpClasses = getWpExcludedSymbols('exclude-wordpress-classes.json');
-$wpFunctions = getWpExcludedSymbols('exclude-wordpress-functions.json');
 
 return [
     // The prefix configuration. If a non-null value is used, a random prefix
     // will be generated instead.
     //
     // For more see: https://github.com/humbug/php-scoper/blob/master/docs/configuration.md#prefix
-    'prefix' => 'Otomaties\Core',
+    'prefix' => 'OtomatiesCoreVendor',
 
     // By default when running php-scoper add-prefix, it will prefix all relevant code found in the current working
     // directory. You can however define which files should be scoped by defining a collection of Finders in the
@@ -106,11 +84,11 @@ return [
     //
     // For more information see: https://github.com/humbug/php-scoper/blob/master/docs/configuration.md#excluded-symbols
     'exclude-namespaces' => [
-        'Otomaties\Core\*',
-        'PHPUnit\Framework\*',
-        'PHPStan/*',
-        'PHPStan/*',
-        'PhpCsFixer/*',
+        // 'PHPUnit\Framework',
+        // 'PHPUnit',
+        // 'PHPStan',
+        // 'PhpCsFixer',
+        // 'SebastianBergmann',
         // '~^$~',
         // 'Acme\Foo'                     // The Acme\Foo namespace (and sub-namespaces)
         // '~^PHPUnit\\\\Framework$~',    // The whole namespace PHPUnit\Framework (but not sub-namespaces)
@@ -119,8 +97,7 @@ return [
     ],
     'exclude-constants' => [
         'WP_ENV',
-        ...$wpConstants,
     ],
-    'exclude-classes' => $wpClasses,
-    'exclude-functions' => $wpFunctions,
+    'exclude-classes' => [],
+    'exclude-functions' => [],
 ];

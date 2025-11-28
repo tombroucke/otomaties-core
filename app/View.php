@@ -3,7 +3,7 @@
 namespace Otomaties\Core;
 
 use Otomaties\Core\Exceptions\ViewNotFoundException;
-use Otomaties\Core\Illuminate\Support\Str;
+use OtomatiesCoreVendor\Illuminate\Support\Str;
 
 class View
 {

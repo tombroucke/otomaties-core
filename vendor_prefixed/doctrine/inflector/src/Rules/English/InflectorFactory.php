@@ -1,0 +1,19 @@
+<?php
+
+declare (strict_types=1);
+namespace OtomatiesCoreVendor\Doctrine\Inflector\Rules\English;
+
+use OtomatiesCoreVendor\Doctrine\Inflector\GenericLanguageInflectorFactory;
+use OtomatiesCoreVendor\Doctrine\Inflector\Rules\Ruleset;
+/** @internal */
+final class InflectorFactory extends GenericLanguageInflectorFactory
+{
+    protected function getSingularRuleset() : Ruleset
+    {
+        return Rules::getSingularRuleset();
+    }
+    protected function getPluralRuleset() : Ruleset
+    {
+        return Rules::getPluralRuleset();
+    }
+}

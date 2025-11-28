@@ -15,7 +15,7 @@ if (! defined('WPINC')) {
     exit;
 }
 
-require_once __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ . '/vendor_prefixed/autoload.php';
 
 /**
  * Get main plugin class instance

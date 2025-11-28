@@ -2,7 +2,7 @@
 
 namespace Otomaties\Core\Modules\Connect;
 
-use Otomaties\Core\Illuminate\Support\Str;
+use OtomatiesCoreVendor\Illuminate\Support\Str;
 
 /**
  * Response builder item

@@ -44,8 +44,6 @@
     "laravel/pint": "^1.26",
     "php-stubs/woocommerce-stubs": "^9.5",
     "php-stubs/wp-cli-stubs": "^2.12",
-    "humbug/php-scoper": "^0.18.18",
-    "phpunit/phpunit": "^12.4",
-    "sniccowp/php-scoper-wordpress-excludes": "^6.8"
+    "phpunit/phpunit": "^12.4"
   }
 }

@@ -2,8 +2,8 @@
 
 namespace Otomaties\Core\Modules;
 
-use Otomaties\Core\Illuminate\Support\Str;
 use Otomaties\Core\View;
+use OtomatiesCoreVendor\Illuminate\Support\Str;
 
 class Security
 {

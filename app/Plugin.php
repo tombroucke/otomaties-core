@@ -3,8 +3,8 @@
 namespace Otomaties\Core;
 
 use Otomaties\Core\Console\Commands\Registrar;
-use Otomaties\Core\Illuminate\Container\Container;
-use Otomaties\Core\Illuminate\Support\Collection;
+use OtomatiesCoreVendor\Illuminate\Container\Container;
+use OtomatiesCoreVendor\Illuminate\Support\Collection;
 
 class Plugin extends Container
 {
