@@ -11,11 +11,15 @@
  */
 
 // If this file is called directly, abort.
-if (! defined('WPINC')) {
+if (! defined('ABSPATH')) {
     exit;
 }
 
-require_once __DIR__ . '/vendor_prefixed/autoload.php';
+// Load the Composer autoloader
+$prefixedAutoloadPath = __DIR__ . '/vendor_prefixed/autoload.php';
+if (file_exists($prefixedAutoloadPath)) {
+    require_once $prefixedAutoloadPath;
+}
 
 /**
  * Get main plugin class instance
