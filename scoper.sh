@@ -62,6 +62,55 @@ else
     echo "  Warning: vendor_prefixed/autoload.php not found"
 fi
 
+echo "# Prefixing file identifier hashes to prevent collisions..."
+
+# Change file identifier hashes in autoload_static.php and autoload_real.php
+if [ -f "vendor_prefixed/composer/autoload_static.php" ]; then
+    # Use PHP to replace all 32-char hashes in the $files array
+    php -r "
+        \$file = 'vendor_prefixed/composer/autoload_static.php';
+        \$contents = file_get_contents(\$file);
+        \$prefix = 'OtomatiesCoreVendor';
+        
+        // Replace hashes in the \$files array
+        \$contents = preg_replace_callback(
+            \"/'([a-f0-9]{32})'\s*=>/\",
+            function(\$matches) use (\$prefix) {
+                \$hash = \$matches[1];
+                \$newHash = md5(\$prefix . \$hash);
+                return \"'\" . \$newHash . \"' =>\";
+            },
+            \$contents
+        );
+        
+        file_put_contents(\$file, \$contents);
+        echo \"  Patched: vendor_prefixed/composer/autoload_static.php\n\";
+    "
+fi
+
+if [ -f "vendor_prefixed/composer/autoload_real.php" ]; then
+    # Use PHP to replace all 32-char hashes in $GLOBALS['__composer_autoload_files']
+    php -r "
+        \$file = 'vendor_prefixed/composer/autoload_real.php';
+        \$contents = file_get_contents(\$file);
+        \$prefix = 'OtomatiesCoreVendor';
+        
+        // Replace hashes in \$GLOBALS['__composer_autoload_files']
+        \$contents = preg_replace_callback(
+            \"/\\\$GLOBALS\['__composer_autoload_files'\]\['([a-f0-9]{32})'\]/\",
+            function(\$matches) use (\$prefix) {
+                \$hash = \$matches[1];
+                \$newHash = md5(\$prefix . \$hash);
+                return \"\\\$GLOBALS['__composer_autoload_files']['\" . \$newHash . \"']\";
+            },
+            \$contents
+        );
+        
+        file_put_contents(\$file, \$contents);
+        echo \"  Patched: vendor_prefixed/composer/autoload_real.php\n\";
+    "
+fi
+
 echo "# Removing scoped dependencies from composer.json..."
 
 while IFS=: read -r package version; do
