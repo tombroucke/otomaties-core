@@ -7,6 +7,7 @@ use OtomatiesCoreVendor\Illuminate\Support\Str;
 /**
  * Response builder item
  */
+#[\AllowDynamicProperties]
 class ResponseBuilderItem
 {
     /**
