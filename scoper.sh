@@ -3,11 +3,11 @@ set -e
 
 echo "# Fetching scoped dependencies from composer.json..."
 
-# Extract scoped dependencies from composer.json extra.scoped-dependencies
-SCOPED_DEPS=$(jq -r '.extra["scoped-dependencies"] // {} | to_entries | map("\(.key):\(.value)") | .[]' composer.json)
+# Extract scoped dependencies from composer.json extra.require-scoped
+SCOPED_DEPS=$(jq -r '.extra["require-scoped"] // {} | to_entries | map("\(.key):\(.value)") | .[]' composer.json)
 
 if [ -z "$SCOPED_DEPS" ]; then
-    echo "  Warning: No scoped-dependencies found in composer.json extra section"
+    echo "  Warning: No require-scoped found in composer.json extra section"
     exit 1
 fi
 
