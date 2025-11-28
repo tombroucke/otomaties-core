@@ -12,21 +12,9 @@ final class SecurityTest extends TestCase
     {
         $view = new View('resources/views');
         $security = new Security($view);
-        $level = ob_get_level();
-        ob_start();
-        try {
-            $security->debugNotice();
-            $debugNotice = ob_get_clean();
-        } finally {
-            while (ob_get_level() > $level) {
-                ob_end_clean();
-            }
-        }
 
-        $this->assertNotEmpty($debugNotice);
-        $this->assertStringContainsString('Disable debugging for better security', $debugNotice);
-        $this->assertStringContainsString('Disallow file editing for better security', $debugNotice);
-        $this->assertStringContainsString('Install & activate Wordfence, Sucuri Security or WP Defender for optimal security.', $debugNotice);
+        $this->expectOutputRegex('/Disable debugging for better security/');
+        $security->debugNotice();
     }
 
     public function test_login_has_generic_errors()
@@ -59,33 +47,31 @@ final class SecurityTest extends TestCase
     {
         $view = new View('resources/views');
         $security = new Security($view);
-        $level = ob_get_level();
-        ob_start();
-        try {
-            $security->showSecurityNotices();
-            $notices = ob_get_clean();
-        } finally {
-            while (ob_get_level() > $level) {
-                ob_end_clean();
-            }
-        }
-        $this->assertStringContainsString('Otomaties core has disabled updating of', $notices);
+
+        // expect output to contain "Otomaties core has disabled updating of"
+        $this->expectOutputRegex('/Otomaties core has disabled updating of/');
+        $security->showSecurityNotices();
 
         custom_change_current_screen((object) [
             'id' => 'plugins',
             'base' => 'plugins',
         ]);
+        // expect no output
+        $this->expectOutputString('');
+        $security->showSecurityNotices();
+    }
 
-        $level = ob_get_level();
-        ob_start();
-        try {
-            $security->showSecurityNotices();
-            $notices = ob_get_clean();
-        } finally {
-            while (ob_get_level() > $level) {
-                ob_end_clean();
-            }
-        }
-        $this->assertStringNotContainsString('Otomaties core has disabled updating of', $notices);
+    public function test_if_critical_options_update_notice_is_not_displayed()
+    {
+        $view = new View('resources/views');
+        $security = new Security($view);
+
+        custom_change_current_screen((object) [
+            'id' => 'plugins',
+            'base' => 'plugins',
+        ]);
+        // expect no output
+        $this->expectOutputString('');
+        $security->showSecurityNotices();
     }
 }

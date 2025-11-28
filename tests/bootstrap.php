@@ -2,6 +2,7 @@
 
 require_once __DIR__ . '/../vendor_prefixed/autoload.php';
 
+define('ABSPATH', __DIR__ . '/../');
 define('WP_CONTENT_DIR', '.');
 
 function __(string $string, string $textdomain)
@@ -28,9 +29,19 @@ function esc_html_e(string $string)
     echo $string;
 }
 
+function esc_attr(string $string)
+{
+    return $string;
+}
+
 function wp_kses(string $string, array $allow)
 {
     return $string;
+}
+
+function wpautop(string $text, bool $br = true)
+{
+    return '<p>' . $text . '</p>';
 }
 
 function apply_filters($filter, ...$vars)
@@ -48,6 +59,7 @@ function is_ssl()
     return true;
 }
 
+global $currentScreen;
 $currentScreen = (object) [
     'id' => 'options-general',
     'base' => 'options-general',
