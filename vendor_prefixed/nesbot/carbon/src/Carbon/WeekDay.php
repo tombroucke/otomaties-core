@@ -12,6 +12,7 @@ declare (strict_types=1);
 namespace OtomatiesCoreVendor\Carbon;
 
 use OtomatiesCoreVendor\Carbon\Exceptions\InvalidFormatException;
+/** @internal */
 enum WeekDay : int
 {
     // Using constants is only safe starting from PHP 8.2
@@ -29,22 +30,22 @@ enum WeekDay : int
     // CarbonInterface::FRIDAY
     case Saturday = 6;
     // CarbonInterface::SATURDAY
-    public static function int(self|int|null $value): ?int
+    public static function int(self|int|null $value) : ?int
     {
         return $value instanceof self ? $value->value : $value;
     }
-    public static function fromNumber(int $number): self
+    public static function fromNumber(int $number) : self
     {
         $day = $number % CarbonInterface::DAYS_PER_WEEK;
         return self::from($day + ($day < 0 ? CarbonInterface::DAYS_PER_WEEK : 0));
     }
-    public static function fromName(string $name, ?string $locale = null): self
+    public static function fromName(string $name, ?string $locale = null) : self
     {
         try {
             return self::from(CarbonImmutable::parseFromLocale($name, $locale)->dayOfWeek);
         } catch (InvalidFormatException $exception) {
             // Possibly current language expect a dot after short name, but it's missing
-            if ($locale !== null && !mb_strlen($name) < 4 && !str_ends_with($name, '.')) {
+            if ($locale !== null && !\mb_strlen($name) < 4 && !\str_ends_with($name, '.')) {
                 try {
                     return self::from(CarbonImmutable::parseFromLocale($name . '.', $locale)->dayOfWeek);
                 } catch (InvalidFormatException) {
@@ -54,11 +55,11 @@ enum WeekDay : int
             throw $exception;
         }
     }
-    public function next(?CarbonImmutable $now = null): CarbonImmutable
+    public function next(?CarbonImmutable $now = null) : CarbonImmutable
     {
         return $now?->modify($this->name) ?? new CarbonImmutable($this->name);
     }
-    public function locale(string $locale, ?CarbonImmutable $now = null): CarbonImmutable
+    public function locale(string $locale, ?CarbonImmutable $now = null) : CarbonImmutable
     {
         return $this->next($now)->locale($locale);
     }

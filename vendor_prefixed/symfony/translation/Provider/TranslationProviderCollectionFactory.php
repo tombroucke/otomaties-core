@@ -13,6 +13,7 @@ namespace OtomatiesCoreVendor\Symfony\Component\Translation\Provider;
 use OtomatiesCoreVendor\Symfony\Component\Translation\Exception\UnsupportedSchemeException;
 /**
  * @author Mathieu Santostefano <msantostefano@protonmail.com>
+ * @internal
  */
 class TranslationProviderCollectionFactory
 {
@@ -22,7 +23,7 @@ class TranslationProviderCollectionFactory
     public function __construct(private iterable $factories, private array $enabledLocales)
     {
     }
-    public function fromConfig(array $config): TranslationProviderCollection
+    public function fromConfig(array $config) : TranslationProviderCollection
     {
         $providers = [];
         foreach ($config as $name => $currentConfig) {
@@ -30,7 +31,7 @@ class TranslationProviderCollectionFactory
         }
         return new TranslationProviderCollection($providers);
     }
-    public function fromDsnObject(Dsn $dsn, array $locales, array $domains = []): ProviderInterface
+    public function fromDsnObject(Dsn $dsn, array $locales, array $domains = []) : ProviderInterface
     {
         foreach ($this->factories as $factory) {
             if ($factory->supports($dsn)) {

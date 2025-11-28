@@ -5,6 +5,7 @@ namespace OtomatiesCoreVendor\Doctrine\Inflector\Rules;
 
 use OtomatiesCoreVendor\Doctrine\Inflector\WordInflector;
 use function preg_replace;
+/** @internal */
 final class Transformation implements WordInflector
 {
     /** @var Pattern */
@@ -16,15 +17,15 @@ final class Transformation implements WordInflector
         $this->pattern = $pattern;
         $this->replacement = $replacement;
     }
-    public function getPattern(): Pattern
+    public function getPattern() : Pattern
     {
         return $this->pattern;
     }
-    public function getReplacement(): string
+    public function getReplacement() : string
     {
         return $this->replacement;
     }
-    public function inflect(string $word): string
+    public function inflect(string $word) : string
     {
         return (string) preg_replace($this->pattern->getRegex(), $this->replacement, $word);
     }

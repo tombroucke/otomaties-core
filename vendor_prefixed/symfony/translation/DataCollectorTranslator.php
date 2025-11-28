@@ -17,6 +17,7 @@ use OtomatiesCoreVendor\Symfony\Contracts\Translation\TranslatorInterface;
  * @author Abdellatif Ait boudad <a.aitboudad@gmail.com>
  *
  * @final since Symfony 7.1
+ * @internal
  */
 class DataCollectorTranslator implements TranslatorInterface, TranslatorBagInterface, LocaleAwareInterface, WarmableInterface
 {
@@ -27,29 +28,29 @@ class DataCollectorTranslator implements TranslatorInterface, TranslatorBagInter
     public function __construct(private TranslatorInterface&TranslatorBagInterface&LocaleAwareInterface $translator)
     {
     }
-    public function trans(?string $id, array $parameters = [], ?string $domain = null, ?string $locale = null): string
+    public function trans(?string $id, array $parameters = [], ?string $domain = null, ?string $locale = null) : string
     {
         $trans = $this->translator->trans($id = (string) $id, $parameters, $domain, $locale);
         $this->collectMessage($locale, $domain, $id, $trans, $parameters);
         return $trans;
     }
-    public function setLocale(string $locale): void
+    public function setLocale(string $locale) : void
     {
         $this->translator->setLocale($locale);
     }
-    public function getLocale(): string
+    public function getLocale() : string
     {
         return $this->translator->getLocale();
     }
-    public function getCatalogue(?string $locale = null): MessageCatalogueInterface
+    public function getCatalogue(?string $locale = null) : MessageCatalogueInterface
     {
         return $this->translator->getCatalogue($locale);
     }
-    public function getCatalogues(): array
+    public function getCatalogues() : array
     {
         return $this->translator->getCatalogues();
     }
-    public function warmUp(string $cacheDir, ?string $buildDir = null): array
+    public function warmUp(string $cacheDir, ?string $buildDir = null) : array
     {
         if ($this->translator instanceof WarmableInterface) {
             return $this->translator->warmUp($cacheDir, $buildDir);
@@ -59,29 +60,29 @@ class DataCollectorTranslator implements TranslatorInterface, TranslatorBagInter
     /**
      * Gets the fallback locales.
      */
-    public function getFallbackLocales(): array
+    public function getFallbackLocales() : array
     {
-        if ($this->translator instanceof Translator || method_exists($this->translator, 'getFallbackLocales')) {
+        if ($this->translator instanceof Translator || \method_exists($this->translator, 'getFallbackLocales')) {
             return $this->translator->getFallbackLocales();
         }
         return [];
     }
-    public function getGlobalParameters(): array
+    public function getGlobalParameters() : array
     {
-        if ($this->translator instanceof Translator || method_exists($this->translator, 'getGlobalParameters')) {
+        if ($this->translator instanceof Translator || \method_exists($this->translator, 'getGlobalParameters')) {
             return $this->translator->getGlobalParameters();
         }
         return [];
     }
-    public function __call(string $method, array $args): mixed
+    public function __call(string $method, array $args) : mixed
     {
         return $this->translator->{$method}(...$args);
     }
-    public function getCollectedMessages(): array
+    public function getCollectedMessages() : array
     {
         return $this->messages;
     }
-    private function collectMessage(?string $locale, ?string $domain, string $id, string $translation, ?array $parameters = []): void
+    private function collectMessage(?string $locale, ?string $domain, string $id, string $translation, ?array $parameters = []) : void
     {
         $domain ??= 'messages';
         $catalogue = $this->translator->getCatalogue($locale);
@@ -102,6 +103,6 @@ class DataCollectorTranslator implements TranslatorInterface, TranslatorBagInter
         } else {
             $state = self::MESSAGE_MISSING;
         }
-        $this->messages[] = ['locale' => $locale, 'fallbackLocale' => $fallbackLocale, 'domain' => $domain, 'id' => $id, 'translation' => $translation, 'parameters' => $parameters, 'state' => $state, 'transChoiceNumber' => isset($parameters['%count%']) && is_numeric($parameters['%count%']) ? $parameters['%count%'] : null];
+        $this->messages[] = ['locale' => $locale, 'fallbackLocale' => $fallbackLocale, 'domain' => $domain, 'id' => $id, 'translation' => $translation, 'parameters' => $parameters, 'state' => $state, 'transChoiceNumber' => isset($parameters['%count%']) && \is_numeric($parameters['%count%']) ? $parameters['%count%'] : null];
     }
 }

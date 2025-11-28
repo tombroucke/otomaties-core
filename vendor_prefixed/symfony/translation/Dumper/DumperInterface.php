@@ -16,6 +16,7 @@ use OtomatiesCoreVendor\Symfony\Component\Translation\MessageCatalogue;
  * There is no common option.
  *
  * @author Michel Salib <michelsalib@hotmail.com>
+ * @internal
  */
 interface DumperInterface
 {
@@ -24,5 +25,5 @@ interface DumperInterface
      *
      * @param array $options Options that are used by the dumper
      */
-    public function dump(MessageCatalogue $messages, array $options = []): void;
+    public function dump(MessageCatalogue $messages, array $options = []) : void;
 }

@@ -2,6 +2,7 @@
 
 namespace OtomatiesCoreVendor\Illuminate\Contracts\Cookie;
 
+/** @internal */
 interface QueueingFactory extends Factory
 {
     /**

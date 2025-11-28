@@ -13,9 +13,10 @@ namespace OtomatiesCoreVendor\Symfony\Component\Translation\Formatter;
 use OtomatiesCoreVendor\Symfony\Component\Translation\IdentityTranslator;
 use OtomatiesCoreVendor\Symfony\Contracts\Translation\TranslatorInterface;
 // Help opcache.preload discover always-needed symbols
-class_exists(IntlFormatter::class);
+\class_exists(IntlFormatter::class);
 /**
  * @author Abdellatif Ait boudad <a.aitboudad@gmail.com>
+ * @internal
  */
 class MessageFormatter implements MessageFormatterInterface, IntlFormatterInterface
 {
@@ -29,11 +30,11 @@ class MessageFormatter implements MessageFormatterInterface, IntlFormatterInterf
         $this->translator = $translator ?? new IdentityTranslator();
         $this->intlFormatter = $intlFormatter ?? new IntlFormatter();
     }
-    public function format(string $message, string $locale, array $parameters = []): string
+    public function format(string $message, string $locale, array $parameters = []) : string
     {
         return $this->translator->trans($message, $parameters, null, $locale);
     }
-    public function formatIntl(string $message, string $locale, array $parameters = []): string
+    public function formatIntl(string $message, string $locale, array $parameters = []) : string
     {
         return $this->intlFormatter->formatIntl($message, $locale, $parameters);
     }

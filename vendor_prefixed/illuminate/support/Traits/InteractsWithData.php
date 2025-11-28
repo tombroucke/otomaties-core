@@ -8,6 +8,7 @@ use OtomatiesCoreVendor\Illuminate\Support\Facades\Date;
 use OtomatiesCoreVendor\Illuminate\Support\Str;
 use stdClass;
 use function OtomatiesCoreVendor\Illuminate\Support\enum_value;
+/** @internal */
 trait InteractsWithData
 {
     /**
@@ -16,7 +17,7 @@ trait InteractsWithData
      * @param  mixed  $keys
      * @return array
      */
-    abstract public function all($keys = null);
+    public abstract function all($keys = null);
     /**
      * Retrieve data from the instance.
      *
@@ -24,7 +25,7 @@ trait InteractsWithData
      * @param  mixed  $default
      * @return mixed
      */
-    abstract protected function data($key = null, $default = null);
+    protected abstract function data($key = null, $default = null);
     /**
      * Determine if the data contains a given key.
      *
@@ -43,7 +44,7 @@ trait InteractsWithData
      */
     public function has($key)
     {
-        $keys = is_array($key) ? $key : func_get_args();
+        $keys = \is_array($key) ? $key : \func_get_args();
         $data = $this->all();
         foreach ($keys as $value) {
             if (!Arr::has($data, $value)) {
@@ -60,7 +61,7 @@ trait InteractsWithData
      */
     public function hasAny($keys)
     {
-        $keys = is_array($keys) ? $keys : func_get_args();
+        $keys = \is_array($keys) ? $keys : \func_get_args();
         $data = $this->all();
         return Arr::hasAny($data, $keys);
     }
@@ -90,7 +91,7 @@ trait InteractsWithData
      */
     public function filled($key)
     {
-        $keys = is_array($key) ? $key : func_get_args();
+        $keys = \is_array($key) ? $key : \func_get_args();
         foreach ($keys as $value) {
             if ($this->isEmptyString($value)) {
                 return \false;
@@ -106,7 +107,7 @@ trait InteractsWithData
      */
     public function isNotFilled($key)
     {
-        $keys = is_array($key) ? $key : func_get_args();
+        $keys = \is_array($key) ? $key : \func_get_args();
         foreach ($keys as $value) {
             if (!$this->isEmptyString($value)) {
                 return \false;
@@ -122,7 +123,7 @@ trait InteractsWithData
      */
     public function anyFilled($keys)
     {
-        $keys = is_array($keys) ? $keys : func_get_args();
+        $keys = \is_array($keys) ? $keys : \func_get_args();
         foreach ($keys as $key) {
             if ($this->filled($key)) {
                 return \true;
@@ -156,7 +157,7 @@ trait InteractsWithData
      */
     public function missing($key)
     {
-        $keys = is_array($key) ? $key : func_get_args();
+        $keys = \is_array($key) ? $key : \func_get_args();
         return !$this->has($keys);
     }
     /**
@@ -186,7 +187,7 @@ trait InteractsWithData
     protected function isEmptyString($key)
     {
         $value = $this->data($key);
-        return !is_bool($value) && !is_array($value) && trim((string) $value) === '';
+        return !\is_bool($value) && !\is_array($value) && \trim((string) $value) === '';
     }
     /**
      * Retrieve data from the instance as a Stringable instance.
@@ -221,7 +222,7 @@ trait InteractsWithData
      */
     public function boolean($key = null, $default = \false)
     {
-        return filter_var($this->data($key, $default), \FILTER_VALIDATE_BOOLEAN);
+        return \filter_var($this->data($key, $default), \FILTER_VALIDATE_BOOLEAN);
     }
     /**
      * Retrieve data as an integer value.
@@ -232,7 +233,7 @@ trait InteractsWithData
      */
     public function integer($key, $default = 0)
     {
-        return intval($this->data($key, $default));
+        return \intval($this->data($key, $default));
     }
     /**
      * Retrieve data as a float value.
@@ -243,7 +244,7 @@ trait InteractsWithData
      */
     public function float($key, $default = 0.0)
     {
-        return floatval($this->data($key, $default));
+        return \floatval($this->data($key, $default));
     }
     /**
      * Retrieve data from the instance as a Carbon instance.
@@ -261,7 +262,7 @@ trait InteractsWithData
         if ($this->isNotFilled($key)) {
             return null;
         }
-        if (is_null($format)) {
+        if (\is_null($format)) {
             return Date::parse($this->data($key), $tz);
         }
         return Date::createFromFormat($format, $this->data($key), $tz);
@@ -307,7 +308,7 @@ trait InteractsWithData
      */
     protected function isBackedEnum($enumClass)
     {
-        return enum_exists($enumClass) && method_exists($enumClass, 'tryFrom');
+        return \enum_exists($enumClass) && \method_exists($enumClass, 'tryFrom');
     }
     /**
      * Retrieve data from the instance as an array.
@@ -317,7 +318,7 @@ trait InteractsWithData
      */
     public function array($key = null)
     {
-        return (array) (is_array($key) ? $this->only($key) : $this->data($key));
+        return (array) (\is_array($key) ? $this->only($key) : $this->data($key));
     }
     /**
      * Retrieve data from the instance as a collection.
@@ -327,7 +328,7 @@ trait InteractsWithData
      */
     public function collect($key = null)
     {
-        return new Collection(is_array($key) ? $this->only($key) : $this->data($key));
+        return new Collection(\is_array($key) ? $this->only($key) : $this->data($key));
     }
     /**
      * Get a subset containing the provided keys with values from the instance data.
@@ -340,7 +341,7 @@ trait InteractsWithData
         $results = [];
         $data = $this->all();
         $placeholder = new stdClass();
-        foreach (is_array($keys) ? $keys : func_get_args() as $key) {
+        foreach (\is_array($keys) ? $keys : \func_get_args() as $key) {
             $value = data_get($data, $key, $placeholder);
             if ($value !== $placeholder) {
                 Arr::set($results, $key, $value);
@@ -356,7 +357,7 @@ trait InteractsWithData
      */
     public function except($keys)
     {
-        $keys = is_array($keys) ? $keys : func_get_args();
+        $keys = \is_array($keys) ? $keys : \func_get_args();
         $results = $this->all();
         Arr::forget($results, $keys);
         return $results;

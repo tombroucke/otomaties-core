@@ -2,6 +2,7 @@
 
 namespace OtomatiesCoreVendor\Illuminate\Contracts\Session;
 
+/** @internal */
 interface Session
 {
     /**

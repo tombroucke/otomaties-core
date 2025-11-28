@@ -2,6 +2,7 @@
 
 namespace OtomatiesCoreVendor\Illuminate\Contracts\Auth\Access;
 
+/** @internal */
 interface Authorizable
 {
     /**

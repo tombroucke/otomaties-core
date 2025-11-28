@@ -14,6 +14,7 @@ namespace OtomatiesCoreVendor\Symfony\Component\Clock;
  * A clock that relies the system time.
  *
  * @author Nicolas Grekas <p@tchwork.com>
+ * @internal
  */
 final class NativeClock implements ClockInterface
 {
@@ -23,25 +24,25 @@ final class NativeClock implements ClockInterface
      */
     public function __construct(\DateTimeZone|string|null $timezone = null)
     {
-        $this->timezone = \is_string($timezone ??= date_default_timezone_get()) ? $this->withTimeZone($timezone)->timezone : $timezone;
+        $this->timezone = \is_string($timezone ??= \date_default_timezone_get()) ? $this->withTimeZone($timezone)->timezone : $timezone;
     }
-    public function now(): DatePoint
+    public function now() : DatePoint
     {
         return DatePoint::createFromInterface(new \DateTimeImmutable('now', $this->timezone));
     }
-    public function sleep(float|int $seconds): void
+    public function sleep(float|int $seconds) : void
     {
-        if (0 < $s = (int) $seconds) {
-            sleep($s);
+        if (0 < ($s = (int) $seconds)) {
+            \sleep($s);
         }
-        if (0 < $us = $seconds - $s) {
-            usleep((int) ($us * 1000000.0));
+        if (0 < ($us = $seconds - $s)) {
+            \usleep((int) ($us * 1000000.0));
         }
     }
     /**
      * @throws \DateInvalidTimeZoneException When $timezone is invalid
      */
-    public function withTimeZone(\DateTimeZone|string $timezone): static
+    public function withTimeZone(\DateTimeZone|string $timezone) : static
     {
         if (\PHP_VERSION_ID >= 80300 && \is_string($timezone)) {
             $timezone = new \DateTimeZone($timezone);
@@ -49,7 +50,7 @@ final class NativeClock implements ClockInterface
             try {
                 $timezone = new \DateTimeZone($timezone);
             } catch (\Exception $e) {
-                throw new \DateInvalidTimeZoneException($e->getMessage(), $e->getCode(), $e);
+                throw new \OtomatiesCoreVendor\DateInvalidTimeZoneException($e->getMessage(), $e->getCode(), $e);
             }
         }
         $clone = clone $this;

@@ -2,6 +2,7 @@
 
 namespace OtomatiesCoreVendor\Illuminate\Contracts\Database\Eloquent;
 
+/** @internal */
 interface Castable
 {
     /**

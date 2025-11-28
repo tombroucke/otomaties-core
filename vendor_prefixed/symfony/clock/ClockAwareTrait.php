@@ -16,16 +16,17 @@ use OtomatiesCoreVendor\Symfony\Contracts\Service\Attribute\Required;
  * A trait to help write time-sensitive classes.
  *
  * @author Nicolas Grekas <p@tchwork.com>
+ * @internal
  */
 trait ClockAwareTrait
 {
     private readonly ClockInterface $clock;
     #[Required]
-    public function setClock(ClockInterface $clock): void
+    public function setClock(ClockInterface $clock) : void
     {
         $this->clock = $clock;
     }
-    protected function now(): DatePoint
+    protected function now() : DatePoint
     {
         $now = ($this->clock ??= new Clock())->now();
         return $now instanceof DatePoint ? $now : DatePoint::createFromInterface($now);

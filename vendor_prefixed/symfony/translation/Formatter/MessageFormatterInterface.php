@@ -13,6 +13,7 @@ namespace OtomatiesCoreVendor\Symfony\Component\Translation\Formatter;
 /**
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  * @author Abdellatif Ait boudad <a.aitboudad@gmail.com>
+ * @internal
  */
 interface MessageFormatterInterface
 {
@@ -23,5 +24,5 @@ interface MessageFormatterInterface
      * @param string $locale     The message locale
      * @param array  $parameters An array of parameters for the message
      */
-    public function format(string $message, string $locale, array $parameters = []): string;
+    public function format(string $message, string $locale, array $parameters = []) : string;
 }

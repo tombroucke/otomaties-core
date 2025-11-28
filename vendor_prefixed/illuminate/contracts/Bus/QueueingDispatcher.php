@@ -2,6 +2,7 @@
 
 namespace OtomatiesCoreVendor\Illuminate\Contracts\Bus;
 
+/** @internal */
 interface QueueingDispatcher extends Dispatcher
 {
     /**

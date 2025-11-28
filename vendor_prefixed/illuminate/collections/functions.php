@@ -2,7 +2,7 @@
 
 namespace OtomatiesCoreVendor\Illuminate\Support;
 
-if (!function_exists('OtomatiesCoreVendor\Illuminate\Support\enum_value')) {
+if (!\function_exists('OtomatiesCoreVendor\\Illuminate\\Support\\enum_value')) {
     /**
      * Return a scalar value for the given value that might be an enum.
      *

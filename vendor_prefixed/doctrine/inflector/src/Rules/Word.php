@@ -3,6 +3,7 @@
 declare (strict_types=1);
 namespace OtomatiesCoreVendor\Doctrine\Inflector\Rules;
 
+/** @internal */
 class Word
 {
     /** @var string */
@@ -11,7 +12,7 @@ class Word
     {
         $this->word = $word;
     }
-    public function getWord(): string
+    public function getWord() : string
     {
         return $this->word;
     }

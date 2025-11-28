@@ -2,6 +2,7 @@
 
 namespace OtomatiesCoreVendor\Composer\Installers;
 
+/** @internal */
 class RoundcubeInstaller extends BaseInstaller
 {
     /** @var array<string, string> */
@@ -9,9 +10,9 @@ class RoundcubeInstaller extends BaseInstaller
     /**
      * Lowercase name and changes the name to a underscores
      */
-    public function inflectPackageVars(array $vars): array
+    public function inflectPackageVars(array $vars) : array
     {
-        $vars['name'] = strtolower(str_replace('-', '_', $vars['name']));
+        $vars['name'] = \strtolower(\str_replace('-', '_', $vars['name']));
         return $vars;
     }
 }

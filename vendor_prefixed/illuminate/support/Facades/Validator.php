@@ -19,6 +19,7 @@ namespace OtomatiesCoreVendor\Illuminate\Support\Facades;
  * @method static \Illuminate\Validation\Factory setContainer(\Illuminate\Contracts\Container\Container $container)
  *
  * @see \Illuminate\Validation\Factory
+ * @internal
  */
 class Validator extends Facade
 {

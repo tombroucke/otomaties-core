@@ -3,6 +3,7 @@
 namespace OtomatiesCoreVendor\Illuminate\Support\Facades;
 
 use OtomatiesCoreVendor\Illuminate\Foundation\MaintenanceModeManager;
+/** @internal */
 class MaintenanceMode extends Facade
 {
     /**

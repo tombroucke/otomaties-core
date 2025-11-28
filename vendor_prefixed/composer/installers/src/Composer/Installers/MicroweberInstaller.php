@@ -2,6 +2,7 @@
 
 namespace OtomatiesCoreVendor\Composer\Installers;
 
+/** @internal */
 class MicroweberInstaller extends BaseInstaller
 {
     /** @var array<string, string> */
@@ -13,7 +14,7 @@ class MicroweberInstaller extends BaseInstaller
      *
      * For package type microweber-template, cut off a trailing '-template' if present.
      */
-    public function inflectPackageVars(array $vars): array
+    public function inflectPackageVars(array $vars) : array
     {
         if ($this->package->getTargetDir() !== null && $this->package->getTargetDir() !== '') {
             $vars['install_item_dir'] = $this->package->getTargetDir();
@@ -50,7 +51,7 @@ class MicroweberInstaller extends BaseInstaller
      * @param array<string, string> $vars
      * @return array<string, string>
      */
-    protected function inflectTemplateVars(array $vars): array
+    protected function inflectTemplateVars(array $vars) : array
     {
         $vars['install_item_dir'] = $this->pregReplace('/-template$/', '', $vars['install_item_dir']);
         $vars['install_item_dir'] = $this->pregReplace('/template-$/', '', $vars['install_item_dir']);
@@ -60,7 +61,7 @@ class MicroweberInstaller extends BaseInstaller
      * @param array<string, string> $vars
      * @return array<string, string>
      */
-    protected function inflectTemplatesVars(array $vars): array
+    protected function inflectTemplatesVars(array $vars) : array
     {
         $vars['install_item_dir'] = $this->pregReplace('/-templates$/', '', $vars['install_item_dir']);
         $vars['install_item_dir'] = $this->pregReplace('/templates-$/', '', $vars['install_item_dir']);
@@ -70,7 +71,7 @@ class MicroweberInstaller extends BaseInstaller
      * @param array<string, string> $vars
      * @return array<string, string>
      */
-    protected function inflectCoreVars(array $vars): array
+    protected function inflectCoreVars(array $vars) : array
     {
         $vars['install_item_dir'] = $this->pregReplace('/-providers$/', '', $vars['install_item_dir']);
         $vars['install_item_dir'] = $this->pregReplace('/-provider$/', '', $vars['install_item_dir']);
@@ -81,7 +82,7 @@ class MicroweberInstaller extends BaseInstaller
      * @param array<string, string> $vars
      * @return array<string, string>
      */
-    protected function inflectModuleVars(array $vars): array
+    protected function inflectModuleVars(array $vars) : array
     {
         $vars['install_item_dir'] = $this->pregReplace('/-module$/', '', $vars['install_item_dir']);
         $vars['install_item_dir'] = $this->pregReplace('/module-$/', '', $vars['install_item_dir']);
@@ -91,7 +92,7 @@ class MicroweberInstaller extends BaseInstaller
      * @param array<string, string> $vars
      * @return array<string, string>
      */
-    protected function inflectModulesVars(array $vars): array
+    protected function inflectModulesVars(array $vars) : array
     {
         $vars['install_item_dir'] = $this->pregReplace('/-modules$/', '', $vars['install_item_dir']);
         $vars['install_item_dir'] = $this->pregReplace('/modules-$/', '', $vars['install_item_dir']);
@@ -101,7 +102,7 @@ class MicroweberInstaller extends BaseInstaller
      * @param array<string, string> $vars
      * @return array<string, string>
      */
-    protected function inflectSkinVars(array $vars): array
+    protected function inflectSkinVars(array $vars) : array
     {
         $vars['install_item_dir'] = $this->pregReplace('/-skin$/', '', $vars['install_item_dir']);
         $vars['install_item_dir'] = $this->pregReplace('/skin-$/', '', $vars['install_item_dir']);
@@ -111,7 +112,7 @@ class MicroweberInstaller extends BaseInstaller
      * @param array<string, string> $vars
      * @return array<string, string>
      */
-    protected function inflectElementVars(array $vars): array
+    protected function inflectElementVars(array $vars) : array
     {
         $vars['install_item_dir'] = $this->pregReplace('/-elements$/', '', $vars['install_item_dir']);
         $vars['install_item_dir'] = $this->pregReplace('/elements-$/', '', $vars['install_item_dir']);

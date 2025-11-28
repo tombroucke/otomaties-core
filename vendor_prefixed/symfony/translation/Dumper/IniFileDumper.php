@@ -15,19 +15,20 @@ use OtomatiesCoreVendor\Symfony\Component\Translation\MessageCatalogue;
  * IniFileDumper generates an ini formatted string representation of a message catalogue.
  *
  * @author Stealth35
+ * @internal
  */
 class IniFileDumper extends FileDumper
 {
-    public function formatCatalogue(MessageCatalogue $messages, string $domain, array $options = []): string
+    public function formatCatalogue(MessageCatalogue $messages, string $domain, array $options = []) : string
     {
         $output = '';
         foreach ($messages->all($domain) as $source => $target) {
-            $escapeTarget = str_replace('"', '\"', $target);
+            $escapeTarget = \str_replace('"', '\\"', $target);
             $output .= $source . '="' . $escapeTarget . "\"\n";
         }
         return $output;
     }
-    protected function getExtension(): string
+    protected function getExtension() : string
     {
         return 'ini';
     }

@@ -2,6 +2,7 @@
 
 namespace OtomatiesCoreVendor\Illuminate\Contracts\Mail;
 
+/** @internal */
 interface Mailer
 {
     /**

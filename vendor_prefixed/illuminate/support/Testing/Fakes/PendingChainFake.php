@@ -5,6 +5,7 @@ namespace OtomatiesCoreVendor\Illuminate\Support\Testing\Fakes;
 use Closure;
 use OtomatiesCoreVendor\Illuminate\Foundation\Bus\PendingChain;
 use OtomatiesCoreVendor\Illuminate\Queue\CallQueuedClosure;
+/** @internal */
 class PendingChainFake extends PendingChain
 {
     /**
@@ -33,8 +34,8 @@ class PendingChainFake extends PendingChain
      */
     public function dispatch()
     {
-        if (is_string($this->job)) {
-            $firstJob = new $this->job(...func_get_args());
+        if (\is_string($this->job)) {
+            $firstJob = new $this->job(...\func_get_args());
         } elseif ($this->job instanceof Closure) {
             $firstJob = CallQueuedClosure::create($this->job);
         } else {

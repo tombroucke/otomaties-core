@@ -7,6 +7,7 @@ namespace OtomatiesCoreVendor\Illuminate\Contracts\Queue;
  * @method int delayedSize(string|null $queue = null)
  * @method int reservedSize(string|null $queue = null)
  * @method int|null creationTimeOfOldestPendingJob(string|null $queue = null)
+ * @internal
  */
 interface Queue
 {

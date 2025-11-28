@@ -21,6 +21,7 @@ use OtomatiesCoreVendor\Symfony\Component\Translation\MessageCatalogue;
  * PhpAstExtractor extracts translation messages from a PHP AST.
  *
  * @author Mathieu Santostefano <msantostefano@protonmail.com>
+ * @internal
  */
 final class PhpAstExtractor extends AbstractFileExtractor implements ExtractorInterface
 {
@@ -33,12 +34,12 @@ final class PhpAstExtractor extends AbstractFileExtractor implements ExtractorIn
         private string $prefix = ''
     )
     {
-        if (!class_exists(ParserFactory::class)) {
+        if (!\class_exists(ParserFactory::class)) {
             throw new \LogicException(\sprintf('You cannot use "%s" as the "nikic/php-parser" package is not installed. Try running "composer require nikic/php-parser".', static::class));
         }
         $this->parser = (new ParserFactory())->createForHostVersion();
     }
-    public function extract(iterable|string $resource, MessageCatalogue $catalogue): void
+    public function extract(iterable|string $resource, MessageCatalogue $catalogue) : void
     {
         foreach ($this->extractFiles($resource) as $file) {
             $traverser = new NodeTraverser();
@@ -49,21 +50,21 @@ final class PhpAstExtractor extends AbstractFileExtractor implements ExtractorIn
                 $visitor->initialize($catalogue, $file, $this->prefix);
                 $traverser->addVisitor($visitor);
             }
-            $nodes = $this->parser->parse(file_get_contents($file));
+            $nodes = $this->parser->parse(\file_get_contents($file));
             $traverser->traverse($nodes);
         }
     }
-    public function setPrefix(string $prefix): void
+    public function setPrefix(string $prefix) : void
     {
         $this->prefix = $prefix;
     }
-    protected function canBeExtracted(string $file): bool
+    protected function canBeExtracted(string $file) : bool
     {
-        return 'php' === pathinfo($file, \PATHINFO_EXTENSION) && $this->isFile($file) && preg_match('/\bt\(|->trans\(|TranslatableMessage|Symfony\\\\Component\\\\Validator\\\\Constraints/i', file_get_contents($file));
+        return 'php' === \pathinfo($file, \PATHINFO_EXTENSION) && $this->isFile($file) && \preg_match('/\\bt\\(|->trans\\(|TranslatableMessage|Symfony\\\\Component\\\\Validator\\\\Constraints/i', \file_get_contents($file));
     }
-    protected function extractFromDirectory(array|string $resource): iterable|Finder
+    protected function extractFromDirectory(array|string $resource) : iterable|Finder
     {
-        if (!class_exists(Finder::class)) {
+        if (!\class_exists(Finder::class)) {
             throw new \LogicException(\sprintf('You cannot use "%s" as the "symfony/finder" package is not installed. Try running "composer require symfony/finder".', static::class));
         }
         return (new Finder())->files()->name('*.php')->in($resource);

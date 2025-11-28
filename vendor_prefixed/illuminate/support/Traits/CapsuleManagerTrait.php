@@ -4,6 +4,7 @@ namespace OtomatiesCoreVendor\Illuminate\Support\Traits;
 
 use OtomatiesCoreVendor\Illuminate\Contracts\Container\Container;
 use OtomatiesCoreVendor\Illuminate\Support\Fluent;
+/** @internal */
 trait CapsuleManagerTrait
 {
     /**

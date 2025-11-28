@@ -65,6 +65,7 @@ use RuntimeException;
  *
  * @see \Illuminate\Auth\AuthManager
  * @see \Illuminate\Auth\SessionGuard
+ * @internal
  */
 class Auth extends Facade
 {

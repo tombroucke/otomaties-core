@@ -147,6 +147,7 @@ namespace OtomatiesCoreVendor\Illuminate\Support\Facades;
  * @method static void flushMacros()
  *
  * @see \Illuminate\Foundation\Application
+ * @internal
  */
 class App extends Facade
 {

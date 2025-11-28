@@ -12,39 +12,40 @@ namespace OtomatiesCoreVendor\Symfony\Component\Translation;
 
 use OtomatiesCoreVendor\Symfony\Component\Translation\Catalogue\AbstractOperation;
 use OtomatiesCoreVendor\Symfony\Component\Translation\Catalogue\TargetOperation;
+/** @internal */
 final class TranslatorBag implements TranslatorBagInterface
 {
     /** @var MessageCatalogue[] */
     private array $catalogues = [];
-    public function addCatalogue(MessageCatalogue $catalogue): void
+    public function addCatalogue(MessageCatalogue $catalogue) : void
     {
-        if (null !== $existingCatalogue = $this->getCatalogue($catalogue->getLocale())) {
+        if (null !== ($existingCatalogue = $this->getCatalogue($catalogue->getLocale()))) {
             $catalogue->addCatalogue($existingCatalogue);
         }
         $this->catalogues[$catalogue->getLocale()] = $catalogue;
     }
-    public function addBag(TranslatorBagInterface $bag): void
+    public function addBag(TranslatorBagInterface $bag) : void
     {
         foreach ($bag->getCatalogues() as $catalogue) {
             $this->addCatalogue($catalogue);
         }
     }
-    public function getCatalogue(?string $locale = null): MessageCatalogueInterface
+    public function getCatalogue(?string $locale = null) : MessageCatalogueInterface
     {
         if (null === $locale || !isset($this->catalogues[$locale])) {
             $this->catalogues[$locale] = new MessageCatalogue($locale);
         }
         return $this->catalogues[$locale];
     }
-    public function getCatalogues(): array
+    public function getCatalogues() : array
     {
-        return array_values($this->catalogues);
+        return \array_values($this->catalogues);
     }
-    public function diff(TranslatorBagInterface $diffBag): self
+    public function diff(TranslatorBagInterface $diffBag) : self
     {
         $diff = new self();
         foreach ($this->catalogues as $locale => $catalogue) {
-            if (null === $diffCatalogue = $diffBag->getCatalogue($locale)) {
+            if (null === ($diffCatalogue = $diffBag->getCatalogue($locale))) {
                 $diff->addCatalogue($catalogue);
                 continue;
             }
@@ -58,18 +59,18 @@ final class TranslatorBag implements TranslatorBagInterface
         }
         return $diff;
     }
-    public function intersect(TranslatorBagInterface $intersectBag): self
+    public function intersect(TranslatorBagInterface $intersectBag) : self
     {
         $diff = new self();
         foreach ($this->catalogues as $locale => $catalogue) {
-            if (null === $intersectCatalogue = $intersectBag->getCatalogue($locale)) {
+            if (null === ($intersectCatalogue = $intersectBag->getCatalogue($locale))) {
                 continue;
             }
             $operation = new TargetOperation($catalogue, $intersectCatalogue);
             $operation->moveMessagesToIntlDomainsIfPossible(AbstractOperation::OBSOLETE_BATCH);
             $obsoleteCatalogue = new MessageCatalogue($locale);
             foreach ($operation->getDomains() as $domain) {
-                $obsoleteCatalogue->add(array_diff($operation->getMessages($domain), $operation->getNewMessages($domain)), $domain);
+                $obsoleteCatalogue->add(\array_diff($operation->getMessages($domain), $operation->getNewMessages($domain)), $domain);
             }
             $diff->addCatalogue($obsoleteCatalogue);
         }

@@ -12,7 +12,8 @@ namespace OtomatiesCoreVendor;
  */
 use OtomatiesCoreVendor\Carbon\CarbonImmutable;
 require_once __DIR__ . '/vendor/autoload.php';
-function getMaxHistoryMonthsByAmount($amount): int
+/** @internal */
+function getMaxHistoryMonthsByAmount($amount) : int
 {
     if ($amount >= 50) {
         return 6;
@@ -22,11 +23,13 @@ function getMaxHistoryMonthsByAmount($amount): int
     }
     return 2;
 }
-function getHtmlAttribute($rawValue): string
+/** @internal */
+function getHtmlAttribute($rawValue) : string
 {
     return \str_replace(['​', "\r"], '', \trim(\htmlspecialchars((string) $rawValue), "  \n\r\t\v\x00"));
 }
-function getOpenCollectiveSponsors(): string
+/** @internal */
+function getOpenCollectiveSponsors() : string
 {
     $customSponsorOverride = [
         // For consistency and equity among sponsors, as of now, we kindly ask our sponsors
@@ -67,7 +70,7 @@ function getOpenCollectiveSponsors(): string
     $members[] = ['MemberId' => 1, 'createdAt' => '2019-01-01 02:00', 'type' => 'ORGANIZATION', 'role' => 'BACKER', 'tier' => 'backer+', 'isActive' => \true, 'totalAmountDonated' => 1000, 'currency' => 'USD', 'lastTransactionAt' => CarbonImmutable::now()->format('Y-m-d') . ' 02:00', 'lastTransactionAmount' => 25, 'profile' => 'https://tidelift.com/', 'name' => 'Tidelift', 'description' => 'Get professional support for Carbon', 'image' => 'https://carbon.nesbot.com/docs/sponsors/tidelift-brand.png', 'website' => 'https://tidelift.com/subscription/pkg/packagist-nesbot-carbon?utm_source=packagist-nesbot-carbon&utm_medium=referral&utm_campaign=docs'];
     $members[] = ['MemberId' => 2, 'createdAt' => '2024-11-14 02:00', 'type' => 'ORGANIZATION', 'role' => 'BACKER', 'tier' => 'backer+ yearly', 'isActive' => \true, 'totalAmountDonated' => 170, 'currency' => 'USD', 'lastTransactionAt' => '2024-11-14 02:00', 'lastTransactionAmount' => 170, 'profile' => 'https://www.slotozilla.com/nz/free-spins', 'name' => 'Slotozilla', 'description' => 'Slotozilla website', 'image' => 'https://carbon.nesbot.com/docs/sponsors/slotozilla.png', 'website' => 'https://www.slotozilla.com/nz/free-spins'];
     $list = \array_filter($members, static fn(array $member): bool => $member['totalAmountDonated'] > 3 && $member['role'] !== 'HOST' && ($member['totalAmountDonated'] > 100 || $member['lastTransactionAt'] > CarbonImmutable::now()->subMonthsNoOverflow(getMaxHistoryMonthsByAmount($member['lastTransactionAmount']))->format('Y-m-d h:i') || $member['isActive'] && $member['lastTransactionAmount'] >= 30));
-    $list = \array_map(static function (array $member): array {
+    $list = \array_map(static function (array $member) : array {
         $createdAt = CarbonImmutable::parse($member['createdAt']);
         $lastTransactionAt = CarbonImmutable::parse($member['lastTransactionAt']);
         if ($createdAt->format('d H:i:s.u') > $lastTransactionAt->format('d H:i:s.u')) {
@@ -105,7 +108,7 @@ function getOpenCollectiveSponsors(): string
         }
         return \array_merge($member, ['star' => $monthlyContribution > 98 || $yearlyContribution > 800, 'status' => $status, 'rank' => $rank, 'monthlyContribution' => $monthlyContribution, 'yearlyContribution' => $yearlyContribution]);
     }, $list);
-    \usort($list, static function (array $a, array $b): int {
+    \usort($list, static function (array $a, array $b) : int {
         return (($b['star'] <=> $a['star'] ?: $b['rank'] <=> $a['rank']) ?: $b['monthlyContribution'] <=> $a['monthlyContribution']) ?: $b['totalAmountDonated'] <=> $a['totalAmountDonated'];
     });
     $membersByUrl = [];
@@ -133,7 +136,7 @@ function getOpenCollectiveSponsors(): string
             default => ' rel="sponsored"',
         };
         $width = \min($height * 2, $validImage ? \round($x * $height / $y) : $height);
-        if (!\str_contains($href, 'utm_source') && !\preg_match('/^https?:\/\/(?:www\.)?(?:onlinekasyno-polis\.pl|zonaminecraft\.net|slotozilla\.com)(\/.*)?/', $href)) {
+        if (!\str_contains($href, 'utm_source') && !\preg_match('/^https?:\\/\\/(?:www\\.)?(?:onlinekasyno-polis\\.pl|zonaminecraft\\.net|slotozilla\\.com)(\\/.*)?/', $href)) {
             $href .= (!\str_contains($href, '?') ? '?' : '&amp;') . 'utm_source=opencollective&amp;utm_medium=github&amp;utm_campaign=Carbon';
         }
         $title = getHtmlAttribute($member['description'] ?? null ?: $member['name']);
@@ -155,6 +158,6 @@ function getOpenCollectiveSponsors(): string
     }
     return $output . '<details><summary>See more</summary>' . $extra . '</details>';
 }
-\file_put_contents('readme.md', \preg_replace_callback('/(<!-- <open-collective-sponsors> -->)[\s\S]+(<!-- <\/open-collective-sponsors> -->)/', static function (array $match): string {
+\file_put_contents('readme.md', \preg_replace_callback('/(<!-- <open-collective-sponsors> -->)[\\s\\S]+(<!-- <\\/open-collective-sponsors> -->)/', static function (array $match) : string {
     return $match[1] . getOpenCollectiveSponsors() . $match[2];
 }, \file_get_contents('readme.md')));

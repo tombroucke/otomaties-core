@@ -21,6 +21,7 @@ namespace OtomatiesCoreVendor\Illuminate\Support\Facades;
  *
  * @see \Illuminate\Hashing\HashManager
  * @see \Illuminate\Hashing\AbstractHasher
+ * @internal
  */
 class Hash extends Facade
 {

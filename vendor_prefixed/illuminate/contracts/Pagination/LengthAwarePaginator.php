@@ -8,6 +8,7 @@ namespace OtomatiesCoreVendor\Illuminate\Contracts\Pagination;
  * @template-covariant TValue
  *
  * @extends Paginator<TKey, TValue>
+ * @internal
  */
 interface LengthAwarePaginator extends Paginator
 {

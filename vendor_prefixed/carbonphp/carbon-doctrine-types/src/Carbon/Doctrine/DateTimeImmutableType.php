@@ -7,6 +7,7 @@ use OtomatiesCoreVendor\Carbon\CarbonImmutable;
 use DateTimeImmutable;
 use OtomatiesCoreVendor\Doctrine\DBAL\Platforms\AbstractPlatform;
 use OtomatiesCoreVendor\Doctrine\DBAL\Types\VarDateTimeImmutableType;
+/** @internal */
 class DateTimeImmutableType extends VarDateTimeImmutableType implements CarbonDoctrineType
 {
     /** @use CarbonTypeConverter<CarbonImmutable> */
@@ -14,14 +15,14 @@ class DateTimeImmutableType extends VarDateTimeImmutableType implements CarbonDo
     /**
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public function convertToPHPValue(mixed $value, AbstractPlatform $platform): ?CarbonImmutable
+    public function convertToPHPValue(mixed $value, AbstractPlatform $platform) : ?CarbonImmutable
     {
         return $this->doConvertToPHPValue($value);
     }
     /**
      * @return class-string<CarbonImmutable>
      */
-    protected function getCarbonClassName(): string
+    protected function getCarbonClassName() : string
     {
         return CarbonImmutable::class;
     }

@@ -15,6 +15,7 @@ namespace OtomatiesCoreVendor\Illuminate\Support\Facades;
  * @method static \Illuminate\Encryption\Encrypter previousKeys(array $keys)
  *
  * @see \Illuminate\Encryption\Encrypter
+ * @internal
  */
 class Crypt extends Facade
 {

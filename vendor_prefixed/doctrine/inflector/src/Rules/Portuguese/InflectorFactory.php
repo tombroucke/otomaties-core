@@ -5,13 +5,14 @@ namespace OtomatiesCoreVendor\Doctrine\Inflector\Rules\Portuguese;
 
 use OtomatiesCoreVendor\Doctrine\Inflector\GenericLanguageInflectorFactory;
 use OtomatiesCoreVendor\Doctrine\Inflector\Rules\Ruleset;
+/** @internal */
 final class InflectorFactory extends GenericLanguageInflectorFactory
 {
-    protected function getSingularRuleset(): Ruleset
+    protected function getSingularRuleset() : Ruleset
     {
         return Rules::getSingularRuleset();
     }
-    protected function getPluralRuleset(): Ruleset
+    protected function getPluralRuleset() : Ruleset
     {
         return Rules::getPluralRuleset();
     }

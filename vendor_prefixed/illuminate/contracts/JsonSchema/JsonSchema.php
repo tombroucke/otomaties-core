@@ -3,6 +3,7 @@
 namespace OtomatiesCoreVendor\Illuminate\Contracts\JsonSchema;
 
 use Closure;
+/** @internal */
 interface JsonSchema
 {
     /**

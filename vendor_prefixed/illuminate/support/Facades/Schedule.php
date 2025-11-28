@@ -84,6 +84,7 @@ use OtomatiesCoreVendor\Illuminate\Console\Scheduling\Schedule as ConsoleSchedul
  * @method static \Illuminate\Console\Scheduling\PendingEventAttributes timezone(\UnitEnum|\DateTimeZone|string $timezone)
  *
  * @see \Illuminate\Console\Scheduling\Schedule
+ * @internal
  */
 class Schedule extends Facade
 {

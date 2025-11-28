@@ -19,6 +19,7 @@ namespace OtomatiesCoreVendor\Illuminate\Support\Facades;
  * @method static string cleanRateLimiterKey(string $key)
  *
  * @see \Illuminate\Cache\RateLimiter
+ * @internal
  */
 class RateLimiter extends Facade
 {

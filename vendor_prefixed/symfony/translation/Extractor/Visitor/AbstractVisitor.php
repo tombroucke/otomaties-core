@@ -14,28 +14,29 @@ use OtomatiesCoreVendor\PhpParser\Node;
 use OtomatiesCoreVendor\Symfony\Component\Translation\MessageCatalogue;
 /**
  * @author Mathieu Santostefano <msantostefano@protonmail.com>
+ * @internal
  */
 abstract class AbstractVisitor
 {
     private MessageCatalogue $catalogue;
     private \SplFileInfo $file;
     private string $messagePrefix;
-    public function initialize(MessageCatalogue $catalogue, \SplFileInfo $file, string $messagePrefix): void
+    public function initialize(MessageCatalogue $catalogue, \SplFileInfo $file, string $messagePrefix) : void
     {
         $this->catalogue = $catalogue;
         $this->file = $file;
         $this->messagePrefix = $messagePrefix;
     }
-    protected function addMessageToCatalogue(string $message, ?string $domain, int $line): void
+    protected function addMessageToCatalogue(string $message, ?string $domain, int $line) : void
     {
         $domain ??= 'messages';
         $this->catalogue->set($message, $this->messagePrefix . $message, $domain);
         $metadata = $this->catalogue->getMetadata($message, $domain) ?? [];
-        $normalizedFilename = preg_replace('{[\\\\/]+}', '/', $this->file);
+        $normalizedFilename = \preg_replace('{[\\\\/]+}', '/', $this->file);
         $metadata['sources'][] = $normalizedFilename . ':' . $line;
         $this->catalogue->setMetadata($message, $metadata, $domain);
     }
-    protected function getStringArguments(Node\Expr\CallLike|Node\Attribute|Node\Expr\New_ $node, int|string $index, bool $indexIsRegex = \false): array
+    protected function getStringArguments(Node\Expr\CallLike|Node\Attribute|Node\Expr\New_ $node, int|string $index, bool $indexIsRegex = \false) : array
     {
         if (\is_string($index)) {
             return $this->getStringNamedArguments($node, $index, $indexIsRegex);
@@ -46,7 +47,7 @@ abstract class AbstractVisitor
         }
         return (array) $this->getStringValue($arg->value);
     }
-    protected function hasNodeNamedArguments(Node\Expr\CallLike|Node\Attribute|Node\Expr\New_ $node): bool
+    protected function hasNodeNamedArguments(Node\Expr\CallLike|Node\Attribute|Node\Expr\New_ $node) : bool
     {
         $args = $node instanceof Node\Expr\CallLike ? $node->getRawArgs() : $node->args;
         foreach ($args as $arg) {
@@ -56,7 +57,7 @@ abstract class AbstractVisitor
         }
         return \false;
     }
-    protected function nodeFirstNamedArgumentIndex(Node\Expr\CallLike|Node\Attribute|Node\Expr\New_ $node): int
+    protected function nodeFirstNamedArgumentIndex(Node\Expr\CallLike|Node\Attribute|Node\Expr\New_ $node) : int
     {
         $args = $node instanceof Node\Expr\CallLike ? $node->getRawArgs() : $node->args;
         foreach ($args as $i => $arg) {
@@ -66,29 +67,29 @@ abstract class AbstractVisitor
         }
         return \PHP_INT_MAX;
     }
-    private function getStringNamedArguments(Node\Expr\CallLike|Node\Attribute $node, ?string $argumentName = null, bool $isArgumentNamePattern = \false): array
+    private function getStringNamedArguments(Node\Expr\CallLike|Node\Attribute $node, ?string $argumentName = null, bool $isArgumentNamePattern = \false) : array
     {
         $args = $node instanceof Node\Expr\CallLike ? $node->getArgs() : $node->args;
         $argumentValues = [];
         foreach ($args as $arg) {
             if (!$isArgumentNamePattern && $arg->name?->toString() === $argumentName) {
                 $argumentValues[] = $this->getStringValue($arg->value);
-            } elseif ($isArgumentNamePattern && preg_match($argumentName, $arg->name?->toString() ?? '') > 0) {
+            } elseif ($isArgumentNamePattern && \preg_match($argumentName, $arg->name?->toString() ?? '') > 0) {
                 $argumentValues[] = $this->getStringValue($arg->value);
             }
         }
-        return array_filter($argumentValues);
+        return \array_filter($argumentValues);
     }
-    private function getStringValue(Node $node): ?string
+    private function getStringValue(Node $node) : ?string
     {
         if ($node instanceof Node\Scalar\String_) {
             return $node->value;
         }
         if ($node instanceof Node\Expr\BinaryOp\Concat) {
-            if (null === $left = $this->getStringValue($node->left)) {
+            if (null === ($left = $this->getStringValue($node->left))) {
                 return null;
             }
-            if (null === $right = $this->getStringValue($node->right)) {
+            if (null === ($right = $this->getStringValue($node->right))) {
                 return null;
             }
             return $left . $right;

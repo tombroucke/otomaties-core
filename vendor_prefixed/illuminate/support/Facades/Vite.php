@@ -34,6 +34,7 @@ namespace OtomatiesCoreVendor\Illuminate\Support\Facades;
  * @method static void flushMacros()
  *
  * @see \Illuminate\Foundation\Vite
+ * @internal
  */
 class Vite extends Facade
 {

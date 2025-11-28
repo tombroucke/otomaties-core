@@ -2,6 +2,7 @@
 
 namespace OtomatiesCoreVendor\Illuminate\Contracts\Foundation;
 
+/** @internal */
 interface ExceptionRenderer
 {
     /**

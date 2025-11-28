@@ -2,6 +2,7 @@
 
 namespace OtomatiesCoreVendor\Illuminate\Support;
 
+/** @internal */
 class HigherOrderWhenProxy
 {
     /**

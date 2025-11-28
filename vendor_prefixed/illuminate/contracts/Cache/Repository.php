@@ -4,6 +4,7 @@ namespace OtomatiesCoreVendor\Illuminate\Contracts\Cache;
 
 use Closure;
 use OtomatiesCoreVendor\Psr\SimpleCache\CacheInterface;
+/** @internal */
 interface Repository extends CacheInterface
 {
     /**

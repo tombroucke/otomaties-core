@@ -37,6 +37,7 @@ use OtomatiesCoreVendor\Illuminate\Support\Testing\Fakes\ExceptionHandlerFake;
  *
  * @see \Illuminate\Foundation\Exceptions\Handler
  * @see \Illuminate\Support\Testing\Fakes\ExceptionHandlerFake
+ * @internal
  */
 class Exceptions extends Facade
 {

@@ -83,6 +83,7 @@ use OtomatiesCoreVendor\Illuminate\Filesystem\Filesystem;
  * @method static void createDirectory(string $location, array $config = [])
  *
  * @see \Illuminate\Filesystem\FilesystemManager
+ * @internal
  */
 class Storage extends Facade
 {
@@ -124,7 +125,7 @@ class Storage extends Facade
      * @param  string  $disk
      * @return string
      */
-    protected static function getRootPath(string $disk): string
+    protected static function getRootPath(string $disk) : string
     {
         return storage_path('framework/testing/disks/' . $disk);
     }
@@ -136,10 +137,10 @@ class Storage extends Facade
      * @param  string  $root
      * @return array
      */
-    protected static function buildDiskConfiguration(string $disk, array $config, string $root): array
+    protected static function buildDiskConfiguration(string $disk, array $config, string $root) : array
     {
         $originalConfig = static::$app['config']["filesystems.disks.{$disk}"] ?? [];
-        return array_merge(['throw' => $originalConfig['throw'] ?? \false], $config, ['root' => $root]);
+        return \array_merge(['throw' => $originalConfig['throw'] ?? \false], $config, ['root' => $root]);
     }
     /**
      * Get the registered name of the component.

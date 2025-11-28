@@ -829,6 +829,7 @@ use DateTimeInterface;
  * @method        int              yearsInMillennium()                                                                Return the number of years contained in the current millennium
  *
  * </autodoc>
+ * @internal
  */
 class Carbon extends DateTime implements CarbonInterface
 {
@@ -836,7 +837,7 @@ class Carbon extends DateTime implements CarbonInterface
     /**
      * Returns true if the current class/instance is mutable.
      */
-    public static function isMutable(): bool
+    public static function isMutable() : bool
     {
         return \true;
     }

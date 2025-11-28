@@ -2,6 +2,7 @@
 
 namespace OtomatiesCoreVendor\Illuminate\Contracts\Support;
 
+/** @internal */
 interface DeferringDisplayableValue
 {
     /**

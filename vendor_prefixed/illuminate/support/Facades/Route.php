@@ -104,6 +104,7 @@ namespace OtomatiesCoreVendor\Illuminate\Support\Facades;
  * @method static \Illuminate\Routing\RouteRegistrar withoutScopedBindings()
  *
  * @see \Illuminate\Routing\Router
+ * @internal
  */
 class Route extends Facade
 {

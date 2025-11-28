@@ -2,6 +2,7 @@
 
 namespace OtomatiesCoreVendor\Illuminate\Contracts\Auth;
 
+/** @internal */
 interface Factory
 {
     /**

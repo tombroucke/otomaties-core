@@ -2,6 +2,7 @@
 
 namespace OtomatiesCoreVendor\Composer\Installers;
 
+/** @internal */
 class HuradInstaller extends BaseInstaller
 {
     /** @var array<string, string> */
@@ -9,15 +10,15 @@ class HuradInstaller extends BaseInstaller
     /**
      * Format package name to CamelCase
      */
-    public function inflectPackageVars(array $vars): array
+    public function inflectPackageVars(array $vars) : array
     {
-        $nameParts = explode('/', $vars['name']);
+        $nameParts = \explode('/', $vars['name']);
         foreach ($nameParts as &$value) {
-            $value = strtolower($this->pregReplace('/(?<=\w)([A-Z])/', 'OtomatiesCoreVendor\_\1', $value));
-            $value = str_replace(array('-', '_'), ' ', $value);
-            $value = str_replace(' ', '', ucwords($value));
+            $value = \strtolower($this->pregReplace('/(?<=\\w)([A-Z])/', 'OtomatiesCoreVendor\\_\\1', $value));
+            $value = \str_replace(array('-', '_'), ' ', $value);
+            $value = \str_replace(' ', '', \ucwords($value));
         }
-        $vars['name'] = implode('/', $nameParts);
+        $vars['name'] = \implode('/', $nameParts);
         return $vars;
     }
 }

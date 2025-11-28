@@ -7,6 +7,7 @@ use OtomatiesCoreVendor\Carbon\Carbon;
 use DateTime;
 use OtomatiesCoreVendor\Doctrine\DBAL\Platforms\AbstractPlatform;
 use OtomatiesCoreVendor\Doctrine\DBAL\Types\VarDateTimeType;
+/** @internal */
 class DateTimeType extends VarDateTimeType implements CarbonDoctrineType
 {
     /** @use CarbonTypeConverter<Carbon> */
@@ -14,7 +15,7 @@ class DateTimeType extends VarDateTimeType implements CarbonDoctrineType
     /**
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public function convertToPHPValue(mixed $value, AbstractPlatform $platform): ?Carbon
+    public function convertToPHPValue(mixed $value, AbstractPlatform $platform) : ?Carbon
     {
         return $this->doConvertToPHPValue($value);
     }

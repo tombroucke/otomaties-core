@@ -4,21 +4,22 @@ declare (strict_types=1);
 namespace OtomatiesCoreVendor\Doctrine\Inflector\Rules\Esperanto;
 
 use OtomatiesCoreVendor\Doctrine\Inflector\Rules\Pattern;
+/** @internal */
 final class Uninflected
 {
     /** @return Pattern[] */
-    public static function getSingular(): iterable
+    public static function getSingular() : iterable
     {
         yield from self::getDefault();
     }
     /** @return Pattern[] */
-    public static function getPlural(): iterable
+    public static function getPlural() : iterable
     {
         yield from self::getDefault();
     }
     /** @return Pattern[] */
-    private static function getDefault(): iterable
+    private static function getDefault() : iterable
     {
-        yield new Pattern('');
+        (yield new Pattern(''));
     }
 }

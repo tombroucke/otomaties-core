@@ -6,6 +6,7 @@ namespace OtomatiesCoreVendor\Composer\Installers;
  * Class PiwikInstaller
  *
  * @package Composer\Installers
+ * @internal
  */
 class PiwikInstaller extends BaseInstaller
 {
@@ -14,11 +15,11 @@ class PiwikInstaller extends BaseInstaller
     /**
      * Format package name to CamelCase
      */
-    public function inflectPackageVars(array $vars): array
+    public function inflectPackageVars(array $vars) : array
     {
-        $vars['name'] = strtolower($this->pregReplace('/(?<=\w)([A-Z])/', 'OtomatiesCoreVendor\_\1', $vars['name']));
-        $vars['name'] = str_replace(array('-', '_'), ' ', $vars['name']);
-        $vars['name'] = str_replace(' ', '', ucwords($vars['name']));
+        $vars['name'] = \strtolower($this->pregReplace('/(?<=\\w)([A-Z])/', 'OtomatiesCoreVendor\\_\\1', $vars['name']));
+        $vars['name'] = \str_replace(array('-', '_'), ' ', $vars['name']);
+        $vars['name'] = \str_replace(' ', '', \ucwords($vars['name']));
         return $vars;
     }
 }

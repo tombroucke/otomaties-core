@@ -11,6 +11,7 @@ namespace OtomatiesCoreVendor;
  * file that was distributed with this source code.
  */
 if (\PHP_VERSION_ID < 80500) {
+    /** @internal */
     #[\Attribute(\Attribute::TARGET_METHOD | \Attribute::TARGET_FUNCTION)]
     final class NoDiscard
     {
@@ -20,5 +21,4 @@ if (\PHP_VERSION_ID < 80500) {
             $this->message = $message;
         }
     }
-    \class_alias('OtomatiesCoreVendor\NoDiscard', 'NoDiscard', \false);
 }

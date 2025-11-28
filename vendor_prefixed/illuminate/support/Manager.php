@@ -5,6 +5,7 @@ namespace OtomatiesCoreVendor\Illuminate\Support;
 use Closure;
 use OtomatiesCoreVendor\Illuminate\Contracts\Container\Container;
 use InvalidArgumentException;
+/** @internal */
 abstract class Manager
 {
     /**
@@ -46,7 +47,7 @@ abstract class Manager
      *
      * @return string|null
      */
-    abstract public function getDefaultDriver();
+    public abstract function getDefaultDriver();
     /**
      * Get a driver instance.
      *
@@ -58,8 +59,8 @@ abstract class Manager
     public function driver($driver = null)
     {
         $driver = $driver ?: $this->getDefaultDriver();
-        if (is_null($driver)) {
-            throw new InvalidArgumentException(sprintf('Unable to resolve NULL driver for [%s].', static::class));
+        if (\is_null($driver)) {
+            throw new InvalidArgumentException(\sprintf('Unable to resolve NULL driver for [%s].', static::class));
         }
         // If the given driver has not been created before, we will create the instances
         // here and cache it so we can return it next time very quickly. If there is
@@ -83,7 +84,7 @@ abstract class Manager
             return $this->callCustomCreator($driver);
         }
         $method = 'create' . Str::studly($driver) . 'Driver';
-        if (method_exists($this, $method)) {
+        if (\method_exists($this, $method)) {
             return $this->{$method}();
         }
         throw new InvalidArgumentException("Driver [{$driver}] not supported.");

@@ -12,10 +12,11 @@ namespace OtomatiesCoreVendor\Carbon\MessageFormatter;
 
 use OtomatiesCoreVendor\Symfony\Component\Translation\Formatter\ChoiceMessageFormatterInterface;
 use OtomatiesCoreVendor\Symfony\Component\Translation\Formatter\MessageFormatterInterface;
-if (!class_exists(LazyMessageFormatter::class, \false)) {
+if (!\class_exists(LazyMessageFormatter::class, \false)) {
+    /** @internal */
     abstract class LazyMessageFormatter implements MessageFormatterInterface, ChoiceMessageFormatterInterface
     {
-        abstract protected function transformLocale(?string $locale): ?string;
+        protected abstract function transformLocale(?string $locale) : ?string;
         public function format($message, $locale, array $parameters = [])
         {
             return $this->formatter->format($message, $this->transformLocale($locale), $parameters);

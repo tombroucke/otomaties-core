@@ -5,6 +5,7 @@ namespace OtomatiesCoreVendor\Illuminate\Container\Attributes;
 use Attribute;
 use OtomatiesCoreVendor\Illuminate\Contracts\Container\Container;
 use OtomatiesCoreVendor\Illuminate\Contracts\Container\ContextualAttribute;
+/** @internal */
 #[Attribute(Attribute::TARGET_PARAMETER)]
 class Cache implements ContextualAttribute
 {

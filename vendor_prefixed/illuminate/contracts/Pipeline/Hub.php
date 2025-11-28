@@ -2,6 +2,7 @@
 
 namespace OtomatiesCoreVendor\Illuminate\Contracts\Pipeline;
 
+/** @internal */
 interface Hub
 {
     /**

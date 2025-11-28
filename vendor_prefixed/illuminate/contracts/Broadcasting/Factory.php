@@ -2,6 +2,7 @@
 
 namespace OtomatiesCoreVendor\Illuminate\Contracts\Broadcasting;
 
+/** @internal */
 interface Factory
 {
     /**

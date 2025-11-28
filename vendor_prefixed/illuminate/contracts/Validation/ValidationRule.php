@@ -3,6 +3,7 @@
 namespace OtomatiesCoreVendor\Illuminate\Contracts\Validation;
 
 use Closure;
+/** @internal */
 interface ValidationRule
 {
     /**
@@ -13,5 +14,5 @@ interface ValidationRule
      * @param  \Closure(string, ?string=): \Illuminate\Translation\PotentiallyTranslatedString  $fail
      * @return void
      */
-    public function validate(string $attribute, mixed $value, Closure $fail): void;
+    public function validate(string $attribute, mixed $value, Closure $fail) : void;
 }

@@ -14,9 +14,10 @@ use OtomatiesCoreVendor\Symfony\Component\DependencyInjection\Compiler\CompilerP
 use OtomatiesCoreVendor\Symfony\Component\DependencyInjection\Compiler\ServiceLocatorTagPass;
 use OtomatiesCoreVendor\Symfony\Component\DependencyInjection\ContainerBuilder;
 use OtomatiesCoreVendor\Symfony\Component\DependencyInjection\Reference;
+/** @internal */
 class TranslatorPass implements CompilerPassInterface
 {
-    public function process(ContainerBuilder $container): void
+    public function process(ContainerBuilder $container) : void
     {
         if (!$container->hasDefinition('translator.default')) {
             return;
@@ -49,14 +50,14 @@ class TranslatorPass implements CompilerPassInterface
                 // Resolve constraint validator FQCN even if defined as %foo.validator.class% parameter
                 $className = $container->getParameterBag()->resolveValue($definition->getClass());
                 // Extraction of the constraint class name from the Constraint Validator FQCN
-                $constraintClassNames[] = str_replace('Validator', '', substr(strrchr($className, '\\'), 1));
+                $constraintClassNames[] = \str_replace('Validator', '', \substr(\strrchr($className, '\\'), 1));
             }
             $constraintVisitorDefinition->setArgument(0, $constraintClassNames);
         }
         if (!$container->hasParameter('twig.default_path')) {
             return;
         }
-        $paths = array_keys($container->getDefinition('twig.template_iterator')->getArgument(1));
+        $paths = \array_keys($container->getDefinition('twig.template_iterator')->getArgument(1));
         if ($container->hasDefinition('console.command.translation_debug')) {
             $definition = $container->getDefinition('console.command.translation_debug');
             $definition->replaceArgument(4, $container->getParameter('twig.default_path'));

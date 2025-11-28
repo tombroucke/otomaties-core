@@ -13,6 +13,7 @@ namespace OtomatiesCoreVendor\Symfony\Component\Translation;
 use OtomatiesCoreVendor\Symfony\Component\Translation\Exception\InvalidArgumentException;
 /**
  * @author Abdellatif Ait boudad <a.aitboudad@gmail.com>
+ * @internal
  */
 interface TranslatorBagInterface
 {
@@ -23,11 +24,11 @@ interface TranslatorBagInterface
      *
      * @throws InvalidArgumentException If the locale contains invalid characters
      */
-    public function getCatalogue(?string $locale = null): MessageCatalogueInterface;
+    public function getCatalogue(?string $locale = null) : MessageCatalogueInterface;
     /**
      * Returns all catalogues of the instance.
      *
      * @return MessageCatalogueInterface[]
      */
-    public function getCatalogues(): array;
+    public function getCatalogues() : array;
 }

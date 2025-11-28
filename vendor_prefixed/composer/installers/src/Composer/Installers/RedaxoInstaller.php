@@ -2,6 +2,7 @@
 
 namespace OtomatiesCoreVendor\Composer\Installers;
 
+/** @internal */
 class RedaxoInstaller extends BaseInstaller
 {
     /** @var array<string, string> */

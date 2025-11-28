@@ -21,6 +21,7 @@ namespace OtomatiesCoreVendor\Symfony\Component\Translation\Util;
  *     bar2: test2.
  *
  * @author Gennady Telegin <gtelegin@gmail.com>
+ * @internal
  */
 class ArrayConverter
 {
@@ -30,7 +31,7 @@ class ArrayConverter
      *
      * @param array $messages Linear messages array
      */
-    public static function expandToTree(array $messages): array
+    public static function expandToTree(array $messages) : array
     {
         $tree = [];
         foreach ($messages as $id => $value) {
@@ -40,7 +41,7 @@ class ArrayConverter
         }
         return $tree;
     }
-    private static function &getElementByPath(array &$tree, array $parts): mixed
+    private static function &getElementByPath(array &$tree, array $parts) : mixed
     {
         $elem =& $tree;
         $parentOfElem = null;
@@ -53,7 +54,7 @@ class ArrayConverter
                  * $tree['foo'] was string before we found array {bar: test2}.
                  *  Treat new element as string too, e.g. add $tree['foo.bar'] = 'test2';
                  */
-                $elem =& $elem[implode('.', \array_slice($parts, $i))];
+                $elem =& $elem[\implode('.', \array_slice($parts, $i))];
                 break;
             }
             $parentOfElem =& $elem;
@@ -72,7 +73,7 @@ class ArrayConverter
         }
         return $elem;
     }
-    private static function cancelExpand(array &$tree, string $prefix, array $node): void
+    private static function cancelExpand(array &$tree, string $prefix, array $node) : void
     {
         $prefix .= '.';
         foreach ($node as $id => $value) {
@@ -86,9 +87,9 @@ class ArrayConverter
     /**
      * @return string[]
      */
-    private static function getKeyParts(string $key): array
+    private static function getKeyParts(string $key) : array
     {
-        $parts = explode('.', $key);
+        $parts = \explode('.', $key);
         $partsCount = \count($parts);
         $result = [];
         $buffer = '';

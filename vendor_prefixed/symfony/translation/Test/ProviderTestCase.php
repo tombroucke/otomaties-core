@@ -24,6 +24,7 @@ use OtomatiesCoreVendor\Symfony\Contracts\HttpClient\HttpClientInterface;
  * A test case to ease testing a translation provider.
  *
  * @author Mathieu Santostefano <msantostefano@protonmail.com>
+ * @internal
  */
 abstract class ProviderTestCase extends TestCase
 {
@@ -33,11 +34,11 @@ abstract class ProviderTestCase extends TestCase
     protected LoaderInterface|MockObject $loader;
     protected XliffFileDumper|MockObject $xliffFileDumper;
     protected TranslatorBagInterface|MockObject $translatorBag;
-    abstract public static function createProvider(HttpClientInterface $client, LoaderInterface $loader, LoggerInterface $logger, string $defaultLocale, string $endpoint): ProviderInterface;
+    public static abstract function createProvider(HttpClientInterface $client, LoaderInterface $loader, LoggerInterface $logger, string $defaultLocale, string $endpoint) : ProviderInterface;
     /**
      * @return iterable<array{0: ProviderInterface, 1: string}>
      */
-    abstract public static function toStringProvider(): iterable;
+    public static abstract function toStringProvider() : iterable;
     /**
      * @dataProvider toStringProvider
      */
@@ -46,27 +47,27 @@ abstract class ProviderTestCase extends TestCase
     {
         $this->assertSame($expected, (string) $provider);
     }
-    protected function getClient(): MockHttpClient
+    protected function getClient() : MockHttpClient
     {
         return $this->client ??= new MockHttpClient();
     }
-    protected function getLoader(): LoaderInterface
+    protected function getLoader() : LoaderInterface
     {
         return $this->loader ??= $this->createMock(LoaderInterface::class);
     }
-    protected function getLogger(): LoggerInterface
+    protected function getLogger() : LoggerInterface
     {
         return $this->logger ??= $this->createMock(LoggerInterface::class);
     }
-    protected function getDefaultLocale(): string
+    protected function getDefaultLocale() : string
     {
         return $this->defaultLocale ??= 'en';
     }
-    protected function getXliffFileDumper(): XliffFileDumper
+    protected function getXliffFileDumper() : XliffFileDumper
     {
         return $this->xliffFileDumper ??= $this->createMock(XliffFileDumper::class);
     }
-    protected function getTranslatorBag(): TranslatorBagInterface
+    protected function getTranslatorBag() : TranslatorBagInterface
     {
         return $this->translatorBag ??= $this->createMock(TranslatorBagInterface::class);
     }

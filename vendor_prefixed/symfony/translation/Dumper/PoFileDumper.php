@@ -15,16 +15,17 @@ use OtomatiesCoreVendor\Symfony\Component\Translation\MessageCatalogue;
  * PoFileDumper generates a gettext formatted string representation of a message catalogue.
  *
  * @author Stealth35
+ * @internal
  */
 class PoFileDumper extends FileDumper
 {
-    public function formatCatalogue(MessageCatalogue $messages, string $domain, array $options = []): string
+    public function formatCatalogue(MessageCatalogue $messages, string $domain, array $options = []) : string
     {
         $output = 'msgid ""' . "\n";
         $output .= 'msgstr ""' . "\n";
-        $output .= '"Content-Type: text/plain; charset=UTF-8\n"' . "\n";
-        $output .= '"Content-Transfer-Encoding: 8bit\n"' . "\n";
-        $output .= '"Language: ' . $messages->getLocale() . '\n"' . "\n";
+        $output .= '"Content-Type: text/plain; charset=UTF-8\\n"' . "\n";
+        $output .= '"Content-Transfer-Encoding: 8bit\\n"' . "\n";
+        $output .= '"Language: ' . $messages->getLocale() . '\\n"' . "\n";
         $output .= "\n";
         $newLine = \false;
         foreach ($messages->all($domain) as $source => $target) {
@@ -38,10 +39,10 @@ class PoFileDumper extends FileDumper
                 $output .= $this->formatComments($metadata['comments']);
             }
             if (isset($metadata['flags'])) {
-                $output .= $this->formatComments(implode(',', (array) $metadata['flags']), ',');
+                $output .= $this->formatComments(\implode(',', (array) $metadata['flags']), ',');
             }
             if (isset($metadata['sources'])) {
-                $output .= $this->formatComments(implode(' ', (array) $metadata['sources']), ':');
+                $output .= $this->formatComments(\implode(' ', (array) $metadata['sources']), ':');
             }
             $sourceRules = $this->getStandardRules($source);
             $targetRules = $this->getStandardRules($target);
@@ -58,13 +59,13 @@ class PoFileDumper extends FileDumper
         }
         return $output;
     }
-    private function getStandardRules(string $id): array
+    private function getStandardRules(string $id) : array
     {
         // Partly copied from TranslatorTrait::trans.
         $parts = [];
-        if (preg_match('/^\|++$/', $id)) {
-            $parts = explode('|', $id);
-        } elseif (preg_match_all('/(?:\|\||[^\|])++/', $id, $matches)) {
+        if (\preg_match('/^\\|++$/', $id)) {
+            $parts = \explode('|', $id);
+        } elseif (\preg_match_all('/(?:\\|\\||[^\\|])++/', $id, $matches)) {
             $parts = $matches[0];
         }
         $intervalRegexp = <<<'EOF'
@@ -86,8 +87,8 @@ class PoFileDumper extends FileDumper
 EOF;
         $standardRules = [];
         foreach ($parts as $part) {
-            $part = trim(str_replace('||', '|', $part));
-            if (preg_match($intervalRegexp, $part)) {
+            $part = \trim(\str_replace('||', '|', $part));
+            if (\preg_match($intervalRegexp, $part)) {
                 // Explicit rule is not a standard rule.
                 return [];
             }
@@ -95,15 +96,15 @@ EOF;
         }
         return $standardRules;
     }
-    protected function getExtension(): string
+    protected function getExtension() : string
     {
         return 'po';
     }
-    private function escape(string $str): string
+    private function escape(string $str) : string
     {
-        return addcslashes($str, "\x00..\x1f\"\\");
+        return \addcslashes($str, "\x00..\x1f\"\\");
     }
-    private function formatComments(string|array $comments, string $prefix = ''): ?string
+    private function formatComments(string|array $comments, string $prefix = '') : ?string
     {
         $output = null;
         foreach ((array) $comments as $comment) {

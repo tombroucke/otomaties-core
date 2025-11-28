@@ -21,10 +21,10 @@ class Util
      */
     public static function arrayWrap($value)
     {
-        if (is_null($value)) {
+        if (\is_null($value)) {
             return [];
         }
-        return is_array($value) ? $value : [$value];
+        return \is_array($value) ? $value : [$value];
     }
     /**
      * Return the default value of the given value.
@@ -54,11 +54,11 @@ class Util
             return null;
         }
         $name = $type->getName();
-        if (!is_null($class = $parameter->getDeclaringClass())) {
+        if (!\is_null($class = $parameter->getDeclaringClass())) {
             if ($name === 'self') {
                 return $class->getName();
             }
-            if ($name === 'parent' && $parent = $class->getParentClass()) {
+            if ($name === 'parent' && ($parent = $class->getParentClass())) {
                 return $parent->getName();
             }
         }

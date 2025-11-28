@@ -190,6 +190,7 @@ namespace OtomatiesCoreVendor\Illuminate\Support\Facades;
  * @method static bool hasValidRelativeSignatureWhileIgnoring($ignoreQuery = [])
  *
  * @see \Illuminate\Http\Request
+ * @internal
  */
 class Request extends Facade
 {

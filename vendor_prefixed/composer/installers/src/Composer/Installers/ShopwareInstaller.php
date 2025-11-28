@@ -5,6 +5,7 @@ namespace OtomatiesCoreVendor\Composer\Installers;
 /**
  * Plugin/theme installer for shopware
  * @author Benjamin Boit
+ * @internal
  */
 class ShopwareInstaller extends BaseInstaller
 {
@@ -13,7 +14,7 @@ class ShopwareInstaller extends BaseInstaller
     /**
      * Transforms the names
      */
-    public function inflectPackageVars(array $vars): array
+    public function inflectPackageVars(array $vars) : array
     {
         if ($vars['type'] === 'shopware-theme') {
             return $this->correctThemeName($vars);
@@ -26,15 +27,15 @@ class ShopwareInstaller extends BaseInstaller
      * @param array<string, string> $vars
      * @return array<string, string>
      */
-    private function correctPluginName(array $vars): array
+    private function correctPluginName(array $vars) : array
     {
-        $camelCasedName = preg_replace_callback('/(-[a-z])/', function ($matches) {
-            return strtoupper($matches[0][1]);
+        $camelCasedName = \preg_replace_callback('/(-[a-z])/', function ($matches) {
+            return \strtoupper($matches[0][1]);
         }, $vars['name']);
         if (null === $camelCasedName) {
-            throw new \RuntimeException('Failed to run preg_replace_callback: ' . preg_last_error());
+            throw new \RuntimeException('Failed to run preg_replace_callback: ' . \preg_last_error());
         }
-        $vars['name'] = ucfirst($vars['vendor']) . ucfirst($camelCasedName);
+        $vars['name'] = \ucfirst($vars['vendor']) . \ucfirst($camelCasedName);
         return $vars;
     }
     /**
@@ -43,9 +44,9 @@ class ShopwareInstaller extends BaseInstaller
      * @param array<string, string> $vars
      * @return array<string, string>
      */
-    private function correctThemeName(array $vars): array
+    private function correctThemeName(array $vars) : array
     {
-        $vars['name'] = str_replace('-', '_', $vars['name']);
+        $vars['name'] = \str_replace('-', '_', $vars['name']);
         return $vars;
     }
 }

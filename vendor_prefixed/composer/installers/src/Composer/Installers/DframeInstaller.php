@@ -2,6 +2,7 @@
 
 namespace OtomatiesCoreVendor\Composer\Installers;
 
+/** @internal */
 class DframeInstaller extends BaseInstaller
 {
     /** @var array<string, string> */

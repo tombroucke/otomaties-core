@@ -16,6 +16,7 @@ use OtomatiesCoreVendor\Doctrine\DBAL\Types\Exception\ValueNotConvertible;
 use Exception;
 /**
  * @template T of CarbonInterface
+ * @internal
  */
 trait CarbonTypeConverter
 {
@@ -29,27 +30,27 @@ trait CarbonTypeConverter
     /**
      * @return class-string<T>
      */
-    protected function getCarbonClassName(): string
+    protected function getCarbonClassName() : string
     {
         return Carbon::class;
     }
-    public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform): string
+    public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform) : string
     {
-        $precision = min($fieldDeclaration['precision'] ?? DateTimeDefaultPrecision::get(), $this->getMaximumPrecision($platform));
+        $precision = \min($fieldDeclaration['precision'] ?? DateTimeDefaultPrecision::get(), $this->getMaximumPrecision($platform));
         $type = parent::getSQLDeclaration($fieldDeclaration, $platform);
         if (!$precision) {
             return $type;
         }
-        if (str_contains($type, '(')) {
-            return preg_replace('/\(\d+\)/', "({$precision})", $type);
+        if (\str_contains($type, '(')) {
+            return \preg_replace('/\\(\\d+\\)/', "({$precision})", $type);
         }
-        [$before, $after] = explode(' ', "{$type} ");
-        return trim("{$before}({$precision}) {$after}");
+        [$before, $after] = \explode(' ', "{$type} ");
+        return \trim("{$before}({$precision}) {$after}");
     }
     /**
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public function convertToDatabaseValue($value, AbstractPlatform $platform): ?string
+    public function convertToDatabaseValue($value, AbstractPlatform $platform) : ?string
     {
         if ($value === null) {
             return $value;
@@ -62,7 +63,7 @@ trait CarbonTypeConverter
     private function doConvertToPHPValue(mixed $value)
     {
         $class = $this->getCarbonClassName();
-        if ($value === null || is_a($value, $class)) {
+        if ($value === null || \is_a($value, $class)) {
             return $value;
         }
         if ($value instanceof DateTimeInterface) {
@@ -80,7 +81,7 @@ trait CarbonTypeConverter
         }
         return $date;
     }
-    private function getMaximumPrecision(AbstractPlatform $platform): int
+    private function getMaximumPrecision(AbstractPlatform $platform) : int
     {
         if ($platform instanceof DB2Platform) {
             return 12;

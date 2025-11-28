@@ -13,6 +13,7 @@ namespace OtomatiesCoreVendor\Carbon\Exceptions;
 
 use InvalidArgumentException as BaseInvalidArgumentException;
 use Throwable;
+/** @internal */
 class InvalidDateException extends BaseInvalidArgumentException implements InvalidArgumentException
 {
     /**

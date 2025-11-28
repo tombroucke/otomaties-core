@@ -20,10 +20,11 @@ use OtomatiesCoreVendor\Symfony\Component\Translation\MessageCatalogueInterface;
  * Basically, the result contains messages from the target catalogue.
  *
  * @author Michael Lee <michael.lee@zerustech.com>
+ * @internal
  */
 class TargetOperation extends AbstractOperation
 {
-    protected function processDomain(string $domain): void
+    protected function processDomain(string $domain) : void
     {
         $this->messages[$domain] = ['all' => [], 'new' => [], 'obsolete' => []];
         $intlDomain = $domain . MessageCatalogueInterface::INTL_DOMAIN_SUFFIX;
@@ -50,7 +51,7 @@ class TargetOperation extends AbstractOperation
                 $this->messages[$domain]['all'][$id] = $message;
                 $d = $this->source->defines($id, $intlDomain) ? $intlDomain : $domain;
                 $this->result->add([$id => $message], $d);
-                if (null !== $keyMetadata = $this->source->getMetadata($id, $d)) {
+                if (null !== ($keyMetadata = $this->source->getMetadata($id, $d))) {
                     $this->result->setMetadata($id, $keyMetadata, $d);
                 }
             } else {
@@ -63,7 +64,7 @@ class TargetOperation extends AbstractOperation
                 $this->messages[$domain]['new'][$id] = $message;
                 $d = $this->target->defines($id, $intlDomain) ? $intlDomain : $domain;
                 $this->result->add([$id => $message], $d);
-                if (null !== $keyMetadata = $this->target->getMetadata($id, $d)) {
+                if (null !== ($keyMetadata = $this->target->getMetadata($id, $d))) {
                     $this->result->setMetadata($id, $keyMetadata, $d);
                 }
             }

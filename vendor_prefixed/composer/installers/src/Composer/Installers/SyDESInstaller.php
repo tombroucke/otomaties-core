@@ -2,6 +2,7 @@
 
 namespace OtomatiesCoreVendor\Composer\Installers;
 
+/** @internal */
 class SyDESInstaller extends BaseInstaller
 {
     /** @var array<string, string> */
@@ -11,7 +12,7 @@ class SyDESInstaller extends BaseInstaller
      *
      * Strip `sydes-` prefix and a trailing '-theme' or '-module' from package name if present.
      */
-    public function inflectPackageVars(array $vars): array
+    public function inflectPackageVars(array $vars) : array
     {
         if ($vars['type'] == 'sydes-module') {
             return $this->inflectModuleVars($vars);
@@ -25,21 +26,21 @@ class SyDESInstaller extends BaseInstaller
      * @param array<string, string> $vars
      * @return array<string, string>
      */
-    public function inflectModuleVars(array $vars): array
+    public function inflectModuleVars(array $vars) : array
     {
         $vars['name'] = $this->pregReplace('/(^sydes-|-module$)/i', '', $vars['name']);
-        $vars['name'] = str_replace(array('-', '_'), ' ', $vars['name']);
-        $vars['name'] = str_replace(' ', '', ucwords($vars['name']));
+        $vars['name'] = \str_replace(array('-', '_'), ' ', $vars['name']);
+        $vars['name'] = \str_replace(' ', '', \ucwords($vars['name']));
         return $vars;
     }
     /**
      * @param array<string, string> $vars
      * @return array<string, string>
      */
-    protected function inflectThemeVars(array $vars): array
+    protected function inflectThemeVars(array $vars) : array
     {
         $vars['name'] = $this->pregReplace('/(^sydes-|-theme$)/', '', $vars['name']);
-        $vars['name'] = strtolower($vars['name']);
+        $vars['name'] = \strtolower($vars['name']);
         return $vars;
     }
 }

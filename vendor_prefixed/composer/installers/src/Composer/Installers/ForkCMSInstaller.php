@@ -2,6 +2,7 @@
 
 namespace OtomatiesCoreVendor\Composer\Installers;
 
+/** @internal */
 class ForkCMSInstaller extends BaseInstaller
 {
     /** @var array<string, string> */
@@ -13,7 +14,7 @@ class ForkCMSInstaller extends BaseInstaller
      *
      * For package type fork-cms-theme, cut off a trailing '-theme' if present.
      */
-    public function inflectPackageVars(array $vars): array
+    public function inflectPackageVars(array $vars) : array
     {
         if ($vars['type'] === 'fork-cms-module') {
             return $this->inflectModuleVars($vars);
@@ -27,12 +28,12 @@ class ForkCMSInstaller extends BaseInstaller
      * @param array<string, string> $vars
      * @return array<string, string>
      */
-    protected function inflectModuleVars(array $vars): array
+    protected function inflectModuleVars(array $vars) : array
     {
         $vars['name'] = $this->pregReplace('/^fork-cms-|-module|ForkCMS|ForkCms|Forkcms|forkcms|Module$/', '', $vars['name']);
-        $vars['name'] = str_replace(array('-', '_'), ' ', $vars['name']);
+        $vars['name'] = \str_replace(array('-', '_'), ' ', $vars['name']);
         // replace hyphens with spaces
-        $vars['name'] = str_replace(' ', '', ucwords($vars['name']));
+        $vars['name'] = \str_replace(' ', '', \ucwords($vars['name']));
         // make module name camelcased
         return $vars;
     }
@@ -40,12 +41,12 @@ class ForkCMSInstaller extends BaseInstaller
      * @param array<string, string> $vars
      * @return array<string, string>
      */
-    protected function inflectThemeVars(array $vars): array
+    protected function inflectThemeVars(array $vars) : array
     {
         $vars['name'] = $this->pregReplace('/^fork-cms-|-theme|ForkCMS|ForkCms|Forkcms|forkcms|Theme$/', '', $vars['name']);
-        $vars['name'] = str_replace(array('-', '_'), ' ', $vars['name']);
+        $vars['name'] = \str_replace(array('-', '_'), ' ', $vars['name']);
         // replace hyphens with spaces
-        $vars['name'] = str_replace(' ', '', ucwords($vars['name']));
+        $vars['name'] = \str_replace(' ', '', \ucwords($vars['name']));
         // make theme name camelcased
         return $vars;
     }

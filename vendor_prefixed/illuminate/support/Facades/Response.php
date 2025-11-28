@@ -26,6 +26,7 @@ use OtomatiesCoreVendor\Illuminate\Contracts\Routing\ResponseFactory as Response
  * @method static void flushMacros()
  *
  * @see \Illuminate\Routing\ResponseFactory
+ * @internal
  */
 class Response extends Facade
 {

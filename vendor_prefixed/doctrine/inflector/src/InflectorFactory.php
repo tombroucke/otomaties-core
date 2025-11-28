@@ -13,13 +13,14 @@ use OtomatiesCoreVendor\Doctrine\Inflector\Rules\Spanish;
 use OtomatiesCoreVendor\Doctrine\Inflector\Rules\Turkish;
 use InvalidArgumentException;
 use function sprintf;
+/** @internal */
 final class InflectorFactory
 {
-    public static function create(): LanguageInflectorFactory
+    public static function create() : LanguageInflectorFactory
     {
         return self::createForLanguage(Language::ENGLISH);
     }
-    public static function createForLanguage(string $language): LanguageInflectorFactory
+    public static function createForLanguage(string $language) : LanguageInflectorFactory
     {
         switch ($language) {
             case Language::ENGLISH:

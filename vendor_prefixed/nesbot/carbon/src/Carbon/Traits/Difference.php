@@ -29,6 +29,7 @@ use DateTimeInterface;
  * @method bool lessThan($date)
  * @method static copy()
  * @method static resolveCarbon($date = null)
+ * @internal
  */
 trait Difference
 {
@@ -42,7 +43,7 @@ trait Difference
      *
      * @return DateInterval
      */
-    public function diffAsDateInterval($date = null, bool $absolute = \false): DateInterval
+    public function diffAsDateInterval($date = null, bool $absolute = \false) : DateInterval
     {
         $other = $this->resolveCarbon($date);
         // Work-around for https://bugs.php.net/bug.php?id=81458
@@ -64,7 +65,7 @@ trait Difference
      *
      * @return CarbonInterval
      */
-    public function diffAsCarbonInterval($date = null, bool $absolute = \false, array $skip = []): CarbonInterval
+    public function diffAsCarbonInterval($date = null, bool $absolute = \false, array $skip = []) : CarbonInterval
     {
         return CarbonInterval::diff($this, $this->resolveCarbon($date), $absolute, $skip)->setLocalTranslator($this->getLocalTranslator());
     }
@@ -80,7 +81,7 @@ trait Difference
      *
      * @return CarbonInterval
      */
-    public function diff($date = null, bool $absolute = \false, array $skip = []): CarbonInterval
+    public function diff($date = null, bool $absolute = \false, array $skip = []) : CarbonInterval
     {
         return $this->diffAsCarbonInterval($date, $absolute, $skip);
     }
@@ -94,11 +95,11 @@ trait Difference
      *
      * @return float
      */
-    public function diffInUnit(Unit|string $unit, $date = null, bool $absolute = \false, bool $utc = \false): float
+    public function diffInUnit(Unit|string $unit, $date = null, bool $absolute = \false, bool $utc = \false) : float
     {
-        $unit = static::pluralUnit($unit instanceof Unit ? $unit->value : rtrim($unit, 'z'));
+        $unit = static::pluralUnit($unit instanceof Unit ? $unit->value : \rtrim($unit, 'z'));
         $method = 'diffIn' . $unit;
-        if (!method_exists($this, $method)) {
+        if (!\method_exists($this, $method)) {
             throw new UnknownUnitException($unit);
         }
         return $this->{$method}($date, $absolute, $utc);
@@ -112,7 +113,7 @@ trait Difference
      *
      * @return float
      */
-    public function diffInYears($date = null, bool $absolute = \false, bool $utc = \false): float
+    public function diffInYears($date = null, bool $absolute = \false, bool $utc = \false) : float
     {
         $start = $this;
         $end = $this->resolveCarbon($date);
@@ -146,7 +147,7 @@ trait Difference
      *
      * @return float
      */
-    public function diffInQuarters($date = null, bool $absolute = \false, bool $utc = \false): float
+    public function diffInQuarters($date = null, bool $absolute = \false, bool $utc = \false) : float
     {
         return $this->diffInMonths($date, $absolute, $utc) / static::MONTHS_PER_QUARTER;
     }
@@ -159,7 +160,7 @@ trait Difference
      *
      * @return float
      */
-    public function diffInMonths($date = null, bool $absolute = \false, bool $utc = \false): float
+    public function diffInMonths($date = null, bool $absolute = \false, bool $utc = \false) : float
     {
         $start = $this;
         $end = $this->resolveCarbon($date);
@@ -168,8 +169,8 @@ trait Difference
             $start = $start->avoidMutation()->utc();
             $end = $end->avoidMutation()->utc();
         }
-        [$yearStart, $monthStart, $dayStart] = explode('-', $start->format('Y-m-dHisu'));
-        [$yearEnd, $monthEnd, $dayEnd] = explode('-', $end->format('Y-m-dHisu'));
+        [$yearStart, $monthStart, $dayStart] = \explode('-', $start->format('Y-m-dHisu'));
+        [$yearEnd, $monthEnd, $dayEnd] = \explode('-', $end->format('Y-m-dHisu'));
         $monthsDiff = ((int) $yearEnd - (int) $yearStart) * static::MONTHS_PER_YEAR + (int) $monthEnd - (int) $monthStart;
         if ($monthsDiff > 0) {
             $monthsDiff -= $dayStart > $dayEnd ? 1 : 0;
@@ -178,7 +179,7 @@ trait Difference
         }
         $ascending = $start <= $end;
         $sign = $absolute || $ascending ? 1 : -1;
-        $monthsDiff = abs($monthsDiff);
+        $monthsDiff = \abs($monthsDiff);
         if (!$ascending) {
             [$start, $end] = [$end, $start];
         }
@@ -202,7 +203,7 @@ trait Difference
      *
      * @return float
      */
-    public function diffInWeeks($date = null, bool $absolute = \false, bool $utc = \false): float
+    public function diffInWeeks($date = null, bool $absolute = \false, bool $utc = \false) : float
     {
         return $this->diffInDays($date, $absolute, $utc) / static::DAYS_PER_WEEK;
     }
@@ -215,7 +216,7 @@ trait Difference
      *
      * @return float
      */
-    public function diffInDays($date = null, bool $absolute = \false, bool $utc = \false): float
+    public function diffInDays($date = null, bool $absolute = \false, bool $utc = \false) : float
     {
         $date = $this->resolveCarbon($date);
         $current = $this;
@@ -244,7 +245,7 @@ trait Difference
      *
      * @return int
      */
-    public function diffInDaysFiltered(Closure $callback, $date = null, bool $absolute = \false): int
+    public function diffInDaysFiltered(Closure $callback, $date = null, bool $absolute = \false) : int
     {
         return $this->diffFiltered(CarbonInterval::day(), $callback, $date, $absolute);
     }
@@ -257,7 +258,7 @@ trait Difference
      *
      * @return int
      */
-    public function diffInHoursFiltered(Closure $callback, $date = null, bool $absolute = \false): int
+    public function diffInHoursFiltered(Closure $callback, $date = null, bool $absolute = \false) : int
     {
         return $this->diffFiltered(CarbonInterval::hour(), $callback, $date, $absolute);
     }
@@ -271,7 +272,7 @@ trait Difference
      *
      * @return int
      */
-    public function diffFiltered(CarbonInterval $ci, Closure $callback, $date = null, bool $absolute = \false): int
+    public function diffFiltered(CarbonInterval $ci, Closure $callback, $date = null, bool $absolute = \false) : int
     {
         $start = $this;
         $end = $this->resolveCarbon($date);
@@ -293,7 +294,7 @@ trait Difference
      *
      * @return int
      */
-    public function diffInWeekdays($date = null, bool $absolute = \false): int
+    public function diffInWeekdays($date = null, bool $absolute = \false) : int
     {
         return $this->diffInDaysFiltered(static fn(CarbonInterface $date) => $date->isWeekday(), $this->resolveCarbon($date)->avoidMutation()->modify($this->format('H:i:s.u')), $absolute);
     }
@@ -305,7 +306,7 @@ trait Difference
      *
      * @return int
      */
-    public function diffInWeekendDays($date = null, bool $absolute = \false): int
+    public function diffInWeekendDays($date = null, bool $absolute = \false) : int
     {
         return $this->diffInDaysFiltered(static fn(CarbonInterface $date) => $date->isWeekend(), $this->resolveCarbon($date)->avoidMutation()->modify($this->format('H:i:s.u')), $absolute);
     }
@@ -317,7 +318,7 @@ trait Difference
      *
      * @return float
      */
-    public function diffInHours($date = null, bool $absolute = \false): float
+    public function diffInHours($date = null, bool $absolute = \false) : float
     {
         return $this->diffInMinutes($date, $absolute) / static::MINUTES_PER_HOUR;
     }
@@ -329,7 +330,7 @@ trait Difference
      *
      * @return float
      */
-    public function diffInMinutes($date = null, bool $absolute = \false): float
+    public function diffInMinutes($date = null, bool $absolute = \false) : float
     {
         return $this->diffInSeconds($date, $absolute) / static::SECONDS_PER_MINUTE;
     }
@@ -341,7 +342,7 @@ trait Difference
      *
      * @return float
      */
-    public function diffInSeconds($date = null, bool $absolute = \false): float
+    public function diffInSeconds($date = null, bool $absolute = \false) : float
     {
         return $this->diffInMilliseconds($date, $absolute) / static::MILLISECONDS_PER_SECOND;
     }
@@ -353,12 +354,12 @@ trait Difference
      *
      * @return float
      */
-    public function diffInMicroseconds($date = null, bool $absolute = \false): float
+    public function diffInMicroseconds($date = null, bool $absolute = \false) : float
     {
         /** @var CarbonInterface $date */
         $date = $this->resolveCarbon($date);
         $value = ($date->timestamp - $this->timestamp) * static::MICROSECONDS_PER_SECOND + $date->micro - $this->micro;
-        return $absolute ? abs($value) : $value;
+        return $absolute ? \abs($value) : $value;
     }
     /**
      * Get the difference in milliseconds.
@@ -368,7 +369,7 @@ trait Difference
      *
      * @return float
      */
-    public function diffInMilliseconds($date = null, bool $absolute = \false): float
+    public function diffInMilliseconds($date = null, bool $absolute = \false) : float
     {
         return $this->diffInMicroseconds($date, $absolute) / static::MICROSECONDS_PER_MILLISECOND;
     }
@@ -377,7 +378,7 @@ trait Difference
      *
      * @return float
      */
-    public function secondsSinceMidnight(): float
+    public function secondsSinceMidnight() : float
     {
         return $this->diffInSeconds($this->copy()->startOfDay(), \true);
     }
@@ -386,7 +387,7 @@ trait Difference
      *
      * @return float
      */
-    public function secondsUntilEndOfDay(): float
+    public function secondsUntilEndOfDay() : float
     {
         return $this->diffInSeconds($this->copy()->endOfDay(), \true);
     }
@@ -440,7 +441,7 @@ trait Difference
      * @param int                                        $parts   maximum number of parts to display (default value: 1: single unit)
      * @param int                                        $options human diff options
      */
-    public function diffForHumans($other = null, $syntax = null, $short = \false, $parts = 1, $options = null): string
+    public function diffForHumans($other = null, $syntax = null, $short = \false, $parts = 1, $options = null) : string
     {
         /* @var CarbonInterface $this */
         if (\is_array($other)) {
@@ -455,7 +456,7 @@ trait Difference
         }
         $intSyntax = (int) ($intSyntax ?? static::DIFF_RELATIVE_AUTO);
         $intSyntax = $intSyntax === static::DIFF_RELATIVE_AUTO && $other === null ? static::DIFF_RELATIVE_TO_NOW : $intSyntax;
-        $parts = min(7, max(1, (int) $parts));
+        $parts = \min(7, \max(1, (int) $parts));
         $skip = \is_array($syntax) ? $syntax['skip'] ?? [] : [];
         $options ??= $this->localHumanDiffOptions ?? $this->transmitFactory(static fn() => static::getHumanDiffOptions());
         return $this->diff($other, skip: (array) $skip)->forHumans($syntax, (bool) $short, $parts, $options);
@@ -633,7 +634,7 @@ trait Difference
     {
         $other = null;
         if ($syntax instanceof DateTimeInterface) {
-            [$other, $syntax, $short, $parts, $options] = array_pad(\func_get_args(), 5, null);
+            [$other, $syntax, $short, $parts, $options] = \array_pad(\func_get_args(), 5, null);
         }
         return $this->from($other, $syntax, $short, $parts, $options);
     }
@@ -701,7 +702,7 @@ trait Difference
     {
         $other = null;
         if ($syntax instanceof DateTimeInterface) {
-            [$other, $syntax, $short, $parts, $options] = array_pad(\func_get_args(), 5, null);
+            [$other, $syntax, $short, $parts, $options] = \array_pad(\func_get_args(), 5, null);
         }
         return $this->from($other, $syntax, $short, $parts, $options);
     }
@@ -711,7 +712,7 @@ trait Difference
      *
      * @return string
      */
-    public function timespan($other = null, $timezone = null): string
+    public function timespan($other = null, $timezone = null) : string
     {
         if (\is_string($other)) {
             $other = $this->transmitFactory(static fn() => static::parse($other, $timezone));
@@ -737,13 +738,13 @@ trait Difference
         $other = $this->resolveCarbon($referenceTime)->avoidMutation()->setTimezone($this->getTimezone())->startOfDay();
         $diff = $other->diffInDays($current, \false);
         $format = $diff <= -static::DAYS_PER_WEEK ? 'sameElse' : ($diff < -1 ? 'lastWeek' : ($diff < 0 ? 'lastDay' : ($diff < 1 ? 'sameDay' : ($diff < 2 ? 'nextDay' : ($diff < static::DAYS_PER_WEEK ? 'nextWeek' : 'sameElse')))));
-        $format = array_merge($this->getCalendarFormats(), $formats)[$format];
+        $format = \array_merge($this->getCalendarFormats(), $formats)[$format];
         if ($format instanceof Closure) {
             $format = $format($current, $other) ?? '';
         }
         return $this->isoFormat((string) $format);
     }
-    private function getIntervalDayDiff(DateInterval $interval): int
+    private function getIntervalDayDiff(DateInterval $interval) : int
     {
         return (int) $interval->format('%r%a');
     }

@@ -11,21 +11,22 @@
 namespace OtomatiesCoreVendor\Symfony\Component\Translation\Provider;
 
 use OtomatiesCoreVendor\Symfony\Component\Translation\Exception\IncompleteDsnException;
+/** @internal */
 abstract class AbstractProviderFactory implements ProviderFactoryInterface
 {
-    public function supports(Dsn $dsn): bool
+    public function supports(Dsn $dsn) : bool
     {
         return \in_array($dsn->getScheme(), $this->getSupportedSchemes(), \true);
     }
     /**
      * @return string[]
      */
-    abstract protected function getSupportedSchemes(): array;
-    protected function getUser(Dsn $dsn): string
+    protected abstract function getSupportedSchemes() : array;
+    protected function getUser(Dsn $dsn) : string
     {
         return $dsn->getUser() ?? throw new IncompleteDsnException('User is not set.', $dsn->getScheme() . '://' . $dsn->getHost());
     }
-    protected function getPassword(Dsn $dsn): string
+    protected function getPassword(Dsn $dsn) : string
     {
         return $dsn->getPassword() ?? throw new IncompleteDsnException('Password is not set.', $dsn->getOriginalDsn());
     }

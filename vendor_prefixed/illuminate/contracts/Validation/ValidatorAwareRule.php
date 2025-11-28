@@ -3,6 +3,7 @@
 namespace OtomatiesCoreVendor\Illuminate\Contracts\Validation;
 
 use OtomatiesCoreVendor\Illuminate\Validation\Validator;
+/** @internal */
 interface ValidatorAwareRule
 {
     /**

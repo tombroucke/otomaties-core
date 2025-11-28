@@ -16,15 +16,16 @@ use OtomatiesCoreVendor\Symfony\Component\Translation\Exception\NotFoundResource
 use OtomatiesCoreVendor\Symfony\Component\Translation\MessageCatalogue;
 /**
  * @author Abdellatif Ait boudad <a.aitboudad@gmail.com>
+ * @internal
  */
 abstract class FileLoader extends ArrayLoader
 {
-    public function load(mixed $resource, string $locale, string $domain = 'messages'): MessageCatalogue
+    public function load(mixed $resource, string $locale, string $domain = 'messages') : MessageCatalogue
     {
-        if (!stream_is_local($resource)) {
+        if (!\stream_is_local($resource)) {
             throw new InvalidResourceException(\sprintf('This is not a local file "%s".', $resource));
         }
-        if (!file_exists($resource)) {
+        if (!\file_exists($resource)) {
             throw new NotFoundResourceException(\sprintf('File "%s" not found.', $resource));
         }
         $messages = $this->loadResource($resource);
@@ -35,7 +36,7 @@ abstract class FileLoader extends ArrayLoader
             throw new InvalidResourceException(\sprintf('Unable to load file "%s".', $resource));
         }
         $catalogue = parent::load($messages, $locale, $domain);
-        if (class_exists(FileResource::class)) {
+        if (\class_exists(FileResource::class)) {
             $catalogue->addResource(new FileResource($resource));
         }
         return $catalogue;
@@ -43,5 +44,5 @@ abstract class FileLoader extends ArrayLoader
     /**
      * @throws InvalidResourceException if stream content has an invalid format
      */
-    abstract protected function loadResource(string $resource): array;
+    protected abstract function loadResource(string $resource) : array;
 }

@@ -4,6 +4,7 @@ declare (strict_types=1);
 namespace OtomatiesCoreVendor\Doctrine\Inflector\Rules;
 
 use OtomatiesCoreVendor\Doctrine\Inflector\WordInflector;
+/** @internal */
 class Transformations implements WordInflector
 {
     /** @var Transformation[] */
@@ -12,7 +13,7 @@ class Transformations implements WordInflector
     {
         $this->transformations = $transformations;
     }
-    public function inflect(string $word): string
+    public function inflect(string $word) : string
     {
         foreach ($this->transformations as $transformation) {
             if ($transformation->getPattern()->matches($word)) {

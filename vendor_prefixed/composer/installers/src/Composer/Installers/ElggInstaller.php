@@ -2,6 +2,7 @@
 
 namespace OtomatiesCoreVendor\Composer\Installers;
 
+/** @internal */
 class ElggInstaller extends BaseInstaller
 {
     /** @var array<string, string> */

@@ -7,13 +7,14 @@ use OtomatiesCoreVendor\Doctrine\Inflector\Rules\Patterns;
 use OtomatiesCoreVendor\Doctrine\Inflector\Rules\Ruleset;
 use OtomatiesCoreVendor\Doctrine\Inflector\Rules\Substitutions;
 use OtomatiesCoreVendor\Doctrine\Inflector\Rules\Transformations;
+/** @internal */
 final class Rules
 {
-    public static function getSingularRuleset(): Ruleset
+    public static function getSingularRuleset() : Ruleset
     {
         return new Ruleset(new Transformations(...Inflectible::getSingular()), new Patterns(...Uninflected::getSingular()), (new Substitutions(...Inflectible::getIrregular()))->getFlippedSubstitutions());
     }
-    public static function getPluralRuleset(): Ruleset
+    public static function getPluralRuleset() : Ruleset
     {
         return new Ruleset(new Transformations(...Inflectible::getPlural()), new Patterns(...Uninflected::getPlural()), new Substitutions(...Inflectible::getIrregular()));
     }

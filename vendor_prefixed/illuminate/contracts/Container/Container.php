@@ -4,6 +4,7 @@ namespace OtomatiesCoreVendor\Illuminate\Contracts\Container;
 
 use Closure;
 use OtomatiesCoreVendor\Psr\Container\ContainerInterface;
+/** @internal */
 interface Container extends ContainerInterface
 {
     /**

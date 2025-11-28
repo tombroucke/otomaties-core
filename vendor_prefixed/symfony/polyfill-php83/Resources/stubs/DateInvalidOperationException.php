@@ -11,8 +11,8 @@ namespace OtomatiesCoreVendor;
  * file that was distributed with this source code.
  */
 if (\PHP_VERSION_ID < 80300) {
-    class DateInvalidOperationException extends \DateException
+    /** @internal */
+    class DateInvalidOperationException extends DateException
     {
     }
-    \class_alias('OtomatiesCoreVendor\DateInvalidOperationException', 'DateInvalidOperationException', \false);
 }

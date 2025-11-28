@@ -2,6 +2,7 @@
 
 namespace OtomatiesCoreVendor\Illuminate\Contracts\View;
 
+/** @internal */
 interface Factory
 {
     /**

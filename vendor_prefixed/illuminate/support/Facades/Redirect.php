@@ -24,6 +24,7 @@ namespace OtomatiesCoreVendor\Illuminate\Support\Facades;
  * @method static void flushMacros()
  *
  * @see \Illuminate\Routing\Redirector
+ * @internal
  */
 class Redirect extends Facade
 {

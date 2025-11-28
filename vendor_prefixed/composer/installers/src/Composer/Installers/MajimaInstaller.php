@@ -5,6 +5,7 @@ namespace OtomatiesCoreVendor\Composer\Installers;
 /**
  * Plugin/theme installer for majima
  * @author David Neustadt
+ * @internal
  */
 class MajimaInstaller extends BaseInstaller
 {
@@ -16,7 +17,7 @@ class MajimaInstaller extends BaseInstaller
      * @param array<string, string> $vars
      * @return array<string, string>
      */
-    public function inflectPackageVars(array $vars): array
+    public function inflectPackageVars(array $vars) : array
     {
         return $this->correctPluginName($vars);
     }
@@ -26,15 +27,15 @@ class MajimaInstaller extends BaseInstaller
      * @param array<string, string> $vars
      * @return array<string, string>
      */
-    private function correctPluginName(array $vars): array
+    private function correctPluginName(array $vars) : array
     {
-        $camelCasedName = preg_replace_callback('/(-[a-z])/', function ($matches) {
-            return strtoupper($matches[0][1]);
+        $camelCasedName = \preg_replace_callback('/(-[a-z])/', function ($matches) {
+            return \strtoupper($matches[0][1]);
         }, $vars['name']);
         if (null === $camelCasedName) {
-            throw new \RuntimeException('Failed to run preg_replace_callback: ' . preg_last_error());
+            throw new \RuntimeException('Failed to run preg_replace_callback: ' . \preg_last_error());
         }
-        $vars['name'] = ucfirst($camelCasedName);
+        $vars['name'] = \ucfirst($camelCasedName);
         return $vars;
     }
 }

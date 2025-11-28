@@ -3,6 +3,7 @@
 namespace OtomatiesCoreVendor\Illuminate\Support\Defer;
 
 use OtomatiesCoreVendor\Illuminate\Support\Str;
+/** @internal */
 class DeferredCallback
 {
     /**
@@ -20,7 +21,7 @@ class DeferredCallback
      * @param  string  $name
      * @return $this
      */
-    public function name(string $name): static
+    public function name(string $name) : static
     {
         $this->name = $name;
         return $this;
@@ -31,7 +32,7 @@ class DeferredCallback
      * @param  bool  $always
      * @return $this
      */
-    public function always(bool $always = \true): static
+    public function always(bool $always = \true) : static
     {
         $this->always = $always;
         return $this;
@@ -41,8 +42,8 @@ class DeferredCallback
      *
      * @return void
      */
-    public function __invoke(): void
+    public function __invoke() : void
     {
-        call_user_func($this->callback);
+        \call_user_func($this->callback);
     }
 }

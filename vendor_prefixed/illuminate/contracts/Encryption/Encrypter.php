@@ -2,6 +2,7 @@
 
 namespace OtomatiesCoreVendor\Illuminate\Contracts\Encryption;
 
+/** @internal */
 interface Encrypter
 {
     /**
@@ -13,11 +14,7 @@ interface Encrypter
      *
      * @throws \Illuminate\Contracts\Encryption\EncryptException
      */
-    public function encrypt(
-        #[\SensitiveParameter]
-        $value,
-        $serialize = \true
-    );
+    public function encrypt(#[\SensitiveParameter] $value, $serialize = \true);
     /**
      * Decrypt the given value.
      *

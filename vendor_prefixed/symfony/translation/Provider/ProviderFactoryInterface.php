@@ -12,12 +12,13 @@ namespace OtomatiesCoreVendor\Symfony\Component\Translation\Provider;
 
 use OtomatiesCoreVendor\Symfony\Component\Translation\Exception\IncompleteDsnException;
 use OtomatiesCoreVendor\Symfony\Component\Translation\Exception\UnsupportedSchemeException;
+/** @internal */
 interface ProviderFactoryInterface
 {
     /**
      * @throws UnsupportedSchemeException
      * @throws IncompleteDsnException
      */
-    public function create(Dsn $dsn): ProviderInterface;
-    public function supports(Dsn $dsn): bool;
+    public function create(Dsn $dsn) : ProviderInterface;
+    public function supports(Dsn $dsn) : bool;
 }

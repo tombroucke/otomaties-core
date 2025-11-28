@@ -15,6 +15,7 @@ use OtomatiesCoreVendor\Psr\Clock\ClockInterface as PsrClockInterface;
  * A global clock.
  *
  * @author Nicolas Grekas <p@tchwork.com>
+ * @internal
  */
 final class Clock implements ClockInterface
 {
@@ -28,15 +29,15 @@ final class Clock implements ClockInterface
      * Note that you should prefer injecting a ClockInterface or using
      * ClockAwareTrait when possible instead of using this method.
      */
-    public static function get(): ClockInterface
+    public static function get() : ClockInterface
     {
         return self::$globalClock ??= new NativeClock();
     }
-    public static function set(PsrClockInterface $clock): void
+    public static function set(PsrClockInterface $clock) : void
     {
         self::$globalClock = $clock instanceof ClockInterface ? $clock : new self($clock);
     }
-    public function now(): DatePoint
+    public function now() : DatePoint
     {
         $now = ($this->clock ?? self::get())->now();
         if (!$now instanceof DatePoint) {
@@ -44,7 +45,7 @@ final class Clock implements ClockInterface
         }
         return isset($this->timezone) ? $now->setTimezone($this->timezone) : $now;
     }
-    public function sleep(float|int $seconds): void
+    public function sleep(float|int $seconds) : void
     {
         $clock = $this->clock ?? self::get();
         if ($clock instanceof ClockInterface) {
@@ -56,7 +57,7 @@ final class Clock implements ClockInterface
     /**
      * @throws \DateInvalidTimeZoneException When $timezone is invalid
      */
-    public function withTimeZone(\DateTimeZone|string $timezone): static
+    public function withTimeZone(\DateTimeZone|string $timezone) : static
     {
         if (\PHP_VERSION_ID >= 80300 && \is_string($timezone)) {
             $timezone = new \DateTimeZone($timezone);
@@ -64,7 +65,7 @@ final class Clock implements ClockInterface
             try {
                 $timezone = new \DateTimeZone($timezone);
             } catch (\Exception $e) {
-                throw new \DateInvalidTimeZoneException($e->getMessage(), $e->getCode(), $e);
+                throw new \OtomatiesCoreVendor\DateInvalidTimeZoneException($e->getMessage(), $e->getCode(), $e);
             }
         }
         $clone = clone $this;

@@ -7,6 +7,7 @@ use OtomatiesCoreVendor\Illuminate\Contracts\Support\MessageBag as MessageBagCon
 use Stringable;
 /**
  * @mixin \Illuminate\Contracts\Support\MessageBag
+ * @internal
  */
 class ViewErrorBag implements Countable, Stringable
 {
@@ -71,7 +72,7 @@ class ViewErrorBag implements Countable, Stringable
      *
      * @return int
      */
-    public function count(): int
+    public function count() : int
     {
         return $this->getBag('default')->count();
     }

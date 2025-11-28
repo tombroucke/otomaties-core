@@ -15,21 +15,22 @@ use OtomatiesCoreVendor\PHPUnit\Framework\TestCase;
 use OtomatiesCoreVendor\Symfony\Component\Translation\Exception\UnsupportedSchemeException;
 use OtomatiesCoreVendor\Symfony\Component\Translation\Provider\Dsn;
 use OtomatiesCoreVendor\Symfony\Component\Translation\Provider\ProviderFactoryInterface;
+/** @internal */
 abstract class AbstractProviderFactoryTestCase extends TestCase
 {
-    abstract public function createFactory(): ProviderFactoryInterface;
+    public abstract function createFactory() : ProviderFactoryInterface;
     /**
      * @return iterable<array{0: bool, 1: string}>
      */
-    abstract public static function supportsProvider(): iterable;
+    public static abstract function supportsProvider() : iterable;
     /**
      * @return iterable<array{0: string, 1: string}>
      */
-    abstract public static function createProvider(): iterable;
+    public static abstract function createProvider() : iterable;
     /**
      * @return iterable<array{0: string, 1?: string|null}>
      */
-    abstract public static function unsupportedSchemeProvider(): iterable;
+    public static abstract function unsupportedSchemeProvider() : iterable;
     /**
      * @dataProvider supportsProvider
      */

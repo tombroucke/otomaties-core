@@ -19,14 +19,15 @@ use OtomatiesCoreVendor\Symfony\Component\Yaml\Yaml;
  * YamlFileLoader loads translations from Yaml files.
  *
  * @author Fabien Potencier <fabien@symfony.com>
+ * @internal
  */
 class YamlFileLoader extends FileLoader
 {
     private YamlParser $yamlParser;
-    protected function loadResource(string $resource): array
+    protected function loadResource(string $resource) : array
     {
         if (!isset($this->yamlParser)) {
-            if (!class_exists(YamlParser::class)) {
+            if (!\class_exists(YamlParser::class)) {
                 throw new LogicException('Loading translations from the YAML format requires the Symfony Yaml component.');
             }
             $this->yamlParser = new YamlParser();

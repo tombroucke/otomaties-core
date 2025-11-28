@@ -8,6 +8,7 @@ use DateInterval;
 use OtomatiesCoreVendor\Illuminate\Support\Traits\Macroable;
 use OtomatiesCoreVendor\PHPUnit\Framework\Assert as PHPUnit;
 use RuntimeException;
+/** @internal */
 class Sleep
 {
     use Macroable;
@@ -92,8 +93,8 @@ class Sleep
      */
     public static function until($timestamp)
     {
-        if (is_numeric($timestamp)) {
-            $timestamp = Carbon::createFromTimestamp($timestamp, date_default_timezone_get());
+        if (\is_numeric($timestamp)) {
+            $timestamp = Carbon::createFromTimestamp($timestamp, \date_default_timezone_get());
         }
         return new static(Carbon::now()->diff($timestamp));
     }
@@ -284,16 +285,16 @@ class Sleep
         $seconds = (int) $remaining->totalSeconds;
         $while = $this->while ?: function () {
             static $return = [\true, \false];
-            return array_shift($return);
+            return \array_shift($return);
         };
         while ($while()) {
             if ($seconds > 0) {
-                sleep($seconds);
+                \sleep($seconds);
                 $remaining = $remaining->subSeconds($seconds);
             }
             $microseconds = (int) $remaining->totalMicroseconds;
             if ($microseconds > 0) {
-                usleep($microseconds);
+                \usleep($microseconds);
             }
         }
     }
@@ -349,7 +350,7 @@ class Sleep
      */
     public static function assertSleptTimes($expected)
     {
-        PHPUnit::assertSame($expected, $count = count(static::$sequence), "Expected [{$expected}] sleeps but found [{$count}].");
+        PHPUnit::assertSame($expected, $count = \count(static::$sequence), "Expected [{$expected}] sleeps but found [{$count}].");
     }
     /**
      * Assert the given sleep sequence was encountered.
@@ -360,12 +361,12 @@ class Sleep
     public static function assertSequence($sequence)
     {
         try {
-            static::assertSleptTimes(count($sequence));
+            static::assertSleptTimes(\count($sequence));
             (new Collection($sequence))->zip(static::$sequence)->eachSpread(function (?Sleep $expected, CarbonInterval $actual) {
                 if ($expected === null) {
                     return;
                 }
-                PHPUnit::assertTrue($expected->shouldNotSleep()->duration->equalTo($actual), vsprintf('Expected sleep duration of [%s] but actually slept for [%s].', [$expected->duration->cascade()->forHumans(['options' => 0, 'minimumUnit' => 'microsecond']), $actual->cascade()->forHumans(['options' => 0, 'minimumUnit' => 'microsecond'])]));
+                PHPUnit::assertTrue($expected->shouldNotSleep()->duration->equalTo($actual), \vsprintf('Expected sleep duration of [%s] but actually slept for [%s].', [$expected->duration->cascade()->forHumans(['options' => 0, 'minimumUnit' => 'microsecond']), $actual->cascade()->forHumans(['options' => 0, 'minimumUnit' => 'microsecond'])]));
             });
         } finally {
             foreach ($sequence as $expected) {
@@ -395,7 +396,7 @@ class Sleep
             PHPUnit::assertTrue(\true);
         }
         foreach (static::$sequence as $duration) {
-            PHPUnit::assertSame(0, (int) $duration->totalMicroseconds, vsprintf('Unexpected sleep duration of [%s] found.', [$duration->cascade()->forHumans(['options' => 0, 'minimumUnit' => 'microsecond'])]));
+            PHPUnit::assertSame(0, (int) $duration->totalMicroseconds, \vsprintf('Unexpected sleep duration of [%s] found.', [$duration->cascade()->forHumans(['options' => 0, 'minimumUnit' => 'microsecond'])]));
         }
     }
     /**

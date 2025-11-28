@@ -10,6 +10,7 @@ namespace OtomatiesCoreVendor\Composer\Installers;
  *
  * Class KanboardInstaller
  * @package Composer\Installers
+ * @internal
  */
 class KanboardInstaller extends BaseInstaller
 {

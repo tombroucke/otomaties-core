@@ -7,6 +7,7 @@ use OtomatiesCoreVendor\Doctrine\Inflector\WordInflector;
 use function strtolower;
 use function strtoupper;
 use function substr;
+/** @internal */
 class Substitutions implements WordInflector
 {
     /** @var Substitution[] */
@@ -17,7 +18,7 @@ class Substitutions implements WordInflector
             $this->substitutions[$substitution->getFrom()->getWord()] = $substitution;
         }
     }
-    public function getFlippedSubstitutions(): Substitutions
+    public function getFlippedSubstitutions() : Substitutions
     {
         $substitutions = [];
         foreach ($this->substitutions as $substitution) {
@@ -25,7 +26,7 @@ class Substitutions implements WordInflector
         }
         return new Substitutions(...$substitutions);
     }
-    public function inflect(string $word): string
+    public function inflect(string $word) : string
     {
         $lowerWord = strtolower($word);
         if (isset($this->substitutions[$lowerWord])) {

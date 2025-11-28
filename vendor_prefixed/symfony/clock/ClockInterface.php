@@ -13,9 +13,10 @@ namespace OtomatiesCoreVendor\Symfony\Component\Clock;
 use OtomatiesCoreVendor\Psr\Clock\ClockInterface as PsrClockInterface;
 /**
  * @author Nicolas Grekas <p@tchwork.com>
+ * @internal
  */
 interface ClockInterface extends PsrClockInterface
 {
-    public function sleep(float|int $seconds): void;
-    public function withTimeZone(\DateTimeZone|string $timezone): static;
+    public function sleep(float|int $seconds) : void;
+    public function withTimeZone(\DateTimeZone|string $timezone) : static;
 }

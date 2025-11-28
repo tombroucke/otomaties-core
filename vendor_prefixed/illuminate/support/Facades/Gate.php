@@ -32,6 +32,7 @@ use OtomatiesCoreVendor\Illuminate\Contracts\Auth\Access\Gate as GateContract;
  * @method static \Illuminate\Auth\Access\Response denyAsNotFound(string|null $message = null, int|null $code = null)
  *
  * @see \Illuminate\Auth\Access\Gate
+ * @internal
  */
 class Gate extends Facade
 {

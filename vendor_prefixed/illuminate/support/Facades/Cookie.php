@@ -20,6 +20,7 @@ namespace OtomatiesCoreVendor\Illuminate\Support\Facades;
  * @method static void flushMacros()
  *
  * @see \Illuminate\Cookie\CookieJar
+ * @internal
  */
 class Cookie extends Facade
 {
@@ -31,7 +32,7 @@ class Cookie extends Facade
      */
     public static function has($key)
     {
-        return !is_null(static::$app['request']->cookie($key, null));
+        return !\is_null(static::$app['request']->cookie($key, null));
     }
     /**
      * Retrieve a cookie from the request.

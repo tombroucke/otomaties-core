@@ -11,6 +11,7 @@ declare (strict_types=1);
  */
 namespace OtomatiesCoreVendor\Carbon\Exceptions;
 
+/** @internal */
 interface Exception
 {
     //

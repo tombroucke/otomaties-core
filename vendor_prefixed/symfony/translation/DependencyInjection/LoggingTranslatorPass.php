@@ -17,10 +17,11 @@ use OtomatiesCoreVendor\Symfony\Component\Translation\TranslatorBagInterface;
 use OtomatiesCoreVendor\Symfony\Contracts\Translation\TranslatorInterface;
 /**
  * @author Abdellatif Ait boudad <a.aitboudad@gmail.com>
+ * @internal
  */
 class LoggingTranslatorPass implements CompilerPassInterface
 {
-    public function process(ContainerBuilder $container): void
+    public function process(ContainerBuilder $container) : void
     {
         if (!$container->hasAlias('logger') || !$container->hasAlias('translator')) {
             return;
@@ -31,7 +32,7 @@ class LoggingTranslatorPass implements CompilerPassInterface
         $translatorAlias = $container->getAlias('translator');
         $definition = $container->getDefinition((string) $translatorAlias);
         $class = $container->getParameterBag()->resolveValue($definition->getClass());
-        if (!$r = $container->getReflectionClass($class)) {
+        if (!($r = $container->getReflectionClass($class))) {
             throw new InvalidArgumentException(\sprintf('Class "%s" used for service "%s" cannot be found.', $class, $translatorAlias));
         }
         if (!$r->isSubclassOf(TranslatorInterface::class) || !$r->isSubclassOf(TranslatorBagInterface::class)) {

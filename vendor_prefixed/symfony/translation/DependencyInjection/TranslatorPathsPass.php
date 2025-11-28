@@ -18,6 +18,7 @@ use OtomatiesCoreVendor\Symfony\Component\DependencyInjection\ServiceLocator;
 use OtomatiesCoreVendor\Symfony\Component\HttpKernel\Controller\ArgumentResolver\TraceableValueResolver;
 /**
  * @author Yonel Ceruto <yonelceruto@gmail.com>
+ * @internal
  */
 class TranslatorPathsPass extends AbstractRecursivePass
 {
@@ -35,13 +36,13 @@ class TranslatorPathsPass extends AbstractRecursivePass
      * @var array<string, array<string, bool>>
      */
     private array $controllers = [];
-    public function process(ContainerBuilder $container): void
+    public function process(ContainerBuilder $container) : void
     {
         if (!$container->hasDefinition('translator')) {
             return;
         }
         foreach ($this->findControllerArguments($container) as $controller => $argument) {
-            $id = substr($controller, 0, strpos($controller, ':') ?: \strlen($controller));
+            $id = \substr($controller, 0, \strpos($controller, ':') ?: \strlen($controller));
             if ($container->hasDefinition($id)) {
                 [$locatorRef] = $argument->getValues();
                 $this->controllers[(string) $locatorRef][$container->getDefinition($id)->getClass()] = \true;
@@ -61,11 +62,11 @@ class TranslatorPathsPass extends AbstractRecursivePass
             if ($paths) {
                 if ($container->hasDefinition('console.command.translation_debug')) {
                     $definition = $container->getDefinition('console.command.translation_debug');
-                    $definition->replaceArgument(6, array_merge($definition->getArgument(6), $paths));
+                    $definition->replaceArgument(6, \array_merge($definition->getArgument(6), $paths));
                 }
                 if ($container->hasDefinition('console.command.translation_extract')) {
                     $definition = $container->getDefinition('console.command.translation_extract');
-                    $definition->replaceArgument(7, array_merge($definition->getArgument(7), $paths));
+                    $definition->replaceArgument(7, \array_merge($definition->getArgument(7), $paths));
                 }
             }
         } finally {
@@ -74,7 +75,7 @@ class TranslatorPathsPass extends AbstractRecursivePass
             $this->definitions = [];
         }
     }
-    protected function processValue(mixed $value, bool $isRoot = \false): mixed
+    protected function processValue(mixed $value, bool $isRoot = \false) : mixed
     {
         if ($value instanceof Reference) {
             if ('translator' === (string) $value) {
@@ -103,7 +104,7 @@ class TranslatorPathsPass extends AbstractRecursivePass
         }
         return parent::processValue($value, $isRoot);
     }
-    private function findControllerArguments(ContainerBuilder $container): array
+    private function findControllerArguments(ContainerBuilder $container) : array
     {
         if (!$container->has('argument_resolver.service')) {
             return [];

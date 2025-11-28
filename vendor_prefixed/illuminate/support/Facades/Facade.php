@@ -15,6 +15,7 @@ use OtomatiesCoreVendor\Illuminate\Support\Uri;
 use OtomatiesCoreVendor\Mockery;
 use OtomatiesCoreVendor\Mockery\LegacyMockInterface;
 use RuntimeException;
+/** @internal */
 abstract class Facade
 {
     /**
@@ -47,7 +48,7 @@ abstract class Facade
         if (static::$app->resolved($accessor) === \true) {
             $callback(static::getFacadeRoot(), static::$app);
         }
-        static::$app->afterResolving($accessor, function ($service, $app) use ($callback) {
+        static::$app->afterResolving($accessor, function ($service, $app) use($callback) {
             $callback($service, $app);
         });
     }
@@ -85,7 +86,7 @@ abstract class Facade
     {
         $name = static::getFacadeAccessor();
         $mock = static::isMock() ? static::$resolvedInstance[$name] : static::createFreshMockInstance();
-        return $mock->shouldReceive(...func_get_args());
+        return $mock->shouldReceive(...\func_get_args());
     }
     /**
      * Initiate a mock expectation on the facade.
@@ -96,7 +97,7 @@ abstract class Facade
     {
         $name = static::getFacadeAccessor();
         $mock = static::isMock() ? static::$resolvedInstance[$name] : static::createFreshMockInstance();
-        return $mock->expects(...func_get_args());
+        return $mock->expects(...\func_get_args());
     }
     /**
      * Create a fresh mock instance for the given class.
@@ -138,7 +139,7 @@ abstract class Facade
     protected static function getMockableClass()
     {
         if ($root = static::getFacadeRoot()) {
-            return get_class($root);
+            return \get_class($root);
         }
     }
     /**

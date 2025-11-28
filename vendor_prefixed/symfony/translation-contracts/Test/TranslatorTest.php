@@ -28,20 +28,21 @@ use OtomatiesCoreVendor\Symfony\Contracts\Translation\TranslatorTrait;
  * The goal to cover all languages is to far fetched so this test case is smaller.
  *
  * @author Clemens Tolboom clemens@build2be.nl
+ * @internal
  */
 class TranslatorTest extends TestCase
 {
     private string $defaultLocale;
-    protected function setUp(): void
+    protected function setUp() : void
     {
         $this->defaultLocale = \Locale::getDefault();
         \Locale::setDefault('en');
     }
-    protected function tearDown(): void
+    protected function tearDown() : void
     {
         \Locale::setDefault($this->defaultLocale);
     }
-    public function getTranslator(): TranslatorInterface
+    public function getTranslator() : TranslatorInterface
     {
         return new class implements TranslatorInterface
         {
@@ -107,10 +108,10 @@ class TranslatorTest extends TestCase
     }
     public static function getTransTests()
     {
-        yield ['Symfony is great!', 'Symfony is great!', []];
-        yield ['Symfony is awesome!', 'Symfony is %what%!', ['%what%' => 'awesome']];
-        if (class_exists(TranslatableMessage::class)) {
-            yield ['He said "Symfony is awesome!".', 'He said "%what%".', ['%what%' => new TranslatableMessage('Symfony is %what%!', ['%what%' => 'awesome'])]];
+        (yield ['Symfony is great!', 'Symfony is great!', []]);
+        (yield ['Symfony is awesome!', 'Symfony is %what%!', ['%what%' => 'awesome']]);
+        if (\class_exists(TranslatableMessage::class)) {
+            (yield ['He said "Symfony is awesome!".', 'He said "%what%".', ['%what%' => new TranslatableMessage('Symfony is %what%!', ['%what%' => 'awesome'])]]);
         }
     }
     public static function getTransChoiceTests()
@@ -137,7 +138,7 @@ class TranslatorTest extends TestCase
     }
     public static function getInterval()
     {
-        return [['foo', 3, '{1,2, 3 ,4}'], ['bar', 10, '{1,2, 3 ,4}'], ['bar', 3, '[1,2]'], ['foo', 1, '[1,2]'], ['foo', 2, '[1,2]'], ['bar', 1, ']1,2['], ['bar', 2, ']1,2['], ['foo', log(0), '[-Inf,2['], ['foo', -log(0), '[-2,+Inf]']];
+        return [['foo', 3, '{1,2, 3 ,4}'], ['bar', 10, '{1,2, 3 ,4}'], ['bar', 3, '[1,2]'], ['foo', 1, '[1,2]'], ['foo', 2, '[1,2]'], ['bar', 1, ']1,2['], ['bar', 2, ']1,2['], ['foo', \log(0), '[-Inf,2['], ['foo', -\log(0), '[-2,+Inf]']];
     }
     /**
      * @dataProvider getChooseTests
@@ -227,7 +228,7 @@ class TranslatorTest extends TestCase
             new-line in it. Selector = 1.|[1,Inf]This is a text with a
             new-line in it. Selector > 1.', 5],
             // with single-quotes and \n in text
-            ['This is a text with a\nnew-line in it. Selector = 0.', '{0}This is a text with a\nnew-line in it. Selector = 0.|{1}This is a text with a\nnew-line in it. Selector = 1.|[1,Inf]This is a text with a\nnew-line in it. Selector > 1.', 0],
+            ['This is a text with a\\nnew-line in it. Selector = 0.', '{0}This is a text with a\\nnew-line in it. Selector = 0.|{1}This is a text with a\\nnew-line in it. Selector = 1.|[1,Inf]This is a text with a\\nnew-line in it. Selector > 1.', 0],
             // with double-quotes and id split across lines
             ["This is a text with a\nnew-line in it. Selector = 1.", "{0}This is a text with a\nnew-line in it. Selector = 0.|{1}This is a text with a\nnew-line in it. Selector = 1.|[1,Inf]This is a text with a\nnew-line in it. Selector > 1.", 1],
             // escape pipe
@@ -271,7 +272,7 @@ class TranslatorTest extends TestCase
      *
      * As it is impossible to have this ever complete we should try as hard as possible to have it almost complete.
      */
-    public static function successLangcodes(): array
+    public static function successLangcodes() : array
     {
         return [['1', ['ay', 'bo', 'cgg', 'dz', 'id', 'ja', 'jbo', 'ka', 'kk', 'km', 'ko', 'ky']], ['2', ['nl', 'fr', 'en', 'de', 'de_GE', 'hy', 'hy_AM', 'en_US_POSIX']], ['3', ['be', 'bs', 'cs', 'hr']], ['4', ['cy', 'mt', 'sl']], ['6', ['ar']]];
     }
@@ -283,7 +284,7 @@ class TranslatorTest extends TestCase
      *
      * @return array with nplural together with langcodes
      */
-    public static function failingLangcodes(): array
+    public static function failingLangcodes() : array
     {
         return [['1', ['fa']], ['2', ['jbo']], ['3', ['cbs']], ['4', ['gd', 'kw']], ['5', ['ga']]];
     }
@@ -296,7 +297,7 @@ class TranslatorTest extends TestCase
     protected function validateMatrix(string $nplural, array $matrix, bool $expectSuccess = \true)
     {
         foreach ($matrix as $langCode => $data) {
-            $indexes = array_flip($data);
+            $indexes = \array_flip($data);
             if ($expectSuccess) {
                 $this->assertCount($nplural, $indexes, "Langcode '{$langCode}' has '{$nplural}' plural forms.");
             } else {

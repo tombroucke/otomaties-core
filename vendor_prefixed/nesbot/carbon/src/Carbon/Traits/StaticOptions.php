@@ -14,6 +14,7 @@ namespace OtomatiesCoreVendor\Carbon\Traits;
 use OtomatiesCoreVendor\Carbon\FactoryImmutable;
 /**
  * Options related to a static variable.
+ * @internal
  */
 trait StaticOptions
 {
@@ -50,7 +51,7 @@ trait StaticOptions
      *
      * @param bool $strictModeEnabled
      */
-    public static function useStrictMode(bool $strictModeEnabled = \true): void
+    public static function useStrictMode(bool $strictModeEnabled = \true) : void
     {
         FactoryImmutable::getDefaultInstance()->useStrictMode($strictModeEnabled);
     }
@@ -60,7 +61,7 @@ trait StaticOptions
      *
      * @return bool
      */
-    public static function isStrictModeEnabled(): bool
+    public static function isStrictModeEnabled() : bool
     {
         return FactoryImmutable::getInstance()->isStrictModeEnabled();
     }
@@ -77,7 +78,7 @@ trait StaticOptions
      *
      * @return void
      */
-    public static function useMonthsOverflow(bool $monthsOverflow = \true): void
+    public static function useMonthsOverflow(bool $monthsOverflow = \true) : void
     {
         FactoryImmutable::getDefaultInstance()->useMonthsOverflow($monthsOverflow);
     }
@@ -92,7 +93,7 @@ trait StaticOptions
      *
      * @return void
      */
-    public static function resetMonthsOverflow(): void
+    public static function resetMonthsOverflow() : void
     {
         FactoryImmutable::getDefaultInstance()->resetMonthsOverflow();
     }
@@ -101,7 +102,7 @@ trait StaticOptions
      *
      * @return bool
      */
-    public static function shouldOverflowMonths(): bool
+    public static function shouldOverflowMonths() : bool
     {
         return FactoryImmutable::getInstance()->shouldOverflowMonths();
     }
@@ -118,7 +119,7 @@ trait StaticOptions
      *
      * @return void
      */
-    public static function useYearsOverflow(bool $yearsOverflow = \true): void
+    public static function useYearsOverflow(bool $yearsOverflow = \true) : void
     {
         FactoryImmutable::getDefaultInstance()->useYearsOverflow($yearsOverflow);
     }
@@ -133,7 +134,7 @@ trait StaticOptions
      *
      * @return void
      */
-    public static function resetYearsOverflow(): void
+    public static function resetYearsOverflow() : void
     {
         FactoryImmutable::getDefaultInstance()->resetYearsOverflow();
     }
@@ -142,7 +143,7 @@ trait StaticOptions
      *
      * @return bool
      */
-    public static function shouldOverflowYears(): bool
+    public static function shouldOverflowYears() : bool
     {
         return FactoryImmutable::getInstance()->shouldOverflowYears();
     }

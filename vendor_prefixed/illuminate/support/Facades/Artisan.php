@@ -23,6 +23,7 @@ use OtomatiesCoreVendor\Illuminate\Contracts\Console\Kernel as ConsoleKernelCont
  * @method static \Illuminate\Foundation\Console\Kernel addCommandRoutePaths(array $paths)
  *
  * @see \Illuminate\Foundation\Console\Kernel
+ * @internal
  */
 class Artisan extends Facade
 {

@@ -14,6 +14,7 @@ use OtomatiesCoreVendor\Illuminate\Support\Traits\ReflectsClosures;
 use OtomatiesCoreVendor\PHPUnit\Framework\Assert as PHPUnit;
 /**
  * @phpstan-type RawPushType array{"payload": string, "queue": string|null, "options": array<array-key, mixed>}
+ * @internal
  */
 class QueueFake extends QueueManager implements Fake, Queue
 {
@@ -91,7 +92,7 @@ class QueueFake extends QueueManager implements Fake, Queue
         if ($job instanceof Closure) {
             [$job, $callback] = [$this->firstClosureParameterType($job), $job];
         }
-        if (is_numeric($callback)) {
+        if (\is_numeric($callback)) {
             return $this->assertPushedTimes($job, $callback);
         }
         PHPUnit::assertTrue($this->pushed($job, $callback)->count() > 0, "The expected [{$job}] job was not pushed.");
@@ -106,7 +107,7 @@ class QueueFake extends QueueManager implements Fake, Queue
     protected function assertPushedTimes($job, $times = 1)
     {
         $count = $this->pushed($job)->count();
-        PHPUnit::assertSame($times, $count, sprintf("The expected [{$job}] job was pushed {$count} %s instead of {$times} %s.", Str::plural('time', $count), Str::plural('time', $times)));
+        PHPUnit::assertSame($times, $count, \sprintf("The expected [{$job}] job was pushed {$count} %s instead of {$times} %s.", Str::plural('time', $count), Str::plural('time', $times)));
     }
     /**
      * Assert if a job was pushed based on a truth-test callback.
@@ -121,11 +122,11 @@ class QueueFake extends QueueManager implements Fake, Queue
         if ($job instanceof Closure) {
             [$job, $callback] = [$this->firstClosureParameterType($job), $job];
         }
-        $this->assertPushed($job, function ($job, $pushedQueue) use ($callback, $queue) {
+        $this->assertPushed($job, function ($job, $pushedQueue) use($callback, $queue) {
             if ($pushedQueue !== $queue) {
                 return \false;
             }
-            return $callback ? $callback(...func_get_args()) : \true;
+            return $callback ? $callback(...\func_get_args()) : \true;
         });
     }
     /**
@@ -164,7 +165,7 @@ class QueueFake extends QueueManager implements Fake, Queue
      */
     protected function assertPushedWithChainOfObjects($job, $expectedChain, $callback)
     {
-        $chain = (new Collection($expectedChain))->map(fn($job) => serialize($job))->all();
+        $chain = (new Collection($expectedChain))->map(fn($job) => \serialize($job))->all();
         PHPUnit::assertTrue($this->pushed($job, $callback)->filter(fn($job) => $job->chained == $chain)->isNotEmpty(), 'The expected chain was not pushed.');
     }
     /**
@@ -179,9 +180,9 @@ class QueueFake extends QueueManager implements Fake, Queue
     {
         $matching = $this->pushed($job, $callback)->map->chained->map(function ($chain) {
             return (new Collection($chain))->map(function ($job) {
-                return get_class(unserialize($job));
+                return \get_class(\unserialize($job));
             });
-        })->filter(function ($chain) use ($expectedChain) {
+        })->filter(function ($chain) use($expectedChain) {
             return $chain->all() === $expectedChain;
         });
         PHPUnit::assertTrue($matching->isNotEmpty(), 'The expected chain was not pushed.');
@@ -214,7 +215,7 @@ class QueueFake extends QueueManager implements Fake, Queue
      */
     protected function isChainOfObjects($chain)
     {
-        return !(new Collection($chain))->contains(fn($job) => !is_object($job));
+        return !(new Collection($chain))->contains(fn($job) => !\is_object($job));
     }
     /**
      * Determine if a job was pushed based on a truth-test callback.
@@ -248,7 +249,7 @@ class QueueFake extends QueueManager implements Fake, Queue
      */
     public function assertNothingPushed()
     {
-        $pushedJobs = implode("\n- ", array_keys($this->jobs));
+        $pushedJobs = \implode("\n- ", \array_keys($this->jobs));
         PHPUnit::assertEmpty($this->jobs, "The following jobs were pushed unexpectedly:\n\n- {$pushedJobs}\n");
     }
     /**
@@ -379,9 +380,9 @@ class QueueFake extends QueueManager implements Fake, Queue
             if ($job instanceof Closure) {
                 $job = CallQueuedClosure::create($job);
             }
-            $this->jobs[is_object($job) ? get_class($job) : $job][] = ['job' => $this->serializeAndRestore ? $this->serializeAndRestoreJob($job) : $job, 'queue' => $queue, 'data' => $data];
+            $this->jobs[\is_object($job) ? \get_class($job) : $job][] = ['job' => $this->serializeAndRestore ? $this->serializeAndRestoreJob($job) : $job, 'queue' => $queue, 'data' => $data];
         } else {
-            is_object($job) && isset($job->connection) ? $this->queue->connection($job->connection)->push($job, $data, $queue) : $this->queue->push($job, $data, $queue);
+            \is_object($job) && isset($job->connection) ? $this->queue->connection($job->connection)->push($job, $data, $queue) : $this->queue->push($job, $data, $queue);
         }
     }
     /**
@@ -524,7 +525,7 @@ class QueueFake extends QueueManager implements Fake, Queue
      */
     protected function serializeAndRestoreJob($job)
     {
-        return unserialize(serialize($job));
+        return \unserialize(\serialize($job));
     }
     /**
      * Get the connection name for the queue.
@@ -556,6 +557,6 @@ class QueueFake extends QueueManager implements Fake, Queue
      */
     public function __call($method, $parameters)
     {
-        throw new BadMethodCallException(sprintf('Call to undefined method %s::%s()', static::class, $method));
+        throw new BadMethodCallException(\sprintf('Call to undefined method %s::%s()', static::class, $method));
     }
 }

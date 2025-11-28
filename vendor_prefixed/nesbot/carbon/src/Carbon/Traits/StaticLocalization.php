@@ -15,6 +15,7 @@ use OtomatiesCoreVendor\Carbon\FactoryImmutable;
 use OtomatiesCoreVendor\Symfony\Contracts\Translation\TranslatorInterface;
 /**
  * Static config for localization.
+ * @internal
  */
 trait StaticLocalization
 {
@@ -23,7 +24,7 @@ trait StaticLocalization
      *             You should rather use the ->settings() method.
      * @see settings
      */
-    public static function setHumanDiffOptions(int $humanDiffOptions): void
+    public static function setHumanDiffOptions(int $humanDiffOptions) : void
     {
         FactoryImmutable::getDefaultInstance()->setHumanDiffOptions($humanDiffOptions);
     }
@@ -32,7 +33,7 @@ trait StaticLocalization
      *             You should rather use the ->settings() method.
      * @see settings
      */
-    public static function enableHumanDiffOption(int $humanDiffOption): void
+    public static function enableHumanDiffOption(int $humanDiffOption) : void
     {
         FactoryImmutable::getDefaultInstance()->enableHumanDiffOption($humanDiffOption);
     }
@@ -41,14 +42,14 @@ trait StaticLocalization
      *             You should rather use the ->settings() method.
      * @see settings
      */
-    public static function disableHumanDiffOption(int $humanDiffOption): void
+    public static function disableHumanDiffOption(int $humanDiffOption) : void
     {
         FactoryImmutable::getDefaultInstance()->disableHumanDiffOption($humanDiffOption);
     }
     /**
      * Return default humanDiff() options (merged flags as integer).
      */
-    public static function getHumanDiffOptions(): int
+    public static function getHumanDiffOptions() : int
     {
         return FactoryImmutable::getInstance()->getHumanDiffOptions();
     }
@@ -59,14 +60,14 @@ trait StaticLocalization
      *
      * @return void
      */
-    public static function setTranslator(TranslatorInterface $translator): void
+    public static function setTranslator(TranslatorInterface $translator) : void
     {
         FactoryImmutable::getDefaultInstance()->setTranslator($translator);
     }
     /**
      * Initialize the default translator instance if necessary.
      */
-    public static function getTranslator(): TranslatorInterface
+    public static function getTranslator() : TranslatorInterface
     {
         return FactoryImmutable::getInstance()->getTranslator();
     }

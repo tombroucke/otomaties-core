@@ -11,8 +11,8 @@ namespace OtomatiesCoreVendor;
  * file that was distributed with this source code.
  */
 if (\PHP_VERSION_ID < 80300) {
-    class DateMalformedIntervalStringException extends \DateException
+    /** @internal */
+    class DateMalformedIntervalStringException extends DateException
     {
     }
-    \class_alias('OtomatiesCoreVendor\DateMalformedIntervalStringException', 'DateMalformedIntervalStringException', \false);
 }

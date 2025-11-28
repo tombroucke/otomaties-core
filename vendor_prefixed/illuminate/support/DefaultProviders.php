@@ -2,6 +2,7 @@
 
 namespace OtomatiesCoreVendor\Illuminate\Support;
 
+/** @internal */
 class DefaultProviders
 {
     /**
@@ -25,7 +26,7 @@ class DefaultProviders
      */
     public function merge(array $providers)
     {
-        $this->providers = array_merge($this->providers, $providers);
+        $this->providers = \array_merge($this->providers, $providers);
         return new static($this->providers);
     }
     /**
@@ -39,7 +40,7 @@ class DefaultProviders
         $current = new Collection($this->providers);
         foreach ($replacements as $from => $to) {
             $key = $current->search($from);
-            $current = is_int($key) ? $current->replace([$key => $to]) : $current;
+            $current = \is_int($key) ? $current->replace([$key => $to]) : $current;
         }
         return new static($current->values()->toArray());
     }
@@ -51,7 +52,7 @@ class DefaultProviders
      */
     public function except(array $providers)
     {
-        return new static((new Collection($this->providers))->reject(fn($p) => in_array($p, $providers))->values()->toArray());
+        return new static((new Collection($this->providers))->reject(fn($p) => \in_array($p, $providers))->values()->toArray());
     }
     /**
      * Convert the provider collection to an array.

@@ -3,6 +3,7 @@
 declare (strict_types=1);
 namespace OtomatiesCoreVendor\Doctrine\Inflector;
 
+/** @internal */
 class CachedWordInflector implements WordInflector
 {
     /** @var WordInflector */
@@ -13,8 +14,8 @@ class CachedWordInflector implements WordInflector
     {
         $this->wordInflector = $wordInflector;
     }
-    public function inflect(string $word): string
+    public function inflect(string $word) : string
     {
-        return $this->cache[$word] ?? $this->cache[$word] = $this->wordInflector->inflect($word);
+        return $this->cache[$word] ?? ($this->cache[$word] = $this->wordInflector->inflect($word));
     }
 }

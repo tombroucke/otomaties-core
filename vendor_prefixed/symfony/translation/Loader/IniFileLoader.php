@@ -14,11 +14,12 @@ namespace OtomatiesCoreVendor\Symfony\Component\Translation\Loader;
  * IniFileLoader loads translations from an ini file.
  *
  * @author stealth35
+ * @internal
  */
 class IniFileLoader extends FileLoader
 {
-    protected function loadResource(string $resource): array
+    protected function loadResource(string $resource) : array
     {
-        return parse_ini_file($resource, \true);
+        return \parse_ini_file($resource, \true);
     }
 }

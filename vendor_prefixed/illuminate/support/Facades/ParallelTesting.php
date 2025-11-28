@@ -19,6 +19,7 @@ namespace OtomatiesCoreVendor\Illuminate\Support\Facades;
  * @method static string|false token()
  *
  * @see \Illuminate\Testing\ParallelTesting
+ * @internal
  */
 class ParallelTesting extends Facade
 {

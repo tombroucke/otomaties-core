@@ -104,6 +104,7 @@ use OtomatiesCoreVendor\Illuminate\Support\DateFactory;
  * @method static \Illuminate\Support\Carbon yesterday(\DateTimeZone|string|int|null $timezone = null)
  *
  * @see \Illuminate\Support\DateFactory
+ * @internal
  */
 class Date extends Facade
 {

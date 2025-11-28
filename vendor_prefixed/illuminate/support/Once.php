@@ -3,6 +3,7 @@
 namespace OtomatiesCoreVendor\Illuminate\Support;
 
 use WeakMap;
+/** @internal */
 class Once
 {
     /**
@@ -44,17 +45,17 @@ class Once
     public function value(Onceable $onceable)
     {
         if (!static::$enabled) {
-            return call_user_func($onceable->callable);
+            return \call_user_func($onceable->callable);
         }
         $object = $onceable->object ?: $this;
         $hash = $onceable->hash;
         if (!isset($this->values[$object])) {
             $this->values[$object] = [];
         }
-        if (array_key_exists($hash, $this->values[$object])) {
+        if (\array_key_exists($hash, $this->values[$object])) {
             return $this->values[$object][$hash];
         }
-        return $this->values[$object][$hash] = call_user_func($onceable->callable);
+        return $this->values[$object][$hash] = \call_user_func($onceable->callable);
     }
     /**
      * Re-enable the once instance if it was disabled.

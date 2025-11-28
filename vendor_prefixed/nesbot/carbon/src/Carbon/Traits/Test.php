@@ -19,6 +19,7 @@ use Closure;
 use DateTimeImmutable;
 use DateTimeInterface;
 use DateTimeZone;
+/** @internal */
 trait Test
 {
     ///////////////////////////////////////////////////////////////////
@@ -46,7 +47,7 @@ trait Test
      *
      * @param DateTimeInterface|Closure|static|string|false|null $testNow real or mock Carbon instance
      */
-    public static function setTestNow(mixed $testNow = null): void
+    public static function setTestNow(mixed $testNow = null) : void
     {
         FactoryImmutable::getDefaultInstance()->setTestNow($testNow);
     }
@@ -69,7 +70,7 @@ trait Test
      *
      * @param DateTimeInterface|Closure|static|string|false|null $testNow real or mock Carbon instance
      */
-    public static function setTestNowAndTimezone($testNow = null, $timezone = null): void
+    public static function setTestNowAndTimezone($testNow = null, $timezone = null) : void
     {
         FactoryImmutable::getDefaultInstance()->setTestNowAndTimezone($testNow, $timezone);
     }
@@ -87,7 +88,7 @@ trait Test
      *
      * @return T
      */
-    public static function withTestNow(mixed $testNow, callable $callback): mixed
+    public static function withTestNow(mixed $testNow, callable $callback) : mixed
     {
         return FactoryImmutable::getDefaultInstance()->withTestNow($testNow, $callback);
     }
@@ -97,7 +98,7 @@ trait Test
      *
      * @return Closure|CarbonInterface|null the current instance used for testing
      */
-    public static function getTestNow(): Closure|CarbonInterface|null
+    public static function getTestNow() : Closure|CarbonInterface|null
     {
         return FactoryImmutable::getInstance()->getTestNow();
     }
@@ -107,14 +108,14 @@ trait Test
      *
      * @return bool true if there is a test instance, otherwise false
      */
-    public static function hasTestNow(): bool
+    public static function hasTestNow() : bool
     {
         return FactoryImmutable::getInstance()->hasTestNow();
     }
     /**
      * Get the mocked date passed in setTestNow() and if it's a Closure, execute it.
      */
-    protected static function getMockedTestNow(DateTimeZone|string|int|null $timezone): ?CarbonInterface
+    protected static function getMockedTestNow(DateTimeZone|string|int|null $timezone) : ?CarbonInterface
     {
         $testNow = FactoryImmutable::getInstance()->handleTestNowClosure(static::getTestNow(), $timezone);
         if ($testNow === null) {
@@ -123,7 +124,7 @@ trait Test
         $testNow = $testNow->avoidMutation();
         return $timezone ? $testNow->setTimezone($timezone) : $testNow;
     }
-    private function mockConstructorParameters(&$time, ?CarbonTimeZone $timezone): void
+    private function mockConstructorParameters(&$time, ?CarbonTimeZone $timezone) : void
     {
         $clock = $this->clock?->unwrap();
         $now = $clock instanceof Factory ? $clock->getTestNow() : $this->nowFromClock($timezone);
@@ -132,7 +133,7 @@ trait Test
             return;
         }
         if ($testInstance instanceof DateTimeInterface) {
-            $testInstance = $testInstance->setTimezone($timezone ?? date_default_timezone_get());
+            $testInstance = $testInstance->setTimezone($timezone ?? \date_default_timezone_get());
         }
         if (static::hasRelativeKeywords($time)) {
             $testInstance = $testInstance->modify($time);
@@ -144,12 +145,12 @@ trait Test
         $testInstance = $factory->handleTestNowClosure($testInstance, $timezone);
         $time = $testInstance instanceof self ? $testInstance->rawFormat(static::MOCK_DATETIME_FORMAT) : $testInstance->format(static::MOCK_DATETIME_FORMAT);
     }
-    private function getMockedTestNowClone($timezone): CarbonInterface|self|null
+    private function getMockedTestNowClone($timezone) : CarbonInterface|self|null
     {
         $mock = static::getMockedTestNow($timezone);
         return $mock ? clone $mock : null;
     }
-    private function nowFromClock(?CarbonTimeZone $timezone): ?DateTimeImmutable
+    private function nowFromClock(?CarbonTimeZone $timezone) : ?DateTimeImmutable
     {
         $now = $this->clock?->now();
         return $now && $timezone ? $now->setTimezone($timezone) : null;

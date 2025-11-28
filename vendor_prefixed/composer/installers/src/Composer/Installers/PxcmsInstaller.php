@@ -2,6 +2,7 @@
 
 namespace OtomatiesCoreVendor\Composer\Installers;
 
+/** @internal */
 class PxcmsInstaller extends BaseInstaller
 {
     /** @var array<string, string> */
@@ -9,7 +10,7 @@ class PxcmsInstaller extends BaseInstaller
     /**
      * Format package name.
      */
-    public function inflectPackageVars(array $vars): array
+    public function inflectPackageVars(array $vars) : array
     {
         if ($vars['type'] === 'pxcms-module') {
             return $this->inflectModuleVars($vars);
@@ -25,17 +26,17 @@ class PxcmsInstaller extends BaseInstaller
      * @param array<string, string> $vars
      * @return array<string, string>
      */
-    protected function inflectModuleVars(array $vars): array
+    protected function inflectModuleVars(array $vars) : array
     {
-        $vars['name'] = str_replace('pxcms-', '', $vars['name']);
+        $vars['name'] = \str_replace('pxcms-', '', $vars['name']);
         // strip out pxcms- just incase (legacy)
-        $vars['name'] = str_replace('module-', '', $vars['name']);
+        $vars['name'] = \str_replace('module-', '', $vars['name']);
         // strip out module-
         $vars['name'] = $this->pregReplace('/-module$/', '', $vars['name']);
         // strip out -module
-        $vars['name'] = str_replace('-', '_', $vars['name']);
+        $vars['name'] = \str_replace('-', '_', $vars['name']);
         // make -'s be _'s
-        $vars['name'] = ucwords($vars['name']);
+        $vars['name'] = \ucwords($vars['name']);
         // make module name camelcased
         return $vars;
     }
@@ -45,17 +46,17 @@ class PxcmsInstaller extends BaseInstaller
      * @param array<string, string> $vars
      * @return array<string, string>
      */
-    protected function inflectThemeVars(array $vars): array
+    protected function inflectThemeVars(array $vars) : array
     {
-        $vars['name'] = str_replace('pxcms-', '', $vars['name']);
+        $vars['name'] = \str_replace('pxcms-', '', $vars['name']);
         // strip out pxcms- just incase (legacy)
-        $vars['name'] = str_replace('theme-', '', $vars['name']);
+        $vars['name'] = \str_replace('theme-', '', $vars['name']);
         // strip out theme-
         $vars['name'] = $this->pregReplace('/-theme$/', '', $vars['name']);
         // strip out -theme
-        $vars['name'] = str_replace('-', '_', $vars['name']);
+        $vars['name'] = \str_replace('-', '_', $vars['name']);
         // make -'s be _'s
-        $vars['name'] = ucwords($vars['name']);
+        $vars['name'] = \ucwords($vars['name']);
         // make module name camelcased
         return $vars;
     }

@@ -3,12 +3,13 @@
 namespace OtomatiesCoreVendor\Composer\Installers;
 
 use OtomatiesCoreVendor\Composer\Package\PackageInterface;
+/** @internal */
 class OxidInstaller extends BaseInstaller
 {
-    const VENDOR_PATTERN = '/^modules\/(?P<vendor>.+)\/.+/';
+    const VENDOR_PATTERN = '/^modules\\/(?P<vendor>.+)\\/.+/';
     /** @var array<string, string> */
     protected $locations = array('module' => 'modules/{$name}/', 'theme' => 'application/views/{$name}/', 'out' => 'out/{$name}/');
-    public function getInstallPath(PackageInterface $package, string $frameworkType = ''): string
+    public function getInstallPath(PackageInterface $package, string $frameworkType = '') : string
     {
         $installPath = parent::getInstallPath($package, $frameworkType);
         $type = $this->package->getType();
@@ -21,19 +22,19 @@ class OxidInstaller extends BaseInstaller
      * Makes sure there is a vendormetadata.php file inside
      * the vendor folder if there is a vendor folder.
      */
-    protected function prepareVendorDirectory(string $installPath): void
+    protected function prepareVendorDirectory(string $installPath) : void
     {
         $matches = '';
-        $hasVendorDirectory = preg_match(self::VENDOR_PATTERN, $installPath, $matches);
+        $hasVendorDirectory = \preg_match(self::VENDOR_PATTERN, $installPath, $matches);
         if (!$hasVendorDirectory) {
             return;
         }
         $vendorDirectory = $matches['vendor'];
-        $vendorPath = getcwd() . '/modules/' . $vendorDirectory;
-        if (!file_exists($vendorPath)) {
-            mkdir($vendorPath, 0755, \true);
+        $vendorPath = \getcwd() . '/modules/' . $vendorDirectory;
+        if (!\file_exists($vendorPath)) {
+            \mkdir($vendorPath, 0755, \true);
         }
         $vendorMetaDataPath = $vendorPath . '/vendormetadata.php';
-        touch($vendorMetaDataPath);
+        \touch($vendorMetaDataPath);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace OtomatiesCoreVendor\Illuminate\Contracts\Database;
 
+/** @internal */
 class ModelIdentifier
 {
     /**

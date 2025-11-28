@@ -16,6 +16,7 @@ namespace OtomatiesCoreVendor\Symfony\Component\Clock;
  * Consider using ClockSensitiveTrait in your test cases instead of using this class directly.
  *
  * @author Nicolas Grekas <p@tchwork.com>
+ * @internal
  */
 final class MockClock implements ClockInterface
 {
@@ -32,7 +33,7 @@ final class MockClock implements ClockInterface
             try {
                 $timezone = new \DateTimeZone($timezone);
             } catch (\Exception $e) {
-                throw new \DateInvalidTimeZoneException($e->getMessage(), $e->getCode(), $e);
+                throw new \OtomatiesCoreVendor\DateInvalidTimeZoneException($e->getMessage(), $e->getCode(), $e);
             }
         }
         if (\is_string($now)) {
@@ -42,27 +43,27 @@ final class MockClock implements ClockInterface
         }
         $this->now = null !== $timezone ? $now->setTimezone($timezone) : $now;
     }
-    public function now(): DatePoint
+    public function now() : DatePoint
     {
         return clone $this->now;
     }
-    public function sleep(float|int $seconds): void
+    public function sleep(float|int $seconds) : void
     {
         if (0 >= $seconds) {
             return;
         }
         $now = (float) $this->now->format('Uu') + $seconds * 1000000.0;
-        $now = substr_replace(\sprintf('@%07.0F', $now), '.', -6, 0);
+        $now = \substr_replace(\sprintf('@%07.0F', $now), '.', -6, 0);
         $timezone = $this->now->getTimezone();
         $this->now = DatePoint::createFromInterface(new \DateTimeImmutable($now, $timezone))->setTimezone($timezone);
     }
     /**
      * @throws \DateMalformedStringException When $modifier is invalid
      */
-    public function modify(string $modifier): void
+    public function modify(string $modifier) : void
     {
         if (\PHP_VERSION_ID < 80300) {
-            $this->now = @$this->now->modify($modifier) ?: throw new \DateMalformedStringException(error_get_last()['message'] ?? \sprintf('Invalid modifier: "%s". Could not modify MockClock.', $modifier));
+            $this->now = @$this->now->modify($modifier) ?: throw new \OtomatiesCoreVendor\DateMalformedStringException(\error_get_last()['message'] ?? \sprintf('Invalid modifier: "%s". Could not modify MockClock.', $modifier));
             return;
         }
         $this->now = $this->now->modify($modifier);
@@ -70,7 +71,7 @@ final class MockClock implements ClockInterface
     /**
      * @throws \DateInvalidTimeZoneException When the timezone name is invalid
      */
-    public function withTimeZone(\DateTimeZone|string $timezone): static
+    public function withTimeZone(\DateTimeZone|string $timezone) : static
     {
         if (\PHP_VERSION_ID >= 80300 && \is_string($timezone)) {
             $timezone = new \DateTimeZone($timezone);
@@ -78,7 +79,7 @@ final class MockClock implements ClockInterface
             try {
                 $timezone = new \DateTimeZone($timezone);
             } catch (\Exception $e) {
-                throw new \DateInvalidTimeZoneException($e->getMessage(), $e->getCode(), $e);
+                throw new \OtomatiesCoreVendor\DateInvalidTimeZoneException($e->getMessage(), $e->getCode(), $e);
             }
         }
         $clone = clone $this;

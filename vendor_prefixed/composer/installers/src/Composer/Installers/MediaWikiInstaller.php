@@ -2,6 +2,7 @@
 
 namespace OtomatiesCoreVendor\Composer\Installers;
 
+/** @internal */
 class MediaWikiInstaller extends BaseInstaller
 {
     /** @var array<string, string> */
@@ -14,7 +15,7 @@ class MediaWikiInstaller extends BaseInstaller
      *
      * For package type mediawiki-skin, cut off a trailing '-skin' if present.
      */
-    public function inflectPackageVars(array $vars): array
+    public function inflectPackageVars(array $vars) : array
     {
         if ($vars['type'] === 'mediawiki-extension') {
             return $this->inflectExtensionVars($vars);
@@ -28,18 +29,18 @@ class MediaWikiInstaller extends BaseInstaller
      * @param array<string, string> $vars
      * @return array<string, string>
      */
-    protected function inflectExtensionVars(array $vars): array
+    protected function inflectExtensionVars(array $vars) : array
     {
         $vars['name'] = $this->pregReplace('/-extension$/', '', $vars['name']);
-        $vars['name'] = str_replace('-', ' ', $vars['name']);
-        $vars['name'] = str_replace(' ', '', ucwords($vars['name']));
+        $vars['name'] = \str_replace('-', ' ', $vars['name']);
+        $vars['name'] = \str_replace(' ', '', \ucwords($vars['name']));
         return $vars;
     }
     /**
      * @param array<string, string> $vars
      * @return array<string, string>
      */
-    protected function inflectSkinVars(array $vars): array
+    protected function inflectSkinVars(array $vars) : array
     {
         $vars['name'] = $this->pregReplace('/-skin$/', '', $vars['name']);
         return $vars;

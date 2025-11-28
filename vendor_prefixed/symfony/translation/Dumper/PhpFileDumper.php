@@ -15,14 +15,15 @@ use OtomatiesCoreVendor\Symfony\Component\Translation\MessageCatalogue;
  * PhpFileDumper generates PHP files from a message catalogue.
  *
  * @author Michel Salib <michelsalib@hotmail.com>
+ * @internal
  */
 class PhpFileDumper extends FileDumper
 {
-    public function formatCatalogue(MessageCatalogue $messages, string $domain, array $options = []): string
+    public function formatCatalogue(MessageCatalogue $messages, string $domain, array $options = []) : string
     {
-        return "<?php\n\nreturn " . var_export($messages->all($domain), \true) . ";\n";
+        return "<?php\n\nreturn " . \var_export($messages->all($domain), \true) . ";\n";
     }
-    protected function getExtension(): string
+    protected function getExtension() : string
     {
         return 'php';
     }

@@ -6,6 +6,7 @@ use BadMethodCallException;
 use Closure;
 use ReflectionClass;
 use ReflectionMethod;
+/** @internal */
 trait Macroable
 {
     /**
@@ -77,7 +78,7 @@ trait Macroable
     public static function __callStatic($method, $parameters)
     {
         if (!static::hasMacro($method)) {
-            throw new BadMethodCallException(sprintf('Method %s::%s does not exist.', static::class, $method));
+            throw new BadMethodCallException(\sprintf('Method %s::%s does not exist.', static::class, $method));
         }
         $macro = static::$macros[$method];
         if ($macro instanceof Closure) {
@@ -97,7 +98,7 @@ trait Macroable
     public function __call($method, $parameters)
     {
         if (!static::hasMacro($method)) {
-            throw new BadMethodCallException(sprintf('Method %s::%s does not exist.', static::class, $method));
+            throw new BadMethodCallException(\sprintf('Method %s::%s does not exist.', static::class, $method));
         }
         $macro = static::$macros[$method];
         if ($macro instanceof Closure) {

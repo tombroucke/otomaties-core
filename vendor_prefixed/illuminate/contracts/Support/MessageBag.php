@@ -3,6 +3,7 @@
 namespace OtomatiesCoreVendor\Illuminate\Contracts\Support;
 
 use Countable;
+/** @internal */
 interface MessageBag extends Arrayable, Countable
 {
     /**

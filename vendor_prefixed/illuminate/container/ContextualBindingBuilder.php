@@ -4,6 +4,7 @@ namespace OtomatiesCoreVendor\Illuminate\Container;
 
 use OtomatiesCoreVendor\Illuminate\Contracts\Container\Container;
 use OtomatiesCoreVendor\Illuminate\Contracts\Container\ContextualBindingBuilder as ContextualBindingBuilderContract;
+/** @internal */
 class ContextualBindingBuilder implements ContextualBindingBuilderContract
 {
     /**
@@ -67,9 +68,9 @@ class ContextualBindingBuilder implements ContextualBindingBuilderContract
      */
     public function giveTagged($tag)
     {
-        return $this->give(function ($container) use ($tag) {
+        return $this->give(function ($container) use($tag) {
             $taggedServices = $container->tagged($tag);
-            return is_array($taggedServices) ? $taggedServices : iterator_to_array($taggedServices);
+            return \is_array($taggedServices) ? $taggedServices : \iterator_to_array($taggedServices);
         });
     }
     /**

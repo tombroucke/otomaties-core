@@ -2,6 +2,7 @@
 
 namespace OtomatiesCoreVendor\Composer\Installers;
 
+/** @internal */
 class WolfCMSInstaller extends BaseInstaller
 {
     /** @var array<string, string> */

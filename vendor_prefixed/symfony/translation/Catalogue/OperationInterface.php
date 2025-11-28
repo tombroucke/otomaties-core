@@ -29,27 +29,28 @@ use OtomatiesCoreVendor\Symfony\Component\Translation\MessageCatalogueInterface;
  * Result: also called 'result', is the resulting catalogue for the given domain that holds the same messages as 'all'.
  *
  * @author Jean-François Simon <jeanfrancois.simon@sensiolabs.com>
+ * @internal
  */
 interface OperationInterface
 {
     /**
      * Returns domains affected by operation.
      */
-    public function getDomains(): array;
+    public function getDomains() : array;
     /**
      * Returns all valid messages ('all') after operation.
      */
-    public function getMessages(string $domain): array;
+    public function getMessages(string $domain) : array;
     /**
      * Returns new messages ('new') after operation.
      */
-    public function getNewMessages(string $domain): array;
+    public function getNewMessages(string $domain) : array;
     /**
      * Returns obsolete messages ('obsolete') after operation.
      */
-    public function getObsoleteMessages(string $domain): array;
+    public function getObsoleteMessages(string $domain) : array;
     /**
      * Returns resulting catalogue ('result').
      */
-    public function getResult(): MessageCatalogueInterface;
+    public function getResult() : MessageCatalogueInterface;
 }

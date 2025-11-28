@@ -59,6 +59,7 @@ namespace OtomatiesCoreVendor\Illuminate\Support\Facades;
  *
  * @see \Illuminate\Cache\CacheManager
  * @see \Illuminate\Cache\Repository
+ * @internal
  */
 class Cache extends Facade
 {

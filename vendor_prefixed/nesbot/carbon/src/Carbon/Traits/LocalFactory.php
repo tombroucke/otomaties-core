@@ -17,6 +17,7 @@ use OtomatiesCoreVendor\Carbon\WrapperClock;
 use Closure;
 /**
  * Remember the factory that was the current at the creation of the object.
+ * @internal
  */
 trait LocalFactory
 {
@@ -24,11 +25,11 @@ trait LocalFactory
      * The clock that generated the current instance (or FactoryImmutable::getDefaultInstance() if none)
      */
     private ?WrapperClock $clock = null;
-    public function getClock(): ?WrapperClock
+    public function getClock() : ?WrapperClock
     {
         return $this->clock;
     }
-    private function initLocalFactory(): void
+    private function initLocalFactory() : void
     {
         $this->clock = FactoryImmutable::getCurrentClock();
     }
@@ -42,7 +43,7 @@ trait LocalFactory
      *
      * @return T
      */
-    private function transmitFactory(Closure $action): mixed
+    private function transmitFactory(Closure $action) : mixed
     {
         $previousClock = FactoryImmutable::getCurrentClock();
         FactoryImmutable::setCurrentClock($this->clock);
@@ -52,7 +53,7 @@ trait LocalFactory
             FactoryImmutable::setCurrentClock($previousClock);
         }
     }
-    private function getFactory(): Factory
+    private function getFactory() : Factory
     {
         return $this->getClock()?->getFactory() ?? FactoryImmutable::getDefaultInstance();
     }

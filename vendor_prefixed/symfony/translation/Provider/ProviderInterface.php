@@ -12,6 +12,7 @@ namespace OtomatiesCoreVendor\Symfony\Component\Translation\Provider;
 
 use OtomatiesCoreVendor\Symfony\Component\Translation\TranslatorBag;
 use OtomatiesCoreVendor\Symfony\Component\Translation\TranslatorBagInterface;
+/** @internal */
 interface ProviderInterface extends \Stringable
 {
     /**
@@ -20,7 +21,7 @@ interface ProviderInterface extends \Stringable
      * must be overwritten.
      * Translations available on the provider only must be kept.
      */
-    public function write(TranslatorBagInterface $translatorBag): void;
-    public function read(array $domains, array $locales): TranslatorBag;
-    public function delete(TranslatorBagInterface $translatorBag): void;
+    public function write(TranslatorBagInterface $translatorBag) : void;
+    public function read(array $domains, array $locales) : TranslatorBag;
+    public function delete(TranslatorBagInterface $translatorBag) : void;
 }

@@ -5,6 +5,7 @@ namespace OtomatiesCoreVendor\Illuminate\Contracts\Validation;
 use Closure;
 /**
  * @deprecated see ValidationRule
+ * @internal
  */
 interface InvokableRule
 {

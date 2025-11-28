@@ -2,6 +2,7 @@
 
 namespace OtomatiesCoreVendor\Composer\Installers;
 
+/** @internal */
 class GravInstaller extends BaseInstaller
 {
     /** @var array<string, string> */
@@ -9,10 +10,10 @@ class GravInstaller extends BaseInstaller
     /**
      * Format package name
      */
-    public function inflectPackageVars(array $vars): array
+    public function inflectPackageVars(array $vars) : array
     {
-        $restrictedWords = implode('|', array_keys($this->locations));
-        $vars['name'] = strtolower($vars['name']);
+        $restrictedWords = \implode('|', \array_keys($this->locations));
+        $vars['name'] = \strtolower($vars['name']);
         $vars['name'] = $this->pregReplace('/^(?:grav-)?(?:(?:' . $restrictedWords . ')-)?(.*?)(?:-(?:' . $restrictedWords . '))?$/ui', '$1', $vars['name']);
         return $vars;
     }

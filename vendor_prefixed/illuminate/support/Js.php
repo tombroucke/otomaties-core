@@ -8,6 +8,7 @@ use OtomatiesCoreVendor\Illuminate\Contracts\Support\Jsonable;
 use JsonSerializable;
 use Stringable;
 use UnitEnum;
+/** @internal */
 class Js implements Htmlable, Stringable
 {
     /**
@@ -71,8 +72,8 @@ class Js implements Htmlable, Stringable
             $data = enum_value($data);
         }
         $json = static::encode($data, $flags, $depth);
-        if (is_string($data)) {
-            return "'" . substr($json, 1, -1) . "'";
+        if (\is_string($data)) {
+            return "'" . \substr($json, 1, -1) . "'";
         }
         return $this->convertJsonToJavaScriptExpression($json, $flags);
     }
@@ -94,7 +95,7 @@ class Js implements Htmlable, Stringable
         if ($data instanceof Arrayable && !$data instanceof JsonSerializable) {
             $data = $data->toArray();
         }
-        return json_encode($data, $flags | static::REQUIRED_FLAGS, $depth);
+        return \json_encode($data, $flags | static::REQUIRED_FLAGS, $depth);
     }
     /**
      * Convert the given JSON to a JavaScript expression.
@@ -111,7 +112,7 @@ class Js implements Htmlable, Stringable
             return $json;
         }
         if (Str::startsWith($json, ['"', '{', '['])) {
-            return "JSON.parse('" . substr(json_encode($json, $flags | static::REQUIRED_FLAGS), 1, -1) . "')";
+            return "JSON.parse('" . \substr(\json_encode($json, $flags | static::REQUIRED_FLAGS), 1, -1) . "')";
         }
         return $json;
     }

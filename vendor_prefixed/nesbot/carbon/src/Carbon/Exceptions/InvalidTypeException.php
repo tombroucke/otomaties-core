@@ -12,6 +12,7 @@ declare (strict_types=1);
 namespace OtomatiesCoreVendor\Carbon\Exceptions;
 
 use InvalidArgumentException as BaseInvalidArgumentException;
+/** @internal */
 class InvalidTypeException extends BaseInvalidArgumentException implements InvalidArgumentException
 {
     //

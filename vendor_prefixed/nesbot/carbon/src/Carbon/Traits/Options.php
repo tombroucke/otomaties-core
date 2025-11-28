@@ -22,6 +22,7 @@ use Throwable;
  * Depends on the following methods:
  *
  * @method static shiftTimezone($timezone) Set the timezone
+ * @internal
  */
 trait Options
 {
@@ -89,7 +90,7 @@ trait Options
      *
      * @return $this|static
      */
-    public function settings(array $settings): static
+    public function settings(array $settings) : static
     {
         $this->localStrictModeEnabled = $settings['strictMode'] ?? null;
         $this->localMonthsOverflow = $settings['monthOverflow'] ?? null;
@@ -106,7 +107,7 @@ trait Options
                 $locales = [$locales];
             }
             $this->locale(...$locales);
-        } elseif (isset($settings['translator']) && property_exists($this, 'localTranslator')) {
+        } elseif (isset($settings['translator']) && \property_exists($this, 'localTranslator')) {
             $this->localTranslator = $settings['translator'];
         }
         if (isset($settings['innerTimezone'])) {
@@ -120,7 +121,7 @@ trait Options
     /**
      * Returns current local settings.
      */
-    public function getSettings(): array
+    public function getSettings() : array
     {
         $settings = [];
         $map = ['localStrictModeEnabled' => 'strictMode', 'localMonthsOverflow' => 'monthOverflow', 'localYearsOverflow' => 'yearOverflow', 'localHumanDiffOptions' => 'humanDiffOptions', 'localToStringFormat' => 'toStringFormat', 'localSerializer' => 'toJsonFormat', 'localMacros' => 'macros', 'localGenericMacros' => 'genericMacros', 'locale' => 'locale', 'tzName' => 'timezone', 'localFormatFunction' => 'formatFunction'];
@@ -135,9 +136,9 @@ trait Options
     /**
      * Show truthy properties on var_dump().
      */
-    public function __debugInfo(): array
+    public function __debugInfo() : array
     {
-        $infos = array_filter(get_object_vars($this), static function ($var) {
+        $infos = \array_filter(\get_object_vars($this), static function ($var) {
             return $var;
         });
         foreach (['dumpProperties', 'constructedObjectId', 'constructed', 'originalInput'] as $property) {
@@ -155,11 +156,11 @@ trait Options
         }
         return $infos;
     }
-    protected function isLocalStrictModeEnabled(): bool
+    protected function isLocalStrictModeEnabled() : bool
     {
         return $this->localStrictModeEnabled ?? $this->transmitFactory(static fn() => static::isStrictModeEnabled());
     }
-    protected function addExtraDebugInfos(array &$infos): void
+    protected function addExtraDebugInfos(array &$infos) : void
     {
         if ($this instanceof DateTimeInterface) {
             try {

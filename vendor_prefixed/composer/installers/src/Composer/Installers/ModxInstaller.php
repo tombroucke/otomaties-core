@@ -4,6 +4,7 @@ namespace OtomatiesCoreVendor\Composer\Installers;
 
 /**
  * An installer to handle MODX specifics when installing packages.
+ * @internal
  */
 class ModxInstaller extends BaseInstaller
 {

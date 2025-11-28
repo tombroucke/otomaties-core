@@ -2,6 +2,7 @@
 
 namespace OtomatiesCoreVendor\Composer\Installers;
 
+/** @internal */
 class DecibelInstaller extends BaseInstaller
 {
     /** @var array */

@@ -14,6 +14,7 @@ use OtomatiesCoreVendor\PHPUnit\Framework\ExpectationFailedException;
 use Throwable;
 /**
  * @mixin \Illuminate\Foundation\Exceptions\Handler
+ * @internal
  */
 class ExceptionHandlerFake implements ExceptionHandler, Fake
 {
@@ -57,12 +58,12 @@ class ExceptionHandlerFake implements ExceptionHandler, Fake
      */
     public function assertReported(Closure|string $exception)
     {
-        $message = sprintf('The expected [%s] exception was not reported.', is_string($exception) ? $exception : $this->firstClosureParameterType($exception));
-        if (is_string($exception)) {
-            Assert::assertTrue(in_array($exception, array_map(get_class(...), $this->reported), \true), $message);
+        $message = \sprintf('The expected [%s] exception was not reported.', \is_string($exception) ? $exception : $this->firstClosureParameterType($exception));
+        if (\is_string($exception)) {
+            Assert::assertTrue(\in_array($exception, \array_map(\get_class(...), $this->reported), \true), $message);
             return;
         }
-        Assert::assertTrue((new Collection($this->reported))->contains(fn(Throwable $e) => $this->firstClosureParameterType($exception) === get_class($e) && $exception($e) === \true), $message);
+        Assert::assertTrue((new Collection($this->reported))->contains(fn(Throwable $e) => $this->firstClosureParameterType($exception) === \get_class($e) && $exception($e) === \true), $message);
     }
     /**
      * Assert the number of exceptions that have been reported.
@@ -88,7 +89,7 @@ class ExceptionHandlerFake implements ExceptionHandler, Fake
         } catch (ExpectationFailedException) {
             return;
         }
-        throw new ExpectationFailedException(sprintf('The expected [%s] exception was reported.', is_string($exception) ? $exception : $this->firstClosureParameterType($exception)));
+        throw new ExpectationFailedException(\sprintf('The expected [%s] exception was reported.', \is_string($exception) ? $exception : $this->firstClosureParameterType($exception)));
     }
     /**
      * Assert nothing has been reported.
@@ -97,7 +98,7 @@ class ExceptionHandlerFake implements ExceptionHandler, Fake
      */
     public function assertNothingReported()
     {
-        Assert::assertEmpty($this->reported, sprintf('The following exceptions were reported: %s.', implode(', ', array_map(get_class(...), $this->reported))));
+        Assert::assertEmpty($this->reported, \sprintf('The following exceptions were reported: %s.', \implode(', ', \array_map(\get_class(...), $this->reported))));
     }
     /**
      * Report or log an exception.
@@ -127,7 +128,7 @@ class ExceptionHandlerFake implements ExceptionHandler, Fake
      */
     protected function isFakedException(Throwable $e)
     {
-        return count($this->exceptions) === 0 || in_array(get_class($e), $this->exceptions, \true);
+        return \count($this->exceptions) === 0 || \in_array(\get_class($e), $this->exceptions, \true);
     }
     /**
      * Determine if the exception should be reported.

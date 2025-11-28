@@ -15,13 +15,14 @@ use OtomatiesCoreVendor\Illuminate\Support\Optional;
 use OtomatiesCoreVendor\Illuminate\Support\Sleep;
 use OtomatiesCoreVendor\Illuminate\Support\Str;
 use OtomatiesCoreVendor\Illuminate\Support\Stringable as SupportStringable;
-if (!\function_exists('OtomatiesCoreVendor\append_config')) {
+if (!\function_exists('OtomatiesCoreVendor\\append_config')) {
     /**
      * Assign high numeric IDs to a config item to force appending.
      *
      * @param  array  $array
+     * @internal
      */
-    function append_config(array $array): array
+    function append_config(array $array) : array
     {
         $start = 9999;
         foreach ($array as $key => $value) {
@@ -33,7 +34,7 @@ if (!\function_exists('OtomatiesCoreVendor\append_config')) {
         return $array;
     }
 }
-if (!\function_exists('OtomatiesCoreVendor\blank')) {
+if (!\function_exists('OtomatiesCoreVendor\\blank')) {
     /**
      * Determine if the given value is "blank".
      *
@@ -42,8 +43,9 @@ if (!\function_exists('OtomatiesCoreVendor\blank')) {
      * @phpstan-assert-if-true !=numeric|bool $value
      *
      * @param  mixed  $value
+     * @internal
      */
-    function blank($value): bool
+    function blank($value) : bool
     {
         if (\is_null($value)) {
             return \true;
@@ -66,26 +68,28 @@ if (!\function_exists('OtomatiesCoreVendor\blank')) {
         return empty($value);
     }
 }
-if (!\function_exists('OtomatiesCoreVendor\class_basename')) {
+if (!\function_exists('OtomatiesCoreVendor\\class_basename')) {
     /**
      * Get the class "basename" of the given object / class.
      *
      * @param  string|object  $class
+     * @internal
      */
-    function class_basename($class): string
+    function class_basename($class) : string
     {
         $class = \is_object($class) ? \get_class($class) : $class;
         return \basename(\str_replace('\\', '/', $class));
     }
 }
-if (!\function_exists('OtomatiesCoreVendor\class_uses_recursive')) {
+if (!\function_exists('OtomatiesCoreVendor\\class_uses_recursive')) {
     /**
      * Returns all traits used by a class, its parent classes and trait of their traits.
      *
      * @param  object|string  $class
      * @return array<string, string>
+     * @internal
      */
-    function class_uses_recursive($class): array
+    function class_uses_recursive($class) : array
     {
         if (\is_object($class)) {
             $class = \get_class($class);
@@ -97,14 +101,15 @@ if (!\function_exists('OtomatiesCoreVendor\class_uses_recursive')) {
         return \array_unique($results);
     }
 }
-if (!\function_exists('OtomatiesCoreVendor\e')) {
+if (!\function_exists('OtomatiesCoreVendor\\e')) {
     /**
      * Encode HTML special characters in a string.
      *
      * @param  \Illuminate\Contracts\Support\DeferringDisplayableValue|\Illuminate\Contracts\Support\Htmlable|\BackedEnum|string|int|float|null  $value
      * @param  bool  $doubleEncode
+     * @internal
      */
-    function e($value, $doubleEncode = \true): string
+    function e($value, $doubleEncode = \true) : string
     {
         if ($value instanceof DeferringDisplayableValue) {
             $value = $value->resolveDisplayableValue();
@@ -118,20 +123,21 @@ if (!\function_exists('OtomatiesCoreVendor\e')) {
         return \htmlspecialchars($value ?? '', \ENT_QUOTES | \ENT_SUBSTITUTE, 'UTF-8', $doubleEncode);
     }
 }
-if (!\function_exists('OtomatiesCoreVendor\env')) {
+if (!\function_exists('OtomatiesCoreVendor\\env')) {
     /**
      * Gets the value of an environment variable.
      *
      * @param  string  $key
      * @param  mixed  $default
      * @return mixed
+     * @internal
      */
     function env($key, $default = null)
     {
         return Env::get($key, $default);
     }
 }
-if (!\function_exists('OtomatiesCoreVendor\filled')) {
+if (!\function_exists('OtomatiesCoreVendor\\filled')) {
     /**
      * Determine if a value is "filled".
      *
@@ -140,28 +146,31 @@ if (!\function_exists('OtomatiesCoreVendor\filled')) {
      * @phpstan-assert-if-false !=numeric|bool $value
      *
      * @param  mixed  $value
+     * @internal
      */
-    function filled($value): bool
+    function filled($value) : bool
     {
         return !blank($value);
     }
 }
-if (!\function_exists('OtomatiesCoreVendor\fluent')) {
+if (!\function_exists('OtomatiesCoreVendor\\fluent')) {
     /**
      * Create a Fluent object from the given value.
      *
      * @param  iterable|object|null  $value
+     * @internal
      */
-    function fluent($value = null): Fluent
+    function fluent($value = null) : Fluent
     {
         return new Fluent($value ?? []);
     }
 }
-if (!\function_exists('OtomatiesCoreVendor\literal')) {
+if (!\function_exists('OtomatiesCoreVendor\\literal')) {
     /**
      * Return a new literal or anonymous object using named arguments.
      *
      * @return mixed
+     * @internal
      */
     function literal(...$arguments)
     {
@@ -171,7 +180,7 @@ if (!\function_exists('OtomatiesCoreVendor\literal')) {
         return (object) $arguments;
     }
 }
-if (!\function_exists('OtomatiesCoreVendor\object_get')) {
+if (!\function_exists('OtomatiesCoreVendor\\object_get')) {
     /**
      * Get an item from an object using "dot" notation.
      *
@@ -181,6 +190,7 @@ if (!\function_exists('OtomatiesCoreVendor\object_get')) {
      * @param  string|null  $key
      * @param  mixed  $default
      * @return ($key is empty ? TValue : mixed)
+     * @internal
      */
     function object_get($object, $key, $default = null)
     {
@@ -196,16 +206,17 @@ if (!\function_exists('OtomatiesCoreVendor\object_get')) {
         return $object;
     }
 }
-if (!\function_exists('OtomatiesCoreVendor\laravel_cloud')) {
+if (!\function_exists('OtomatiesCoreVendor\\laravel_cloud')) {
     /**
      * Determine if the application is running on Laravel Cloud.
+     * @internal
      */
-    function laravel_cloud(): bool
+    function laravel_cloud() : bool
     {
         return ($_ENV['LARAVEL_CLOUD'] ?? \false) === '1' || ($_SERVER['LARAVEL_CLOUD'] ?? \false) === '1';
     }
 }
-if (!\function_exists('OtomatiesCoreVendor\once')) {
+if (!\function_exists('OtomatiesCoreVendor\\once')) {
     /**
      * Ensures a callable is only called once, and returns the result on subsequent calls.
      *
@@ -213,6 +224,7 @@ if (!\function_exists('OtomatiesCoreVendor\once')) {
      *
      * @param  callable(): TReturnType  $callback
      * @return TReturnType
+     * @internal
      */
     function once(callable $callback)
     {
@@ -220,7 +232,7 @@ if (!\function_exists('OtomatiesCoreVendor\once')) {
         return $onceable ? Once::instance()->value($onceable) : \call_user_func($callback);
     }
 }
-if (!\function_exists('OtomatiesCoreVendor\optional')) {
+if (!\function_exists('OtomatiesCoreVendor\\optional')) {
     /**
      * Provide access to optional objects.
      *
@@ -230,6 +242,7 @@ if (!\function_exists('OtomatiesCoreVendor\optional')) {
      * @param  TValue  $value
      * @param  (callable(TValue): TReturn)|null  $callback
      * @return ($callback is null ? \Illuminate\Support\Optional : ($value is null ? null : TReturn))
+     * @internal
      */
     function optional($value = null, ?callable $callback = null)
     {
@@ -240,24 +253,25 @@ if (!\function_exists('OtomatiesCoreVendor\optional')) {
         }
     }
 }
-if (!\function_exists('OtomatiesCoreVendor\preg_replace_array')) {
+if (!\function_exists('OtomatiesCoreVendor\\preg_replace_array')) {
     /**
      * Replace a given pattern with each value in the array in sequentially.
      *
      * @param  string  $pattern
      * @param  array  $replacements
      * @param  string  $subject
+     * @internal
      */
-    function preg_replace_array($pattern, array $replacements, $subject): string
+    function preg_replace_array($pattern, array $replacements, $subject) : string
     {
-        return \preg_replace_callback($pattern, function () use (&$replacements) {
+        return \preg_replace_callback($pattern, function () use(&$replacements) {
             foreach ($replacements as $value) {
                 return \array_shift($replacements);
             }
         }, $subject);
     }
 }
-if (!\function_exists('OtomatiesCoreVendor\retry')) {
+if (!\function_exists('OtomatiesCoreVendor\\retry')) {
     /**
      * Retry an operation a given number of times.
      *
@@ -270,6 +284,7 @@ if (!\function_exists('OtomatiesCoreVendor\retry')) {
      * @return TValue
      *
      * @throws \Throwable
+     * @internal
      */
     function retry($times, callable $callback, $sleepMilliseconds = 0, $when = null)
     {
@@ -296,12 +311,13 @@ if (!\function_exists('OtomatiesCoreVendor\retry')) {
         }
     }
 }
-if (!\function_exists('OtomatiesCoreVendor\str')) {
+if (!\function_exists('OtomatiesCoreVendor\\str')) {
     /**
      * Get a new stringable object from the given string.
      *
      * @param  string|null  $string
      * @return ($string is null ? object : \Illuminate\Support\Stringable)
+     * @internal
      */
     function str($string = null)
     {
@@ -321,7 +337,7 @@ if (!\function_exists('OtomatiesCoreVendor\str')) {
         return new SupportStringable($string);
     }
 }
-if (!\function_exists('OtomatiesCoreVendor\tap')) {
+if (!\function_exists('OtomatiesCoreVendor\\tap')) {
     /**
      * Call the given Closure with the given value then return the value.
      *
@@ -330,6 +346,7 @@ if (!\function_exists('OtomatiesCoreVendor\tap')) {
      * @param  TValue  $value
      * @param  (callable(TValue): mixed)|null  $callback
      * @return ($callback is null ? \Illuminate\Support\HigherOrderTapProxy : TValue)
+     * @internal
      */
     function tap($value, $callback = null)
     {
@@ -340,7 +357,7 @@ if (!\function_exists('OtomatiesCoreVendor\tap')) {
         return $value;
     }
 }
-if (!\function_exists('OtomatiesCoreVendor\throw_if')) {
+if (!\function_exists('OtomatiesCoreVendor\\throw_if')) {
     /**
      * Throw the given exception if the given condition is true.
      *
@@ -355,6 +372,7 @@ if (!\function_exists('OtomatiesCoreVendor\throw_if')) {
      * @return ($condition is true ? never : ($condition is non-empty-mixed ? never : TValue))
      *
      * @throws TException
+     * @internal
      */
     function throw_if($condition, $exception = 'RuntimeException', ...$parameters)
     {
@@ -370,7 +388,7 @@ if (!\function_exists('OtomatiesCoreVendor\throw_if')) {
         return $condition;
     }
 }
-if (!\function_exists('OtomatiesCoreVendor\throw_unless')) {
+if (!\function_exists('OtomatiesCoreVendor\\throw_unless')) {
     /**
      * Throw the given exception unless the given condition is true.
      *
@@ -385,6 +403,7 @@ if (!\function_exists('OtomatiesCoreVendor\throw_unless')) {
      * @return ($condition is false ? never : ($condition is non-empty-mixed ? TValue : never))
      *
      * @throws TException
+     * @internal
      */
     function throw_unless($condition, $exception = 'RuntimeException', ...$parameters)
     {
@@ -392,14 +411,15 @@ if (!\function_exists('OtomatiesCoreVendor\throw_unless')) {
         return $condition;
     }
 }
-if (!\function_exists('OtomatiesCoreVendor\trait_uses_recursive')) {
+if (!\function_exists('OtomatiesCoreVendor\\trait_uses_recursive')) {
     /**
      * Returns all traits used by a trait and its traits.
      *
      * @param  object|string  $trait
      * @return array<string, string>
+     * @internal
      */
-    function trait_uses_recursive($trait): array
+    function trait_uses_recursive($trait) : array
     {
         $traits = \class_uses($trait) ?: [];
         foreach ($traits as $trait) {
@@ -408,7 +428,7 @@ if (!\function_exists('OtomatiesCoreVendor\trait_uses_recursive')) {
         return $traits;
     }
 }
-if (!\function_exists('OtomatiesCoreVendor\transform')) {
+if (!\function_exists('OtomatiesCoreVendor\\transform')) {
     /**
      * Transform the given value if it is present.
      *
@@ -420,6 +440,7 @@ if (!\function_exists('OtomatiesCoreVendor\transform')) {
      * @param  callable(TValue): TReturn  $callback
      * @param  TDefault|callable(TValue): TDefault  $default
      * @return ($value is empty ? TDefault : TReturn)
+     * @internal
      */
     function transform($value, callable $callback, $default = null)
     {
@@ -432,16 +453,17 @@ if (!\function_exists('OtomatiesCoreVendor\transform')) {
         return $default;
     }
 }
-if (!\function_exists('OtomatiesCoreVendor\windows_os')) {
+if (!\function_exists('OtomatiesCoreVendor\\windows_os')) {
     /**
      * Determine whether the current environment is Windows based.
+     * @internal
      */
-    function windows_os(): bool
+    function windows_os() : bool
     {
         return \PHP_OS_FAMILY === 'Windows';
     }
 }
-if (!\function_exists('OtomatiesCoreVendor\with')) {
+if (!\function_exists('OtomatiesCoreVendor\\with')) {
     /**
      * Return the given value, optionally passed through the given callback.
      *
@@ -451,6 +473,7 @@ if (!\function_exists('OtomatiesCoreVendor\with')) {
      * @param  TValue  $value
      * @param  (callable(TValue): (TReturn))|null  $callback
      * @return ($callback is null ? TValue : TReturn)
+     * @internal
      */
     function with($value, ?callable $callback = null)
     {

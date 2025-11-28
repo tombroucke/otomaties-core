@@ -18,6 +18,7 @@ use Traversable;
  *
  * @implements \Illuminate\Contracts\Support\Arrayable<TKey, TValue>
  * @implements \ArrayAccess<TKey, TValue>
+ * @internal
  */
 class Fluent implements Arrayable, ArrayAccess, IteratorAggregate, Jsonable, JsonSerializable
 {
@@ -96,7 +97,7 @@ class Fluent implements Arrayable, ArrayAccess, IteratorAggregate, Jsonable, Jso
      */
     public function value($key, $default = null)
     {
-        if (array_key_exists($key, $this->attributes)) {
+        if (\array_key_exists($key, $this->attributes)) {
             return $this->attributes[$key];
         }
         return value($default);
@@ -125,7 +126,7 @@ class Fluent implements Arrayable, ArrayAccess, IteratorAggregate, Jsonable, Jso
             return $data;
         }
         $results = [];
-        foreach (is_array($keys) ? $keys : func_get_args() as $key) {
+        foreach (\is_array($keys) ? $keys : \func_get_args() as $key) {
             Arr::set($results, $key, Arr::get($data, $key));
         }
         return $results;
@@ -164,7 +165,7 @@ class Fluent implements Arrayable, ArrayAccess, IteratorAggregate, Jsonable, Jso
      *
      * @return array<TKey, TValue>
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize() : array
     {
         return $this->toArray();
     }
@@ -176,7 +177,7 @@ class Fluent implements Arrayable, ArrayAccess, IteratorAggregate, Jsonable, Jso
      */
     public function toJson($options = 0)
     {
-        return json_encode($this->jsonSerialize(), $options);
+        return \json_encode($this->jsonSerialize(), $options);
     }
     /**
      * Convert the fluent instance to pretty print formatted JSON.
@@ -194,7 +195,7 @@ class Fluent implements Arrayable, ArrayAccess, IteratorAggregate, Jsonable, Jso
      *
      * @return bool
      */
-    public function isEmpty(): bool
+    public function isEmpty() : bool
     {
         return empty($this->attributes);
     }
@@ -203,7 +204,7 @@ class Fluent implements Arrayable, ArrayAccess, IteratorAggregate, Jsonable, Jso
      *
      * @return bool
      */
-    public function isNotEmpty(): bool
+    public function isNotEmpty() : bool
     {
         return !$this->isEmpty();
     }
@@ -213,7 +214,7 @@ class Fluent implements Arrayable, ArrayAccess, IteratorAggregate, Jsonable, Jso
      * @param  TKey  $offset
      * @return bool
      */
-    public function offsetExists($offset): bool
+    public function offsetExists($offset) : bool
     {
         return isset($this->attributes[$offset]);
     }
@@ -223,7 +224,7 @@ class Fluent implements Arrayable, ArrayAccess, IteratorAggregate, Jsonable, Jso
      * @param  TKey  $offset
      * @return TValue|null
      */
-    public function offsetGet($offset): mixed
+    public function offsetGet($offset) : mixed
     {
         return $this->value($offset);
     }
@@ -234,7 +235,7 @@ class Fluent implements Arrayable, ArrayAccess, IteratorAggregate, Jsonable, Jso
      * @param  TValue  $value
      * @return void
      */
-    public function offsetSet($offset, $value): void
+    public function offsetSet($offset, $value) : void
     {
         $this->attributes[$offset] = $value;
     }
@@ -244,7 +245,7 @@ class Fluent implements Arrayable, ArrayAccess, IteratorAggregate, Jsonable, Jso
      * @param  TKey  $offset
      * @return void
      */
-    public function offsetUnset($offset): void
+    public function offsetUnset($offset) : void
     {
         unset($this->attributes[$offset]);
     }
@@ -253,7 +254,7 @@ class Fluent implements Arrayable, ArrayAccess, IteratorAggregate, Jsonable, Jso
      *
      * @return ArrayIterator<TKey, TValue>
      */
-    public function getIterator(): Traversable
+    public function getIterator() : Traversable
     {
         return new ArrayIterator($this->attributes);
     }
@@ -269,7 +270,7 @@ class Fluent implements Arrayable, ArrayAccess, IteratorAggregate, Jsonable, Jso
         if (static::hasMacro($method)) {
             return $this->macroCall($method, $parameters);
         }
-        $this->attributes[$method] = count($parameters) > 0 ? array_first($parameters) : \true;
+        $this->attributes[$method] = \count($parameters) > 0 ? array_first($parameters) : \true;
         return $this;
     }
     /**

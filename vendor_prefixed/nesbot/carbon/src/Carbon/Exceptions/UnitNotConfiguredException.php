@@ -12,6 +12,7 @@ declare (strict_types=1);
 namespace OtomatiesCoreVendor\Carbon\Exceptions;
 
 use Throwable;
+/** @internal */
 class UnitNotConfiguredException extends UnitException
 {
     /**
@@ -37,7 +38,7 @@ class UnitNotConfiguredException extends UnitException
      *
      * @return string
      */
-    public function getUnit(): string
+    public function getUnit() : string
     {
         return $this->unit;
     }

@@ -13,6 +13,7 @@ namespace OtomatiesCoreVendor\Carbon\Exceptions;
 
 use BadMethodCallException as BaseBadMethodCallException;
 use Throwable;
+/** @internal */
 class BadFluentConstructorException extends BaseBadMethodCallException implements BadMethodCallException
 {
     /**
@@ -38,7 +39,7 @@ class BadFluentConstructorException extends BaseBadMethodCallException implement
      *
      * @return string
      */
-    public function getMethod(): string
+    public function getMethod() : string
     {
         return $this->method;
     }

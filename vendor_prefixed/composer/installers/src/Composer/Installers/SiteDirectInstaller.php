@@ -2,6 +2,7 @@
 
 namespace OtomatiesCoreVendor\Composer\Installers;
 
+/** @internal */
 class SiteDirectInstaller extends BaseInstaller
 {
     /** @var array<string, string> */
@@ -10,7 +11,7 @@ class SiteDirectInstaller extends BaseInstaller
      * @param array<string, string> $vars
      * @return array<string, string>
      */
-    public function inflectPackageVars(array $vars): array
+    public function inflectPackageVars(array $vars) : array
     {
         return $this->parseVars($vars);
     }
@@ -18,11 +19,11 @@ class SiteDirectInstaller extends BaseInstaller
      * @param array<string, string> $vars
      * @return array<string, string>
      */
-    protected function parseVars(array $vars): array
+    protected function parseVars(array $vars) : array
     {
-        $vars['vendor'] = strtolower($vars['vendor']) == 'sitedirect' ? 'SiteDirect' : $vars['vendor'];
-        $vars['name'] = str_replace(array('-', '_'), ' ', $vars['name']);
-        $vars['name'] = str_replace(' ', '', ucwords($vars['name']));
+        $vars['vendor'] = \strtolower($vars['vendor']) == 'sitedirect' ? 'SiteDirect' : $vars['vendor'];
+        $vars['name'] = \str_replace(array('-', '_'), ' ', $vars['name']);
+        $vars['name'] = \str_replace(' ', '', \ucwords($vars['name']));
         return $vars;
     }
 }

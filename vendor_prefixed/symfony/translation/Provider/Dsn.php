@@ -15,6 +15,7 @@ use OtomatiesCoreVendor\Symfony\Component\Translation\Exception\MissingRequiredO
 /**
  * @author Fabien Potencier <fabien@symfony.com>
  * @author Oskar Stark <oskarstark@googlemail.com>
+ * @internal
  */
 final class Dsn
 {
@@ -26,13 +27,10 @@ final class Dsn
     private ?string $path;
     private array $options = [];
     private string $originalDsn;
-    public function __construct(
-        #[\SensitiveParameter]
-        string $dsn
-    )
+    public function __construct(#[\SensitiveParameter] string $dsn)
     {
         $this->originalDsn = $dsn;
-        if (\false === $params = parse_url($dsn)) {
+        if (\false === ($params = \parse_url($dsn))) {
             throw new InvalidArgumentException('The translation provider DSN is invalid.');
         }
         if (!isset($params['scheme'])) {
@@ -43,52 +41,52 @@ final class Dsn
             throw new InvalidArgumentException('The translation provider DSN must contain a host (use "default" by default).');
         }
         $this->host = $params['host'];
-        $this->user = '' !== ($params['user'] ?? '') ? rawurldecode($params['user']) : null;
-        $this->password = '' !== ($params['pass'] ?? '') ? rawurldecode($params['pass']) : null;
+        $this->user = '' !== ($params['user'] ?? '') ? \rawurldecode($params['user']) : null;
+        $this->password = '' !== ($params['pass'] ?? '') ? \rawurldecode($params['pass']) : null;
         $this->port = $params['port'] ?? null;
         $this->path = $params['path'] ?? null;
-        parse_str($params['query'] ?? '', $this->options);
+        \parse_str($params['query'] ?? '', $this->options);
     }
-    public function getScheme(): string
+    public function getScheme() : string
     {
         return $this->scheme;
     }
-    public function getHost(): string
+    public function getHost() : string
     {
         return $this->host;
     }
-    public function getUser(): ?string
+    public function getUser() : ?string
     {
         return $this->user;
     }
-    public function getPassword(): ?string
+    public function getPassword() : ?string
     {
         return $this->password;
     }
-    public function getPort(?int $default = null): ?int
+    public function getPort(?int $default = null) : ?int
     {
         return $this->port ?? $default;
     }
-    public function getOption(string $key, mixed $default = null): mixed
+    public function getOption(string $key, mixed $default = null) : mixed
     {
         return $this->options[$key] ?? $default;
     }
-    public function getRequiredOption(string $key): mixed
+    public function getRequiredOption(string $key) : mixed
     {
-        if (!\array_key_exists($key, $this->options) || '' === trim($this->options[$key])) {
+        if (!\array_key_exists($key, $this->options) || '' === \trim($this->options[$key])) {
             throw new MissingRequiredOptionException($key);
         }
         return $this->options[$key];
     }
-    public function getOptions(): array
+    public function getOptions() : array
     {
         return $this->options;
     }
-    public function getPath(): ?string
+    public function getPath() : ?string
     {
         return $this->path;
     }
-    public function getOriginalDsn(): string
+    public function getOriginalDsn() : string
     {
         return $this->originalDsn;
     }

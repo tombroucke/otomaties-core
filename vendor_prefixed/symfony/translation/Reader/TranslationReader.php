@@ -17,6 +17,7 @@ use OtomatiesCoreVendor\Symfony\Component\Translation\MessageCatalogue;
  * TranslationReader reads translation messages from translation files.
  *
  * @author Michel Salib <michelsalib@hotmail.com>
+ * @internal
  */
 class TranslationReader implements TranslationReaderInterface
 {
@@ -31,13 +32,13 @@ class TranslationReader implements TranslationReaderInterface
      *
      * @param string $format The format of the loader
      */
-    public function addLoader(string $format, LoaderInterface $loader): void
+    public function addLoader(string $format, LoaderInterface $loader) : void
     {
         $this->loaders[$format] = $loader;
     }
-    public function read(string $directory, MessageCatalogue $catalogue): void
+    public function read(string $directory, MessageCatalogue $catalogue) : void
     {
-        if (!is_dir($directory)) {
+        if (!\is_dir($directory)) {
             return;
         }
         foreach ($this->loaders as $format => $loader) {
@@ -46,7 +47,7 @@ class TranslationReader implements TranslationReaderInterface
             $extension = $catalogue->getLocale() . '.' . $format;
             $files = $finder->files()->name('*.' . $extension)->in($directory);
             foreach ($files as $file) {
-                $domain = substr($file->getFilename(), 0, -1 * \strlen($extension) - 1);
+                $domain = \substr($file->getFilename(), 0, -1 * \strlen($extension) - 1);
                 $catalogue->addCatalogue($loader->load($file->getPathname(), $catalogue->getLocale(), $domain));
             }
         }

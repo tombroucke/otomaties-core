@@ -18,15 +18,16 @@ use OtomatiesCoreVendor\Symfony\Component\Yaml\Yaml;
  * YamlFileDumper generates yaml files from a message catalogue.
  *
  * @author Michel Salib <michelsalib@hotmail.com>
+ * @internal
  */
 class YamlFileDumper extends FileDumper
 {
     public function __construct(private string $extension = 'yml')
     {
     }
-    public function formatCatalogue(MessageCatalogue $messages, string $domain, array $options = []): string
+    public function formatCatalogue(MessageCatalogue $messages, string $domain, array $options = []) : string
     {
-        if (!class_exists(Yaml::class)) {
+        if (!\class_exists(Yaml::class)) {
             throw new LogicException('Dumping translations in the YAML format requires the Symfony Yaml component.');
         }
         $data = $messages->all($domain);
@@ -38,7 +39,7 @@ class YamlFileDumper extends FileDumper
         }
         return Yaml::dump($data);
     }
-    protected function getExtension(): string
+    protected function getExtension() : string
     {
         return $this->extension;
     }

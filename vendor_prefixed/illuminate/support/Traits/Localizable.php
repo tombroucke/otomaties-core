@@ -3,6 +3,7 @@
 namespace OtomatiesCoreVendor\Illuminate\Support\Traits;
 
 use OtomatiesCoreVendor\Illuminate\Container\Container;
+/** @internal */
 trait Localizable
 {
     /**

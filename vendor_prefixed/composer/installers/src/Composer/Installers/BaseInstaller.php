@@ -5,6 +5,7 @@ namespace OtomatiesCoreVendor\Composer\Installers;
 use OtomatiesCoreVendor\Composer\IO\IOInterface;
 use OtomatiesCoreVendor\Composer\Composer;
 use OtomatiesCoreVendor\Composer\Package\PackageInterface;
+/** @internal */
 abstract class BaseInstaller
 {
     /** @var array<string, string> */
@@ -27,17 +28,17 @@ abstract class BaseInstaller
     /**
      * Return the install path based on package type.
      */
-    public function getInstallPath(PackageInterface $package, string $frameworkType = ''): string
+    public function getInstallPath(PackageInterface $package, string $frameworkType = '') : string
     {
         $type = $this->package->getType();
         $prettyName = $this->package->getPrettyName();
-        if (strpos($prettyName, '/') !== \false) {
-            list($vendor, $name) = explode('/', $prettyName);
+        if (\strpos($prettyName, '/') !== \false) {
+            list($vendor, $name) = \explode('/', $prettyName);
         } else {
             $vendor = '';
             $name = $prettyName;
         }
-        $availableVars = $this->inflectPackageVars(compact('name', 'vendor', 'type'));
+        $availableVars = $this->inflectPackageVars(\compact('name', 'vendor', 'type'));
         $extra = $package->getExtra();
         if (!empty($extra['installer-name'])) {
             $availableVars['name'] = $extra['installer-name'];
@@ -49,10 +50,10 @@ abstract class BaseInstaller
                 return $this->templatePath($customPath, $availableVars);
             }
         }
-        $packageType = substr($type, strlen($frameworkType) + 1);
+        $packageType = \substr($type, \strlen($frameworkType) + 1);
         $locations = $this->getLocations($frameworkType);
         if (!isset($locations[$packageType])) {
-            throw new \InvalidArgumentException(sprintf('Package type "%s" is not supported', $type));
+            throw new \InvalidArgumentException(\sprintf('Package type "%s" is not supported', $type));
         }
         return $this->templatePath($locations[$packageType], $availableVars);
     }
@@ -62,7 +63,7 @@ abstract class BaseInstaller
      * @param  array<string, string> $vars This will normally receive array{name: string, vendor: string, type: string}
      * @return array<string, string>
      */
-    public function inflectPackageVars(array $vars): array
+    public function inflectPackageVars(array $vars) : array
     {
         return $vars;
     }
@@ -80,14 +81,14 @@ abstract class BaseInstaller
      *
      * @param  array<string, string> $vars
      */
-    protected function templatePath(string $path, array $vars = array()): string
+    protected function templatePath(string $path, array $vars = array()) : string
     {
-        if (strpos($path, '{') !== \false) {
-            extract($vars);
-            preg_match_all('@\{\$([A-Za-z0-9_]*)\}@i', $path, $matches);
+        if (\strpos($path, '{') !== \false) {
+            \extract($vars);
+            \preg_match_all('@\\{\\$([A-Za-z0-9_]*)\\}@i', $path, $matches);
             if (!empty($matches[1])) {
                 foreach ($matches[1] as $var) {
-                    $path = str_replace('{$' . $var . '}', ${$var}, $path);
+                    $path = \str_replace('{$' . $var . '}', ${$var}, $path);
                 }
             }
         }
@@ -103,17 +104,17 @@ abstract class BaseInstaller
     {
         foreach ($paths as $path => $names) {
             $names = (array) $names;
-            if (in_array($name, $names) || in_array('type:' . $type, $names) || in_array('vendor:' . $vendor, $names)) {
+            if (\in_array($name, $names) || \in_array('type:' . $type, $names) || \in_array('vendor:' . $vendor, $names)) {
                 return $path;
             }
         }
         return \false;
     }
-    protected function pregReplace(string $pattern, string $replacement, string $subject): string
+    protected function pregReplace(string $pattern, string $replacement, string $subject) : string
     {
-        $result = preg_replace($pattern, $replacement, $subject);
+        $result = \preg_replace($pattern, $replacement, $subject);
         if (null === $result) {
-            throw new \RuntimeException('Failed to run preg_replace with ' . $pattern . ': ' . preg_last_error());
+            throw new \RuntimeException('Failed to run preg_replace with ' . $pattern . ': ' . \preg_last_error());
         }
         return $result;
     }

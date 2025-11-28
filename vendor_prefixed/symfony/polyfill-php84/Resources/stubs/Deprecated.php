@@ -11,6 +11,7 @@ namespace OtomatiesCoreVendor;
  * file that was distributed with this source code.
  */
 if (\PHP_VERSION_ID < 80400) {
+    /** @internal */
     #[\Attribute(\Attribute::TARGET_METHOD | \Attribute::TARGET_FUNCTION | \Attribute::TARGET_CLASS_CONSTANT)]
     final class Deprecated
     {
@@ -22,5 +23,4 @@ if (\PHP_VERSION_ID < 80400) {
             $this->since = $since;
         }
     }
-    \class_alias('OtomatiesCoreVendor\Deprecated', 'Deprecated', \false);
 }
