@@ -20,7 +20,7 @@ require_once __DIR__ . '/vendor_prefixed/autoload.php';
 /**
  * Get main plugin class instance
  *
- * @return Plugin
+ * @return \Otomaties\Core\Plugin
  */
 function otomatiesCore()
 {
