@@ -4,6 +4,9 @@ namespace Otomaties\Core\Modules;
 
 class Frontend
 {
+    /**
+     * Add actions and filters
+     */
     public function init(): void
     {
         add_filter('widget_text', 'do_shortcode');
@@ -12,6 +15,9 @@ class Frontend
         $this->cleanUpHead();
     }
 
+    /**
+     * Clean up wp_head
+     */
     private function cleanUpHead(): void
     {
         remove_action('wp_head', 'feed_links_extra', 3);

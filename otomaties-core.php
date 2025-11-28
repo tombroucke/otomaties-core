@@ -31,7 +31,7 @@ function otomatiesCore()
     static $plugin;
 
     if (! $plugin) {
-        $version = \get_plugin_data(__FILE__, false, false)['Version'];
+        $version = get_plugin_data(__FILE__, false, false)['Version'];
         $environment = defined('WP_ENV') && is_string(constant('WP_ENV')) ? constant('WP_ENV') : null;
 
         $plugin = new \Otomaties\Core\Plugin(

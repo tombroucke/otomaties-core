@@ -13,6 +13,9 @@ class Revision
      */
     private ?array $releaseInformation = null;
 
+    /**
+     * Add actions and filters
+     */
     public function init(): void
     {
         add_filter('update_footer', [$this, 'showRevisionInAdminFooter'], 999);

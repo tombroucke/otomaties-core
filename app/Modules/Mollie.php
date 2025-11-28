@@ -4,6 +4,9 @@ namespace Otomaties\Core\Modules;
 
 class Mollie
 {
+    /**
+     * Add actions and filters
+     */
     public function init(): void
     {
         add_filter('mollie-payments-for-woocommerce_webhook_url', [$this, 'webhookBasicAuth'], 10, 2);

@@ -10,13 +10,8 @@ use Otomaties\Core\Modules\Connect\ResponseBuilder;
 class Connect
 {
     /**
-     * Set up the Connect class
+     * Add actions and filters
      */
-    public function __construct()
-    {
-        //
-    }
-
     public function init(): void
     {
         add_action('rest_api_init', [$this, 'registerRestRoutes']);

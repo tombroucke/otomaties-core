@@ -13,11 +13,6 @@ class CleanWpSeoTaxonomyMetaCommand implements Contracts\CommandContract
 
     public const COMMAND_ARGUMENTS = [];
 
-    public function __construct()
-    {
-        //
-    }
-
     /**
      * Run below command to activate:
      *

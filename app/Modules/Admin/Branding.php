@@ -14,6 +14,9 @@ class Branding
         //
     }
 
+    /**
+     * Add actions and filters
+     */
     public function init(): void
     {
         add_action('admin_bar_menu', [$this, 'adminBarLogo'], 1);

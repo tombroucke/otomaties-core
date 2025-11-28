@@ -6,6 +6,9 @@ use OtomatiesCoreVendor\Illuminate\Support\Str;
 
 class WooCommerce
 {
+    /**
+     * Add actions and filters
+     */
     public function init(): void
     {
         add_filter('woocommerce_generate_order_key', [$this, 'rejectPatternsInOrderKey'], 10);

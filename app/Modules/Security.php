@@ -12,6 +12,11 @@ class Security
         //
     }
 
+    /**
+     * Add actions and filters
+     *
+     * @return void
+     */
     public function init()
     {
         add_action('admin_notices', [$this, 'debugNotice']);

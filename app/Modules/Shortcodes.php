@@ -4,6 +4,9 @@ namespace Otomaties\Core\Modules;
 
 class Shortcodes
 {
+    /**
+     * Add shortcodes
+     */
     public function init(): void
     {
         add_shortcode('email', [$this, 'obfuscateEmail']);
