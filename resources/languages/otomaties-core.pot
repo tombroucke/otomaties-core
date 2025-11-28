@@ -2,78 +2,90 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Otomaties Core\n"
-"POT-Creation-Date: 2021-12-28 11:24+0100\n"
-"PO-Revision-Date: 2021-12-20 14:06+0100\n"
+"POT-Creation-Date: 2025-11-28 23:26+0100\n"
+"PO-Revision-Date: 2025-11-28 23:24+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
-"X-Generator: Poedit 3.0.1\n"
-"X-Poedit-Basepath: ..\n"
+"X-Generator: Poedit 3.8\n"
+"X-Poedit-Basepath: ../..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: otomaties-core.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
-"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
-"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-KeywordsList: "
+"__;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.min.js\n"
+"X-Poedit-SearchPathExcluded-1: tests\n"
+"X-Poedit-SearchPathExcluded-2: vendor\n"
 
-#: app/Admin.php:116
+#: app/Modules/Admin.php:112
 msgid ""
-"Some of these settings are controlled by the theme. To change these, please "
-"contact the theme author."
+"Some of these settings are controlled by Otomaties core. To update these "
+"settings, please contact the website administrator."
 msgstr ""
 
-#: app/Admin.php:154
+#: app/Modules/Admin.php:154
+#, php-format
+msgid ""
+"Super page cache TTL is not set. Please configure it in the plugin settings "
+"to ensure optimal caching performance. Recommendation: %s seconds."
+msgstr ""
+
+#: app/Modules/Admin/Branding.php:68
 msgid "Website by"
 msgstr ""
 
-#: app/Admin.php:166
+#: app/Modules/Revision.php:52 app/Modules/Revision.php:56
 msgid "Timestamp"
 msgstr ""
 
-#: app/Admin.php:166 app/Admin.php:168
+#: app/Modules/Revision.php:59 app/Modules/Revision.php:61
 msgid "Revision"
 msgstr ""
 
-#: app/Security.php:14
+#: app/Modules/Security.php:38
 msgid ""
 "Disable debugging for better security. Add <code>define( 'WP_DEBUG', false );"
 "</code> to wp-config.php"
 msgstr ""
 
-#: app/Security.php:17
-msgid ""
-"Your debug.log file is publicly accessible. Remove <code>wp-content/debug."
-"log</code>"
+#: app/Modules/Security.php:44
+#, php-format
+msgid "Your debug.log file is publicly accessible. Remove <code>%s</code>"
 msgstr ""
 
-#: app/Security.php:20
+#: app/Modules/Security.php:50
 msgid ""
 "Disallow file editing for better security. Add "
 "<code>define( 'DISALLOW_FILE_EDIT', true );</code> to wp-config.php"
 msgstr ""
 
-#: app/Security.php:23
-msgid "Install & activate Wordfence or Sucuri Security for optimal security."
+#: app/Modules/Security.php:60
+msgid ""
+"Install & activate Wordfence, Sucuri Security or WP Defender for optimal "
+"security."
 msgstr ""
 
-#: app/Security.php:32
+#: app/Modules/Security.php:69
 msgid "You have some security concerns"
 msgstr ""
 
-#. translators: %s is the lost password url.
-#: app/Security.php:63
+#: app/Modules/Security.php:98
+msgid "Could not reset your password."
+msgstr ""
+
+#: app/Modules/Security.php:103
 #, php-format
 msgid ""
 "Could not log you in. If this problem persists, <a href=\"%s\">try resetting "
 "your password</a>"
 msgstr ""
 
-#: app/Security.php:101
+#: app/Modules/Security.php:155
 msgid ""
 "Otomaties core has disabled updating of <code>users_can_register</code> & "
 "<code>default_role</code>."
@@ -81,6 +93,10 @@ msgstr ""
 
 #. Plugin Name of the plugin/theme
 msgid "Otomaties Core"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "https://github.com/tombroucke/otomaties-core"
 msgstr ""
 
 #. Description of the plugin/theme

@@ -2,11 +2,12 @@
 
 /**
  * Plugin Name:     Otomaties Core
+ * Plugin URI:      https://github.com/tombroucke/otomaties-core
  * Description:     Optimize WordPress install
  * Author:          Tom Broucke
  * Author URI:      https://tombroucke.be
  * Text Domain:     otomaties-core
- * Domain Path:     /lang
+ * Domain Path:     resources/languages
  * Version:         2.0.0-beta1
  */
 

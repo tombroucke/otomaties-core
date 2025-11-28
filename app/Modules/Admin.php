@@ -109,7 +109,7 @@ class Admin
         $this->view
             ->render('admin/notice', [
                 'type' => 'notice',
-                'message' => __('Some of these settings are controlled by the theme. To change these, please contact the theme author.', 'otomaties-core'), // phpcs:ignore Generic.Files.LineLength
+                'message' => __('Some of these settings are controlled by Otomaties core. To update these settings, please contact the website administrator.', 'otomaties-core'), // phpcs:ignore Generic.Files.LineLength
             ]);
     }
 
