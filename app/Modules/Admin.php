@@ -14,6 +14,9 @@ class Admin
         //
     }
 
+    /**
+     * Add actions and filters
+     */
     public function init(): void
     {
         if (otomatiesCore()->environment() != 'development') {
