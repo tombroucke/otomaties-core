@@ -42,7 +42,7 @@ function otomatiesCore()
 
 add_action('plugin_boilerplate_functionality', function ($plugin) {
     $plugin->initialize();
-}, 9999);
+}, PHP_INT_MAX);
 
 add_action('plugins_loaded', function () {
     otomatiesCore();
