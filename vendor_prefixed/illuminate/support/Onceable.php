@@ -5,7 +5,6 @@ namespace OtomatiesCoreVendor\Illuminate\Support;
 use Closure;
 use OtomatiesCoreVendor\Illuminate\Contracts\Support\HasOnceHash;
 use OtomatiesCoreVendor\Laravel\SerializableClosure\Support\ReflectionClosure;
-/** @internal */
 class Onceable
 {
     /**
@@ -27,7 +26,7 @@ class Onceable
      */
     public static function tryFromTrace(array $trace, callable $callable)
     {
-        if (!\is_null($hash = static::hashFromTrace($trace, $callable))) {
+        if (!is_null($hash = static::hashFromTrace($trace, $callable))) {
             $object = static::objectFromTrace($trace);
             return new static($hash, $object, $callable);
         }
@@ -50,20 +49,20 @@ class Onceable
      */
     protected static function hashFromTrace(array $trace, callable $callable)
     {
-        if (\str_contains($trace[0]['file'] ?? '', 'eval()\'d code')) {
+        if (str_contains($trace[0]['file'] ?? '', 'eval()\'d code')) {
             return null;
         }
-        $uses = \array_map(static function (mixed $argument) {
+        $uses = array_map(static function (mixed $argument) {
             if ($argument instanceof HasOnceHash) {
                 return $argument->onceHash();
             }
-            if (\is_object($argument)) {
-                return \spl_object_hash($argument);
+            if (is_object($argument)) {
+                return spl_object_hash($argument);
             }
             return $argument;
         }, $callable instanceof Closure ? (new ReflectionClosure($callable))->getClosureUsedVariables() : []);
         $class = $callable instanceof Closure ? (new ReflectionClosure($callable))->getClosureCalledClass()?->getName() : null;
         $class ??= isset($trace[1]['class']) ? $trace[1]['class'] : null;
-        return \hash('xxh128', \sprintf('%s@%s%s:%s (%s)', $trace[0]['file'], $class ? $class . '@' : '', $trace[1]['function'], $trace[0]['line'], \serialize($uses)));
+        return hash('xxh128', sprintf('%s@%s%s:%s (%s)', $trace[0]['file'], $class ? $class . '@' : '', $trace[1]['function'], $trace[0]['line'], serialize($uses)));
     }
 }

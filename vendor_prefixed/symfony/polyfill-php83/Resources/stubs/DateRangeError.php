@@ -11,8 +11,8 @@ namespace OtomatiesCoreVendor;
  * file that was distributed with this source code.
  */
 if (\PHP_VERSION_ID < 80300) {
-    /** @internal */
-    class DateRangeError extends DateError
+    class DateRangeError extends \DateError
     {
     }
+    \class_alias('OtomatiesCoreVendor\DateRangeError', 'DateRangeError', \false);
 }

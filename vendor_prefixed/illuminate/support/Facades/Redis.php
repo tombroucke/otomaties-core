@@ -31,7 +31,6 @@ namespace OtomatiesCoreVendor\Illuminate\Support\Facades;
  * @method static mixed macroCall(string $method, array $parameters)
  *
  * @see \Illuminate\Redis\RedisManager
- * @internal
  */
 class Redis extends Facade
 {

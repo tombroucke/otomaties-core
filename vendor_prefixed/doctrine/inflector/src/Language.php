@@ -3,7 +3,6 @@
 declare (strict_types=1);
 namespace OtomatiesCoreVendor\Doctrine\Inflector;
 
-/** @internal */
 final class Language
 {
     public const ENGLISH = 'english';

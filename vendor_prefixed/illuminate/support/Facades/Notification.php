@@ -39,7 +39,6 @@ use OtomatiesCoreVendor\Illuminate\Support\Testing\Fakes\NotificationFake;
  *
  * @see \Illuminate\Notifications\ChannelManager
  * @see \Illuminate\Support\Testing\Fakes\NotificationFake
- * @internal
  */
 class Notification extends Facade
 {

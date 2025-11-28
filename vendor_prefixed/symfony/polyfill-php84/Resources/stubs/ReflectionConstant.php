@@ -13,7 +13,6 @@ namespace OtomatiesCoreVendor;
 if (\PHP_VERSION_ID < 80400) {
     /**
      * @author Daniel Scherzer <daniel.e.scherzer@gmail.com>
-     * @internal
      */
     final class ReflectionConstant
     {
@@ -33,7 +32,7 @@ if (\PHP_VERSION_ID < 80400) {
             }
             $this->name = \ltrim($name, '\\');
             $deprecated = \false;
-            $eh = \set_error_handler(static function ($type, $msg, $file, $line) use($name, &$deprecated, &$eh) {
+            $eh = \set_error_handler(static function ($type, $msg, $file, $line) use ($name, &$deprecated, &$eh) {
                 if (\E_DEPRECATED === $type && "Constant {$name} is deprecated" === $msg) {
                     return $deprecated = \true;
                 }
@@ -46,7 +45,7 @@ if (\PHP_VERSION_ID < 80400) {
                 \restore_error_handler();
             }
         }
-        public function getName() : string
+        public function getName(): string
         {
             return $this->name;
         }
@@ -54,25 +53,25 @@ if (\PHP_VERSION_ID < 80400) {
         {
             return $this->value;
         }
-        public function getNamespaceName() : string
+        public function getNamespaceName(): string
         {
-            if (\false === ($slashPos = \strrpos($this->name, '\\'))) {
+            if (\false === $slashPos = \strrpos($this->name, '\\')) {
                 return '';
             }
             return \substr($this->name, 0, $slashPos);
         }
-        public function getShortName() : string
+        public function getShortName(): string
         {
-            if (\false === ($slashPos = \strrpos($this->name, '\\'))) {
+            if (\false === $slashPos = \strrpos($this->name, '\\')) {
                 return $this->name;
             }
             return \substr($this->name, $slashPos + 1);
         }
-        public function isDeprecated() : bool
+        public function isDeprecated(): bool
         {
             return $this->deprecated;
         }
-        public function __toString() : string
+        public function __toString(): string
         {
             // A constant is persistent if provided by PHP itself rather than
             // being defined by users. If we got here, we know that it *is*
@@ -130,13 +129,17 @@ if (\PHP_VERSION_ID < 80400) {
             $result .= " }\n";
             return $result;
         }
-        public function __sleep() : array
+        public function __sleep(): array
         {
             throw new \Exception("Serialization of 'ReflectionConstant' is not allowed");
         }
-        public function __wakeup() : void
+        public function __wakeup(): void
         {
             throw new \Exception("Unserialization of 'ReflectionConstant' is not allowed");
         }
     }
+    /**
+     * @author Daniel Scherzer <daniel.e.scherzer@gmail.com>
+     */
+    \class_alias('OtomatiesCoreVendor\ReflectionConstant', 'ReflectionConstant', \false);
 }

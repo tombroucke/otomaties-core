@@ -34,7 +34,6 @@ use OtomatiesCoreVendor\Carbon\CarbonInterval;
  * @method static startOfWeek(int $day = null)
  * @method static subWeeks(int $weeks = 1)
  * @method static year(int $year = null)
- * @internal
  */
 trait Week
 {
@@ -69,7 +68,7 @@ trait Week
         $dayOfWeek = $dayOfWeek ?? $this->getTranslationMessage('first_day_of_week') ?? static::SUNDAY;
         $dayOfYear = $dayOfYear ?? $this->getTranslationMessage('day_of_first_week_of_year') ?? 1;
         if ($year !== null) {
-            $year = (int) \round($year);
+            $year = (int) round($year);
             if ($this->weekYear(null, $dayOfWeek, $dayOfYear) === $year) {
                 return $this->avoidMutation();
             }
@@ -138,7 +137,7 @@ trait Week
         if ($end->year !== $year) {
             $endDay += $this->daysInYear;
         }
-        return (int) \round(($endDay - $startDay) / static::DAYS_PER_WEEK);
+        return (int) round(($endDay - $startDay) / static::DAYS_PER_WEEK);
     }
     /**
      * Get/set the week number using given first day of week and first
@@ -157,7 +156,7 @@ trait Week
         $dayOfWeek = $dayOfWeek ?? $this->getTranslationMessage('first_day_of_week') ?? 0;
         $dayOfYear = $dayOfYear ?? $this->getTranslationMessage('day_of_first_week_of_year') ?? 1;
         if ($week !== null) {
-            return $date->addWeeks(\round($week) - $this->week(null, $dayOfWeek, $dayOfYear));
+            return $date->addWeeks(round($week) - $this->week(null, $dayOfWeek, $dayOfYear));
         }
         $start = $date->avoidMutation()->shiftTimezone('UTC')->dayOfYear($dayOfYear)->startOfWeek($dayOfWeek);
         $end = $date->avoidMutation()->shiftTimezone('UTC')->startOfWeek($dayOfWeek);

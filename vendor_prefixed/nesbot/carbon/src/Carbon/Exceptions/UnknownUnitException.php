@@ -12,7 +12,6 @@ declare (strict_types=1);
 namespace OtomatiesCoreVendor\Carbon\Exceptions;
 
 use Throwable;
-/** @internal */
 class UnknownUnitException extends UnitException
 {
     /**
@@ -38,7 +37,7 @@ class UnknownUnitException extends UnitException
      *
      * @return string
      */
-    public function getUnit() : string
+    public function getUnit(): string
     {
         return $this->unit;
     }

@@ -15,11 +15,10 @@ use OtomatiesCoreVendor\Symfony\Component\DependencyInjection\ContainerBuilder;
 use OtomatiesCoreVendor\Symfony\Component\DependencyInjection\Reference;
 /**
  * Adds tagged translation.formatter services to translation writer.
- * @internal
  */
 class TranslationDumperPass implements CompilerPassInterface
 {
-    public function process(ContainerBuilder $container) : void
+    public function process(ContainerBuilder $container): void
     {
         if (!$container->hasDefinition('translation.writer')) {
             return;

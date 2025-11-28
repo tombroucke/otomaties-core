@@ -2,7 +2,6 @@
 
 namespace OtomatiesCoreVendor\Composer\Installers;
 
-/** @internal */
 class MoodleInstaller extends BaseInstaller
 {
     /** @var array<string, string> */

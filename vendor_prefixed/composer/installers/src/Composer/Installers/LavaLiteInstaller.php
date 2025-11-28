@@ -2,7 +2,6 @@
 
 namespace OtomatiesCoreVendor\Composer\Installers;
 
-/** @internal */
 class LavaLiteInstaller extends BaseInstaller
 {
     /** @var array<string, string> */

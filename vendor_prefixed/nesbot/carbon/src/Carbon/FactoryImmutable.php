@@ -123,7 +123,6 @@ use OtomatiesCoreVendor\Symfony\Contracts\Translation\TranslatorInterface;
  * @method CarbonImmutable     yesterday(DateTimeZone|string|int|null $timezone = null)                                                                             Create a Carbon instance for yesterday.
  *
  * </autodoc>
- * @internal
  */
 class FactoryImmutable extends Factory implements ClockInterface
 {
@@ -133,21 +132,21 @@ class FactoryImmutable extends Factory implements ClockInterface
     /**
      * @internal Instance used for static calls, such as Carbon::getTranslator(), CarbonImmutable::setTestNow(), etc.
      */
-    public static function getDefaultInstance() : self
+    public static function getDefaultInstance(): self
     {
         return self::$defaultInstance ??= new self();
     }
     /**
      * @internal Instance used for static calls possibly called by non-static methods.
      */
-    public static function getInstance() : Factory
+    public static function getInstance(): Factory
     {
         return self::$currentClock?->getFactory() ?? self::getDefaultInstance();
     }
     /**
      * @internal Set instance before creating new dates.
      */
-    public static function setCurrentClock(ClockInterface|Factory|DateTimeInterface|null $currentClock) : void
+    public static function setCurrentClock(ClockInterface|Factory|DateTimeInterface|null $currentClock): void
     {
         if ($currentClock && !$currentClock instanceof WrapperClock) {
             $currentClock = new WrapperClock($currentClock);
@@ -157,18 +156,18 @@ class FactoryImmutable extends Factory implements ClockInterface
     /**
      * @internal Instance used to link new object to their factory creator.
      */
-    public static function getCurrentClock() : ?WrapperClock
+    public static function getCurrentClock(): ?WrapperClock
     {
         return self::$currentClock;
     }
     /**
      * Get a Carbon instance for the current date and time.
      */
-    public function now(DateTimeZone|string|int|null $timezone = null) : CarbonImmutable
+    public function now(DateTimeZone|string|int|null $timezone = null): CarbonImmutable
     {
         return $this->__call('now', [$timezone]);
     }
-    public function sleep(int|float $seconds) : void
+    public function sleep(int|float $seconds): void
     {
         if ($this->hasTestNow()) {
             $this->setTestNow($this->getTestNow()->avoidMutation()->addSeconds($seconds));

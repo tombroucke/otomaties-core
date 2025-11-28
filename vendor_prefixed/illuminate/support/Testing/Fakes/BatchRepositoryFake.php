@@ -8,7 +8,6 @@ use OtomatiesCoreVendor\Illuminate\Bus\BatchRepository;
 use OtomatiesCoreVendor\Illuminate\Bus\PendingBatch;
 use OtomatiesCoreVendor\Illuminate\Bus\UpdatedBatchJobCounts;
 use OtomatiesCoreVendor\Illuminate\Support\Str;
-/** @internal */
 class BatchRepositoryFake implements BatchRepository
 {
     /**
@@ -47,7 +46,7 @@ class BatchRepositoryFake implements BatchRepository
     public function store(PendingBatch $batch)
     {
         $id = (string) Str::orderedUuid();
-        $this->batches[$id] = new BatchFake($id, $batch->name, \count($batch->jobs), \count($batch->jobs), 0, [], $batch->options, CarbonImmutable::now(), null, null);
+        $this->batches[$id] = new BatchFake($id, $batch->name, count($batch->jobs), count($batch->jobs), 0, [], $batch->options, CarbonImmutable::now(), null, null);
         return $this->batches[$id];
     }
     /**

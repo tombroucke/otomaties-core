@@ -48,7 +48,6 @@ namespace OtomatiesCoreVendor\Illuminate\Support\Facades;
  * @method static string applyEchoHandler(string $value)
  *
  * @see \Illuminate\View\Compilers\BladeCompiler
- * @internal
  */
 class Blade extends Facade
 {

@@ -17,7 +17,6 @@ use DateTimeInterface;
  * Trait Cast.
  *
  * Utils to cast into an other class.
- * @internal
  */
 trait Cast
 {
@@ -30,10 +29,10 @@ trait Cast
      *
      * @return T
      */
-    public function cast(string $className) : mixed
+    public function cast(string $className): mixed
     {
-        if (!\method_exists($className, 'instance')) {
-            if (\is_a($className, DateTimeInterface::class, \true)) {
+        if (!method_exists($className, 'instance')) {
+            if (is_a($className, DateTimeInterface::class, \true)) {
                 return $className::createFromFormat('U.u', $this->rawFormat('U.u'))->setTimezone($this->getTimezone());
             }
             throw new InvalidCastException("{$className} has not the instance() method needed to cast the date.");

@@ -7,7 +7,6 @@ use OtomatiesCoreVendor\Illuminate\Contracts\Support\ValidatedData;
 use OtomatiesCoreVendor\Illuminate\Support\Traits\InteractsWithData;
 use OtomatiesCoreVendor\Symfony\Component\VarDumper\VarDumper;
 use Traversable;
-/** @internal */
 class ValidatedInput implements ValidatedData
 {
     use InteractsWithData;
@@ -34,7 +33,7 @@ class ValidatedInput implements ValidatedData
      */
     public function merge(array $items)
     {
-        return new static(\array_merge($this->all(), $items));
+        return new static(array_merge($this->all(), $items));
     }
     /**
      * Get the raw, underlying input array.
@@ -48,7 +47,7 @@ class ValidatedInput implements ValidatedData
             return $this->input;
         }
         $input = [];
-        foreach (\is_array($keys) ? $keys : \func_get_args() as $key) {
+        foreach (is_array($keys) ? $keys : func_get_args() as $key) {
             Arr::set($input, $key, Arr::get($this->input, $key));
         }
         return $input;
@@ -71,7 +70,7 @@ class ValidatedInput implements ValidatedData
      */
     public function keys()
     {
-        return \array_keys($this->input());
+        return array_keys($this->input());
     }
     /**
      * Retrieve an input item from the validated inputs.
@@ -103,8 +102,8 @@ class ValidatedInput implements ValidatedData
      */
     public function dump($keys = [])
     {
-        $keys = \is_array($keys) ? $keys : \func_get_args();
-        VarDumper::dump(\count($keys) > 0 ? $this->only($keys) : $this->all());
+        $keys = is_array($keys) ? $keys : func_get_args();
+        VarDumper::dump(count($keys) > 0 ? $this->only($keys) : $this->all());
         return $this;
     }
     /**
@@ -162,7 +161,7 @@ class ValidatedInput implements ValidatedData
      * @param  mixed  $key
      * @return bool
      */
-    public function offsetExists($key) : bool
+    public function offsetExists($key): bool
     {
         return $this->exists($key);
     }
@@ -172,7 +171,7 @@ class ValidatedInput implements ValidatedData
      * @param  mixed  $key
      * @return mixed
      */
-    public function offsetGet($key) : mixed
+    public function offsetGet($key): mixed
     {
         return $this->input($key);
     }
@@ -183,9 +182,9 @@ class ValidatedInput implements ValidatedData
      * @param  mixed  $value
      * @return void
      */
-    public function offsetSet($key, $value) : void
+    public function offsetSet($key, $value): void
     {
-        if (\is_null($key)) {
+        if (is_null($key)) {
             $this->input[] = $value;
         } else {
             $this->input[$key] = $value;
@@ -197,7 +196,7 @@ class ValidatedInput implements ValidatedData
      * @param  string  $key
      * @return void
      */
-    public function offsetUnset($key) : void
+    public function offsetUnset($key): void
     {
         unset($this->input[$key]);
     }
@@ -206,7 +205,7 @@ class ValidatedInput implements ValidatedData
      *
      * @return \ArrayIterator
      */
-    public function getIterator() : Traversable
+    public function getIterator(): Traversable
     {
         return new ArrayIterator($this->input);
     }

@@ -14,7 +14,6 @@ namespace OtomatiesCoreVendor\Symfony\Component\Translation;
  * This interface is used to get, set, and delete metadata about the Catalogue.
  *
  * @author Hugo Alliaume <hugo@alliau.me>
- * @internal
  */
 interface CatalogueMetadataAwareInterface
 {
@@ -27,16 +26,16 @@ interface CatalogueMetadataAwareInterface
      *
      * @return mixed The value that was set or an array with the domains/keys or null
      */
-    public function getCatalogueMetadata(string $key = '', string $domain = 'messages') : mixed;
+    public function getCatalogueMetadata(string $key = '', string $domain = 'messages'): mixed;
     /**
      * Adds catalogue metadata to a message domain.
      */
-    public function setCatalogueMetadata(string $key, mixed $value, string $domain = 'messages') : void;
+    public function setCatalogueMetadata(string $key, mixed $value, string $domain = 'messages'): void;
     /**
      * Deletes catalogue metadata for the given key and domain.
      *
      * Passing an empty domain will delete all catalogue metadata. Passing an empty key will
      * delete all metadata for the given domain.
      */
-    public function deleteCatalogueMetadata(string $key = '', string $domain = 'messages') : void;
+    public function deleteCatalogueMetadata(string $key = '', string $domain = 'messages'): void;
 }

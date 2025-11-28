@@ -59,7 +59,6 @@ use OtomatiesCoreVendor\Illuminate\Support\Testing\Fakes\MailFake;
  *
  * @see \Illuminate\Mail\MailManager
  * @see \Illuminate\Support\Testing\Fakes\MailFake
- * @internal
  */
 class Mail extends Facade
 {

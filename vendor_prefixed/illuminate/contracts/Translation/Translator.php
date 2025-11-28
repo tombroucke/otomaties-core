@@ -2,7 +2,6 @@
 
 namespace OtomatiesCoreVendor\Illuminate\Contracts\Translation;
 
-/** @internal */
 interface Translator
 {
     /**

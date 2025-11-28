@@ -15,11 +15,10 @@ use OtomatiesCoreVendor\Symfony\Component\Translation\MessageCatalogue;
  * ArrayLoader loads translations from a PHP array.
  *
  * @author Fabien Potencier <fabien@symfony.com>
- * @internal
  */
 class ArrayLoader implements LoaderInterface
 {
-    public function load(mixed $resource, string $locale, string $domain = 'messages') : MessageCatalogue
+    public function load(mixed $resource, string $locale, string $domain = 'messages'): MessageCatalogue
     {
         $resource = $this->flatten($resource);
         $catalogue = new MessageCatalogue($locale);
@@ -34,7 +33,7 @@ class ArrayLoader implements LoaderInterface
      * Becomes:
      *   'key.key2.key3' => 'value'
      */
-    private function flatten(array $messages) : array
+    private function flatten(array $messages): array
     {
         $result = [];
         foreach ($messages as $key => $value) {

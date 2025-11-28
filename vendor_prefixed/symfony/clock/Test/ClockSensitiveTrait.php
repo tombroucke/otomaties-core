@@ -26,11 +26,10 @@ use function OtomatiesCoreVendor\Symfony\Component\Clock\now;
  * a DateTimeImmutable, or a boolean (to freeze/restore the global clock).
  *
  * @author Nicolas Grekas <p@tchwork.com>
- * @internal
  */
 trait ClockSensitiveTrait
 {
-    public static function mockTime(string|\DateTimeImmutable|bool $when = \true) : ClockInterface
+    public static function mockTime(string|\DateTimeImmutable|bool $when = \true): ClockInterface
     {
         Clock::set(match (\true) {
             \false === $when => self::saveClockBeforeTest(\false),
@@ -49,7 +48,7 @@ trait ClockSensitiveTrait
      */
     #[Before]
     #[BeforeClass]
-    public static function saveClockBeforeTest(bool $save = \true) : ClockInterface
+    public static function saveClockBeforeTest(bool $save = \true): ClockInterface
     {
         static $originalClock;
         if ($save && $originalClock) {
@@ -63,7 +62,7 @@ trait ClockSensitiveTrait
      * @internal
      */
     #[After]
-    protected static function restoreClockAfterTest() : void
+    protected static function restoreClockAfterTest(): void
     {
         Clock::set(self::saveClockBeforeTest(\false));
     }

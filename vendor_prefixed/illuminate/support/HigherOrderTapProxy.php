@@ -2,7 +2,6 @@
 
 namespace OtomatiesCoreVendor\Illuminate\Support;
 
-/** @internal */
 class HigherOrderTapProxy
 {
     /**

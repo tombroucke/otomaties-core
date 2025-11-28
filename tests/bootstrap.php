@@ -1,5 +1,7 @@
 <?php
 
+require_once __DIR__ . '/../vendor_prefixed/autoload.php';
+
 define('WP_CONTENT_DIR', '.');
 
 function __(string $string, string $textdomain)

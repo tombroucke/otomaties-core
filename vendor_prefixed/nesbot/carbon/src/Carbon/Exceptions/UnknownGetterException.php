@@ -13,7 +13,6 @@ namespace OtomatiesCoreVendor\Carbon\Exceptions;
 
 use InvalidArgumentException as BaseInvalidArgumentException;
 use Throwable;
-/** @internal */
 class UnknownGetterException extends BaseInvalidArgumentException implements InvalidArgumentException
 {
     /**
@@ -39,7 +38,7 @@ class UnknownGetterException extends BaseInvalidArgumentException implements Inv
      *
      * @return string
      */
-    public function getGetter() : string
+    public function getGetter(): string
     {
         return $this->getter;
     }

@@ -2,7 +2,6 @@
 
 namespace OtomatiesCoreVendor\Illuminate\Contracts\Filesystem;
 
-/** @internal */
 interface Filesystem
 {
     /**

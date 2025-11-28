@@ -51,7 +51,6 @@ namespace OtomatiesCoreVendor\Illuminate\Support\Facades;
  * @method static void flushMacros()
  *
  * @see \Illuminate\Routing\UrlGenerator
- * @internal
  */
 class URL extends Facade
 {

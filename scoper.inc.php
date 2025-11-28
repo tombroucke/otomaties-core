@@ -11,8 +11,6 @@ use Isolated\Symfony\Component\Finder\Finder;
 // to auto-load any code here: it can result in a conflict or even corrupt
 // the PHP-Scoper analysis.
 
-
-
 return [
     // The prefix configuration. If a non-null value is used, a random prefix
     // will be generated instead.
@@ -44,19 +42,6 @@ return [
         Finder::create()->append([
             'composer.json',
         ]),
-        /*
-        Finder::create()->files()->in('src'),
-
-        */
-    ],
-
-    // List of excluded files, i.e. files for which the content will be left untouched.
-    // Paths are relative to the configuration file unless if they are already absolute
-    //
-    // For more see: https://github.com/humbug/php-scoper/blob/master/docs/configuration.md#patchers
-    'exclude-files' => [
-        // 'src/an-excluded-file.php',
-        // ...$excludedFiles,
     ],
 
     // When scoping PHP files, there will be scenarios where some of the code being scoped indirectly references the
@@ -79,25 +64,4 @@ return [
             return $contents;
         },
     ],
-
-    // List of symbols to consider internal i.e. to leave untouched.
-    //
-    // For more information see: https://github.com/humbug/php-scoper/blob/master/docs/configuration.md#excluded-symbols
-    'exclude-namespaces' => [
-        // 'PHPUnit\Framework',
-        // 'PHPUnit',
-        // 'PHPStan',
-        // 'PhpCsFixer',
-        // 'SebastianBergmann',
-        // '~^$~',
-        // 'Acme\Foo'                     // The Acme\Foo namespace (and sub-namespaces)
-        // '~^PHPUnit\\\\Framework$~',    // The whole namespace PHPUnit\Framework (but not sub-namespaces)
-        // '~^$~',                        // The root namespace only
-        // '',                            // Any namespace
-    ],
-    'exclude-constants' => [
-        'WP_ENV',
-    ],
-    'exclude-classes' => [],
-    'exclude-functions' => [],
 ];

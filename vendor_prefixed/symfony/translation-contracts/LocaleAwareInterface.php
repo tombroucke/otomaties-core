@@ -10,7 +10,6 @@
  */
 namespace OtomatiesCoreVendor\Symfony\Contracts\Translation;
 
-/** @internal */
 interface LocaleAwareInterface
 {
     /**
@@ -24,5 +23,5 @@ interface LocaleAwareInterface
     /**
      * Returns the current locale.
      */
-    public function getLocale() : string;
+    public function getLocale(): string;
 }

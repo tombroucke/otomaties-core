@@ -32,7 +32,6 @@ use Throwable;
  *
  * @method string|static locale(string $locale = null, string ...$fallbackLocales)
  * @method string        toJSON()
- * @internal
  */
 trait Serialization
 {
@@ -59,9 +58,9 @@ trait Serialization
     /**
      * Return a serialized string of the instance.
      */
-    public function serialize() : string
+    public function serialize(): string
     {
-        return \serialize($this);
+        return serialize($this);
     }
     /**
      * Create an instance from a serialized string.
@@ -81,9 +80,9 @@ trait Serialization
      *
      * @return static
      */
-    public static function fromSerialized($value, array $options = []) : static
+    public static function fromSerialized($value, array $options = []): static
     {
-        $instance = @\unserialize((string) $value, $options);
+        $instance = @unserialize((string) $value, $options);
         if (!$instance instanceof static) {
             throw new InvalidFormatException("Invalid serialized value: {$value}");
         }
@@ -97,13 +96,13 @@ trait Serialization
      * @return static
      */
     #[ReturnTypeWillChange]
-    public static function __set_state($dump) : static
+    public static function __set_state($dump): static
     {
         if (\is_string($dump)) {
             return static::parse($dump);
         }
         /** @var \DateTimeInterface $date */
-        $date = \get_parent_class(static::class) && \method_exists(parent::class, '__set_state') ? parent::__set_state((array) $dump) : (object) $dump;
+        $date = get_parent_class(static::class) && method_exists(parent::class, '__set_state') ? parent::__set_state((array) $dump) : (object) $dump;
         return static::instance($date);
     }
     /**
@@ -129,7 +128,7 @@ trait Serialization
      *
      * @return array
      */
-    public function __serialize() : array
+    public function __serialize(): array
     {
         // @codeCoverageIgnoreStart
         if (isset($this->timezone_type, $this->timezone, $this->date)) {
@@ -154,9 +153,9 @@ trait Serialization
      *
      * Only used by PHP < 7.4.
      */
-    public function __wakeup() : void
+    public function __wakeup(): void
     {
-        if (parent::class && \method_exists(parent::class, '__wakeup')) {
+        if (parent::class && method_exists(parent::class, '__wakeup')) {
             // @codeCoverageIgnoreStart
             try {
                 parent::__wakeup();
@@ -171,7 +170,7 @@ trait Serialization
             }
             // @codeCoverageIgnoreEnd
         }
-        $this->constructedObjectId = \spl_object_hash($this);
+        $this->constructedObjectId = spl_object_hash($this);
         if (isset($this->dumpLocale)) {
             $this->locale($this->dumpLocale);
             $this->dumpLocale = null;
@@ -183,7 +182,7 @@ trait Serialization
      *
      * Only used by PHP >= 7.4.
      */
-    public function __unserialize(array $data) : void
+    public function __unserialize(array $data): void
     {
         // @codeCoverageIgnoreStart
         try {
@@ -208,7 +207,7 @@ trait Serialization
     /**
      * Prepare the object for JSON serialization.
      */
-    public function jsonSerialize() : mixed
+    public function jsonSerialize(): mixed
     {
         $serializer = $this->localSerializer ?? $this->getFactory()->getSettings()['toJsonFormat'] ?? null;
         if ($serializer) {
@@ -222,7 +221,7 @@ trait Serialization
      *
      * JSON serialize all Carbon instances using the given callback.
      */
-    public static function serializeUsing(string|callable|null $format) : void
+    public static function serializeUsing(string|callable|null $format): void
     {
         FactoryImmutable::getDefaultInstance()->serializeUsing($format);
     }
@@ -233,7 +232,7 @@ trait Serialization
      * var_export($date)
      * get_object_vars($date)
      */
-    public function cleanupDumpProperties() : self
+    public function cleanupDumpProperties(): self
     {
         // @codeCoverageIgnoreStart
         if (\PHP_VERSION < 8.1999999999999993) {
@@ -246,7 +245,7 @@ trait Serialization
         // @codeCoverageIgnoreEnd
         return $this;
     }
-    private function getSleepProperties() : array
+    private function getSleepProperties(): array
     {
         $properties = $this->dumpProperties;
         // @codeCoverageIgnoreStart
@@ -262,7 +261,7 @@ trait Serialization
         // @codeCoverageIgnoreEnd
     }
     /** @codeCoverageIgnore */
-    private function dumpTimezone(mixed $timezone) : mixed
+    private function dumpTimezone(mixed $timezone): mixed
     {
         return $timezone instanceof DateTimeZone ? $timezone->getName() : $timezone;
     }

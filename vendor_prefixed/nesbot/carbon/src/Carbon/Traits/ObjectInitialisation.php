@@ -11,7 +11,6 @@ declare (strict_types=1);
  */
 namespace OtomatiesCoreVendor\Carbon\Traits;
 
-/** @internal */
 trait ObjectInitialisation
 {
     /**

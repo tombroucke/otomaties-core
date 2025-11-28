@@ -116,7 +116,6 @@ use OtomatiesCoreVendor\Illuminate\Database\Console\WipeCommand;
  * @method static void afterRollBack(callable $callback)
  *
  * @see \Illuminate\Database\DatabaseManager
- * @internal
  */
 class DB extends Facade
 {

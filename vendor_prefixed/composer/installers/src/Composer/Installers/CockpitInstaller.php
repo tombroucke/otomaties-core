@@ -2,7 +2,6 @@
 
 namespace OtomatiesCoreVendor\Composer\Installers;
 
-/** @internal */
 class CockpitInstaller extends BaseInstaller
 {
     /** @var array<string, string> */
@@ -12,7 +11,7 @@ class CockpitInstaller extends BaseInstaller
      *
      * Strip `module-` prefix from package name.
      */
-    public function inflectPackageVars(array $vars) : array
+    public function inflectPackageVars(array $vars): array
     {
         if ($vars['type'] == 'cockpit-module') {
             return $this->inflectModuleVars($vars);
@@ -23,9 +22,9 @@ class CockpitInstaller extends BaseInstaller
      * @param array<string, string> $vars
      * @return array<string, string>
      */
-    public function inflectModuleVars(array $vars) : array
+    public function inflectModuleVars(array $vars): array
     {
-        $vars['name'] = \ucfirst($this->pregReplace('/cockpit-/i', '', $vars['name']));
+        $vars['name'] = ucfirst($this->pregReplace('/cockpit-/i', '', $vars['name']));
         return $vars;
     }
 }

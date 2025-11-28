@@ -18,17 +18,16 @@ use DateTimeZone;
 use OtomatiesCoreVendor\Psr\Clock\ClockInterface as PsrClockInterface;
 use RuntimeException;
 use OtomatiesCoreVendor\Symfony\Component\Clock\ClockInterface;
-/** @internal */
 final class WrapperClock implements ClockInterface
 {
     public function __construct(private PsrClockInterface|Factory|DateTimeInterface $currentClock)
     {
     }
-    public function unwrap() : PsrClockInterface|Factory|DateTimeInterface
+    public function unwrap(): PsrClockInterface|Factory|DateTimeInterface
     {
         return $this->currentClock;
     }
-    public function getFactory() : Factory
+    public function getFactory(): Factory
     {
         if ($this->currentClock instanceof Factory) {
             return $this->currentClock;
@@ -47,7 +46,7 @@ final class WrapperClock implements ClockInterface
         $factory->setTestNowAndTimezone(fn() => $this->currentClock->now());
         return $factory;
     }
-    private function nowRaw() : DateTimeInterface
+    private function nowRaw(): DateTimeInterface
     {
         if ($this->currentClock instanceof DateTimeInterface) {
             return $this->currentClock;
@@ -57,7 +56,7 @@ final class WrapperClock implements ClockInterface
         }
         return $this->currentClock->now();
     }
-    public function now() : DateTimeImmutable
+    public function now(): DateTimeImmutable
     {
         $now = $this->nowRaw();
         return $now instanceof DateTimeImmutable ? $now : new CarbonImmutable($now);
@@ -69,22 +68,22 @@ final class WrapperClock implements ClockInterface
      *
      * @return T
      */
-    public function nowAs(string $class, DateTimeZone|string|int|null $timezone = null) : CarbonInterface
+    public function nowAs(string $class, DateTimeZone|string|int|null $timezone = null): CarbonInterface
     {
         $now = $this->nowRaw();
         $date = $now instanceof $class ? $now : $class::instance($now);
         return $timezone === null ? $date : $date->setTimezone($timezone);
     }
-    public function nowAsCarbon(DateTimeZone|string|int|null $timezone = null) : CarbonInterface
+    public function nowAsCarbon(DateTimeZone|string|int|null $timezone = null): CarbonInterface
     {
         $now = $this->nowRaw();
         return $now instanceof CarbonInterface ? $timezone === null ? $now : $now->setTimezone($timezone) : $this->dateAsCarbon($now, $timezone);
     }
-    private function dateAsCarbon(DateTimeInterface $date, DateTimeZone|string|int|null $timezone) : CarbonInterface
+    private function dateAsCarbon(DateTimeInterface $date, DateTimeZone|string|int|null $timezone): CarbonInterface
     {
         return $date instanceof DateTimeImmutable ? new CarbonImmutable($date, $timezone) : new Carbon($date, $timezone);
     }
-    public function sleep(float|int $seconds) : void
+    public function sleep(float|int $seconds): void
     {
         if ($seconds === 0 || $seconds === 0.0) {
             return;
@@ -102,7 +101,7 @@ final class WrapperClock implements ClockInterface
         }
         $this->currentClock = $this->addSeconds($this->currentClock->now(), $seconds);
     }
-    public function withTimeZone(DateTimeZone|string $timezone) : static
+    public function withTimeZone(DateTimeZone|string $timezone): static
     {
         if ($this->currentClock instanceof ClockInterface) {
             return new self($this->currentClock->withTimeZone($timezone));
@@ -116,11 +115,11 @@ final class WrapperClock implements ClockInterface
         }
         return new self($now->setTimezone($timezone));
     }
-    private function addSeconds(DateTimeInterface $date, float|int $seconds) : DateTimeInterface
+    private function addSeconds(DateTimeInterface $date, float|int $seconds): DateTimeInterface
     {
         $secondsPerHour = CarbonInterface::SECONDS_PER_MINUTE * CarbonInterface::MINUTES_PER_HOUR;
-        $hours = \number_format(\floor($seconds / $secondsPerHour), thousands_separator: '');
-        $microseconds = \number_format(($seconds - $hours * $secondsPerHour) * CarbonInterface::MICROSECONDS_PER_SECOND, thousands_separator: '');
+        $hours = number_format(floor($seconds / $secondsPerHour), thousands_separator: '');
+        $microseconds = number_format(($seconds - $hours * $secondsPerHour) * CarbonInterface::MICROSECONDS_PER_SECOND, thousands_separator: '');
         if (!$date instanceof DateTimeImmutable) {
             $date = clone $date;
         }

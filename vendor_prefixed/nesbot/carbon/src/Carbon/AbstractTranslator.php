@@ -20,7 +20,6 @@ use OtomatiesCoreVendor\Symfony\Component\Translation\Formatter\MessageFormatter
 use OtomatiesCoreVendor\Symfony\Component\Translation\Loader\ArrayLoader;
 use OtomatiesCoreVendor\Symfony\Component\Translation\Translator as SymfonyTranslator;
 use Throwable;
-/** @internal */
 abstract class AbstractTranslator extends SymfonyTranslator
 {
     public const REGION_CODE_LENGTH = 2;
@@ -59,14 +58,14 @@ abstract class AbstractTranslator extends SymfonyTranslator
      *
      * @return static
      */
-    public static function get(?string $locale = null) : static
+    public static function get(?string $locale = null): static
     {
         $locale = $locale ?: 'en';
         $key = static::class === Translator::class ? $locale : static::class . '|' . $locale;
         $count = \count(static::$singletons);
         // Remember only the last 10 translators created
         if ($count > 10) {
-            foreach (\array_slice(\array_keys(static::$singletons), 0, $count - 10) as $index) {
+            foreach (\array_slice(array_keys(static::$singletons), 0, $count - 10) as $index) {
                 unset(static::$singletons[$index]);
             }
         }
@@ -80,7 +79,7 @@ abstract class AbstractTranslator extends SymfonyTranslator
     /**
      * Returns the list of directories translation files are searched in.
      */
-    public function getDirectories() : array
+    public function getDirectories(): array
     {
         return $this->directories;
     }
@@ -91,7 +90,7 @@ abstract class AbstractTranslator extends SymfonyTranslator
      *
      * @return $this
      */
-    public function setDirectories(array $directories) : static
+    public function setDirectories(array $directories): static
     {
         $this->directories = $directories;
         return $this;
@@ -103,7 +102,7 @@ abstract class AbstractTranslator extends SymfonyTranslator
      *
      * @return $this
      */
-    public function addDirectory(string $directory) : static
+    public function addDirectory(string $directory): static
     {
         $this->directories[] = $directory;
         return $this;
@@ -115,24 +114,24 @@ abstract class AbstractTranslator extends SymfonyTranslator
      *
      * @return $this
      */
-    public function removeDirectory(string $directory) : static
+    public function removeDirectory(string $directory): static
     {
-        $search = \rtrim(\strtr($directory, '\\', '/'), '/');
-        return $this->setDirectories(\array_filter($this->getDirectories(), static fn($item) => \rtrim(\strtr($item, '\\', '/'), '/') !== $search));
+        $search = rtrim(strtr($directory, '\\', '/'), '/');
+        return $this->setDirectories(array_filter($this->getDirectories(), static fn($item) => rtrim(strtr($item, '\\', '/'), '/') !== $search));
     }
     /**
      * Reset messages of a locale (all locale if no locale passed).
      * Remove custom messages and reload initial messages from matching
      * file in Lang directory.
      */
-    public function resetMessages(?string $locale = null) : bool
+    public function resetMessages(?string $locale = null): bool
     {
         if ($locale === null) {
             $this->messages = [];
             $this->catalogues = [];
-            $this->modifyResources(static function (array $resources) : array {
+            $this->modifyResources(static function (array $resources): array {
                 foreach ($resources as &$list) {
-                    \array_splice($list, 1);
+                    array_splice($list, 1);
                 }
                 return $resources;
             });
@@ -140,12 +139,12 @@ abstract class AbstractTranslator extends SymfonyTranslator
         }
         $this->assertValidLocale($locale);
         foreach ($this->getDirectories() as $directory) {
-            $file = \sprintf('%s/%s.php', \rtrim($directory, '\\/'), $locale);
-            $data = @(include $file);
+            $file = \sprintf('%s/%s.php', rtrim($directory, '\/'), $locale);
+            $data = @include $file;
             if ($data !== \false) {
                 $this->messages[$locale] = $data;
                 unset($this->catalogues[$locale]);
-                $this->modifyResources(static function (array $resources) use($locale) : array {
+                $this->modifyResources(static function (array $resources) use ($locale): array {
                     unset($resources[$locale]);
                     return $resources;
                 });
@@ -162,16 +161,16 @@ abstract class AbstractTranslator extends SymfonyTranslator
      *
      * @return array
      */
-    public function getLocalesFiles(string $prefix = '') : array
+    public function getLocalesFiles(string $prefix = ''): array
     {
         $files = [];
         foreach ($this->getDirectories() as $directory) {
-            $directory = \rtrim($directory, '\\/');
-            foreach (\glob("{$directory}/{$prefix}*.php") as $file) {
+            $directory = rtrim($directory, '\/');
+            foreach (glob("{$directory}/{$prefix}*.php") as $file) {
                 $files[] = $file;
             }
         }
-        return \array_unique($files);
+        return array_unique($files);
     }
     /**
      * Returns the list of internally available locales and already loaded custom locales.
@@ -181,15 +180,15 @@ abstract class AbstractTranslator extends SymfonyTranslator
      *
      * @return array
      */
-    public function getAvailableLocales(string $prefix = '') : array
+    public function getAvailableLocales(string $prefix = ''): array
     {
         $locales = [];
         foreach ($this->getLocalesFiles($prefix) as $file) {
-            $locales[] = \substr($file, \strrpos($file, '/') + 1, -4);
+            $locales[] = substr($file, strrpos($file, '/') + 1, -4);
         }
-        return \array_unique(\array_merge($locales, \array_keys($this->messages)));
+        return array_unique(array_merge($locales, array_keys($this->messages)));
     }
-    protected function translate(?string $id, array $parameters = [], ?string $domain = null, ?string $locale = null) : string
+    protected function translate(?string $id, array $parameters = [], ?string $domain = null, ?string $locale = null): string
     {
         if ($domain === null) {
             $domain = 'messages';
@@ -205,7 +204,7 @@ abstract class AbstractTranslator extends SymfonyTranslator
                 $count = 0;
             }
             // @codeCoverageIgnoreEnd
-            return $format(...\array_values($parameters), ...\array_fill(0, \max(0, $count - \count($parameters)), null));
+            return $format(...array_values($parameters), ...array_fill(0, max(0, $count - \count($parameters)), null));
         }
         return parent::trans($id, $parameters, $domain, $locale);
     }
@@ -216,7 +215,7 @@ abstract class AbstractTranslator extends SymfonyTranslator
      *
      * @return bool
      */
-    protected function loadMessagesFromFile(string $locale) : bool
+    protected function loadMessagesFromFile(string $locale): bool
     {
         return isset($this->messages[$locale]) || $this->resetMessages($locale);
     }
@@ -228,11 +227,11 @@ abstract class AbstractTranslator extends SymfonyTranslator
      *
      * @return $this
      */
-    public function setMessages(string $locale, array $messages) : static
+    public function setMessages(string $locale, array $messages): static
     {
         $this->loadMessagesFromFile($locale);
         $this->addResource('array', $messages, $locale);
-        $this->messages[$locale] = \array_merge($this->messages[$locale] ?? [], $messages);
+        $this->messages[$locale] = array_merge($this->messages[$locale] ?? [], $messages);
         return $this;
     }
     /**
@@ -242,7 +241,7 @@ abstract class AbstractTranslator extends SymfonyTranslator
      *
      * @return $this
      */
-    public function setTranslations(array $messages) : static
+    public function setTranslations(array $messages): static
     {
         return $this->setMessages($this->getLocale(), $messages);
     }
@@ -250,7 +249,7 @@ abstract class AbstractTranslator extends SymfonyTranslator
      * Get messages of a locale, if none given, return all the
      * languages.
      */
-    public function getMessages(?string $locale = null) : array
+    public function getMessages(?string $locale = null): array
     {
         return $locale === null ? $this->messages : $this->messages[$locale];
     }
@@ -259,35 +258,35 @@ abstract class AbstractTranslator extends SymfonyTranslator
      *
      * @param string $locale locale ex. en
      */
-    public function setLocale($locale) : void
+    public function setLocale($locale): void
     {
-        $locale = \preg_replace_callback('/[-_]([a-z]{2,}|\\d{2,})/', function ($matches) {
+        $locale = preg_replace_callback('/[-_]([a-z]{2,}|\d{2,})/', function ($matches) {
             // _2-letters or YUE is a region, _3+-letters is a variant
-            $upper = \strtoupper($matches[1]);
+            $upper = strtoupper($matches[1]);
             if ($upper === 'YUE' || $upper === 'ISO' || \strlen($upper) <= static::REGION_CODE_LENGTH) {
                 return "_{$upper}";
             }
-            return '_' . \ucfirst($matches[1]);
-        }, \strtolower($locale));
+            return '_' . ucfirst($matches[1]);
+        }, strtolower($locale));
         $previousLocale = $this->getLocale();
         if ($previousLocale === $locale && isset($this->messages[$locale])) {
             return;
         }
         unset(static::$singletons[$previousLocale]);
         if ($locale === 'auto') {
-            $completeLocale = \setlocale(\LC_TIME, '0');
-            $locale = \preg_replace('/^([^_.-]+).*$/', '$1', $completeLocale);
+            $completeLocale = setlocale(\LC_TIME, '0');
+            $locale = preg_replace('/^([^_.-]+).*$/', '$1', $completeLocale);
             $locales = $this->getAvailableLocales($locale);
-            $completeLocaleChunks = \preg_split('/[_.-]+/', $completeLocale);
-            $getScore = static fn($language) => self::compareChunkLists($completeLocaleChunks, \preg_split('/[_.-]+/', $language));
-            \usort($locales, static fn($first, $second) => $getScore($second) <=> $getScore($first));
+            $completeLocaleChunks = preg_split('/[_.-]+/', $completeLocale);
+            $getScore = static fn($language) => self::compareChunkLists($completeLocaleChunks, preg_split('/[_.-]+/', $language));
+            usort($locales, static fn($first, $second) => $getScore($second) <=> $getScore($first));
             $locale = $locales[0];
         }
         if (isset($this->aliases[$locale])) {
             $locale = $this->aliases[$locale];
         }
         // If subtag (ex: en_CA) first load the macro (ex: en) to have a fallback
-        if (\str_contains($locale, '_') && $this->loadMessagesFromFile($macroLocale = \preg_replace('/^([^_]+).*$/', '$1', $locale))) {
+        if (str_contains($locale, '_') && $this->loadMessagesFromFile($macroLocale = preg_replace('/^([^_]+).*$/', '$1', $locale))) {
             parent::setLocale($macroLocale);
         }
         if (!$this->loadMessagesFromFile($locale) && !$this->initializing) {
@@ -304,15 +303,15 @@ abstract class AbstractTranslator extends SymfonyTranslator
     {
         return ['locale' => $this->getLocale()];
     }
-    public function __serialize() : array
+    public function __serialize(): array
     {
         return ['locale' => $this->getLocale()];
     }
-    public function __unserialize(array $data) : void
+    public function __unserialize(array $data): void
     {
         $this->initialize($data['locale'] ?? 'en');
     }
-    private function initialize($locale, ?MessageFormatterInterface $formatter = null, $cacheDir = null, $debug = \false) : void
+    private function initialize($locale, ?MessageFormatterInterface $formatter = null, $cacheDir = null, $debug = \false): void
     {
         parent::setLocale($locale);
         $this->initializing = \true;
@@ -329,14 +328,14 @@ abstract class AbstractTranslator extends SymfonyTranslator
                 $score++;
                 continue;
             }
-            if (\strtolower($chunks[$index]) === \strtolower($chunk)) {
+            if (strtolower($chunks[$index]) === strtolower($chunk)) {
                 $score += 10;
             }
         }
         return $score;
     }
     /** @codeCoverageIgnore */
-    private function modifyResources(callable $callback) : void
+    private function modifyResources(callable $callback): void
     {
         try {
             $resourcesProperty = new ReflectionProperty(SymfonyTranslator::class, 'resources');

@@ -58,7 +58,6 @@ namespace OtomatiesCoreVendor\Illuminate\Support\Facades;
  * @method static void flushMacros()
  *
  * @see \Illuminate\Filesystem\Filesystem
- * @internal
  */
 class File extends Facade
 {

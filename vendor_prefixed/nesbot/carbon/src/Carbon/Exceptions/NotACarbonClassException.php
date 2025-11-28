@@ -14,7 +14,6 @@ namespace OtomatiesCoreVendor\Carbon\Exceptions;
 use OtomatiesCoreVendor\Carbon\CarbonInterface;
 use InvalidArgumentException as BaseInvalidArgumentException;
 use Throwable;
-/** @internal */
 class NotACarbonClassException extends BaseInvalidArgumentException implements InvalidArgumentException
 {
     /**
@@ -40,7 +39,7 @@ class NotACarbonClassException extends BaseInvalidArgumentException implements I
      *
      * @return string
      */
-    public function getClassName() : string
+    public function getClassName(): string
     {
         return $this->className;
     }

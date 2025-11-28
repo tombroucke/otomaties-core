@@ -101,7 +101,6 @@ use OtomatiesCoreVendor\Illuminate\Http\Client\Factory;
  * @method static \Illuminate\Http\Client\PendingRequest|mixed unless(\Closure|mixed|null $value = null, callable|null $callback = null, callable|null $default = null)
  *
  * @see \Illuminate\Http\Client\Factory
- * @internal
  */
 class Http extends Facade
 {
@@ -122,7 +121,7 @@ class Http extends Facade
      */
     public static function fake($callback = null)
     {
-        return tap(static::getFacadeRoot(), function ($fake) use($callback) {
+        return tap(static::getFacadeRoot(), function ($fake) use ($callback) {
             static::swap($fake->fake($callback));
         });
     }
@@ -147,7 +146,7 @@ class Http extends Facade
      */
     public static function preventStrayRequests($prevent = \true)
     {
-        return tap(static::getFacadeRoot(), function ($fake) use($prevent) {
+        return tap(static::getFacadeRoot(), function ($fake) use ($prevent) {
             static::swap($fake->preventStrayRequests($prevent));
         });
     }
@@ -160,7 +159,7 @@ class Http extends Facade
      */
     public static function stubUrl($url, $callback)
     {
-        return tap(static::getFacadeRoot(), function ($fake) use($url, $callback) {
+        return tap(static::getFacadeRoot(), function ($fake) use ($url, $callback) {
             static::swap($fake->stubUrl($url, $callback));
         });
     }

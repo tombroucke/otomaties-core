@@ -18,7 +18,6 @@ use OtomatiesCoreVendor\Illuminate\Contracts\Auth\PasswordBroker;
  *
  * @see \Illuminate\Auth\Passwords\PasswordBrokerManager
  * @see \Illuminate\Auth\Passwords\PasswordBroker
- * @internal
  */
 class Password extends Facade
 {

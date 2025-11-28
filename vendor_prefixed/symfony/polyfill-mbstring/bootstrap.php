@@ -14,312 +14,268 @@ use OtomatiesCoreVendor\Symfony\Polyfill\Mbstring as p;
 if (\PHP_VERSION_ID >= 80000) {
     return require __DIR__ . '/bootstrap80.php';
 }
-if (!\function_exists('mb_convert_encoding')) {
-    /** @internal */
+if (!\function_exists('mb_convert_encoding') && !\function_exists('OtomatiesCoreVendor\mb_convert_encoding')) {
     function mb_convert_encoding($string, $to_encoding, $from_encoding = null)
     {
         return p\Mbstring::mb_convert_encoding($string, $to_encoding, $from_encoding);
     }
 }
-if (!\function_exists('mb_decode_mimeheader')) {
-    /** @internal */
+if (!\function_exists('mb_decode_mimeheader') && !\function_exists('OtomatiesCoreVendor\mb_decode_mimeheader')) {
     function mb_decode_mimeheader($string)
     {
         return p\Mbstring::mb_decode_mimeheader($string);
     }
 }
-if (!\function_exists('mb_encode_mimeheader')) {
-    /** @internal */
+if (!\function_exists('mb_encode_mimeheader') && !\function_exists('OtomatiesCoreVendor\mb_encode_mimeheader')) {
     function mb_encode_mimeheader($string, $charset = null, $transfer_encoding = null, $newline = "\r\n", $indent = 0)
     {
         return p\Mbstring::mb_encode_mimeheader($string, $charset, $transfer_encoding, $newline, $indent);
     }
 }
-if (!\function_exists('mb_decode_numericentity')) {
-    /** @internal */
+if (!\function_exists('mb_decode_numericentity') && !\function_exists('OtomatiesCoreVendor\mb_decode_numericentity')) {
     function mb_decode_numericentity($string, $map, $encoding = null)
     {
         return p\Mbstring::mb_decode_numericentity($string, $map, $encoding);
     }
 }
-if (!\function_exists('mb_encode_numericentity')) {
-    /** @internal */
+if (!\function_exists('mb_encode_numericentity') && !\function_exists('OtomatiesCoreVendor\mb_encode_numericentity')) {
     function mb_encode_numericentity($string, $map, $encoding = null, $hex = \false)
     {
         return p\Mbstring::mb_encode_numericentity($string, $map, $encoding, $hex);
     }
 }
-if (!\function_exists('mb_convert_case')) {
-    /** @internal */
+if (!\function_exists('mb_convert_case') && !\function_exists('OtomatiesCoreVendor\mb_convert_case')) {
     function mb_convert_case($string, $mode, $encoding = null)
     {
         return p\Mbstring::mb_convert_case($string, $mode, $encoding);
     }
 }
-if (!\function_exists('mb_internal_encoding')) {
-    /** @internal */
+if (!\function_exists('mb_internal_encoding') && !\function_exists('OtomatiesCoreVendor\mb_internal_encoding')) {
     function mb_internal_encoding($encoding = null)
     {
         return p\Mbstring::mb_internal_encoding($encoding);
     }
 }
-if (!\function_exists('mb_language')) {
-    /** @internal */
+if (!\function_exists('mb_language') && !\function_exists('OtomatiesCoreVendor\mb_language')) {
     function mb_language($language = null)
     {
         return p\Mbstring::mb_language($language);
     }
 }
-if (!\function_exists('mb_list_encodings')) {
-    /** @internal */
+if (!\function_exists('mb_list_encodings') && !\function_exists('OtomatiesCoreVendor\mb_list_encodings')) {
     function mb_list_encodings()
     {
         return p\Mbstring::mb_list_encodings();
     }
 }
-if (!\function_exists('mb_encoding_aliases')) {
-    /** @internal */
+if (!\function_exists('mb_encoding_aliases') && !\function_exists('OtomatiesCoreVendor\mb_encoding_aliases')) {
     function mb_encoding_aliases($encoding)
     {
         return p\Mbstring::mb_encoding_aliases($encoding);
     }
 }
-if (!\function_exists('mb_check_encoding')) {
-    /** @internal */
+if (!\function_exists('mb_check_encoding') && !\function_exists('OtomatiesCoreVendor\mb_check_encoding')) {
     function mb_check_encoding($value = null, $encoding = null)
     {
         return p\Mbstring::mb_check_encoding($value, $encoding);
     }
 }
-if (!\function_exists('mb_detect_encoding')) {
-    /** @internal */
+if (!\function_exists('mb_detect_encoding') && !\function_exists('OtomatiesCoreVendor\mb_detect_encoding')) {
     function mb_detect_encoding($string, $encodings = null, $strict = \false)
     {
         return p\Mbstring::mb_detect_encoding($string, $encodings, $strict);
     }
 }
-if (!\function_exists('mb_detect_order')) {
-    /** @internal */
+if (!\function_exists('mb_detect_order') && !\function_exists('OtomatiesCoreVendor\mb_detect_order')) {
     function mb_detect_order($encoding = null)
     {
         return p\Mbstring::mb_detect_order($encoding);
     }
 }
-if (!\function_exists('mb_parse_str')) {
-    /** @internal */
+if (!\function_exists('mb_parse_str') && !\function_exists('OtomatiesCoreVendor\mb_parse_str')) {
     function mb_parse_str($string, &$result = [])
     {
         \parse_str($string, $result);
         return (bool) $result;
     }
 }
-if (!\function_exists('mb_strlen')) {
-    /** @internal */
+if (!\function_exists('mb_strlen') && !\function_exists('OtomatiesCoreVendor\mb_strlen')) {
     function mb_strlen($string, $encoding = null)
     {
         return p\Mbstring::mb_strlen($string, $encoding);
     }
 }
-if (!\function_exists('mb_strpos')) {
-    /** @internal */
+if (!\function_exists('mb_strpos') && !\function_exists('OtomatiesCoreVendor\mb_strpos')) {
     function mb_strpos($haystack, $needle, $offset = 0, $encoding = null)
     {
         return p\Mbstring::mb_strpos($haystack, $needle, $offset, $encoding);
     }
 }
-if (!\function_exists('mb_strtolower')) {
-    /** @internal */
+if (!\function_exists('mb_strtolower') && !\function_exists('OtomatiesCoreVendor\mb_strtolower')) {
     function mb_strtolower($string, $encoding = null)
     {
         return p\Mbstring::mb_strtolower($string, $encoding);
     }
 }
-if (!\function_exists('mb_strtoupper')) {
-    /** @internal */
+if (!\function_exists('mb_strtoupper') && !\function_exists('OtomatiesCoreVendor\mb_strtoupper')) {
     function mb_strtoupper($string, $encoding = null)
     {
         return p\Mbstring::mb_strtoupper($string, $encoding);
     }
 }
-if (!\function_exists('mb_substitute_character')) {
-    /** @internal */
+if (!\function_exists('mb_substitute_character') && !\function_exists('OtomatiesCoreVendor\mb_substitute_character')) {
     function mb_substitute_character($substitute_character = null)
     {
         return p\Mbstring::mb_substitute_character($substitute_character);
     }
 }
-if (!\function_exists('mb_substr')) {
-    /** @internal */
+if (!\function_exists('mb_substr') && !\function_exists('OtomatiesCoreVendor\mb_substr')) {
     function mb_substr($string, $start, $length = 2147483647, $encoding = null)
     {
         return p\Mbstring::mb_substr($string, $start, $length, $encoding);
     }
 }
-if (!\function_exists('mb_stripos')) {
-    /** @internal */
+if (!\function_exists('mb_stripos') && !\function_exists('OtomatiesCoreVendor\mb_stripos')) {
     function mb_stripos($haystack, $needle, $offset = 0, $encoding = null)
     {
         return p\Mbstring::mb_stripos($haystack, $needle, $offset, $encoding);
     }
 }
-if (!\function_exists('mb_stristr')) {
-    /** @internal */
+if (!\function_exists('mb_stristr') && !\function_exists('OtomatiesCoreVendor\mb_stristr')) {
     function mb_stristr($haystack, $needle, $before_needle = \false, $encoding = null)
     {
         return p\Mbstring::mb_stristr($haystack, $needle, $before_needle, $encoding);
     }
 }
-if (!\function_exists('mb_strrchr')) {
-    /** @internal */
+if (!\function_exists('mb_strrchr') && !\function_exists('OtomatiesCoreVendor\mb_strrchr')) {
     function mb_strrchr($haystack, $needle, $before_needle = \false, $encoding = null)
     {
         return p\Mbstring::mb_strrchr($haystack, $needle, $before_needle, $encoding);
     }
 }
-if (!\function_exists('mb_strrichr')) {
-    /** @internal */
+if (!\function_exists('mb_strrichr') && !\function_exists('OtomatiesCoreVendor\mb_strrichr')) {
     function mb_strrichr($haystack, $needle, $before_needle = \false, $encoding = null)
     {
         return p\Mbstring::mb_strrichr($haystack, $needle, $before_needle, $encoding);
     }
 }
-if (!\function_exists('mb_strripos')) {
-    /** @internal */
+if (!\function_exists('mb_strripos') && !\function_exists('OtomatiesCoreVendor\mb_strripos')) {
     function mb_strripos($haystack, $needle, $offset = 0, $encoding = null)
     {
         return p\Mbstring::mb_strripos($haystack, $needle, $offset, $encoding);
     }
 }
-if (!\function_exists('mb_strrpos')) {
-    /** @internal */
+if (!\function_exists('mb_strrpos') && !\function_exists('OtomatiesCoreVendor\mb_strrpos')) {
     function mb_strrpos($haystack, $needle, $offset = 0, $encoding = null)
     {
         return p\Mbstring::mb_strrpos($haystack, $needle, $offset, $encoding);
     }
 }
-if (!\function_exists('mb_strstr')) {
-    /** @internal */
+if (!\function_exists('mb_strstr') && !\function_exists('OtomatiesCoreVendor\mb_strstr')) {
     function mb_strstr($haystack, $needle, $before_needle = \false, $encoding = null)
     {
         return p\Mbstring::mb_strstr($haystack, $needle, $before_needle, $encoding);
     }
 }
-if (!\function_exists('mb_get_info')) {
-    /** @internal */
+if (!\function_exists('mb_get_info') && !\function_exists('OtomatiesCoreVendor\mb_get_info')) {
     function mb_get_info($type = 'all')
     {
         return p\Mbstring::mb_get_info($type);
     }
 }
-if (!\function_exists('mb_http_output')) {
-    /** @internal */
+if (!\function_exists('mb_http_output') && !\function_exists('OtomatiesCoreVendor\mb_http_output')) {
     function mb_http_output($encoding = null)
     {
         return p\Mbstring::mb_http_output($encoding);
     }
 }
-if (!\function_exists('mb_strwidth')) {
-    /** @internal */
+if (!\function_exists('mb_strwidth') && !\function_exists('OtomatiesCoreVendor\mb_strwidth')) {
     function mb_strwidth($string, $encoding = null)
     {
         return p\Mbstring::mb_strwidth($string, $encoding);
     }
 }
-if (!\function_exists('mb_substr_count')) {
-    /** @internal */
+if (!\function_exists('mb_substr_count') && !\function_exists('OtomatiesCoreVendor\mb_substr_count')) {
     function mb_substr_count($haystack, $needle, $encoding = null)
     {
         return p\Mbstring::mb_substr_count($haystack, $needle, $encoding);
     }
 }
-if (!\function_exists('mb_output_handler')) {
-    /** @internal */
+if (!\function_exists('mb_output_handler') && !\function_exists('OtomatiesCoreVendor\mb_output_handler')) {
     function mb_output_handler($string, $status)
     {
         return p\Mbstring::mb_output_handler($string, $status);
     }
 }
-if (!\function_exists('mb_http_input')) {
-    /** @internal */
+if (!\function_exists('mb_http_input') && !\function_exists('OtomatiesCoreVendor\mb_http_input')) {
     function mb_http_input($type = null)
     {
         return p\Mbstring::mb_http_input($type);
     }
 }
-if (!\function_exists('mb_convert_variables')) {
-    /** @internal */
+if (!\function_exists('mb_convert_variables') && !\function_exists('OtomatiesCoreVendor\mb_convert_variables')) {
     function mb_convert_variables($to_encoding, $from_encoding, &...$vars)
     {
         return p\Mbstring::mb_convert_variables($to_encoding, $from_encoding, ...$vars);
     }
 }
-if (!\function_exists('mb_ord')) {
-    /** @internal */
+if (!\function_exists('mb_ord') && !\function_exists('OtomatiesCoreVendor\mb_ord')) {
     function mb_ord($string, $encoding = null)
     {
         return p\Mbstring::mb_ord($string, $encoding);
     }
 }
-if (!\function_exists('mb_chr')) {
-    /** @internal */
+if (!\function_exists('mb_chr') && !\function_exists('OtomatiesCoreVendor\mb_chr')) {
     function mb_chr($codepoint, $encoding = null)
     {
         return p\Mbstring::mb_chr($codepoint, $encoding);
     }
 }
-if (!\function_exists('mb_scrub')) {
-    /** @internal */
+if (!\function_exists('mb_scrub') && !\function_exists('OtomatiesCoreVendor\mb_scrub')) {
     function mb_scrub($string, $encoding = null)
     {
         $encoding = null === $encoding ? \mb_internal_encoding() : $encoding;
         return \mb_convert_encoding($string, $encoding, $encoding);
     }
 }
-if (!\function_exists('mb_str_split')) {
-    /** @internal */
+if (!\function_exists('mb_str_split') && !\function_exists('OtomatiesCoreVendor\mb_str_split')) {
     function mb_str_split($string, $length = 1, $encoding = null)
     {
         return p\Mbstring::mb_str_split($string, $length, $encoding);
     }
 }
-if (!\function_exists('OtomatiesCoreVendor\\mb_str_pad')) {
-    /** @internal */
-    function mb_str_pad(string $string, int $length, string $pad_string = ' ', int $pad_type = \STR_PAD_RIGHT, ?string $encoding = null) : string
+if (!\function_exists('mb_str_pad') && !\function_exists('OtomatiesCoreVendor\mb_str_pad')) {
+    function mb_str_pad(string $string, int $length, string $pad_string = ' ', int $pad_type = \STR_PAD_RIGHT, ?string $encoding = null): string
     {
         return p\Mbstring::mb_str_pad($string, $length, $pad_string, $pad_type, $encoding);
     }
 }
-if (!\function_exists('OtomatiesCoreVendor\\mb_ucfirst')) {
-    /** @internal */
-    function mb_ucfirst(string $string, ?string $encoding = null) : string
+if (!\function_exists('mb_ucfirst') && !\function_exists('OtomatiesCoreVendor\mb_ucfirst')) {
+    function mb_ucfirst(string $string, ?string $encoding = null): string
     {
         return p\Mbstring::mb_ucfirst($string, $encoding);
     }
 }
-if (!\function_exists('OtomatiesCoreVendor\\mb_lcfirst')) {
-    /** @internal */
-    function mb_lcfirst(string $string, ?string $encoding = null) : string
+if (!\function_exists('mb_lcfirst') && !\function_exists('OtomatiesCoreVendor\mb_lcfirst')) {
+    function mb_lcfirst(string $string, ?string $encoding = null): string
     {
         return p\Mbstring::mb_lcfirst($string, $encoding);
     }
 }
-if (!\function_exists('OtomatiesCoreVendor\\mb_trim')) {
-    /** @internal */
-    function mb_trim(string $string, ?string $characters = null, ?string $encoding = null) : string
+if (!\function_exists('mb_trim') && !\function_exists('OtomatiesCoreVendor\mb_trim')) {
+    function mb_trim(string $string, ?string $characters = null, ?string $encoding = null): string
     {
         return p\Mbstring::mb_trim($string, $characters, $encoding);
     }
 }
-if (!\function_exists('OtomatiesCoreVendor\\mb_ltrim')) {
-    /** @internal */
-    function mb_ltrim(string $string, ?string $characters = null, ?string $encoding = null) : string
+if (!\function_exists('mb_ltrim') && !\function_exists('OtomatiesCoreVendor\mb_ltrim')) {
+    function mb_ltrim(string $string, ?string $characters = null, ?string $encoding = null): string
     {
         return p\Mbstring::mb_ltrim($string, $characters, $encoding);
     }
 }
-if (!\function_exists('OtomatiesCoreVendor\\mb_rtrim')) {
-    /** @internal */
-    function mb_rtrim(string $string, ?string $characters = null, ?string $encoding = null) : string
+if (!\function_exists('mb_rtrim') && !\function_exists('OtomatiesCoreVendor\mb_rtrim')) {
+    function mb_rtrim(string $string, ?string $characters = null, ?string $encoding = null): string
     {
         return p\Mbstring::mb_rtrim($string, $characters, $encoding);
     }

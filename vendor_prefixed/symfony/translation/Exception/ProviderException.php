@@ -13,7 +13,6 @@ namespace OtomatiesCoreVendor\Symfony\Component\Translation\Exception;
 use OtomatiesCoreVendor\Symfony\Contracts\HttpClient\ResponseInterface;
 /**
  * @author Fabien Potencier <fabien@symfony.com>
- * @internal
  */
 class ProviderException extends RuntimeException implements ProviderExceptionInterface
 {
@@ -23,11 +22,11 @@ class ProviderException extends RuntimeException implements ProviderExceptionInt
         $this->debug = $response->getInfo('debug') ?? '';
         parent::__construct($message, $code, $previous);
     }
-    public function getResponse() : ResponseInterface
+    public function getResponse(): ResponseInterface
     {
         return $this->response;
     }
-    public function getDebug() : string
+    public function getDebug(): string
     {
         return $this->debug;
     }

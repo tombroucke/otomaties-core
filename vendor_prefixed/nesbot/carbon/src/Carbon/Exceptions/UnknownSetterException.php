@@ -13,7 +13,6 @@ namespace OtomatiesCoreVendor\Carbon\Exceptions;
 
 use InvalidArgumentException as BaseInvalidArgumentException;
 use Throwable;
-/** @internal */
 class UnknownSetterException extends BaseInvalidArgumentException implements BadMethodCallException
 {
     /**
@@ -39,7 +38,7 @@ class UnknownSetterException extends BaseInvalidArgumentException implements Bad
      *
      * @return string
      */
-    public function getSetter() : string
+    public function getSetter(): string
     {
         return $this->setter;
     }

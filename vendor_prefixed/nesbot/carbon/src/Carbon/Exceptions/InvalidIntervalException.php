@@ -12,7 +12,6 @@ declare (strict_types=1);
 namespace OtomatiesCoreVendor\Carbon\Exceptions;
 
 use InvalidArgumentException as BaseInvalidArgumentException;
-/** @internal */
 class InvalidIntervalException extends BaseInvalidArgumentException implements InvalidArgumentException
 {
     //

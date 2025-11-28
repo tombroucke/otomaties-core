@@ -2,7 +2,6 @@
 
 namespace OtomatiesCoreVendor\Illuminate\Contracts\Config;
 
-/** @internal */
 interface Repository
 {
     /**

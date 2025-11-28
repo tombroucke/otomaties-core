@@ -2,7 +2,6 @@
 
 namespace OtomatiesCoreVendor\Composer\Installers;
 
-/** @internal */
 class OsclassInstaller extends BaseInstaller
 {
     /** @var array<string, string> */

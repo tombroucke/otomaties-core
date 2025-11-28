@@ -34,7 +34,6 @@ use OtomatiesCoreVendor\Illuminate\Contracts\Broadcasting\Factory as Broadcastin
  *
  * @see \Illuminate\Broadcasting\BroadcastManager
  * @see \Illuminate\Broadcasting\Broadcasters\Broadcaster
- * @internal
  */
 class Broadcast extends Facade
 {

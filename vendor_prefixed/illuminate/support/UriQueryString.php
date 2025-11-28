@@ -6,7 +6,6 @@ use OtomatiesCoreVendor\Illuminate\Contracts\Support\Arrayable;
 use OtomatiesCoreVendor\Illuminate\Support\Traits\InteractsWithData;
 use OtomatiesCoreVendor\League\Uri\QueryString;
 use Stringable;
-/** @internal */
 class UriQueryString implements Arrayable, Stringable
 {
     use InteractsWithData;
@@ -30,7 +29,7 @@ class UriQueryString implements Arrayable, Stringable
             return $query;
         }
         $results = [];
-        foreach (\is_array($keys) ? $keys : \func_get_args() as $key) {
+        foreach (is_array($keys) ? $keys : func_get_args() as $key) {
             Arr::set($results, $key, Arr::get($query, $key));
         }
         return $results;
@@ -49,21 +48,21 @@ class UriQueryString implements Arrayable, Stringable
     /**
      * Get a query string parameter.
      */
-    public function get(?string $key = null, mixed $default = null) : mixed
+    public function get(?string $key = null, mixed $default = null): mixed
     {
         return data_get($this->toArray(), $key, $default);
     }
     /**
      * Get the URL decoded version of the query string.
      */
-    public function decode() : string
+    public function decode(): string
     {
-        return \rawurldecode((string) $this);
+        return rawurldecode((string) $this);
     }
     /**
      * Get the string representation of the query string.
      */
-    public function value() : string
+    public function value(): string
     {
         return (string) $this;
     }
@@ -77,7 +76,7 @@ class UriQueryString implements Arrayable, Stringable
     /**
      * Get the string representation of the query string.
      */
-    public function __toString() : string
+    public function __toString(): string
     {
         return (string) $this->uri->getUri()->getQuery();
     }

@@ -84,7 +84,6 @@ namespace OtomatiesCoreVendor\Illuminate\Support\Facades;
  * @method static string renderTranslation()
  *
  * @see \Illuminate\View\Factory
- * @internal
  */
 class View extends Facade
 {

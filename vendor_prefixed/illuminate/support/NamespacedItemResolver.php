@@ -2,7 +2,6 @@
 
 namespace OtomatiesCoreVendor\Illuminate\Support;
 
-/** @internal */
 class NamespacedItemResolver
 {
     /**
@@ -28,8 +27,8 @@ class NamespacedItemResolver
         // If the key does not contain a double colon, it means the key is not in a
         // namespace, and is just a regular configuration item. Namespaces are a
         // tool for organizing configuration items for things such as modules.
-        if (!\str_contains($key, '::')) {
-            $segments = \explode('.', $key);
+        if (!str_contains($key, '::')) {
+            $segments = explode('.', $key);
             $parsed = $this->parseBasicSegments($segments);
         } else {
             $parsed = $this->parseNamespacedSegments($key);
@@ -54,7 +53,7 @@ class NamespacedItemResolver
         // If there is more than one segment in this group, it means we are pulling
         // a specific item out of a group and will need to return this item name
         // as well as the group so we know which item to pull from the arrays.
-        $item = \count($segments) === 1 ? null : \implode('.', \array_slice($segments, 1));
+        $item = count($segments) === 1 ? null : implode('.', array_slice($segments, 1));
         return [null, $group, $item];
     }
     /**
@@ -65,13 +64,13 @@ class NamespacedItemResolver
      */
     protected function parseNamespacedSegments($key)
     {
-        [$namespace, $item] = \explode('::', $key);
+        [$namespace, $item] = explode('::', $key);
         // First we'll just explode the first segment to get the namespace and group
         // since the item should be in the remaining segments. Once we have these
         // two pieces of data we can proceed with parsing out the item's value.
-        $itemSegments = \explode('.', $item);
-        $groupAndItem = \array_slice($this->parseBasicSegments($itemSegments), 1);
-        return \array_merge([$namespace], $groupAndItem);
+        $itemSegments = explode('.', $item);
+        $groupAndItem = array_slice($this->parseBasicSegments($itemSegments), 1);
+        return array_merge([$namespace], $groupAndItem);
     }
     /**
      * Set the parsed value of a key.

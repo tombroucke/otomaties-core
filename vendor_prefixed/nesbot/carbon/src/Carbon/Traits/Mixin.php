@@ -24,7 +24,6 @@ use Throwable;
  * Trait Mixin.
  *
  * Allows mixing in entire classes with multiple macros.
- * @internal
  */
 trait Mixin
 {
@@ -59,14 +58,14 @@ trait Mixin
      *
      * @throws ReflectionException
      */
-    public static function mixin(object|string $mixin) : void
+    public static function mixin(object|string $mixin): void
     {
-        \is_string($mixin) && \trait_exists($mixin) ? self::loadMixinTrait($mixin) : self::loadMixinClass($mixin);
+        \is_string($mixin) && trait_exists($mixin) ? self::loadMixinTrait($mixin) : self::loadMixinClass($mixin);
     }
     /**
      * @throws ReflectionException
      */
-    private static function loadMixinClass(object|string $mixin) : void
+    private static function loadMixinClass(object|string $mixin): void
     {
         $methods = (new ReflectionClass($mixin))->getMethods(ReflectionMethod::IS_PUBLIC | ReflectionMethod::IS_PROTECTED);
         foreach ($methods as $method) {
@@ -79,14 +78,14 @@ trait Mixin
             }
         }
     }
-    private static function loadMixinTrait(string $trait) : void
+    private static function loadMixinTrait(string $trait): void
     {
         $context = eval(self::getAnonymousClassCodeForTrait($trait));
         $className = \get_class($context);
         $baseClass = static::class;
         foreach (self::getMixableMethods($context) as $name) {
             $closureBase = Closure::fromCallable([$context, $name]);
-            static::macro($name, function (...$parameters) use($closureBase, $className, $baseClass) {
+            static::macro($name, function (...$parameters) use ($closureBase, $className, $baseClass) {
                 $downContext = isset($this) ? $this : new $baseClass();
                 $context = isset($this) ? $this->cast($className) : new $className();
                 try {
@@ -128,43 +127,43 @@ trait Mixin
             });
         }
     }
-    private static function getAnonymousClassCodeForTrait(string $trait) : string
+    private static function getAnonymousClassCodeForTrait(string $trait): string
     {
         return 'return new class() extends ' . static::class . ' {use ' . $trait . ';};';
     }
-    private static function getMixableMethods(self $context) : Generator
+    private static function getMixableMethods(self $context): Generator
     {
-        foreach (\get_class_methods($context) as $name) {
-            if (\method_exists(static::class, $name)) {
+        foreach (get_class_methods($context) as $name) {
+            if (method_exists(static::class, $name)) {
                 continue;
             }
-            (yield $name);
+            yield $name;
         }
     }
     /**
      * Stack a Carbon context from inside calls of self::this() and execute a given action.
      */
-    protected static function bindMacroContext(?self $context, callable $callable) : mixed
+    protected static function bindMacroContext(?self $context, callable $callable): mixed
     {
         static::$macroContextStack[] = $context;
         try {
             return $callable();
         } finally {
-            \array_pop(static::$macroContextStack);
+            array_pop(static::$macroContextStack);
         }
     }
     /**
      * Return the current context from inside a macro callee or a null if static.
      */
-    protected static function context() : ?static
+    protected static function context(): ?static
     {
-        return \end(static::$macroContextStack) ?: null;
+        return end(static::$macroContextStack) ?: null;
     }
     /**
      * Return the current context from inside a macro callee or a new one if static.
      */
-    protected static function this() : static
+    protected static function this(): static
     {
-        return \end(static::$macroContextStack) ?: new static();
+        return end(static::$macroContextStack) ?: new static();
     }
 }

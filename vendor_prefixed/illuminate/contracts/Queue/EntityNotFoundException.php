@@ -3,7 +3,6 @@
 namespace OtomatiesCoreVendor\Illuminate\Contracts\Queue;
 
 use InvalidArgumentException;
-/** @internal */
 class EntityNotFoundException extends InvalidArgumentException
 {
     /**

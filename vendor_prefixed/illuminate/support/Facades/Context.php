@@ -48,7 +48,6 @@ namespace OtomatiesCoreVendor\Illuminate\Support\Facades;
  * @method static \Illuminate\Database\Eloquent\Model restoreModel(\Illuminate\Contracts\Database\ModelIdentifier $value)
  *
  * @see \Illuminate\Log\Context\Repository
- * @internal
  */
 class Context extends Facade
 {

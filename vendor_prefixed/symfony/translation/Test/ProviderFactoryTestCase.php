@@ -23,7 +23,6 @@ use OtomatiesCoreVendor\Symfony\Contracts\HttpClient\HttpClientInterface;
  * @author Mathieu Santostefano <msantostefano@protonmail.com>
  *
  * @deprecated since Symfony 7.2, use AbstractProviderFactoryTestCase instead
- * @internal
  */
 abstract class ProviderFactoryTestCase extends AbstractProviderFactoryTestCase
 {
@@ -37,38 +36,38 @@ abstract class ProviderFactoryTestCase extends AbstractProviderFactoryTestCase
     /**
      * @return iterable<array{0: string, 1?: string|null}>
      */
-    public static function unsupportedSchemeProvider() : iterable
+    public static function unsupportedSchemeProvider(): iterable
     {
         return [];
     }
     /**
      * @return iterable<array{0: string, 1?: string|null}>
      */
-    public static function incompleteDsnProvider() : iterable
+    public static function incompleteDsnProvider(): iterable
     {
         return [];
     }
-    protected function getClient() : HttpClientInterface
+    protected function getClient(): HttpClientInterface
     {
         return $this->client ??= new MockHttpClient();
     }
-    protected function getLogger() : LoggerInterface
+    protected function getLogger(): LoggerInterface
     {
         return $this->logger ??= $this->createMock(LoggerInterface::class);
     }
-    protected function getDefaultLocale() : string
+    protected function getDefaultLocale(): string
     {
         return $this->defaultLocale ??= 'en';
     }
-    protected function getLoader() : LoaderInterface
+    protected function getLoader(): LoaderInterface
     {
         return $this->loader ??= $this->createMock(LoaderInterface::class);
     }
-    protected function getXliffFileDumper() : XliffFileDumper
+    protected function getXliffFileDumper(): XliffFileDumper
     {
         return $this->xliffFileDumper ??= $this->createMock(XliffFileDumper::class);
     }
-    protected function getTranslatorBag() : TranslatorBagInterface
+    protected function getTranslatorBag(): TranslatorBagInterface
     {
         return $this->translatorBag ??= $this->createMock(TranslatorBagInterface::class);
     }

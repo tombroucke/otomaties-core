@@ -2,7 +2,6 @@
 
 namespace OtomatiesCoreVendor\Illuminate\Contracts\Http;
 
-/** @internal */
 interface Kernel
 {
     /**

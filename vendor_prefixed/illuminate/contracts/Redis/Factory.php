@@ -2,7 +2,6 @@
 
 namespace OtomatiesCoreVendor\Illuminate\Contracts\Redis;
 
-/** @internal */
 interface Factory
 {
     /**

@@ -3,7 +3,6 @@
 namespace OtomatiesCoreVendor\Illuminate\Contracts\Mail;
 
 use OtomatiesCoreVendor\Illuminate\Contracts\Queue\Factory as Queue;
-/** @internal */
 interface Mailable
 {
     /**

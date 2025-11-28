@@ -5,7 +5,6 @@ namespace OtomatiesCoreVendor\Psr\Container;
 
 /**
  * Describes the interface of a container that exposes methods to read its entries.
- * @internal
  */
 interface ContainerInterface
 {
@@ -31,5 +30,5 @@ interface ContainerInterface
      *
      * @return bool
      */
-    public function has(string $id) : bool;
+    public function has(string $id): bool;
 }

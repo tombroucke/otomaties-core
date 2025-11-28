@@ -15,20 +15,19 @@ use OtomatiesCoreVendor\Symfony\Contracts\Translation\LocaleAwareInterface;
 use OtomatiesCoreVendor\Symfony\Contracts\Translation\TranslatorInterface;
 /**
  * @author Abdellatif Ait boudad <a.aitboudad@gmail.com>
- * @internal
  */
 class LoggingTranslator implements TranslatorInterface, TranslatorBagInterface, LocaleAwareInterface
 {
     public function __construct(private TranslatorInterface&TranslatorBagInterface&LocaleAwareInterface $translator, private LoggerInterface $logger)
     {
     }
-    public function trans(?string $id, array $parameters = [], ?string $domain = null, ?string $locale = null) : string
+    public function trans(?string $id, array $parameters = [], ?string $domain = null, ?string $locale = null): string
     {
         $trans = $this->translator->trans($id = (string) $id, $parameters, $domain, $locale);
         $this->log($id, $domain, $locale);
         return $trans;
     }
-    public function setLocale(string $locale) : void
+    public function setLocale(string $locale): void
     {
         $prev = $this->translator->getLocale();
         $this->translator->setLocale($locale);
@@ -37,36 +36,36 @@ class LoggingTranslator implements TranslatorInterface, TranslatorBagInterface, 
         }
         $this->logger->debug(\sprintf('The locale of the translator has changed from "%s" to "%s".', $prev, $locale));
     }
-    public function getLocale() : string
+    public function getLocale(): string
     {
         return $this->translator->getLocale();
     }
-    public function getCatalogue(?string $locale = null) : MessageCatalogueInterface
+    public function getCatalogue(?string $locale = null): MessageCatalogueInterface
     {
         return $this->translator->getCatalogue($locale);
     }
-    public function getCatalogues() : array
+    public function getCatalogues(): array
     {
         return $this->translator->getCatalogues();
     }
     /**
      * Gets the fallback locales.
      */
-    public function getFallbackLocales() : array
+    public function getFallbackLocales(): array
     {
-        if ($this->translator instanceof Translator || \method_exists($this->translator, 'getFallbackLocales')) {
+        if ($this->translator instanceof Translator || method_exists($this->translator, 'getFallbackLocales')) {
             return $this->translator->getFallbackLocales();
         }
         return [];
     }
-    public function __call(string $method, array $args) : mixed
+    public function __call(string $method, array $args): mixed
     {
         return $this->translator->{$method}(...$args);
     }
     /**
      * Logs for missing translations.
      */
-    private function log(string $id, ?string $domain, ?string $locale) : void
+    private function log(string $id, ?string $domain, ?string $locale): void
     {
         $domain ??= 'messages';
         $catalogue = $this->translator->getCatalogue($locale);

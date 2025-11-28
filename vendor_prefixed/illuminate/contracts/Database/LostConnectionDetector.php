@@ -3,7 +3,6 @@
 namespace OtomatiesCoreVendor\Illuminate\Contracts\Database;
 
 use Throwable;
-/** @internal */
 interface LostConnectionDetector
 {
     /**
@@ -12,5 +11,5 @@ interface LostConnectionDetector
      * @param  \Throwable  $e
      * @return bool
      */
-    public function causedByLostConnection(Throwable $e) : bool;
+    public function causedByLostConnection(Throwable $e): bool;
 }

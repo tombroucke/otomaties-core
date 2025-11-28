@@ -7,7 +7,6 @@ namespace OtomatiesCoreVendor\Composer\Installers;
  *
  * @package Composer\Installers
  * @author  Raphaël Doursenaud <rdoursenaud@gpcsolutions.fr>
- * @internal
  */
 class DolibarrInstaller extends BaseInstaller
 {

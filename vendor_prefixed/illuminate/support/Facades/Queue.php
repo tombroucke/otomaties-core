@@ -69,7 +69,6 @@ use OtomatiesCoreVendor\Illuminate\Support\Testing\Fakes\QueueFake;
  * @see \Illuminate\Queue\QueueManager
  * @see \Illuminate\Queue\Queue
  * @see \Illuminate\Support\Testing\Fakes\QueueFake
- * @internal
  */
 class Queue extends Facade
 {

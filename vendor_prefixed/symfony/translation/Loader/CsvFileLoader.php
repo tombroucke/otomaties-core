@@ -15,7 +15,6 @@ use OtomatiesCoreVendor\Symfony\Component\Translation\Exception\NotFoundResource
  * CsvFileLoader loads translations from CSV files.
  *
  * @author Saša Stamenković <umpirsky@gmail.com>
- * @internal
  */
 class CsvFileLoader extends FileLoader
 {
@@ -25,7 +24,7 @@ class CsvFileLoader extends FileLoader
      * @deprecated since Symfony 7.2, to be removed in 8.0
      */
     private string $escape = '';
-    protected function loadResource(string $resource) : array
+    protected function loadResource(string $resource): array
     {
         $messages = [];
         try {
@@ -39,7 +38,7 @@ class CsvFileLoader extends FileLoader
             if (\false === $data) {
                 continue;
             }
-            if (!\str_starts_with($data[0], '#') && isset($data[1]) && 2 === \count($data)) {
+            if (!str_starts_with($data[0], '#') && isset($data[1]) && 2 === \count($data)) {
                 $messages[$data[0]] = $data[1];
             }
         }
@@ -48,7 +47,7 @@ class CsvFileLoader extends FileLoader
     /**
      * Sets the delimiter, enclosure, and escape character for CSV.
      */
-    public function setCsvControl(string $delimiter = ';', string $enclosure = '"', string $escape = '') : void
+    public function setCsvControl(string $delimiter = ';', string $enclosure = '"', string $escape = ''): void
     {
         $this->delimiter = $delimiter;
         $this->enclosure = $enclosure;

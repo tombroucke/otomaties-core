@@ -3,7 +3,6 @@
 namespace OtomatiesCoreVendor\Illuminate\Contracts\Foundation;
 
 use OtomatiesCoreVendor\Illuminate\Contracts\Container\Container;
-/** @internal */
 interface Application extends Container
 {
     /**

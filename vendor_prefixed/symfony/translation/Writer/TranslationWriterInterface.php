@@ -16,7 +16,6 @@ use OtomatiesCoreVendor\Symfony\Component\Translation\MessageCatalogue;
  * TranslationWriter writes translation messages.
  *
  * @author Michel Salib <michelsalib@hotmail.com>
- * @internal
  */
 interface TranslationWriterInterface
 {
@@ -28,5 +27,5 @@ interface TranslationWriterInterface
      *
      * @throws InvalidArgumentException
      */
-    public function write(MessageCatalogue $catalogue, string $format, array $options = []) : void;
+    public function write(MessageCatalogue $catalogue, string $format, array $options = []): void;
 }

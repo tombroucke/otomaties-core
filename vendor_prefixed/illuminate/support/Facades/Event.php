@@ -39,7 +39,6 @@ use OtomatiesCoreVendor\Illuminate\Support\Testing\Fakes\EventFake;
  *
  * @see \Illuminate\Events\Dispatcher
  * @see \Illuminate\Support\Testing\Fakes\EventFake
- * @internal
  */
 class Event extends Facade
 {
@@ -66,8 +65,8 @@ class Event extends Facade
      */
     public static function fakeExcept($eventsToAllow)
     {
-        return static::fake([function ($eventName) use($eventsToAllow) {
-            return !\in_array($eventName, (array) $eventsToAllow);
+        return static::fake([function ($eventName) use ($eventsToAllow) {
+            return !in_array($eventName, (array) $eventsToAllow);
         }]);
     }
     /**

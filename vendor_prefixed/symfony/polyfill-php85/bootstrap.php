@@ -14,29 +14,25 @@ use OtomatiesCoreVendor\Symfony\Polyfill\Php85 as p;
 if (\PHP_VERSION_ID >= 80500) {
     return;
 }
-if (!\function_exists('OtomatiesCoreVendor\\get_error_handler')) {
-    /** @internal */
-    function get_error_handler() : ?callable
+if (!\function_exists('OtomatiesCoreVendor\get_error_handler')) {
+    function get_error_handler(): ?callable
     {
         return p\Php85::get_error_handler();
     }
 }
-if (!\function_exists('OtomatiesCoreVendor\\get_exception_handler')) {
-    /** @internal */
-    function get_exception_handler() : ?callable
+if (!\function_exists('OtomatiesCoreVendor\get_exception_handler')) {
+    function get_exception_handler(): ?callable
     {
         return p\Php85::get_exception_handler();
     }
 }
-if (!\function_exists('OtomatiesCoreVendor\\array_first')) {
-    /** @internal */
+if (!\function_exists('OtomatiesCoreVendor\array_first')) {
     function array_first(array $array)
     {
         return p\Php85::array_first($array);
     }
 }
-if (!\function_exists('OtomatiesCoreVendor\\array_last')) {
-    /** @internal */
+if (!\function_exists('OtomatiesCoreVendor\array_last')) {
     function array_last(array $array)
     {
         return p\Php85::array_last($array);

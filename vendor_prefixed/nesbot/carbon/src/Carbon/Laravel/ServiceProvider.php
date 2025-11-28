@@ -21,7 +21,6 @@ use OtomatiesCoreVendor\Illuminate\Events\EventDispatcher;
 use OtomatiesCoreVendor\Illuminate\Support\Carbon as IlluminateCarbon;
 use OtomatiesCoreVendor\Illuminate\Support\Facades\Date;
 use Throwable;
-/** @internal */
 class ServiceProvider extends \OtomatiesCoreVendor\Illuminate\Support\ServiceProvider
 {
     /** @var callable|null */
@@ -30,15 +29,15 @@ class ServiceProvider extends \OtomatiesCoreVendor\Illuminate\Support\ServicePro
     protected $localeGetter = null;
     /** @var callable|null */
     protected $fallbackLocaleGetter = null;
-    public function setAppGetter(?callable $appGetter) : void
+    public function setAppGetter(?callable $appGetter): void
     {
         $this->appGetter = $appGetter;
     }
-    public function setLocaleGetter(?callable $localeGetter) : void
+    public function setLocaleGetter(?callable $localeGetter): void
     {
         $this->localeGetter = $localeGetter;
     }
-    public function setFallbackLocaleGetter(?callable $fallbackLocaleGetter) : void
+    public function setFallbackLocaleGetter(?callable $fallbackLocaleGetter): void
     {
         $this->fallbackLocaleGetter = $fallbackLocaleGetter;
     }
@@ -52,7 +51,7 @@ class ServiceProvider extends \OtomatiesCoreVendor\Illuminate\Support\ServicePro
         $service = $this;
         $events = $this->app['events'];
         if ($this->isEventDispatcher($events)) {
-            $events->listen(\class_exists('OtomatiesCoreVendor\\Illuminate\\Foundation\\Events\\LocaleUpdated') ? 'Illuminate\\Foundation\\Events\\LocaleUpdated' : 'locale.changed', function () use($service) {
+            $events->listen(class_exists('OtomatiesCoreVendor\Illuminate\Foundation\Events\LocaleUpdated') ? 'Illuminate\Foundation\Events\LocaleUpdated' : 'locale.changed', function () use ($service) {
                 $service->updateLocale();
             });
         }
@@ -67,10 +66,10 @@ class ServiceProvider extends \OtomatiesCoreVendor\Illuminate\Support\ServicePro
         CarbonImmutable::setLocale($locale);
         CarbonPeriod::setLocale($locale);
         CarbonInterval::setLocale($locale);
-        if (\class_exists(IlluminateCarbon::class)) {
+        if (class_exists(IlluminateCarbon::class)) {
             IlluminateCarbon::setLocale($locale);
         }
-        if (\class_exists(Date::class)) {
+        if (class_exists(Date::class)) {
             try {
                 $root = Date::getFacadeRoot();
                 $root->setLocale($locale);
@@ -89,10 +88,10 @@ class ServiceProvider extends \OtomatiesCoreVendor\Illuminate\Support\ServicePro
         CarbonImmutable::setFallbackLocale($locale);
         CarbonPeriod::setFallbackLocale($locale);
         CarbonInterval::setFallbackLocale($locale);
-        if (\class_exists(IlluminateCarbon::class) && \method_exists(IlluminateCarbon::class, 'setFallbackLocale')) {
+        if (class_exists(IlluminateCarbon::class) && method_exists(IlluminateCarbon::class, 'setFallbackLocale')) {
             IlluminateCarbon::setFallbackLocale($locale);
         }
-        if (\class_exists(Date::class)) {
+        if (class_exists(Date::class)) {
             try {
                 $root = Date::getFacadeRoot();
                 $root->setFallbackLocale($locale);
@@ -112,7 +111,7 @@ class ServiceProvider extends \OtomatiesCoreVendor\Illuminate\Support\ServicePro
             return ($this->localeGetter)();
         }
         $app = $this->getApp();
-        $app = $app && \method_exists($app, 'getLocale') ? $app : $this->getGlobalApp('translator');
+        $app = $app && method_exists($app, 'getLocale') ? $app : $this->getGlobalApp('translator');
         return $app ? $app->getLocale() : null;
     }
     protected function getFallbackLocale()
@@ -121,7 +120,7 @@ class ServiceProvider extends \OtomatiesCoreVendor\Illuminate\Support\ServicePro
             return ($this->fallbackLocaleGetter)();
         }
         $app = $this->getApp();
-        return $app && \method_exists($app, 'getFallbackLocale') ? $app->getFallbackLocale() : $this->getGlobalApp('translator')?->getFallback();
+        return $app && method_exists($app, 'getFallbackLocale') ? $app->getFallbackLocale() : $this->getGlobalApp('translator')?->getFallback();
     }
     protected function getApp()
     {
@@ -132,7 +131,7 @@ class ServiceProvider extends \OtomatiesCoreVendor\Illuminate\Support\ServicePro
     }
     protected function getGlobalApp(...$args)
     {
-        return \function_exists('OtomatiesCoreVendor\\app') ? \OtomatiesCoreVendor\app(...$args) : null;
+        return \function_exists('OtomatiesCoreVendor\app') ? \OtomatiesCoreVendor\app(...$args) : null;
     }
     protected function isEventDispatcher($instance)
     {

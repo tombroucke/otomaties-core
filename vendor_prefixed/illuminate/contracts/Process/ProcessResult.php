@@ -2,7 +2,6 @@
 
 namespace OtomatiesCoreVendor\Illuminate\Contracts\Process;
 
-/** @internal */
 interface ProcessResult
 {
     /**

@@ -12,7 +12,6 @@ declare (strict_types=1);
 namespace OtomatiesCoreVendor\Carbon\Exceptions;
 
 use RuntimeException as BaseRuntimeException;
-/** @internal */
 final class EndLessPeriodException extends BaseRuntimeException implements RuntimeException
 {
     //

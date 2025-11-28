@@ -3,7 +3,6 @@
 namespace OtomatiesCoreVendor\Illuminate\Contracts\Database\Query;
 
 use OtomatiesCoreVendor\Illuminate\Database\Grammar;
-/** @internal */
 interface Expression
 {
     /**

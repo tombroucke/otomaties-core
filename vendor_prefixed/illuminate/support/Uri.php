@@ -16,7 +16,6 @@ use OtomatiesCoreVendor\League\Uri\Contracts\UriInterface;
 use OtomatiesCoreVendor\League\Uri\Uri as LeagueUri;
 use SensitiveParameter;
 use Stringable;
-/** @internal */
 class Uri implements Htmlable, JsonSerializable, Responsable, Stringable
 {
     use Conditionable, Dumpable, Macroable, Tappable;
@@ -38,16 +37,16 @@ class Uri implements Htmlable, JsonSerializable, Responsable, Stringable
     /**
      * Create a new URI instance.
      */
-    public static function of(UriInterface|Stringable|string $uri = '') : static
+    public static function of(UriInterface|Stringable|string $uri = ''): static
     {
         return new static($uri);
     }
     /**
      * Get a URI instance of an absolute URL for the given path.
      */
-    public static function to(string $path) : static
+    public static function to(string $path): static
     {
-        return new static(\call_user_func(static::$urlGeneratorResolver)->to($path));
+        return new static(call_user_func(static::$urlGeneratorResolver)->to($path));
     }
     /**
      * Get a URI instance for a named route.
@@ -59,9 +58,9 @@ class Uri implements Htmlable, JsonSerializable, Responsable, Stringable
      *
      * @throws \Symfony\Component\Routing\Exception\RouteNotFoundException|\InvalidArgumentException
      */
-    public static function route($name, $parameters = [], $absolute = \true) : static
+    public static function route($name, $parameters = [], $absolute = \true): static
     {
-        return new static(\call_user_func(static::$urlGeneratorResolver)->route($name, $parameters, $absolute));
+        return new static(call_user_func(static::$urlGeneratorResolver)->route($name, $parameters, $absolute));
     }
     /**
      * Create a signed route URI instance for a named route.
@@ -74,9 +73,9 @@ class Uri implements Htmlable, JsonSerializable, Responsable, Stringable
      *
      * @throws \InvalidArgumentException
      */
-    public static function signedRoute($name, $parameters = [], $expiration = null, $absolute = \true) : static
+    public static function signedRoute($name, $parameters = [], $expiration = null, $absolute = \true): static
     {
-        return new static(\call_user_func(static::$urlGeneratorResolver)->signedRoute($name, $parameters, $expiration, $absolute));
+        return new static(call_user_func(static::$urlGeneratorResolver)->signedRoute($name, $parameters, $expiration, $absolute));
     }
     /**
      * Create a temporary signed route URI instance for a named route.
@@ -87,7 +86,7 @@ class Uri implements Htmlable, JsonSerializable, Responsable, Stringable
      * @param  bool  $absolute
      * @return static
      */
-    public static function temporarySignedRoute($name, $expiration, $parameters = [], $absolute = \true) : static
+    public static function temporarySignedRoute($name, $expiration, $parameters = [], $absolute = \true): static
     {
         return static::signedRoute($name, $parameters, $expiration, $absolute);
     }
@@ -101,42 +100,42 @@ class Uri implements Htmlable, JsonSerializable, Responsable, Stringable
      *
      * @throws \InvalidArgumentException
      */
-    public static function action($action, $parameters = [], $absolute = \true) : static
+    public static function action($action, $parameters = [], $absolute = \true): static
     {
-        return new static(\call_user_func(static::$urlGeneratorResolver)->action($action, $parameters, $absolute));
+        return new static(call_user_func(static::$urlGeneratorResolver)->action($action, $parameters, $absolute));
     }
     /**
      * Get the URI's scheme.
      */
-    public function scheme() : ?string
+    public function scheme(): ?string
     {
         return $this->uri->getScheme();
     }
     /**
      * Get the user from the URI.
      */
-    public function user(bool $withPassword = \false) : ?string
+    public function user(bool $withPassword = \false): ?string
     {
         return $withPassword ? $this->uri->getUserInfo() : $this->uri->getUsername();
     }
     /**
      * Get the password from the URI.
      */
-    public function password() : ?string
+    public function password(): ?string
     {
         return $this->uri->getPassword();
     }
     /**
      * Get the URI's host.
      */
-    public function host() : ?string
+    public function host(): ?string
     {
         return $this->uri->getHost();
     }
     /**
      * Get the URI's port.
      */
-    public function port() : ?int
+    public function port(): ?int
     {
         return $this->uri->getPort();
     }
@@ -147,9 +146,9 @@ class Uri implements Htmlable, JsonSerializable, Responsable, Stringable
      *
      * @return non-empty-string
      */
-    public function path() : string
+    public function path(): string
     {
-        $path = \trim((string) $this->uri->getPath(), '/');
+        $path = trim((string) $this->uri->getPath(), '/');
         return $path === '' ? '/' : $path;
     }
     /**
@@ -157,64 +156,68 @@ class Uri implements Htmlable, JsonSerializable, Responsable, Stringable
      *
      * Empty or missing paths are returned as an empty collection.
      */
-    public function pathSegments() : Collection
+    public function pathSegments(): Collection
     {
         $path = $this->path();
-        return $path === '/' ? new Collection() : new Collection(\explode('/', $path));
+        return $path === '/' ? new Collection() : new Collection(explode('/', $path));
     }
     /**
      * Get the URI's query string.
      */
-    public function query() : UriQueryString
+    public function query(): UriQueryString
     {
         return new UriQueryString($this);
     }
     /**
      * Get the URI's fragment.
      */
-    public function fragment() : ?string
+    public function fragment(): ?string
     {
         return $this->uri->getFragment();
     }
     /**
      * Specify the scheme of the URI.
      */
-    public function withScheme(Stringable|string $scheme) : static
+    public function withScheme(Stringable|string $scheme): static
     {
         return new static($this->uri->withScheme($scheme));
     }
     /**
      * Specify the user and password for the URI.
      */
-    public function withUser(Stringable|string|null $user, #[SensitiveParameter] Stringable|string|null $password = null) : static
+    public function withUser(
+        Stringable|string|null $user,
+        #[SensitiveParameter]
+        Stringable|string|null $password = null
+    ): static
     {
         return new static($this->uri->withUserInfo($user, $password));
     }
     /**
      * Specify the host of the URI.
      */
-    public function withHost(Stringable|string $host) : static
+    public function withHost(Stringable|string $host): static
     {
         return new static($this->uri->withHost($host));
     }
     /**
      * Specify the port of the URI.
      */
-    public function withPort(?int $port) : static
+    public function withPort(?int $port): static
     {
         return new static($this->uri->withPort($port));
     }
     /**
      * Specify the path of the URI.
      */
-    public function withPath(Stringable|string $path) : static
+    public function withPath(Stringable|string $path): static
     {
         return new static($this->uri->withPath(Str::start((string) $path, '/')));
     }
     /**
      * Merge new query parameters into the URI.
      */
-    public function withQuery(array $query, bool $merge = \true) : static
+    public function withQuery(array $query, bool $merge = \true): static
     {
         foreach ($query as $key => $value) {
             if ($value instanceof UrlRoutable) {
@@ -238,7 +241,7 @@ class Uri implements Htmlable, JsonSerializable, Responsable, Stringable
     /**
      * Merge new query parameters into the URI if they are not already in the query string.
      */
-    public function withQueryIfMissing(array $query) : static
+    public function withQueryIfMissing(array $query): static
     {
         $currentQuery = $this->query();
         foreach ($query as $key => $value) {
@@ -251,42 +254,42 @@ class Uri implements Htmlable, JsonSerializable, Responsable, Stringable
     /**
      * Push a value onto the end of a query string parameter that is a list.
      */
-    public function pushOntoQuery(string $key, mixed $value) : static
+    public function pushOntoQuery(string $key, mixed $value): static
     {
         $currentValue = data_get($this->query()->all(), $key);
         $values = Arr::wrap($value);
         return $this->withQuery([$key => match (\true) {
-            \is_array($currentValue) && \array_is_list($currentValue) => \array_values(\array_unique([...$currentValue, ...$values])),
-            \is_array($currentValue) => [...$currentValue, ...$values],
-            !\is_null($currentValue) => [$currentValue, ...$values],
+            is_array($currentValue) && array_is_list($currentValue) => array_values(array_unique([...$currentValue, ...$values])),
+            is_array($currentValue) => [...$currentValue, ...$values],
+            !is_null($currentValue) => [$currentValue, ...$values],
             default => $values,
         }]);
     }
     /**
      * Remove the given query parameters from the URI.
      */
-    public function withoutQuery(array|string $keys) : static
+    public function withoutQuery(array|string $keys): static
     {
         return $this->replaceQuery(Arr::except($this->query()->all(), $keys));
     }
     /**
      * Specify new query parameters for the URI.
      */
-    public function replaceQuery(array $query) : static
+    public function replaceQuery(array $query): static
     {
         return $this->withQuery($query, merge: \false);
     }
     /**
      * Specify the fragment of the URI.
      */
-    public function withFragment(string $fragment) : static
+    public function withFragment(string $fragment): static
     {
         return new static($this->uri->withFragment($fragment));
     }
     /**
      * Create a redirect HTTP response for the given URI.
      */
-    public function redirect(int $status = 302, array $headers = []) : RedirectResponse
+    public function redirect(int $status = 302, array $headers = []): RedirectResponse
     {
         return new RedirectResponse($this->value(), $status, $headers);
     }
@@ -321,7 +324,7 @@ class Uri implements Htmlable, JsonSerializable, Responsable, Stringable
     /**
      * Get the decoded string representation of the URI.
      */
-    public function decode() : string
+    public function decode(): string
     {
         if (empty($this->query()->toArray())) {
             return $this->value();
@@ -331,16 +334,16 @@ class Uri implements Htmlable, JsonSerializable, Responsable, Stringable
     /**
      * Get the string representation of the URI.
      */
-    public function value() : string
+    public function value(): string
     {
         return (string) $this;
     }
     /**
      * Determine if the URI is currently an empty string.
      */
-    public function isEmpty() : bool
+    public function isEmpty(): bool
     {
-        return \trim($this->value()) === '';
+        return trim($this->value()) === '';
     }
     /**
      * Dump the string representation of the URI.
@@ -356,14 +359,14 @@ class Uri implements Htmlable, JsonSerializable, Responsable, Stringable
     /**
      * Set the URL generator resolver.
      */
-    public static function setUrlGeneratorResolver(Closure $urlGeneratorResolver) : void
+    public static function setUrlGeneratorResolver(Closure $urlGeneratorResolver): void
     {
         static::$urlGeneratorResolver = $urlGeneratorResolver;
     }
     /**
      * Get the underlying URI instance.
      */
-    public function getUri() : UriInterface
+    public function getUri(): UriInterface
     {
         return $this->uri;
     }
@@ -372,14 +375,14 @@ class Uri implements Htmlable, JsonSerializable, Responsable, Stringable
      *
      * @return string
      */
-    public function jsonSerialize() : string
+    public function jsonSerialize(): string
     {
         return $this->value();
     }
     /**
      * Get the string representation of the URI.
      */
-    public function __toString() : string
+    public function __toString(): string
     {
         return $this->uri->toString();
     }

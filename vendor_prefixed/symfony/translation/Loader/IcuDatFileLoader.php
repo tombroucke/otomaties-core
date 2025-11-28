@@ -18,16 +18,15 @@ use OtomatiesCoreVendor\Symfony\Component\Translation\MessageCatalogue;
  * IcuResFileLoader loads translations from a resource bundle.
  *
  * @author stealth35
- * @internal
  */
 class IcuDatFileLoader extends IcuResFileLoader
 {
-    public function load(mixed $resource, string $locale, string $domain = 'messages') : MessageCatalogue
+    public function load(mixed $resource, string $locale, string $domain = 'messages'): MessageCatalogue
     {
-        if (!\stream_is_local($resource . '.dat')) {
+        if (!stream_is_local($resource . '.dat')) {
             throw new InvalidResourceException(\sprintf('This is not a local file "%s".', $resource));
         }
-        if (!\file_exists($resource . '.dat')) {
+        if (!file_exists($resource . '.dat')) {
             throw new NotFoundResourceException(\sprintf('File "%s" not found.', $resource));
         }
         try {
@@ -37,13 +36,13 @@ class IcuDatFileLoader extends IcuResFileLoader
         }
         if (!$rb) {
             throw new InvalidResourceException(\sprintf('Cannot load resource "%s".', $resource));
-        } elseif (\intl_is_failure($rb->getErrorCode())) {
+        } elseif (intl_is_failure($rb->getErrorCode())) {
             throw new InvalidResourceException($rb->getErrorMessage(), $rb->getErrorCode());
         }
         $messages = $this->flatten($rb);
         $catalogue = new MessageCatalogue($locale);
         $catalogue->add($messages, $domain);
-        if (\class_exists(FileResource::class)) {
+        if (class_exists(FileResource::class)) {
             $catalogue->addResource(new FileResource($resource . '.dat'));
         }
         return $catalogue;

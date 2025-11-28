@@ -4,7 +4,7 @@
 
 $loader = (static function () {
     // Backup the autoloaded Composer files
-    $existingComposerAutoloadFiles = $GLOBALS['__composer_autoload_files'] ?? [];
+    $existingComposerAutoloadFiles = isset($GLOBALS['__composer_autoload_files']) ? $GLOBALS['__composer_autoload_files'] : [];
 
     $loader = require_once __DIR__.'/autoload.php';
     // Ensure InstalledVersions is available
@@ -1088,32 +1088,858 @@ humbug_phpscoper_expose_class('ActionScheduler_NullSchedule', 'OtomatiesCoreVend
 humbug_phpscoper_expose_class('ActionScheduler_LoggerSchema', 'OtomatiesCoreVendor\ActionScheduler_LoggerSchema');
 humbug_phpscoper_expose_class('ActionScheduler_StoreSchema', 'OtomatiesCoreVendor\ActionScheduler_StoreSchema');
 humbug_phpscoper_expose_class('ComposerAutoloaderInitd687bd8e1a3a4f9fc4c016d222458b08', 'OtomatiesCoreVendor\ComposerAutoloaderInitd687bd8e1a3a4f9fc4c016d222458b08');
-humbug_phpscoper_expose_class('JsonException', 'OtomatiesCoreVendor\JsonException');
-humbug_phpscoper_expose_class('SQLite3Exception', 'OtomatiesCoreVendor\SQLite3Exception');
-humbug_phpscoper_expose_class('DateError', 'OtomatiesCoreVendor\DateError');
+humbug_phpscoper_expose_class('Svn', 'OtomatiesCoreVendor\Svn');
+humbug_phpscoper_expose_class('SvnWc', 'OtomatiesCoreVendor\SvnWc');
+humbug_phpscoper_expose_class('SvnWcSchedule', 'OtomatiesCoreVendor\SvnWcSchedule');
+humbug_phpscoper_expose_class('SvnNode', 'OtomatiesCoreVendor\SvnNode');
+humbug_phpscoper_expose_class('GEOSWKTReader', 'OtomatiesCoreVendor\GEOSWKTReader');
+humbug_phpscoper_expose_class('GEOSWKTWriter', 'OtomatiesCoreVendor\GEOSWKTWriter');
+humbug_phpscoper_expose_class('GEOSGeometry', 'OtomatiesCoreVendor\GEOSGeometry');
+humbug_phpscoper_expose_class('GEOSWKBWriter', 'OtomatiesCoreVendor\GEOSWKBWriter');
+humbug_phpscoper_expose_class('GEOSWKBReader', 'OtomatiesCoreVendor\GEOSWKBReader');
+humbug_phpscoper_expose_class('GMP', 'OtomatiesCoreVendor\GMP');
+humbug_phpscoper_expose_class('LogicException', 'OtomatiesCoreVendor\LogicException');
+humbug_phpscoper_expose_class('BadFunctionCallException', 'OtomatiesCoreVendor\BadFunctionCallException');
+humbug_phpscoper_expose_class('BadMethodCallException', 'OtomatiesCoreVendor\BadMethodCallException');
+humbug_phpscoper_expose_class('DomainException', 'OtomatiesCoreVendor\DomainException');
+humbug_phpscoper_expose_class('InvalidArgumentException', 'OtomatiesCoreVendor\InvalidArgumentException');
+humbug_phpscoper_expose_class('LengthException', 'OtomatiesCoreVendor\LengthException');
+humbug_phpscoper_expose_class('OutOfRangeException', 'OtomatiesCoreVendor\OutOfRangeException');
+humbug_phpscoper_expose_class('RuntimeException', 'OtomatiesCoreVendor\RuntimeException');
+humbug_phpscoper_expose_class('OutOfBoundsException', 'OtomatiesCoreVendor\OutOfBoundsException');
+humbug_phpscoper_expose_class('OverflowException', 'OtomatiesCoreVendor\OverflowException');
+humbug_phpscoper_expose_class('RangeException', 'OtomatiesCoreVendor\RangeException');
+humbug_phpscoper_expose_class('UnderflowException', 'OtomatiesCoreVendor\UnderflowException');
+humbug_phpscoper_expose_class('UnexpectedValueException', 'OtomatiesCoreVendor\UnexpectedValueException');
+humbug_phpscoper_expose_class('EmptyIterator', 'OtomatiesCoreVendor\EmptyIterator');
+humbug_phpscoper_expose_class('CallbackFilterIterator', 'OtomatiesCoreVendor\CallbackFilterIterator');
+humbug_phpscoper_expose_class('RecursiveCallbackFilterIterator', 'OtomatiesCoreVendor\RecursiveCallbackFilterIterator');
+humbug_phpscoper_expose_class('RecursiveIterator', 'OtomatiesCoreVendor\RecursiveIterator');
+humbug_phpscoper_expose_class('RecursiveIteratorIterator', 'OtomatiesCoreVendor\RecursiveIteratorIterator');
+humbug_phpscoper_expose_class('OuterIterator', 'OtomatiesCoreVendor\OuterIterator');
+humbug_phpscoper_expose_class('IteratorIterator', 'OtomatiesCoreVendor\IteratorIterator');
+humbug_phpscoper_expose_class('FilterIterator', 'OtomatiesCoreVendor\FilterIterator');
+humbug_phpscoper_expose_class('RecursiveFilterIterator', 'OtomatiesCoreVendor\RecursiveFilterIterator');
+humbug_phpscoper_expose_class('ParentIterator', 'OtomatiesCoreVendor\ParentIterator');
+humbug_phpscoper_expose_class('SeekableIterator', 'OtomatiesCoreVendor\SeekableIterator');
+humbug_phpscoper_expose_class('LimitIterator', 'OtomatiesCoreVendor\LimitIterator');
+humbug_phpscoper_expose_class('CachingIterator', 'OtomatiesCoreVendor\CachingIterator');
+humbug_phpscoper_expose_class('RecursiveCachingIterator', 'OtomatiesCoreVendor\RecursiveCachingIterator');
+humbug_phpscoper_expose_class('NoRewindIterator', 'OtomatiesCoreVendor\NoRewindIterator');
+humbug_phpscoper_expose_class('AppendIterator', 'OtomatiesCoreVendor\AppendIterator');
+humbug_phpscoper_expose_class('InfiniteIterator', 'OtomatiesCoreVendor\InfiniteIterator');
+humbug_phpscoper_expose_class('RegexIterator', 'OtomatiesCoreVendor\RegexIterator');
+humbug_phpscoper_expose_class('RecursiveRegexIterator', 'OtomatiesCoreVendor\RecursiveRegexIterator');
+humbug_phpscoper_expose_class('RecursiveTreeIterator', 'OtomatiesCoreVendor\RecursiveTreeIterator');
+humbug_phpscoper_expose_class('ArrayObject', 'OtomatiesCoreVendor\ArrayObject');
+humbug_phpscoper_expose_class('ArrayIterator', 'OtomatiesCoreVendor\ArrayIterator');
+humbug_phpscoper_expose_class('RecursiveArrayIterator', 'OtomatiesCoreVendor\RecursiveArrayIterator');
+humbug_phpscoper_expose_class('SplFileInfo', 'OtomatiesCoreVendor\SplFileInfo');
+humbug_phpscoper_expose_class('DirectoryIterator', 'OtomatiesCoreVendor\DirectoryIterator');
+humbug_phpscoper_expose_class('FilesystemIterator', 'OtomatiesCoreVendor\FilesystemIterator');
+humbug_phpscoper_expose_class('RecursiveDirectoryIterator', 'OtomatiesCoreVendor\RecursiveDirectoryIterator');
+humbug_phpscoper_expose_class('GlobIterator', 'OtomatiesCoreVendor\GlobIterator');
+humbug_phpscoper_expose_class('SplFileObject', 'OtomatiesCoreVendor\SplFileObject');
+humbug_phpscoper_expose_class('SplTempFileObject', 'OtomatiesCoreVendor\SplTempFileObject');
+humbug_phpscoper_expose_class('SplDoublyLinkedList', 'OtomatiesCoreVendor\SplDoublyLinkedList');
+humbug_phpscoper_expose_class('SplQueue', 'OtomatiesCoreVendor\SplQueue');
+humbug_phpscoper_expose_class('SplStack', 'OtomatiesCoreVendor\SplStack');
+humbug_phpscoper_expose_class('SplHeap', 'OtomatiesCoreVendor\SplHeap');
+humbug_phpscoper_expose_class('SplMinHeap', 'OtomatiesCoreVendor\SplMinHeap');
+humbug_phpscoper_expose_class('SplMaxHeap', 'OtomatiesCoreVendor\SplMaxHeap');
+humbug_phpscoper_expose_class('SplPriorityQueue', 'OtomatiesCoreVendor\SplPriorityQueue');
+humbug_phpscoper_expose_class('SplFixedArray', 'OtomatiesCoreVendor\SplFixedArray');
+humbug_phpscoper_expose_class('SplObserver', 'OtomatiesCoreVendor\SplObserver');
+humbug_phpscoper_expose_class('SplSubject', 'OtomatiesCoreVendor\SplSubject');
+humbug_phpscoper_expose_class('SplObjectStorage', 'OtomatiesCoreVendor\SplObjectStorage');
+humbug_phpscoper_expose_class('MultipleIterator', 'OtomatiesCoreVendor\MultipleIterator');
+humbug_phpscoper_expose_class('ffmpeg_movie', 'OtomatiesCoreVendor\ffmpeg_movie');
+humbug_phpscoper_expose_class('ffmpeg_frame', 'OtomatiesCoreVendor\ffmpeg_frame');
+humbug_phpscoper_expose_class('ffmpeg_animated_gif', 'OtomatiesCoreVendor\ffmpeg_animated_gif');
+humbug_phpscoper_expose_class('LevelDB', 'OtomatiesCoreVendor\LevelDB');
+humbug_phpscoper_expose_class('LevelDBIterator', 'OtomatiesCoreVendor\LevelDBIterator');
+humbug_phpscoper_expose_class('LevelDBWriteBatch', 'OtomatiesCoreVendor\LevelDBWriteBatch');
+humbug_phpscoper_expose_class('LevelDBSnapshot', 'OtomatiesCoreVendor\LevelDBSnapshot');
+humbug_phpscoper_expose_class('LevelDBException', 'OtomatiesCoreVendor\LevelDBException');
+humbug_phpscoper_expose_class('MessagePack', 'OtomatiesCoreVendor\MessagePack');
+humbug_phpscoper_expose_class('MessagePackUnpacker', 'OtomatiesCoreVendor\MessagePackUnpacker');
+humbug_phpscoper_expose_class('SimdJsonException', 'OtomatiesCoreVendor\SimdJsonException');
+humbug_phpscoper_expose_class('SimdJsonValueError', 'OtomatiesCoreVendor\SimdJsonValueError');
+humbug_phpscoper_expose_class('OAuth', 'OtomatiesCoreVendor\OAuth');
+humbug_phpscoper_expose_class('OAuthException', 'OtomatiesCoreVendor\OAuthException');
+humbug_phpscoper_expose_class('OAuthProvider', 'OtomatiesCoreVendor\OAuthProvider');
+humbug_phpscoper_expose_class('stdClass', 'OtomatiesCoreVendor\stdClass');
+humbug_phpscoper_expose_class('iterable', 'OtomatiesCoreVendor\iterable');
+humbug_phpscoper_expose_class('Traversable', 'OtomatiesCoreVendor\Traversable');
+humbug_phpscoper_expose_class('IteratorAggregate', 'OtomatiesCoreVendor\IteratorAggregate');
+humbug_phpscoper_expose_class('Iterator', 'OtomatiesCoreVendor\Iterator');
+humbug_phpscoper_expose_class('ArrayAccess', 'OtomatiesCoreVendor\ArrayAccess');
+humbug_phpscoper_expose_class('Serializable', 'OtomatiesCoreVendor\Serializable');
+humbug_phpscoper_expose_class('Throwable', 'OtomatiesCoreVendor\Throwable');
+humbug_phpscoper_expose_class('Exception', 'OtomatiesCoreVendor\Exception');
+humbug_phpscoper_expose_class('Error', 'OtomatiesCoreVendor\Error');
+humbug_phpscoper_expose_class('ValueError', 'OtomatiesCoreVendor\ValueError');
+humbug_phpscoper_expose_class('TypeError', 'OtomatiesCoreVendor\TypeError');
+humbug_phpscoper_expose_class('ParseError', 'OtomatiesCoreVendor\ParseError');
+humbug_phpscoper_expose_class('ArgumentCountError', 'OtomatiesCoreVendor\ArgumentCountError');
+humbug_phpscoper_expose_class('ArithmeticError', 'OtomatiesCoreVendor\ArithmeticError');
+humbug_phpscoper_expose_class('CompileError', 'OtomatiesCoreVendor\CompileError');
+humbug_phpscoper_expose_class('DivisionByZeroError', 'OtomatiesCoreVendor\DivisionByZeroError');
+humbug_phpscoper_expose_class('UnhandledMatchError', 'OtomatiesCoreVendor\UnhandledMatchError');
+humbug_phpscoper_expose_class('RequestParseBodyException', 'OtomatiesCoreVendor\RequestParseBodyException');
+humbug_phpscoper_expose_class('ErrorException', 'OtomatiesCoreVendor\ErrorException');
+humbug_phpscoper_expose_class('Closure', 'OtomatiesCoreVendor\Closure');
+humbug_phpscoper_expose_class('Countable', 'OtomatiesCoreVendor\Countable');
+humbug_phpscoper_expose_class('WeakReference', 'OtomatiesCoreVendor\WeakReference');
+humbug_phpscoper_expose_class('WeakMap', 'OtomatiesCoreVendor\WeakMap');
+humbug_phpscoper_expose_class('Stringable', 'OtomatiesCoreVendor\Stringable');
+humbug_phpscoper_expose_class('Attribute', 'OtomatiesCoreVendor\Attribute');
+humbug_phpscoper_expose_class('InternalIterator', 'OtomatiesCoreVendor\InternalIterator');
+humbug_phpscoper_expose_class('UnitEnum', 'OtomatiesCoreVendor\UnitEnum');
+humbug_phpscoper_expose_class('BackedEnum', 'OtomatiesCoreVendor\BackedEnum');
+humbug_phpscoper_expose_class('IntBackedEnum', 'OtomatiesCoreVendor\IntBackedEnum');
+humbug_phpscoper_expose_class('StringBackedEnum', 'OtomatiesCoreVendor\StringBackedEnum');
+humbug_phpscoper_expose_class('Fiber', 'OtomatiesCoreVendor\Fiber');
+humbug_phpscoper_expose_class('FiberError', 'OtomatiesCoreVendor\FiberError');
+humbug_phpscoper_expose_class('ReturnTypeWillChange', 'OtomatiesCoreVendor\ReturnTypeWillChange');
+humbug_phpscoper_expose_class('AllowDynamicProperties', 'OtomatiesCoreVendor\AllowDynamicProperties');
+humbug_phpscoper_expose_class('SensitiveParameter', 'OtomatiesCoreVendor\SensitiveParameter');
+humbug_phpscoper_expose_class('SensitiveParameterValue', 'OtomatiesCoreVendor\SensitiveParameterValue');
 humbug_phpscoper_expose_class('Override', 'OtomatiesCoreVendor\Override');
-humbug_phpscoper_expose_class('DateException', 'OtomatiesCoreVendor\DateException');
-humbug_phpscoper_expose_class('DateInvalidOperationException', 'OtomatiesCoreVendor\DateInvalidOperationException');
-humbug_phpscoper_expose_class('DateObjectError', 'OtomatiesCoreVendor\DateObjectError');
-humbug_phpscoper_expose_class('DateMalformedPeriodStringException', 'OtomatiesCoreVendor\DateMalformedPeriodStringException');
-humbug_phpscoper_expose_class('DateMalformedStringException', 'OtomatiesCoreVendor\DateMalformedStringException');
-humbug_phpscoper_expose_class('DateRangeError', 'OtomatiesCoreVendor\DateRangeError');
-humbug_phpscoper_expose_class('DateInvalidTimeZoneException', 'OtomatiesCoreVendor\DateInvalidTimeZoneException');
-humbug_phpscoper_expose_class('DateMalformedIntervalStringException', 'OtomatiesCoreVendor\DateMalformedIntervalStringException');
-humbug_phpscoper_expose_class('ReflectionConstant', 'OtomatiesCoreVendor\ReflectionConstant');
 humbug_phpscoper_expose_class('Deprecated', 'OtomatiesCoreVendor\Deprecated');
+humbug_phpscoper_expose_class('SNMP', 'OtomatiesCoreVendor\SNMP');
+humbug_phpscoper_expose_class('SNMPException', 'OtomatiesCoreVendor\SNMPException');
+humbug_phpscoper_expose_class('LibXMLError', 'OtomatiesCoreVendor\LibXMLError');
+humbug_phpscoper_expose_class('SysvSharedMemory', 'OtomatiesCoreVendor\SysvSharedMemory');
+humbug_phpscoper_expose_class('GearmanClient', 'OtomatiesCoreVendor\GearmanClient');
+humbug_phpscoper_expose_class('GearmanTask', 'OtomatiesCoreVendor\GearmanTask');
+humbug_phpscoper_expose_class('GearmanWorker', 'OtomatiesCoreVendor\GearmanWorker');
+humbug_phpscoper_expose_class('GearmanJob', 'OtomatiesCoreVendor\GearmanJob');
+humbug_phpscoper_expose_class('GearmanException', 'OtomatiesCoreVendor\GearmanException');
+humbug_phpscoper_expose_class('Socket', 'OtomatiesCoreVendor\Socket');
+humbug_phpscoper_expose_class('AddressInfo', 'OtomatiesCoreVendor\AddressInfo');
+humbug_phpscoper_expose_class('SWFShape', 'OtomatiesCoreVendor\SWFShape');
+humbug_phpscoper_expose_class('SWFFill', 'OtomatiesCoreVendor\SWFFill');
+humbug_phpscoper_expose_class('SWFGradient', 'OtomatiesCoreVendor\SWFGradient');
+humbug_phpscoper_expose_class('SWFBitmap', 'OtomatiesCoreVendor\SWFBitmap');
+humbug_phpscoper_expose_class('SWFText', 'OtomatiesCoreVendor\SWFText');
+humbug_phpscoper_expose_class('SWFTextField', 'OtomatiesCoreVendor\SWFTextField');
+humbug_phpscoper_expose_class('SWFFont', 'OtomatiesCoreVendor\SWFFont');
+humbug_phpscoper_expose_class('SWFDisplayItem', 'OtomatiesCoreVendor\SWFDisplayItem');
+humbug_phpscoper_expose_class('SWFMovie', 'OtomatiesCoreVendor\SWFMovie');
+humbug_phpscoper_expose_class('SWFButton', 'OtomatiesCoreVendor\SWFButton');
+humbug_phpscoper_expose_class('SWFAction', 'OtomatiesCoreVendor\SWFAction');
+humbug_phpscoper_expose_class('SWFMorph', 'OtomatiesCoreVendor\SWFMorph');
+humbug_phpscoper_expose_class('SWFSprite', 'OtomatiesCoreVendor\SWFSprite');
+humbug_phpscoper_expose_class('SWFSound', 'OtomatiesCoreVendor\SWFSound');
+humbug_phpscoper_expose_class('SWFFontChar', 'OtomatiesCoreVendor\SWFFontChar');
+humbug_phpscoper_expose_class('SWFSoundInstance', 'OtomatiesCoreVendor\SWFSoundInstance');
+humbug_phpscoper_expose_class('SWFVideoStream', 'OtomatiesCoreVendor\SWFVideoStream');
+humbug_phpscoper_expose_class('SysvMessageQueue', 'OtomatiesCoreVendor\SysvMessageQueue');
+humbug_phpscoper_expose_class('IntlChar', 'OtomatiesCoreVendor\IntlChar');
+humbug_phpscoper_expose_class('Collator', 'OtomatiesCoreVendor\Collator');
+humbug_phpscoper_expose_class('NumberFormatter', 'OtomatiesCoreVendor\NumberFormatter');
+humbug_phpscoper_expose_class('Normalizer', 'OtomatiesCoreVendor\Normalizer');
+humbug_phpscoper_expose_class('Locale', 'OtomatiesCoreVendor\Locale');
+humbug_phpscoper_expose_class('MessageFormatter', 'OtomatiesCoreVendor\MessageFormatter');
+humbug_phpscoper_expose_class('IntlDateFormatter', 'OtomatiesCoreVendor\IntlDateFormatter');
+humbug_phpscoper_expose_class('ResourceBundle', 'OtomatiesCoreVendor\ResourceBundle');
+humbug_phpscoper_expose_class('Transliterator', 'OtomatiesCoreVendor\Transliterator');
+humbug_phpscoper_expose_class('Spoofchecker', 'OtomatiesCoreVendor\Spoofchecker');
+humbug_phpscoper_expose_class('IntlGregorianCalendar', 'OtomatiesCoreVendor\IntlGregorianCalendar');
+humbug_phpscoper_expose_class('IntlCalendar', 'OtomatiesCoreVendor\IntlCalendar');
+humbug_phpscoper_expose_class('IntlIterator', 'OtomatiesCoreVendor\IntlIterator');
+humbug_phpscoper_expose_class('IntlException', 'OtomatiesCoreVendor\IntlException');
+humbug_phpscoper_expose_class('IntlTimeZone', 'OtomatiesCoreVendor\IntlTimeZone');
+humbug_phpscoper_expose_class('IntlBreakIterator', 'OtomatiesCoreVendor\IntlBreakIterator');
+humbug_phpscoper_expose_class('IntlRuleBasedBreakIterator', 'OtomatiesCoreVendor\IntlRuleBasedBreakIterator');
+humbug_phpscoper_expose_class('IntlPartsIterator', 'OtomatiesCoreVendor\IntlPartsIterator');
+humbug_phpscoper_expose_class('IntlCodePointBreakIterator', 'OtomatiesCoreVendor\IntlCodePointBreakIterator');
+humbug_phpscoper_expose_class('UConverter', 'OtomatiesCoreVendor\UConverter');
+humbug_phpscoper_expose_class('IntlDatePatternGenerator', 'OtomatiesCoreVendor\IntlDatePatternGenerator');
+humbug_phpscoper_expose_class('HashContext', 'OtomatiesCoreVendor\HashContext');
+humbug_phpscoper_expose_class('RRDCreator', 'OtomatiesCoreVendor\RRDCreator');
+humbug_phpscoper_expose_class('RRDGraph', 'OtomatiesCoreVendor\RRDGraph');
+humbug_phpscoper_expose_class('RRDUpdater', 'OtomatiesCoreVendor\RRDUpdater');
+humbug_phpscoper_expose_class('APCIterator', 'OtomatiesCoreVendor\APCIterator');
+humbug_phpscoper_expose_class('APCUIterator', 'OtomatiesCoreVendor\APCUIterator');
+humbug_phpscoper_expose_class('SimpleKafkaClient', 'OtomatiesCoreVendor\SimpleKafkaClient');
+humbug_phpscoper_expose_class('RedisSentinel', 'OtomatiesCoreVendor\RedisSentinel');
+humbug_phpscoper_expose_class('Redis', 'OtomatiesCoreVendor\Redis');
+humbug_phpscoper_expose_class('RedisException', 'OtomatiesCoreVendor\RedisException');
+humbug_phpscoper_expose_class('RedisArray', 'OtomatiesCoreVendor\RedisArray');
+humbug_phpscoper_expose_class('RedisCluster', 'OtomatiesCoreVendor\RedisCluster');
+humbug_phpscoper_expose_class('RedisClusterException', 'OtomatiesCoreVendor\RedisClusterException');
+humbug_phpscoper_expose_class('XMLWriter', 'OtomatiesCoreVendor\XMLWriter');
+humbug_phpscoper_expose_class('ZendAPI_Queue', 'OtomatiesCoreVendor\ZendAPI_Queue');
+humbug_phpscoper_expose_class('ZendAPI_Job', 'OtomatiesCoreVendor\ZendAPI_Job');
+humbug_phpscoper_expose_class('java', 'OtomatiesCoreVendor\java');
+humbug_phpscoper_expose_class('JavaException', 'OtomatiesCoreVendor\JavaException');
+humbug_phpscoper_expose_class('SysvSemaphore', 'OtomatiesCoreVendor\SysvSemaphore');
+humbug_phpscoper_expose_class('PhpToken', 'OtomatiesCoreVendor\PhpToken');
+humbug_phpscoper_expose_class('V8Js', 'OtomatiesCoreVendor\V8Js');
+humbug_phpscoper_expose_class('V8JsScriptException', 'OtomatiesCoreVendor\V8JsScriptException');
+humbug_phpscoper_expose_class('V8JsTimeLimitException', 'OtomatiesCoreVendor\V8JsTimeLimitException');
+humbug_phpscoper_expose_class('V8JsMemoryLimitException', 'OtomatiesCoreVendor\V8JsMemoryLimitException');
+humbug_phpscoper_expose_class('Ev', 'OtomatiesCoreVendor\Ev');
+humbug_phpscoper_expose_class('EvWatcher', 'OtomatiesCoreVendor\EvWatcher');
+humbug_phpscoper_expose_class('EvCheck', 'OtomatiesCoreVendor\EvCheck');
+humbug_phpscoper_expose_class('EvChild', 'OtomatiesCoreVendor\EvChild');
+humbug_phpscoper_expose_class('EvEmbed', 'OtomatiesCoreVendor\EvEmbed');
+humbug_phpscoper_expose_class('EvIo', 'OtomatiesCoreVendor\EvIo');
+humbug_phpscoper_expose_class('EvPeriodic', 'OtomatiesCoreVendor\EvPeriodic');
+humbug_phpscoper_expose_class('EvPrepare', 'OtomatiesCoreVendor\EvPrepare');
+humbug_phpscoper_expose_class('EvSignal', 'OtomatiesCoreVendor\EvSignal');
+humbug_phpscoper_expose_class('EvStat', 'OtomatiesCoreVendor\EvStat');
+humbug_phpscoper_expose_class('EvTimer', 'OtomatiesCoreVendor\EvTimer');
+humbug_phpscoper_expose_class('EvIdle', 'OtomatiesCoreVendor\EvIdle');
+humbug_phpscoper_expose_class('EvFork', 'OtomatiesCoreVendor\EvFork');
+humbug_phpscoper_expose_class('EvLoop', 'OtomatiesCoreVendor\EvLoop');
+humbug_phpscoper_expose_class('DateTimeInterface', 'OtomatiesCoreVendor\DateTimeInterface');
+humbug_phpscoper_expose_class('DateTimeImmutable', 'OtomatiesCoreVendor\DateTimeImmutable');
+humbug_phpscoper_expose_class('DateTime', 'OtomatiesCoreVendor\DateTime');
+humbug_phpscoper_expose_class('DateTimeZone', 'OtomatiesCoreVendor\DateTimeZone');
+humbug_phpscoper_expose_class('DateInterval', 'OtomatiesCoreVendor\DateInterval');
+humbug_phpscoper_expose_class('DatePeriod', 'OtomatiesCoreVendor\DatePeriod');
+humbug_phpscoper_expose_class('DateError', 'OtomatiesCoreVendor\DateError');
+humbug_phpscoper_expose_class('DateObjectError', 'OtomatiesCoreVendor\DateObjectError');
+humbug_phpscoper_expose_class('DateRangeError', 'OtomatiesCoreVendor\DateRangeError');
+humbug_phpscoper_expose_class('DateException', 'OtomatiesCoreVendor\DateException');
+humbug_phpscoper_expose_class('DateInvalidTimeZoneException', 'OtomatiesCoreVendor\DateInvalidTimeZoneException');
+humbug_phpscoper_expose_class('DateInvalidOperationException', 'OtomatiesCoreVendor\DateInvalidOperationException');
+humbug_phpscoper_expose_class('DateMalformedStringException', 'OtomatiesCoreVendor\DateMalformedStringException');
+humbug_phpscoper_expose_class('DateMalformedIntervalStringException', 'OtomatiesCoreVendor\DateMalformedIntervalStringException');
+humbug_phpscoper_expose_class('DateMalformedPeriodStringException', 'OtomatiesCoreVendor\DateMalformedPeriodStringException');
+humbug_phpscoper_expose_class('PharException', 'OtomatiesCoreVendor\PharException');
+humbug_phpscoper_expose_class('Phar', 'OtomatiesCoreVendor\Phar');
+humbug_phpscoper_expose_class('PharData', 'OtomatiesCoreVendor\PharData');
+humbug_phpscoper_expose_class('PharFileInfo', 'OtomatiesCoreVendor\PharFileInfo');
+humbug_phpscoper_expose_class('PDOException', 'OtomatiesCoreVendor\PDOException');
+humbug_phpscoper_expose_class('PDO', 'OtomatiesCoreVendor\PDO');
+humbug_phpscoper_expose_class('PDOStatement', 'OtomatiesCoreVendor\PDOStatement');
+humbug_phpscoper_expose_class('PDORow', 'OtomatiesCoreVendor\PDORow');
+humbug_phpscoper_expose_class('AMQPBasicProperties', 'OtomatiesCoreVendor\AMQPBasicProperties');
+humbug_phpscoper_expose_class('AMQPChannel', 'OtomatiesCoreVendor\AMQPChannel');
+humbug_phpscoper_expose_class('AMQPChannelException', 'OtomatiesCoreVendor\AMQPChannelException');
+humbug_phpscoper_expose_class('AMQPConnection', 'OtomatiesCoreVendor\AMQPConnection');
+humbug_phpscoper_expose_class('AMQPConnectionException', 'OtomatiesCoreVendor\AMQPConnectionException');
+humbug_phpscoper_expose_class('AMQPValue', 'OtomatiesCoreVendor\AMQPValue');
+humbug_phpscoper_expose_class('AMQPDecimal', 'OtomatiesCoreVendor\AMQPDecimal');
+humbug_phpscoper_expose_class('AMQPEnvelope', 'OtomatiesCoreVendor\AMQPEnvelope');
+humbug_phpscoper_expose_class('AMQPEnvelopeException', 'OtomatiesCoreVendor\AMQPEnvelopeException');
+humbug_phpscoper_expose_class('AMQPException', 'OtomatiesCoreVendor\AMQPException');
+humbug_phpscoper_expose_class('AMQPExchange', 'OtomatiesCoreVendor\AMQPExchange');
+humbug_phpscoper_expose_class('AMQPExchangeException', 'OtomatiesCoreVendor\AMQPExchangeException');
+humbug_phpscoper_expose_class('AMQPQueue', 'OtomatiesCoreVendor\AMQPQueue');
+humbug_phpscoper_expose_class('AMQPQueueException', 'OtomatiesCoreVendor\AMQPQueueException');
+humbug_phpscoper_expose_class('AMQPValueException', 'OtomatiesCoreVendor\AMQPValueException');
+humbug_phpscoper_expose_class('AMQPTimestamp', 'OtomatiesCoreVendor\AMQPTimestamp');
+humbug_phpscoper_expose_class('AMQPExchangeValue', 'OtomatiesCoreVendor\AMQPExchangeValue');
+humbug_phpscoper_expose_class('Judy', 'OtomatiesCoreVendor\Judy');
+humbug_phpscoper_expose_class('SQLiteDatabase', 'OtomatiesCoreVendor\SQLiteDatabase');
+humbug_phpscoper_expose_class('SQLiteResult', 'OtomatiesCoreVendor\SQLiteResult');
+humbug_phpscoper_expose_class('SQLiteUnbuffered', 'OtomatiesCoreVendor\SQLiteUnbuffered');
+humbug_phpscoper_expose_class('SQLiteException', 'OtomatiesCoreVendor\SQLiteException');
+humbug_phpscoper_expose_class('SoapClient', 'OtomatiesCoreVendor\SoapClient');
+humbug_phpscoper_expose_class('SoapVar', 'OtomatiesCoreVendor\SoapVar');
+humbug_phpscoper_expose_class('SoapServer', 'OtomatiesCoreVendor\SoapServer');
+humbug_phpscoper_expose_class('SoapFault', 'OtomatiesCoreVendor\SoapFault');
+humbug_phpscoper_expose_class('SoapParam', 'OtomatiesCoreVendor\SoapParam');
+humbug_phpscoper_expose_class('SoapHeader', 'OtomatiesCoreVendor\SoapHeader');
+humbug_phpscoper_expose_class('RarArchive', 'OtomatiesCoreVendor\RarArchive');
+humbug_phpscoper_expose_class('RarEntry', 'OtomatiesCoreVendor\RarEntry');
+humbug_phpscoper_expose_class('RarException', 'OtomatiesCoreVendor\RarException');
+humbug_phpscoper_expose_class('InflateContext', 'OtomatiesCoreVendor\InflateContext');
+humbug_phpscoper_expose_class('DeflateContext', 'OtomatiesCoreVendor\DeflateContext');
+humbug_phpscoper_expose_class('Gmagick', 'OtomatiesCoreVendor\Gmagick');
+humbug_phpscoper_expose_class('GmagickDraw', 'OtomatiesCoreVendor\GmagickDraw');
+humbug_phpscoper_expose_class('GmagickException', 'OtomatiesCoreVendor\GmagickException');
+humbug_phpscoper_expose_class('GmagickPixel', 'OtomatiesCoreVendor\GmagickPixel');
+humbug_phpscoper_expose_class('GmagickPixelException', 'OtomatiesCoreVendor\GmagickPixelException');
+humbug_phpscoper_expose_class('LuaSandbox', 'OtomatiesCoreVendor\LuaSandbox');
+humbug_phpscoper_expose_class('LuaSandboxFunction', 'OtomatiesCoreVendor\LuaSandboxFunction');
+humbug_phpscoper_expose_class('LuaSandboxError', 'OtomatiesCoreVendor\LuaSandboxError');
+humbug_phpscoper_expose_class('LuaSandboxRuntimeError', 'OtomatiesCoreVendor\LuaSandboxRuntimeError');
+humbug_phpscoper_expose_class('LuaSandboxFatalError', 'OtomatiesCoreVendor\LuaSandboxFatalError');
+humbug_phpscoper_expose_class('LuaSandboxErrorError', 'OtomatiesCoreVendor\LuaSandboxErrorError');
+humbug_phpscoper_expose_class('LuaSandboxMemoryError', 'OtomatiesCoreVendor\LuaSandboxMemoryError');
+humbug_phpscoper_expose_class('LuaSandboxSyntaxError', 'OtomatiesCoreVendor\LuaSandboxSyntaxError');
+humbug_phpscoper_expose_class('LuaSandboxTimeoutError', 'OtomatiesCoreVendor\LuaSandboxTimeoutError');
+humbug_phpscoper_expose_class('Lua', 'OtomatiesCoreVendor\Lua');
+humbug_phpscoper_expose_class('Zookeeper', 'OtomatiesCoreVendor\Zookeeper');
+humbug_phpscoper_expose_class('ZookeeperException', 'OtomatiesCoreVendor\ZookeeperException');
+humbug_phpscoper_expose_class('ZookeeperOperationTimeoutException', 'OtomatiesCoreVendor\ZookeeperOperationTimeoutException');
+humbug_phpscoper_expose_class('ZookeeperConnectionException', 'OtomatiesCoreVendor\ZookeeperConnectionException');
+humbug_phpscoper_expose_class('ZookeeperMarshallingException', 'OtomatiesCoreVendor\ZookeeperMarshallingException');
+humbug_phpscoper_expose_class('ZookeeperAuthenticationException', 'OtomatiesCoreVendor\ZookeeperAuthenticationException');
+humbug_phpscoper_expose_class('ZookeeperSessionException', 'OtomatiesCoreVendor\ZookeeperSessionException');
+humbug_phpscoper_expose_class('ZookeeperNoNodeException', 'OtomatiesCoreVendor\ZookeeperNoNodeException');
+humbug_phpscoper_expose_class('XMLParser', 'OtomatiesCoreVendor\XMLParser');
+humbug_phpscoper_expose_class('SolrResponse', 'OtomatiesCoreVendor\SolrResponse');
+humbug_phpscoper_expose_class('SolrPingResponse', 'OtomatiesCoreVendor\SolrPingResponse');
+humbug_phpscoper_expose_class('SolrGenericResponse', 'OtomatiesCoreVendor\SolrGenericResponse');
+humbug_phpscoper_expose_class('SolrUpdateResponse', 'OtomatiesCoreVendor\SolrUpdateResponse');
+humbug_phpscoper_expose_class('SolrQueryResponse', 'OtomatiesCoreVendor\SolrQueryResponse');
+humbug_phpscoper_expose_class('SolrDisMaxQuery', 'OtomatiesCoreVendor\SolrDisMaxQuery');
+humbug_phpscoper_expose_class('SolrQuery', 'OtomatiesCoreVendor\SolrQuery');
+humbug_phpscoper_expose_class('SolrParams', 'OtomatiesCoreVendor\SolrParams');
+humbug_phpscoper_expose_class('SolrModifiableParams', 'OtomatiesCoreVendor\SolrModifiableParams');
+humbug_phpscoper_expose_class('SolrCollapseFunction', 'OtomatiesCoreVendor\SolrCollapseFunction');
+humbug_phpscoper_expose_class('SolrClient', 'OtomatiesCoreVendor\SolrClient');
+humbug_phpscoper_expose_class('SolrObject', 'OtomatiesCoreVendor\SolrObject');
+humbug_phpscoper_expose_class('SolrUtils', 'OtomatiesCoreVendor\SolrUtils');
+humbug_phpscoper_expose_class('SolrException', 'OtomatiesCoreVendor\SolrException');
+humbug_phpscoper_expose_class('SolrIllegalArgumentException', 'OtomatiesCoreVendor\SolrIllegalArgumentException');
+humbug_phpscoper_expose_class('SolrServerException', 'OtomatiesCoreVendor\SolrServerException');
+humbug_phpscoper_expose_class('SolrClientException', 'OtomatiesCoreVendor\SolrClientException');
+humbug_phpscoper_expose_class('SolrMissingMandatoryParameterException', 'OtomatiesCoreVendor\SolrMissingMandatoryParameterException');
+humbug_phpscoper_expose_class('SolrIllegalOperationException', 'OtomatiesCoreVendor\SolrIllegalOperationException');
+humbug_phpscoper_expose_class('SolrDocument', 'OtomatiesCoreVendor\SolrDocument');
+humbug_phpscoper_expose_class('SolrDocumentField', 'OtomatiesCoreVendor\SolrDocumentField');
+humbug_phpscoper_expose_class('SolrInputDocument', 'OtomatiesCoreVendor\SolrInputDocument');
+humbug_phpscoper_expose_class('Generator', 'OtomatiesCoreVendor\Generator');
+humbug_phpscoper_expose_class('ClosedGeneratorException', 'OtomatiesCoreVendor\ClosedGeneratorException');
+humbug_phpscoper_expose_class('__PHP_Incomplete_Class', 'OtomatiesCoreVendor\__PHP_Incomplete_Class');
+humbug_phpscoper_expose_class('php_user_filter', 'OtomatiesCoreVendor\php_user_filter');
+humbug_phpscoper_expose_class('StreamBucket', 'OtomatiesCoreVendor\StreamBucket');
+humbug_phpscoper_expose_class('Directory', 'OtomatiesCoreVendor\Directory');
+humbug_phpscoper_expose_class('AssertionError', 'OtomatiesCoreVendor\AssertionError');
+humbug_phpscoper_expose_class('RdKafka', 'OtomatiesCoreVendor\RdKafka');
+humbug_phpscoper_expose_class('Memcached', 'OtomatiesCoreVendor\Memcached');
+humbug_phpscoper_expose_class('MemcachedException', 'OtomatiesCoreVendor\MemcachedException');
+humbug_phpscoper_expose_class('UV', 'OtomatiesCoreVendor\UV');
+humbug_phpscoper_expose_class('UVStream', 'OtomatiesCoreVendor\UVStream');
+humbug_phpscoper_expose_class('UVTcp', 'OtomatiesCoreVendor\UVTcp');
+humbug_phpscoper_expose_class('UVUdp', 'OtomatiesCoreVendor\UVUdp');
+humbug_phpscoper_expose_class('UVPipe', 'OtomatiesCoreVendor\UVPipe');
+humbug_phpscoper_expose_class('UVIdle', 'OtomatiesCoreVendor\UVIdle');
+humbug_phpscoper_expose_class('UVTimer', 'OtomatiesCoreVendor\UVTimer');
+humbug_phpscoper_expose_class('UVAsync', 'OtomatiesCoreVendor\UVAsync');
+humbug_phpscoper_expose_class('UVAddrinfo', 'OtomatiesCoreVendor\UVAddrinfo');
+humbug_phpscoper_expose_class('UVProcess', 'OtomatiesCoreVendor\UVProcess');
+humbug_phpscoper_expose_class('UVPrepare', 'OtomatiesCoreVendor\UVPrepare');
+humbug_phpscoper_expose_class('UVCheck', 'OtomatiesCoreVendor\UVCheck');
+humbug_phpscoper_expose_class('UVWork', 'OtomatiesCoreVendor\UVWork');
+humbug_phpscoper_expose_class('UVFs', 'OtomatiesCoreVendor\UVFs');
+humbug_phpscoper_expose_class('UVFsEvent', 'OtomatiesCoreVendor\UVFsEvent');
+humbug_phpscoper_expose_class('UVTty', 'OtomatiesCoreVendor\UVTty');
+humbug_phpscoper_expose_class('UVFsPoll', 'OtomatiesCoreVendor\UVFsPoll');
+humbug_phpscoper_expose_class('UVPoll', 'OtomatiesCoreVendor\UVPoll');
+humbug_phpscoper_expose_class('UVSignal', 'OtomatiesCoreVendor\UVSignal');
+humbug_phpscoper_expose_class('UVLoop', 'OtomatiesCoreVendor\UVLoop');
+humbug_phpscoper_expose_class('UVSockAddr', 'OtomatiesCoreVendor\UVSockAddr');
+humbug_phpscoper_expose_class('UVSockAddrIPv4', 'OtomatiesCoreVendor\UVSockAddrIPv4');
+humbug_phpscoper_expose_class('UVSockAddrIPv6', 'OtomatiesCoreVendor\UVSockAddrIPv6');
+humbug_phpscoper_expose_class('UVLock', 'OtomatiesCoreVendor\UVLock');
+humbug_phpscoper_expose_class('UVStdio', 'OtomatiesCoreVendor\UVStdio');
+humbug_phpscoper_expose_class('MemcachePool', 'OtomatiesCoreVendor\MemcachePool');
+humbug_phpscoper_expose_class('Memcache', 'OtomatiesCoreVendor\Memcache');
+humbug_phpscoper_expose_class('ZipArchive', 'OtomatiesCoreVendor\ZipArchive');
+humbug_phpscoper_expose_class('CURLStringFile', 'OtomatiesCoreVendor\CURLStringFile');
+humbug_phpscoper_expose_class('CURLFile', 'OtomatiesCoreVendor\CURLFile');
+humbug_phpscoper_expose_class('CurlHandle', 'OtomatiesCoreVendor\CurlHandle');
+humbug_phpscoper_expose_class('CurlMultiHandle', 'OtomatiesCoreVendor\CurlMultiHandle');
+humbug_phpscoper_expose_class('CurlShareHandle', 'OtomatiesCoreVendor\CurlShareHandle');
+humbug_phpscoper_expose_class('SVM', 'OtomatiesCoreVendor\SVM');
+humbug_phpscoper_expose_class('SVMModel', 'OtomatiesCoreVendor\SVMModel');
+humbug_phpscoper_expose_class('EnchantBroker', 'OtomatiesCoreVendor\EnchantBroker');
+humbug_phpscoper_expose_class('EnchantDictionary', 'OtomatiesCoreVendor\EnchantDictionary');
+humbug_phpscoper_expose_class('JsonSerializable', 'OtomatiesCoreVendor\JsonSerializable');
+humbug_phpscoper_expose_class('JsonIncrementalParser', 'OtomatiesCoreVendor\JsonIncrementalParser');
+humbug_phpscoper_expose_class('JsonException', 'OtomatiesCoreVendor\JsonException');
+humbug_phpscoper_expose_class('tidy', 'OtomatiesCoreVendor\tidy');
+humbug_phpscoper_expose_class('tidyNode', 'OtomatiesCoreVendor\tidyNode');
+humbug_phpscoper_expose_class('finfo', 'OtomatiesCoreVendor\finfo');
+humbug_phpscoper_expose_class('ImagickException', 'OtomatiesCoreVendor\ImagickException');
+humbug_phpscoper_expose_class('ImagickDrawException', 'OtomatiesCoreVendor\ImagickDrawException');
+humbug_phpscoper_expose_class('ImagickPixelIteratorException', 'OtomatiesCoreVendor\ImagickPixelIteratorException');
+humbug_phpscoper_expose_class('ImagickPixelException', 'OtomatiesCoreVendor\ImagickPixelException');
+humbug_phpscoper_expose_class('ImagickKernelException', 'OtomatiesCoreVendor\ImagickKernelException');
+humbug_phpscoper_expose_class('Imagick', 'OtomatiesCoreVendor\Imagick');
+humbug_phpscoper_expose_class('ImagickDraw', 'OtomatiesCoreVendor\ImagickDraw');
+humbug_phpscoper_expose_class('ImagickPixelIterator', 'OtomatiesCoreVendor\ImagickPixelIterator');
+humbug_phpscoper_expose_class('ImagickPixel', 'OtomatiesCoreVendor\ImagickPixel');
+humbug_phpscoper_expose_class('ImagickKernel', 'OtomatiesCoreVendor\ImagickKernel');
+humbug_phpscoper_expose_class('OCI_Lob', 'OtomatiesCoreVendor\OCI_Lob');
+humbug_phpscoper_expose_class('OCI_Collection', 'OtomatiesCoreVendor\OCI_Collection');
+humbug_phpscoper_expose_class('OCILob', 'OtomatiesCoreVendor\OCILob');
+humbug_phpscoper_expose_class('OCICollection', 'OtomatiesCoreVendor\OCICollection');
+humbug_phpscoper_expose_class('FFI', 'OtomatiesCoreVendor\FFI');
+humbug_phpscoper_expose_class('HttpException', 'OtomatiesCoreVendor\HttpException');
+humbug_phpscoper_expose_class('HttpRuntimeException', 'OtomatiesCoreVendor\HttpRuntimeException');
+humbug_phpscoper_expose_class('HttpInvalidParamException', 'OtomatiesCoreVendor\HttpInvalidParamException');
+humbug_phpscoper_expose_class('HttpHeaderException', 'OtomatiesCoreVendor\HttpHeaderException');
+humbug_phpscoper_expose_class('HttpMalformedHeadersException', 'OtomatiesCoreVendor\HttpMalformedHeadersException');
+humbug_phpscoper_expose_class('HttpRequestMethodException', 'OtomatiesCoreVendor\HttpRequestMethodException');
+humbug_phpscoper_expose_class('HttpMessageTypeException', 'OtomatiesCoreVendor\HttpMessageTypeException');
+humbug_phpscoper_expose_class('HttpEncodingException', 'OtomatiesCoreVendor\HttpEncodingException');
+humbug_phpscoper_expose_class('HttpRequestException', 'OtomatiesCoreVendor\HttpRequestException');
+humbug_phpscoper_expose_class('HttpRequestPoolException', 'OtomatiesCoreVendor\HttpRequestPoolException');
+humbug_phpscoper_expose_class('HttpSocketException', 'OtomatiesCoreVendor\HttpSocketException');
+humbug_phpscoper_expose_class('HttpResponseException', 'OtomatiesCoreVendor\HttpResponseException');
+humbug_phpscoper_expose_class('HttpUrlException', 'OtomatiesCoreVendor\HttpUrlException');
+humbug_phpscoper_expose_class('HttpQueryStringException', 'OtomatiesCoreVendor\HttpQueryStringException');
+humbug_phpscoper_expose_class('HttpDeflateStream', 'OtomatiesCoreVendor\HttpDeflateStream');
+humbug_phpscoper_expose_class('HttpInflateStream', 'OtomatiesCoreVendor\HttpInflateStream');
+humbug_phpscoper_expose_class('HttpMessage', 'OtomatiesCoreVendor\HttpMessage');
+humbug_phpscoper_expose_class('HttpQueryString', 'OtomatiesCoreVendor\HttpQueryString');
+humbug_phpscoper_expose_class('HttpRequest', 'OtomatiesCoreVendor\HttpRequest');
+humbug_phpscoper_expose_class('HttpRequestDataShare', 'OtomatiesCoreVendor\HttpRequestDataShare');
+humbug_phpscoper_expose_class('HttpRequestPool', 'OtomatiesCoreVendor\HttpRequestPool');
+humbug_phpscoper_expose_class('HttpResponse', 'OtomatiesCoreVendor\HttpResponse');
+humbug_phpscoper_expose_class('HttpUtil', 'OtomatiesCoreVendor\HttpUtil');
+humbug_phpscoper_expose_class('Aerospike', 'OtomatiesCoreVendor\Aerospike');
+humbug_phpscoper_expose_class('Cassandra', 'OtomatiesCoreVendor\Cassandra');
+humbug_phpscoper_expose_class('SQLite3Exception', 'OtomatiesCoreVendor\SQLite3Exception');
+humbug_phpscoper_expose_class('SQLite3', 'OtomatiesCoreVendor\SQLite3');
+humbug_phpscoper_expose_class('SQLite3Stmt', 'OtomatiesCoreVendor\SQLite3Stmt');
+humbug_phpscoper_expose_class('SQLite3Result', 'OtomatiesCoreVendor\SQLite3Result');
+humbug_phpscoper_expose_class('SplType', 'OtomatiesCoreVendor\SplType');
+humbug_phpscoper_expose_class('SplInt', 'OtomatiesCoreVendor\SplInt');
+humbug_phpscoper_expose_class('SplFloat', 'OtomatiesCoreVendor\SplFloat');
+humbug_phpscoper_expose_class('SplEnum', 'OtomatiesCoreVendor\SplEnum');
+humbug_phpscoper_expose_class('SplBool', 'OtomatiesCoreVendor\SplBool');
+humbug_phpscoper_expose_class('SplString', 'OtomatiesCoreVendor\SplString');
+humbug_phpscoper_expose_class('Stomp', 'OtomatiesCoreVendor\Stomp');
+humbug_phpscoper_expose_class('StompFrame', 'OtomatiesCoreVendor\StompFrame');
+humbug_phpscoper_expose_class('StompException', 'OtomatiesCoreVendor\StompException');
+humbug_phpscoper_expose_class('BlackfireProbe', 'OtomatiesCoreVendor\BlackfireProbe');
+humbug_phpscoper_expose_class('Pool', 'OtomatiesCoreVendor\Pool');
+humbug_phpscoper_expose_class('Threaded', 'OtomatiesCoreVendor\Threaded');
+humbug_phpscoper_expose_class('Thread', 'OtomatiesCoreVendor\Thread');
+humbug_phpscoper_expose_class('Worker', 'OtomatiesCoreVendor\Worker');
+humbug_phpscoper_expose_class('Collectable', 'OtomatiesCoreVendor\Collectable');
+humbug_phpscoper_expose_class('Volatile', 'OtomatiesCoreVendor\Volatile');
+humbug_phpscoper_expose_class('Yaf_Application', 'OtomatiesCoreVendor\Yaf_Application');
+humbug_phpscoper_expose_class('Yaf_Dispatcher', 'OtomatiesCoreVendor\Yaf_Dispatcher');
+humbug_phpscoper_expose_class('Yaf_Loader', 'OtomatiesCoreVendor\Yaf_Loader');
+humbug_phpscoper_expose_class('Yaf_Registry', 'OtomatiesCoreVendor\Yaf_Registry');
+humbug_phpscoper_expose_class('Yaf_Session', 'OtomatiesCoreVendor\Yaf_Session');
+humbug_phpscoper_expose_class('Yaf_Router', 'OtomatiesCoreVendor\Yaf_Router');
+humbug_phpscoper_expose_class('Yaf_Bootstrap_Abstract', 'OtomatiesCoreVendor\Yaf_Bootstrap_Abstract');
+humbug_phpscoper_expose_class('Yaf_Controller_Abstract', 'OtomatiesCoreVendor\Yaf_Controller_Abstract');
+humbug_phpscoper_expose_class('Yaf_Action_Abstract', 'OtomatiesCoreVendor\Yaf_Action_Abstract');
+humbug_phpscoper_expose_class('Yaf_Config_Abstract', 'OtomatiesCoreVendor\Yaf_Config_Abstract');
+humbug_phpscoper_expose_class('Yaf_Request_Abstract', 'OtomatiesCoreVendor\Yaf_Request_Abstract');
+humbug_phpscoper_expose_class('Yaf_Plugin_Abstract', 'OtomatiesCoreVendor\Yaf_Plugin_Abstract');
+humbug_phpscoper_expose_class('Yaf_Response_Abstract', 'OtomatiesCoreVendor\Yaf_Response_Abstract');
+humbug_phpscoper_expose_class('Yaf_View_Interface', 'OtomatiesCoreVendor\Yaf_View_Interface');
+humbug_phpscoper_expose_class('Yaf_Route_Interface', 'OtomatiesCoreVendor\Yaf_Route_Interface');
+humbug_phpscoper_expose_class('Yaf_Exception', 'OtomatiesCoreVendor\Yaf_Exception');
+humbug_phpscoper_expose_class('Yaf_Response_Http', 'OtomatiesCoreVendor\Yaf_Response_Http');
+humbug_phpscoper_expose_class('Yaf_Response_Cli', 'OtomatiesCoreVendor\Yaf_Response_Cli');
+humbug_phpscoper_expose_class('Yaf_Request_Http', 'OtomatiesCoreVendor\Yaf_Request_Http');
+humbug_phpscoper_expose_class('Yaf_Request_Simple', 'OtomatiesCoreVendor\Yaf_Request_Simple');
+humbug_phpscoper_expose_class('Yaf_Config_Ini', 'OtomatiesCoreVendor\Yaf_Config_Ini');
+humbug_phpscoper_expose_class('Yaf_Config_Simple', 'OtomatiesCoreVendor\Yaf_Config_Simple');
+humbug_phpscoper_expose_class('Yaf_View_Simple', 'OtomatiesCoreVendor\Yaf_View_Simple');
+humbug_phpscoper_expose_class('Yaf_Route_Static', 'OtomatiesCoreVendor\Yaf_Route_Static');
+humbug_phpscoper_expose_class('Yaf_Route_Simple', 'OtomatiesCoreVendor\Yaf_Route_Simple');
+humbug_phpscoper_expose_class('Yaf_Route_Supervar', 'OtomatiesCoreVendor\Yaf_Route_Supervar');
+humbug_phpscoper_expose_class('Yaf_Route_Rewrite', 'OtomatiesCoreVendor\Yaf_Route_Rewrite');
+humbug_phpscoper_expose_class('Yaf_Route_Regex', 'OtomatiesCoreVendor\Yaf_Route_Regex');
+humbug_phpscoper_expose_class('Yaf_Route_Map', 'OtomatiesCoreVendor\Yaf_Route_Map');
+humbug_phpscoper_expose_class('Yaf_Exception_TypeError', 'OtomatiesCoreVendor\Yaf_Exception_TypeError');
+humbug_phpscoper_expose_class('Yaf_Exception_StartupError', 'OtomatiesCoreVendor\Yaf_Exception_StartupError');
+humbug_phpscoper_expose_class('Yaf_Exception_RouterFailed', 'OtomatiesCoreVendor\Yaf_Exception_RouterFailed');
+humbug_phpscoper_expose_class('Yaf_Exception_DispatchFailed', 'OtomatiesCoreVendor\Yaf_Exception_DispatchFailed');
+humbug_phpscoper_expose_class('Yaf_Exception_LoadFailed', 'OtomatiesCoreVendor\Yaf_Exception_LoadFailed');
+humbug_phpscoper_expose_class('Yaf_Exception_LoadFailed_Module', 'OtomatiesCoreVendor\Yaf_Exception_LoadFailed_Module');
+humbug_phpscoper_expose_class('Yaf_Exception_LoadFailed_Controller', 'OtomatiesCoreVendor\Yaf_Exception_LoadFailed_Controller');
+humbug_phpscoper_expose_class('Yaf_Exception_LoadFailed_Action', 'OtomatiesCoreVendor\Yaf_Exception_LoadFailed_Action');
+humbug_phpscoper_expose_class('Yaf_Exception_LoadFailed_View', 'OtomatiesCoreVendor\Yaf_Exception_LoadFailed_View');
+humbug_phpscoper_expose_class('mysqli_sql_exception', 'OtomatiesCoreVendor\mysqli_sql_exception');
+humbug_phpscoper_expose_class('mysqli_driver', 'OtomatiesCoreVendor\mysqli_driver');
+humbug_phpscoper_expose_class('mysqli', 'OtomatiesCoreVendor\mysqli');
+humbug_phpscoper_expose_class('mysqli_warning', 'OtomatiesCoreVendor\mysqli_warning');
+humbug_phpscoper_expose_class('mysqli_result', 'OtomatiesCoreVendor\mysqli_result');
+humbug_phpscoper_expose_class('mysqli_stmt', 'OtomatiesCoreVendor\mysqli_stmt');
+humbug_phpscoper_expose_class('PDFlib', 'OtomatiesCoreVendor\PDFlib');
+humbug_phpscoper_expose_class('PDFlibException', 'OtomatiesCoreVendor\PDFlibException');
+humbug_phpscoper_expose_class('Yar_Server', 'OtomatiesCoreVendor\Yar_Server');
+humbug_phpscoper_expose_class('Yar_Client', 'OtomatiesCoreVendor\Yar_Client');
+humbug_phpscoper_expose_class('Yar_Concurrent_Client', 'OtomatiesCoreVendor\Yar_Concurrent_Client');
+humbug_phpscoper_expose_class('Yar_Server_Exception', 'OtomatiesCoreVendor\Yar_Server_Exception');
+humbug_phpscoper_expose_class('Yar_Client_Exception', 'OtomatiesCoreVendor\Yar_Client_Exception');
+humbug_phpscoper_expose_class('Yar_Server_Request_Exception', 'OtomatiesCoreVendor\Yar_Server_Request_Exception');
+humbug_phpscoper_expose_class('Yar_Server_Protocol_Exception', 'OtomatiesCoreVendor\Yar_Server_Protocol_Exception');
+humbug_phpscoper_expose_class('Yar_Server_Packager_Exception', 'OtomatiesCoreVendor\Yar_Server_Packager_Exception');
+humbug_phpscoper_expose_class('Yar_Server_Output_Exception', 'OtomatiesCoreVendor\Yar_Server_Output_Exception');
+humbug_phpscoper_expose_class('Yar_Client_Transport_Exception', 'OtomatiesCoreVendor\Yar_Client_Transport_Exception');
+humbug_phpscoper_expose_class('Yar_Client_Packager_Exception', 'OtomatiesCoreVendor\Yar_Client_Packager_Exception');
+humbug_phpscoper_expose_class('Yar_Client_Protocol_Exception', 'OtomatiesCoreVendor\Yar_Client_Protocol_Exception');
+humbug_phpscoper_expose_class('DOMNode', 'OtomatiesCoreVendor\DOMNode');
+humbug_phpscoper_expose_class('DOMException', 'OtomatiesCoreVendor\DOMException');
+humbug_phpscoper_expose_class('DOMStringList', 'OtomatiesCoreVendor\DOMStringList');
+humbug_phpscoper_expose_class('DOMNameList', 'OtomatiesCoreVendor\DOMNameList');
+humbug_phpscoper_expose_class('DOMImplementationList', 'OtomatiesCoreVendor\DOMImplementationList');
+humbug_phpscoper_expose_class('DOMImplementationSource', 'OtomatiesCoreVendor\DOMImplementationSource');
+humbug_phpscoper_expose_class('DOMImplementation', 'OtomatiesCoreVendor\DOMImplementation');
+humbug_phpscoper_expose_class('DOMNameSpaceNode', 'OtomatiesCoreVendor\DOMNameSpaceNode');
+humbug_phpscoper_expose_class('DOMDocumentFragment', 'OtomatiesCoreVendor\DOMDocumentFragment');
+humbug_phpscoper_expose_class('DOMDocument', 'OtomatiesCoreVendor\DOMDocument');
+humbug_phpscoper_expose_class('DOMNodeList', 'OtomatiesCoreVendor\DOMNodeList');
+humbug_phpscoper_expose_class('DOMNamedNodeMap', 'OtomatiesCoreVendor\DOMNamedNodeMap');
+humbug_phpscoper_expose_class('DOMCharacterData', 'OtomatiesCoreVendor\DOMCharacterData');
+humbug_phpscoper_expose_class('DOMAttr', 'OtomatiesCoreVendor\DOMAttr');
+humbug_phpscoper_expose_class('DOMElement', 'OtomatiesCoreVendor\DOMElement');
+humbug_phpscoper_expose_class('DOMText', 'OtomatiesCoreVendor\DOMText');
+humbug_phpscoper_expose_class('DOMComment', 'OtomatiesCoreVendor\DOMComment');
+humbug_phpscoper_expose_class('DOMTypeinfo', 'OtomatiesCoreVendor\DOMTypeinfo');
+humbug_phpscoper_expose_class('DOMUserDataHandler', 'OtomatiesCoreVendor\DOMUserDataHandler');
+humbug_phpscoper_expose_class('DOMDomError', 'OtomatiesCoreVendor\DOMDomError');
+humbug_phpscoper_expose_class('DOMErrorHandler', 'OtomatiesCoreVendor\DOMErrorHandler');
+humbug_phpscoper_expose_class('DOMLocator', 'OtomatiesCoreVendor\DOMLocator');
+humbug_phpscoper_expose_class('DOMConfiguration', 'OtomatiesCoreVendor\DOMConfiguration');
+humbug_phpscoper_expose_class('DOMCdataSection', 'OtomatiesCoreVendor\DOMCdataSection');
+humbug_phpscoper_expose_class('DOMDocumentType', 'OtomatiesCoreVendor\DOMDocumentType');
+humbug_phpscoper_expose_class('DOMNotation', 'OtomatiesCoreVendor\DOMNotation');
+humbug_phpscoper_expose_class('DOMEntity', 'OtomatiesCoreVendor\DOMEntity');
+humbug_phpscoper_expose_class('DOMEntityReference', 'OtomatiesCoreVendor\DOMEntityReference');
+humbug_phpscoper_expose_class('DOMProcessingInstruction', 'OtomatiesCoreVendor\DOMProcessingInstruction');
+humbug_phpscoper_expose_class('DOMStringExtend', 'OtomatiesCoreVendor\DOMStringExtend');
+humbug_phpscoper_expose_class('DOMXPath', 'OtomatiesCoreVendor\DOMXPath');
+humbug_phpscoper_expose_class('DOMParentNode', 'OtomatiesCoreVendor\DOMParentNode');
+humbug_phpscoper_expose_class('DOMChildNode', 'OtomatiesCoreVendor\DOMChildNode');
+humbug_phpscoper_expose_class('GdImage', 'OtomatiesCoreVendor\GdImage');
+humbug_phpscoper_expose_class('GdFont', 'OtomatiesCoreVendor\GdFont');
+humbug_phpscoper_expose_class('MongoClient', 'OtomatiesCoreVendor\MongoClient');
+humbug_phpscoper_expose_class('Mongo', 'OtomatiesCoreVendor\Mongo');
+humbug_phpscoper_expose_class('MongoDB', 'OtomatiesCoreVendor\MongoDB');
+humbug_phpscoper_expose_class('MongoCollection', 'OtomatiesCoreVendor\MongoCollection');
+humbug_phpscoper_expose_class('MongoCursor', 'OtomatiesCoreVendor\MongoCursor');
+humbug_phpscoper_expose_class('MongoCommandCursor', 'OtomatiesCoreVendor\MongoCommandCursor');
+humbug_phpscoper_expose_class('MongoCursorInterface', 'OtomatiesCoreVendor\MongoCursorInterface');
+humbug_phpscoper_expose_class('MongoGridFS', 'OtomatiesCoreVendor\MongoGridFS');
+humbug_phpscoper_expose_class('MongoGridFSFile', 'OtomatiesCoreVendor\MongoGridFSFile');
+humbug_phpscoper_expose_class('MongoGridFSCursor', 'OtomatiesCoreVendor\MongoGridFSCursor');
+humbug_phpscoper_expose_class('MongoId', 'OtomatiesCoreVendor\MongoId');
+humbug_phpscoper_expose_class('MongoCode', 'OtomatiesCoreVendor\MongoCode');
+humbug_phpscoper_expose_class('MongoRegex', 'OtomatiesCoreVendor\MongoRegex');
+humbug_phpscoper_expose_class('MongoDate', 'OtomatiesCoreVendor\MongoDate');
+humbug_phpscoper_expose_class('MongoBinData', 'OtomatiesCoreVendor\MongoBinData');
+humbug_phpscoper_expose_class('MongoDBRef', 'OtomatiesCoreVendor\MongoDBRef');
+humbug_phpscoper_expose_class('MongoWriteBatch', 'OtomatiesCoreVendor\MongoWriteBatch');
+humbug_phpscoper_expose_class('MongoUpdateBatch', 'OtomatiesCoreVendor\MongoUpdateBatch');
+humbug_phpscoper_expose_class('MongoException', 'OtomatiesCoreVendor\MongoException');
+humbug_phpscoper_expose_class('MongoCursorException', 'OtomatiesCoreVendor\MongoCursorException');
+humbug_phpscoper_expose_class('MongoCursorTimeoutException', 'OtomatiesCoreVendor\MongoCursorTimeoutException');
+humbug_phpscoper_expose_class('MongoConnectionException', 'OtomatiesCoreVendor\MongoConnectionException');
+humbug_phpscoper_expose_class('MongoGridFSException', 'OtomatiesCoreVendor\MongoGridFSException');
+humbug_phpscoper_expose_class('MongoWriteConcernException', 'OtomatiesCoreVendor\MongoWriteConcernException');
+humbug_phpscoper_expose_class('MongoExecutionTimeoutException', 'OtomatiesCoreVendor\MongoExecutionTimeoutException');
+humbug_phpscoper_expose_class('MongoProtocolException', 'OtomatiesCoreVendor\MongoProtocolException');
+humbug_phpscoper_expose_class('MongoDuplicateKeyException', 'OtomatiesCoreVendor\MongoDuplicateKeyException');
+humbug_phpscoper_expose_class('MongoResultException', 'OtomatiesCoreVendor\MongoResultException');
+humbug_phpscoper_expose_class('MongoTimestamp', 'OtomatiesCoreVendor\MongoTimestamp');
+humbug_phpscoper_expose_class('MongoInt32', 'OtomatiesCoreVendor\MongoInt32');
+humbug_phpscoper_expose_class('MongoInt64', 'OtomatiesCoreVendor\MongoInt64');
+humbug_phpscoper_expose_class('MongoLog', 'OtomatiesCoreVendor\MongoLog');
+humbug_phpscoper_expose_class('MongoPool', 'OtomatiesCoreVendor\MongoPool');
+humbug_phpscoper_expose_class('MongoMaxKey', 'OtomatiesCoreVendor\MongoMaxKey');
+humbug_phpscoper_expose_class('MongoMinKey', 'OtomatiesCoreVendor\MongoMinKey');
+humbug_phpscoper_expose_class('SodiumException', 'OtomatiesCoreVendor\SodiumException');
+humbug_phpscoper_expose_class('FANNConnection', 'OtomatiesCoreVendor\FANNConnection');
+humbug_phpscoper_expose_class('SimpleXMLElement', 'OtomatiesCoreVendor\SimpleXMLElement');
+humbug_phpscoper_expose_class('SimpleXMLIterator', 'OtomatiesCoreVendor\SimpleXMLIterator');
+humbug_phpscoper_expose_class('XMLReader', 'OtomatiesCoreVendor\XMLReader');
+humbug_phpscoper_expose_class('SyncMutex', 'OtomatiesCoreVendor\SyncMutex');
+humbug_phpscoper_expose_class('SyncSemaphore', 'OtomatiesCoreVendor\SyncSemaphore');
+humbug_phpscoper_expose_class('SyncEvent', 'OtomatiesCoreVendor\SyncEvent');
+humbug_phpscoper_expose_class('SyncReaderWriter', 'OtomatiesCoreVendor\SyncReaderWriter');
+humbug_phpscoper_expose_class('SyncSharedMemory', 'OtomatiesCoreVendor\SyncSharedMemory');
+humbug_phpscoper_expose_class('COM', 'OtomatiesCoreVendor\COM');
+humbug_phpscoper_expose_class('DOTNET', 'OtomatiesCoreVendor\DOTNET');
+humbug_phpscoper_expose_class('VARIANT', 'OtomatiesCoreVendor\VARIANT');
+humbug_phpscoper_expose_class('com_exception', 'OtomatiesCoreVendor\com_exception');
+humbug_phpscoper_expose_class('Shmop', 'OtomatiesCoreVendor\Shmop');
+humbug_phpscoper_expose_class('OpenSSLCertificate', 'OtomatiesCoreVendor\OpenSSLCertificate');
+humbug_phpscoper_expose_class('OpenSSLCertificateSigningRequest', 'OtomatiesCoreVendor\OpenSSLCertificateSigningRequest');
+humbug_phpscoper_expose_class('OpenSSLAsymmetricKey', 'OtomatiesCoreVendor\OpenSSLAsymmetricKey');
+humbug_phpscoper_expose_class('classObj', 'OtomatiesCoreVendor\classObj');
+humbug_phpscoper_expose_class('clusterObj', 'OtomatiesCoreVendor\clusterObj');
+humbug_phpscoper_expose_class('colorObj', 'OtomatiesCoreVendor\colorObj');
+humbug_phpscoper_expose_class('errorObj', 'OtomatiesCoreVendor\errorObj');
+humbug_phpscoper_expose_class('gridObj', 'OtomatiesCoreVendor\gridObj');
+humbug_phpscoper_expose_class('hashTableObj', 'OtomatiesCoreVendor\hashTableObj');
+humbug_phpscoper_expose_class('imageObj', 'OtomatiesCoreVendor\imageObj');
+humbug_phpscoper_expose_class('labelcacheMemberObj', 'OtomatiesCoreVendor\labelcacheMemberObj');
+humbug_phpscoper_expose_class('labelcacheObj', 'OtomatiesCoreVendor\labelcacheObj');
+humbug_phpscoper_expose_class('labelObj', 'OtomatiesCoreVendor\labelObj');
+humbug_phpscoper_expose_class('layerObj', 'OtomatiesCoreVendor\layerObj');
+humbug_phpscoper_expose_class('legendObj', 'OtomatiesCoreVendor\legendObj');
+humbug_phpscoper_expose_class('lineObj', 'OtomatiesCoreVendor\lineObj');
+humbug_phpscoper_expose_class('mapObj', 'OtomatiesCoreVendor\mapObj');
+humbug_phpscoper_expose_class('outputformatObj', 'OtomatiesCoreVendor\outputformatObj');
+humbug_phpscoper_expose_class('OwsrequestObj', 'OtomatiesCoreVendor\OwsrequestObj');
+humbug_phpscoper_expose_class('pointObj', 'OtomatiesCoreVendor\pointObj');
+humbug_phpscoper_expose_class('projectionObj', 'OtomatiesCoreVendor\projectionObj');
+humbug_phpscoper_expose_class('querymapObj', 'OtomatiesCoreVendor\querymapObj');
+humbug_phpscoper_expose_class('rectObj', 'OtomatiesCoreVendor\rectObj');
+humbug_phpscoper_expose_class('referenceMapObj', 'OtomatiesCoreVendor\referenceMapObj');
+humbug_phpscoper_expose_class('resultObj', 'OtomatiesCoreVendor\resultObj');
+humbug_phpscoper_expose_class('scalebarObj', 'OtomatiesCoreVendor\scalebarObj');
+humbug_phpscoper_expose_class('shapefileObj', 'OtomatiesCoreVendor\shapefileObj');
+humbug_phpscoper_expose_class('shapeObj', 'OtomatiesCoreVendor\shapeObj');
+humbug_phpscoper_expose_class('styleObj', 'OtomatiesCoreVendor\styleObj');
+humbug_phpscoper_expose_class('symbolObj', 'OtomatiesCoreVendor\symbolObj');
+humbug_phpscoper_expose_class('webObj', 'OtomatiesCoreVendor\webObj');
+humbug_phpscoper_expose_class('XSLTProcessor', 'OtomatiesCoreVendor\XSLTProcessor');
+humbug_phpscoper_expose_class('Event', 'OtomatiesCoreVendor\Event');
+humbug_phpscoper_expose_class('EventBase', 'OtomatiesCoreVendor\EventBase');
+humbug_phpscoper_expose_class('EventBuffer', 'OtomatiesCoreVendor\EventBuffer');
+humbug_phpscoper_expose_class('EventBufferEvent', 'OtomatiesCoreVendor\EventBufferEvent');
+humbug_phpscoper_expose_class('EventConfig', 'OtomatiesCoreVendor\EventConfig');
+humbug_phpscoper_expose_class('EventDnsBase', 'OtomatiesCoreVendor\EventDnsBase');
+humbug_phpscoper_expose_class('EventHttp', 'OtomatiesCoreVendor\EventHttp');
+humbug_phpscoper_expose_class('EventHttpConnection', 'OtomatiesCoreVendor\EventHttpConnection');
+humbug_phpscoper_expose_class('EventHttpRequest', 'OtomatiesCoreVendor\EventHttpRequest');
+humbug_phpscoper_expose_class('EventListener', 'OtomatiesCoreVendor\EventListener');
+humbug_phpscoper_expose_class('EventSslContext', 'OtomatiesCoreVendor\EventSslContext');
+humbug_phpscoper_expose_class('EventUtil', 'OtomatiesCoreVendor\EventUtil');
+humbug_phpscoper_expose_class('gnupg', 'OtomatiesCoreVendor\gnupg');
+humbug_phpscoper_expose_class('gnupg_keylistiterator', 'OtomatiesCoreVendor\gnupg_keylistiterator');
+humbug_phpscoper_expose_class('ZMQ', 'OtomatiesCoreVendor\ZMQ');
+humbug_phpscoper_expose_class('ZMQContext', 'OtomatiesCoreVendor\ZMQContext');
+humbug_phpscoper_expose_class('ZMQSocket', 'OtomatiesCoreVendor\ZMQSocket');
+humbug_phpscoper_expose_class('ZMQPoll', 'OtomatiesCoreVendor\ZMQPoll');
+humbug_phpscoper_expose_class('ZMQDevice', 'OtomatiesCoreVendor\ZMQDevice');
+humbug_phpscoper_expose_class('ZMQException', 'OtomatiesCoreVendor\ZMQException');
+humbug_phpscoper_expose_class('ZMQContextException', 'OtomatiesCoreVendor\ZMQContextException');
+humbug_phpscoper_expose_class('ZMQSocketException', 'OtomatiesCoreVendor\ZMQSocketException');
+humbug_phpscoper_expose_class('ZMQPollException', 'OtomatiesCoreVendor\ZMQPollException');
+humbug_phpscoper_expose_class('ZMQDeviceException', 'OtomatiesCoreVendor\ZMQDeviceException');
+humbug_phpscoper_expose_class('XXTEA', 'OtomatiesCoreVendor\XXTEA');
+humbug_phpscoper_expose_class('ReflectionGenerator', 'OtomatiesCoreVendor\ReflectionGenerator');
+humbug_phpscoper_expose_class('ReflectionObject', 'OtomatiesCoreVendor\ReflectionObject');
+humbug_phpscoper_expose_class('ReflectionExtension', 'OtomatiesCoreVendor\ReflectionExtension');
+humbug_phpscoper_expose_class('ReflectionParameter', 'OtomatiesCoreVendor\ReflectionParameter');
+humbug_phpscoper_expose_class('ReflectionZendExtension', 'OtomatiesCoreVendor\ReflectionZendExtension');
+humbug_phpscoper_expose_class('ReflectionException', 'OtomatiesCoreVendor\ReflectionException');
+humbug_phpscoper_expose_class('ReflectionUnionType', 'OtomatiesCoreVendor\ReflectionUnionType');
+humbug_phpscoper_expose_class('ReflectionProperty', 'OtomatiesCoreVendor\ReflectionProperty');
+humbug_phpscoper_expose_class('ReflectionFiber', 'OtomatiesCoreVendor\ReflectionFiber');
+humbug_phpscoper_expose_class('Reflection', 'OtomatiesCoreVendor\Reflection');
+humbug_phpscoper_expose_class('ReflectionIntersectionType', 'OtomatiesCoreVendor\ReflectionIntersectionType');
+humbug_phpscoper_expose_class('ReflectionNamedType', 'OtomatiesCoreVendor\ReflectionNamedType');
+humbug_phpscoper_expose_class('ReflectionFunctionAbstract', 'OtomatiesCoreVendor\ReflectionFunctionAbstract');
+humbug_phpscoper_expose_class('ReflectionFunction', 'OtomatiesCoreVendor\ReflectionFunction');
+humbug_phpscoper_expose_class('ReflectionClassConstant', 'OtomatiesCoreVendor\ReflectionClassConstant');
+humbug_phpscoper_expose_class('ReflectionType', 'OtomatiesCoreVendor\ReflectionType');
+humbug_phpscoper_expose_class('ReflectionEnumBackedCase', 'OtomatiesCoreVendor\ReflectionEnumBackedCase');
+humbug_phpscoper_expose_class('ReflectionAttribute', 'OtomatiesCoreVendor\ReflectionAttribute');
+humbug_phpscoper_expose_class('Reflector', 'OtomatiesCoreVendor\Reflector');
+humbug_phpscoper_expose_class('ReflectionReference', 'OtomatiesCoreVendor\ReflectionReference');
+humbug_phpscoper_expose_class('ReflectionEnum', 'OtomatiesCoreVendor\ReflectionEnum');
+humbug_phpscoper_expose_class('ReflectionConstant', 'OtomatiesCoreVendor\ReflectionConstant');
+humbug_phpscoper_expose_class('ReflectionMethod', 'OtomatiesCoreVendor\ReflectionMethod');
+humbug_phpscoper_expose_class('ReflectionClass', 'OtomatiesCoreVendor\ReflectionClass');
+humbug_phpscoper_expose_class('ReflectionEnumUnitCase', 'OtomatiesCoreVendor\ReflectionEnumUnitCase');
+humbug_phpscoper_expose_class('SessionHandlerInterface', 'OtomatiesCoreVendor\SessionHandlerInterface');
+humbug_phpscoper_expose_class('SessionIdInterface', 'OtomatiesCoreVendor\SessionIdInterface');
+humbug_phpscoper_expose_class('SessionUpdateTimestampHandlerInterface', 'OtomatiesCoreVendor\SessionUpdateTimestampHandlerInterface');
+humbug_phpscoper_expose_class('SessionHandler', 'OtomatiesCoreVendor\SessionHandler');
 humbug_phpscoper_expose_class('NoDiscard', 'OtomatiesCoreVendor\NoDiscard');
 
 // Function aliases. For more information see:
 // https://github.com/humbug/php-scoper/blob/master/docs/further-reading.md#function-aliases
+if (!function_exists('GEOSLineMerge')) { function GEOSLineMerge() { return \OtomatiesCoreVendor\GEOSLineMerge(...func_get_args()); } }
+if (!function_exists('GEOSPolygonize')) { function GEOSPolygonize() { return \OtomatiesCoreVendor\GEOSPolygonize(...func_get_args()); } }
+if (!function_exists('GEOSRelateMatch')) { function GEOSRelateMatch() { return \OtomatiesCoreVendor\GEOSRelateMatch(...func_get_args()); } }
+if (!function_exists('GEOSSharedPaths')) { function GEOSSharedPaths() { return \OtomatiesCoreVendor\GEOSSharedPaths(...func_get_args()); } }
+if (!function_exists('GEOSVersion')) { function GEOSVersion() { return \OtomatiesCoreVendor\GEOSVersion(...func_get_args()); } }
+if (!function_exists('PDF_activate_item')) { function PDF_activate_item() { return \OtomatiesCoreVendor\PDF_activate_item(...func_get_args()); } }
+if (!function_exists('PDF_add_launchlink')) { function PDF_add_launchlink() { return \OtomatiesCoreVendor\PDF_add_launchlink(...func_get_args()); } }
+if (!function_exists('PDF_add_locallink')) { function PDF_add_locallink() { return \OtomatiesCoreVendor\PDF_add_locallink(...func_get_args()); } }
+if (!function_exists('PDF_add_nameddest')) { function PDF_add_nameddest() { return \OtomatiesCoreVendor\PDF_add_nameddest(...func_get_args()); } }
+if (!function_exists('PDF_add_note')) { function PDF_add_note() { return \OtomatiesCoreVendor\PDF_add_note(...func_get_args()); } }
+if (!function_exists('PDF_add_pdflink')) { function PDF_add_pdflink() { return \OtomatiesCoreVendor\PDF_add_pdflink(...func_get_args()); } }
+if (!function_exists('PDF_add_table_cell')) { function PDF_add_table_cell() { return \OtomatiesCoreVendor\PDF_add_table_cell(...func_get_args()); } }
+if (!function_exists('PDF_add_textflow')) { function PDF_add_textflow() { return \OtomatiesCoreVendor\PDF_add_textflow(...func_get_args()); } }
+if (!function_exists('PDF_add_thumbnail')) { function PDF_add_thumbnail() { return \OtomatiesCoreVendor\PDF_add_thumbnail(...func_get_args()); } }
+if (!function_exists('PDF_add_weblink')) { function PDF_add_weblink() { return \OtomatiesCoreVendor\PDF_add_weblink(...func_get_args()); } }
+if (!function_exists('PDF_arc')) { function PDF_arc() { return \OtomatiesCoreVendor\PDF_arc(...func_get_args()); } }
+if (!function_exists('PDF_arcn')) { function PDF_arcn() { return \OtomatiesCoreVendor\PDF_arcn(...func_get_args()); } }
+if (!function_exists('PDF_attach_file')) { function PDF_attach_file() { return \OtomatiesCoreVendor\PDF_attach_file(...func_get_args()); } }
+if (!function_exists('PDF_begin_document')) { function PDF_begin_document() { return \OtomatiesCoreVendor\PDF_begin_document(...func_get_args()); } }
+if (!function_exists('PDF_begin_font')) { function PDF_begin_font() { return \OtomatiesCoreVendor\PDF_begin_font(...func_get_args()); } }
+if (!function_exists('PDF_begin_glyph')) { function PDF_begin_glyph() { return \OtomatiesCoreVendor\PDF_begin_glyph(...func_get_args()); } }
+if (!function_exists('PDF_begin_item')) { function PDF_begin_item() { return \OtomatiesCoreVendor\PDF_begin_item(...func_get_args()); } }
+if (!function_exists('PDF_begin_layer')) { function PDF_begin_layer() { return \OtomatiesCoreVendor\PDF_begin_layer(...func_get_args()); } }
+if (!function_exists('PDF_begin_page')) { function PDF_begin_page() { return \OtomatiesCoreVendor\PDF_begin_page(...func_get_args()); } }
+if (!function_exists('PDF_begin_page_ext')) { function PDF_begin_page_ext() { return \OtomatiesCoreVendor\PDF_begin_page_ext(...func_get_args()); } }
+if (!function_exists('PDF_begin_pattern')) { function PDF_begin_pattern() { return \OtomatiesCoreVendor\PDF_begin_pattern(...func_get_args()); } }
+if (!function_exists('PDF_begin_template')) { function PDF_begin_template() { return \OtomatiesCoreVendor\PDF_begin_template(...func_get_args()); } }
+if (!function_exists('PDF_begin_template_ext')) { function PDF_begin_template_ext() { return \OtomatiesCoreVendor\PDF_begin_template_ext(...func_get_args()); } }
+if (!function_exists('PDF_circle')) { function PDF_circle() { return \OtomatiesCoreVendor\PDF_circle(...func_get_args()); } }
+if (!function_exists('PDF_clip')) { function PDF_clip() { return \OtomatiesCoreVendor\PDF_clip(...func_get_args()); } }
+if (!function_exists('PDF_close')) { function PDF_close() { return \OtomatiesCoreVendor\PDF_close(...func_get_args()); } }
+if (!function_exists('PDF_close_image')) { function PDF_close_image() { return \OtomatiesCoreVendor\PDF_close_image(...func_get_args()); } }
+if (!function_exists('PDF_close_pdi')) { function PDF_close_pdi() { return \OtomatiesCoreVendor\PDF_close_pdi(...func_get_args()); } }
+if (!function_exists('PDF_close_pdi_document')) { function PDF_close_pdi_document() { return \OtomatiesCoreVendor\PDF_close_pdi_document(...func_get_args()); } }
+if (!function_exists('PDF_close_pdi_page')) { function PDF_close_pdi_page() { return \OtomatiesCoreVendor\PDF_close_pdi_page(...func_get_args()); } }
+if (!function_exists('PDF_closepath')) { function PDF_closepath() { return \OtomatiesCoreVendor\PDF_closepath(...func_get_args()); } }
+if (!function_exists('PDF_closepath_fill_stroke')) { function PDF_closepath_fill_stroke() { return \OtomatiesCoreVendor\PDF_closepath_fill_stroke(...func_get_args()); } }
+if (!function_exists('PDF_closepath_stroke')) { function PDF_closepath_stroke() { return \OtomatiesCoreVendor\PDF_closepath_stroke(...func_get_args()); } }
+if (!function_exists('PDF_concat')) { function PDF_concat() { return \OtomatiesCoreVendor\PDF_concat(...func_get_args()); } }
+if (!function_exists('PDF_continue_text')) { function PDF_continue_text() { return \OtomatiesCoreVendor\PDF_continue_text(...func_get_args()); } }
+if (!function_exists('PDF_create_3dview')) { function PDF_create_3dview() { return \OtomatiesCoreVendor\PDF_create_3dview(...func_get_args()); } }
+if (!function_exists('PDF_create_action')) { function PDF_create_action() { return \OtomatiesCoreVendor\PDF_create_action(...func_get_args()); } }
+if (!function_exists('PDF_create_annotation')) { function PDF_create_annotation() { return \OtomatiesCoreVendor\PDF_create_annotation(...func_get_args()); } }
+if (!function_exists('PDF_create_bookmark')) { function PDF_create_bookmark() { return \OtomatiesCoreVendor\PDF_create_bookmark(...func_get_args()); } }
+if (!function_exists('PDF_create_field')) { function PDF_create_field() { return \OtomatiesCoreVendor\PDF_create_field(...func_get_args()); } }
+if (!function_exists('PDF_create_fieldgroup')) { function PDF_create_fieldgroup() { return \OtomatiesCoreVendor\PDF_create_fieldgroup(...func_get_args()); } }
+if (!function_exists('PDF_create_gstate')) { function PDF_create_gstate() { return \OtomatiesCoreVendor\PDF_create_gstate(...func_get_args()); } }
+if (!function_exists('PDF_create_pvf')) { function PDF_create_pvf() { return \OtomatiesCoreVendor\PDF_create_pvf(...func_get_args()); } }
+if (!function_exists('PDF_create_textflow')) { function PDF_create_textflow() { return \OtomatiesCoreVendor\PDF_create_textflow(...func_get_args()); } }
+if (!function_exists('PDF_curveto')) { function PDF_curveto() { return \OtomatiesCoreVendor\PDF_curveto(...func_get_args()); } }
+if (!function_exists('PDF_define_layer')) { function PDF_define_layer() { return \OtomatiesCoreVendor\PDF_define_layer(...func_get_args()); } }
+if (!function_exists('PDF_delete')) { function PDF_delete() { return \OtomatiesCoreVendor\PDF_delete(...func_get_args()); } }
+if (!function_exists('PDF_delete_pvf')) { function PDF_delete_pvf() { return \OtomatiesCoreVendor\PDF_delete_pvf(...func_get_args()); } }
+if (!function_exists('PDF_delete_table')) { function PDF_delete_table() { return \OtomatiesCoreVendor\PDF_delete_table(...func_get_args()); } }
+if (!function_exists('PDF_delete_textflow')) { function PDF_delete_textflow() { return \OtomatiesCoreVendor\PDF_delete_textflow(...func_get_args()); } }
+if (!function_exists('PDF_encoding_set_char')) { function PDF_encoding_set_char() { return \OtomatiesCoreVendor\PDF_encoding_set_char(...func_get_args()); } }
+if (!function_exists('PDF_end_document')) { function PDF_end_document() { return \OtomatiesCoreVendor\PDF_end_document(...func_get_args()); } }
+if (!function_exists('PDF_end_font')) { function PDF_end_font() { return \OtomatiesCoreVendor\PDF_end_font(...func_get_args()); } }
+if (!function_exists('PDF_end_glyph')) { function PDF_end_glyph() { return \OtomatiesCoreVendor\PDF_end_glyph(...func_get_args()); } }
+if (!function_exists('PDF_end_item')) { function PDF_end_item() { return \OtomatiesCoreVendor\PDF_end_item(...func_get_args()); } }
+if (!function_exists('PDF_end_layer')) { function PDF_end_layer() { return \OtomatiesCoreVendor\PDF_end_layer(...func_get_args()); } }
+if (!function_exists('PDF_end_page')) { function PDF_end_page() { return \OtomatiesCoreVendor\PDF_end_page(...func_get_args()); } }
+if (!function_exists('PDF_end_page_ext')) { function PDF_end_page_ext() { return \OtomatiesCoreVendor\PDF_end_page_ext(...func_get_args()); } }
+if (!function_exists('PDF_end_pattern')) { function PDF_end_pattern() { return \OtomatiesCoreVendor\PDF_end_pattern(...func_get_args()); } }
+if (!function_exists('PDF_end_template')) { function PDF_end_template() { return \OtomatiesCoreVendor\PDF_end_template(...func_get_args()); } }
+if (!function_exists('PDF_endpath')) { function PDF_endpath() { return \OtomatiesCoreVendor\PDF_endpath(...func_get_args()); } }
+if (!function_exists('PDF_fill')) { function PDF_fill() { return \OtomatiesCoreVendor\PDF_fill(...func_get_args()); } }
+if (!function_exists('PDF_fill_imageblock')) { function PDF_fill_imageblock() { return \OtomatiesCoreVendor\PDF_fill_imageblock(...func_get_args()); } }
+if (!function_exists('PDF_fill_pdfblock')) { function PDF_fill_pdfblock() { return \OtomatiesCoreVendor\PDF_fill_pdfblock(...func_get_args()); } }
+if (!function_exists('PDF_fill_stroke')) { function PDF_fill_stroke() { return \OtomatiesCoreVendor\PDF_fill_stroke(...func_get_args()); } }
+if (!function_exists('PDF_fill_textblock')) { function PDF_fill_textblock() { return \OtomatiesCoreVendor\PDF_fill_textblock(...func_get_args()); } }
+if (!function_exists('PDF_findfont')) { function PDF_findfont() { return \OtomatiesCoreVendor\PDF_findfont(...func_get_args()); } }
+if (!function_exists('PDF_fit_image')) { function PDF_fit_image() { return \OtomatiesCoreVendor\PDF_fit_image(...func_get_args()); } }
+if (!function_exists('PDF_fit_pdi_page')) { function PDF_fit_pdi_page() { return \OtomatiesCoreVendor\PDF_fit_pdi_page(...func_get_args()); } }
+if (!function_exists('PDF_fit_table')) { function PDF_fit_table() { return \OtomatiesCoreVendor\PDF_fit_table(...func_get_args()); } }
+if (!function_exists('PDF_fit_textflow')) { function PDF_fit_textflow() { return \OtomatiesCoreVendor\PDF_fit_textflow(...func_get_args()); } }
+if (!function_exists('PDF_fit_textline')) { function PDF_fit_textline() { return \OtomatiesCoreVendor\PDF_fit_textline(...func_get_args()); } }
+if (!function_exists('PDF_get_apiname')) { function PDF_get_apiname() { return \OtomatiesCoreVendor\PDF_get_apiname(...func_get_args()); } }
+if (!function_exists('PDF_get_buffer')) { function PDF_get_buffer() { return \OtomatiesCoreVendor\PDF_get_buffer(...func_get_args()); } }
+if (!function_exists('PDF_get_errmsg')) { function PDF_get_errmsg() { return \OtomatiesCoreVendor\PDF_get_errmsg(...func_get_args()); } }
+if (!function_exists('PDF_get_errnum')) { function PDF_get_errnum() { return \OtomatiesCoreVendor\PDF_get_errnum(...func_get_args()); } }
+if (!function_exists('PDF_get_majorversion')) { function PDF_get_majorversion() { return \OtomatiesCoreVendor\PDF_get_majorversion(...func_get_args()); } }
+if (!function_exists('PDF_get_minorversion')) { function PDF_get_minorversion() { return \OtomatiesCoreVendor\PDF_get_minorversion(...func_get_args()); } }
+if (!function_exists('PDF_get_option')) { function PDF_get_option() { return \OtomatiesCoreVendor\PDF_get_option(...func_get_args()); } }
+if (!function_exists('PDF_get_parameter')) { function PDF_get_parameter() { return \OtomatiesCoreVendor\PDF_get_parameter(...func_get_args()); } }
+if (!function_exists('PDF_get_pdi_parameter')) { function PDF_get_pdi_parameter() { return \OtomatiesCoreVendor\PDF_get_pdi_parameter(...func_get_args()); } }
+if (!function_exists('PDF_get_pdi_value')) { function PDF_get_pdi_value() { return \OtomatiesCoreVendor\PDF_get_pdi_value(...func_get_args()); } }
+if (!function_exists('PDF_get_string')) { function PDF_get_string() { return \OtomatiesCoreVendor\PDF_get_string(...func_get_args()); } }
+if (!function_exists('PDF_get_value')) { function PDF_get_value() { return \OtomatiesCoreVendor\PDF_get_value(...func_get_args()); } }
+if (!function_exists('PDF_info_font')) { function PDF_info_font() { return \OtomatiesCoreVendor\PDF_info_font(...func_get_args()); } }
+if (!function_exists('PDF_info_graphics')) { function PDF_info_graphics() { return \OtomatiesCoreVendor\PDF_info_graphics(...func_get_args()); } }
+if (!function_exists('PDF_info_image')) { function PDF_info_image() { return \OtomatiesCoreVendor\PDF_info_image(...func_get_args()); } }
+if (!function_exists('PDF_info_matchbox')) { function PDF_info_matchbox() { return \OtomatiesCoreVendor\PDF_info_matchbox(...func_get_args()); } }
+if (!function_exists('PDF_info_path')) { function PDF_info_path() { return \OtomatiesCoreVendor\PDF_info_path(...func_get_args()); } }
+if (!function_exists('PDF_info_pdi_page')) { function PDF_info_pdi_page() { return \OtomatiesCoreVendor\PDF_info_pdi_page(...func_get_args()); } }
+if (!function_exists('PDF_info_pvf')) { function PDF_info_pvf() { return \OtomatiesCoreVendor\PDF_info_pvf(...func_get_args()); } }
+if (!function_exists('PDF_info_table')) { function PDF_info_table() { return \OtomatiesCoreVendor\PDF_info_table(...func_get_args()); } }
+if (!function_exists('PDF_info_textflow')) { function PDF_info_textflow() { return \OtomatiesCoreVendor\PDF_info_textflow(...func_get_args()); } }
+if (!function_exists('PDF_info_textline')) { function PDF_info_textline() { return \OtomatiesCoreVendor\PDF_info_textline(...func_get_args()); } }
+if (!function_exists('PDF_initgraphics')) { function PDF_initgraphics() { return \OtomatiesCoreVendor\PDF_initgraphics(...func_get_args()); } }
+if (!function_exists('PDF_lineto')) { function PDF_lineto() { return \OtomatiesCoreVendor\PDF_lineto(...func_get_args()); } }
+if (!function_exists('PDF_load_3ddata')) { function PDF_load_3ddata() { return \OtomatiesCoreVendor\PDF_load_3ddata(...func_get_args()); } }
+if (!function_exists('PDF_load_font')) { function PDF_load_font() { return \OtomatiesCoreVendor\PDF_load_font(...func_get_args()); } }
+if (!function_exists('PDF_load_iccprofile')) { function PDF_load_iccprofile() { return \OtomatiesCoreVendor\PDF_load_iccprofile(...func_get_args()); } }
+if (!function_exists('PDF_load_image')) { function PDF_load_image() { return \OtomatiesCoreVendor\PDF_load_image(...func_get_args()); } }
+if (!function_exists('PDF_makespotcolor')) { function PDF_makespotcolor() { return \OtomatiesCoreVendor\PDF_makespotcolor(...func_get_args()); } }
+if (!function_exists('PDF_moveto')) { function PDF_moveto() { return \OtomatiesCoreVendor\PDF_moveto(...func_get_args()); } }
+if (!function_exists('PDF_new')) { function PDF_new() { return \OtomatiesCoreVendor\PDF_new(...func_get_args()); } }
+if (!function_exists('PDF_open_ccitt')) { function PDF_open_ccitt() { return \OtomatiesCoreVendor\PDF_open_ccitt(...func_get_args()); } }
+if (!function_exists('PDF_open_file')) { function PDF_open_file() { return \OtomatiesCoreVendor\PDF_open_file(...func_get_args()); } }
+if (!function_exists('PDF_open_image')) { function PDF_open_image() { return \OtomatiesCoreVendor\PDF_open_image(...func_get_args()); } }
+if (!function_exists('PDF_open_image_file')) { function PDF_open_image_file() { return \OtomatiesCoreVendor\PDF_open_image_file(...func_get_args()); } }
+if (!function_exists('PDF_open_memory_image')) { function PDF_open_memory_image() { return \OtomatiesCoreVendor\PDF_open_memory_image(...func_get_args()); } }
+if (!function_exists('PDF_open_pdi')) { function PDF_open_pdi() { return \OtomatiesCoreVendor\PDF_open_pdi(...func_get_args()); } }
+if (!function_exists('PDF_open_pdi_document')) { function PDF_open_pdi_document() { return \OtomatiesCoreVendor\PDF_open_pdi_document(...func_get_args()); } }
+if (!function_exists('PDF_open_pdi_page')) { function PDF_open_pdi_page() { return \OtomatiesCoreVendor\PDF_open_pdi_page(...func_get_args()); } }
+if (!function_exists('PDF_pcos_get_number')) { function PDF_pcos_get_number() { return \OtomatiesCoreVendor\PDF_pcos_get_number(...func_get_args()); } }
+if (!function_exists('PDF_pcos_get_stream')) { function PDF_pcos_get_stream() { return \OtomatiesCoreVendor\PDF_pcos_get_stream(...func_get_args()); } }
+if (!function_exists('PDF_pcos_get_string')) { function PDF_pcos_get_string() { return \OtomatiesCoreVendor\PDF_pcos_get_string(...func_get_args()); } }
+if (!function_exists('PDF_place_image')) { function PDF_place_image() { return \OtomatiesCoreVendor\PDF_place_image(...func_get_args()); } }
+if (!function_exists('PDF_place_pdi_page')) { function PDF_place_pdi_page() { return \OtomatiesCoreVendor\PDF_place_pdi_page(...func_get_args()); } }
+if (!function_exists('PDF_process_pdi')) { function PDF_process_pdi() { return \OtomatiesCoreVendor\PDF_process_pdi(...func_get_args()); } }
+if (!function_exists('PDF_rect')) { function PDF_rect() { return \OtomatiesCoreVendor\PDF_rect(...func_get_args()); } }
+if (!function_exists('PDF_restore')) { function PDF_restore() { return \OtomatiesCoreVendor\PDF_restore(...func_get_args()); } }
+if (!function_exists('PDF_resume_page')) { function PDF_resume_page() { return \OtomatiesCoreVendor\PDF_resume_page(...func_get_args()); } }
+if (!function_exists('PDF_rotate')) { function PDF_rotate() { return \OtomatiesCoreVendor\PDF_rotate(...func_get_args()); } }
+if (!function_exists('PDF_save')) { function PDF_save() { return \OtomatiesCoreVendor\PDF_save(...func_get_args()); } }
+if (!function_exists('PDF_scale')) { function PDF_scale() { return \OtomatiesCoreVendor\PDF_scale(...func_get_args()); } }
+if (!function_exists('PDF_set_border_color')) { function PDF_set_border_color() { return \OtomatiesCoreVendor\PDF_set_border_color(...func_get_args()); } }
+if (!function_exists('PDF_set_border_dash')) { function PDF_set_border_dash() { return \OtomatiesCoreVendor\PDF_set_border_dash(...func_get_args()); } }
+if (!function_exists('PDF_set_border_style')) { function PDF_set_border_style() { return \OtomatiesCoreVendor\PDF_set_border_style(...func_get_args()); } }
+if (!function_exists('PDF_set_gstate')) { function PDF_set_gstate() { return \OtomatiesCoreVendor\PDF_set_gstate(...func_get_args()); } }
+if (!function_exists('PDF_set_info')) { function PDF_set_info() { return \OtomatiesCoreVendor\PDF_set_info(...func_get_args()); } }
+if (!function_exists('PDF_set_layer_dependency')) { function PDF_set_layer_dependency() { return \OtomatiesCoreVendor\PDF_set_layer_dependency(...func_get_args()); } }
+if (!function_exists('PDF_set_option')) { function PDF_set_option() { return \OtomatiesCoreVendor\PDF_set_option(...func_get_args()); } }
+if (!function_exists('PDF_set_parameter')) { function PDF_set_parameter() { return \OtomatiesCoreVendor\PDF_set_parameter(...func_get_args()); } }
+if (!function_exists('PDF_set_text_option')) { function PDF_set_text_option() { return \OtomatiesCoreVendor\PDF_set_text_option(...func_get_args()); } }
+if (!function_exists('PDF_set_text_pos')) { function PDF_set_text_pos() { return \OtomatiesCoreVendor\PDF_set_text_pos(...func_get_args()); } }
+if (!function_exists('PDF_set_value')) { function PDF_set_value() { return \OtomatiesCoreVendor\PDF_set_value(...func_get_args()); } }
+if (!function_exists('PDF_setcolor')) { function PDF_setcolor() { return \OtomatiesCoreVendor\PDF_setcolor(...func_get_args()); } }
+if (!function_exists('PDF_setdash')) { function PDF_setdash() { return \OtomatiesCoreVendor\PDF_setdash(...func_get_args()); } }
+if (!function_exists('PDF_setdashpattern')) { function PDF_setdashpattern() { return \OtomatiesCoreVendor\PDF_setdashpattern(...func_get_args()); } }
+if (!function_exists('PDF_setflat')) { function PDF_setflat() { return \OtomatiesCoreVendor\PDF_setflat(...func_get_args()); } }
+if (!function_exists('PDF_setfont')) { function PDF_setfont() { return \OtomatiesCoreVendor\PDF_setfont(...func_get_args()); } }
+if (!function_exists('PDF_setgray')) { function PDF_setgray() { return \OtomatiesCoreVendor\PDF_setgray(...func_get_args()); } }
+if (!function_exists('PDF_setgray_fill')) { function PDF_setgray_fill() { return \OtomatiesCoreVendor\PDF_setgray_fill(...func_get_args()); } }
+if (!function_exists('PDF_setgray_stroke')) { function PDF_setgray_stroke() { return \OtomatiesCoreVendor\PDF_setgray_stroke(...func_get_args()); } }
+if (!function_exists('PDF_setlinecap')) { function PDF_setlinecap() { return \OtomatiesCoreVendor\PDF_setlinecap(...func_get_args()); } }
+if (!function_exists('PDF_setlinejoin')) { function PDF_setlinejoin() { return \OtomatiesCoreVendor\PDF_setlinejoin(...func_get_args()); } }
+if (!function_exists('PDF_setlinewidth')) { function PDF_setlinewidth() { return \OtomatiesCoreVendor\PDF_setlinewidth(...func_get_args()); } }
+if (!function_exists('PDF_setmatrix')) { function PDF_setmatrix() { return \OtomatiesCoreVendor\PDF_setmatrix(...func_get_args()); } }
+if (!function_exists('PDF_setmiterlimit')) { function PDF_setmiterlimit() { return \OtomatiesCoreVendor\PDF_setmiterlimit(...func_get_args()); } }
+if (!function_exists('PDF_setrgbcolor')) { function PDF_setrgbcolor() { return \OtomatiesCoreVendor\PDF_setrgbcolor(...func_get_args()); } }
+if (!function_exists('PDF_setrgbcolor_fill')) { function PDF_setrgbcolor_fill() { return \OtomatiesCoreVendor\PDF_setrgbcolor_fill(...func_get_args()); } }
+if (!function_exists('PDF_setrgbcolor_stroke')) { function PDF_setrgbcolor_stroke() { return \OtomatiesCoreVendor\PDF_setrgbcolor_stroke(...func_get_args()); } }
+if (!function_exists('PDF_shading')) { function PDF_shading() { return \OtomatiesCoreVendor\PDF_shading(...func_get_args()); } }
+if (!function_exists('PDF_shading_pattern')) { function PDF_shading_pattern() { return \OtomatiesCoreVendor\PDF_shading_pattern(...func_get_args()); } }
+if (!function_exists('PDF_shfill')) { function PDF_shfill() { return \OtomatiesCoreVendor\PDF_shfill(...func_get_args()); } }
+if (!function_exists('PDF_show')) { function PDF_show() { return \OtomatiesCoreVendor\PDF_show(...func_get_args()); } }
+if (!function_exists('PDF_show_boxed')) { function PDF_show_boxed() { return \OtomatiesCoreVendor\PDF_show_boxed(...func_get_args()); } }
+if (!function_exists('PDF_show_xy')) { function PDF_show_xy() { return \OtomatiesCoreVendor\PDF_show_xy(...func_get_args()); } }
+if (!function_exists('PDF_skew')) { function PDF_skew() { return \OtomatiesCoreVendor\PDF_skew(...func_get_args()); } }
+if (!function_exists('PDF_stringwidth')) { function PDF_stringwidth() { return \OtomatiesCoreVendor\PDF_stringwidth(...func_get_args()); } }
+if (!function_exists('PDF_stroke')) { function PDF_stroke() { return \OtomatiesCoreVendor\PDF_stroke(...func_get_args()); } }
+if (!function_exists('PDF_suspend_page')) { function PDF_suspend_page() { return \OtomatiesCoreVendor\PDF_suspend_page(...func_get_args()); } }
+if (!function_exists('PDF_translate')) { function PDF_translate() { return \OtomatiesCoreVendor\PDF_translate(...func_get_args()); } }
+if (!function_exists('PDF_utf16_to_utf8')) { function PDF_utf16_to_utf8() { return \OtomatiesCoreVendor\PDF_utf16_to_utf8(...func_get_args()); } }
+if (!function_exists('PDF_utf32_to_utf16')) { function PDF_utf32_to_utf16() { return \OtomatiesCoreVendor\PDF_utf32_to_utf16(...func_get_args()); } }
+if (!function_exists('PDF_utf8_to_utf16')) { function PDF_utf8_to_utf16() { return \OtomatiesCoreVendor\PDF_utf8_to_utf16(...func_get_args()); } }
+if (!function_exists('PS_UNRESERVE_PREFIX___halt_compiler')) { function PS_UNRESERVE_PREFIX___halt_compiler() { return \OtomatiesCoreVendor\PS_UNRESERVE_PREFIX___halt_compiler(...func_get_args()); } }
+if (!function_exists('PS_UNRESERVE_PREFIX_array')) { function PS_UNRESERVE_PREFIX_array() { return \OtomatiesCoreVendor\PS_UNRESERVE_PREFIX_array(...func_get_args()); } }
+if (!function_exists('PS_UNRESERVE_PREFIX_die')) { function PS_UNRESERVE_PREFIX_die() { return \OtomatiesCoreVendor\PS_UNRESERVE_PREFIX_die(...func_get_args()); } }
+if (!function_exists('PS_UNRESERVE_PREFIX_empty')) { function PS_UNRESERVE_PREFIX_empty() { return \OtomatiesCoreVendor\PS_UNRESERVE_PREFIX_empty(...func_get_args()); } }
+if (!function_exists('PS_UNRESERVE_PREFIX_eval')) { function PS_UNRESERVE_PREFIX_eval() { return \OtomatiesCoreVendor\PS_UNRESERVE_PREFIX_eval(...func_get_args()); } }
+if (!function_exists('PS_UNRESERVE_PREFIX_exit')) { function PS_UNRESERVE_PREFIX_exit() { return \OtomatiesCoreVendor\PS_UNRESERVE_PREFIX_exit(...func_get_args()); } }
+if (!function_exists('PS_UNRESERVE_PREFIX_isset')) { function PS_UNRESERVE_PREFIX_isset() { return \OtomatiesCoreVendor\PS_UNRESERVE_PREFIX_isset(...func_get_args()); } }
+if (!function_exists('PS_UNRESERVE_PREFIX_list')) { function PS_UNRESERVE_PREFIX_list() { return \OtomatiesCoreVendor\PS_UNRESERVE_PREFIX_list(...func_get_args()); } }
+if (!function_exists('PS_UNRESERVE_PREFIX_unset')) { function PS_UNRESERVE_PREFIX_unset() { return \OtomatiesCoreVendor\PS_UNRESERVE_PREFIX_unset(...func_get_args()); } }
 if (!function_exists('PclZipUtilCopyBlock')) { function PclZipUtilCopyBlock() { return \OtomatiesCoreVendor\PclZipUtilCopyBlock(...func_get_args()); } }
 if (!function_exists('PclZipUtilOptionText')) { function PclZipUtilOptionText() { return \OtomatiesCoreVendor\PclZipUtilOptionText(...func_get_args()); } }
 if (!function_exists('PclZipUtilPathInclusion')) { function PclZipUtilPathInclusion() { return \OtomatiesCoreVendor\PclZipUtilPathInclusion(...func_get_args()); } }
 if (!function_exists('PclZipUtilPathReduction')) { function PclZipUtilPathReduction() { return \OtomatiesCoreVendor\PclZipUtilPathReduction(...func_get_args()); } }
 if (!function_exists('PclZipUtilRename')) { function PclZipUtilRename() { return \OtomatiesCoreVendor\PclZipUtilRename(...func_get_args()); } }
 if (!function_exists('PclZipUtilTranslateWinPath')) { function PclZipUtilTranslateWinPath() { return \OtomatiesCoreVendor\PclZipUtilTranslateWinPath(...func_get_args()); } }
+if (!function_exists('SQLSRV_PHPTYPE_STREAM')) { function SQLSRV_PHPTYPE_STREAM() { return \OtomatiesCoreVendor\SQLSRV_PHPTYPE_STREAM(...func_get_args()); } }
+if (!function_exists('SQLSRV_PHPTYPE_STRING')) { function SQLSRV_PHPTYPE_STRING() { return \OtomatiesCoreVendor\SQLSRV_PHPTYPE_STRING(...func_get_args()); } }
+if (!function_exists('SQLSRV_SQLTYPE_BINARY')) { function SQLSRV_SQLTYPE_BINARY() { return \OtomatiesCoreVendor\SQLSRV_SQLTYPE_BINARY(...func_get_args()); } }
+if (!function_exists('SQLSRV_SQLTYPE_CHAR')) { function SQLSRV_SQLTYPE_CHAR() { return \OtomatiesCoreVendor\SQLSRV_SQLTYPE_CHAR(...func_get_args()); } }
+if (!function_exists('SQLSRV_SQLTYPE_DECIMAL')) { function SQLSRV_SQLTYPE_DECIMAL() { return \OtomatiesCoreVendor\SQLSRV_SQLTYPE_DECIMAL(...func_get_args()); } }
+if (!function_exists('SQLSRV_SQLTYPE_NCHAR')) { function SQLSRV_SQLTYPE_NCHAR() { return \OtomatiesCoreVendor\SQLSRV_SQLTYPE_NCHAR(...func_get_args()); } }
+if (!function_exists('SQLSRV_SQLTYPE_NUMERIC')) { function SQLSRV_SQLTYPE_NUMERIC() { return \OtomatiesCoreVendor\SQLSRV_SQLTYPE_NUMERIC(...func_get_args()); } }
+if (!function_exists('SQLSRV_SQLTYPE_NVARCHAR')) { function SQLSRV_SQLTYPE_NVARCHAR() { return \OtomatiesCoreVendor\SQLSRV_SQLTYPE_NVARCHAR(...func_get_args()); } }
+if (!function_exists('SQLSRV_SQLTYPE_VARBINARY')) { function SQLSRV_SQLTYPE_VARBINARY() { return \OtomatiesCoreVendor\SQLSRV_SQLTYPE_VARBINARY(...func_get_args()); } }
+if (!function_exists('SQLSRV_SQLTYPE_VARCHAR')) { function SQLSRV_SQLTYPE_VARCHAR() { return \OtomatiesCoreVendor\SQLSRV_SQLTYPE_VARCHAR(...func_get_args()); } }
 if (!function_exists('WC')) { function WC() { return \OtomatiesCoreVendor\WC(...func_get_args()); } }
 if (!function_exists('WP_Filesystem')) { function WP_Filesystem() { return \OtomatiesCoreVendor\WP_Filesystem(...func_get_args()); } }
+if (!function_exists('_')) { function _() { return \OtomatiesCoreVendor\_(...func_get_args()); } }
 if (!function_exists('__')) { function __() { return \OtomatiesCoreVendor\__(...func_get_args()); } }
 if (!function_exists('__checked_selected_helper')) { function __checked_selected_helper() { return \OtomatiesCoreVendor\__checked_selected_helper(...func_get_args()); } }
 if (!function_exists('__clear_multi_author_cache')) { function __clear_multi_author_cache() { return \OtomatiesCoreVendor\__clear_multi_author_cache(...func_get_args()); } }
@@ -1488,7 +2314,11 @@ if (!function_exists('_wptexturize_pushpop_element')) { function _wptexturize_pu
 if (!function_exists('_x')) { function _x() { return \OtomatiesCoreVendor\_x(...func_get_args()); } }
 if (!function_exists('_xml_wp_die_handler')) { function _xml_wp_die_handler() { return \OtomatiesCoreVendor\_xml_wp_die_handler(...func_get_args()); } }
 if (!function_exists('_xmlrpc_wp_die_handler')) { function _xmlrpc_wp_die_handler() { return \OtomatiesCoreVendor\_xmlrpc_wp_die_handler(...func_get_args()); } }
+if (!function_exists('abs')) { function abs() { return \OtomatiesCoreVendor\abs(...func_get_args()); } }
 if (!function_exists('absint')) { function absint() { return \OtomatiesCoreVendor\absint(...func_get_args()); } }
+if (!function_exists('accelerator_set_status')) { function accelerator_set_status() { return \OtomatiesCoreVendor\accelerator_set_status(...func_get_args()); } }
+if (!function_exists('acos')) { function acos() { return \OtomatiesCoreVendor\acos(...func_get_args()); } }
+if (!function_exists('acosh')) { function acosh() { return \OtomatiesCoreVendor\acosh(...func_get_args()); } }
 if (!function_exists('activate_plugin')) { function activate_plugin() { return \OtomatiesCoreVendor\activate_plugin(...func_get_args()); } }
 if (!function_exists('activate_plugins')) { function activate_plugins() { return \OtomatiesCoreVendor\activate_plugins(...func_get_args()); } }
 if (!function_exists('activate_sitewide_plugin')) { function activate_sitewide_plugin() { return \OtomatiesCoreVendor\activate_sitewide_plugin(...func_get_args()); } }
@@ -1555,6 +2385,8 @@ if (!function_exists('add_user_to_blog')) { function add_user_to_blog() { return
 if (!function_exists('add_users_page')) { function add_users_page() { return \OtomatiesCoreVendor\add_users_page(...func_get_args()); } }
 if (!function_exists('add_utility_page')) { function add_utility_page() { return \OtomatiesCoreVendor\add_utility_page(...func_get_args()); } }
 if (!function_exists('add_woocommerce_term_meta')) { function add_woocommerce_term_meta() { return \OtomatiesCoreVendor\add_woocommerce_term_meta(...func_get_args()); } }
+if (!function_exists('addcslashes')) { function addcslashes() { return \OtomatiesCoreVendor\addcslashes(...func_get_args()); } }
+if (!function_exists('addslashes')) { function addslashes() { return \OtomatiesCoreVendor\addslashes(...func_get_args()); } }
 if (!function_exists('addslashes_gpc')) { function addslashes_gpc() { return \OtomatiesCoreVendor\addslashes_gpc(...func_get_args()); } }
 if (!function_exists('addslashes_strings_only')) { function addslashes_strings_only() { return \OtomatiesCoreVendor\addslashes_strings_only(...func_get_args()); } }
 if (!function_exists('adjacent_image_link')) { function adjacent_image_link() { return \OtomatiesCoreVendor\adjacent_image_link(...func_get_args()); } }
@@ -1569,7 +2401,50 @@ if (!function_exists('allow_subdomain_install')) { function allow_subdomain_inst
 if (!function_exists('allowed_http_request_hosts')) { function allowed_http_request_hosts() { return \OtomatiesCoreVendor\allowed_http_request_hosts(...func_get_args()); } }
 if (!function_exists('allowed_tags')) { function allowed_tags() { return \OtomatiesCoreVendor\allowed_tags(...func_get_args()); } }
 if (!function_exists('antispambot')) { function antispambot() { return \OtomatiesCoreVendor\antispambot(...func_get_args()); } }
+if (!function_exists('apache_child_terminate')) { function apache_child_terminate() { return \OtomatiesCoreVendor\apache_child_terminate(...func_get_args()); } }
+if (!function_exists('apache_get_modules')) { function apache_get_modules() { return \OtomatiesCoreVendor\apache_get_modules(...func_get_args()); } }
+if (!function_exists('apache_get_version')) { function apache_get_version() { return \OtomatiesCoreVendor\apache_get_version(...func_get_args()); } }
+if (!function_exists('apache_getenv')) { function apache_getenv() { return \OtomatiesCoreVendor\apache_getenv(...func_get_args()); } }
+if (!function_exists('apache_lookup_uri')) { function apache_lookup_uri() { return \OtomatiesCoreVendor\apache_lookup_uri(...func_get_args()); } }
 if (!function_exists('apache_mod_loaded')) { function apache_mod_loaded() { return \OtomatiesCoreVendor\apache_mod_loaded(...func_get_args()); } }
+if (!function_exists('apache_note')) { function apache_note() { return \OtomatiesCoreVendor\apache_note(...func_get_args()); } }
+if (!function_exists('apache_request_headers')) { function apache_request_headers() { return \OtomatiesCoreVendor\apache_request_headers(...func_get_args()); } }
+if (!function_exists('apache_reset_timeout')) { function apache_reset_timeout() { return \OtomatiesCoreVendor\apache_reset_timeout(...func_get_args()); } }
+if (!function_exists('apache_response_headers')) { function apache_response_headers() { return \OtomatiesCoreVendor\apache_response_headers(...func_get_args()); } }
+if (!function_exists('apache_setenv')) { function apache_setenv() { return \OtomatiesCoreVendor\apache_setenv(...func_get_args()); } }
+if (!function_exists('apc_add')) { function apc_add() { return \OtomatiesCoreVendor\apc_add(...func_get_args()); } }
+if (!function_exists('apc_bin_dump')) { function apc_bin_dump() { return \OtomatiesCoreVendor\apc_bin_dump(...func_get_args()); } }
+if (!function_exists('apc_bin_dumpfile')) { function apc_bin_dumpfile() { return \OtomatiesCoreVendor\apc_bin_dumpfile(...func_get_args()); } }
+if (!function_exists('apc_bin_load')) { function apc_bin_load() { return \OtomatiesCoreVendor\apc_bin_load(...func_get_args()); } }
+if (!function_exists('apc_bin_loadfile')) { function apc_bin_loadfile() { return \OtomatiesCoreVendor\apc_bin_loadfile(...func_get_args()); } }
+if (!function_exists('apc_cache_info')) { function apc_cache_info() { return \OtomatiesCoreVendor\apc_cache_info(...func_get_args()); } }
+if (!function_exists('apc_cas')) { function apc_cas() { return \OtomatiesCoreVendor\apc_cas(...func_get_args()); } }
+if (!function_exists('apc_clear_cache')) { function apc_clear_cache() { return \OtomatiesCoreVendor\apc_clear_cache(...func_get_args()); } }
+if (!function_exists('apc_compile_file')) { function apc_compile_file() { return \OtomatiesCoreVendor\apc_compile_file(...func_get_args()); } }
+if (!function_exists('apc_dec')) { function apc_dec() { return \OtomatiesCoreVendor\apc_dec(...func_get_args()); } }
+if (!function_exists('apc_define_constants')) { function apc_define_constants() { return \OtomatiesCoreVendor\apc_define_constants(...func_get_args()); } }
+if (!function_exists('apc_delete')) { function apc_delete() { return \OtomatiesCoreVendor\apc_delete(...func_get_args()); } }
+if (!function_exists('apc_delete_file')) { function apc_delete_file() { return \OtomatiesCoreVendor\apc_delete_file(...func_get_args()); } }
+if (!function_exists('apc_exists')) { function apc_exists() { return \OtomatiesCoreVendor\apc_exists(...func_get_args()); } }
+if (!function_exists('apc_fetch')) { function apc_fetch() { return \OtomatiesCoreVendor\apc_fetch(...func_get_args()); } }
+if (!function_exists('apc_inc')) { function apc_inc() { return \OtomatiesCoreVendor\apc_inc(...func_get_args()); } }
+if (!function_exists('apc_load_constants')) { function apc_load_constants() { return \OtomatiesCoreVendor\apc_load_constants(...func_get_args()); } }
+if (!function_exists('apc_sma_info')) { function apc_sma_info() { return \OtomatiesCoreVendor\apc_sma_info(...func_get_args()); } }
+if (!function_exists('apc_store')) { function apc_store() { return \OtomatiesCoreVendor\apc_store(...func_get_args()); } }
+if (!function_exists('apcu_add')) { function apcu_add() { return \OtomatiesCoreVendor\apcu_add(...func_get_args()); } }
+if (!function_exists('apcu_cache_info')) { function apcu_cache_info() { return \OtomatiesCoreVendor\apcu_cache_info(...func_get_args()); } }
+if (!function_exists('apcu_cas')) { function apcu_cas() { return \OtomatiesCoreVendor\apcu_cas(...func_get_args()); } }
+if (!function_exists('apcu_clear_cache')) { function apcu_clear_cache() { return \OtomatiesCoreVendor\apcu_clear_cache(...func_get_args()); } }
+if (!function_exists('apcu_dec')) { function apcu_dec() { return \OtomatiesCoreVendor\apcu_dec(...func_get_args()); } }
+if (!function_exists('apcu_delete')) { function apcu_delete() { return \OtomatiesCoreVendor\apcu_delete(...func_get_args()); } }
+if (!function_exists('apcu_enabled')) { function apcu_enabled() { return \OtomatiesCoreVendor\apcu_enabled(...func_get_args()); } }
+if (!function_exists('apcu_entry')) { function apcu_entry() { return \OtomatiesCoreVendor\apcu_entry(...func_get_args()); } }
+if (!function_exists('apcu_exists')) { function apcu_exists() { return \OtomatiesCoreVendor\apcu_exists(...func_get_args()); } }
+if (!function_exists('apcu_fetch')) { function apcu_fetch() { return \OtomatiesCoreVendor\apcu_fetch(...func_get_args()); } }
+if (!function_exists('apcu_inc')) { function apcu_inc() { return \OtomatiesCoreVendor\apcu_inc(...func_get_args()); } }
+if (!function_exists('apcu_key_info')) { function apcu_key_info() { return \OtomatiesCoreVendor\apcu_key_info(...func_get_args()); } }
+if (!function_exists('apcu_sma_info')) { function apcu_sma_info() { return \OtomatiesCoreVendor\apcu_sma_info(...func_get_args()); } }
+if (!function_exists('apcu_store')) { function apcu_store() { return \OtomatiesCoreVendor\apcu_store(...func_get_args()); } }
 if (!function_exists('app')) { function app() { return \OtomatiesCoreVendor\app(...func_get_args()); } }
 if (!function_exists('append_config')) { function append_config() { return \OtomatiesCoreVendor\append_config(...func_get_args()); } }
 if (!function_exists('apply_block_core_search_border_style')) { function apply_block_core_search_border_style() { return \OtomatiesCoreVendor\apply_block_core_search_border_style(...func_get_args()); } }
@@ -1582,12 +2457,64 @@ if (!function_exists('apply_filters_ref_array')) { function apply_filters_ref_ar
 if (!function_exists('apply_shortcodes')) { function apply_shortcodes() { return \OtomatiesCoreVendor\apply_shortcodes(...func_get_args()); } }
 if (!function_exists('array_all')) { function array_all() { return \OtomatiesCoreVendor\array_all(...func_get_args()); } }
 if (!function_exists('array_any')) { function array_any() { return \OtomatiesCoreVendor\array_any(...func_get_args()); } }
+if (!function_exists('array_change_key_case')) { function array_change_key_case() { return \OtomatiesCoreVendor\array_change_key_case(...func_get_args()); } }
+if (!function_exists('array_chunk')) { function array_chunk() { return \OtomatiesCoreVendor\array_chunk(...func_get_args()); } }
+if (!function_exists('array_column')) { function array_column() { return \OtomatiesCoreVendor\array_column(...func_get_args()); } }
+if (!function_exists('array_combine')) { function array_combine() { return \OtomatiesCoreVendor\array_combine(...func_get_args()); } }
+if (!function_exists('array_count_values')) { function array_count_values() { return \OtomatiesCoreVendor\array_count_values(...func_get_args()); } }
+if (!function_exists('array_diff')) { function array_diff() { return \OtomatiesCoreVendor\array_diff(...func_get_args()); } }
+if (!function_exists('array_diff_assoc')) { function array_diff_assoc() { return \OtomatiesCoreVendor\array_diff_assoc(...func_get_args()); } }
+if (!function_exists('array_diff_key')) { function array_diff_key() { return \OtomatiesCoreVendor\array_diff_key(...func_get_args()); } }
+if (!function_exists('array_diff_uassoc')) { function array_diff_uassoc() { return \OtomatiesCoreVendor\array_diff_uassoc(...func_get_args()); } }
+if (!function_exists('array_diff_ukey')) { function array_diff_ukey() { return \OtomatiesCoreVendor\array_diff_ukey(...func_get_args()); } }
+if (!function_exists('array_fill')) { function array_fill() { return \OtomatiesCoreVendor\array_fill(...func_get_args()); } }
+if (!function_exists('array_fill_keys')) { function array_fill_keys() { return \OtomatiesCoreVendor\array_fill_keys(...func_get_args()); } }
+if (!function_exists('array_filter')) { function array_filter() { return \OtomatiesCoreVendor\array_filter(...func_get_args()); } }
 if (!function_exists('array_find')) { function array_find() { return \OtomatiesCoreVendor\array_find(...func_get_args()); } }
 if (!function_exists('array_find_key')) { function array_find_key() { return \OtomatiesCoreVendor\array_find_key(...func_get_args()); } }
 if (!function_exists('array_first')) { function array_first() { return \OtomatiesCoreVendor\array_first(...func_get_args()); } }
+if (!function_exists('array_flip')) { function array_flip() { return \OtomatiesCoreVendor\array_flip(...func_get_args()); } }
+if (!function_exists('array_intersect')) { function array_intersect() { return \OtomatiesCoreVendor\array_intersect(...func_get_args()); } }
+if (!function_exists('array_intersect_assoc')) { function array_intersect_assoc() { return \OtomatiesCoreVendor\array_intersect_assoc(...func_get_args()); } }
+if (!function_exists('array_intersect_key')) { function array_intersect_key() { return \OtomatiesCoreVendor\array_intersect_key(...func_get_args()); } }
+if (!function_exists('array_intersect_uassoc')) { function array_intersect_uassoc() { return \OtomatiesCoreVendor\array_intersect_uassoc(...func_get_args()); } }
+if (!function_exists('array_intersect_ukey')) { function array_intersect_ukey() { return \OtomatiesCoreVendor\array_intersect_ukey(...func_get_args()); } }
+if (!function_exists('array_is_list')) { function array_is_list() { return \OtomatiesCoreVendor\array_is_list(...func_get_args()); } }
+if (!function_exists('array_key_exists')) { function array_key_exists() { return \OtomatiesCoreVendor\array_key_exists(...func_get_args()); } }
 if (!function_exists('array_key_first')) { function array_key_first() { return \OtomatiesCoreVendor\array_key_first(...func_get_args()); } }
 if (!function_exists('array_key_last')) { function array_key_last() { return \OtomatiesCoreVendor\array_key_last(...func_get_args()); } }
+if (!function_exists('array_keys')) { function array_keys() { return \OtomatiesCoreVendor\array_keys(...func_get_args()); } }
 if (!function_exists('array_last')) { function array_last() { return \OtomatiesCoreVendor\array_last(...func_get_args()); } }
+if (!function_exists('array_map')) { function array_map() { return \OtomatiesCoreVendor\array_map(...func_get_args()); } }
+if (!function_exists('array_merge')) { function array_merge() { return \OtomatiesCoreVendor\array_merge(...func_get_args()); } }
+if (!function_exists('array_merge_recursive')) { function array_merge_recursive() { return \OtomatiesCoreVendor\array_merge_recursive(...func_get_args()); } }
+if (!function_exists('array_multisort')) { function array_multisort() { return \OtomatiesCoreVendor\array_multisort(...func_get_args()); } }
+if (!function_exists('array_pad')) { function array_pad() { return \OtomatiesCoreVendor\array_pad(...func_get_args()); } }
+if (!function_exists('array_pop')) { function array_pop() { return \OtomatiesCoreVendor\array_pop(...func_get_args()); } }
+if (!function_exists('array_product')) { function array_product() { return \OtomatiesCoreVendor\array_product(...func_get_args()); } }
+if (!function_exists('array_push')) { function array_push() { return \OtomatiesCoreVendor\array_push(...func_get_args()); } }
+if (!function_exists('array_rand')) { function array_rand() { return \OtomatiesCoreVendor\array_rand(...func_get_args()); } }
+if (!function_exists('array_reduce')) { function array_reduce() { return \OtomatiesCoreVendor\array_reduce(...func_get_args()); } }
+if (!function_exists('array_replace')) { function array_replace() { return \OtomatiesCoreVendor\array_replace(...func_get_args()); } }
+if (!function_exists('array_replace_recursive')) { function array_replace_recursive() { return \OtomatiesCoreVendor\array_replace_recursive(...func_get_args()); } }
+if (!function_exists('array_reverse')) { function array_reverse() { return \OtomatiesCoreVendor\array_reverse(...func_get_args()); } }
+if (!function_exists('array_search')) { function array_search() { return \OtomatiesCoreVendor\array_search(...func_get_args()); } }
+if (!function_exists('array_shift')) { function array_shift() { return \OtomatiesCoreVendor\array_shift(...func_get_args()); } }
+if (!function_exists('array_slice')) { function array_slice() { return \OtomatiesCoreVendor\array_slice(...func_get_args()); } }
+if (!function_exists('array_splice')) { function array_splice() { return \OtomatiesCoreVendor\array_splice(...func_get_args()); } }
+if (!function_exists('array_sum')) { function array_sum() { return \OtomatiesCoreVendor\array_sum(...func_get_args()); } }
+if (!function_exists('array_udiff')) { function array_udiff() { return \OtomatiesCoreVendor\array_udiff(...func_get_args()); } }
+if (!function_exists('array_udiff_assoc')) { function array_udiff_assoc() { return \OtomatiesCoreVendor\array_udiff_assoc(...func_get_args()); } }
+if (!function_exists('array_udiff_uassoc')) { function array_udiff_uassoc() { return \OtomatiesCoreVendor\array_udiff_uassoc(...func_get_args()); } }
+if (!function_exists('array_uintersect')) { function array_uintersect() { return \OtomatiesCoreVendor\array_uintersect(...func_get_args()); } }
+if (!function_exists('array_uintersect_assoc')) { function array_uintersect_assoc() { return \OtomatiesCoreVendor\array_uintersect_assoc(...func_get_args()); } }
+if (!function_exists('array_uintersect_uassoc')) { function array_uintersect_uassoc() { return \OtomatiesCoreVendor\array_uintersect_uassoc(...func_get_args()); } }
+if (!function_exists('array_unique')) { function array_unique() { return \OtomatiesCoreVendor\array_unique(...func_get_args()); } }
+if (!function_exists('array_unshift')) { function array_unshift() { return \OtomatiesCoreVendor\array_unshift(...func_get_args()); } }
+if (!function_exists('array_values')) { function array_values() { return \OtomatiesCoreVendor\array_values(...func_get_args()); } }
+if (!function_exists('array_walk')) { function array_walk() { return \OtomatiesCoreVendor\array_walk(...func_get_args()); } }
+if (!function_exists('array_walk_recursive')) { function array_walk_recursive() { return \OtomatiesCoreVendor\array_walk_recursive(...func_get_args()); } }
+if (!function_exists('arsort')) { function arsort() { return \OtomatiesCoreVendor\arsort(...func_get_args()); } }
 if (!function_exists('as_enqueue_async_action')) { function as_enqueue_async_action() { return \OtomatiesCoreVendor\as_enqueue_async_action(...func_get_args()); } }
 if (!function_exists('as_get_datetime_object')) { function as_get_datetime_object() { return \OtomatiesCoreVendor\as_get_datetime_object(...func_get_args()); } }
 if (!function_exists('as_get_scheduled_actions')) { function as_get_scheduled_actions() { return \OtomatiesCoreVendor\as_get_scheduled_actions(...func_get_args()); } }
@@ -1598,6 +2525,14 @@ if (!function_exists('as_schedule_recurring_action')) { function as_schedule_rec
 if (!function_exists('as_schedule_single_action')) { function as_schedule_single_action() { return \OtomatiesCoreVendor\as_schedule_single_action(...func_get_args()); } }
 if (!function_exists('as_unschedule_action')) { function as_unschedule_action() { return \OtomatiesCoreVendor\as_unschedule_action(...func_get_args()); } }
 if (!function_exists('as_unschedule_all_actions')) { function as_unschedule_all_actions() { return \OtomatiesCoreVendor\as_unschedule_all_actions(...func_get_args()); } }
+if (!function_exists('asin')) { function asin() { return \OtomatiesCoreVendor\asin(...func_get_args()); } }
+if (!function_exists('asinh')) { function asinh() { return \OtomatiesCoreVendor\asinh(...func_get_args()); } }
+if (!function_exists('asort')) { function asort() { return \OtomatiesCoreVendor\asort(...func_get_args()); } }
+if (!function_exists('assert')) { function assert() { return \OtomatiesCoreVendor\assert(...func_get_args()); } }
+if (!function_exists('assert_options')) { function assert_options() { return \OtomatiesCoreVendor\assert_options(...func_get_args()); } }
+if (!function_exists('atan')) { function atan() { return \OtomatiesCoreVendor\atan(...func_get_args()); } }
+if (!function_exists('atan2')) { function atan2() { return \OtomatiesCoreVendor\atan2(...func_get_args()); } }
+if (!function_exists('atanh')) { function atanh() { return \OtomatiesCoreVendor\atanh(...func_get_args()); } }
 if (!function_exists('atom_enclosure')) { function atom_enclosure() { return \OtomatiesCoreVendor\atom_enclosure(...func_get_args()); } }
 if (!function_exists('atom_site_icon')) { function atom_site_icon() { return \OtomatiesCoreVendor\atom_site_icon(...func_get_args()); } }
 if (!function_exists('attachment_id3_data_meta_box')) { function attachment_id3_data_meta_box() { return \OtomatiesCoreVendor\attachment_id3_data_meta_box(...func_get_args()); } }
@@ -1613,8 +2548,29 @@ if (!function_exists('background_color')) { function background_color() { return
 if (!function_exists('background_image')) { function background_image() { return \OtomatiesCoreVendor\background_image(...func_get_args()); } }
 if (!function_exists('backslashit')) { function backslashit() { return \OtomatiesCoreVendor\backslashit(...func_get_args()); } }
 if (!function_exists('balanceTags')) { function balanceTags() { return \OtomatiesCoreVendor\balanceTags(...func_get_args()); } }
+if (!function_exists('base64_decode')) { function base64_decode() { return \OtomatiesCoreVendor\base64_decode(...func_get_args()); } }
+if (!function_exists('base64_encode')) { function base64_encode() { return \OtomatiesCoreVendor\base64_encode(...func_get_args()); } }
+if (!function_exists('base_convert')) { function base_convert() { return \OtomatiesCoreVendor\base_convert(...func_get_args()); } }
+if (!function_exists('basename')) { function basename() { return \OtomatiesCoreVendor\basename(...func_get_args()); } }
+if (!function_exists('bcadd')) { function bcadd() { return \OtomatiesCoreVendor\bcadd(...func_get_args()); } }
+if (!function_exists('bcceil')) { function bcceil() { return \OtomatiesCoreVendor\bcceil(...func_get_args()); } }
+if (!function_exists('bccomp')) { function bccomp() { return \OtomatiesCoreVendor\bccomp(...func_get_args()); } }
+if (!function_exists('bcdiv')) { function bcdiv() { return \OtomatiesCoreVendor\bcdiv(...func_get_args()); } }
 if (!function_exists('bcdivmod')) { function bcdivmod() { return \OtomatiesCoreVendor\bcdivmod(...func_get_args()); } }
+if (!function_exists('bcfloor')) { function bcfloor() { return \OtomatiesCoreVendor\bcfloor(...func_get_args()); } }
+if (!function_exists('bcmod')) { function bcmod() { return \OtomatiesCoreVendor\bcmod(...func_get_args()); } }
+if (!function_exists('bcmul')) { function bcmul() { return \OtomatiesCoreVendor\bcmul(...func_get_args()); } }
+if (!function_exists('bcpow')) { function bcpow() { return \OtomatiesCoreVendor\bcpow(...func_get_args()); } }
+if (!function_exists('bcpowmod')) { function bcpowmod() { return \OtomatiesCoreVendor\bcpowmod(...func_get_args()); } }
+if (!function_exists('bcround')) { function bcround() { return \OtomatiesCoreVendor\bcround(...func_get_args()); } }
+if (!function_exists('bcscale')) { function bcscale() { return \OtomatiesCoreVendor\bcscale(...func_get_args()); } }
+if (!function_exists('bcsqrt')) { function bcsqrt() { return \OtomatiesCoreVendor\bcsqrt(...func_get_args()); } }
+if (!function_exists('bcsub')) { function bcsub() { return \OtomatiesCoreVendor\bcsub(...func_get_args()); } }
 if (!function_exists('before_last_bar')) { function before_last_bar() { return \OtomatiesCoreVendor\before_last_bar(...func_get_args()); } }
+if (!function_exists('bin2hex')) { function bin2hex() { return \OtomatiesCoreVendor\bin2hex(...func_get_args()); } }
+if (!function_exists('bind_textdomain_codeset')) { function bind_textdomain_codeset() { return \OtomatiesCoreVendor\bind_textdomain_codeset(...func_get_args()); } }
+if (!function_exists('bindec')) { function bindec() { return \OtomatiesCoreVendor\bindec(...func_get_args()); } }
+if (!function_exists('bindtextdomain')) { function bindtextdomain() { return \OtomatiesCoreVendor\bindtextdomain(...func_get_args()); } }
 if (!function_exists('blank')) { function blank() { return \OtomatiesCoreVendor\blank(...func_get_args()); } }
 if (!function_exists('block_core_calendar_has_published_posts')) { function block_core_calendar_has_published_posts() { return \OtomatiesCoreVendor\block_core_calendar_has_published_posts(...func_get_args()); } }
 if (!function_exists('block_core_calendar_update_has_published_post_on_delete')) { function block_core_calendar_update_has_published_post_on_delete() { return \OtomatiesCoreVendor\block_core_calendar_update_has_published_post_on_delete(...func_get_args()); } }
@@ -1685,6 +2641,13 @@ if (!function_exists('bloginfo')) { function bloginfo() { return \OtomatiesCoreV
 if (!function_exists('bloginfo_rss')) { function bloginfo_rss() { return \OtomatiesCoreVendor\bloginfo_rss(...func_get_args()); } }
 if (!function_exists('body_class')) { function body_class() { return \OtomatiesCoreVendor\body_class(...func_get_args()); } }
 if (!function_exists('bool_from_yn')) { function bool_from_yn() { return \OtomatiesCoreVendor\bool_from_yn(...func_get_args()); } }
+if (!function_exists('boolval')) { function boolval() { return \OtomatiesCoreVendor\boolval(...func_get_args()); } }
+if (!function_exists('brotli_compress')) { function brotli_compress() { return \OtomatiesCoreVendor\brotli_compress(...func_get_args()); } }
+if (!function_exists('brotli_compress_add')) { function brotli_compress_add() { return \OtomatiesCoreVendor\brotli_compress_add(...func_get_args()); } }
+if (!function_exists('brotli_compress_init')) { function brotli_compress_init() { return \OtomatiesCoreVendor\brotli_compress_init(...func_get_args()); } }
+if (!function_exists('brotli_uncompress')) { function brotli_uncompress() { return \OtomatiesCoreVendor\brotli_uncompress(...func_get_args()); } }
+if (!function_exists('brotli_uncompress_add')) { function brotli_uncompress_add() { return \OtomatiesCoreVendor\brotli_uncompress_add(...func_get_args()); } }
+if (!function_exists('brotli_uncompress_init')) { function brotli_uncompress_init() { return \OtomatiesCoreVendor\brotli_uncompress_init(...func_get_args()); } }
 if (!function_exists('build_comment_query_vars_from_block')) { function build_comment_query_vars_from_block() { return \OtomatiesCoreVendor\build_comment_query_vars_from_block(...func_get_args()); } }
 if (!function_exists('build_dropdown_script_block_core_categories')) { function build_dropdown_script_block_core_categories() { return \OtomatiesCoreVendor\build_dropdown_script_block_core_categories(...func_get_args()); } }
 if (!function_exists('build_query')) { function build_query() { return \OtomatiesCoreVendor\build_query(...func_get_args()); } }
@@ -1694,16 +2657,36 @@ if (!function_exists('build_template_part_block_instance_variations')) { functio
 if (!function_exists('build_template_part_block_variations')) { function build_template_part_block_variations() { return \OtomatiesCoreVendor\build_template_part_block_variations(...func_get_args()); } }
 if (!function_exists('build_variation_for_navigation_link')) { function build_variation_for_navigation_link() { return \OtomatiesCoreVendor\build_variation_for_navigation_link(...func_get_args()); } }
 if (!function_exists('bulk_edit_posts')) { function bulk_edit_posts() { return \OtomatiesCoreVendor\bulk_edit_posts(...func_get_args()); } }
+if (!function_exists('bzclose')) { function bzclose() { return \OtomatiesCoreVendor\bzclose(...func_get_args()); } }
+if (!function_exists('bzcompress')) { function bzcompress() { return \OtomatiesCoreVendor\bzcompress(...func_get_args()); } }
+if (!function_exists('bzdecompress')) { function bzdecompress() { return \OtomatiesCoreVendor\bzdecompress(...func_get_args()); } }
+if (!function_exists('bzerrno')) { function bzerrno() { return \OtomatiesCoreVendor\bzerrno(...func_get_args()); } }
+if (!function_exists('bzerror')) { function bzerror() { return \OtomatiesCoreVendor\bzerror(...func_get_args()); } }
+if (!function_exists('bzerrstr')) { function bzerrstr() { return \OtomatiesCoreVendor\bzerrstr(...func_get_args()); } }
+if (!function_exists('bzflush')) { function bzflush() { return \OtomatiesCoreVendor\bzflush(...func_get_args()); } }
+if (!function_exists('bzopen')) { function bzopen() { return \OtomatiesCoreVendor\bzopen(...func_get_args()); } }
+if (!function_exists('bzread')) { function bzread() { return \OtomatiesCoreVendor\bzread(...func_get_args()); } }
+if (!function_exists('bzwrite')) { function bzwrite() { return \OtomatiesCoreVendor\bzwrite(...func_get_args()); } }
 if (!function_exists('cache_javascript_headers')) { function cache_javascript_headers() { return \OtomatiesCoreVendor\cache_javascript_headers(...func_get_args()); } }
 if (!function_exists('cache_users')) { function cache_users() { return \OtomatiesCoreVendor\cache_users(...func_get_args()); } }
+if (!function_exists('cal_days_in_month')) { function cal_days_in_month() { return \OtomatiesCoreVendor\cal_days_in_month(...func_get_args()); } }
+if (!function_exists('cal_from_jd')) { function cal_from_jd() { return \OtomatiesCoreVendor\cal_from_jd(...func_get_args()); } }
+if (!function_exists('cal_info')) { function cal_info() { return \OtomatiesCoreVendor\cal_info(...func_get_args()); } }
+if (!function_exists('cal_to_jd')) { function cal_to_jd() { return \OtomatiesCoreVendor\cal_to_jd(...func_get_args()); } }
 if (!function_exists('calculateTranslationStatus')) { function calculateTranslationStatus() { return \OtomatiesCoreVendor\calculateTranslationStatus(...func_get_args()); } }
 if (!function_exists('calendar_week_mod')) { function calendar_week_mod() { return \OtomatiesCoreVendor\calendar_week_mod(...func_get_args()); } }
+if (!function_exists('call_user_func')) { function call_user_func() { return \OtomatiesCoreVendor\call_user_func(...func_get_args()); } }
+if (!function_exists('call_user_func_array')) { function call_user_func_array() { return \OtomatiesCoreVendor\call_user_func_array(...func_get_args()); } }
+if (!function_exists('call_user_method')) { function call_user_method() { return \OtomatiesCoreVendor\call_user_method(...func_get_args()); } }
+if (!function_exists('call_user_method_array')) { function call_user_method_array() { return \OtomatiesCoreVendor\call_user_method_array(...func_get_args()); } }
 if (!function_exists('can_edit_network')) { function can_edit_network() { return \OtomatiesCoreVendor\can_edit_network(...func_get_args()); } }
 if (!function_exists('cancel_comment_reply_link')) { function cancel_comment_reply_link() { return \OtomatiesCoreVendor\cancel_comment_reply_link(...func_get_args()); } }
 if (!function_exists('capital_P_dangit')) { function capital_P_dangit() { return \OtomatiesCoreVendor\capital_P_dangit(...func_get_args()); } }
 if (!function_exists('cat_is_ancestor_of')) { function cat_is_ancestor_of() { return \OtomatiesCoreVendor\cat_is_ancestor_of(...func_get_args()); } }
 if (!function_exists('category_description')) { function category_description() { return \OtomatiesCoreVendor\category_description(...func_get_args()); } }
 if (!function_exists('category_exists')) { function category_exists() { return \OtomatiesCoreVendor\category_exists(...func_get_args()); } }
+if (!function_exists('ceil')) { function ceil() { return \OtomatiesCoreVendor\ceil(...func_get_args()); } }
+if (!function_exists('chdir')) { function chdir() { return \OtomatiesCoreVendor\chdir(...func_get_args()); } }
 if (!function_exists('check_admin_referer')) { function check_admin_referer() { return \OtomatiesCoreVendor\check_admin_referer(...func_get_args()); } }
 if (!function_exists('check_ajax_referer')) { function check_ajax_referer() { return \OtomatiesCoreVendor\check_ajax_referer(...func_get_args()); } }
 if (!function_exists('check_and_publish_future_post')) { function check_and_publish_future_post() { return \OtomatiesCoreVendor\check_and_publish_future_post(...func_get_args()); } }
@@ -1714,9 +2697,23 @@ if (!function_exists('check_password_reset_key')) { function check_password_rese
 if (!function_exists('check_theme_switched')) { function check_theme_switched() { return \OtomatiesCoreVendor\check_theme_switched(...func_get_args()); } }
 if (!function_exists('check_upload_mimes')) { function check_upload_mimes() { return \OtomatiesCoreVendor\check_upload_mimes(...func_get_args()); } }
 if (!function_exists('check_upload_size')) { function check_upload_size() { return \OtomatiesCoreVendor\check_upload_size(...func_get_args()); } }
+if (!function_exists('checkdate')) { function checkdate() { return \OtomatiesCoreVendor\checkdate(...func_get_args()); } }
+if (!function_exists('checkdnsrr')) { function checkdnsrr() { return \OtomatiesCoreVendor\checkdnsrr(...func_get_args()); } }
 if (!function_exists('checked')) { function checked() { return \OtomatiesCoreVendor\checked(...func_get_args()); } }
+if (!function_exists('chgrp')) { function chgrp() { return \OtomatiesCoreVendor\chgrp(...func_get_args()); } }
+if (!function_exists('chmod')) { function chmod() { return \OtomatiesCoreVendor\chmod(...func_get_args()); } }
 if (!function_exists('choose_primary_blog')) { function choose_primary_blog() { return \OtomatiesCoreVendor\choose_primary_blog(...func_get_args()); } }
+if (!function_exists('chop')) { function chop() { return \OtomatiesCoreVendor\chop(...func_get_args()); } }
+if (!function_exists('chown')) { function chown() { return \OtomatiesCoreVendor\chown(...func_get_args()); } }
+if (!function_exists('chr')) { function chr() { return \OtomatiesCoreVendor\chr(...func_get_args()); } }
+if (!function_exists('chroot')) { function chroot() { return \OtomatiesCoreVendor\chroot(...func_get_args()); } }
+if (!function_exists('chunk_split')) { function chunk_split() { return \OtomatiesCoreVendor\chunk_split(...func_get_args()); } }
+if (!function_exists('class_alias')) { function class_alias() { return \OtomatiesCoreVendor\class_alias(...func_get_args()); } }
 if (!function_exists('class_basename')) { function class_basename() { return \OtomatiesCoreVendor\class_basename(...func_get_args()); } }
+if (!function_exists('class_exists')) { function class_exists() { return \OtomatiesCoreVendor\class_exists(...func_get_args()); } }
+if (!function_exists('class_implements')) { function class_implements() { return \OtomatiesCoreVendor\class_implements(...func_get_args()); } }
+if (!function_exists('class_parents')) { function class_parents() { return \OtomatiesCoreVendor\class_parents(...func_get_args()); } }
+if (!function_exists('class_uses')) { function class_uses() { return \OtomatiesCoreVendor\class_uses(...func_get_args()); } }
 if (!function_exists('class_uses_recursive')) { function class_uses_recursive() { return \OtomatiesCoreVendor\class_uses_recursive(...func_get_args()); } }
 if (!function_exists('classnames_for_block_core_search')) { function classnames_for_block_core_search() { return \OtomatiesCoreVendor\classnames_for_block_core_search(...func_get_args()); } }
 if (!function_exists('clean_attachment_cache')) { function clean_attachment_cache() { return \OtomatiesCoreVendor\clean_attachment_cache(...func_get_args()); } }
@@ -1736,9 +2733,33 @@ if (!function_exists('clean_term_cache')) { function clean_term_cache() { return
 if (!function_exists('clean_url')) { function clean_url() { return \OtomatiesCoreVendor\clean_url(...func_get_args()); } }
 if (!function_exists('clean_user_cache')) { function clean_user_cache() { return \OtomatiesCoreVendor\clean_user_cache(...func_get_args()); } }
 if (!function_exists('clear_global_post_cache')) { function clear_global_post_cache() { return \OtomatiesCoreVendor\clear_global_post_cache(...func_get_args()); } }
+if (!function_exists('clearstatcache')) { function clearstatcache() { return \OtomatiesCoreVendor\clearstatcache(...func_get_args()); } }
+if (!function_exists('cli_get_process_title')) { function cli_get_process_title() { return \OtomatiesCoreVendor\cli_get_process_title(...func_get_args()); } }
+if (!function_exists('cli_set_process_title')) { function cli_set_process_title() { return \OtomatiesCoreVendor\cli_set_process_title(...func_get_args()); } }
+if (!function_exists('closedir')) { function closedir() { return \OtomatiesCoreVendor\closedir(...func_get_args()); } }
+if (!function_exists('closelog')) { function closelog() { return \OtomatiesCoreVendor\closelog(...func_get_args()); } }
 if (!function_exists('codepress_footer_js')) { function codepress_footer_js() { return \OtomatiesCoreVendor\codepress_footer_js(...func_get_args()); } }
 if (!function_exists('codepress_get_lang')) { function codepress_get_lang() { return \OtomatiesCoreVendor\codepress_get_lang(...func_get_args()); } }
+if (!function_exists('collator_asort')) { function collator_asort() { return \OtomatiesCoreVendor\collator_asort(...func_get_args()); } }
+if (!function_exists('collator_compare')) { function collator_compare() { return \OtomatiesCoreVendor\collator_compare(...func_get_args()); } }
+if (!function_exists('collator_create')) { function collator_create() { return \OtomatiesCoreVendor\collator_create(...func_get_args()); } }
+if (!function_exists('collator_get_attribute')) { function collator_get_attribute() { return \OtomatiesCoreVendor\collator_get_attribute(...func_get_args()); } }
+if (!function_exists('collator_get_error_code')) { function collator_get_error_code() { return \OtomatiesCoreVendor\collator_get_error_code(...func_get_args()); } }
+if (!function_exists('collator_get_error_message')) { function collator_get_error_message() { return \OtomatiesCoreVendor\collator_get_error_message(...func_get_args()); } }
+if (!function_exists('collator_get_locale')) { function collator_get_locale() { return \OtomatiesCoreVendor\collator_get_locale(...func_get_args()); } }
+if (!function_exists('collator_get_sort_key')) { function collator_get_sort_key() { return \OtomatiesCoreVendor\collator_get_sort_key(...func_get_args()); } }
+if (!function_exists('collator_get_strength')) { function collator_get_strength() { return \OtomatiesCoreVendor\collator_get_strength(...func_get_args()); } }
+if (!function_exists('collator_set_attribute')) { function collator_set_attribute() { return \OtomatiesCoreVendor\collator_set_attribute(...func_get_args()); } }
+if (!function_exists('collator_set_strength')) { function collator_set_strength() { return \OtomatiesCoreVendor\collator_set_strength(...func_get_args()); } }
+if (!function_exists('collator_sort')) { function collator_sort() { return \OtomatiesCoreVendor\collator_sort(...func_get_args()); } }
+if (!function_exists('collator_sort_with_sort_keys')) { function collator_sort_with_sort_keys() { return \OtomatiesCoreVendor\collator_sort_with_sort_keys(...func_get_args()); } }
 if (!function_exists('collect')) { function collect() { return \OtomatiesCoreVendor\collect(...func_get_args()); } }
+if (!function_exists('com_create_guid')) { function com_create_guid() { return \OtomatiesCoreVendor\com_create_guid(...func_get_args()); } }
+if (!function_exists('com_event_sink')) { function com_event_sink() { return \OtomatiesCoreVendor\com_event_sink(...func_get_args()); } }
+if (!function_exists('com_get_active_object')) { function com_get_active_object() { return \OtomatiesCoreVendor\com_get_active_object(...func_get_args()); } }
+if (!function_exists('com_load_typelib')) { function com_load_typelib() { return \OtomatiesCoreVendor\com_load_typelib(...func_get_args()); } }
+if (!function_exists('com_message_pump')) { function com_message_pump() { return \OtomatiesCoreVendor\com_message_pump(...func_get_args()); } }
+if (!function_exists('com_print_typeinfo')) { function com_print_typeinfo() { return \OtomatiesCoreVendor\com_print_typeinfo(...func_get_args()); } }
 if (!function_exists('comment_ID')) { function comment_ID() { return \OtomatiesCoreVendor\comment_ID(...func_get_args()); } }
 if (!function_exists('comment_author')) { function comment_author() { return \OtomatiesCoreVendor\comment_author(...func_get_args()); } }
 if (!function_exists('comment_author_IP')) { function comment_author_IP() { return \OtomatiesCoreVendor\comment_author_IP(...func_get_args()); } }
@@ -1773,29 +2794,187 @@ if (!function_exists('comments_popup_script')) { function comments_popup_script(
 if (!function_exists('comments_rss')) { function comments_rss() { return \OtomatiesCoreVendor\comments_rss(...func_get_args()); } }
 if (!function_exists('comments_rss_link')) { function comments_rss_link() { return \OtomatiesCoreVendor\comments_rss_link(...func_get_args()); } }
 if (!function_exists('comments_template')) { function comments_template() { return \OtomatiesCoreVendor\comments_template(...func_get_args()); } }
+if (!function_exists('compact')) { function compact() { return \OtomatiesCoreVendor\compact(...func_get_args()); } }
 if (!function_exists('compression_test')) { function compression_test() { return \OtomatiesCoreVendor\compression_test(...func_get_args()); } }
+if (!function_exists('config_get_hash')) { function config_get_hash() { return \OtomatiesCoreVendor\config_get_hash(...func_get_args()); } }
 if (!function_exists('confirm_another_blog_signup')) { function confirm_another_blog_signup() { return \OtomatiesCoreVendor\confirm_another_blog_signup(...func_get_args()); } }
 if (!function_exists('confirm_blog_signup')) { function confirm_blog_signup() { return \OtomatiesCoreVendor\confirm_blog_signup(...func_get_args()); } }
 if (!function_exists('confirm_delete_users')) { function confirm_delete_users() { return \OtomatiesCoreVendor\confirm_delete_users(...func_get_args()); } }
+if (!function_exists('confirm_pdo_ibm_compiled')) { function confirm_pdo_ibm_compiled() { return \OtomatiesCoreVendor\confirm_pdo_ibm_compiled(...func_get_args()); } }
 if (!function_exists('confirm_user_signup')) { function confirm_user_signup() { return \OtomatiesCoreVendor\confirm_user_signup(...func_get_args()); } }
+if (!function_exists('connection_aborted')) { function connection_aborted() { return \OtomatiesCoreVendor\connection_aborted(...func_get_args()); } }
+if (!function_exists('connection_status')) { function connection_status() { return \OtomatiesCoreVendor\connection_status(...func_get_args()); } }
+if (!function_exists('constant')) { function constant() { return \OtomatiesCoreVendor\constant(...func_get_args()); } }
 if (!function_exists('content_url')) { function content_url() { return \OtomatiesCoreVendor\content_url(...func_get_args()); } }
 if (!function_exists('convert_chars')) { function convert_chars() { return \OtomatiesCoreVendor\convert_chars(...func_get_args()); } }
+if (!function_exists('convert_cyr_string')) { function convert_cyr_string() { return \OtomatiesCoreVendor\convert_cyr_string(...func_get_args()); } }
 if (!function_exists('convert_invalid_entities')) { function convert_invalid_entities() { return \OtomatiesCoreVendor\convert_invalid_entities(...func_get_args()); } }
 if (!function_exists('convert_smilies')) { function convert_smilies() { return \OtomatiesCoreVendor\convert_smilies(...func_get_args()); } }
 if (!function_exists('convert_to_screen')) { function convert_to_screen() { return \OtomatiesCoreVendor\convert_to_screen(...func_get_args()); } }
+if (!function_exists('convert_uudecode')) { function convert_uudecode() { return \OtomatiesCoreVendor\convert_uudecode(...func_get_args()); } }
+if (!function_exists('convert_uuencode')) { function convert_uuencode() { return \OtomatiesCoreVendor\convert_uuencode(...func_get_args()); } }
+if (!function_exists('copy')) { function copy() { return \OtomatiesCoreVendor\copy(...func_get_args()); } }
 if (!function_exists('copy_dir')) { function copy_dir() { return \OtomatiesCoreVendor\copy_dir(...func_get_args()); } }
 if (!function_exists('core_auto_updates_settings')) { function core_auto_updates_settings() { return \OtomatiesCoreVendor\core_auto_updates_settings(...func_get_args()); } }
 if (!function_exists('core_update_footer')) { function core_update_footer() { return \OtomatiesCoreVendor\core_update_footer(...func_get_args()); } }
 if (!function_exists('core_upgrade_preamble')) { function core_upgrade_preamble() { return \OtomatiesCoreVendor\core_upgrade_preamble(...func_get_args()); } }
+if (!function_exists('cos')) { function cos() { return \OtomatiesCoreVendor\cos(...func_get_args()); } }
+if (!function_exists('cosh')) { function cosh() { return \OtomatiesCoreVendor\cosh(...func_get_args()); } }
+if (!function_exists('count')) { function count() { return \OtomatiesCoreVendor\count(...func_get_args()); } }
+if (!function_exists('count_chars')) { function count_chars() { return \OtomatiesCoreVendor\count_chars(...func_get_args()); } }
 if (!function_exists('count_many_users_posts')) { function count_many_users_posts() { return \OtomatiesCoreVendor\count_many_users_posts(...func_get_args()); } }
 if (!function_exists('count_user_posts')) { function count_user_posts() { return \OtomatiesCoreVendor\count_user_posts(...func_get_args()); } }
 if (!function_exists('count_users')) { function count_users() { return \OtomatiesCoreVendor\count_users(...func_get_args()); } }
+if (!function_exists('crc32')) { function crc32() { return \OtomatiesCoreVendor\crc32(...func_get_args()); } }
 if (!function_exists('create_empty_blog')) { function create_empty_blog() { return \OtomatiesCoreVendor\create_empty_blog(...func_get_args()); } }
+if (!function_exists('create_function')) { function create_function() { return \OtomatiesCoreVendor\create_function(...func_get_args()); } }
 if (!function_exists('create_initial_post_types')) { function create_initial_post_types() { return \OtomatiesCoreVendor\create_initial_post_types(...func_get_args()); } }
 if (!function_exists('create_initial_rest_routes')) { function create_initial_rest_routes() { return \OtomatiesCoreVendor\create_initial_rest_routes(...func_get_args()); } }
 if (!function_exists('create_initial_taxonomies')) { function create_initial_taxonomies() { return \OtomatiesCoreVendor\create_initial_taxonomies(...func_get_args()); } }
 if (!function_exists('create_initial_theme_features')) { function create_initial_theme_features() { return \OtomatiesCoreVendor\create_initial_theme_features(...func_get_args()); } }
 if (!function_exists('create_user')) { function create_user() { return \OtomatiesCoreVendor\create_user(...func_get_args()); } }
+if (!function_exists('crypt')) { function crypt() { return \OtomatiesCoreVendor\crypt(...func_get_args()); } }
+if (!function_exists('ctype_alnum')) { function ctype_alnum() { return \OtomatiesCoreVendor\ctype_alnum(...func_get_args()); } }
+if (!function_exists('ctype_alpha')) { function ctype_alpha() { return \OtomatiesCoreVendor\ctype_alpha(...func_get_args()); } }
+if (!function_exists('ctype_cntrl')) { function ctype_cntrl() { return \OtomatiesCoreVendor\ctype_cntrl(...func_get_args()); } }
+if (!function_exists('ctype_digit')) { function ctype_digit() { return \OtomatiesCoreVendor\ctype_digit(...func_get_args()); } }
+if (!function_exists('ctype_graph')) { function ctype_graph() { return \OtomatiesCoreVendor\ctype_graph(...func_get_args()); } }
+if (!function_exists('ctype_lower')) { function ctype_lower() { return \OtomatiesCoreVendor\ctype_lower(...func_get_args()); } }
+if (!function_exists('ctype_print')) { function ctype_print() { return \OtomatiesCoreVendor\ctype_print(...func_get_args()); } }
+if (!function_exists('ctype_punct')) { function ctype_punct() { return \OtomatiesCoreVendor\ctype_punct(...func_get_args()); } }
+if (!function_exists('ctype_space')) { function ctype_space() { return \OtomatiesCoreVendor\ctype_space(...func_get_args()); } }
+if (!function_exists('ctype_upper')) { function ctype_upper() { return \OtomatiesCoreVendor\ctype_upper(...func_get_args()); } }
+if (!function_exists('ctype_xdigit')) { function ctype_xdigit() { return \OtomatiesCoreVendor\ctype_xdigit(...func_get_args()); } }
+if (!function_exists('cubrid_affected_rows')) { function cubrid_affected_rows() { return \OtomatiesCoreVendor\cubrid_affected_rows(...func_get_args()); } }
+if (!function_exists('cubrid_bind')) { function cubrid_bind() { return \OtomatiesCoreVendor\cubrid_bind(...func_get_args()); } }
+if (!function_exists('cubrid_client_encoding')) { function cubrid_client_encoding() { return \OtomatiesCoreVendor\cubrid_client_encoding(...func_get_args()); } }
+if (!function_exists('cubrid_close')) { function cubrid_close() { return \OtomatiesCoreVendor\cubrid_close(...func_get_args()); } }
+if (!function_exists('cubrid_close_prepare')) { function cubrid_close_prepare() { return \OtomatiesCoreVendor\cubrid_close_prepare(...func_get_args()); } }
+if (!function_exists('cubrid_close_request')) { function cubrid_close_request() { return \OtomatiesCoreVendor\cubrid_close_request(...func_get_args()); } }
+if (!function_exists('cubrid_col_get')) { function cubrid_col_get() { return \OtomatiesCoreVendor\cubrid_col_get(...func_get_args()); } }
+if (!function_exists('cubrid_col_size')) { function cubrid_col_size() { return \OtomatiesCoreVendor\cubrid_col_size(...func_get_args()); } }
+if (!function_exists('cubrid_column_names')) { function cubrid_column_names() { return \OtomatiesCoreVendor\cubrid_column_names(...func_get_args()); } }
+if (!function_exists('cubrid_column_types')) { function cubrid_column_types() { return \OtomatiesCoreVendor\cubrid_column_types(...func_get_args()); } }
+if (!function_exists('cubrid_commit')) { function cubrid_commit() { return \OtomatiesCoreVendor\cubrid_commit(...func_get_args()); } }
+if (!function_exists('cubrid_connect')) { function cubrid_connect() { return \OtomatiesCoreVendor\cubrid_connect(...func_get_args()); } }
+if (!function_exists('cubrid_connect_with_url')) { function cubrid_connect_with_url() { return \OtomatiesCoreVendor\cubrid_connect_with_url(...func_get_args()); } }
+if (!function_exists('cubrid_current_oid')) { function cubrid_current_oid() { return \OtomatiesCoreVendor\cubrid_current_oid(...func_get_args()); } }
+if (!function_exists('cubrid_data_seek')) { function cubrid_data_seek() { return \OtomatiesCoreVendor\cubrid_data_seek(...func_get_args()); } }
+if (!function_exists('cubrid_db_name')) { function cubrid_db_name() { return \OtomatiesCoreVendor\cubrid_db_name(...func_get_args()); } }
+if (!function_exists('cubrid_db_parameter')) { function cubrid_db_parameter() { return \OtomatiesCoreVendor\cubrid_db_parameter(...func_get_args()); } }
+if (!function_exists('cubrid_disconnect')) { function cubrid_disconnect() { return \OtomatiesCoreVendor\cubrid_disconnect(...func_get_args()); } }
+if (!function_exists('cubrid_drop')) { function cubrid_drop() { return \OtomatiesCoreVendor\cubrid_drop(...func_get_args()); } }
+if (!function_exists('cubrid_errno')) { function cubrid_errno() { return \OtomatiesCoreVendor\cubrid_errno(...func_get_args()); } }
+if (!function_exists('cubrid_error')) { function cubrid_error() { return \OtomatiesCoreVendor\cubrid_error(...func_get_args()); } }
+if (!function_exists('cubrid_error_code')) { function cubrid_error_code() { return \OtomatiesCoreVendor\cubrid_error_code(...func_get_args()); } }
+if (!function_exists('cubrid_error_code_facility')) { function cubrid_error_code_facility() { return \OtomatiesCoreVendor\cubrid_error_code_facility(...func_get_args()); } }
+if (!function_exists('cubrid_error_msg')) { function cubrid_error_msg() { return \OtomatiesCoreVendor\cubrid_error_msg(...func_get_args()); } }
+if (!function_exists('cubrid_execute')) { function cubrid_execute() { return \OtomatiesCoreVendor\cubrid_execute(...func_get_args()); } }
+if (!function_exists('cubrid_fetch')) { function cubrid_fetch() { return \OtomatiesCoreVendor\cubrid_fetch(...func_get_args()); } }
+if (!function_exists('cubrid_fetch_array')) { function cubrid_fetch_array() { return \OtomatiesCoreVendor\cubrid_fetch_array(...func_get_args()); } }
+if (!function_exists('cubrid_fetch_assoc')) { function cubrid_fetch_assoc() { return \OtomatiesCoreVendor\cubrid_fetch_assoc(...func_get_args()); } }
+if (!function_exists('cubrid_fetch_field')) { function cubrid_fetch_field() { return \OtomatiesCoreVendor\cubrid_fetch_field(...func_get_args()); } }
+if (!function_exists('cubrid_fetch_lengths')) { function cubrid_fetch_lengths() { return \OtomatiesCoreVendor\cubrid_fetch_lengths(...func_get_args()); } }
+if (!function_exists('cubrid_fetch_object')) { function cubrid_fetch_object() { return \OtomatiesCoreVendor\cubrid_fetch_object(...func_get_args()); } }
+if (!function_exists('cubrid_fetch_row')) { function cubrid_fetch_row() { return \OtomatiesCoreVendor\cubrid_fetch_row(...func_get_args()); } }
+if (!function_exists('cubrid_field_flags')) { function cubrid_field_flags() { return \OtomatiesCoreVendor\cubrid_field_flags(...func_get_args()); } }
+if (!function_exists('cubrid_field_len')) { function cubrid_field_len() { return \OtomatiesCoreVendor\cubrid_field_len(...func_get_args()); } }
+if (!function_exists('cubrid_field_name')) { function cubrid_field_name() { return \OtomatiesCoreVendor\cubrid_field_name(...func_get_args()); } }
+if (!function_exists('cubrid_field_seek')) { function cubrid_field_seek() { return \OtomatiesCoreVendor\cubrid_field_seek(...func_get_args()); } }
+if (!function_exists('cubrid_field_table')) { function cubrid_field_table() { return \OtomatiesCoreVendor\cubrid_field_table(...func_get_args()); } }
+if (!function_exists('cubrid_field_type')) { function cubrid_field_type() { return \OtomatiesCoreVendor\cubrid_field_type(...func_get_args()); } }
+if (!function_exists('cubrid_free_result')) { function cubrid_free_result() { return \OtomatiesCoreVendor\cubrid_free_result(...func_get_args()); } }
+if (!function_exists('cubrid_get')) { function cubrid_get() { return \OtomatiesCoreVendor\cubrid_get(...func_get_args()); } }
+if (!function_exists('cubrid_get_autocommit')) { function cubrid_get_autocommit() { return \OtomatiesCoreVendor\cubrid_get_autocommit(...func_get_args()); } }
+if (!function_exists('cubrid_get_charset')) { function cubrid_get_charset() { return \OtomatiesCoreVendor\cubrid_get_charset(...func_get_args()); } }
+if (!function_exists('cubrid_get_class_name')) { function cubrid_get_class_name() { return \OtomatiesCoreVendor\cubrid_get_class_name(...func_get_args()); } }
+if (!function_exists('cubrid_get_client_info')) { function cubrid_get_client_info() { return \OtomatiesCoreVendor\cubrid_get_client_info(...func_get_args()); } }
+if (!function_exists('cubrid_get_db_parameter')) { function cubrid_get_db_parameter() { return \OtomatiesCoreVendor\cubrid_get_db_parameter(...func_get_args()); } }
+if (!function_exists('cubrid_get_query_timeout')) { function cubrid_get_query_timeout() { return \OtomatiesCoreVendor\cubrid_get_query_timeout(...func_get_args()); } }
+if (!function_exists('cubrid_get_server_info')) { function cubrid_get_server_info() { return \OtomatiesCoreVendor\cubrid_get_server_info(...func_get_args()); } }
+if (!function_exists('cubrid_insert_id')) { function cubrid_insert_id() { return \OtomatiesCoreVendor\cubrid_insert_id(...func_get_args()); } }
+if (!function_exists('cubrid_is_instance')) { function cubrid_is_instance() { return \OtomatiesCoreVendor\cubrid_is_instance(...func_get_args()); } }
+if (!function_exists('cubrid_list_dbs')) { function cubrid_list_dbs() { return \OtomatiesCoreVendor\cubrid_list_dbs(...func_get_args()); } }
+if (!function_exists('cubrid_lob2_bind')) { function cubrid_lob2_bind() { return \OtomatiesCoreVendor\cubrid_lob2_bind(...func_get_args()); } }
+if (!function_exists('cubrid_lob2_close')) { function cubrid_lob2_close() { return \OtomatiesCoreVendor\cubrid_lob2_close(...func_get_args()); } }
+if (!function_exists('cubrid_lob2_export')) { function cubrid_lob2_export() { return \OtomatiesCoreVendor\cubrid_lob2_export(...func_get_args()); } }
+if (!function_exists('cubrid_lob2_import')) { function cubrid_lob2_import() { return \OtomatiesCoreVendor\cubrid_lob2_import(...func_get_args()); } }
+if (!function_exists('cubrid_lob2_new')) { function cubrid_lob2_new() { return \OtomatiesCoreVendor\cubrid_lob2_new(...func_get_args()); } }
+if (!function_exists('cubrid_lob2_read')) { function cubrid_lob2_read() { return \OtomatiesCoreVendor\cubrid_lob2_read(...func_get_args()); } }
+if (!function_exists('cubrid_lob2_seek')) { function cubrid_lob2_seek() { return \OtomatiesCoreVendor\cubrid_lob2_seek(...func_get_args()); } }
+if (!function_exists('cubrid_lob2_seek64')) { function cubrid_lob2_seek64() { return \OtomatiesCoreVendor\cubrid_lob2_seek64(...func_get_args()); } }
+if (!function_exists('cubrid_lob2_size')) { function cubrid_lob2_size() { return \OtomatiesCoreVendor\cubrid_lob2_size(...func_get_args()); } }
+if (!function_exists('cubrid_lob2_size64')) { function cubrid_lob2_size64() { return \OtomatiesCoreVendor\cubrid_lob2_size64(...func_get_args()); } }
+if (!function_exists('cubrid_lob2_tell')) { function cubrid_lob2_tell() { return \OtomatiesCoreVendor\cubrid_lob2_tell(...func_get_args()); } }
+if (!function_exists('cubrid_lob2_tell64')) { function cubrid_lob2_tell64() { return \OtomatiesCoreVendor\cubrid_lob2_tell64(...func_get_args()); } }
+if (!function_exists('cubrid_lob2_write')) { function cubrid_lob2_write() { return \OtomatiesCoreVendor\cubrid_lob2_write(...func_get_args()); } }
+if (!function_exists('cubrid_lob_close')) { function cubrid_lob_close() { return \OtomatiesCoreVendor\cubrid_lob_close(...func_get_args()); } }
+if (!function_exists('cubrid_lob_export')) { function cubrid_lob_export() { return \OtomatiesCoreVendor\cubrid_lob_export(...func_get_args()); } }
+if (!function_exists('cubrid_lob_get')) { function cubrid_lob_get() { return \OtomatiesCoreVendor\cubrid_lob_get(...func_get_args()); } }
+if (!function_exists('cubrid_lob_send')) { function cubrid_lob_send() { return \OtomatiesCoreVendor\cubrid_lob_send(...func_get_args()); } }
+if (!function_exists('cubrid_lob_size')) { function cubrid_lob_size() { return \OtomatiesCoreVendor\cubrid_lob_size(...func_get_args()); } }
+if (!function_exists('cubrid_lock_read')) { function cubrid_lock_read() { return \OtomatiesCoreVendor\cubrid_lock_read(...func_get_args()); } }
+if (!function_exists('cubrid_lock_write')) { function cubrid_lock_write() { return \OtomatiesCoreVendor\cubrid_lock_write(...func_get_args()); } }
+if (!function_exists('cubrid_move_cursor')) { function cubrid_move_cursor() { return \OtomatiesCoreVendor\cubrid_move_cursor(...func_get_args()); } }
+if (!function_exists('cubrid_next_result')) { function cubrid_next_result() { return \OtomatiesCoreVendor\cubrid_next_result(...func_get_args()); } }
+if (!function_exists('cubrid_num_cols')) { function cubrid_num_cols() { return \OtomatiesCoreVendor\cubrid_num_cols(...func_get_args()); } }
+if (!function_exists('cubrid_num_fields')) { function cubrid_num_fields() { return \OtomatiesCoreVendor\cubrid_num_fields(...func_get_args()); } }
+if (!function_exists('cubrid_num_rows')) { function cubrid_num_rows() { return \OtomatiesCoreVendor\cubrid_num_rows(...func_get_args()); } }
+if (!function_exists('cubrid_pconnect')) { function cubrid_pconnect() { return \OtomatiesCoreVendor\cubrid_pconnect(...func_get_args()); } }
+if (!function_exists('cubrid_pconnect_with_url')) { function cubrid_pconnect_with_url() { return \OtomatiesCoreVendor\cubrid_pconnect_with_url(...func_get_args()); } }
+if (!function_exists('cubrid_ping')) { function cubrid_ping() { return \OtomatiesCoreVendor\cubrid_ping(...func_get_args()); } }
+if (!function_exists('cubrid_prepare')) { function cubrid_prepare() { return \OtomatiesCoreVendor\cubrid_prepare(...func_get_args()); } }
+if (!function_exists('cubrid_put')) { function cubrid_put() { return \OtomatiesCoreVendor\cubrid_put(...func_get_args()); } }
+if (!function_exists('cubrid_query')) { function cubrid_query() { return \OtomatiesCoreVendor\cubrid_query(...func_get_args()); } }
+if (!function_exists('cubrid_real_escape_string')) { function cubrid_real_escape_string() { return \OtomatiesCoreVendor\cubrid_real_escape_string(...func_get_args()); } }
+if (!function_exists('cubrid_result')) { function cubrid_result() { return \OtomatiesCoreVendor\cubrid_result(...func_get_args()); } }
+if (!function_exists('cubrid_rollback')) { function cubrid_rollback() { return \OtomatiesCoreVendor\cubrid_rollback(...func_get_args()); } }
+if (!function_exists('cubrid_schema')) { function cubrid_schema() { return \OtomatiesCoreVendor\cubrid_schema(...func_get_args()); } }
+if (!function_exists('cubrid_seq_add')) { function cubrid_seq_add() { return \OtomatiesCoreVendor\cubrid_seq_add(...func_get_args()); } }
+if (!function_exists('cubrid_seq_drop')) { function cubrid_seq_drop() { return \OtomatiesCoreVendor\cubrid_seq_drop(...func_get_args()); } }
+if (!function_exists('cubrid_seq_insert')) { function cubrid_seq_insert() { return \OtomatiesCoreVendor\cubrid_seq_insert(...func_get_args()); } }
+if (!function_exists('cubrid_seq_put')) { function cubrid_seq_put() { return \OtomatiesCoreVendor\cubrid_seq_put(...func_get_args()); } }
+if (!function_exists('cubrid_set_add')) { function cubrid_set_add() { return \OtomatiesCoreVendor\cubrid_set_add(...func_get_args()); } }
+if (!function_exists('cubrid_set_autocommit')) { function cubrid_set_autocommit() { return \OtomatiesCoreVendor\cubrid_set_autocommit(...func_get_args()); } }
+if (!function_exists('cubrid_set_db_parameter')) { function cubrid_set_db_parameter() { return \OtomatiesCoreVendor\cubrid_set_db_parameter(...func_get_args()); } }
+if (!function_exists('cubrid_set_drop')) { function cubrid_set_drop() { return \OtomatiesCoreVendor\cubrid_set_drop(...func_get_args()); } }
+if (!function_exists('cubrid_set_query_timeout')) { function cubrid_set_query_timeout() { return \OtomatiesCoreVendor\cubrid_set_query_timeout(...func_get_args()); } }
+if (!function_exists('cubrid_unbuffered_query')) { function cubrid_unbuffered_query() { return \OtomatiesCoreVendor\cubrid_unbuffered_query(...func_get_args()); } }
+if (!function_exists('cubrid_version')) { function cubrid_version() { return \OtomatiesCoreVendor\cubrid_version(...func_get_args()); } }
+if (!function_exists('curl_close')) { function curl_close() { return \OtomatiesCoreVendor\curl_close(...func_get_args()); } }
+if (!function_exists('curl_copy_handle')) { function curl_copy_handle() { return \OtomatiesCoreVendor\curl_copy_handle(...func_get_args()); } }
+if (!function_exists('curl_errno')) { function curl_errno() { return \OtomatiesCoreVendor\curl_errno(...func_get_args()); } }
+if (!function_exists('curl_error')) { function curl_error() { return \OtomatiesCoreVendor\curl_error(...func_get_args()); } }
+if (!function_exists('curl_escape')) { function curl_escape() { return \OtomatiesCoreVendor\curl_escape(...func_get_args()); } }
+if (!function_exists('curl_exec')) { function curl_exec() { return \OtomatiesCoreVendor\curl_exec(...func_get_args()); } }
+if (!function_exists('curl_file_create')) { function curl_file_create() { return \OtomatiesCoreVendor\curl_file_create(...func_get_args()); } }
+if (!function_exists('curl_getinfo')) { function curl_getinfo() { return \OtomatiesCoreVendor\curl_getinfo(...func_get_args()); } }
+if (!function_exists('curl_init')) { function curl_init() { return \OtomatiesCoreVendor\curl_init(...func_get_args()); } }
+if (!function_exists('curl_multi_add_handle')) { function curl_multi_add_handle() { return \OtomatiesCoreVendor\curl_multi_add_handle(...func_get_args()); } }
+if (!function_exists('curl_multi_close')) { function curl_multi_close() { return \OtomatiesCoreVendor\curl_multi_close(...func_get_args()); } }
+if (!function_exists('curl_multi_errno')) { function curl_multi_errno() { return \OtomatiesCoreVendor\curl_multi_errno(...func_get_args()); } }
+if (!function_exists('curl_multi_exec')) { function curl_multi_exec() { return \OtomatiesCoreVendor\curl_multi_exec(...func_get_args()); } }
+if (!function_exists('curl_multi_getcontent')) { function curl_multi_getcontent() { return \OtomatiesCoreVendor\curl_multi_getcontent(...func_get_args()); } }
+if (!function_exists('curl_multi_info_read')) { function curl_multi_info_read() { return \OtomatiesCoreVendor\curl_multi_info_read(...func_get_args()); } }
+if (!function_exists('curl_multi_init')) { function curl_multi_init() { return \OtomatiesCoreVendor\curl_multi_init(...func_get_args()); } }
+if (!function_exists('curl_multi_remove_handle')) { function curl_multi_remove_handle() { return \OtomatiesCoreVendor\curl_multi_remove_handle(...func_get_args()); } }
+if (!function_exists('curl_multi_select')) { function curl_multi_select() { return \OtomatiesCoreVendor\curl_multi_select(...func_get_args()); } }
+if (!function_exists('curl_multi_setopt')) { function curl_multi_setopt() { return \OtomatiesCoreVendor\curl_multi_setopt(...func_get_args()); } }
+if (!function_exists('curl_multi_strerror')) { function curl_multi_strerror() { return \OtomatiesCoreVendor\curl_multi_strerror(...func_get_args()); } }
+if (!function_exists('curl_pause')) { function curl_pause() { return \OtomatiesCoreVendor\curl_pause(...func_get_args()); } }
+if (!function_exists('curl_reset')) { function curl_reset() { return \OtomatiesCoreVendor\curl_reset(...func_get_args()); } }
+if (!function_exists('curl_setopt')) { function curl_setopt() { return \OtomatiesCoreVendor\curl_setopt(...func_get_args()); } }
+if (!function_exists('curl_setopt_array')) { function curl_setopt_array() { return \OtomatiesCoreVendor\curl_setopt_array(...func_get_args()); } }
+if (!function_exists('curl_share_close')) { function curl_share_close() { return \OtomatiesCoreVendor\curl_share_close(...func_get_args()); } }
+if (!function_exists('curl_share_errno')) { function curl_share_errno() { return \OtomatiesCoreVendor\curl_share_errno(...func_get_args()); } }
+if (!function_exists('curl_share_init')) { function curl_share_init() { return \OtomatiesCoreVendor\curl_share_init(...func_get_args()); } }
+if (!function_exists('curl_share_setopt')) { function curl_share_setopt() { return \OtomatiesCoreVendor\curl_share_setopt(...func_get_args()); } }
+if (!function_exists('curl_share_strerror')) { function curl_share_strerror() { return \OtomatiesCoreVendor\curl_share_strerror(...func_get_args()); } }
+if (!function_exists('curl_strerror')) { function curl_strerror() { return \OtomatiesCoreVendor\curl_strerror(...func_get_args()); } }
+if (!function_exists('curl_unescape')) { function curl_unescape() { return \OtomatiesCoreVendor\curl_unescape(...func_get_args()); } }
+if (!function_exists('curl_upkeep')) { function curl_upkeep() { return \OtomatiesCoreVendor\curl_upkeep(...func_get_args()); } }
+if (!function_exists('curl_version')) { function curl_version() { return \OtomatiesCoreVendor\curl_version(...func_get_args()); } }
+if (!function_exists('current')) { function current() { return \OtomatiesCoreVendor\current(...func_get_args()); } }
 if (!function_exists('current_action')) { function current_action() { return \OtomatiesCoreVendor\current_action(...func_get_args()); } }
 if (!function_exists('current_datetime')) { function current_datetime() { return \OtomatiesCoreVendor\current_datetime(...func_get_args()); } }
 if (!function_exists('current_filter')) { function current_filter() { return \OtomatiesCoreVendor\current_filter(...func_get_args()); } }
@@ -1813,20 +2992,163 @@ if (!function_exists('data_forget')) { function data_forget() { return \Otomatie
 if (!function_exists('data_get')) { function data_get() { return \OtomatiesCoreVendor\data_get(...func_get_args()); } }
 if (!function_exists('data_has')) { function data_has() { return \OtomatiesCoreVendor\data_has(...func_get_args()); } }
 if (!function_exists('data_set')) { function data_set() { return \OtomatiesCoreVendor\data_set(...func_get_args()); } }
+if (!function_exists('date')) { function date() { return \OtomatiesCoreVendor\date(...func_get_args()); } }
+if (!function_exists('date_add')) { function date_add() { return \OtomatiesCoreVendor\date_add(...func_get_args()); } }
+if (!function_exists('date_create')) { function date_create() { return \OtomatiesCoreVendor\date_create(...func_get_args()); } }
+if (!function_exists('date_create_from_format')) { function date_create_from_format() { return \OtomatiesCoreVendor\date_create_from_format(...func_get_args()); } }
+if (!function_exists('date_create_immutable')) { function date_create_immutable() { return \OtomatiesCoreVendor\date_create_immutable(...func_get_args()); } }
+if (!function_exists('date_create_immutable_from_format')) { function date_create_immutable_from_format() { return \OtomatiesCoreVendor\date_create_immutable_from_format(...func_get_args()); } }
+if (!function_exists('date_date_set')) { function date_date_set() { return \OtomatiesCoreVendor\date_date_set(...func_get_args()); } }
+if (!function_exists('date_default_timezone_get')) { function date_default_timezone_get() { return \OtomatiesCoreVendor\date_default_timezone_get(...func_get_args()); } }
+if (!function_exists('date_default_timezone_set')) { function date_default_timezone_set() { return \OtomatiesCoreVendor\date_default_timezone_set(...func_get_args()); } }
+if (!function_exists('date_diff')) { function date_diff() { return \OtomatiesCoreVendor\date_diff(...func_get_args()); } }
+if (!function_exists('date_format')) { function date_format() { return \OtomatiesCoreVendor\date_format(...func_get_args()); } }
+if (!function_exists('date_get_last_errors')) { function date_get_last_errors() { return \OtomatiesCoreVendor\date_get_last_errors(...func_get_args()); } }
 if (!function_exists('date_i18n')) { function date_i18n() { return \OtomatiesCoreVendor\date_i18n(...func_get_args()); } }
+if (!function_exists('date_interval_create_from_date_string')) { function date_interval_create_from_date_string() { return \OtomatiesCoreVendor\date_interval_create_from_date_string(...func_get_args()); } }
+if (!function_exists('date_interval_format')) { function date_interval_format() { return \OtomatiesCoreVendor\date_interval_format(...func_get_args()); } }
+if (!function_exists('date_isodate_set')) { function date_isodate_set() { return \OtomatiesCoreVendor\date_isodate_set(...func_get_args()); } }
+if (!function_exists('date_modify')) { function date_modify() { return \OtomatiesCoreVendor\date_modify(...func_get_args()); } }
+if (!function_exists('date_offset_get')) { function date_offset_get() { return \OtomatiesCoreVendor\date_offset_get(...func_get_args()); } }
+if (!function_exists('date_parse')) { function date_parse() { return \OtomatiesCoreVendor\date_parse(...func_get_args()); } }
+if (!function_exists('date_parse_from_format')) { function date_parse_from_format() { return \OtomatiesCoreVendor\date_parse_from_format(...func_get_args()); } }
+if (!function_exists('date_sub')) { function date_sub() { return \OtomatiesCoreVendor\date_sub(...func_get_args()); } }
+if (!function_exists('date_sun_info')) { function date_sun_info() { return \OtomatiesCoreVendor\date_sun_info(...func_get_args()); } }
+if (!function_exists('date_sunrise')) { function date_sunrise() { return \OtomatiesCoreVendor\date_sunrise(...func_get_args()); } }
+if (!function_exists('date_sunset')) { function date_sunset() { return \OtomatiesCoreVendor\date_sunset(...func_get_args()); } }
+if (!function_exists('date_time_set')) { function date_time_set() { return \OtomatiesCoreVendor\date_time_set(...func_get_args()); } }
+if (!function_exists('date_timestamp_get')) { function date_timestamp_get() { return \OtomatiesCoreVendor\date_timestamp_get(...func_get_args()); } }
+if (!function_exists('date_timestamp_set')) { function date_timestamp_set() { return \OtomatiesCoreVendor\date_timestamp_set(...func_get_args()); } }
+if (!function_exists('date_timezone_get')) { function date_timezone_get() { return \OtomatiesCoreVendor\date_timezone_get(...func_get_args()); } }
+if (!function_exists('date_timezone_set')) { function date_timezone_set() { return \OtomatiesCoreVendor\date_timezone_set(...func_get_args()); } }
+if (!function_exists('datefmt_create')) { function datefmt_create() { return \OtomatiesCoreVendor\datefmt_create(...func_get_args()); } }
+if (!function_exists('datefmt_format')) { function datefmt_format() { return \OtomatiesCoreVendor\datefmt_format(...func_get_args()); } }
+if (!function_exists('datefmt_format_object')) { function datefmt_format_object() { return \OtomatiesCoreVendor\datefmt_format_object(...func_get_args()); } }
+if (!function_exists('datefmt_get_calendar')) { function datefmt_get_calendar() { return \OtomatiesCoreVendor\datefmt_get_calendar(...func_get_args()); } }
+if (!function_exists('datefmt_get_calendar_object')) { function datefmt_get_calendar_object() { return \OtomatiesCoreVendor\datefmt_get_calendar_object(...func_get_args()); } }
+if (!function_exists('datefmt_get_datetype')) { function datefmt_get_datetype() { return \OtomatiesCoreVendor\datefmt_get_datetype(...func_get_args()); } }
+if (!function_exists('datefmt_get_error_code')) { function datefmt_get_error_code() { return \OtomatiesCoreVendor\datefmt_get_error_code(...func_get_args()); } }
+if (!function_exists('datefmt_get_error_message')) { function datefmt_get_error_message() { return \OtomatiesCoreVendor\datefmt_get_error_message(...func_get_args()); } }
+if (!function_exists('datefmt_get_locale')) { function datefmt_get_locale() { return \OtomatiesCoreVendor\datefmt_get_locale(...func_get_args()); } }
+if (!function_exists('datefmt_get_pattern')) { function datefmt_get_pattern() { return \OtomatiesCoreVendor\datefmt_get_pattern(...func_get_args()); } }
+if (!function_exists('datefmt_get_timetype')) { function datefmt_get_timetype() { return \OtomatiesCoreVendor\datefmt_get_timetype(...func_get_args()); } }
+if (!function_exists('datefmt_get_timezone')) { function datefmt_get_timezone() { return \OtomatiesCoreVendor\datefmt_get_timezone(...func_get_args()); } }
+if (!function_exists('datefmt_get_timezone_id')) { function datefmt_get_timezone_id() { return \OtomatiesCoreVendor\datefmt_get_timezone_id(...func_get_args()); } }
+if (!function_exists('datefmt_is_lenient')) { function datefmt_is_lenient() { return \OtomatiesCoreVendor\datefmt_is_lenient(...func_get_args()); } }
+if (!function_exists('datefmt_localtime')) { function datefmt_localtime() { return \OtomatiesCoreVendor\datefmt_localtime(...func_get_args()); } }
+if (!function_exists('datefmt_parse')) { function datefmt_parse() { return \OtomatiesCoreVendor\datefmt_parse(...func_get_args()); } }
+if (!function_exists('datefmt_set_calendar')) { function datefmt_set_calendar() { return \OtomatiesCoreVendor\datefmt_set_calendar(...func_get_args()); } }
+if (!function_exists('datefmt_set_lenient')) { function datefmt_set_lenient() { return \OtomatiesCoreVendor\datefmt_set_lenient(...func_get_args()); } }
+if (!function_exists('datefmt_set_pattern')) { function datefmt_set_pattern() { return \OtomatiesCoreVendor\datefmt_set_pattern(...func_get_args()); } }
+if (!function_exists('datefmt_set_timezone')) { function datefmt_set_timezone() { return \OtomatiesCoreVendor\datefmt_set_timezone(...func_get_args()); } }
+if (!function_exists('datefmt_set_timezone_id')) { function datefmt_set_timezone_id() { return \OtomatiesCoreVendor\datefmt_set_timezone_id(...func_get_args()); } }
+if (!function_exists('db2_autocommit')) { function db2_autocommit() { return \OtomatiesCoreVendor\db2_autocommit(...func_get_args()); } }
+if (!function_exists('db2_bind_param')) { function db2_bind_param() { return \OtomatiesCoreVendor\db2_bind_param(...func_get_args()); } }
+if (!function_exists('db2_client_info')) { function db2_client_info() { return \OtomatiesCoreVendor\db2_client_info(...func_get_args()); } }
+if (!function_exists('db2_close')) { function db2_close() { return \OtomatiesCoreVendor\db2_close(...func_get_args()); } }
+if (!function_exists('db2_column_privileges')) { function db2_column_privileges() { return \OtomatiesCoreVendor\db2_column_privileges(...func_get_args()); } }
+if (!function_exists('db2_columnprivileges')) { function db2_columnprivileges() { return \OtomatiesCoreVendor\db2_columnprivileges(...func_get_args()); } }
+if (!function_exists('db2_columns')) { function db2_columns() { return \OtomatiesCoreVendor\db2_columns(...func_get_args()); } }
+if (!function_exists('db2_commit')) { function db2_commit() { return \OtomatiesCoreVendor\db2_commit(...func_get_args()); } }
+if (!function_exists('db2_conn_error')) { function db2_conn_error() { return \OtomatiesCoreVendor\db2_conn_error(...func_get_args()); } }
+if (!function_exists('db2_conn_errormsg')) { function db2_conn_errormsg() { return \OtomatiesCoreVendor\db2_conn_errormsg(...func_get_args()); } }
+if (!function_exists('db2_connect')) { function db2_connect() { return \OtomatiesCoreVendor\db2_connect(...func_get_args()); } }
+if (!function_exists('db2_cursor_type')) { function db2_cursor_type() { return \OtomatiesCoreVendor\db2_cursor_type(...func_get_args()); } }
+if (!function_exists('db2_escape_string')) { function db2_escape_string() { return \OtomatiesCoreVendor\db2_escape_string(...func_get_args()); } }
+if (!function_exists('db2_exec')) { function db2_exec() { return \OtomatiesCoreVendor\db2_exec(...func_get_args()); } }
+if (!function_exists('db2_execute')) { function db2_execute() { return \OtomatiesCoreVendor\db2_execute(...func_get_args()); } }
+if (!function_exists('db2_fetch_array')) { function db2_fetch_array() { return \OtomatiesCoreVendor\db2_fetch_array(...func_get_args()); } }
+if (!function_exists('db2_fetch_assoc')) { function db2_fetch_assoc() { return \OtomatiesCoreVendor\db2_fetch_assoc(...func_get_args()); } }
+if (!function_exists('db2_fetch_both')) { function db2_fetch_both() { return \OtomatiesCoreVendor\db2_fetch_both(...func_get_args()); } }
+if (!function_exists('db2_fetch_object')) { function db2_fetch_object() { return \OtomatiesCoreVendor\db2_fetch_object(...func_get_args()); } }
+if (!function_exists('db2_fetch_row')) { function db2_fetch_row() { return \OtomatiesCoreVendor\db2_fetch_row(...func_get_args()); } }
+if (!function_exists('db2_field_display_size')) { function db2_field_display_size() { return \OtomatiesCoreVendor\db2_field_display_size(...func_get_args()); } }
+if (!function_exists('db2_field_name')) { function db2_field_name() { return \OtomatiesCoreVendor\db2_field_name(...func_get_args()); } }
+if (!function_exists('db2_field_num')) { function db2_field_num() { return \OtomatiesCoreVendor\db2_field_num(...func_get_args()); } }
+if (!function_exists('db2_field_precision')) { function db2_field_precision() { return \OtomatiesCoreVendor\db2_field_precision(...func_get_args()); } }
+if (!function_exists('db2_field_scale')) { function db2_field_scale() { return \OtomatiesCoreVendor\db2_field_scale(...func_get_args()); } }
+if (!function_exists('db2_field_type')) { function db2_field_type() { return \OtomatiesCoreVendor\db2_field_type(...func_get_args()); } }
+if (!function_exists('db2_field_width')) { function db2_field_width() { return \OtomatiesCoreVendor\db2_field_width(...func_get_args()); } }
+if (!function_exists('db2_foreign_keys')) { function db2_foreign_keys() { return \OtomatiesCoreVendor\db2_foreign_keys(...func_get_args()); } }
+if (!function_exists('db2_foreignkeys')) { function db2_foreignkeys() { return \OtomatiesCoreVendor\db2_foreignkeys(...func_get_args()); } }
+if (!function_exists('db2_free_result')) { function db2_free_result() { return \OtomatiesCoreVendor\db2_free_result(...func_get_args()); } }
+if (!function_exists('db2_free_stmt')) { function db2_free_stmt() { return \OtomatiesCoreVendor\db2_free_stmt(...func_get_args()); } }
+if (!function_exists('db2_get_option')) { function db2_get_option() { return \OtomatiesCoreVendor\db2_get_option(...func_get_args()); } }
+if (!function_exists('db2_last_insert_id')) { function db2_last_insert_id() { return \OtomatiesCoreVendor\db2_last_insert_id(...func_get_args()); } }
+if (!function_exists('db2_lob_read')) { function db2_lob_read() { return \OtomatiesCoreVendor\db2_lob_read(...func_get_args()); } }
+if (!function_exists('db2_next_result')) { function db2_next_result() { return \OtomatiesCoreVendor\db2_next_result(...func_get_args()); } }
+if (!function_exists('db2_num_fields')) { function db2_num_fields() { return \OtomatiesCoreVendor\db2_num_fields(...func_get_args()); } }
+if (!function_exists('db2_num_rows')) { function db2_num_rows() { return \OtomatiesCoreVendor\db2_num_rows(...func_get_args()); } }
+if (!function_exists('db2_pclose')) { function db2_pclose() { return \OtomatiesCoreVendor\db2_pclose(...func_get_args()); } }
+if (!function_exists('db2_pconnect')) { function db2_pconnect() { return \OtomatiesCoreVendor\db2_pconnect(...func_get_args()); } }
+if (!function_exists('db2_prepare')) { function db2_prepare() { return \OtomatiesCoreVendor\db2_prepare(...func_get_args()); } }
+if (!function_exists('db2_primary_keys')) { function db2_primary_keys() { return \OtomatiesCoreVendor\db2_primary_keys(...func_get_args()); } }
+if (!function_exists('db2_primarykeys')) { function db2_primarykeys() { return \OtomatiesCoreVendor\db2_primarykeys(...func_get_args()); } }
+if (!function_exists('db2_procedure_columns')) { function db2_procedure_columns() { return \OtomatiesCoreVendor\db2_procedure_columns(...func_get_args()); } }
+if (!function_exists('db2_procedurecolumns')) { function db2_procedurecolumns() { return \OtomatiesCoreVendor\db2_procedurecolumns(...func_get_args()); } }
+if (!function_exists('db2_procedures')) { function db2_procedures() { return \OtomatiesCoreVendor\db2_procedures(...func_get_args()); } }
+if (!function_exists('db2_result')) { function db2_result() { return \OtomatiesCoreVendor\db2_result(...func_get_args()); } }
+if (!function_exists('db2_rollback')) { function db2_rollback() { return \OtomatiesCoreVendor\db2_rollback(...func_get_args()); } }
+if (!function_exists('db2_server_info')) { function db2_server_info() { return \OtomatiesCoreVendor\db2_server_info(...func_get_args()); } }
+if (!function_exists('db2_set_option')) { function db2_set_option() { return \OtomatiesCoreVendor\db2_set_option(...func_get_args()); } }
+if (!function_exists('db2_setoption')) { function db2_setoption() { return \OtomatiesCoreVendor\db2_setoption(...func_get_args()); } }
+if (!function_exists('db2_special_columns')) { function db2_special_columns() { return \OtomatiesCoreVendor\db2_special_columns(...func_get_args()); } }
+if (!function_exists('db2_specialcolumns')) { function db2_specialcolumns() { return \OtomatiesCoreVendor\db2_specialcolumns(...func_get_args()); } }
+if (!function_exists('db2_statistics')) { function db2_statistics() { return \OtomatiesCoreVendor\db2_statistics(...func_get_args()); } }
+if (!function_exists('db2_stmt_error')) { function db2_stmt_error() { return \OtomatiesCoreVendor\db2_stmt_error(...func_get_args()); } }
+if (!function_exists('db2_stmt_errormsg')) { function db2_stmt_errormsg() { return \OtomatiesCoreVendor\db2_stmt_errormsg(...func_get_args()); } }
+if (!function_exists('db2_table_privileges')) { function db2_table_privileges() { return \OtomatiesCoreVendor\db2_table_privileges(...func_get_args()); } }
+if (!function_exists('db2_tableprivileges')) { function db2_tableprivileges() { return \OtomatiesCoreVendor\db2_tableprivileges(...func_get_args()); } }
+if (!function_exists('db2_tables')) { function db2_tables() { return \OtomatiesCoreVendor\db2_tables(...func_get_args()); } }
 if (!function_exists('dbDelta')) { function dbDelta() { return \OtomatiesCoreVendor\dbDelta(...func_get_args()); } }
+if (!function_exists('dba_close')) { function dba_close() { return \OtomatiesCoreVendor\dba_close(...func_get_args()); } }
+if (!function_exists('dba_delete')) { function dba_delete() { return \OtomatiesCoreVendor\dba_delete(...func_get_args()); } }
+if (!function_exists('dba_exists')) { function dba_exists() { return \OtomatiesCoreVendor\dba_exists(...func_get_args()); } }
+if (!function_exists('dba_fetch')) { function dba_fetch() { return \OtomatiesCoreVendor\dba_fetch(...func_get_args()); } }
+if (!function_exists('dba_firstkey')) { function dba_firstkey() { return \OtomatiesCoreVendor\dba_firstkey(...func_get_args()); } }
+if (!function_exists('dba_handlers')) { function dba_handlers() { return \OtomatiesCoreVendor\dba_handlers(...func_get_args()); } }
+if (!function_exists('dba_insert')) { function dba_insert() { return \OtomatiesCoreVendor\dba_insert(...func_get_args()); } }
+if (!function_exists('dba_key_split')) { function dba_key_split() { return \OtomatiesCoreVendor\dba_key_split(...func_get_args()); } }
+if (!function_exists('dba_list')) { function dba_list() { return \OtomatiesCoreVendor\dba_list(...func_get_args()); } }
+if (!function_exists('dba_nextkey')) { function dba_nextkey() { return \OtomatiesCoreVendor\dba_nextkey(...func_get_args()); } }
+if (!function_exists('dba_open')) { function dba_open() { return \OtomatiesCoreVendor\dba_open(...func_get_args()); } }
+if (!function_exists('dba_optimize')) { function dba_optimize() { return \OtomatiesCoreVendor\dba_optimize(...func_get_args()); } }
+if (!function_exists('dba_popen')) { function dba_popen() { return \OtomatiesCoreVendor\dba_popen(...func_get_args()); } }
+if (!function_exists('dba_replace')) { function dba_replace() { return \OtomatiesCoreVendor\dba_replace(...func_get_args()); } }
+if (!function_exists('dba_sync')) { function dba_sync() { return \OtomatiesCoreVendor\dba_sync(...func_get_args()); } }
+if (!function_exists('dcgettext')) { function dcgettext() { return \OtomatiesCoreVendor\dcgettext(...func_get_args()); } }
+if (!function_exists('dcngettext')) { function dcngettext() { return \OtomatiesCoreVendor\dcngettext(...func_get_args()); } }
+if (!function_exists('dd')) { function dd() { return \OtomatiesCoreVendor\dd(...func_get_args()); } }
 if (!function_exists('deactivate_plugins')) { function deactivate_plugins() { return \OtomatiesCoreVendor\deactivate_plugins(...func_get_args()); } }
 if (!function_exists('deactivate_sitewide_plugin')) { function deactivate_sitewide_plugin() { return \OtomatiesCoreVendor\deactivate_sitewide_plugin(...func_get_args()); } }
 if (!function_exists('deactivated_plugins_notice')) { function deactivated_plugins_notice() { return \OtomatiesCoreVendor\deactivated_plugins_notice(...func_get_args()); } }
 if (!function_exists('dead_db')) { function dead_db() { return \OtomatiesCoreVendor\dead_db(...func_get_args()); } }
+if (!function_exists('debug_backtrace')) { function debug_backtrace() { return \OtomatiesCoreVendor\debug_backtrace(...func_get_args()); } }
 if (!function_exists('debug_fclose')) { function debug_fclose() { return \OtomatiesCoreVendor\debug_fclose(...func_get_args()); } }
 if (!function_exists('debug_fopen')) { function debug_fopen() { return \OtomatiesCoreVendor\debug_fopen(...func_get_args()); } }
 if (!function_exists('debug_fwrite')) { function debug_fwrite() { return \OtomatiesCoreVendor\debug_fwrite(...func_get_args()); } }
+if (!function_exists('debug_print_backtrace')) { function debug_print_backtrace() { return \OtomatiesCoreVendor\debug_print_backtrace(...func_get_args()); } }
+if (!function_exists('debug_zval_dump')) { function debug_zval_dump() { return \OtomatiesCoreVendor\debug_zval_dump(...func_get_args()); } }
+if (!function_exists('debugger_connect')) { function debugger_connect() { return \OtomatiesCoreVendor\debugger_connect(...func_get_args()); } }
+if (!function_exists('debugger_connector_pid')) { function debugger_connector_pid() { return \OtomatiesCoreVendor\debugger_connector_pid(...func_get_args()); } }
+if (!function_exists('debugger_get_server_start_time')) { function debugger_get_server_start_time() { return \OtomatiesCoreVendor\debugger_get_server_start_time(...func_get_args()); } }
+if (!function_exists('debugger_print')) { function debugger_print() { return \OtomatiesCoreVendor\debugger_print(...func_get_args()); } }
+if (!function_exists('debugger_start_debug')) { function debugger_start_debug() { return \OtomatiesCoreVendor\debugger_start_debug(...func_get_args()); } }
+if (!function_exists('decbin')) { function decbin() { return \OtomatiesCoreVendor\decbin(...func_get_args()); } }
+if (!function_exists('dechex')) { function dechex() { return \OtomatiesCoreVendor\dechex(...func_get_args()); } }
+if (!function_exists('decoct')) { function decoct() { return \OtomatiesCoreVendor\decoct(...func_get_args()); } }
 if (!function_exists('default_password_nag')) { function default_password_nag() { return \OtomatiesCoreVendor\default_password_nag(...func_get_args()); } }
 if (!function_exists('default_password_nag_edit_user')) { function default_password_nag_edit_user() { return \OtomatiesCoreVendor\default_password_nag_edit_user(...func_get_args()); } }
 if (!function_exists('default_password_nag_handler')) { function default_password_nag_handler() { return \OtomatiesCoreVendor\default_password_nag_handler(...func_get_args()); } }
 if (!function_exists('default_topic_count_scale')) { function default_topic_count_scale() { return \OtomatiesCoreVendor\default_topic_count_scale(...func_get_args()); } }
 if (!function_exists('default_topic_count_text')) { function default_topic_count_text() { return \OtomatiesCoreVendor\default_topic_count_text(...func_get_args()); } }
+if (!function_exists('defer')) { function defer() { return \OtomatiesCoreVendor\defer(...func_get_args()); } }
+if (!function_exists('define')) { function define() { return \OtomatiesCoreVendor\define(...func_get_args()); } }
+if (!function_exists('define_syslog_variables')) { function define_syslog_variables() { return \OtomatiesCoreVendor\define_syslog_variables(...func_get_args()); } }
+if (!function_exists('defined')) { function defined() { return \OtomatiesCoreVendor\defined(...func_get_args()); } }
+if (!function_exists('deflate_add')) { function deflate_add() { return \OtomatiesCoreVendor\deflate_add(...func_get_args()); } }
+if (!function_exists('deflate_init')) { function deflate_init() { return \OtomatiesCoreVendor\deflate_init(...func_get_args()); } }
+if (!function_exists('deg2rad')) { function deg2rad() { return \OtomatiesCoreVendor\deg2rad(...func_get_args()); } }
 if (!function_exists('delete_all_user_settings')) { function delete_all_user_settings() { return \OtomatiesCoreVendor\delete_all_user_settings(...func_get_args()); } }
 if (!function_exists('delete_blog_option')) { function delete_blog_option() { return \OtomatiesCoreVendor\delete_blog_option(...func_get_args()); } }
 if (!function_exists('delete_comment_meta')) { function delete_comment_meta() { return \OtomatiesCoreVendor\delete_comment_meta(...func_get_args()); } }
@@ -1856,11 +3178,29 @@ if (!function_exists('delete_users_add_js')) { function delete_users_add_js() { 
 if (!function_exists('delete_woocommerce_term_meta')) { function delete_woocommerce_term_meta() { return \OtomatiesCoreVendor\delete_woocommerce_term_meta(...func_get_args()); } }
 if (!function_exists('deslash')) { function deslash() { return \OtomatiesCoreVendor\deslash(...func_get_args()); } }
 if (!function_exists('determine_locale')) { function determine_locale() { return \OtomatiesCoreVendor\determine_locale(...func_get_args()); } }
+if (!function_exists('dgettext')) { function dgettext() { return \OtomatiesCoreVendor\dgettext(...func_get_args()); } }
 if (!function_exists('did_action')) { function did_action() { return \OtomatiesCoreVendor\did_action(...func_get_args()); } }
 if (!function_exists('did_filter')) { function did_filter() { return \OtomatiesCoreVendor\did_filter(...func_get_args()); } }
+if (!function_exists('die')) { function die() { return \OtomatiesCoreVendor\die(...func_get_args()); } }
+if (!function_exists('dio_close')) { function dio_close() { return \OtomatiesCoreVendor\dio_close(...func_get_args()); } }
+if (!function_exists('dio_fcntl')) { function dio_fcntl() { return \OtomatiesCoreVendor\dio_fcntl(...func_get_args()); } }
+if (!function_exists('dio_open')) { function dio_open() { return \OtomatiesCoreVendor\dio_open(...func_get_args()); } }
+if (!function_exists('dio_raw')) { function dio_raw() { return \OtomatiesCoreVendor\dio_raw(...func_get_args()); } }
+if (!function_exists('dio_read')) { function dio_read() { return \OtomatiesCoreVendor\dio_read(...func_get_args()); } }
+if (!function_exists('dio_seek')) { function dio_seek() { return \OtomatiesCoreVendor\dio_seek(...func_get_args()); } }
+if (!function_exists('dio_serial')) { function dio_serial() { return \OtomatiesCoreVendor\dio_serial(...func_get_args()); } }
+if (!function_exists('dio_stat')) { function dio_stat() { return \OtomatiesCoreVendor\dio_stat(...func_get_args()); } }
+if (!function_exists('dio_tcsetattr')) { function dio_tcsetattr() { return \OtomatiesCoreVendor\dio_tcsetattr(...func_get_args()); } }
+if (!function_exists('dio_truncate')) { function dio_truncate() { return \OtomatiesCoreVendor\dio_truncate(...func_get_args()); } }
+if (!function_exists('dio_write')) { function dio_write() { return \OtomatiesCoreVendor\dio_write(...func_get_args()); } }
+if (!function_exists('dir')) { function dir() { return \OtomatiesCoreVendor\dir(...func_get_args()); } }
+if (!function_exists('dirname')) { function dirname() { return \OtomatiesCoreVendor\dirname(...func_get_args()); } }
 if (!function_exists('disabled')) { function disabled() { return \OtomatiesCoreVendor\disabled(...func_get_args()); } }
 if (!function_exists('discard_sidebar_being_rendered')) { function discard_sidebar_being_rendered() { return \OtomatiesCoreVendor\discard_sidebar_being_rendered(...func_get_args()); } }
 if (!function_exists('discover_pingback_server_uri')) { function discover_pingback_server_uri() { return \OtomatiesCoreVendor\discover_pingback_server_uri(...func_get_args()); } }
+if (!function_exists('disk_free_space')) { function disk_free_space() { return \OtomatiesCoreVendor\disk_free_space(...func_get_args()); } }
+if (!function_exists('disk_total_space')) { function disk_total_space() { return \OtomatiesCoreVendor\disk_total_space(...func_get_args()); } }
+if (!function_exists('diskfreespace')) { function diskfreespace() { return \OtomatiesCoreVendor\diskfreespace(...func_get_args()); } }
 if (!function_exists('dismiss_core_update')) { function dismiss_core_update() { return \OtomatiesCoreVendor\dismiss_core_update(...func_get_args()); } }
 if (!function_exists('dismissed_updates')) { function dismissed_updates() { return \OtomatiesCoreVendor\dismissed_updates(...func_get_args()); } }
 if (!function_exists('display_header')) { function display_header() { return \OtomatiesCoreVendor\display_header(...func_get_args()); } }
@@ -1870,6 +3210,11 @@ if (!function_exists('display_setup_form')) { function display_setup_form() { re
 if (!function_exists('display_space_usage')) { function display_space_usage() { return \OtomatiesCoreVendor\display_space_usage(...func_get_args()); } }
 if (!function_exists('display_theme')) { function display_theme() { return \OtomatiesCoreVendor\display_theme(...func_get_args()); } }
 if (!function_exists('display_themes')) { function display_themes() { return \OtomatiesCoreVendor\display_themes(...func_get_args()); } }
+if (!function_exists('dl')) { function dl() { return \OtomatiesCoreVendor\dl(...func_get_args()); } }
+if (!function_exists('dngettext')) { function dngettext() { return \OtomatiesCoreVendor\dngettext(...func_get_args()); } }
+if (!function_exists('dns_check_record')) { function dns_check_record() { return \OtomatiesCoreVendor\dns_check_record(...func_get_args()); } }
+if (!function_exists('dns_get_mx')) { function dns_get_mx() { return \OtomatiesCoreVendor\dns_get_mx(...func_get_args()); } }
+if (!function_exists('dns_get_record')) { function dns_get_record() { return \OtomatiesCoreVendor\dns_get_record(...func_get_args()); } }
 if (!function_exists('do_accordion_sections')) { function do_accordion_sections() { return \OtomatiesCoreVendor\do_accordion_sections(...func_get_args()); } }
 if (!function_exists('do_action')) { function do_action() { return \OtomatiesCoreVendor\do_action(...func_get_args()); } }
 if (!function_exists('do_action_deprecated')) { function do_action_deprecated() { return \OtomatiesCoreVendor\do_action_deprecated(...func_get_args()); } }
@@ -1903,14 +3248,20 @@ if (!function_exists('do_undismiss_core_update')) { function do_undismiss_core_u
 if (!function_exists('documentation_link')) { function documentation_link() { return \OtomatiesCoreVendor\documentation_link(...func_get_args()); } }
 if (!function_exists('doing_action')) { function doing_action() { return \OtomatiesCoreVendor\doing_action(...func_get_args()); } }
 if (!function_exists('doing_filter')) { function doing_filter() { return \OtomatiesCoreVendor\doing_filter(...func_get_args()); } }
+if (!function_exists('dom_import_simplexml')) { function dom_import_simplexml() { return \OtomatiesCoreVendor\dom_import_simplexml(...func_get_args()); } }
 if (!function_exists('domain_exists')) { function domain_exists() { return \OtomatiesCoreVendor\domain_exists(...func_get_args()); } }
+if (!function_exists('doubleval')) { function doubleval() { return \OtomatiesCoreVendor\doubleval(...func_get_args()); } }
 if (!function_exists('download_url')) { function download_url() { return \OtomatiesCoreVendor\download_url(...func_get_args()); } }
 if (!function_exists('drop_index')) { function drop_index() { return \OtomatiesCoreVendor\drop_index(...func_get_args()); } }
 if (!function_exists('dropdown_categories')) { function dropdown_categories() { return \OtomatiesCoreVendor\dropdown_categories(...func_get_args()); } }
 if (!function_exists('dropdown_cats')) { function dropdown_cats() { return \OtomatiesCoreVendor\dropdown_cats(...func_get_args()); } }
 if (!function_exists('dropdown_link_categories')) { function dropdown_link_categories() { return \OtomatiesCoreVendor\dropdown_link_categories(...func_get_args()); } }
+if (!function_exists('dump')) { function dump() { return \OtomatiesCoreVendor\dump(...func_get_args()); } }
 if (!function_exists('dynamic_sidebar')) { function dynamic_sidebar() { return \OtomatiesCoreVendor\dynamic_sidebar(...func_get_args()); } }
 if (!function_exists('e')) { function e() { return \OtomatiesCoreVendor\e(...func_get_args()); } }
+if (!function_exists('each')) { function each() { return \OtomatiesCoreVendor\each(...func_get_args()); } }
+if (!function_exists('easter_date')) { function easter_date() { return \OtomatiesCoreVendor\easter_date(...func_get_args()); } }
+if (!function_exists('easter_days')) { function easter_days() { return \OtomatiesCoreVendor\easter_days(...func_get_args()); } }
 if (!function_exists('edit_bookmark_link')) { function edit_bookmark_link() { return \OtomatiesCoreVendor\edit_bookmark_link(...func_get_args()); } }
 if (!function_exists('edit_comment')) { function edit_comment() { return \OtomatiesCoreVendor\edit_comment(...func_get_args()); } }
 if (!function_exists('edit_comment_link')) { function edit_comment_link() { return \OtomatiesCoreVendor\edit_comment_link(...func_get_args()); } }
@@ -1921,7 +3272,89 @@ if (!function_exists('edit_post_link')) { function edit_post_link() { return \Ot
 if (!function_exists('edit_tag_link')) { function edit_tag_link() { return \OtomatiesCoreVendor\edit_tag_link(...func_get_args()); } }
 if (!function_exists('edit_term_link')) { function edit_term_link() { return \OtomatiesCoreVendor\edit_term_link(...func_get_args()); } }
 if (!function_exists('edit_user')) { function edit_user() { return \OtomatiesCoreVendor\edit_user(...func_get_args()); } }
+if (!function_exists('eio_busy')) { function eio_busy() { return \OtomatiesCoreVendor\eio_busy(...func_get_args()); } }
+if (!function_exists('eio_cancel')) { function eio_cancel() { return \OtomatiesCoreVendor\eio_cancel(...func_get_args()); } }
+if (!function_exists('eio_chmod')) { function eio_chmod() { return \OtomatiesCoreVendor\eio_chmod(...func_get_args()); } }
+if (!function_exists('eio_chown')) { function eio_chown() { return \OtomatiesCoreVendor\eio_chown(...func_get_args()); } }
+if (!function_exists('eio_close')) { function eio_close() { return \OtomatiesCoreVendor\eio_close(...func_get_args()); } }
+if (!function_exists('eio_custom')) { function eio_custom() { return \OtomatiesCoreVendor\eio_custom(...func_get_args()); } }
+if (!function_exists('eio_dup2')) { function eio_dup2() { return \OtomatiesCoreVendor\eio_dup2(...func_get_args()); } }
+if (!function_exists('eio_event_loop')) { function eio_event_loop() { return \OtomatiesCoreVendor\eio_event_loop(...func_get_args()); } }
+if (!function_exists('eio_fallocate')) { function eio_fallocate() { return \OtomatiesCoreVendor\eio_fallocate(...func_get_args()); } }
+if (!function_exists('eio_fchmod')) { function eio_fchmod() { return \OtomatiesCoreVendor\eio_fchmod(...func_get_args()); } }
+if (!function_exists('eio_fchown')) { function eio_fchown() { return \OtomatiesCoreVendor\eio_fchown(...func_get_args()); } }
+if (!function_exists('eio_fdatasync')) { function eio_fdatasync() { return \OtomatiesCoreVendor\eio_fdatasync(...func_get_args()); } }
+if (!function_exists('eio_fstat')) { function eio_fstat() { return \OtomatiesCoreVendor\eio_fstat(...func_get_args()); } }
+if (!function_exists('eio_fstatvfs')) { function eio_fstatvfs() { return \OtomatiesCoreVendor\eio_fstatvfs(...func_get_args()); } }
+if (!function_exists('eio_fsync')) { function eio_fsync() { return \OtomatiesCoreVendor\eio_fsync(...func_get_args()); } }
+if (!function_exists('eio_ftruncate')) { function eio_ftruncate() { return \OtomatiesCoreVendor\eio_ftruncate(...func_get_args()); } }
+if (!function_exists('eio_futime')) { function eio_futime() { return \OtomatiesCoreVendor\eio_futime(...func_get_args()); } }
+if (!function_exists('eio_get_event_stream')) { function eio_get_event_stream() { return \OtomatiesCoreVendor\eio_get_event_stream(...func_get_args()); } }
+if (!function_exists('eio_get_last_error')) { function eio_get_last_error() { return \OtomatiesCoreVendor\eio_get_last_error(...func_get_args()); } }
+if (!function_exists('eio_grp')) { function eio_grp() { return \OtomatiesCoreVendor\eio_grp(...func_get_args()); } }
+if (!function_exists('eio_grp_add')) { function eio_grp_add() { return \OtomatiesCoreVendor\eio_grp_add(...func_get_args()); } }
+if (!function_exists('eio_grp_cancel')) { function eio_grp_cancel() { return \OtomatiesCoreVendor\eio_grp_cancel(...func_get_args()); } }
+if (!function_exists('eio_grp_limit')) { function eio_grp_limit() { return \OtomatiesCoreVendor\eio_grp_limit(...func_get_args()); } }
+if (!function_exists('eio_link')) { function eio_link() { return \OtomatiesCoreVendor\eio_link(...func_get_args()); } }
+if (!function_exists('eio_lstat')) { function eio_lstat() { return \OtomatiesCoreVendor\eio_lstat(...func_get_args()); } }
+if (!function_exists('eio_mkdir')) { function eio_mkdir() { return \OtomatiesCoreVendor\eio_mkdir(...func_get_args()); } }
+if (!function_exists('eio_mknod')) { function eio_mknod() { return \OtomatiesCoreVendor\eio_mknod(...func_get_args()); } }
+if (!function_exists('eio_nop')) { function eio_nop() { return \OtomatiesCoreVendor\eio_nop(...func_get_args()); } }
+if (!function_exists('eio_npending')) { function eio_npending() { return \OtomatiesCoreVendor\eio_npending(...func_get_args()); } }
+if (!function_exists('eio_nready')) { function eio_nready() { return \OtomatiesCoreVendor\eio_nready(...func_get_args()); } }
+if (!function_exists('eio_nreqs')) { function eio_nreqs() { return \OtomatiesCoreVendor\eio_nreqs(...func_get_args()); } }
+if (!function_exists('eio_nthreads')) { function eio_nthreads() { return \OtomatiesCoreVendor\eio_nthreads(...func_get_args()); } }
+if (!function_exists('eio_open')) { function eio_open() { return \OtomatiesCoreVendor\eio_open(...func_get_args()); } }
+if (!function_exists('eio_poll')) { function eio_poll() { return \OtomatiesCoreVendor\eio_poll(...func_get_args()); } }
+if (!function_exists('eio_read')) { function eio_read() { return \OtomatiesCoreVendor\eio_read(...func_get_args()); } }
+if (!function_exists('eio_readahead')) { function eio_readahead() { return \OtomatiesCoreVendor\eio_readahead(...func_get_args()); } }
+if (!function_exists('eio_readdir')) { function eio_readdir() { return \OtomatiesCoreVendor\eio_readdir(...func_get_args()); } }
+if (!function_exists('eio_readlink')) { function eio_readlink() { return \OtomatiesCoreVendor\eio_readlink(...func_get_args()); } }
+if (!function_exists('eio_realpath')) { function eio_realpath() { return \OtomatiesCoreVendor\eio_realpath(...func_get_args()); } }
+if (!function_exists('eio_rename')) { function eio_rename() { return \OtomatiesCoreVendor\eio_rename(...func_get_args()); } }
+if (!function_exists('eio_rmdir')) { function eio_rmdir() { return \OtomatiesCoreVendor\eio_rmdir(...func_get_args()); } }
+if (!function_exists('eio_seek')) { function eio_seek() { return \OtomatiesCoreVendor\eio_seek(...func_get_args()); } }
+if (!function_exists('eio_sendfile')) { function eio_sendfile() { return \OtomatiesCoreVendor\eio_sendfile(...func_get_args()); } }
+if (!function_exists('eio_set_max_idle')) { function eio_set_max_idle() { return \OtomatiesCoreVendor\eio_set_max_idle(...func_get_args()); } }
+if (!function_exists('eio_set_max_parallel')) { function eio_set_max_parallel() { return \OtomatiesCoreVendor\eio_set_max_parallel(...func_get_args()); } }
+if (!function_exists('eio_set_max_poll_reqs')) { function eio_set_max_poll_reqs() { return \OtomatiesCoreVendor\eio_set_max_poll_reqs(...func_get_args()); } }
+if (!function_exists('eio_set_max_poll_time')) { function eio_set_max_poll_time() { return \OtomatiesCoreVendor\eio_set_max_poll_time(...func_get_args()); } }
+if (!function_exists('eio_set_min_parallel')) { function eio_set_min_parallel() { return \OtomatiesCoreVendor\eio_set_min_parallel(...func_get_args()); } }
+if (!function_exists('eio_stat')) { function eio_stat() { return \OtomatiesCoreVendor\eio_stat(...func_get_args()); } }
+if (!function_exists('eio_statvfs')) { function eio_statvfs() { return \OtomatiesCoreVendor\eio_statvfs(...func_get_args()); } }
+if (!function_exists('eio_symlink')) { function eio_symlink() { return \OtomatiesCoreVendor\eio_symlink(...func_get_args()); } }
+if (!function_exists('eio_sync')) { function eio_sync() { return \OtomatiesCoreVendor\eio_sync(...func_get_args()); } }
+if (!function_exists('eio_sync_file_range')) { function eio_sync_file_range() { return \OtomatiesCoreVendor\eio_sync_file_range(...func_get_args()); } }
+if (!function_exists('eio_syncfs')) { function eio_syncfs() { return \OtomatiesCoreVendor\eio_syncfs(...func_get_args()); } }
+if (!function_exists('eio_truncate')) { function eio_truncate() { return \OtomatiesCoreVendor\eio_truncate(...func_get_args()); } }
+if (!function_exists('eio_unlink')) { function eio_unlink() { return \OtomatiesCoreVendor\eio_unlink(...func_get_args()); } }
+if (!function_exists('eio_utime')) { function eio_utime() { return \OtomatiesCoreVendor\eio_utime(...func_get_args()); } }
+if (!function_exists('eio_write')) { function eio_write() { return \OtomatiesCoreVendor\eio_write(...func_get_args()); } }
 if (!function_exists('email_exists')) { function email_exists() { return \OtomatiesCoreVendor\email_exists(...func_get_args()); } }
+if (!function_exists('enchant_broker_describe')) { function enchant_broker_describe() { return \OtomatiesCoreVendor\enchant_broker_describe(...func_get_args()); } }
+if (!function_exists('enchant_broker_dict_exists')) { function enchant_broker_dict_exists() { return \OtomatiesCoreVendor\enchant_broker_dict_exists(...func_get_args()); } }
+if (!function_exists('enchant_broker_free')) { function enchant_broker_free() { return \OtomatiesCoreVendor\enchant_broker_free(...func_get_args()); } }
+if (!function_exists('enchant_broker_free_dict')) { function enchant_broker_free_dict() { return \OtomatiesCoreVendor\enchant_broker_free_dict(...func_get_args()); } }
+if (!function_exists('enchant_broker_get_dict_path')) { function enchant_broker_get_dict_path() { return \OtomatiesCoreVendor\enchant_broker_get_dict_path(...func_get_args()); } }
+if (!function_exists('enchant_broker_get_error')) { function enchant_broker_get_error() { return \OtomatiesCoreVendor\enchant_broker_get_error(...func_get_args()); } }
+if (!function_exists('enchant_broker_init')) { function enchant_broker_init() { return \OtomatiesCoreVendor\enchant_broker_init(...func_get_args()); } }
+if (!function_exists('enchant_broker_list_dicts')) { function enchant_broker_list_dicts() { return \OtomatiesCoreVendor\enchant_broker_list_dicts(...func_get_args()); } }
+if (!function_exists('enchant_broker_request_dict')) { function enchant_broker_request_dict() { return \OtomatiesCoreVendor\enchant_broker_request_dict(...func_get_args()); } }
+if (!function_exists('enchant_broker_request_pwl_dict')) { function enchant_broker_request_pwl_dict() { return \OtomatiesCoreVendor\enchant_broker_request_pwl_dict(...func_get_args()); } }
+if (!function_exists('enchant_broker_set_dict_path')) { function enchant_broker_set_dict_path() { return \OtomatiesCoreVendor\enchant_broker_set_dict_path(...func_get_args()); } }
+if (!function_exists('enchant_broker_set_ordering')) { function enchant_broker_set_ordering() { return \OtomatiesCoreVendor\enchant_broker_set_ordering(...func_get_args()); } }
+if (!function_exists('enchant_dict_add')) { function enchant_dict_add() { return \OtomatiesCoreVendor\enchant_dict_add(...func_get_args()); } }
+if (!function_exists('enchant_dict_add_to_personal')) { function enchant_dict_add_to_personal() { return \OtomatiesCoreVendor\enchant_dict_add_to_personal(...func_get_args()); } }
+if (!function_exists('enchant_dict_add_to_session')) { function enchant_dict_add_to_session() { return \OtomatiesCoreVendor\enchant_dict_add_to_session(...func_get_args()); } }
+if (!function_exists('enchant_dict_check')) { function enchant_dict_check() { return \OtomatiesCoreVendor\enchant_dict_check(...func_get_args()); } }
+if (!function_exists('enchant_dict_describe')) { function enchant_dict_describe() { return \OtomatiesCoreVendor\enchant_dict_describe(...func_get_args()); } }
+if (!function_exists('enchant_dict_get_error')) { function enchant_dict_get_error() { return \OtomatiesCoreVendor\enchant_dict_get_error(...func_get_args()); } }
+if (!function_exists('enchant_dict_is_added')) { function enchant_dict_is_added() { return \OtomatiesCoreVendor\enchant_dict_is_added(...func_get_args()); } }
+if (!function_exists('enchant_dict_is_in_session')) { function enchant_dict_is_in_session() { return \OtomatiesCoreVendor\enchant_dict_is_in_session(...func_get_args()); } }
+if (!function_exists('enchant_dict_quick_check')) { function enchant_dict_quick_check() { return \OtomatiesCoreVendor\enchant_dict_quick_check(...func_get_args()); } }
+if (!function_exists('enchant_dict_store_replacement')) { function enchant_dict_store_replacement() { return \OtomatiesCoreVendor\enchant_dict_store_replacement(...func_get_args()); } }
+if (!function_exists('enchant_dict_suggest')) { function enchant_dict_suggest() { return \OtomatiesCoreVendor\enchant_dict_suggest(...func_get_args()); } }
+if (!function_exists('end')) { function end() { return \OtomatiesCoreVendor\end(...func_get_args()); } }
 if (!function_exists('endElement')) { function endElement() { return \OtomatiesCoreVendor\endElement(...func_get_args()); } }
 if (!function_exists('enqueue_block_styles_assets')) { function enqueue_block_styles_assets() { return \OtomatiesCoreVendor\enqueue_block_styles_assets(...func_get_args()); } }
 if (!function_exists('enqueue_comment_hotkeys_js')) { function enqueue_comment_hotkeys_js() { return \OtomatiesCoreVendor\enqueue_comment_hotkeys_js(...func_get_args()); } }
@@ -1929,7 +3362,16 @@ if (!function_exists('enqueue_editor_block_styles_assets')) { function enqueue_e
 if (!function_exists('enqueue_embed_scripts')) { function enqueue_embed_scripts() { return \OtomatiesCoreVendor\enqueue_embed_scripts(...func_get_args()); } }
 if (!function_exists('enqueue_legacy_post_comments_block_styles')) { function enqueue_legacy_post_comments_block_styles() { return \OtomatiesCoreVendor\enqueue_legacy_post_comments_block_styles(...func_get_args()); } }
 if (!function_exists('ent2ncr')) { function ent2ncr() { return \OtomatiesCoreVendor\ent2ncr(...func_get_args()); } }
+if (!function_exists('enum_exists')) { function enum_exists() { return \OtomatiesCoreVendor\enum_exists(...func_get_args()); } }
 if (!function_exists('env')) { function env() { return \OtomatiesCoreVendor\env(...func_get_args()); } }
+if (!function_exists('ereg')) { function ereg() { return \OtomatiesCoreVendor\ereg(...func_get_args()); } }
+if (!function_exists('ereg_replace')) { function ereg_replace() { return \OtomatiesCoreVendor\ereg_replace(...func_get_args()); } }
+if (!function_exists('eregi')) { function eregi() { return \OtomatiesCoreVendor\eregi(...func_get_args()); } }
+if (!function_exists('eregi_replace')) { function eregi_replace() { return \OtomatiesCoreVendor\eregi_replace(...func_get_args()); } }
+if (!function_exists('error_clear_last')) { function error_clear_last() { return \OtomatiesCoreVendor\error_clear_last(...func_get_args()); } }
+if (!function_exists('error_get_last')) { function error_get_last() { return \OtomatiesCoreVendor\error_get_last(...func_get_args()); } }
+if (!function_exists('error_log')) { function error_log() { return \OtomatiesCoreVendor\error_log(...func_get_args()); } }
+if (!function_exists('error_reporting')) { function error_reporting() { return \OtomatiesCoreVendor\error_reporting(...func_get_args()); } }
 if (!function_exists('esc_attr')) { function esc_attr() { return \OtomatiesCoreVendor\esc_attr(...func_get_args()); } }
 if (!function_exists('esc_attr__')) { function esc_attr__() { return \OtomatiesCoreVendor\esc_attr__(...func_get_args()); } }
 if (!function_exists('esc_attr_e')) { function esc_attr_e() { return \OtomatiesCoreVendor\esc_attr_e(...func_get_args()); } }
@@ -1944,23 +3386,280 @@ if (!function_exists('esc_textarea')) { function esc_textarea() { return \Otomat
 if (!function_exists('esc_url')) { function esc_url() { return \OtomatiesCoreVendor\esc_url(...func_get_args()); } }
 if (!function_exists('esc_url_raw')) { function esc_url_raw() { return \OtomatiesCoreVendor\esc_url_raw(...func_get_args()); } }
 if (!function_exists('esc_xml')) { function esc_xml() { return \OtomatiesCoreVendor\esc_xml(...func_get_args()); } }
+if (!function_exists('escapeshellarg')) { function escapeshellarg() { return \OtomatiesCoreVendor\escapeshellarg(...func_get_args()); } }
+if (!function_exists('escapeshellcmd')) { function escapeshellcmd() { return \OtomatiesCoreVendor\escapeshellcmd(...func_get_args()); } }
+if (!function_exists('event_add')) { function event_add() { return \OtomatiesCoreVendor\event_add(...func_get_args()); } }
+if (!function_exists('event_base_free')) { function event_base_free() { return \OtomatiesCoreVendor\event_base_free(...func_get_args()); } }
+if (!function_exists('event_base_loop')) { function event_base_loop() { return \OtomatiesCoreVendor\event_base_loop(...func_get_args()); } }
+if (!function_exists('event_base_loopbreak')) { function event_base_loopbreak() { return \OtomatiesCoreVendor\event_base_loopbreak(...func_get_args()); } }
+if (!function_exists('event_base_loopexit')) { function event_base_loopexit() { return \OtomatiesCoreVendor\event_base_loopexit(...func_get_args()); } }
+if (!function_exists('event_base_new')) { function event_base_new() { return \OtomatiesCoreVendor\event_base_new(...func_get_args()); } }
+if (!function_exists('event_base_priority_init')) { function event_base_priority_init() { return \OtomatiesCoreVendor\event_base_priority_init(...func_get_args()); } }
+if (!function_exists('event_base_set')) { function event_base_set() { return \OtomatiesCoreVendor\event_base_set(...func_get_args()); } }
+if (!function_exists('event_buffer_base_set')) { function event_buffer_base_set() { return \OtomatiesCoreVendor\event_buffer_base_set(...func_get_args()); } }
+if (!function_exists('event_buffer_disable')) { function event_buffer_disable() { return \OtomatiesCoreVendor\event_buffer_disable(...func_get_args()); } }
+if (!function_exists('event_buffer_enable')) { function event_buffer_enable() { return \OtomatiesCoreVendor\event_buffer_enable(...func_get_args()); } }
+if (!function_exists('event_buffer_fd_set')) { function event_buffer_fd_set() { return \OtomatiesCoreVendor\event_buffer_fd_set(...func_get_args()); } }
+if (!function_exists('event_buffer_free')) { function event_buffer_free() { return \OtomatiesCoreVendor\event_buffer_free(...func_get_args()); } }
+if (!function_exists('event_buffer_new')) { function event_buffer_new() { return \OtomatiesCoreVendor\event_buffer_new(...func_get_args()); } }
+if (!function_exists('event_buffer_priority_set')) { function event_buffer_priority_set() { return \OtomatiesCoreVendor\event_buffer_priority_set(...func_get_args()); } }
+if (!function_exists('event_buffer_read')) { function event_buffer_read() { return \OtomatiesCoreVendor\event_buffer_read(...func_get_args()); } }
+if (!function_exists('event_buffer_set_callback')) { function event_buffer_set_callback() { return \OtomatiesCoreVendor\event_buffer_set_callback(...func_get_args()); } }
+if (!function_exists('event_buffer_timeout_set')) { function event_buffer_timeout_set() { return \OtomatiesCoreVendor\event_buffer_timeout_set(...func_get_args()); } }
+if (!function_exists('event_buffer_watermark_set')) { function event_buffer_watermark_set() { return \OtomatiesCoreVendor\event_buffer_watermark_set(...func_get_args()); } }
+if (!function_exists('event_buffer_write')) { function event_buffer_write() { return \OtomatiesCoreVendor\event_buffer_write(...func_get_args()); } }
+if (!function_exists('event_del')) { function event_del() { return \OtomatiesCoreVendor\event_del(...func_get_args()); } }
+if (!function_exists('event_free')) { function event_free() { return \OtomatiesCoreVendor\event_free(...func_get_args()); } }
+if (!function_exists('event_new')) { function event_new() { return \OtomatiesCoreVendor\event_new(...func_get_args()); } }
+if (!function_exists('event_set')) { function event_set() { return \OtomatiesCoreVendor\event_set(...func_get_args()); } }
+if (!function_exists('event_timer_add')) { function event_timer_add() { return \OtomatiesCoreVendor\event_timer_add(...func_get_args()); } }
+if (!function_exists('event_timer_del')) { function event_timer_del() { return \OtomatiesCoreVendor\event_timer_del(...func_get_args()); } }
+if (!function_exists('event_timer_new')) { function event_timer_new() { return \OtomatiesCoreVendor\event_timer_new(...func_get_args()); } }
+if (!function_exists('event_timer_pending')) { function event_timer_pending() { return \OtomatiesCoreVendor\event_timer_pending(...func_get_args()); } }
+if (!function_exists('event_timer_set')) { function event_timer_set() { return \OtomatiesCoreVendor\event_timer_set(...func_get_args()); } }
 if (!function_exists('excerpt_remove_blocks')) { function excerpt_remove_blocks() { return \OtomatiesCoreVendor\excerpt_remove_blocks(...func_get_args()); } }
 if (!function_exists('excerpt_remove_footnotes')) { function excerpt_remove_footnotes() { return \OtomatiesCoreVendor\excerpt_remove_footnotes(...func_get_args()); } }
+if (!function_exists('exec')) { function exec() { return \OtomatiesCoreVendor\exec(...func_get_args()); } }
+if (!function_exists('exif_imagetype')) { function exif_imagetype() { return \OtomatiesCoreVendor\exif_imagetype(...func_get_args()); } }
+if (!function_exists('exif_read_data')) { function exif_read_data() { return \OtomatiesCoreVendor\exif_read_data(...func_get_args()); } }
+if (!function_exists('exif_tagname')) { function exif_tagname() { return \OtomatiesCoreVendor\exif_tagname(...func_get_args()); } }
+if (!function_exists('exif_thumbnail')) { function exif_thumbnail() { return \OtomatiesCoreVendor\exif_thumbnail(...func_get_args()); } }
+if (!function_exists('exit')) { function exit() { return \OtomatiesCoreVendor\exit(...func_get_args()); } }
+if (!function_exists('exp')) { function exp() { return \OtomatiesCoreVendor\exp(...func_get_args()); } }
+if (!function_exists('expect_expectl')) { function expect_expectl() { return \OtomatiesCoreVendor\expect_expectl(...func_get_args()); } }
+if (!function_exists('expect_popen')) { function expect_popen() { return \OtomatiesCoreVendor\expect_popen(...func_get_args()); } }
+if (!function_exists('explode')) { function explode() { return \OtomatiesCoreVendor\explode(...func_get_args()); } }
+if (!function_exists('expm1')) { function expm1() { return \OtomatiesCoreVendor\expm1(...func_get_args()); } }
 if (!function_exists('export_add_js')) { function export_add_js() { return \OtomatiesCoreVendor\export_add_js(...func_get_args()); } }
 if (!function_exists('export_date_options')) { function export_date_options() { return \OtomatiesCoreVendor\export_date_options(...func_get_args()); } }
 if (!function_exists('export_wp')) { function export_wp() { return \OtomatiesCoreVendor\export_wp(...func_get_args()); } }
+if (!function_exists('extension_loaded')) { function extension_loaded() { return \OtomatiesCoreVendor\extension_loaded(...func_get_args()); } }
+if (!function_exists('extract')) { function extract() { return \OtomatiesCoreVendor\extract(...func_get_args()); } }
 if (!function_exists('extractLocaleFromFilePath')) { function extractLocaleFromFilePath() { return \OtomatiesCoreVendor\extractLocaleFromFilePath(...func_get_args()); } }
 if (!function_exists('extractTranslationKeys')) { function extractTranslationKeys() { return \OtomatiesCoreVendor\extractTranslationKeys(...func_get_args()); } }
 if (!function_exists('extract_from_markers')) { function extract_from_markers() { return \OtomatiesCoreVendor\extract_from_markers(...func_get_args()); } }
 if (!function_exists('extract_order_safe_data')) { function extract_order_safe_data() { return \OtomatiesCoreVendor\extract_order_safe_data(...func_get_args()); } }
 if (!function_exists('extract_serialized_parent_block')) { function extract_serialized_parent_block() { return \OtomatiesCoreVendor\extract_serialized_parent_block(...func_get_args()); } }
+if (!function_exists('ezmlm_hash')) { function ezmlm_hash() { return \OtomatiesCoreVendor\ezmlm_hash(...func_get_args()); } }
+if (!function_exists('fann_cascadetrain_on_data')) { function fann_cascadetrain_on_data() { return \OtomatiesCoreVendor\fann_cascadetrain_on_data(...func_get_args()); } }
+if (!function_exists('fann_cascadetrain_on_file')) { function fann_cascadetrain_on_file() { return \OtomatiesCoreVendor\fann_cascadetrain_on_file(...func_get_args()); } }
+if (!function_exists('fann_clear_scaling_params')) { function fann_clear_scaling_params() { return \OtomatiesCoreVendor\fann_clear_scaling_params(...func_get_args()); } }
+if (!function_exists('fann_copy')) { function fann_copy() { return \OtomatiesCoreVendor\fann_copy(...func_get_args()); } }
+if (!function_exists('fann_create_from_file')) { function fann_create_from_file() { return \OtomatiesCoreVendor\fann_create_from_file(...func_get_args()); } }
+if (!function_exists('fann_create_shortcut')) { function fann_create_shortcut() { return \OtomatiesCoreVendor\fann_create_shortcut(...func_get_args()); } }
+if (!function_exists('fann_create_shortcut_array')) { function fann_create_shortcut_array() { return \OtomatiesCoreVendor\fann_create_shortcut_array(...func_get_args()); } }
+if (!function_exists('fann_create_sparse')) { function fann_create_sparse() { return \OtomatiesCoreVendor\fann_create_sparse(...func_get_args()); } }
+if (!function_exists('fann_create_sparse_array')) { function fann_create_sparse_array() { return \OtomatiesCoreVendor\fann_create_sparse_array(...func_get_args()); } }
+if (!function_exists('fann_create_standard')) { function fann_create_standard() { return \OtomatiesCoreVendor\fann_create_standard(...func_get_args()); } }
+if (!function_exists('fann_create_standard_array')) { function fann_create_standard_array() { return \OtomatiesCoreVendor\fann_create_standard_array(...func_get_args()); } }
+if (!function_exists('fann_create_train')) { function fann_create_train() { return \OtomatiesCoreVendor\fann_create_train(...func_get_args()); } }
+if (!function_exists('fann_create_train_from_callback')) { function fann_create_train_from_callback() { return \OtomatiesCoreVendor\fann_create_train_from_callback(...func_get_args()); } }
+if (!function_exists('fann_descale_input')) { function fann_descale_input() { return \OtomatiesCoreVendor\fann_descale_input(...func_get_args()); } }
+if (!function_exists('fann_descale_output')) { function fann_descale_output() { return \OtomatiesCoreVendor\fann_descale_output(...func_get_args()); } }
+if (!function_exists('fann_descale_train')) { function fann_descale_train() { return \OtomatiesCoreVendor\fann_descale_train(...func_get_args()); } }
+if (!function_exists('fann_destroy')) { function fann_destroy() { return \OtomatiesCoreVendor\fann_destroy(...func_get_args()); } }
+if (!function_exists('fann_destroy_train')) { function fann_destroy_train() { return \OtomatiesCoreVendor\fann_destroy_train(...func_get_args()); } }
+if (!function_exists('fann_duplicate_train_data')) { function fann_duplicate_train_data() { return \OtomatiesCoreVendor\fann_duplicate_train_data(...func_get_args()); } }
+if (!function_exists('fann_get_MSE')) { function fann_get_MSE() { return \OtomatiesCoreVendor\fann_get_MSE(...func_get_args()); } }
+if (!function_exists('fann_get_activation_function')) { function fann_get_activation_function() { return \OtomatiesCoreVendor\fann_get_activation_function(...func_get_args()); } }
+if (!function_exists('fann_get_activation_steepness')) { function fann_get_activation_steepness() { return \OtomatiesCoreVendor\fann_get_activation_steepness(...func_get_args()); } }
+if (!function_exists('fann_get_bias_array')) { function fann_get_bias_array() { return \OtomatiesCoreVendor\fann_get_bias_array(...func_get_args()); } }
+if (!function_exists('fann_get_bit_fail')) { function fann_get_bit_fail() { return \OtomatiesCoreVendor\fann_get_bit_fail(...func_get_args()); } }
+if (!function_exists('fann_get_bit_fail_limit')) { function fann_get_bit_fail_limit() { return \OtomatiesCoreVendor\fann_get_bit_fail_limit(...func_get_args()); } }
+if (!function_exists('fann_get_cascade_activation_functions')) { function fann_get_cascade_activation_functions() { return \OtomatiesCoreVendor\fann_get_cascade_activation_functions(...func_get_args()); } }
+if (!function_exists('fann_get_cascade_activation_functions_count')) { function fann_get_cascade_activation_functions_count() { return \OtomatiesCoreVendor\fann_get_cascade_activation_functions_count(...func_get_args()); } }
+if (!function_exists('fann_get_cascade_activation_steepnesses')) { function fann_get_cascade_activation_steepnesses() { return \OtomatiesCoreVendor\fann_get_cascade_activation_steepnesses(...func_get_args()); } }
+if (!function_exists('fann_get_cascade_activation_steepnesses_count')) { function fann_get_cascade_activation_steepnesses_count() { return \OtomatiesCoreVendor\fann_get_cascade_activation_steepnesses_count(...func_get_args()); } }
+if (!function_exists('fann_get_cascade_candidate_change_fraction')) { function fann_get_cascade_candidate_change_fraction() { return \OtomatiesCoreVendor\fann_get_cascade_candidate_change_fraction(...func_get_args()); } }
+if (!function_exists('fann_get_cascade_candidate_limit')) { function fann_get_cascade_candidate_limit() { return \OtomatiesCoreVendor\fann_get_cascade_candidate_limit(...func_get_args()); } }
+if (!function_exists('fann_get_cascade_candidate_stagnation_epochs')) { function fann_get_cascade_candidate_stagnation_epochs() { return \OtomatiesCoreVendor\fann_get_cascade_candidate_stagnation_epochs(...func_get_args()); } }
+if (!function_exists('fann_get_cascade_max_cand_epochs')) { function fann_get_cascade_max_cand_epochs() { return \OtomatiesCoreVendor\fann_get_cascade_max_cand_epochs(...func_get_args()); } }
+if (!function_exists('fann_get_cascade_max_out_epochs')) { function fann_get_cascade_max_out_epochs() { return \OtomatiesCoreVendor\fann_get_cascade_max_out_epochs(...func_get_args()); } }
+if (!function_exists('fann_get_cascade_min_cand_epochs')) { function fann_get_cascade_min_cand_epochs() { return \OtomatiesCoreVendor\fann_get_cascade_min_cand_epochs(...func_get_args()); } }
+if (!function_exists('fann_get_cascade_min_out_epochs')) { function fann_get_cascade_min_out_epochs() { return \OtomatiesCoreVendor\fann_get_cascade_min_out_epochs(...func_get_args()); } }
+if (!function_exists('fann_get_cascade_num_candidate_groups')) { function fann_get_cascade_num_candidate_groups() { return \OtomatiesCoreVendor\fann_get_cascade_num_candidate_groups(...func_get_args()); } }
+if (!function_exists('fann_get_cascade_num_candidates')) { function fann_get_cascade_num_candidates() { return \OtomatiesCoreVendor\fann_get_cascade_num_candidates(...func_get_args()); } }
+if (!function_exists('fann_get_cascade_output_change_fraction')) { function fann_get_cascade_output_change_fraction() { return \OtomatiesCoreVendor\fann_get_cascade_output_change_fraction(...func_get_args()); } }
+if (!function_exists('fann_get_cascade_output_stagnation_epochs')) { function fann_get_cascade_output_stagnation_epochs() { return \OtomatiesCoreVendor\fann_get_cascade_output_stagnation_epochs(...func_get_args()); } }
+if (!function_exists('fann_get_cascade_weight_multiplier')) { function fann_get_cascade_weight_multiplier() { return \OtomatiesCoreVendor\fann_get_cascade_weight_multiplier(...func_get_args()); } }
+if (!function_exists('fann_get_connection_array')) { function fann_get_connection_array() { return \OtomatiesCoreVendor\fann_get_connection_array(...func_get_args()); } }
+if (!function_exists('fann_get_connection_rate')) { function fann_get_connection_rate() { return \OtomatiesCoreVendor\fann_get_connection_rate(...func_get_args()); } }
+if (!function_exists('fann_get_errno')) { function fann_get_errno() { return \OtomatiesCoreVendor\fann_get_errno(...func_get_args()); } }
+if (!function_exists('fann_get_errstr')) { function fann_get_errstr() { return \OtomatiesCoreVendor\fann_get_errstr(...func_get_args()); } }
+if (!function_exists('fann_get_layer_array')) { function fann_get_layer_array() { return \OtomatiesCoreVendor\fann_get_layer_array(...func_get_args()); } }
+if (!function_exists('fann_get_learning_momentum')) { function fann_get_learning_momentum() { return \OtomatiesCoreVendor\fann_get_learning_momentum(...func_get_args()); } }
+if (!function_exists('fann_get_learning_rate')) { function fann_get_learning_rate() { return \OtomatiesCoreVendor\fann_get_learning_rate(...func_get_args()); } }
+if (!function_exists('fann_get_network_type')) { function fann_get_network_type() { return \OtomatiesCoreVendor\fann_get_network_type(...func_get_args()); } }
+if (!function_exists('fann_get_num_input')) { function fann_get_num_input() { return \OtomatiesCoreVendor\fann_get_num_input(...func_get_args()); } }
+if (!function_exists('fann_get_num_layers')) { function fann_get_num_layers() { return \OtomatiesCoreVendor\fann_get_num_layers(...func_get_args()); } }
+if (!function_exists('fann_get_num_output')) { function fann_get_num_output() { return \OtomatiesCoreVendor\fann_get_num_output(...func_get_args()); } }
+if (!function_exists('fann_get_quickprop_decay')) { function fann_get_quickprop_decay() { return \OtomatiesCoreVendor\fann_get_quickprop_decay(...func_get_args()); } }
+if (!function_exists('fann_get_quickprop_mu')) { function fann_get_quickprop_mu() { return \OtomatiesCoreVendor\fann_get_quickprop_mu(...func_get_args()); } }
+if (!function_exists('fann_get_rprop_decrease_factor')) { function fann_get_rprop_decrease_factor() { return \OtomatiesCoreVendor\fann_get_rprop_decrease_factor(...func_get_args()); } }
+if (!function_exists('fann_get_rprop_delta_max')) { function fann_get_rprop_delta_max() { return \OtomatiesCoreVendor\fann_get_rprop_delta_max(...func_get_args()); } }
+if (!function_exists('fann_get_rprop_delta_min')) { function fann_get_rprop_delta_min() { return \OtomatiesCoreVendor\fann_get_rprop_delta_min(...func_get_args()); } }
+if (!function_exists('fann_get_rprop_delta_zero')) { function fann_get_rprop_delta_zero() { return \OtomatiesCoreVendor\fann_get_rprop_delta_zero(...func_get_args()); } }
+if (!function_exists('fann_get_rprop_increase_factor')) { function fann_get_rprop_increase_factor() { return \OtomatiesCoreVendor\fann_get_rprop_increase_factor(...func_get_args()); } }
+if (!function_exists('fann_get_sarprop_step_error_shift')) { function fann_get_sarprop_step_error_shift() { return \OtomatiesCoreVendor\fann_get_sarprop_step_error_shift(...func_get_args()); } }
+if (!function_exists('fann_get_sarprop_step_error_threshold_factor')) { function fann_get_sarprop_step_error_threshold_factor() { return \OtomatiesCoreVendor\fann_get_sarprop_step_error_threshold_factor(...func_get_args()); } }
+if (!function_exists('fann_get_sarprop_temperature')) { function fann_get_sarprop_temperature() { return \OtomatiesCoreVendor\fann_get_sarprop_temperature(...func_get_args()); } }
+if (!function_exists('fann_get_sarprop_weight_decay_shift')) { function fann_get_sarprop_weight_decay_shift() { return \OtomatiesCoreVendor\fann_get_sarprop_weight_decay_shift(...func_get_args()); } }
+if (!function_exists('fann_get_total_connections')) { function fann_get_total_connections() { return \OtomatiesCoreVendor\fann_get_total_connections(...func_get_args()); } }
+if (!function_exists('fann_get_total_neurons')) { function fann_get_total_neurons() { return \OtomatiesCoreVendor\fann_get_total_neurons(...func_get_args()); } }
+if (!function_exists('fann_get_train_error_function')) { function fann_get_train_error_function() { return \OtomatiesCoreVendor\fann_get_train_error_function(...func_get_args()); } }
+if (!function_exists('fann_get_train_stop_function')) { function fann_get_train_stop_function() { return \OtomatiesCoreVendor\fann_get_train_stop_function(...func_get_args()); } }
+if (!function_exists('fann_get_training_algorithm')) { function fann_get_training_algorithm() { return \OtomatiesCoreVendor\fann_get_training_algorithm(...func_get_args()); } }
+if (!function_exists('fann_init_weights')) { function fann_init_weights() { return \OtomatiesCoreVendor\fann_init_weights(...func_get_args()); } }
+if (!function_exists('fann_length_train_data')) { function fann_length_train_data() { return \OtomatiesCoreVendor\fann_length_train_data(...func_get_args()); } }
+if (!function_exists('fann_merge_train_data')) { function fann_merge_train_data() { return \OtomatiesCoreVendor\fann_merge_train_data(...func_get_args()); } }
+if (!function_exists('fann_num_input_train_data')) { function fann_num_input_train_data() { return \OtomatiesCoreVendor\fann_num_input_train_data(...func_get_args()); } }
+if (!function_exists('fann_num_output_train_data')) { function fann_num_output_train_data() { return \OtomatiesCoreVendor\fann_num_output_train_data(...func_get_args()); } }
+if (!function_exists('fann_print_error')) { function fann_print_error() { return \OtomatiesCoreVendor\fann_print_error(...func_get_args()); } }
+if (!function_exists('fann_randomize_weights')) { function fann_randomize_weights() { return \OtomatiesCoreVendor\fann_randomize_weights(...func_get_args()); } }
+if (!function_exists('fann_read_train_from_file')) { function fann_read_train_from_file() { return \OtomatiesCoreVendor\fann_read_train_from_file(...func_get_args()); } }
+if (!function_exists('fann_reset_MSE')) { function fann_reset_MSE() { return \OtomatiesCoreVendor\fann_reset_MSE(...func_get_args()); } }
+if (!function_exists('fann_reset_errno')) { function fann_reset_errno() { return \OtomatiesCoreVendor\fann_reset_errno(...func_get_args()); } }
+if (!function_exists('fann_reset_errstr')) { function fann_reset_errstr() { return \OtomatiesCoreVendor\fann_reset_errstr(...func_get_args()); } }
+if (!function_exists('fann_run')) { function fann_run() { return \OtomatiesCoreVendor\fann_run(...func_get_args()); } }
+if (!function_exists('fann_save')) { function fann_save() { return \OtomatiesCoreVendor\fann_save(...func_get_args()); } }
+if (!function_exists('fann_save_train')) { function fann_save_train() { return \OtomatiesCoreVendor\fann_save_train(...func_get_args()); } }
+if (!function_exists('fann_scale_input')) { function fann_scale_input() { return \OtomatiesCoreVendor\fann_scale_input(...func_get_args()); } }
+if (!function_exists('fann_scale_input_train_data')) { function fann_scale_input_train_data() { return \OtomatiesCoreVendor\fann_scale_input_train_data(...func_get_args()); } }
+if (!function_exists('fann_scale_output')) { function fann_scale_output() { return \OtomatiesCoreVendor\fann_scale_output(...func_get_args()); } }
+if (!function_exists('fann_scale_output_train_data')) { function fann_scale_output_train_data() { return \OtomatiesCoreVendor\fann_scale_output_train_data(...func_get_args()); } }
+if (!function_exists('fann_scale_train')) { function fann_scale_train() { return \OtomatiesCoreVendor\fann_scale_train(...func_get_args()); } }
+if (!function_exists('fann_scale_train_data')) { function fann_scale_train_data() { return \OtomatiesCoreVendor\fann_scale_train_data(...func_get_args()); } }
+if (!function_exists('fann_set_activation_function')) { function fann_set_activation_function() { return \OtomatiesCoreVendor\fann_set_activation_function(...func_get_args()); } }
+if (!function_exists('fann_set_activation_function_hidden')) { function fann_set_activation_function_hidden() { return \OtomatiesCoreVendor\fann_set_activation_function_hidden(...func_get_args()); } }
+if (!function_exists('fann_set_activation_function_layer')) { function fann_set_activation_function_layer() { return \OtomatiesCoreVendor\fann_set_activation_function_layer(...func_get_args()); } }
+if (!function_exists('fann_set_activation_function_output')) { function fann_set_activation_function_output() { return \OtomatiesCoreVendor\fann_set_activation_function_output(...func_get_args()); } }
+if (!function_exists('fann_set_activation_steepness')) { function fann_set_activation_steepness() { return \OtomatiesCoreVendor\fann_set_activation_steepness(...func_get_args()); } }
+if (!function_exists('fann_set_activation_steepness_hidden')) { function fann_set_activation_steepness_hidden() { return \OtomatiesCoreVendor\fann_set_activation_steepness_hidden(...func_get_args()); } }
+if (!function_exists('fann_set_activation_steepness_layer')) { function fann_set_activation_steepness_layer() { return \OtomatiesCoreVendor\fann_set_activation_steepness_layer(...func_get_args()); } }
+if (!function_exists('fann_set_activation_steepness_output')) { function fann_set_activation_steepness_output() { return \OtomatiesCoreVendor\fann_set_activation_steepness_output(...func_get_args()); } }
+if (!function_exists('fann_set_bit_fail_limit')) { function fann_set_bit_fail_limit() { return \OtomatiesCoreVendor\fann_set_bit_fail_limit(...func_get_args()); } }
+if (!function_exists('fann_set_callback')) { function fann_set_callback() { return \OtomatiesCoreVendor\fann_set_callback(...func_get_args()); } }
+if (!function_exists('fann_set_cascade_activation_functions')) { function fann_set_cascade_activation_functions() { return \OtomatiesCoreVendor\fann_set_cascade_activation_functions(...func_get_args()); } }
+if (!function_exists('fann_set_cascade_activation_steepnesses')) { function fann_set_cascade_activation_steepnesses() { return \OtomatiesCoreVendor\fann_set_cascade_activation_steepnesses(...func_get_args()); } }
+if (!function_exists('fann_set_cascade_candidate_change_fraction')) { function fann_set_cascade_candidate_change_fraction() { return \OtomatiesCoreVendor\fann_set_cascade_candidate_change_fraction(...func_get_args()); } }
+if (!function_exists('fann_set_cascade_candidate_limit')) { function fann_set_cascade_candidate_limit() { return \OtomatiesCoreVendor\fann_set_cascade_candidate_limit(...func_get_args()); } }
+if (!function_exists('fann_set_cascade_candidate_stagnation_epochs')) { function fann_set_cascade_candidate_stagnation_epochs() { return \OtomatiesCoreVendor\fann_set_cascade_candidate_stagnation_epochs(...func_get_args()); } }
+if (!function_exists('fann_set_cascade_max_cand_epochs')) { function fann_set_cascade_max_cand_epochs() { return \OtomatiesCoreVendor\fann_set_cascade_max_cand_epochs(...func_get_args()); } }
+if (!function_exists('fann_set_cascade_max_out_epochs')) { function fann_set_cascade_max_out_epochs() { return \OtomatiesCoreVendor\fann_set_cascade_max_out_epochs(...func_get_args()); } }
+if (!function_exists('fann_set_cascade_min_cand_epochs')) { function fann_set_cascade_min_cand_epochs() { return \OtomatiesCoreVendor\fann_set_cascade_min_cand_epochs(...func_get_args()); } }
+if (!function_exists('fann_set_cascade_min_out_epochs')) { function fann_set_cascade_min_out_epochs() { return \OtomatiesCoreVendor\fann_set_cascade_min_out_epochs(...func_get_args()); } }
+if (!function_exists('fann_set_cascade_num_candidate_groups')) { function fann_set_cascade_num_candidate_groups() { return \OtomatiesCoreVendor\fann_set_cascade_num_candidate_groups(...func_get_args()); } }
+if (!function_exists('fann_set_cascade_output_change_fraction')) { function fann_set_cascade_output_change_fraction() { return \OtomatiesCoreVendor\fann_set_cascade_output_change_fraction(...func_get_args()); } }
+if (!function_exists('fann_set_cascade_output_stagnation_epochs')) { function fann_set_cascade_output_stagnation_epochs() { return \OtomatiesCoreVendor\fann_set_cascade_output_stagnation_epochs(...func_get_args()); } }
+if (!function_exists('fann_set_cascade_weight_multiplier')) { function fann_set_cascade_weight_multiplier() { return \OtomatiesCoreVendor\fann_set_cascade_weight_multiplier(...func_get_args()); } }
+if (!function_exists('fann_set_error_log')) { function fann_set_error_log() { return \OtomatiesCoreVendor\fann_set_error_log(...func_get_args()); } }
+if (!function_exists('fann_set_input_scaling_params')) { function fann_set_input_scaling_params() { return \OtomatiesCoreVendor\fann_set_input_scaling_params(...func_get_args()); } }
+if (!function_exists('fann_set_learning_momentum')) { function fann_set_learning_momentum() { return \OtomatiesCoreVendor\fann_set_learning_momentum(...func_get_args()); } }
+if (!function_exists('fann_set_learning_rate')) { function fann_set_learning_rate() { return \OtomatiesCoreVendor\fann_set_learning_rate(...func_get_args()); } }
+if (!function_exists('fann_set_output_scaling_params')) { function fann_set_output_scaling_params() { return \OtomatiesCoreVendor\fann_set_output_scaling_params(...func_get_args()); } }
+if (!function_exists('fann_set_quickprop_decay')) { function fann_set_quickprop_decay() { return \OtomatiesCoreVendor\fann_set_quickprop_decay(...func_get_args()); } }
+if (!function_exists('fann_set_quickprop_mu')) { function fann_set_quickprop_mu() { return \OtomatiesCoreVendor\fann_set_quickprop_mu(...func_get_args()); } }
+if (!function_exists('fann_set_rprop_decrease_factor')) { function fann_set_rprop_decrease_factor() { return \OtomatiesCoreVendor\fann_set_rprop_decrease_factor(...func_get_args()); } }
+if (!function_exists('fann_set_rprop_delta_max')) { function fann_set_rprop_delta_max() { return \OtomatiesCoreVendor\fann_set_rprop_delta_max(...func_get_args()); } }
+if (!function_exists('fann_set_rprop_delta_min')) { function fann_set_rprop_delta_min() { return \OtomatiesCoreVendor\fann_set_rprop_delta_min(...func_get_args()); } }
+if (!function_exists('fann_set_rprop_delta_zero')) { function fann_set_rprop_delta_zero() { return \OtomatiesCoreVendor\fann_set_rprop_delta_zero(...func_get_args()); } }
+if (!function_exists('fann_set_rprop_increase_factor')) { function fann_set_rprop_increase_factor() { return \OtomatiesCoreVendor\fann_set_rprop_increase_factor(...func_get_args()); } }
+if (!function_exists('fann_set_sarprop_step_error_shift')) { function fann_set_sarprop_step_error_shift() { return \OtomatiesCoreVendor\fann_set_sarprop_step_error_shift(...func_get_args()); } }
+if (!function_exists('fann_set_sarprop_step_error_threshold_factor')) { function fann_set_sarprop_step_error_threshold_factor() { return \OtomatiesCoreVendor\fann_set_sarprop_step_error_threshold_factor(...func_get_args()); } }
+if (!function_exists('fann_set_sarprop_temperature')) { function fann_set_sarprop_temperature() { return \OtomatiesCoreVendor\fann_set_sarprop_temperature(...func_get_args()); } }
+if (!function_exists('fann_set_sarprop_weight_decay_shift')) { function fann_set_sarprop_weight_decay_shift() { return \OtomatiesCoreVendor\fann_set_sarprop_weight_decay_shift(...func_get_args()); } }
+if (!function_exists('fann_set_scaling_params')) { function fann_set_scaling_params() { return \OtomatiesCoreVendor\fann_set_scaling_params(...func_get_args()); } }
+if (!function_exists('fann_set_train_error_function')) { function fann_set_train_error_function() { return \OtomatiesCoreVendor\fann_set_train_error_function(...func_get_args()); } }
+if (!function_exists('fann_set_train_stop_function')) { function fann_set_train_stop_function() { return \OtomatiesCoreVendor\fann_set_train_stop_function(...func_get_args()); } }
+if (!function_exists('fann_set_training_algorithm')) { function fann_set_training_algorithm() { return \OtomatiesCoreVendor\fann_set_training_algorithm(...func_get_args()); } }
+if (!function_exists('fann_set_weight')) { function fann_set_weight() { return \OtomatiesCoreVendor\fann_set_weight(...func_get_args()); } }
+if (!function_exists('fann_set_weight_array')) { function fann_set_weight_array() { return \OtomatiesCoreVendor\fann_set_weight_array(...func_get_args()); } }
+if (!function_exists('fann_shuffle_train_data')) { function fann_shuffle_train_data() { return \OtomatiesCoreVendor\fann_shuffle_train_data(...func_get_args()); } }
+if (!function_exists('fann_subset_train_data')) { function fann_subset_train_data() { return \OtomatiesCoreVendor\fann_subset_train_data(...func_get_args()); } }
+if (!function_exists('fann_test')) { function fann_test() { return \OtomatiesCoreVendor\fann_test(...func_get_args()); } }
+if (!function_exists('fann_test_data')) { function fann_test_data() { return \OtomatiesCoreVendor\fann_test_data(...func_get_args()); } }
+if (!function_exists('fann_train')) { function fann_train() { return \OtomatiesCoreVendor\fann_train(...func_get_args()); } }
+if (!function_exists('fann_train_epoch')) { function fann_train_epoch() { return \OtomatiesCoreVendor\fann_train_epoch(...func_get_args()); } }
+if (!function_exists('fann_train_on_data')) { function fann_train_on_data() { return \OtomatiesCoreVendor\fann_train_on_data(...func_get_args()); } }
+if (!function_exists('fann_train_on_file')) { function fann_train_on_file() { return \OtomatiesCoreVendor\fann_train_on_file(...func_get_args()); } }
+if (!function_exists('fastcgi_finish_request')) { function fastcgi_finish_request() { return \OtomatiesCoreVendor\fastcgi_finish_request(...func_get_args()); } }
 if (!function_exists('favorite_actions')) { function favorite_actions() { return \OtomatiesCoreVendor\favorite_actions(...func_get_args()); } }
+if (!function_exists('fbird_add_user')) { function fbird_add_user() { return \OtomatiesCoreVendor\fbird_add_user(...func_get_args()); } }
+if (!function_exists('fbird_affected_rows')) { function fbird_affected_rows() { return \OtomatiesCoreVendor\fbird_affected_rows(...func_get_args()); } }
+if (!function_exists('fbird_backup')) { function fbird_backup() { return \OtomatiesCoreVendor\fbird_backup(...func_get_args()); } }
+if (!function_exists('fbird_blob_add')) { function fbird_blob_add() { return \OtomatiesCoreVendor\fbird_blob_add(...func_get_args()); } }
+if (!function_exists('fbird_blob_cancel')) { function fbird_blob_cancel() { return \OtomatiesCoreVendor\fbird_blob_cancel(...func_get_args()); } }
+if (!function_exists('fbird_blob_close')) { function fbird_blob_close() { return \OtomatiesCoreVendor\fbird_blob_close(...func_get_args()); } }
+if (!function_exists('fbird_blob_create')) { function fbird_blob_create() { return \OtomatiesCoreVendor\fbird_blob_create(...func_get_args()); } }
+if (!function_exists('fbird_blob_echo')) { function fbird_blob_echo() { return \OtomatiesCoreVendor\fbird_blob_echo(...func_get_args()); } }
+if (!function_exists('fbird_blob_get')) { function fbird_blob_get() { return \OtomatiesCoreVendor\fbird_blob_get(...func_get_args()); } }
+if (!function_exists('fbird_blob_import')) { function fbird_blob_import() { return \OtomatiesCoreVendor\fbird_blob_import(...func_get_args()); } }
+if (!function_exists('fbird_blob_info')) { function fbird_blob_info() { return \OtomatiesCoreVendor\fbird_blob_info(...func_get_args()); } }
+if (!function_exists('fbird_blob_open')) { function fbird_blob_open() { return \OtomatiesCoreVendor\fbird_blob_open(...func_get_args()); } }
+if (!function_exists('fbird_close')) { function fbird_close() { return \OtomatiesCoreVendor\fbird_close(...func_get_args()); } }
+if (!function_exists('fbird_commit')) { function fbird_commit() { return \OtomatiesCoreVendor\fbird_commit(...func_get_args()); } }
+if (!function_exists('fbird_commit_ret')) { function fbird_commit_ret() { return \OtomatiesCoreVendor\fbird_commit_ret(...func_get_args()); } }
+if (!function_exists('fbird_connect')) { function fbird_connect() { return \OtomatiesCoreVendor\fbird_connect(...func_get_args()); } }
+if (!function_exists('fbird_db_info')) { function fbird_db_info() { return \OtomatiesCoreVendor\fbird_db_info(...func_get_args()); } }
+if (!function_exists('fbird_delete_user')) { function fbird_delete_user() { return \OtomatiesCoreVendor\fbird_delete_user(...func_get_args()); } }
+if (!function_exists('fbird_drop_db')) { function fbird_drop_db() { return \OtomatiesCoreVendor\fbird_drop_db(...func_get_args()); } }
+if (!function_exists('fbird_errcode')) { function fbird_errcode() { return \OtomatiesCoreVendor\fbird_errcode(...func_get_args()); } }
+if (!function_exists('fbird_errmsg')) { function fbird_errmsg() { return \OtomatiesCoreVendor\fbird_errmsg(...func_get_args()); } }
+if (!function_exists('fbird_execute')) { function fbird_execute() { return \OtomatiesCoreVendor\fbird_execute(...func_get_args()); } }
+if (!function_exists('fbird_fetch_assoc')) { function fbird_fetch_assoc() { return \OtomatiesCoreVendor\fbird_fetch_assoc(...func_get_args()); } }
+if (!function_exists('fbird_fetch_object')) { function fbird_fetch_object() { return \OtomatiesCoreVendor\fbird_fetch_object(...func_get_args()); } }
+if (!function_exists('fbird_fetch_row')) { function fbird_fetch_row() { return \OtomatiesCoreVendor\fbird_fetch_row(...func_get_args()); } }
+if (!function_exists('fbird_field_info')) { function fbird_field_info() { return \OtomatiesCoreVendor\fbird_field_info(...func_get_args()); } }
+if (!function_exists('fbird_free_event_handler')) { function fbird_free_event_handler() { return \OtomatiesCoreVendor\fbird_free_event_handler(...func_get_args()); } }
+if (!function_exists('fbird_free_query')) { function fbird_free_query() { return \OtomatiesCoreVendor\fbird_free_query(...func_get_args()); } }
+if (!function_exists('fbird_free_result')) { function fbird_free_result() { return \OtomatiesCoreVendor\fbird_free_result(...func_get_args()); } }
+if (!function_exists('fbird_gen_id')) { function fbird_gen_id() { return \OtomatiesCoreVendor\fbird_gen_id(...func_get_args()); } }
+if (!function_exists('fbird_maintain_db')) { function fbird_maintain_db() { return \OtomatiesCoreVendor\fbird_maintain_db(...func_get_args()); } }
+if (!function_exists('fbird_modify_user')) { function fbird_modify_user() { return \OtomatiesCoreVendor\fbird_modify_user(...func_get_args()); } }
+if (!function_exists('fbird_name_result')) { function fbird_name_result() { return \OtomatiesCoreVendor\fbird_name_result(...func_get_args()); } }
+if (!function_exists('fbird_num_fields')) { function fbird_num_fields() { return \OtomatiesCoreVendor\fbird_num_fields(...func_get_args()); } }
+if (!function_exists('fbird_num_params')) { function fbird_num_params() { return \OtomatiesCoreVendor\fbird_num_params(...func_get_args()); } }
+if (!function_exists('fbird_param_info')) { function fbird_param_info() { return \OtomatiesCoreVendor\fbird_param_info(...func_get_args()); } }
+if (!function_exists('fbird_pconnect')) { function fbird_pconnect() { return \OtomatiesCoreVendor\fbird_pconnect(...func_get_args()); } }
+if (!function_exists('fbird_prepare')) { function fbird_prepare() { return \OtomatiesCoreVendor\fbird_prepare(...func_get_args()); } }
+if (!function_exists('fbird_query')) { function fbird_query() { return \OtomatiesCoreVendor\fbird_query(...func_get_args()); } }
+if (!function_exists('fbird_restore')) { function fbird_restore() { return \OtomatiesCoreVendor\fbird_restore(...func_get_args()); } }
+if (!function_exists('fbird_rollback')) { function fbird_rollback() { return \OtomatiesCoreVendor\fbird_rollback(...func_get_args()); } }
+if (!function_exists('fbird_rollback_ret')) { function fbird_rollback_ret() { return \OtomatiesCoreVendor\fbird_rollback_ret(...func_get_args()); } }
+if (!function_exists('fbird_server_info')) { function fbird_server_info() { return \OtomatiesCoreVendor\fbird_server_info(...func_get_args()); } }
+if (!function_exists('fbird_service_attach')) { function fbird_service_attach() { return \OtomatiesCoreVendor\fbird_service_attach(...func_get_args()); } }
+if (!function_exists('fbird_service_detach')) { function fbird_service_detach() { return \OtomatiesCoreVendor\fbird_service_detach(...func_get_args()); } }
+if (!function_exists('fbird_set_event_handler')) { function fbird_set_event_handler() { return \OtomatiesCoreVendor\fbird_set_event_handler(...func_get_args()); } }
+if (!function_exists('fbird_trans')) { function fbird_trans() { return \OtomatiesCoreVendor\fbird_trans(...func_get_args()); } }
+if (!function_exists('fbird_wait_event')) { function fbird_wait_event() { return \OtomatiesCoreVendor\fbird_wait_event(...func_get_args()); } }
+if (!function_exists('fclose')) { function fclose() { return \OtomatiesCoreVendor\fclose(...func_get_args()); } }
+if (!function_exists('fdatasync')) { function fdatasync() { return \OtomatiesCoreVendor\fdatasync(...func_get_args()); } }
+if (!function_exists('fdiv')) { function fdiv() { return \OtomatiesCoreVendor\fdiv(...func_get_args()); } }
 if (!function_exists('feed_content_type')) { function feed_content_type() { return \OtomatiesCoreVendor\feed_content_type(...func_get_args()); } }
 if (!function_exists('feed_links')) { function feed_links() { return \OtomatiesCoreVendor\feed_links(...func_get_args()); } }
 if (!function_exists('feed_links_extra')) { function feed_links_extra() { return \OtomatiesCoreVendor\feed_links_extra(...func_get_args()); } }
+if (!function_exists('feof')) { function feof() { return \OtomatiesCoreVendor\feof(...func_get_args()); } }
 if (!function_exists('fetch_feed')) { function fetch_feed() { return \OtomatiesCoreVendor\fetch_feed(...func_get_args()); } }
+if (!function_exists('fflush')) { function fflush() { return \OtomatiesCoreVendor\fflush(...func_get_args()); } }
+if (!function_exists('fgetc')) { function fgetc() { return \OtomatiesCoreVendor\fgetc(...func_get_args()); } }
+if (!function_exists('fgetcsv')) { function fgetcsv() { return \OtomatiesCoreVendor\fgetcsv(...func_get_args()); } }
+if (!function_exists('fgets')) { function fgets() { return \OtomatiesCoreVendor\fgets(...func_get_args()); } }
+if (!function_exists('fgetss')) { function fgetss() { return \OtomatiesCoreVendor\fgetss(...func_get_args()); } }
+if (!function_exists('file')) { function file() { return \OtomatiesCoreVendor\file(...func_get_args()); } }
+if (!function_exists('file_exists')) { function file_exists() { return \OtomatiesCoreVendor\file_exists(...func_get_args()); } }
+if (!function_exists('file_get_contents')) { function file_get_contents() { return \OtomatiesCoreVendor\file_get_contents(...func_get_args()); } }
 if (!function_exists('file_is_displayable_image')) { function file_is_displayable_image() { return \OtomatiesCoreVendor\file_is_displayable_image(...func_get_args()); } }
 if (!function_exists('file_is_valid_image')) { function file_is_valid_image() { return \OtomatiesCoreVendor\file_is_valid_image(...func_get_args()); } }
+if (!function_exists('file_put_contents')) { function file_put_contents() { return \OtomatiesCoreVendor\file_put_contents(...func_get_args()); } }
+if (!function_exists('fileatime')) { function fileatime() { return \OtomatiesCoreVendor\fileatime(...func_get_args()); } }
+if (!function_exists('filectime')) { function filectime() { return \OtomatiesCoreVendor\filectime(...func_get_args()); } }
+if (!function_exists('filegroup')) { function filegroup() { return \OtomatiesCoreVendor\filegroup(...func_get_args()); } }
+if (!function_exists('fileinode')) { function fileinode() { return \OtomatiesCoreVendor\fileinode(...func_get_args()); } }
+if (!function_exists('filemtime')) { function filemtime() { return \OtomatiesCoreVendor\filemtime(...func_get_args()); } }
+if (!function_exists('fileowner')) { function fileowner() { return \OtomatiesCoreVendor\fileowner(...func_get_args()); } }
+if (!function_exists('fileperms')) { function fileperms() { return \OtomatiesCoreVendor\fileperms(...func_get_args()); } }
+if (!function_exists('filesize')) { function filesize() { return \OtomatiesCoreVendor\filesize(...func_get_args()); } }
+if (!function_exists('filetype')) { function filetype() { return \OtomatiesCoreVendor\filetype(...func_get_args()); } }
 if (!function_exists('filled')) { function filled() { return \OtomatiesCoreVendor\filled(...func_get_args()); } }
 if (!function_exists('filter_SSL')) { function filter_SSL() { return \OtomatiesCoreVendor\filter_SSL(...func_get_args()); } }
 if (!function_exists('filter_block_content')) { function filter_block_content() { return \OtomatiesCoreVendor\filter_block_content(...func_get_args()); } }
@@ -1969,17 +3668,36 @@ if (!function_exists('filter_block_kses')) { function filter_block_kses() { retu
 if (!function_exists('filter_block_kses_value')) { function filter_block_kses_value() { return \OtomatiesCoreVendor\filter_block_kses_value(...func_get_args()); } }
 if (!function_exists('filter_default_metadata')) { function filter_default_metadata() { return \OtomatiesCoreVendor\filter_default_metadata(...func_get_args()); } }
 if (!function_exists('filter_default_option')) { function filter_default_option() { return \OtomatiesCoreVendor\filter_default_option(...func_get_args()); } }
+if (!function_exists('filter_has_var')) { function filter_has_var() { return \OtomatiesCoreVendor\filter_has_var(...func_get_args()); } }
+if (!function_exists('filter_id')) { function filter_id() { return \OtomatiesCoreVendor\filter_id(...func_get_args()); } }
+if (!function_exists('filter_input')) { function filter_input() { return \OtomatiesCoreVendor\filter_input(...func_get_args()); } }
+if (!function_exists('filter_input_array')) { function filter_input_array() { return \OtomatiesCoreVendor\filter_input_array(...func_get_args()); } }
+if (!function_exists('filter_list')) { function filter_list() { return \OtomatiesCoreVendor\filter_list(...func_get_args()); } }
+if (!function_exists('filter_var')) { function filter_var() { return \OtomatiesCoreVendor\filter_var(...func_get_args()); } }
+if (!function_exists('filter_var_array')) { function filter_var_array() { return \OtomatiesCoreVendor\filter_var_array(...func_get_args()); } }
 if (!function_exists('findTransUnitMismatches')) { function findTransUnitMismatches() { return \OtomatiesCoreVendor\findTransUnitMismatches(...func_get_args()); } }
 if (!function_exists('findTranslationFiles')) { function findTranslationFiles() { return \OtomatiesCoreVendor\findTranslationFiles(...func_get_args()); } }
 if (!function_exists('find_core_auto_update')) { function find_core_auto_update() { return \OtomatiesCoreVendor\find_core_auto_update(...func_get_args()); } }
 if (!function_exists('find_core_update')) { function find_core_update() { return \OtomatiesCoreVendor\find_core_update(...func_get_args()); } }
 if (!function_exists('find_posts_div')) { function find_posts_div() { return \OtomatiesCoreVendor\find_posts_div(...func_get_args()); } }
+if (!function_exists('finfo_buffer')) { function finfo_buffer() { return \OtomatiesCoreVendor\finfo_buffer(...func_get_args()); } }
+if (!function_exists('finfo_close')) { function finfo_close() { return \OtomatiesCoreVendor\finfo_close(...func_get_args()); } }
+if (!function_exists('finfo_file')) { function finfo_file() { return \OtomatiesCoreVendor\finfo_file(...func_get_args()); } }
+if (!function_exists('finfo_open')) { function finfo_open() { return \OtomatiesCoreVendor\finfo_open(...func_get_args()); } }
+if (!function_exists('finfo_set_flags')) { function finfo_set_flags() { return \OtomatiesCoreVendor\finfo_set_flags(...func_get_args()); } }
 if (!function_exists('fix_import_form_size')) { function fix_import_form_size() { return \OtomatiesCoreVendor\fix_import_form_size(...func_get_args()); } }
 if (!function_exists('fix_phpmailer_messageid')) { function fix_phpmailer_messageid() { return \OtomatiesCoreVendor\fix_phpmailer_messageid(...func_get_args()); } }
 if (!function_exists('floated_admin_avatar')) { function floated_admin_avatar() { return \OtomatiesCoreVendor\floated_admin_avatar(...func_get_args()); } }
+if (!function_exists('floatval')) { function floatval() { return \OtomatiesCoreVendor\floatval(...func_get_args()); } }
+if (!function_exists('flock')) { function flock() { return \OtomatiesCoreVendor\flock(...func_get_args()); } }
+if (!function_exists('floor')) { function floor() { return \OtomatiesCoreVendor\floor(...func_get_args()); } }
 if (!function_exists('fluent')) { function fluent() { return \OtomatiesCoreVendor\fluent(...func_get_args()); } }
+if (!function_exists('flush')) { function flush() { return \OtomatiesCoreVendor\flush(...func_get_args()); } }
 if (!function_exists('flush_rewrite_rules')) { function flush_rewrite_rules() { return \OtomatiesCoreVendor\flush_rewrite_rules(...func_get_args()); } }
 if (!function_exists('flush_rewrite_rules_on_shop_page_save')) { function flush_rewrite_rules_on_shop_page_save() { return \OtomatiesCoreVendor\flush_rewrite_rules_on_shop_page_save(...func_get_args()); } }
+if (!function_exists('fmod')) { function fmod() { return \OtomatiesCoreVendor\fmod(...func_get_args()); } }
+if (!function_exists('fnmatch')) { function fnmatch() { return \OtomatiesCoreVendor\fnmatch(...func_get_args()); } }
+if (!function_exists('fopen')) { function fopen() { return \OtomatiesCoreVendor\fopen(...func_get_args()); } }
 if (!function_exists('force_balance_tags')) { function force_balance_tags() { return \OtomatiesCoreVendor\force_balance_tags(...func_get_args()); } }
 if (!function_exists('force_ssl_admin')) { function force_ssl_admin() { return \OtomatiesCoreVendor\force_ssl_admin(...func_get_args()); } }
 if (!function_exists('force_ssl_content')) { function force_ssl_content() { return \OtomatiesCoreVendor\force_ssl_content(...func_get_args()); } }
@@ -1990,15 +3708,194 @@ if (!function_exists('format_code_lang')) { function format_code_lang() { return
 if (!function_exists('format_for_editor')) { function format_for_editor() { return \OtomatiesCoreVendor\format_for_editor(...func_get_args()); } }
 if (!function_exists('format_to_edit')) { function format_to_edit() { return \OtomatiesCoreVendor\format_to_edit(...func_get_args()); } }
 if (!function_exists('format_to_post')) { function format_to_post() { return \OtomatiesCoreVendor\format_to_post(...func_get_args()); } }
+if (!function_exists('forward_static_call')) { function forward_static_call() { return \OtomatiesCoreVendor\forward_static_call(...func_get_args()); } }
+if (!function_exists('forward_static_call_array')) { function forward_static_call_array() { return \OtomatiesCoreVendor\forward_static_call_array(...func_get_args()); } }
+if (!function_exists('fpassthru')) { function fpassthru() { return \OtomatiesCoreVendor\fpassthru(...func_get_args()); } }
+if (!function_exists('fpm_get_status')) { function fpm_get_status() { return \OtomatiesCoreVendor\fpm_get_status(...func_get_args()); } }
 if (!function_exists('fpow')) { function fpow() { return \OtomatiesCoreVendor\fpow(...func_get_args()); } }
+if (!function_exists('fprintf')) { function fprintf() { return \OtomatiesCoreVendor\fprintf(...func_get_args()); } }
+if (!function_exists('fputcsv')) { function fputcsv() { return \OtomatiesCoreVendor\fputcsv(...func_get_args()); } }
+if (!function_exists('fputs')) { function fputs() { return \OtomatiesCoreVendor\fputs(...func_get_args()); } }
+if (!function_exists('frankenphp_finish_request')) { function frankenphp_finish_request() { return \OtomatiesCoreVendor\frankenphp_finish_request(...func_get_args()); } }
+if (!function_exists('frankenphp_handle_request')) { function frankenphp_handle_request() { return \OtomatiesCoreVendor\frankenphp_handle_request(...func_get_args()); } }
+if (!function_exists('frankenphp_request_headers')) { function frankenphp_request_headers() { return \OtomatiesCoreVendor\frankenphp_request_headers(...func_get_args()); } }
+if (!function_exists('frankenphp_response_headers')) { function frankenphp_response_headers() { return \OtomatiesCoreVendor\frankenphp_response_headers(...func_get_args()); } }
+if (!function_exists('fread')) { function fread() { return \OtomatiesCoreVendor\fread(...func_get_args()); } }
+if (!function_exists('frenchtojd')) { function frenchtojd() { return \OtomatiesCoreVendor\frenchtojd(...func_get_args()); } }
+if (!function_exists('fscanf')) { function fscanf() { return \OtomatiesCoreVendor\fscanf(...func_get_args()); } }
+if (!function_exists('fseek')) { function fseek() { return \OtomatiesCoreVendor\fseek(...func_get_args()); } }
+if (!function_exists('fsockopen')) { function fsockopen() { return \OtomatiesCoreVendor\fsockopen(...func_get_args()); } }
+if (!function_exists('fstat')) { function fstat() { return \OtomatiesCoreVendor\fstat(...func_get_args()); } }
+if (!function_exists('fsync')) { function fsync() { return \OtomatiesCoreVendor\fsync(...func_get_args()); } }
+if (!function_exists('ftell')) { function ftell() { return \OtomatiesCoreVendor\ftell(...func_get_args()); } }
+if (!function_exists('ftok')) { function ftok() { return \OtomatiesCoreVendor\ftok(...func_get_args()); } }
+if (!function_exists('ftp_alloc')) { function ftp_alloc() { return \OtomatiesCoreVendor\ftp_alloc(...func_get_args()); } }
+if (!function_exists('ftp_append')) { function ftp_append() { return \OtomatiesCoreVendor\ftp_append(...func_get_args()); } }
+if (!function_exists('ftp_cdup')) { function ftp_cdup() { return \OtomatiesCoreVendor\ftp_cdup(...func_get_args()); } }
+if (!function_exists('ftp_chdir')) { function ftp_chdir() { return \OtomatiesCoreVendor\ftp_chdir(...func_get_args()); } }
+if (!function_exists('ftp_chmod')) { function ftp_chmod() { return \OtomatiesCoreVendor\ftp_chmod(...func_get_args()); } }
+if (!function_exists('ftp_close')) { function ftp_close() { return \OtomatiesCoreVendor\ftp_close(...func_get_args()); } }
+if (!function_exists('ftp_connect')) { function ftp_connect() { return \OtomatiesCoreVendor\ftp_connect(...func_get_args()); } }
+if (!function_exists('ftp_delete')) { function ftp_delete() { return \OtomatiesCoreVendor\ftp_delete(...func_get_args()); } }
+if (!function_exists('ftp_exec')) { function ftp_exec() { return \OtomatiesCoreVendor\ftp_exec(...func_get_args()); } }
+if (!function_exists('ftp_fget')) { function ftp_fget() { return \OtomatiesCoreVendor\ftp_fget(...func_get_args()); } }
+if (!function_exists('ftp_fput')) { function ftp_fput() { return \OtomatiesCoreVendor\ftp_fput(...func_get_args()); } }
+if (!function_exists('ftp_get')) { function ftp_get() { return \OtomatiesCoreVendor\ftp_get(...func_get_args()); } }
+if (!function_exists('ftp_get_option')) { function ftp_get_option() { return \OtomatiesCoreVendor\ftp_get_option(...func_get_args()); } }
+if (!function_exists('ftp_login')) { function ftp_login() { return \OtomatiesCoreVendor\ftp_login(...func_get_args()); } }
+if (!function_exists('ftp_mdtm')) { function ftp_mdtm() { return \OtomatiesCoreVendor\ftp_mdtm(...func_get_args()); } }
+if (!function_exists('ftp_mkdir')) { function ftp_mkdir() { return \OtomatiesCoreVendor\ftp_mkdir(...func_get_args()); } }
+if (!function_exists('ftp_mlsd')) { function ftp_mlsd() { return \OtomatiesCoreVendor\ftp_mlsd(...func_get_args()); } }
+if (!function_exists('ftp_nb_continue')) { function ftp_nb_continue() { return \OtomatiesCoreVendor\ftp_nb_continue(...func_get_args()); } }
+if (!function_exists('ftp_nb_fget')) { function ftp_nb_fget() { return \OtomatiesCoreVendor\ftp_nb_fget(...func_get_args()); } }
+if (!function_exists('ftp_nb_fput')) { function ftp_nb_fput() { return \OtomatiesCoreVendor\ftp_nb_fput(...func_get_args()); } }
+if (!function_exists('ftp_nb_get')) { function ftp_nb_get() { return \OtomatiesCoreVendor\ftp_nb_get(...func_get_args()); } }
+if (!function_exists('ftp_nb_put')) { function ftp_nb_put() { return \OtomatiesCoreVendor\ftp_nb_put(...func_get_args()); } }
+if (!function_exists('ftp_nlist')) { function ftp_nlist() { return \OtomatiesCoreVendor\ftp_nlist(...func_get_args()); } }
+if (!function_exists('ftp_pasv')) { function ftp_pasv() { return \OtomatiesCoreVendor\ftp_pasv(...func_get_args()); } }
+if (!function_exists('ftp_put')) { function ftp_put() { return \OtomatiesCoreVendor\ftp_put(...func_get_args()); } }
+if (!function_exists('ftp_pwd')) { function ftp_pwd() { return \OtomatiesCoreVendor\ftp_pwd(...func_get_args()); } }
+if (!function_exists('ftp_quit')) { function ftp_quit() { return \OtomatiesCoreVendor\ftp_quit(...func_get_args()); } }
+if (!function_exists('ftp_raw')) { function ftp_raw() { return \OtomatiesCoreVendor\ftp_raw(...func_get_args()); } }
+if (!function_exists('ftp_rawlist')) { function ftp_rawlist() { return \OtomatiesCoreVendor\ftp_rawlist(...func_get_args()); } }
+if (!function_exists('ftp_rename')) { function ftp_rename() { return \OtomatiesCoreVendor\ftp_rename(...func_get_args()); } }
+if (!function_exists('ftp_rmdir')) { function ftp_rmdir() { return \OtomatiesCoreVendor\ftp_rmdir(...func_get_args()); } }
+if (!function_exists('ftp_set_option')) { function ftp_set_option() { return \OtomatiesCoreVendor\ftp_set_option(...func_get_args()); } }
+if (!function_exists('ftp_site')) { function ftp_site() { return \OtomatiesCoreVendor\ftp_site(...func_get_args()); } }
+if (!function_exists('ftp_size')) { function ftp_size() { return \OtomatiesCoreVendor\ftp_size(...func_get_args()); } }
+if (!function_exists('ftp_ssl_connect')) { function ftp_ssl_connect() { return \OtomatiesCoreVendor\ftp_ssl_connect(...func_get_args()); } }
+if (!function_exists('ftp_systype')) { function ftp_systype() { return \OtomatiesCoreVendor\ftp_systype(...func_get_args()); } }
+if (!function_exists('ftruncate')) { function ftruncate() { return \OtomatiesCoreVendor\ftruncate(...func_get_args()); } }
+if (!function_exists('func_get_arg')) { function func_get_arg() { return \OtomatiesCoreVendor\func_get_arg(...func_get_args()); } }
+if (!function_exists('func_get_args')) { function func_get_args() { return \OtomatiesCoreVendor\func_get_args(...func_get_args()); } }
+if (!function_exists('func_num_args')) { function func_num_args() { return \OtomatiesCoreVendor\func_num_args(...func_get_args()); } }
+if (!function_exists('function_exists')) { function function_exists() { return \OtomatiesCoreVendor\function_exists(...func_get_args()); } }
 if (!function_exists('funky_javascript_callback')) { function funky_javascript_callback() { return \OtomatiesCoreVendor\funky_javascript_callback(...func_get_args()); } }
 if (!function_exists('funky_javascript_fix')) { function funky_javascript_fix() { return \OtomatiesCoreVendor\funky_javascript_fix(...func_get_args()); } }
+if (!function_exists('fwrite')) { function fwrite() { return \OtomatiesCoreVendor\fwrite(...func_get_args()); } }
 if (!function_exists('gallery_shortcode')) { function gallery_shortcode() { return \OtomatiesCoreVendor\gallery_shortcode(...func_get_args()); } }
+if (!function_exists('gc_collect_cycles')) { function gc_collect_cycles() { return \OtomatiesCoreVendor\gc_collect_cycles(...func_get_args()); } }
+if (!function_exists('gc_disable')) { function gc_disable() { return \OtomatiesCoreVendor\gc_disable(...func_get_args()); } }
+if (!function_exists('gc_enable')) { function gc_enable() { return \OtomatiesCoreVendor\gc_enable(...func_get_args()); } }
+if (!function_exists('gc_enabled')) { function gc_enabled() { return \OtomatiesCoreVendor\gc_enabled(...func_get_args()); } }
+if (!function_exists('gc_mem_caches')) { function gc_mem_caches() { return \OtomatiesCoreVendor\gc_mem_caches(...func_get_args()); } }
+if (!function_exists('gc_status')) { function gc_status() { return \OtomatiesCoreVendor\gc_status(...func_get_args()); } }
 if (!function_exists('gd_edit_image_support')) { function gd_edit_image_support() { return \OtomatiesCoreVendor\gd_edit_image_support(...func_get_args()); } }
+if (!function_exists('gd_info')) { function gd_info() { return \OtomatiesCoreVendor\gd_info(...func_get_args()); } }
+if (!function_exists('gearman_bugreport')) { function gearman_bugreport() { return \OtomatiesCoreVendor\gearman_bugreport(...func_get_args()); } }
+if (!function_exists('gearman_client_add_options')) { function gearman_client_add_options() { return \OtomatiesCoreVendor\gearman_client_add_options(...func_get_args()); } }
+if (!function_exists('gearman_client_add_server')) { function gearman_client_add_server() { return \OtomatiesCoreVendor\gearman_client_add_server(...func_get_args()); } }
+if (!function_exists('gearman_client_add_servers')) { function gearman_client_add_servers() { return \OtomatiesCoreVendor\gearman_client_add_servers(...func_get_args()); } }
+if (!function_exists('gearman_client_add_task')) { function gearman_client_add_task() { return \OtomatiesCoreVendor\gearman_client_add_task(...func_get_args()); } }
+if (!function_exists('gearman_client_add_task_background')) { function gearman_client_add_task_background() { return \OtomatiesCoreVendor\gearman_client_add_task_background(...func_get_args()); } }
+if (!function_exists('gearman_client_add_task_high')) { function gearman_client_add_task_high() { return \OtomatiesCoreVendor\gearman_client_add_task_high(...func_get_args()); } }
+if (!function_exists('gearman_client_add_task_high_background')) { function gearman_client_add_task_high_background() { return \OtomatiesCoreVendor\gearman_client_add_task_high_background(...func_get_args()); } }
+if (!function_exists('gearman_client_add_task_low')) { function gearman_client_add_task_low() { return \OtomatiesCoreVendor\gearman_client_add_task_low(...func_get_args()); } }
+if (!function_exists('gearman_client_add_task_low_background')) { function gearman_client_add_task_low_background() { return \OtomatiesCoreVendor\gearman_client_add_task_low_background(...func_get_args()); } }
+if (!function_exists('gearman_client_add_task_status')) { function gearman_client_add_task_status() { return \OtomatiesCoreVendor\gearman_client_add_task_status(...func_get_args()); } }
+if (!function_exists('gearman_client_clear_fn')) { function gearman_client_clear_fn() { return \OtomatiesCoreVendor\gearman_client_clear_fn(...func_get_args()); } }
+if (!function_exists('gearman_client_clone')) { function gearman_client_clone() { return \OtomatiesCoreVendor\gearman_client_clone(...func_get_args()); } }
+if (!function_exists('gearman_client_context')) { function gearman_client_context() { return \OtomatiesCoreVendor\gearman_client_context(...func_get_args()); } }
+if (!function_exists('gearman_client_create')) { function gearman_client_create() { return \OtomatiesCoreVendor\gearman_client_create(...func_get_args()); } }
+if (!function_exists('gearman_client_do')) { function gearman_client_do() { return \OtomatiesCoreVendor\gearman_client_do(...func_get_args()); } }
+if (!function_exists('gearman_client_do_background')) { function gearman_client_do_background() { return \OtomatiesCoreVendor\gearman_client_do_background(...func_get_args()); } }
+if (!function_exists('gearman_client_do_high')) { function gearman_client_do_high() { return \OtomatiesCoreVendor\gearman_client_do_high(...func_get_args()); } }
+if (!function_exists('gearman_client_do_high_background')) { function gearman_client_do_high_background() { return \OtomatiesCoreVendor\gearman_client_do_high_background(...func_get_args()); } }
+if (!function_exists('gearman_client_do_job_handle')) { function gearman_client_do_job_handle() { return \OtomatiesCoreVendor\gearman_client_do_job_handle(...func_get_args()); } }
+if (!function_exists('gearman_client_do_low')) { function gearman_client_do_low() { return \OtomatiesCoreVendor\gearman_client_do_low(...func_get_args()); } }
+if (!function_exists('gearman_client_do_low_background')) { function gearman_client_do_low_background() { return \OtomatiesCoreVendor\gearman_client_do_low_background(...func_get_args()); } }
+if (!function_exists('gearman_client_do_normal')) { function gearman_client_do_normal() { return \OtomatiesCoreVendor\gearman_client_do_normal(...func_get_args()); } }
+if (!function_exists('gearman_client_do_status')) { function gearman_client_do_status() { return \OtomatiesCoreVendor\gearman_client_do_status(...func_get_args()); } }
+if (!function_exists('gearman_client_echo')) { function gearman_client_echo() { return \OtomatiesCoreVendor\gearman_client_echo(...func_get_args()); } }
+if (!function_exists('gearman_client_errno')) { function gearman_client_errno() { return \OtomatiesCoreVendor\gearman_client_errno(...func_get_args()); } }
+if (!function_exists('gearman_client_error')) { function gearman_client_error() { return \OtomatiesCoreVendor\gearman_client_error(...func_get_args()); } }
+if (!function_exists('gearman_client_job_status')) { function gearman_client_job_status() { return \OtomatiesCoreVendor\gearman_client_job_status(...func_get_args()); } }
+if (!function_exists('gearman_client_options')) { function gearman_client_options() { return \OtomatiesCoreVendor\gearman_client_options(...func_get_args()); } }
+if (!function_exists('gearman_client_remove_options')) { function gearman_client_remove_options() { return \OtomatiesCoreVendor\gearman_client_remove_options(...func_get_args()); } }
+if (!function_exists('gearman_client_return_code')) { function gearman_client_return_code() { return \OtomatiesCoreVendor\gearman_client_return_code(...func_get_args()); } }
+if (!function_exists('gearman_client_run_tasks')) { function gearman_client_run_tasks() { return \OtomatiesCoreVendor\gearman_client_run_tasks(...func_get_args()); } }
+if (!function_exists('gearman_client_set_complete_fn')) { function gearman_client_set_complete_fn() { return \OtomatiesCoreVendor\gearman_client_set_complete_fn(...func_get_args()); } }
+if (!function_exists('gearman_client_set_context')) { function gearman_client_set_context() { return \OtomatiesCoreVendor\gearman_client_set_context(...func_get_args()); } }
+if (!function_exists('gearman_client_set_created_fn')) { function gearman_client_set_created_fn() { return \OtomatiesCoreVendor\gearman_client_set_created_fn(...func_get_args()); } }
+if (!function_exists('gearman_client_set_data_fn')) { function gearman_client_set_data_fn() { return \OtomatiesCoreVendor\gearman_client_set_data_fn(...func_get_args()); } }
+if (!function_exists('gearman_client_set_exception_fn')) { function gearman_client_set_exception_fn() { return \OtomatiesCoreVendor\gearman_client_set_exception_fn(...func_get_args()); } }
+if (!function_exists('gearman_client_set_fail_fn')) { function gearman_client_set_fail_fn() { return \OtomatiesCoreVendor\gearman_client_set_fail_fn(...func_get_args()); } }
+if (!function_exists('gearman_client_set_options')) { function gearman_client_set_options() { return \OtomatiesCoreVendor\gearman_client_set_options(...func_get_args()); } }
+if (!function_exists('gearman_client_set_status_fn')) { function gearman_client_set_status_fn() { return \OtomatiesCoreVendor\gearman_client_set_status_fn(...func_get_args()); } }
+if (!function_exists('gearman_client_set_timeout')) { function gearman_client_set_timeout() { return \OtomatiesCoreVendor\gearman_client_set_timeout(...func_get_args()); } }
+if (!function_exists('gearman_client_set_warning_fn')) { function gearman_client_set_warning_fn() { return \OtomatiesCoreVendor\gearman_client_set_warning_fn(...func_get_args()); } }
+if (!function_exists('gearman_client_set_workload_fn')) { function gearman_client_set_workload_fn() { return \OtomatiesCoreVendor\gearman_client_set_workload_fn(...func_get_args()); } }
+if (!function_exists('gearman_client_timeout')) { function gearman_client_timeout() { return \OtomatiesCoreVendor\gearman_client_timeout(...func_get_args()); } }
+if (!function_exists('gearman_client_wait')) { function gearman_client_wait() { return \OtomatiesCoreVendor\gearman_client_wait(...func_get_args()); } }
+if (!function_exists('gearman_job_function_name')) { function gearman_job_function_name() { return \OtomatiesCoreVendor\gearman_job_function_name(...func_get_args()); } }
+if (!function_exists('gearman_job_handle')) { function gearman_job_handle() { return \OtomatiesCoreVendor\gearman_job_handle(...func_get_args()); } }
+if (!function_exists('gearman_job_return_code')) { function gearman_job_return_code() { return \OtomatiesCoreVendor\gearman_job_return_code(...func_get_args()); } }
+if (!function_exists('gearman_job_send_complete')) { function gearman_job_send_complete() { return \OtomatiesCoreVendor\gearman_job_send_complete(...func_get_args()); } }
+if (!function_exists('gearman_job_send_data')) { function gearman_job_send_data() { return \OtomatiesCoreVendor\gearman_job_send_data(...func_get_args()); } }
+if (!function_exists('gearman_job_send_exception')) { function gearman_job_send_exception() { return \OtomatiesCoreVendor\gearman_job_send_exception(...func_get_args()); } }
+if (!function_exists('gearman_job_send_fail')) { function gearman_job_send_fail() { return \OtomatiesCoreVendor\gearman_job_send_fail(...func_get_args()); } }
+if (!function_exists('gearman_job_send_status')) { function gearman_job_send_status() { return \OtomatiesCoreVendor\gearman_job_send_status(...func_get_args()); } }
+if (!function_exists('gearman_job_send_warning')) { function gearman_job_send_warning() { return \OtomatiesCoreVendor\gearman_job_send_warning(...func_get_args()); } }
+if (!function_exists('gearman_job_unique')) { function gearman_job_unique() { return \OtomatiesCoreVendor\gearman_job_unique(...func_get_args()); } }
+if (!function_exists('gearman_job_workload')) { function gearman_job_workload() { return \OtomatiesCoreVendor\gearman_job_workload(...func_get_args()); } }
+if (!function_exists('gearman_job_workload_size')) { function gearman_job_workload_size() { return \OtomatiesCoreVendor\gearman_job_workload_size(...func_get_args()); } }
+if (!function_exists('gearman_task_data')) { function gearman_task_data() { return \OtomatiesCoreVendor\gearman_task_data(...func_get_args()); } }
+if (!function_exists('gearman_task_data_size')) { function gearman_task_data_size() { return \OtomatiesCoreVendor\gearman_task_data_size(...func_get_args()); } }
+if (!function_exists('gearman_task_denominator')) { function gearman_task_denominator() { return \OtomatiesCoreVendor\gearman_task_denominator(...func_get_args()); } }
+if (!function_exists('gearman_task_function_name')) { function gearman_task_function_name() { return \OtomatiesCoreVendor\gearman_task_function_name(...func_get_args()); } }
+if (!function_exists('gearman_task_is_known')) { function gearman_task_is_known() { return \OtomatiesCoreVendor\gearman_task_is_known(...func_get_args()); } }
+if (!function_exists('gearman_task_is_running')) { function gearman_task_is_running() { return \OtomatiesCoreVendor\gearman_task_is_running(...func_get_args()); } }
+if (!function_exists('gearman_task_job_handle')) { function gearman_task_job_handle() { return \OtomatiesCoreVendor\gearman_task_job_handle(...func_get_args()); } }
+if (!function_exists('gearman_task_numerator')) { function gearman_task_numerator() { return \OtomatiesCoreVendor\gearman_task_numerator(...func_get_args()); } }
+if (!function_exists('gearman_task_recv_data')) { function gearman_task_recv_data() { return \OtomatiesCoreVendor\gearman_task_recv_data(...func_get_args()); } }
+if (!function_exists('gearman_task_return_code')) { function gearman_task_return_code() { return \OtomatiesCoreVendor\gearman_task_return_code(...func_get_args()); } }
+if (!function_exists('gearman_task_send_workload')) { function gearman_task_send_workload() { return \OtomatiesCoreVendor\gearman_task_send_workload(...func_get_args()); } }
+if (!function_exists('gearman_task_unique')) { function gearman_task_unique() { return \OtomatiesCoreVendor\gearman_task_unique(...func_get_args()); } }
+if (!function_exists('gearman_verbose_name')) { function gearman_verbose_name() { return \OtomatiesCoreVendor\gearman_verbose_name(...func_get_args()); } }
+if (!function_exists('gearman_version')) { function gearman_version() { return \OtomatiesCoreVendor\gearman_version(...func_get_args()); } }
+if (!function_exists('gearman_worker_add_function')) { function gearman_worker_add_function() { return \OtomatiesCoreVendor\gearman_worker_add_function(...func_get_args()); } }
+if (!function_exists('gearman_worker_add_options')) { function gearman_worker_add_options() { return \OtomatiesCoreVendor\gearman_worker_add_options(...func_get_args()); } }
+if (!function_exists('gearman_worker_add_server')) { function gearman_worker_add_server() { return \OtomatiesCoreVendor\gearman_worker_add_server(...func_get_args()); } }
+if (!function_exists('gearman_worker_add_servers')) { function gearman_worker_add_servers() { return \OtomatiesCoreVendor\gearman_worker_add_servers(...func_get_args()); } }
+if (!function_exists('gearman_worker_clone')) { function gearman_worker_clone() { return \OtomatiesCoreVendor\gearman_worker_clone(...func_get_args()); } }
+if (!function_exists('gearman_worker_create')) { function gearman_worker_create() { return \OtomatiesCoreVendor\gearman_worker_create(...func_get_args()); } }
+if (!function_exists('gearman_worker_echo')) { function gearman_worker_echo() { return \OtomatiesCoreVendor\gearman_worker_echo(...func_get_args()); } }
+if (!function_exists('gearman_worker_errno')) { function gearman_worker_errno() { return \OtomatiesCoreVendor\gearman_worker_errno(...func_get_args()); } }
+if (!function_exists('gearman_worker_error')) { function gearman_worker_error() { return \OtomatiesCoreVendor\gearman_worker_error(...func_get_args()); } }
+if (!function_exists('gearman_worker_grab_job')) { function gearman_worker_grab_job() { return \OtomatiesCoreVendor\gearman_worker_grab_job(...func_get_args()); } }
+if (!function_exists('gearman_worker_options')) { function gearman_worker_options() { return \OtomatiesCoreVendor\gearman_worker_options(...func_get_args()); } }
+if (!function_exists('gearman_worker_register')) { function gearman_worker_register() { return \OtomatiesCoreVendor\gearman_worker_register(...func_get_args()); } }
+if (!function_exists('gearman_worker_remove_options')) { function gearman_worker_remove_options() { return \OtomatiesCoreVendor\gearman_worker_remove_options(...func_get_args()); } }
+if (!function_exists('gearman_worker_return_code')) { function gearman_worker_return_code() { return \OtomatiesCoreVendor\gearman_worker_return_code(...func_get_args()); } }
+if (!function_exists('gearman_worker_set_options')) { function gearman_worker_set_options() { return \OtomatiesCoreVendor\gearman_worker_set_options(...func_get_args()); } }
+if (!function_exists('gearman_worker_set_timeout')) { function gearman_worker_set_timeout() { return \OtomatiesCoreVendor\gearman_worker_set_timeout(...func_get_args()); } }
+if (!function_exists('gearman_worker_timeout')) { function gearman_worker_timeout() { return \OtomatiesCoreVendor\gearman_worker_timeout(...func_get_args()); } }
+if (!function_exists('gearman_worker_unregister')) { function gearman_worker_unregister() { return \OtomatiesCoreVendor\gearman_worker_unregister(...func_get_args()); } }
+if (!function_exists('gearman_worker_unregister_all')) { function gearman_worker_unregister_all() { return \OtomatiesCoreVendor\gearman_worker_unregister_all(...func_get_args()); } }
+if (!function_exists('gearman_worker_wait')) { function gearman_worker_wait() { return \OtomatiesCoreVendor\gearman_worker_wait(...func_get_args()); } }
+if (!function_exists('gearman_worker_work')) { function gearman_worker_work() { return \OtomatiesCoreVendor\gearman_worker_work(...func_get_args()); } }
 if (!function_exists('generate_block_asset_handle')) { function generate_block_asset_handle() { return \OtomatiesCoreVendor\generate_block_asset_handle(...func_get_args()); } }
 if (!function_exists('generate_postdata')) { function generate_postdata() { return \OtomatiesCoreVendor\generate_postdata(...func_get_args()); } }
 if (!function_exists('generate_random_password')) { function generate_random_password() { return \OtomatiesCoreVendor\generate_random_password(...func_get_args()); } }
 if (!function_exists('generic_ping')) { function generic_ping() { return \OtomatiesCoreVendor\generic_ping(...func_get_args()); } }
+if (!function_exists('geoip_asnum_by_name')) { function geoip_asnum_by_name() { return \OtomatiesCoreVendor\geoip_asnum_by_name(...func_get_args()); } }
+if (!function_exists('geoip_continent_code_by_name')) { function geoip_continent_code_by_name() { return \OtomatiesCoreVendor\geoip_continent_code_by_name(...func_get_args()); } }
+if (!function_exists('geoip_country_code3_by_name')) { function geoip_country_code3_by_name() { return \OtomatiesCoreVendor\geoip_country_code3_by_name(...func_get_args()); } }
+if (!function_exists('geoip_country_code_by_name')) { function geoip_country_code_by_name() { return \OtomatiesCoreVendor\geoip_country_code_by_name(...func_get_args()); } }
+if (!function_exists('geoip_country_name_by_name')) { function geoip_country_name_by_name() { return \OtomatiesCoreVendor\geoip_country_name_by_name(...func_get_args()); } }
+if (!function_exists('geoip_database_info')) { function geoip_database_info() { return \OtomatiesCoreVendor\geoip_database_info(...func_get_args()); } }
+if (!function_exists('geoip_db_avail')) { function geoip_db_avail() { return \OtomatiesCoreVendor\geoip_db_avail(...func_get_args()); } }
+if (!function_exists('geoip_db_filename')) { function geoip_db_filename() { return \OtomatiesCoreVendor\geoip_db_filename(...func_get_args()); } }
+if (!function_exists('geoip_db_get_all_info')) { function geoip_db_get_all_info() { return \OtomatiesCoreVendor\geoip_db_get_all_info(...func_get_args()); } }
+if (!function_exists('geoip_id_by_name')) { function geoip_id_by_name() { return \OtomatiesCoreVendor\geoip_id_by_name(...func_get_args()); } }
+if (!function_exists('geoip_isp_by_name')) { function geoip_isp_by_name() { return \OtomatiesCoreVendor\geoip_isp_by_name(...func_get_args()); } }
+if (!function_exists('geoip_netspeedcell_by_name')) { function geoip_netspeedcell_by_name() { return \OtomatiesCoreVendor\geoip_netspeedcell_by_name(...func_get_args()); } }
+if (!function_exists('geoip_org_by_name')) { function geoip_org_by_name() { return \OtomatiesCoreVendor\geoip_org_by_name(...func_get_args()); } }
+if (!function_exists('geoip_record_by_name')) { function geoip_record_by_name() { return \OtomatiesCoreVendor\geoip_record_by_name(...func_get_args()); } }
+if (!function_exists('geoip_region_by_name')) { function geoip_region_by_name() { return \OtomatiesCoreVendor\geoip_region_by_name(...func_get_args()); } }
+if (!function_exists('geoip_region_name_by_code')) { function geoip_region_name_by_code() { return \OtomatiesCoreVendor\geoip_region_name_by_code(...func_get_args()); } }
+if (!function_exists('geoip_setup_custom_directory')) { function geoip_setup_custom_directory() { return \OtomatiesCoreVendor\geoip_setup_custom_directory(...func_get_args()); } }
+if (!function_exists('geoip_time_zone_by_country_and_region')) { function geoip_time_zone_by_country_and_region() { return \OtomatiesCoreVendor\geoip_time_zone_by_country_and_region(...func_get_args()); } }
 if (!function_exists('getHtmlAttribute')) { function getHtmlAttribute() { return \OtomatiesCoreVendor\getHtmlAttribute(...func_get_args()); } }
 if (!function_exists('getMaxHistoryMonthsByAmount')) { function getMaxHistoryMonthsByAmount() { return \OtomatiesCoreVendor\getMaxHistoryMonthsByAmount(...func_get_args()); } }
 if (!function_exists('getOpenCollectiveSponsors')) { function getOpenCollectiveSponsors() { return \OtomatiesCoreVendor\getOpenCollectiveSponsors(...func_get_args()); } }
@@ -2094,7 +3991,10 @@ if (!function_exists('get_brand_thumbnail_image')) { function get_brand_thumbnai
 if (!function_exists('get_brand_thumbnail_url')) { function get_brand_thumbnail_url() { return \OtomatiesCoreVendor\get_brand_thumbnail_url(...func_get_args()); } }
 if (!function_exists('get_brands')) { function get_brands() { return \OtomatiesCoreVendor\get_brands(...func_get_args()); } }
 if (!function_exists('get_broken_themes')) { function get_broken_themes() { return \OtomatiesCoreVendor\get_broken_themes(...func_get_args()); } }
+if (!function_exists('get_browser')) { function get_browser() { return \OtomatiesCoreVendor\get_browser(...func_get_args()); } }
 if (!function_exists('get_calendar')) { function get_calendar() { return \OtomatiesCoreVendor\get_calendar(...func_get_args()); } }
+if (!function_exists('get_call_stack')) { function get_call_stack() { return \OtomatiesCoreVendor\get_call_stack(...func_get_args()); } }
+if (!function_exists('get_called_class')) { function get_called_class() { return \OtomatiesCoreVendor\get_called_class(...func_get_args()); } }
 if (!function_exists('get_cancel_comment_reply_link')) { function get_cancel_comment_reply_link() { return \OtomatiesCoreVendor\get_cancel_comment_reply_link(...func_get_args()); } }
 if (!function_exists('get_cat_ID')) { function get_cat_ID() { return \OtomatiesCoreVendor\get_cat_ID(...func_get_args()); } }
 if (!function_exists('get_cat_name')) { function get_cat_name() { return \OtomatiesCoreVendor\get_cat_name(...func_get_args()); } }
@@ -2110,7 +4010,11 @@ if (!function_exists('get_category_rss_link')) { function get_category_rss_link(
 if (!function_exists('get_category_template')) { function get_category_template() { return \OtomatiesCoreVendor\get_category_template(...func_get_args()); } }
 if (!function_exists('get_category_to_edit')) { function get_category_to_edit() { return \OtomatiesCoreVendor\get_category_to_edit(...func_get_args()); } }
 if (!function_exists('get_catname')) { function get_catname() { return \OtomatiesCoreVendor\get_catname(...func_get_args()); } }
+if (!function_exists('get_cfg_var')) { function get_cfg_var() { return \OtomatiesCoreVendor\get_cfg_var(...func_get_args()); } }
 if (!function_exists('get_children')) { function get_children() { return \OtomatiesCoreVendor\get_children(...func_get_args()); } }
+if (!function_exists('get_class')) { function get_class() { return \OtomatiesCoreVendor\get_class(...func_get_args()); } }
+if (!function_exists('get_class_methods')) { function get_class_methods() { return \OtomatiesCoreVendor\get_class_methods(...func_get_args()); } }
+if (!function_exists('get_class_vars')) { function get_class_vars() { return \OtomatiesCoreVendor\get_class_vars(...func_get_args()); } }
 if (!function_exists('get_classic_theme_supports_block_editor_settings')) { function get_classic_theme_supports_block_editor_settings() { return \OtomatiesCoreVendor\get_classic_theme_supports_block_editor_settings(...func_get_args()); } }
 if (!function_exists('get_clean_basedomain')) { function get_clean_basedomain() { return \OtomatiesCoreVendor\get_clean_basedomain(...func_get_args()); } }
 if (!function_exists('get_cli_args')) { function get_cli_args() { return \OtomatiesCoreVendor\get_cli_args(...func_get_args()); } }
@@ -2159,6 +4063,7 @@ if (!function_exists('get_current_screen')) { function get_current_screen() { re
 if (!function_exists('get_current_site')) { function get_current_site() { return \OtomatiesCoreVendor\get_current_site(...func_get_args()); } }
 if (!function_exists('get_current_site_name')) { function get_current_site_name() { return \OtomatiesCoreVendor\get_current_site_name(...func_get_args()); } }
 if (!function_exists('get_current_theme')) { function get_current_theme() { return \OtomatiesCoreVendor\get_current_theme(...func_get_args()); } }
+if (!function_exists('get_current_user')) { function get_current_user() { return \OtomatiesCoreVendor\get_current_user(...func_get_args()); } }
 if (!function_exists('get_current_user_id')) { function get_current_user_id() { return \OtomatiesCoreVendor\get_current_user_id(...func_get_args()); } }
 if (!function_exists('get_currentuserinfo')) { function get_currentuserinfo() { return \OtomatiesCoreVendor\get_currentuserinfo(...func_get_args()); } }
 if (!function_exists('get_custom_header')) { function get_custom_header() { return \OtomatiesCoreVendor\get_custom_header(...func_get_args()); } }
@@ -2169,6 +4074,10 @@ if (!function_exists('get_dashboard_url')) { function get_dashboard_url() { retu
 if (!function_exists('get_date_from_gmt')) { function get_date_from_gmt() { return \OtomatiesCoreVendor\get_date_from_gmt(...func_get_args()); } }
 if (!function_exists('get_date_template')) { function get_date_template() { return \OtomatiesCoreVendor\get_date_template(...func_get_args()); } }
 if (!function_exists('get_day_link')) { function get_day_link() { return \OtomatiesCoreVendor\get_day_link(...func_get_args()); } }
+if (!function_exists('get_debug_type')) { function get_debug_type() { return \OtomatiesCoreVendor\get_debug_type(...func_get_args()); } }
+if (!function_exists('get_declared_classes')) { function get_declared_classes() { return \OtomatiesCoreVendor\get_declared_classes(...func_get_args()); } }
+if (!function_exists('get_declared_interfaces')) { function get_declared_interfaces() { return \OtomatiesCoreVendor\get_declared_interfaces(...func_get_args()); } }
+if (!function_exists('get_declared_traits')) { function get_declared_traits() { return \OtomatiesCoreVendor\get_declared_traits(...func_get_args()); } }
 if (!function_exists('get_default_block_categories')) { function get_default_block_categories() { return \OtomatiesCoreVendor\get_default_block_categories(...func_get_args()); } }
 if (!function_exists('get_default_block_editor_settings')) { function get_default_block_editor_settings() { return \OtomatiesCoreVendor\get_default_block_editor_settings(...func_get_args()); } }
 if (!function_exists('get_default_block_template_types')) { function get_default_block_template_types() { return \OtomatiesCoreVendor\get_default_block_template_types(...func_get_args()); } }
@@ -2177,6 +4086,9 @@ if (!function_exists('get_default_feed')) { function get_default_feed() { return
 if (!function_exists('get_default_link_to_edit')) { function get_default_link_to_edit() { return \OtomatiesCoreVendor\get_default_link_to_edit(...func_get_args()); } }
 if (!function_exists('get_default_page_to_edit')) { function get_default_page_to_edit() { return \OtomatiesCoreVendor\get_default_page_to_edit(...func_get_args()); } }
 if (!function_exists('get_default_post_to_edit')) { function get_default_post_to_edit() { return \OtomatiesCoreVendor\get_default_post_to_edit(...func_get_args()); } }
+if (!function_exists('get_defined_constants')) { function get_defined_constants() { return \OtomatiesCoreVendor\get_defined_constants(...func_get_args()); } }
+if (!function_exists('get_defined_functions')) { function get_defined_functions() { return \OtomatiesCoreVendor\get_defined_functions(...func_get_args()); } }
+if (!function_exists('get_defined_vars')) { function get_defined_vars() { return \OtomatiesCoreVendor\get_defined_vars(...func_get_args()); } }
 if (!function_exists('get_delete_post_link')) { function get_delete_post_link() { return \OtomatiesCoreVendor\get_delete_post_link(...func_get_args()); } }
 if (!function_exists('get_dirsize')) { function get_dirsize() { return \OtomatiesCoreVendor\get_dirsize(...func_get_args()); } }
 if (!function_exists('get_dropins')) { function get_dropins() { return \OtomatiesCoreVendor\get_dropins(...func_get_args()); } }
@@ -2197,6 +4109,7 @@ if (!function_exists('get_enclosed')) { function get_enclosed() { return \Otomat
 if (!function_exists('get_error_handler')) { function get_error_handler() { return \OtomatiesCoreVendor\get_error_handler(...func_get_args()); } }
 if (!function_exists('get_exception_handler')) { function get_exception_handler() { return \OtomatiesCoreVendor\get_exception_handler(...func_get_args()); } }
 if (!function_exists('get_extended')) { function get_extended() { return \OtomatiesCoreVendor\get_extended(...func_get_args()); } }
+if (!function_exists('get_extension_funcs')) { function get_extension_funcs() { return \OtomatiesCoreVendor\get_extension_funcs(...func_get_args()); } }
 if (!function_exists('get_feed_build_date')) { function get_feed_build_date() { return \OtomatiesCoreVendor\get_feed_build_date(...func_get_args()); } }
 if (!function_exists('get_feed_link')) { function get_feed_link() { return \OtomatiesCoreVendor\get_feed_link(...func_get_args()); } }
 if (!function_exists('get_file')) { function get_file() { return \OtomatiesCoreVendor\get_file(...func_get_args()); } }
@@ -2212,6 +4125,7 @@ if (!function_exists('get_header_image_tag')) { function get_header_image_tag() 
 if (!function_exists('get_header_textcolor')) { function get_header_textcolor() { return \OtomatiesCoreVendor\get_header_textcolor(...func_get_args()); } }
 if (!function_exists('get_header_video_settings')) { function get_header_video_settings() { return \OtomatiesCoreVendor\get_header_video_settings(...func_get_args()); } }
 if (!function_exists('get_header_video_url')) { function get_header_video_url() { return \OtomatiesCoreVendor\get_header_video_url(...func_get_args()); } }
+if (!function_exists('get_headers')) { function get_headers() { return \OtomatiesCoreVendor\get_headers(...func_get_args()); } }
 if (!function_exists('get_hidden_columns')) { function get_hidden_columns() { return \OtomatiesCoreVendor\get_hidden_columns(...func_get_args()); } }
 if (!function_exists('get_hidden_meta_boxes')) { function get_hidden_meta_boxes() { return \OtomatiesCoreVendor\get_hidden_meta_boxes(...func_get_args()); } }
 if (!function_exists('get_home_path')) { function get_home_path() { return \OtomatiesCoreVendor\get_home_path(...func_get_args()); } }
@@ -2219,11 +4133,14 @@ if (!function_exists('get_home_template')) { function get_home_template() { retu
 if (!function_exists('get_home_url')) { function get_home_url() { return \OtomatiesCoreVendor\get_home_url(...func_get_args()); } }
 if (!function_exists('get_hooked_blocks')) { function get_hooked_blocks() { return \OtomatiesCoreVendor\get_hooked_blocks(...func_get_args()); } }
 if (!function_exists('get_html_split_regex')) { function get_html_split_regex() { return \OtomatiesCoreVendor\get_html_split_regex(...func_get_args()); } }
+if (!function_exists('get_html_translation_table')) { function get_html_translation_table() { return \OtomatiesCoreVendor\get_html_translation_table(...func_get_args()); } }
 if (!function_exists('get_http_origin')) { function get_http_origin() { return \OtomatiesCoreVendor\get_http_origin(...func_get_args()); } }
 if (!function_exists('get_id_from_blogname')) { function get_id_from_blogname() { return \OtomatiesCoreVendor\get_id_from_blogname(...func_get_args()); } }
 if (!function_exists('get_image_send_to_editor')) { function get_image_send_to_editor() { return \OtomatiesCoreVendor\get_image_send_to_editor(...func_get_args()); } }
 if (!function_exists('get_image_tag')) { function get_image_tag() { return \OtomatiesCoreVendor\get_image_tag(...func_get_args()); } }
 if (!function_exists('get_importers')) { function get_importers() { return \OtomatiesCoreVendor\get_importers(...func_get_args()); } }
+if (!function_exists('get_include_path')) { function get_include_path() { return \OtomatiesCoreVendor\get_include_path(...func_get_args()); } }
+if (!function_exists('get_included_files')) { function get_included_files() { return \OtomatiesCoreVendor\get_included_files(...func_get_args()); } }
 if (!function_exists('get_index_rel_link')) { function get_index_rel_link() { return \OtomatiesCoreVendor\get_index_rel_link(...func_get_args()); } }
 if (!function_exists('get_index_template')) { function get_index_template() { return \OtomatiesCoreVendor\get_index_template(...func_get_args()); } }
 if (!function_exists('get_inline_data')) { function get_inline_data() { return \OtomatiesCoreVendor\get_inline_data(...func_get_args()); } }
@@ -2245,16 +4162,21 @@ if (!function_exists('get_links_list')) { function get_links_list() { return \Ot
 if (!function_exists('get_links_withrating')) { function get_links_withrating() { return \OtomatiesCoreVendor\get_links_withrating(...func_get_args()); } }
 if (!function_exists('get_linksbyname')) { function get_linksbyname() { return \OtomatiesCoreVendor\get_linksbyname(...func_get_args()); } }
 if (!function_exists('get_linksbyname_withrating')) { function get_linksbyname_withrating() { return \OtomatiesCoreVendor\get_linksbyname_withrating(...func_get_args()); } }
+if (!function_exists('get_loaded_extensions')) { function get_loaded_extensions() { return \OtomatiesCoreVendor\get_loaded_extensions(...func_get_args()); } }
 if (!function_exists('get_locale')) { function get_locale() { return \OtomatiesCoreVendor\get_locale(...func_get_args()); } }
 if (!function_exists('get_locale_stylesheet_uri')) { function get_locale_stylesheet_uri() { return \OtomatiesCoreVendor\get_locale_stylesheet_uri(...func_get_args()); } }
+if (!function_exists('get_magic_quotes_gpc')) { function get_magic_quotes_gpc() { return \OtomatiesCoreVendor\get_magic_quotes_gpc(...func_get_args()); } }
+if (!function_exists('get_magic_quotes_runtime')) { function get_magic_quotes_runtime() { return \OtomatiesCoreVendor\get_magic_quotes_runtime(...func_get_args()); } }
 if (!function_exists('get_main_network_id')) { function get_main_network_id() { return \OtomatiesCoreVendor\get_main_network_id(...func_get_args()); } }
 if (!function_exists('get_main_site_id')) { function get_main_site_id() { return \OtomatiesCoreVendor\get_main_site_id(...func_get_args()); } }
+if (!function_exists('get_mangled_object_vars')) { function get_mangled_object_vars() { return \OtomatiesCoreVendor\get_mangled_object_vars(...func_get_args()); } }
 if (!function_exists('get_media_embedded_in_content')) { function get_media_embedded_in_content() { return \OtomatiesCoreVendor\get_media_embedded_in_content(...func_get_args()); } }
 if (!function_exists('get_media_item')) { function get_media_item() { return \OtomatiesCoreVendor\get_media_item(...func_get_args()); } }
 if (!function_exists('get_media_items')) { function get_media_items() { return \OtomatiesCoreVendor\get_media_items(...func_get_args()); } }
 if (!function_exists('get_media_states')) { function get_media_states() { return \OtomatiesCoreVendor\get_media_states(...func_get_args()); } }
 if (!function_exists('get_meta_keys')) { function get_meta_keys() { return \OtomatiesCoreVendor\get_meta_keys(...func_get_args()); } }
 if (!function_exists('get_meta_sql')) { function get_meta_sql() { return \OtomatiesCoreVendor\get_meta_sql(...func_get_args()); } }
+if (!function_exists('get_meta_tags')) { function get_meta_tags() { return \OtomatiesCoreVendor\get_meta_tags(...func_get_args()); } }
 if (!function_exists('get_metadata')) { function get_metadata() { return \OtomatiesCoreVendor\get_metadata(...func_get_args()); } }
 if (!function_exists('get_metadata_by_mid')) { function get_metadata_by_mid() { return \OtomatiesCoreVendor\get_metadata_by_mid(...func_get_args()); } }
 if (!function_exists('get_metadata_default')) { function get_metadata_default() { return \OtomatiesCoreVendor\get_metadata_default(...func_get_args()); } }
@@ -2279,6 +4201,7 @@ if (!function_exists('get_num_queries')) { function get_num_queries() { return \
 if (!function_exists('get_object_subtype')) { function get_object_subtype() { return \OtomatiesCoreVendor\get_object_subtype(...func_get_args()); } }
 if (!function_exists('get_object_taxonomies')) { function get_object_taxonomies() { return \OtomatiesCoreVendor\get_object_taxonomies(...func_get_args()); } }
 if (!function_exists('get_object_term_cache')) { function get_object_term_cache() { return \OtomatiesCoreVendor\get_object_term_cache(...func_get_args()); } }
+if (!function_exists('get_object_vars')) { function get_object_vars() { return \OtomatiesCoreVendor\get_object_vars(...func_get_args()); } }
 if (!function_exists('get_objects_in_term')) { function get_objects_in_term() { return \OtomatiesCoreVendor\get_objects_in_term(...func_get_args()); } }
 if (!function_exists('get_oembed_endpoint_url')) { function get_oembed_endpoint_url() { return \OtomatiesCoreVendor\get_oembed_endpoint_url(...func_get_args()); } }
 if (!function_exists('get_oembed_response_data')) { function get_oembed_response_data() { return \OtomatiesCoreVendor\get_oembed_response_data(...func_get_args()); } }
@@ -2304,6 +4227,7 @@ if (!function_exists('get_page_uri')) { function get_page_uri() { return \Otomat
 if (!function_exists('get_paged_template')) { function get_paged_template() { return \OtomatiesCoreVendor\get_paged_template(...func_get_args()); } }
 if (!function_exists('get_pagenum_link')) { function get_pagenum_link() { return \OtomatiesCoreVendor\get_pagenum_link(...func_get_args()); } }
 if (!function_exists('get_pages')) { function get_pages() { return \OtomatiesCoreVendor\get_pages(...func_get_args()); } }
+if (!function_exists('get_parent_class')) { function get_parent_class() { return \OtomatiesCoreVendor\get_parent_class(...func_get_args()); } }
 if (!function_exists('get_parent_post_rel_link')) { function get_parent_post_rel_link() { return \OtomatiesCoreVendor\get_parent_post_rel_link(...func_get_args()); } }
 if (!function_exists('get_parent_theme_file_path')) { function get_parent_theme_file_path() { return \OtomatiesCoreVendor\get_parent_theme_file_path(...func_get_args()); } }
 if (!function_exists('get_parent_theme_file_uri')) { function get_parent_theme_file_uri() { return \OtomatiesCoreVendor\get_parent_theme_file_uri(...func_get_args()); } }
@@ -2396,6 +4320,10 @@ if (!function_exists('get_registered_nav_menus')) { function get_registered_nav_
 if (!function_exists('get_registered_settings')) { function get_registered_settings() { return \OtomatiesCoreVendor\get_registered_settings(...func_get_args()); } }
 if (!function_exists('get_registered_theme_feature')) { function get_registered_theme_feature() { return \OtomatiesCoreVendor\get_registered_theme_feature(...func_get_args()); } }
 if (!function_exists('get_registered_theme_features')) { function get_registered_theme_features() { return \OtomatiesCoreVendor\get_registered_theme_features(...func_get_args()); } }
+if (!function_exists('get_required_files')) { function get_required_files() { return \OtomatiesCoreVendor\get_required_files(...func_get_args()); } }
+if (!function_exists('get_resource_id')) { function get_resource_id() { return \OtomatiesCoreVendor\get_resource_id(...func_get_args()); } }
+if (!function_exists('get_resource_type')) { function get_resource_type() { return \OtomatiesCoreVendor\get_resource_type(...func_get_args()); } }
+if (!function_exists('get_resources')) { function get_resources() { return \OtomatiesCoreVendor\get_resources(...func_get_args()); } }
 if (!function_exists('get_rest_url')) { function get_rest_url() { return \OtomatiesCoreVendor\get_rest_url(...func_get_args()); } }
 if (!function_exists('get_role')) { function get_role() { return \OtomatiesCoreVendor\get_role(...func_get_args()); } }
 if (!function_exists('get_sample_permalink')) { function get_sample_permalink() { return \OtomatiesCoreVendor\get_sample_permalink(...func_get_args()); } }
@@ -2580,14 +4508,154 @@ if (!function_exists('get_woocommerce_price_format')) { function get_woocommerce
 if (!function_exists('get_woocommerce_term_meta')) { function get_woocommerce_term_meta() { return \OtomatiesCoreVendor\get_woocommerce_term_meta(...func_get_args()); } }
 if (!function_exists('get_wp_title_rss')) { function get_wp_title_rss() { return \OtomatiesCoreVendor\get_wp_title_rss(...func_get_args()); } }
 if (!function_exists('get_year_link')) { function get_year_link() { return \OtomatiesCoreVendor\get_year_link(...func_get_args()); } }
+if (!function_exists('getallheaders')) { function getallheaders() { return \OtomatiesCoreVendor\getallheaders(...func_get_args()); } }
+if (!function_exists('getcwd')) { function getcwd() { return \OtomatiesCoreVendor\getcwd(...func_get_args()); } }
+if (!function_exists('getdate')) { function getdate() { return \OtomatiesCoreVendor\getdate(...func_get_args()); } }
+if (!function_exists('getdir')) { function getdir() { return \OtomatiesCoreVendor\getdir(...func_get_args()); } }
+if (!function_exists('getenv')) { function getenv() { return \OtomatiesCoreVendor\getenv(...func_get_args()); } }
+if (!function_exists('gethostbyaddr')) { function gethostbyaddr() { return \OtomatiesCoreVendor\gethostbyaddr(...func_get_args()); } }
+if (!function_exists('gethostbyname')) { function gethostbyname() { return \OtomatiesCoreVendor\gethostbyname(...func_get_args()); } }
+if (!function_exists('gethostbynamel')) { function gethostbynamel() { return \OtomatiesCoreVendor\gethostbynamel(...func_get_args()); } }
+if (!function_exists('gethostname')) { function gethostname() { return \OtomatiesCoreVendor\gethostname(...func_get_args()); } }
+if (!function_exists('getimagesize')) { function getimagesize() { return \OtomatiesCoreVendor\getimagesize(...func_get_args()); } }
+if (!function_exists('getimagesizefromstring')) { function getimagesizefromstring() { return \OtomatiesCoreVendor\getimagesizefromstring(...func_get_args()); } }
+if (!function_exists('getlastmod')) { function getlastmod() { return \OtomatiesCoreVendor\getlastmod(...func_get_args()); } }
+if (!function_exists('getmxrr')) { function getmxrr() { return \OtomatiesCoreVendor\getmxrr(...func_get_args()); } }
+if (!function_exists('getmygid')) { function getmygid() { return \OtomatiesCoreVendor\getmygid(...func_get_args()); } }
+if (!function_exists('getmyinode')) { function getmyinode() { return \OtomatiesCoreVendor\getmyinode(...func_get_args()); } }
+if (!function_exists('getmypid')) { function getmypid() { return \OtomatiesCoreVendor\getmypid(...func_get_args()); } }
+if (!function_exists('getmyuid')) { function getmyuid() { return \OtomatiesCoreVendor\getmyuid(...func_get_args()); } }
+if (!function_exists('getopt')) { function getopt() { return \OtomatiesCoreVendor\getopt(...func_get_args()); } }
+if (!function_exists('getprotobyname')) { function getprotobyname() { return \OtomatiesCoreVendor\getprotobyname(...func_get_args()); } }
+if (!function_exists('getprotobynumber')) { function getprotobynumber() { return \OtomatiesCoreVendor\getprotobynumber(...func_get_args()); } }
+if (!function_exists('getrandmax')) { function getrandmax() { return \OtomatiesCoreVendor\getrandmax(...func_get_args()); } }
+if (!function_exists('getrusage')) { function getrusage() { return \OtomatiesCoreVendor\getrusage(...func_get_args()); } }
+if (!function_exists('getservbyname')) { function getservbyname() { return \OtomatiesCoreVendor\getservbyname(...func_get_args()); } }
+if (!function_exists('getservbyport')) { function getservbyport() { return \OtomatiesCoreVendor\getservbyport(...func_get_args()); } }
+if (!function_exists('gettext')) { function gettext() { return \OtomatiesCoreVendor\gettext(...func_get_args()); } }
+if (!function_exists('gettimeofday')) { function gettimeofday() { return \OtomatiesCoreVendor\gettimeofday(...func_get_args()); } }
+if (!function_exists('gettype')) { function gettype() { return \OtomatiesCoreVendor\gettype(...func_get_args()); } }
+if (!function_exists('glob')) { function glob() { return \OtomatiesCoreVendor\glob(...func_get_args()); } }
 if (!function_exists('global_terms')) { function global_terms() { return \OtomatiesCoreVendor\global_terms(...func_get_args()); } }
 if (!function_exists('global_terms_enabled')) { function global_terms_enabled() { return \OtomatiesCoreVendor\global_terms_enabled(...func_get_args()); } }
+if (!function_exists('gmdate')) { function gmdate() { return \OtomatiesCoreVendor\gmdate(...func_get_args()); } }
+if (!function_exists('gmmktime')) { function gmmktime() { return \OtomatiesCoreVendor\gmmktime(...func_get_args()); } }
+if (!function_exists('gmp_abs')) { function gmp_abs() { return \OtomatiesCoreVendor\gmp_abs(...func_get_args()); } }
+if (!function_exists('gmp_add')) { function gmp_add() { return \OtomatiesCoreVendor\gmp_add(...func_get_args()); } }
+if (!function_exists('gmp_and')) { function gmp_and() { return \OtomatiesCoreVendor\gmp_and(...func_get_args()); } }
+if (!function_exists('gmp_binomial')) { function gmp_binomial() { return \OtomatiesCoreVendor\gmp_binomial(...func_get_args()); } }
+if (!function_exists('gmp_clrbit')) { function gmp_clrbit() { return \OtomatiesCoreVendor\gmp_clrbit(...func_get_args()); } }
+if (!function_exists('gmp_cmp')) { function gmp_cmp() { return \OtomatiesCoreVendor\gmp_cmp(...func_get_args()); } }
+if (!function_exists('gmp_com')) { function gmp_com() { return \OtomatiesCoreVendor\gmp_com(...func_get_args()); } }
+if (!function_exists('gmp_div')) { function gmp_div() { return \OtomatiesCoreVendor\gmp_div(...func_get_args()); } }
+if (!function_exists('gmp_div_q')) { function gmp_div_q() { return \OtomatiesCoreVendor\gmp_div_q(...func_get_args()); } }
+if (!function_exists('gmp_div_qr')) { function gmp_div_qr() { return \OtomatiesCoreVendor\gmp_div_qr(...func_get_args()); } }
+if (!function_exists('gmp_div_r')) { function gmp_div_r() { return \OtomatiesCoreVendor\gmp_div_r(...func_get_args()); } }
+if (!function_exists('gmp_divexact')) { function gmp_divexact() { return \OtomatiesCoreVendor\gmp_divexact(...func_get_args()); } }
+if (!function_exists('gmp_export')) { function gmp_export() { return \OtomatiesCoreVendor\gmp_export(...func_get_args()); } }
+if (!function_exists('gmp_fact')) { function gmp_fact() { return \OtomatiesCoreVendor\gmp_fact(...func_get_args()); } }
+if (!function_exists('gmp_gcd')) { function gmp_gcd() { return \OtomatiesCoreVendor\gmp_gcd(...func_get_args()); } }
+if (!function_exists('gmp_gcdext')) { function gmp_gcdext() { return \OtomatiesCoreVendor\gmp_gcdext(...func_get_args()); } }
+if (!function_exists('gmp_hamdist')) { function gmp_hamdist() { return \OtomatiesCoreVendor\gmp_hamdist(...func_get_args()); } }
+if (!function_exists('gmp_import')) { function gmp_import() { return \OtomatiesCoreVendor\gmp_import(...func_get_args()); } }
+if (!function_exists('gmp_init')) { function gmp_init() { return \OtomatiesCoreVendor\gmp_init(...func_get_args()); } }
+if (!function_exists('gmp_intval')) { function gmp_intval() { return \OtomatiesCoreVendor\gmp_intval(...func_get_args()); } }
+if (!function_exists('gmp_invert')) { function gmp_invert() { return \OtomatiesCoreVendor\gmp_invert(...func_get_args()); } }
+if (!function_exists('gmp_jacobi')) { function gmp_jacobi() { return \OtomatiesCoreVendor\gmp_jacobi(...func_get_args()); } }
+if (!function_exists('gmp_kronecker')) { function gmp_kronecker() { return \OtomatiesCoreVendor\gmp_kronecker(...func_get_args()); } }
+if (!function_exists('gmp_lcm')) { function gmp_lcm() { return \OtomatiesCoreVendor\gmp_lcm(...func_get_args()); } }
+if (!function_exists('gmp_legendre')) { function gmp_legendre() { return \OtomatiesCoreVendor\gmp_legendre(...func_get_args()); } }
+if (!function_exists('gmp_mod')) { function gmp_mod() { return \OtomatiesCoreVendor\gmp_mod(...func_get_args()); } }
+if (!function_exists('gmp_mul')) { function gmp_mul() { return \OtomatiesCoreVendor\gmp_mul(...func_get_args()); } }
+if (!function_exists('gmp_neg')) { function gmp_neg() { return \OtomatiesCoreVendor\gmp_neg(...func_get_args()); } }
+if (!function_exists('gmp_nextprime')) { function gmp_nextprime() { return \OtomatiesCoreVendor\gmp_nextprime(...func_get_args()); } }
+if (!function_exists('gmp_or')) { function gmp_or() { return \OtomatiesCoreVendor\gmp_or(...func_get_args()); } }
+if (!function_exists('gmp_perfect_power')) { function gmp_perfect_power() { return \OtomatiesCoreVendor\gmp_perfect_power(...func_get_args()); } }
+if (!function_exists('gmp_perfect_square')) { function gmp_perfect_square() { return \OtomatiesCoreVendor\gmp_perfect_square(...func_get_args()); } }
+if (!function_exists('gmp_popcount')) { function gmp_popcount() { return \OtomatiesCoreVendor\gmp_popcount(...func_get_args()); } }
+if (!function_exists('gmp_pow')) { function gmp_pow() { return \OtomatiesCoreVendor\gmp_pow(...func_get_args()); } }
+if (!function_exists('gmp_powm')) { function gmp_powm() { return \OtomatiesCoreVendor\gmp_powm(...func_get_args()); } }
+if (!function_exists('gmp_prob_prime')) { function gmp_prob_prime() { return \OtomatiesCoreVendor\gmp_prob_prime(...func_get_args()); } }
+if (!function_exists('gmp_random')) { function gmp_random() { return \OtomatiesCoreVendor\gmp_random(...func_get_args()); } }
+if (!function_exists('gmp_random_bits')) { function gmp_random_bits() { return \OtomatiesCoreVendor\gmp_random_bits(...func_get_args()); } }
+if (!function_exists('gmp_random_range')) { function gmp_random_range() { return \OtomatiesCoreVendor\gmp_random_range(...func_get_args()); } }
+if (!function_exists('gmp_random_seed')) { function gmp_random_seed() { return \OtomatiesCoreVendor\gmp_random_seed(...func_get_args()); } }
+if (!function_exists('gmp_root')) { function gmp_root() { return \OtomatiesCoreVendor\gmp_root(...func_get_args()); } }
+if (!function_exists('gmp_rootrem')) { function gmp_rootrem() { return \OtomatiesCoreVendor\gmp_rootrem(...func_get_args()); } }
+if (!function_exists('gmp_scan0')) { function gmp_scan0() { return \OtomatiesCoreVendor\gmp_scan0(...func_get_args()); } }
+if (!function_exists('gmp_scan1')) { function gmp_scan1() { return \OtomatiesCoreVendor\gmp_scan1(...func_get_args()); } }
+if (!function_exists('gmp_setbit')) { function gmp_setbit() { return \OtomatiesCoreVendor\gmp_setbit(...func_get_args()); } }
+if (!function_exists('gmp_sign')) { function gmp_sign() { return \OtomatiesCoreVendor\gmp_sign(...func_get_args()); } }
+if (!function_exists('gmp_sqrt')) { function gmp_sqrt() { return \OtomatiesCoreVendor\gmp_sqrt(...func_get_args()); } }
+if (!function_exists('gmp_sqrtrem')) { function gmp_sqrtrem() { return \OtomatiesCoreVendor\gmp_sqrtrem(...func_get_args()); } }
+if (!function_exists('gmp_strval')) { function gmp_strval() { return \OtomatiesCoreVendor\gmp_strval(...func_get_args()); } }
+if (!function_exists('gmp_sub')) { function gmp_sub() { return \OtomatiesCoreVendor\gmp_sub(...func_get_args()); } }
+if (!function_exists('gmp_testbit')) { function gmp_testbit() { return \OtomatiesCoreVendor\gmp_testbit(...func_get_args()); } }
+if (!function_exists('gmp_xor')) { function gmp_xor() { return \OtomatiesCoreVendor\gmp_xor(...func_get_args()); } }
+if (!function_exists('gmstrftime')) { function gmstrftime() { return \OtomatiesCoreVendor\gmstrftime(...func_get_args()); } }
+if (!function_exists('gnupg_adddecryptkey')) { function gnupg_adddecryptkey() { return \OtomatiesCoreVendor\gnupg_adddecryptkey(...func_get_args()); } }
+if (!function_exists('gnupg_addencryptkey')) { function gnupg_addencryptkey() { return \OtomatiesCoreVendor\gnupg_addencryptkey(...func_get_args()); } }
+if (!function_exists('gnupg_addsignkey')) { function gnupg_addsignkey() { return \OtomatiesCoreVendor\gnupg_addsignkey(...func_get_args()); } }
+if (!function_exists('gnupg_cleardecryptkeys')) { function gnupg_cleardecryptkeys() { return \OtomatiesCoreVendor\gnupg_cleardecryptkeys(...func_get_args()); } }
+if (!function_exists('gnupg_clearencryptkeys')) { function gnupg_clearencryptkeys() { return \OtomatiesCoreVendor\gnupg_clearencryptkeys(...func_get_args()); } }
+if (!function_exists('gnupg_clearsignkeys')) { function gnupg_clearsignkeys() { return \OtomatiesCoreVendor\gnupg_clearsignkeys(...func_get_args()); } }
+if (!function_exists('gnupg_decrypt')) { function gnupg_decrypt() { return \OtomatiesCoreVendor\gnupg_decrypt(...func_get_args()); } }
+if (!function_exists('gnupg_decryptverify')) { function gnupg_decryptverify() { return \OtomatiesCoreVendor\gnupg_decryptverify(...func_get_args()); } }
+if (!function_exists('gnupg_deletekey')) { function gnupg_deletekey() { return \OtomatiesCoreVendor\gnupg_deletekey(...func_get_args()); } }
+if (!function_exists('gnupg_encrypt')) { function gnupg_encrypt() { return \OtomatiesCoreVendor\gnupg_encrypt(...func_get_args()); } }
+if (!function_exists('gnupg_encryptsign')) { function gnupg_encryptsign() { return \OtomatiesCoreVendor\gnupg_encryptsign(...func_get_args()); } }
+if (!function_exists('gnupg_export')) { function gnupg_export() { return \OtomatiesCoreVendor\gnupg_export(...func_get_args()); } }
+if (!function_exists('gnupg_getengineinfo')) { function gnupg_getengineinfo() { return \OtomatiesCoreVendor\gnupg_getengineinfo(...func_get_args()); } }
+if (!function_exists('gnupg_geterror')) { function gnupg_geterror() { return \OtomatiesCoreVendor\gnupg_geterror(...func_get_args()); } }
+if (!function_exists('gnupg_geterrorinfo')) { function gnupg_geterrorinfo() { return \OtomatiesCoreVendor\gnupg_geterrorinfo(...func_get_args()); } }
+if (!function_exists('gnupg_getprotocol')) { function gnupg_getprotocol() { return \OtomatiesCoreVendor\gnupg_getprotocol(...func_get_args()); } }
+if (!function_exists('gnupg_gettrustlist')) { function gnupg_gettrustlist() { return \OtomatiesCoreVendor\gnupg_gettrustlist(...func_get_args()); } }
+if (!function_exists('gnupg_import')) { function gnupg_import() { return \OtomatiesCoreVendor\gnupg_import(...func_get_args()); } }
+if (!function_exists('gnupg_init')) { function gnupg_init() { return \OtomatiesCoreVendor\gnupg_init(...func_get_args()); } }
+if (!function_exists('gnupg_keyinfo')) { function gnupg_keyinfo() { return \OtomatiesCoreVendor\gnupg_keyinfo(...func_get_args()); } }
+if (!function_exists('gnupg_listsignatures')) { function gnupg_listsignatures() { return \OtomatiesCoreVendor\gnupg_listsignatures(...func_get_args()); } }
+if (!function_exists('gnupg_setarmor')) { function gnupg_setarmor() { return \OtomatiesCoreVendor\gnupg_setarmor(...func_get_args()); } }
+if (!function_exists('gnupg_seterrormode')) { function gnupg_seterrormode() { return \OtomatiesCoreVendor\gnupg_seterrormode(...func_get_args()); } }
+if (!function_exists('gnupg_setsignmode')) { function gnupg_setsignmode() { return \OtomatiesCoreVendor\gnupg_setsignmode(...func_get_args()); } }
+if (!function_exists('gnupg_sign')) { function gnupg_sign() { return \OtomatiesCoreVendor\gnupg_sign(...func_get_args()); } }
+if (!function_exists('gnupg_verify')) { function gnupg_verify() { return \OtomatiesCoreVendor\gnupg_verify(...func_get_args()); } }
+if (!function_exists('go')) { function go() { return \OtomatiesCoreVendor\go(...func_get_args()); } }
 if (!function_exists('got_mod_rewrite')) { function got_mod_rewrite() { return \OtomatiesCoreVendor\got_mod_rewrite(...func_get_args()); } }
 if (!function_exists('got_url_rewrite')) { function got_url_rewrite() { return \OtomatiesCoreVendor\got_url_rewrite(...func_get_args()); } }
 if (!function_exists('graceful_fail')) { function graceful_fail() { return \OtomatiesCoreVendor\graceful_fail(...func_get_args()); } }
 if (!function_exists('grant_super_admin')) { function grant_super_admin() { return \OtomatiesCoreVendor\grant_super_admin(...func_get_args()); } }
+if (!function_exists('grapheme_extract')) { function grapheme_extract() { return \OtomatiesCoreVendor\grapheme_extract(...func_get_args()); } }
 if (!function_exists('grapheme_str_split')) { function grapheme_str_split() { return \OtomatiesCoreVendor\grapheme_str_split(...func_get_args()); } }
+if (!function_exists('grapheme_stripos')) { function grapheme_stripos() { return \OtomatiesCoreVendor\grapheme_stripos(...func_get_args()); } }
+if (!function_exists('grapheme_stristr')) { function grapheme_stristr() { return \OtomatiesCoreVendor\grapheme_stristr(...func_get_args()); } }
+if (!function_exists('grapheme_strlen')) { function grapheme_strlen() { return \OtomatiesCoreVendor\grapheme_strlen(...func_get_args()); } }
+if (!function_exists('grapheme_strpos')) { function grapheme_strpos() { return \OtomatiesCoreVendor\grapheme_strpos(...func_get_args()); } }
+if (!function_exists('grapheme_strripos')) { function grapheme_strripos() { return \OtomatiesCoreVendor\grapheme_strripos(...func_get_args()); } }
+if (!function_exists('grapheme_strrpos')) { function grapheme_strrpos() { return \OtomatiesCoreVendor\grapheme_strrpos(...func_get_args()); } }
+if (!function_exists('grapheme_strstr')) { function grapheme_strstr() { return \OtomatiesCoreVendor\grapheme_strstr(...func_get_args()); } }
+if (!function_exists('grapheme_substr')) { function grapheme_substr() { return \OtomatiesCoreVendor\grapheme_substr(...func_get_args()); } }
+if (!function_exists('gregoriantojd')) { function gregoriantojd() { return \OtomatiesCoreVendor\gregoriantojd(...func_get_args()); } }
+if (!function_exists('gzclose')) { function gzclose() { return \OtomatiesCoreVendor\gzclose(...func_get_args()); } }
+if (!function_exists('gzcompress')) { function gzcompress() { return \OtomatiesCoreVendor\gzcompress(...func_get_args()); } }
+if (!function_exists('gzdecode')) { function gzdecode() { return \OtomatiesCoreVendor\gzdecode(...func_get_args()); } }
+if (!function_exists('gzdeflate')) { function gzdeflate() { return \OtomatiesCoreVendor\gzdeflate(...func_get_args()); } }
+if (!function_exists('gzencode')) { function gzencode() { return \OtomatiesCoreVendor\gzencode(...func_get_args()); } }
+if (!function_exists('gzeof')) { function gzeof() { return \OtomatiesCoreVendor\gzeof(...func_get_args()); } }
+if (!function_exists('gzfile')) { function gzfile() { return \OtomatiesCoreVendor\gzfile(...func_get_args()); } }
+if (!function_exists('gzgetc')) { function gzgetc() { return \OtomatiesCoreVendor\gzgetc(...func_get_args()); } }
+if (!function_exists('gzgets')) { function gzgets() { return \OtomatiesCoreVendor\gzgets(...func_get_args()); } }
+if (!function_exists('gzgetss')) { function gzgetss() { return \OtomatiesCoreVendor\gzgetss(...func_get_args()); } }
+if (!function_exists('gzinflate')) { function gzinflate() { return \OtomatiesCoreVendor\gzinflate(...func_get_args()); } }
 if (!function_exists('gzip_compression')) { function gzip_compression() { return \OtomatiesCoreVendor\gzip_compression(...func_get_args()); } }
+if (!function_exists('gzopen')) { function gzopen() { return \OtomatiesCoreVendor\gzopen(...func_get_args()); } }
+if (!function_exists('gzpassthru')) { function gzpassthru() { return \OtomatiesCoreVendor\gzpassthru(...func_get_args()); } }
+if (!function_exists('gzputs')) { function gzputs() { return \OtomatiesCoreVendor\gzputs(...func_get_args()); } }
+if (!function_exists('gzread')) { function gzread() { return \OtomatiesCoreVendor\gzread(...func_get_args()); } }
+if (!function_exists('gzrewind')) { function gzrewind() { return \OtomatiesCoreVendor\gzrewind(...func_get_args()); } }
+if (!function_exists('gzseek')) { function gzseek() { return \OtomatiesCoreVendor\gzseek(...func_get_args()); } }
+if (!function_exists('gztell')) { function gztell() { return \OtomatiesCoreVendor\gztell(...func_get_args()); } }
+if (!function_exists('gzuncompress')) { function gzuncompress() { return \OtomatiesCoreVendor\gzuncompress(...func_get_args()); } }
+if (!function_exists('gzwrite')) { function gzwrite() { return \OtomatiesCoreVendor\gzwrite(...func_get_args()); } }
 if (!function_exists('handle_legacy_widget_preview_iframe')) { function handle_legacy_widget_preview_iframe() { return \OtomatiesCoreVendor\handle_legacy_widget_preview_iframe(...func_get_args()); } }
 if (!function_exists('has_action')) { function has_action() { return \OtomatiesCoreVendor\has_action(...func_get_args()); } }
 if (!function_exists('has_block')) { function has_block() { return \OtomatiesCoreVendor\has_block(...func_get_args()); } }
@@ -2611,25 +4679,174 @@ if (!function_exists('has_tag')) { function has_tag() { return \OtomatiesCoreVen
 if (!function_exists('has_term')) { function has_term() { return \OtomatiesCoreVendor\has_term(...func_get_args()); } }
 if (!function_exists('has_term_meta')) { function has_term_meta() { return \OtomatiesCoreVendor\has_term_meta(...func_get_args()); } }
 if (!function_exists('has_translation')) { function has_translation() { return \OtomatiesCoreVendor\has_translation(...func_get_args()); } }
+if (!function_exists('hash')) { function hash() { return \OtomatiesCoreVendor\hash(...func_get_args()); } }
+if (!function_exists('hash_algos')) { function hash_algos() { return \OtomatiesCoreVendor\hash_algos(...func_get_args()); } }
+if (!function_exists('hash_copy')) { function hash_copy() { return \OtomatiesCoreVendor\hash_copy(...func_get_args()); } }
+if (!function_exists('hash_equals')) { function hash_equals() { return \OtomatiesCoreVendor\hash_equals(...func_get_args()); } }
+if (!function_exists('hash_file')) { function hash_file() { return \OtomatiesCoreVendor\hash_file(...func_get_args()); } }
+if (!function_exists('hash_final')) { function hash_final() { return \OtomatiesCoreVendor\hash_final(...func_get_args()); } }
+if (!function_exists('hash_hkdf')) { function hash_hkdf() { return \OtomatiesCoreVendor\hash_hkdf(...func_get_args()); } }
+if (!function_exists('hash_hmac')) { function hash_hmac() { return \OtomatiesCoreVendor\hash_hmac(...func_get_args()); } }
+if (!function_exists('hash_hmac_algos')) { function hash_hmac_algos() { return \OtomatiesCoreVendor\hash_hmac_algos(...func_get_args()); } }
+if (!function_exists('hash_hmac_file')) { function hash_hmac_file() { return \OtomatiesCoreVendor\hash_hmac_file(...func_get_args()); } }
+if (!function_exists('hash_init')) { function hash_init() { return \OtomatiesCoreVendor\hash_init(...func_get_args()); } }
+if (!function_exists('hash_pbkdf2')) { function hash_pbkdf2() { return \OtomatiesCoreVendor\hash_pbkdf2(...func_get_args()); } }
+if (!function_exists('hash_update')) { function hash_update() { return \OtomatiesCoreVendor\hash_update(...func_get_args()); } }
+if (!function_exists('hash_update_file')) { function hash_update_file() { return \OtomatiesCoreVendor\hash_update_file(...func_get_args()); } }
+if (!function_exists('hash_update_stream')) { function hash_update_stream() { return \OtomatiesCoreVendor\hash_update_stream(...func_get_args()); } }
 if (!function_exists('have_comments')) { function have_comments() { return \OtomatiesCoreVendor\have_comments(...func_get_args()); } }
 if (!function_exists('have_posts')) { function have_posts() { return \OtomatiesCoreVendor\have_posts(...func_get_args()); } }
 if (!function_exists('head')) { function head() { return \OtomatiesCoreVendor\head(...func_get_args()); } }
+if (!function_exists('header')) { function header() { return \OtomatiesCoreVendor\header(...func_get_args()); } }
 if (!function_exists('header_image')) { function header_image() { return \OtomatiesCoreVendor\header_image(...func_get_args()); } }
+if (!function_exists('header_register_callback')) { function header_register_callback() { return \OtomatiesCoreVendor\header_register_callback(...func_get_args()); } }
+if (!function_exists('header_remove')) { function header_remove() { return \OtomatiesCoreVendor\header_remove(...func_get_args()); } }
 if (!function_exists('header_textcolor')) { function header_textcolor() { return \OtomatiesCoreVendor\header_textcolor(...func_get_args()); } }
+if (!function_exists('headers_list')) { function headers_list() { return \OtomatiesCoreVendor\headers_list(...func_get_args()); } }
+if (!function_exists('headers_send')) { function headers_send() { return \OtomatiesCoreVendor\headers_send(...func_get_args()); } }
+if (!function_exists('headers_sent')) { function headers_sent() { return \OtomatiesCoreVendor\headers_sent(...func_get_args()); } }
 if (!function_exists('heartbeat_autosave')) { function heartbeat_autosave() { return \OtomatiesCoreVendor\heartbeat_autosave(...func_get_args()); } }
+if (!function_exists('hebrev')) { function hebrev() { return \OtomatiesCoreVendor\hebrev(...func_get_args()); } }
+if (!function_exists('hebrevc')) { function hebrevc() { return \OtomatiesCoreVendor\hebrevc(...func_get_args()); } }
+if (!function_exists('hex2bin')) { function hex2bin() { return \OtomatiesCoreVendor\hex2bin(...func_get_args()); } }
+if (!function_exists('hexdec')) { function hexdec() { return \OtomatiesCoreVendor\hexdec(...func_get_args()); } }
+if (!function_exists('highlight_file')) { function highlight_file() { return \OtomatiesCoreVendor\highlight_file(...func_get_args()); } }
+if (!function_exists('highlight_string')) { function highlight_string() { return \OtomatiesCoreVendor\highlight_string(...func_get_args()); } }
 if (!function_exists('home_url')) { function home_url() { return \OtomatiesCoreVendor\home_url(...func_get_args()); } }
 if (!function_exists('hrtime')) { function hrtime() { return \OtomatiesCoreVendor\hrtime(...func_get_args()); } }
+if (!function_exists('html_entity_decode')) { function html_entity_decode() { return \OtomatiesCoreVendor\html_entity_decode(...func_get_args()); } }
 if (!function_exists('html_type_rss')) { function html_type_rss() { return \OtomatiesCoreVendor\html_type_rss(...func_get_args()); } }
+if (!function_exists('htmlentities')) { function htmlentities() { return \OtomatiesCoreVendor\htmlentities(...func_get_args()); } }
 if (!function_exists('htmlentities2')) { function htmlentities2() { return \OtomatiesCoreVendor\htmlentities2(...func_get_args()); } }
+if (!function_exists('htmlspecialchars')) { function htmlspecialchars() { return \OtomatiesCoreVendor\htmlspecialchars(...func_get_args()); } }
+if (!function_exists('htmlspecialchars_decode')) { function htmlspecialchars_decode() { return \OtomatiesCoreVendor\htmlspecialchars_decode(...func_get_args()); } }
+if (!function_exists('http_build_cookie')) { function http_build_cookie() { return \OtomatiesCoreVendor\http_build_cookie(...func_get_args()); } }
+if (!function_exists('http_build_query')) { function http_build_query() { return \OtomatiesCoreVendor\http_build_query(...func_get_args()); } }
+if (!function_exists('http_build_str')) { function http_build_str() { return \OtomatiesCoreVendor\http_build_str(...func_get_args()); } }
+if (!function_exists('http_build_url')) { function http_build_url() { return \OtomatiesCoreVendor\http_build_url(...func_get_args()); } }
+if (!function_exists('http_cache_etag')) { function http_cache_etag() { return \OtomatiesCoreVendor\http_cache_etag(...func_get_args()); } }
+if (!function_exists('http_cache_last_modified')) { function http_cache_last_modified() { return \OtomatiesCoreVendor\http_cache_last_modified(...func_get_args()); } }
+if (!function_exists('http_chunked_decode')) { function http_chunked_decode() { return \OtomatiesCoreVendor\http_chunked_decode(...func_get_args()); } }
+if (!function_exists('http_clear_last_response_headers')) { function http_clear_last_response_headers() { return \OtomatiesCoreVendor\http_clear_last_response_headers(...func_get_args()); } }
+if (!function_exists('http_date')) { function http_date() { return \OtomatiesCoreVendor\http_date(...func_get_args()); } }
+if (!function_exists('http_deflate')) { function http_deflate() { return \OtomatiesCoreVendor\http_deflate(...func_get_args()); } }
+if (!function_exists('http_get')) { function http_get() { return \OtomatiesCoreVendor\http_get(...func_get_args()); } }
+if (!function_exists('http_get_last_response_headers')) { function http_get_last_response_headers() { return \OtomatiesCoreVendor\http_get_last_response_headers(...func_get_args()); } }
+if (!function_exists('http_get_request_body')) { function http_get_request_body() { return \OtomatiesCoreVendor\http_get_request_body(...func_get_args()); } }
+if (!function_exists('http_get_request_body_stream')) { function http_get_request_body_stream() { return \OtomatiesCoreVendor\http_get_request_body_stream(...func_get_args()); } }
+if (!function_exists('http_get_request_headers')) { function http_get_request_headers() { return \OtomatiesCoreVendor\http_get_request_headers(...func_get_args()); } }
+if (!function_exists('http_head')) { function http_head() { return \OtomatiesCoreVendor\http_head(...func_get_args()); } }
+if (!function_exists('http_inflate')) { function http_inflate() { return \OtomatiesCoreVendor\http_inflate(...func_get_args()); } }
+if (!function_exists('http_match_etag')) { function http_match_etag() { return \OtomatiesCoreVendor\http_match_etag(...func_get_args()); } }
+if (!function_exists('http_match_modified')) { function http_match_modified() { return \OtomatiesCoreVendor\http_match_modified(...func_get_args()); } }
+if (!function_exists('http_match_request_header')) { function http_match_request_header() { return \OtomatiesCoreVendor\http_match_request_header(...func_get_args()); } }
+if (!function_exists('http_negotiate_charset')) { function http_negotiate_charset() { return \OtomatiesCoreVendor\http_negotiate_charset(...func_get_args()); } }
+if (!function_exists('http_negotiate_content_type')) { function http_negotiate_content_type() { return \OtomatiesCoreVendor\http_negotiate_content_type(...func_get_args()); } }
+if (!function_exists('http_negotiate_language')) { function http_negotiate_language() { return \OtomatiesCoreVendor\http_negotiate_language(...func_get_args()); } }
+if (!function_exists('http_parse_cookie')) { function http_parse_cookie() { return \OtomatiesCoreVendor\http_parse_cookie(...func_get_args()); } }
+if (!function_exists('http_parse_headers')) { function http_parse_headers() { return \OtomatiesCoreVendor\http_parse_headers(...func_get_args()); } }
+if (!function_exists('http_parse_message')) { function http_parse_message() { return \OtomatiesCoreVendor\http_parse_message(...func_get_args()); } }
+if (!function_exists('http_parse_params')) { function http_parse_params() { return \OtomatiesCoreVendor\http_parse_params(...func_get_args()); } }
+if (!function_exists('http_persistent_handles_clean')) { function http_persistent_handles_clean() { return \OtomatiesCoreVendor\http_persistent_handles_clean(...func_get_args()); } }
+if (!function_exists('http_persistent_handles_count')) { function http_persistent_handles_count() { return \OtomatiesCoreVendor\http_persistent_handles_count(...func_get_args()); } }
+if (!function_exists('http_persistent_handles_ident')) { function http_persistent_handles_ident() { return \OtomatiesCoreVendor\http_persistent_handles_ident(...func_get_args()); } }
+if (!function_exists('http_post_data')) { function http_post_data() { return \OtomatiesCoreVendor\http_post_data(...func_get_args()); } }
+if (!function_exists('http_post_fields')) { function http_post_fields() { return \OtomatiesCoreVendor\http_post_fields(...func_get_args()); } }
+if (!function_exists('http_put_data')) { function http_put_data() { return \OtomatiesCoreVendor\http_put_data(...func_get_args()); } }
+if (!function_exists('http_put_file')) { function http_put_file() { return \OtomatiesCoreVendor\http_put_file(...func_get_args()); } }
+if (!function_exists('http_put_stream')) { function http_put_stream() { return \OtomatiesCoreVendor\http_put_stream(...func_get_args()); } }
+if (!function_exists('http_redirect')) { function http_redirect() { return \OtomatiesCoreVendor\http_redirect(...func_get_args()); } }
+if (!function_exists('http_request')) { function http_request() { return \OtomatiesCoreVendor\http_request(...func_get_args()); } }
+if (!function_exists('http_request_body_encode')) { function http_request_body_encode() { return \OtomatiesCoreVendor\http_request_body_encode(...func_get_args()); } }
+if (!function_exists('http_request_method_exists')) { function http_request_method_exists() { return \OtomatiesCoreVendor\http_request_method_exists(...func_get_args()); } }
+if (!function_exists('http_request_method_name')) { function http_request_method_name() { return \OtomatiesCoreVendor\http_request_method_name(...func_get_args()); } }
+if (!function_exists('http_request_method_register')) { function http_request_method_register() { return \OtomatiesCoreVendor\http_request_method_register(...func_get_args()); } }
+if (!function_exists('http_request_method_unregister')) { function http_request_method_unregister() { return \OtomatiesCoreVendor\http_request_method_unregister(...func_get_args()); } }
+if (!function_exists('http_response_code')) { function http_response_code() { return \OtomatiesCoreVendor\http_response_code(...func_get_args()); } }
+if (!function_exists('http_send_content_disposition')) { function http_send_content_disposition() { return \OtomatiesCoreVendor\http_send_content_disposition(...func_get_args()); } }
+if (!function_exists('http_send_content_type')) { function http_send_content_type() { return \OtomatiesCoreVendor\http_send_content_type(...func_get_args()); } }
+if (!function_exists('http_send_data')) { function http_send_data() { return \OtomatiesCoreVendor\http_send_data(...func_get_args()); } }
+if (!function_exists('http_send_file')) { function http_send_file() { return \OtomatiesCoreVendor\http_send_file(...func_get_args()); } }
+if (!function_exists('http_send_last_modified')) { function http_send_last_modified() { return \OtomatiesCoreVendor\http_send_last_modified(...func_get_args()); } }
+if (!function_exists('http_send_status')) { function http_send_status() { return \OtomatiesCoreVendor\http_send_status(...func_get_args()); } }
+if (!function_exists('http_send_stream')) { function http_send_stream() { return \OtomatiesCoreVendor\http_send_stream(...func_get_args()); } }
+if (!function_exists('http_support')) { function http_support() { return \OtomatiesCoreVendor\http_support(...func_get_args()); } }
+if (!function_exists('http_throttle')) { function http_throttle() { return \OtomatiesCoreVendor\http_throttle(...func_get_args()); } }
 if (!function_exists('human_readable_duration')) { function human_readable_duration() { return \OtomatiesCoreVendor\human_readable_duration(...func_get_args()); } }
 if (!function_exists('human_time_diff')) { function human_time_diff() { return \OtomatiesCoreVendor\human_time_diff(...func_get_args()); } }
+if (!function_exists('hypot')) { function hypot() { return \OtomatiesCoreVendor\hypot(...func_get_args()); } }
+if (!function_exists('ibase_add_user')) { function ibase_add_user() { return \OtomatiesCoreVendor\ibase_add_user(...func_get_args()); } }
+if (!function_exists('ibase_affected_rows')) { function ibase_affected_rows() { return \OtomatiesCoreVendor\ibase_affected_rows(...func_get_args()); } }
+if (!function_exists('ibase_backup')) { function ibase_backup() { return \OtomatiesCoreVendor\ibase_backup(...func_get_args()); } }
+if (!function_exists('ibase_blob_add')) { function ibase_blob_add() { return \OtomatiesCoreVendor\ibase_blob_add(...func_get_args()); } }
+if (!function_exists('ibase_blob_cancel')) { function ibase_blob_cancel() { return \OtomatiesCoreVendor\ibase_blob_cancel(...func_get_args()); } }
+if (!function_exists('ibase_blob_close')) { function ibase_blob_close() { return \OtomatiesCoreVendor\ibase_blob_close(...func_get_args()); } }
+if (!function_exists('ibase_blob_create')) { function ibase_blob_create() { return \OtomatiesCoreVendor\ibase_blob_create(...func_get_args()); } }
+if (!function_exists('ibase_blob_echo')) { function ibase_blob_echo() { return \OtomatiesCoreVendor\ibase_blob_echo(...func_get_args()); } }
+if (!function_exists('ibase_blob_get')) { function ibase_blob_get() { return \OtomatiesCoreVendor\ibase_blob_get(...func_get_args()); } }
+if (!function_exists('ibase_blob_import')) { function ibase_blob_import() { return \OtomatiesCoreVendor\ibase_blob_import(...func_get_args()); } }
+if (!function_exists('ibase_blob_info')) { function ibase_blob_info() { return \OtomatiesCoreVendor\ibase_blob_info(...func_get_args()); } }
+if (!function_exists('ibase_blob_open')) { function ibase_blob_open() { return \OtomatiesCoreVendor\ibase_blob_open(...func_get_args()); } }
+if (!function_exists('ibase_close')) { function ibase_close() { return \OtomatiesCoreVendor\ibase_close(...func_get_args()); } }
+if (!function_exists('ibase_commit')) { function ibase_commit() { return \OtomatiesCoreVendor\ibase_commit(...func_get_args()); } }
+if (!function_exists('ibase_commit_ret')) { function ibase_commit_ret() { return \OtomatiesCoreVendor\ibase_commit_ret(...func_get_args()); } }
+if (!function_exists('ibase_connect')) { function ibase_connect() { return \OtomatiesCoreVendor\ibase_connect(...func_get_args()); } }
+if (!function_exists('ibase_db_info')) { function ibase_db_info() { return \OtomatiesCoreVendor\ibase_db_info(...func_get_args()); } }
+if (!function_exists('ibase_delete_user')) { function ibase_delete_user() { return \OtomatiesCoreVendor\ibase_delete_user(...func_get_args()); } }
+if (!function_exists('ibase_drop_db')) { function ibase_drop_db() { return \OtomatiesCoreVendor\ibase_drop_db(...func_get_args()); } }
+if (!function_exists('ibase_errcode')) { function ibase_errcode() { return \OtomatiesCoreVendor\ibase_errcode(...func_get_args()); } }
+if (!function_exists('ibase_errmsg')) { function ibase_errmsg() { return \OtomatiesCoreVendor\ibase_errmsg(...func_get_args()); } }
+if (!function_exists('ibase_execute')) { function ibase_execute() { return \OtomatiesCoreVendor\ibase_execute(...func_get_args()); } }
+if (!function_exists('ibase_fetch_assoc')) { function ibase_fetch_assoc() { return \OtomatiesCoreVendor\ibase_fetch_assoc(...func_get_args()); } }
+if (!function_exists('ibase_fetch_object')) { function ibase_fetch_object() { return \OtomatiesCoreVendor\ibase_fetch_object(...func_get_args()); } }
+if (!function_exists('ibase_fetch_row')) { function ibase_fetch_row() { return \OtomatiesCoreVendor\ibase_fetch_row(...func_get_args()); } }
+if (!function_exists('ibase_field_info')) { function ibase_field_info() { return \OtomatiesCoreVendor\ibase_field_info(...func_get_args()); } }
+if (!function_exists('ibase_free_event_handler')) { function ibase_free_event_handler() { return \OtomatiesCoreVendor\ibase_free_event_handler(...func_get_args()); } }
+if (!function_exists('ibase_free_query')) { function ibase_free_query() { return \OtomatiesCoreVendor\ibase_free_query(...func_get_args()); } }
+if (!function_exists('ibase_free_result')) { function ibase_free_result() { return \OtomatiesCoreVendor\ibase_free_result(...func_get_args()); } }
+if (!function_exists('ibase_gen_id')) { function ibase_gen_id() { return \OtomatiesCoreVendor\ibase_gen_id(...func_get_args()); } }
+if (!function_exists('ibase_maintain_db')) { function ibase_maintain_db() { return \OtomatiesCoreVendor\ibase_maintain_db(...func_get_args()); } }
+if (!function_exists('ibase_modify_user')) { function ibase_modify_user() { return \OtomatiesCoreVendor\ibase_modify_user(...func_get_args()); } }
+if (!function_exists('ibase_name_result')) { function ibase_name_result() { return \OtomatiesCoreVendor\ibase_name_result(...func_get_args()); } }
+if (!function_exists('ibase_num_fields')) { function ibase_num_fields() { return \OtomatiesCoreVendor\ibase_num_fields(...func_get_args()); } }
+if (!function_exists('ibase_num_params')) { function ibase_num_params() { return \OtomatiesCoreVendor\ibase_num_params(...func_get_args()); } }
+if (!function_exists('ibase_param_info')) { function ibase_param_info() { return \OtomatiesCoreVendor\ibase_param_info(...func_get_args()); } }
+if (!function_exists('ibase_pconnect')) { function ibase_pconnect() { return \OtomatiesCoreVendor\ibase_pconnect(...func_get_args()); } }
+if (!function_exists('ibase_prepare')) { function ibase_prepare() { return \OtomatiesCoreVendor\ibase_prepare(...func_get_args()); } }
+if (!function_exists('ibase_query')) { function ibase_query() { return \OtomatiesCoreVendor\ibase_query(...func_get_args()); } }
+if (!function_exists('ibase_restore')) { function ibase_restore() { return \OtomatiesCoreVendor\ibase_restore(...func_get_args()); } }
+if (!function_exists('ibase_rollback')) { function ibase_rollback() { return \OtomatiesCoreVendor\ibase_rollback(...func_get_args()); } }
+if (!function_exists('ibase_rollback_ret')) { function ibase_rollback_ret() { return \OtomatiesCoreVendor\ibase_rollback_ret(...func_get_args()); } }
+if (!function_exists('ibase_server_info')) { function ibase_server_info() { return \OtomatiesCoreVendor\ibase_server_info(...func_get_args()); } }
+if (!function_exists('ibase_service_attach')) { function ibase_service_attach() { return \OtomatiesCoreVendor\ibase_service_attach(...func_get_args()); } }
+if (!function_exists('ibase_service_detach')) { function ibase_service_detach() { return \OtomatiesCoreVendor\ibase_service_detach(...func_get_args()); } }
+if (!function_exists('ibase_set_event_handler')) { function ibase_set_event_handler() { return \OtomatiesCoreVendor\ibase_set_event_handler(...func_get_args()); } }
+if (!function_exists('ibase_trans')) { function ibase_trans() { return \OtomatiesCoreVendor\ibase_trans(...func_get_args()); } }
+if (!function_exists('ibase_wait_event')) { function ibase_wait_event() { return \OtomatiesCoreVendor\ibase_wait_event(...func_get_args()); } }
+if (!function_exists('iconv')) { function iconv() { return \OtomatiesCoreVendor\iconv(...func_get_args()); } }
+if (!function_exists('iconv_get_encoding')) { function iconv_get_encoding() { return \OtomatiesCoreVendor\iconv_get_encoding(...func_get_args()); } }
+if (!function_exists('iconv_mime_decode')) { function iconv_mime_decode() { return \OtomatiesCoreVendor\iconv_mime_decode(...func_get_args()); } }
+if (!function_exists('iconv_mime_decode_headers')) { function iconv_mime_decode_headers() { return \OtomatiesCoreVendor\iconv_mime_decode_headers(...func_get_args()); } }
+if (!function_exists('iconv_mime_encode')) { function iconv_mime_encode() { return \OtomatiesCoreVendor\iconv_mime_encode(...func_get_args()); } }
+if (!function_exists('iconv_set_encoding')) { function iconv_set_encoding() { return \OtomatiesCoreVendor\iconv_set_encoding(...func_get_args()); } }
+if (!function_exists('iconv_strlen')) { function iconv_strlen() { return \OtomatiesCoreVendor\iconv_strlen(...func_get_args()); } }
+if (!function_exists('iconv_strpos')) { function iconv_strpos() { return \OtomatiesCoreVendor\iconv_strpos(...func_get_args()); } }
+if (!function_exists('iconv_strrpos')) { function iconv_strrpos() { return \OtomatiesCoreVendor\iconv_strrpos(...func_get_args()); } }
+if (!function_exists('iconv_substr')) { function iconv_substr() { return \OtomatiesCoreVendor\iconv_substr(...func_get_args()); } }
+if (!function_exists('idate')) { function idate() { return \OtomatiesCoreVendor\idate(...func_get_args()); } }
+if (!function_exists('idn_to_ascii')) { function idn_to_ascii() { return \OtomatiesCoreVendor\idn_to_ascii(...func_get_args()); } }
+if (!function_exists('idn_to_utf8')) { function idn_to_utf8() { return \OtomatiesCoreVendor\idn_to_utf8(...func_get_args()); } }
 if (!function_exists('iframe_footer')) { function iframe_footer() { return \OtomatiesCoreVendor\iframe_footer(...func_get_args()); } }
 if (!function_exists('iframe_header')) { function iframe_header() { return \OtomatiesCoreVendor\iframe_header(...func_get_args()); } }
+if (!function_exists('igbinary_serialize')) { function igbinary_serialize() { return \OtomatiesCoreVendor\igbinary_serialize(...func_get_args()); } }
+if (!function_exists('igbinary_unserialize')) { function igbinary_unserialize() { return \OtomatiesCoreVendor\igbinary_unserialize(...func_get_args()); } }
+if (!function_exists('ignore_user_abort')) { function ignore_user_abort() { return \OtomatiesCoreVendor\ignore_user_abort(...func_get_args()); } }
 if (!function_exists('iis7_add_rewrite_rule')) { function iis7_add_rewrite_rule() { return \OtomatiesCoreVendor\iis7_add_rewrite_rule(...func_get_args()); } }
 if (!function_exists('iis7_delete_rewrite_rule')) { function iis7_delete_rewrite_rule() { return \OtomatiesCoreVendor\iis7_delete_rewrite_rule(...func_get_args()); } }
 if (!function_exists('iis7_rewrite_rule_exists')) { function iis7_rewrite_rule_exists() { return \OtomatiesCoreVendor\iis7_rewrite_rule_exists(...func_get_args()); } }
 if (!function_exists('iis7_save_url_rewrite_rules')) { function iis7_save_url_rewrite_rules() { return \OtomatiesCoreVendor\iis7_save_url_rewrite_rules(...func_get_args()); } }
 if (!function_exists('iis7_supports_permalinks')) { function iis7_supports_permalinks() { return \OtomatiesCoreVendor\iis7_supports_permalinks(...func_get_args()); } }
+if (!function_exists('image2wbmp')) { function image2wbmp() { return \OtomatiesCoreVendor\image2wbmp(...func_get_args()); } }
 if (!function_exists('image_add_caption')) { function image_add_caption() { return \OtomatiesCoreVendor\image_add_caption(...func_get_args()); } }
 if (!function_exists('image_align_input_fields')) { function image_align_input_fields() { return \OtomatiesCoreVendor\image_align_input_fields(...func_get_args()); } }
 if (!function_exists('image_attachment_fields_to_edit')) { function image_attachment_fields_to_edit() { return \OtomatiesCoreVendor\image_attachment_fields_to_edit(...func_get_args()); } }
@@ -2645,13 +4862,229 @@ if (!function_exists('image_media_send_to_editor')) { function image_media_send_
 if (!function_exists('image_resize')) { function image_resize() { return \OtomatiesCoreVendor\image_resize(...func_get_args()); } }
 if (!function_exists('image_resize_dimensions')) { function image_resize_dimensions() { return \OtomatiesCoreVendor\image_resize_dimensions(...func_get_args()); } }
 if (!function_exists('image_size_input_fields')) { function image_size_input_fields() { return \OtomatiesCoreVendor\image_size_input_fields(...func_get_args()); } }
+if (!function_exists('image_type_to_extension')) { function image_type_to_extension() { return \OtomatiesCoreVendor\image_type_to_extension(...func_get_args()); } }
+if (!function_exists('image_type_to_mime_type')) { function image_type_to_mime_type() { return \OtomatiesCoreVendor\image_type_to_mime_type(...func_get_args()); } }
+if (!function_exists('imageaffine')) { function imageaffine() { return \OtomatiesCoreVendor\imageaffine(...func_get_args()); } }
+if (!function_exists('imageaffinematrixconcat')) { function imageaffinematrixconcat() { return \OtomatiesCoreVendor\imageaffinematrixconcat(...func_get_args()); } }
+if (!function_exists('imageaffinematrixget')) { function imageaffinematrixget() { return \OtomatiesCoreVendor\imageaffinematrixget(...func_get_args()); } }
+if (!function_exists('imagealphablending')) { function imagealphablending() { return \OtomatiesCoreVendor\imagealphablending(...func_get_args()); } }
+if (!function_exists('imageantialias')) { function imageantialias() { return \OtomatiesCoreVendor\imageantialias(...func_get_args()); } }
+if (!function_exists('imagearc')) { function imagearc() { return \OtomatiesCoreVendor\imagearc(...func_get_args()); } }
+if (!function_exists('imageavif')) { function imageavif() { return \OtomatiesCoreVendor\imageavif(...func_get_args()); } }
+if (!function_exists('imagebmp')) { function imagebmp() { return \OtomatiesCoreVendor\imagebmp(...func_get_args()); } }
+if (!function_exists('imagechar')) { function imagechar() { return \OtomatiesCoreVendor\imagechar(...func_get_args()); } }
+if (!function_exists('imagecharup')) { function imagecharup() { return \OtomatiesCoreVendor\imagecharup(...func_get_args()); } }
+if (!function_exists('imagecolorallocate')) { function imagecolorallocate() { return \OtomatiesCoreVendor\imagecolorallocate(...func_get_args()); } }
+if (!function_exists('imagecolorallocatealpha')) { function imagecolorallocatealpha() { return \OtomatiesCoreVendor\imagecolorallocatealpha(...func_get_args()); } }
+if (!function_exists('imagecolorat')) { function imagecolorat() { return \OtomatiesCoreVendor\imagecolorat(...func_get_args()); } }
+if (!function_exists('imagecolorclosest')) { function imagecolorclosest() { return \OtomatiesCoreVendor\imagecolorclosest(...func_get_args()); } }
+if (!function_exists('imagecolorclosestalpha')) { function imagecolorclosestalpha() { return \OtomatiesCoreVendor\imagecolorclosestalpha(...func_get_args()); } }
+if (!function_exists('imagecolorclosesthwb')) { function imagecolorclosesthwb() { return \OtomatiesCoreVendor\imagecolorclosesthwb(...func_get_args()); } }
+if (!function_exists('imagecolordeallocate')) { function imagecolordeallocate() { return \OtomatiesCoreVendor\imagecolordeallocate(...func_get_args()); } }
+if (!function_exists('imagecolorexact')) { function imagecolorexact() { return \OtomatiesCoreVendor\imagecolorexact(...func_get_args()); } }
+if (!function_exists('imagecolorexactalpha')) { function imagecolorexactalpha() { return \OtomatiesCoreVendor\imagecolorexactalpha(...func_get_args()); } }
+if (!function_exists('imagecolormatch')) { function imagecolormatch() { return \OtomatiesCoreVendor\imagecolormatch(...func_get_args()); } }
+if (!function_exists('imagecolorresolve')) { function imagecolorresolve() { return \OtomatiesCoreVendor\imagecolorresolve(...func_get_args()); } }
+if (!function_exists('imagecolorresolvealpha')) { function imagecolorresolvealpha() { return \OtomatiesCoreVendor\imagecolorresolvealpha(...func_get_args()); } }
+if (!function_exists('imagecolorset')) { function imagecolorset() { return \OtomatiesCoreVendor\imagecolorset(...func_get_args()); } }
+if (!function_exists('imagecolorsforindex')) { function imagecolorsforindex() { return \OtomatiesCoreVendor\imagecolorsforindex(...func_get_args()); } }
+if (!function_exists('imagecolorstotal')) { function imagecolorstotal() { return \OtomatiesCoreVendor\imagecolorstotal(...func_get_args()); } }
+if (!function_exists('imagecolortransparent')) { function imagecolortransparent() { return \OtomatiesCoreVendor\imagecolortransparent(...func_get_args()); } }
+if (!function_exists('imageconvolution')) { function imageconvolution() { return \OtomatiesCoreVendor\imageconvolution(...func_get_args()); } }
+if (!function_exists('imagecopy')) { function imagecopy() { return \OtomatiesCoreVendor\imagecopy(...func_get_args()); } }
+if (!function_exists('imagecopymerge')) { function imagecopymerge() { return \OtomatiesCoreVendor\imagecopymerge(...func_get_args()); } }
+if (!function_exists('imagecopymergegray')) { function imagecopymergegray() { return \OtomatiesCoreVendor\imagecopymergegray(...func_get_args()); } }
+if (!function_exists('imagecopyresampled')) { function imagecopyresampled() { return \OtomatiesCoreVendor\imagecopyresampled(...func_get_args()); } }
+if (!function_exists('imagecopyresized')) { function imagecopyresized() { return \OtomatiesCoreVendor\imagecopyresized(...func_get_args()); } }
+if (!function_exists('imagecreate')) { function imagecreate() { return \OtomatiesCoreVendor\imagecreate(...func_get_args()); } }
+if (!function_exists('imagecreatefromavif')) { function imagecreatefromavif() { return \OtomatiesCoreVendor\imagecreatefromavif(...func_get_args()); } }
+if (!function_exists('imagecreatefrombmp')) { function imagecreatefrombmp() { return \OtomatiesCoreVendor\imagecreatefrombmp(...func_get_args()); } }
+if (!function_exists('imagecreatefromgd')) { function imagecreatefromgd() { return \OtomatiesCoreVendor\imagecreatefromgd(...func_get_args()); } }
+if (!function_exists('imagecreatefromgd2')) { function imagecreatefromgd2() { return \OtomatiesCoreVendor\imagecreatefromgd2(...func_get_args()); } }
+if (!function_exists('imagecreatefromgd2part')) { function imagecreatefromgd2part() { return \OtomatiesCoreVendor\imagecreatefromgd2part(...func_get_args()); } }
+if (!function_exists('imagecreatefromgif')) { function imagecreatefromgif() { return \OtomatiesCoreVendor\imagecreatefromgif(...func_get_args()); } }
+if (!function_exists('imagecreatefromjpeg')) { function imagecreatefromjpeg() { return \OtomatiesCoreVendor\imagecreatefromjpeg(...func_get_args()); } }
+if (!function_exists('imagecreatefrompng')) { function imagecreatefrompng() { return \OtomatiesCoreVendor\imagecreatefrompng(...func_get_args()); } }
+if (!function_exists('imagecreatefromstring')) { function imagecreatefromstring() { return \OtomatiesCoreVendor\imagecreatefromstring(...func_get_args()); } }
+if (!function_exists('imagecreatefromtga')) { function imagecreatefromtga() { return \OtomatiesCoreVendor\imagecreatefromtga(...func_get_args()); } }
+if (!function_exists('imagecreatefromwbmp')) { function imagecreatefromwbmp() { return \OtomatiesCoreVendor\imagecreatefromwbmp(...func_get_args()); } }
+if (!function_exists('imagecreatefromwebp')) { function imagecreatefromwebp() { return \OtomatiesCoreVendor\imagecreatefromwebp(...func_get_args()); } }
+if (!function_exists('imagecreatefromxbm')) { function imagecreatefromxbm() { return \OtomatiesCoreVendor\imagecreatefromxbm(...func_get_args()); } }
+if (!function_exists('imagecreatefromxpm')) { function imagecreatefromxpm() { return \OtomatiesCoreVendor\imagecreatefromxpm(...func_get_args()); } }
+if (!function_exists('imagecreatetruecolor')) { function imagecreatetruecolor() { return \OtomatiesCoreVendor\imagecreatetruecolor(...func_get_args()); } }
+if (!function_exists('imagecrop')) { function imagecrop() { return \OtomatiesCoreVendor\imagecrop(...func_get_args()); } }
+if (!function_exists('imagecropauto')) { function imagecropauto() { return \OtomatiesCoreVendor\imagecropauto(...func_get_args()); } }
+if (!function_exists('imagedashedline')) { function imagedashedline() { return \OtomatiesCoreVendor\imagedashedline(...func_get_args()); } }
+if (!function_exists('imagedestroy')) { function imagedestroy() { return \OtomatiesCoreVendor\imagedestroy(...func_get_args()); } }
+if (!function_exists('imageellipse')) { function imageellipse() { return \OtomatiesCoreVendor\imageellipse(...func_get_args()); } }
+if (!function_exists('imagefill')) { function imagefill() { return \OtomatiesCoreVendor\imagefill(...func_get_args()); } }
+if (!function_exists('imagefilledarc')) { function imagefilledarc() { return \OtomatiesCoreVendor\imagefilledarc(...func_get_args()); } }
+if (!function_exists('imagefilledellipse')) { function imagefilledellipse() { return \OtomatiesCoreVendor\imagefilledellipse(...func_get_args()); } }
+if (!function_exists('imagefilledpolygon')) { function imagefilledpolygon() { return \OtomatiesCoreVendor\imagefilledpolygon(...func_get_args()); } }
+if (!function_exists('imagefilledrectangle')) { function imagefilledrectangle() { return \OtomatiesCoreVendor\imagefilledrectangle(...func_get_args()); } }
+if (!function_exists('imagefilltoborder')) { function imagefilltoborder() { return \OtomatiesCoreVendor\imagefilltoborder(...func_get_args()); } }
+if (!function_exists('imagefilter')) { function imagefilter() { return \OtomatiesCoreVendor\imagefilter(...func_get_args()); } }
+if (!function_exists('imageflip')) { function imageflip() { return \OtomatiesCoreVendor\imageflip(...func_get_args()); } }
+if (!function_exists('imagefontheight')) { function imagefontheight() { return \OtomatiesCoreVendor\imagefontheight(...func_get_args()); } }
+if (!function_exists('imagefontwidth')) { function imagefontwidth() { return \OtomatiesCoreVendor\imagefontwidth(...func_get_args()); } }
+if (!function_exists('imageftbbox')) { function imageftbbox() { return \OtomatiesCoreVendor\imageftbbox(...func_get_args()); } }
+if (!function_exists('imagefttext')) { function imagefttext() { return \OtomatiesCoreVendor\imagefttext(...func_get_args()); } }
+if (!function_exists('imagegammacorrect')) { function imagegammacorrect() { return \OtomatiesCoreVendor\imagegammacorrect(...func_get_args()); } }
+if (!function_exists('imagegd')) { function imagegd() { return \OtomatiesCoreVendor\imagegd(...func_get_args()); } }
+if (!function_exists('imagegd2')) { function imagegd2() { return \OtomatiesCoreVendor\imagegd2(...func_get_args()); } }
+if (!function_exists('imagegetclip')) { function imagegetclip() { return \OtomatiesCoreVendor\imagegetclip(...func_get_args()); } }
+if (!function_exists('imagegetinterpolation')) { function imagegetinterpolation() { return \OtomatiesCoreVendor\imagegetinterpolation(...func_get_args()); } }
+if (!function_exists('imagegif')) { function imagegif() { return \OtomatiesCoreVendor\imagegif(...func_get_args()); } }
+if (!function_exists('imagegrabscreen')) { function imagegrabscreen() { return \OtomatiesCoreVendor\imagegrabscreen(...func_get_args()); } }
+if (!function_exists('imagegrabwindow')) { function imagegrabwindow() { return \OtomatiesCoreVendor\imagegrabwindow(...func_get_args()); } }
+if (!function_exists('imageinterlace')) { function imageinterlace() { return \OtomatiesCoreVendor\imageinterlace(...func_get_args()); } }
+if (!function_exists('imageistruecolor')) { function imageistruecolor() { return \OtomatiesCoreVendor\imageistruecolor(...func_get_args()); } }
+if (!function_exists('imagejpeg')) { function imagejpeg() { return \OtomatiesCoreVendor\imagejpeg(...func_get_args()); } }
+if (!function_exists('imagelayereffect')) { function imagelayereffect() { return \OtomatiesCoreVendor\imagelayereffect(...func_get_args()); } }
+if (!function_exists('imageline')) { function imageline() { return \OtomatiesCoreVendor\imageline(...func_get_args()); } }
+if (!function_exists('imageloadfont')) { function imageloadfont() { return \OtomatiesCoreVendor\imageloadfont(...func_get_args()); } }
+if (!function_exists('imageopenpolygon')) { function imageopenpolygon() { return \OtomatiesCoreVendor\imageopenpolygon(...func_get_args()); } }
+if (!function_exists('imagepalettecopy')) { function imagepalettecopy() { return \OtomatiesCoreVendor\imagepalettecopy(...func_get_args()); } }
+if (!function_exists('imagepalettetotruecolor')) { function imagepalettetotruecolor() { return \OtomatiesCoreVendor\imagepalettetotruecolor(...func_get_args()); } }
+if (!function_exists('imagepng')) { function imagepng() { return \OtomatiesCoreVendor\imagepng(...func_get_args()); } }
+if (!function_exists('imagepolygon')) { function imagepolygon() { return \OtomatiesCoreVendor\imagepolygon(...func_get_args()); } }
+if (!function_exists('imagepsbbox')) { function imagepsbbox() { return \OtomatiesCoreVendor\imagepsbbox(...func_get_args()); } }
+if (!function_exists('imagepsencodefont')) { function imagepsencodefont() { return \OtomatiesCoreVendor\imagepsencodefont(...func_get_args()); } }
+if (!function_exists('imagepsextendfont')) { function imagepsextendfont() { return \OtomatiesCoreVendor\imagepsextendfont(...func_get_args()); } }
+if (!function_exists('imagepsfreefont')) { function imagepsfreefont() { return \OtomatiesCoreVendor\imagepsfreefont(...func_get_args()); } }
+if (!function_exists('imagepsloadfont')) { function imagepsloadfont() { return \OtomatiesCoreVendor\imagepsloadfont(...func_get_args()); } }
+if (!function_exists('imagepsslantfont')) { function imagepsslantfont() { return \OtomatiesCoreVendor\imagepsslantfont(...func_get_args()); } }
+if (!function_exists('imagepstext')) { function imagepstext() { return \OtomatiesCoreVendor\imagepstext(...func_get_args()); } }
+if (!function_exists('imagerectangle')) { function imagerectangle() { return \OtomatiesCoreVendor\imagerectangle(...func_get_args()); } }
+if (!function_exists('imageresolution')) { function imageresolution() { return \OtomatiesCoreVendor\imageresolution(...func_get_args()); } }
+if (!function_exists('imagerotate')) { function imagerotate() { return \OtomatiesCoreVendor\imagerotate(...func_get_args()); } }
+if (!function_exists('imagesavealpha')) { function imagesavealpha() { return \OtomatiesCoreVendor\imagesavealpha(...func_get_args()); } }
+if (!function_exists('imagescale')) { function imagescale() { return \OtomatiesCoreVendor\imagescale(...func_get_args()); } }
+if (!function_exists('imagesetbrush')) { function imagesetbrush() { return \OtomatiesCoreVendor\imagesetbrush(...func_get_args()); } }
+if (!function_exists('imagesetclip')) { function imagesetclip() { return \OtomatiesCoreVendor\imagesetclip(...func_get_args()); } }
+if (!function_exists('imagesetinterpolation')) { function imagesetinterpolation() { return \OtomatiesCoreVendor\imagesetinterpolation(...func_get_args()); } }
+if (!function_exists('imagesetpixel')) { function imagesetpixel() { return \OtomatiesCoreVendor\imagesetpixel(...func_get_args()); } }
+if (!function_exists('imagesetstyle')) { function imagesetstyle() { return \OtomatiesCoreVendor\imagesetstyle(...func_get_args()); } }
+if (!function_exists('imagesetthickness')) { function imagesetthickness() { return \OtomatiesCoreVendor\imagesetthickness(...func_get_args()); } }
+if (!function_exists('imagesettile')) { function imagesettile() { return \OtomatiesCoreVendor\imagesettile(...func_get_args()); } }
+if (!function_exists('imagestring')) { function imagestring() { return \OtomatiesCoreVendor\imagestring(...func_get_args()); } }
+if (!function_exists('imagestringup')) { function imagestringup() { return \OtomatiesCoreVendor\imagestringup(...func_get_args()); } }
+if (!function_exists('imagesx')) { function imagesx() { return \OtomatiesCoreVendor\imagesx(...func_get_args()); } }
+if (!function_exists('imagesy')) { function imagesy() { return \OtomatiesCoreVendor\imagesy(...func_get_args()); } }
+if (!function_exists('imagetruecolortopalette')) { function imagetruecolortopalette() { return \OtomatiesCoreVendor\imagetruecolortopalette(...func_get_args()); } }
+if (!function_exists('imagettfbbox')) { function imagettfbbox() { return \OtomatiesCoreVendor\imagettfbbox(...func_get_args()); } }
+if (!function_exists('imagettftext')) { function imagettftext() { return \OtomatiesCoreVendor\imagettftext(...func_get_args()); } }
+if (!function_exists('imagetypes')) { function imagetypes() { return \OtomatiesCoreVendor\imagetypes(...func_get_args()); } }
+if (!function_exists('imagewbmp')) { function imagewbmp() { return \OtomatiesCoreVendor\imagewbmp(...func_get_args()); } }
+if (!function_exists('imagewebp')) { function imagewebp() { return \OtomatiesCoreVendor\imagewebp(...func_get_args()); } }
+if (!function_exists('imagexbm')) { function imagexbm() { return \OtomatiesCoreVendor\imagexbm(...func_get_args()); } }
+if (!function_exists('imap_8bit')) { function imap_8bit() { return \OtomatiesCoreVendor\imap_8bit(...func_get_args()); } }
+if (!function_exists('imap_alerts')) { function imap_alerts() { return \OtomatiesCoreVendor\imap_alerts(...func_get_args()); } }
+if (!function_exists('imap_append')) { function imap_append() { return \OtomatiesCoreVendor\imap_append(...func_get_args()); } }
+if (!function_exists('imap_base64')) { function imap_base64() { return \OtomatiesCoreVendor\imap_base64(...func_get_args()); } }
+if (!function_exists('imap_binary')) { function imap_binary() { return \OtomatiesCoreVendor\imap_binary(...func_get_args()); } }
+if (!function_exists('imap_body')) { function imap_body() { return \OtomatiesCoreVendor\imap_body(...func_get_args()); } }
+if (!function_exists('imap_bodystruct')) { function imap_bodystruct() { return \OtomatiesCoreVendor\imap_bodystruct(...func_get_args()); } }
+if (!function_exists('imap_check')) { function imap_check() { return \OtomatiesCoreVendor\imap_check(...func_get_args()); } }
+if (!function_exists('imap_clearflag_full')) { function imap_clearflag_full() { return \OtomatiesCoreVendor\imap_clearflag_full(...func_get_args()); } }
+if (!function_exists('imap_close')) { function imap_close() { return \OtomatiesCoreVendor\imap_close(...func_get_args()); } }
+if (!function_exists('imap_create')) { function imap_create() { return \OtomatiesCoreVendor\imap_create(...func_get_args()); } }
+if (!function_exists('imap_createmailbox')) { function imap_createmailbox() { return \OtomatiesCoreVendor\imap_createmailbox(...func_get_args()); } }
+if (!function_exists('imap_delete')) { function imap_delete() { return \OtomatiesCoreVendor\imap_delete(...func_get_args()); } }
+if (!function_exists('imap_deletemailbox')) { function imap_deletemailbox() { return \OtomatiesCoreVendor\imap_deletemailbox(...func_get_args()); } }
+if (!function_exists('imap_errors')) { function imap_errors() { return \OtomatiesCoreVendor\imap_errors(...func_get_args()); } }
+if (!function_exists('imap_expunge')) { function imap_expunge() { return \OtomatiesCoreVendor\imap_expunge(...func_get_args()); } }
+if (!function_exists('imap_fetch_overview')) { function imap_fetch_overview() { return \OtomatiesCoreVendor\imap_fetch_overview(...func_get_args()); } }
+if (!function_exists('imap_fetchbody')) { function imap_fetchbody() { return \OtomatiesCoreVendor\imap_fetchbody(...func_get_args()); } }
+if (!function_exists('imap_fetchheader')) { function imap_fetchheader() { return \OtomatiesCoreVendor\imap_fetchheader(...func_get_args()); } }
+if (!function_exists('imap_fetchmime')) { function imap_fetchmime() { return \OtomatiesCoreVendor\imap_fetchmime(...func_get_args()); } }
+if (!function_exists('imap_fetchstructure')) { function imap_fetchstructure() { return \OtomatiesCoreVendor\imap_fetchstructure(...func_get_args()); } }
+if (!function_exists('imap_fetchtext')) { function imap_fetchtext() { return \OtomatiesCoreVendor\imap_fetchtext(...func_get_args()); } }
+if (!function_exists('imap_gc')) { function imap_gc() { return \OtomatiesCoreVendor\imap_gc(...func_get_args()); } }
+if (!function_exists('imap_get_quota')) { function imap_get_quota() { return \OtomatiesCoreVendor\imap_get_quota(...func_get_args()); } }
+if (!function_exists('imap_get_quotaroot')) { function imap_get_quotaroot() { return \OtomatiesCoreVendor\imap_get_quotaroot(...func_get_args()); } }
+if (!function_exists('imap_getacl')) { function imap_getacl() { return \OtomatiesCoreVendor\imap_getacl(...func_get_args()); } }
+if (!function_exists('imap_getannotation')) { function imap_getannotation() { return \OtomatiesCoreVendor\imap_getannotation(...func_get_args()); } }
+if (!function_exists('imap_getmailboxes')) { function imap_getmailboxes() { return \OtomatiesCoreVendor\imap_getmailboxes(...func_get_args()); } }
+if (!function_exists('imap_getsubscribed')) { function imap_getsubscribed() { return \OtomatiesCoreVendor\imap_getsubscribed(...func_get_args()); } }
+if (!function_exists('imap_header')) { function imap_header() { return \OtomatiesCoreVendor\imap_header(...func_get_args()); } }
+if (!function_exists('imap_headerinfo')) { function imap_headerinfo() { return \OtomatiesCoreVendor\imap_headerinfo(...func_get_args()); } }
+if (!function_exists('imap_headers')) { function imap_headers() { return \OtomatiesCoreVendor\imap_headers(...func_get_args()); } }
+if (!function_exists('imap_is_open')) { function imap_is_open() { return \OtomatiesCoreVendor\imap_is_open(...func_get_args()); } }
+if (!function_exists('imap_last_error')) { function imap_last_error() { return \OtomatiesCoreVendor\imap_last_error(...func_get_args()); } }
+if (!function_exists('imap_list')) { function imap_list() { return \OtomatiesCoreVendor\imap_list(...func_get_args()); } }
+if (!function_exists('imap_listmailbox')) { function imap_listmailbox() { return \OtomatiesCoreVendor\imap_listmailbox(...func_get_args()); } }
+if (!function_exists('imap_listscan')) { function imap_listscan() { return \OtomatiesCoreVendor\imap_listscan(...func_get_args()); } }
+if (!function_exists('imap_listsubscribed')) { function imap_listsubscribed() { return \OtomatiesCoreVendor\imap_listsubscribed(...func_get_args()); } }
+if (!function_exists('imap_lsub')) { function imap_lsub() { return \OtomatiesCoreVendor\imap_lsub(...func_get_args()); } }
+if (!function_exists('imap_mail')) { function imap_mail() { return \OtomatiesCoreVendor\imap_mail(...func_get_args()); } }
+if (!function_exists('imap_mail_compose')) { function imap_mail_compose() { return \OtomatiesCoreVendor\imap_mail_compose(...func_get_args()); } }
+if (!function_exists('imap_mail_copy')) { function imap_mail_copy() { return \OtomatiesCoreVendor\imap_mail_copy(...func_get_args()); } }
+if (!function_exists('imap_mail_move')) { function imap_mail_move() { return \OtomatiesCoreVendor\imap_mail_move(...func_get_args()); } }
+if (!function_exists('imap_mailboxmsginfo')) { function imap_mailboxmsginfo() { return \OtomatiesCoreVendor\imap_mailboxmsginfo(...func_get_args()); } }
+if (!function_exists('imap_mime_header_decode')) { function imap_mime_header_decode() { return \OtomatiesCoreVendor\imap_mime_header_decode(...func_get_args()); } }
+if (!function_exists('imap_msgno')) { function imap_msgno() { return \OtomatiesCoreVendor\imap_msgno(...func_get_args()); } }
+if (!function_exists('imap_mutf7_to_utf8')) { function imap_mutf7_to_utf8() { return \OtomatiesCoreVendor\imap_mutf7_to_utf8(...func_get_args()); } }
+if (!function_exists('imap_myrights')) { function imap_myrights() { return \OtomatiesCoreVendor\imap_myrights(...func_get_args()); } }
+if (!function_exists('imap_num_msg')) { function imap_num_msg() { return \OtomatiesCoreVendor\imap_num_msg(...func_get_args()); } }
+if (!function_exists('imap_num_recent')) { function imap_num_recent() { return \OtomatiesCoreVendor\imap_num_recent(...func_get_args()); } }
+if (!function_exists('imap_open')) { function imap_open() { return \OtomatiesCoreVendor\imap_open(...func_get_args()); } }
+if (!function_exists('imap_ping')) { function imap_ping() { return \OtomatiesCoreVendor\imap_ping(...func_get_args()); } }
+if (!function_exists('imap_qprint')) { function imap_qprint() { return \OtomatiesCoreVendor\imap_qprint(...func_get_args()); } }
+if (!function_exists('imap_rename')) { function imap_rename() { return \OtomatiesCoreVendor\imap_rename(...func_get_args()); } }
+if (!function_exists('imap_renamemailbox')) { function imap_renamemailbox() { return \OtomatiesCoreVendor\imap_renamemailbox(...func_get_args()); } }
+if (!function_exists('imap_reopen')) { function imap_reopen() { return \OtomatiesCoreVendor\imap_reopen(...func_get_args()); } }
+if (!function_exists('imap_rfc822_parse_adrlist')) { function imap_rfc822_parse_adrlist() { return \OtomatiesCoreVendor\imap_rfc822_parse_adrlist(...func_get_args()); } }
+if (!function_exists('imap_rfc822_parse_headers')) { function imap_rfc822_parse_headers() { return \OtomatiesCoreVendor\imap_rfc822_parse_headers(...func_get_args()); } }
+if (!function_exists('imap_rfc822_write_address')) { function imap_rfc822_write_address() { return \OtomatiesCoreVendor\imap_rfc822_write_address(...func_get_args()); } }
+if (!function_exists('imap_savebody')) { function imap_savebody() { return \OtomatiesCoreVendor\imap_savebody(...func_get_args()); } }
+if (!function_exists('imap_scan')) { function imap_scan() { return \OtomatiesCoreVendor\imap_scan(...func_get_args()); } }
+if (!function_exists('imap_scanmailbox')) { function imap_scanmailbox() { return \OtomatiesCoreVendor\imap_scanmailbox(...func_get_args()); } }
+if (!function_exists('imap_search')) { function imap_search() { return \OtomatiesCoreVendor\imap_search(...func_get_args()); } }
+if (!function_exists('imap_set_quota')) { function imap_set_quota() { return \OtomatiesCoreVendor\imap_set_quota(...func_get_args()); } }
+if (!function_exists('imap_setacl')) { function imap_setacl() { return \OtomatiesCoreVendor\imap_setacl(...func_get_args()); } }
+if (!function_exists('imap_setannotation')) { function imap_setannotation() { return \OtomatiesCoreVendor\imap_setannotation(...func_get_args()); } }
+if (!function_exists('imap_setflag_full')) { function imap_setflag_full() { return \OtomatiesCoreVendor\imap_setflag_full(...func_get_args()); } }
+if (!function_exists('imap_sort')) { function imap_sort() { return \OtomatiesCoreVendor\imap_sort(...func_get_args()); } }
+if (!function_exists('imap_status')) { function imap_status() { return \OtomatiesCoreVendor\imap_status(...func_get_args()); } }
+if (!function_exists('imap_status_current')) { function imap_status_current() { return \OtomatiesCoreVendor\imap_status_current(...func_get_args()); } }
+if (!function_exists('imap_subscribe')) { function imap_subscribe() { return \OtomatiesCoreVendor\imap_subscribe(...func_get_args()); } }
+if (!function_exists('imap_thread')) { function imap_thread() { return \OtomatiesCoreVendor\imap_thread(...func_get_args()); } }
+if (!function_exists('imap_timeout')) { function imap_timeout() { return \OtomatiesCoreVendor\imap_timeout(...func_get_args()); } }
+if (!function_exists('imap_uid')) { function imap_uid() { return \OtomatiesCoreVendor\imap_uid(...func_get_args()); } }
+if (!function_exists('imap_undelete')) { function imap_undelete() { return \OtomatiesCoreVendor\imap_undelete(...func_get_args()); } }
+if (!function_exists('imap_unsubscribe')) { function imap_unsubscribe() { return \OtomatiesCoreVendor\imap_unsubscribe(...func_get_args()); } }
+if (!function_exists('imap_utf7_decode')) { function imap_utf7_decode() { return \OtomatiesCoreVendor\imap_utf7_decode(...func_get_args()); } }
+if (!function_exists('imap_utf7_encode')) { function imap_utf7_encode() { return \OtomatiesCoreVendor\imap_utf7_encode(...func_get_args()); } }
+if (!function_exists('imap_utf8')) { function imap_utf8() { return \OtomatiesCoreVendor\imap_utf8(...func_get_args()); } }
+if (!function_exists('imap_utf8_to_mutf7')) { function imap_utf8_to_mutf7() { return \OtomatiesCoreVendor\imap_utf8_to_mutf7(...func_get_args()); } }
 if (!function_exists('img_caption_shortcode')) { function img_caption_shortcode() { return \OtomatiesCoreVendor\img_caption_shortcode(...func_get_args()); } }
+if (!function_exists('implode')) { function implode() { return \OtomatiesCoreVendor\implode(...func_get_args()); } }
+if (!function_exists('import_request_variables')) { function import_request_variables() { return \OtomatiesCoreVendor\import_request_variables(...func_get_args()); } }
+if (!function_exists('in_array')) { function in_array() { return \OtomatiesCoreVendor\in_array(...func_get_args()); } }
 if (!function_exists('in_category')) { function in_category() { return \OtomatiesCoreVendor\in_category(...func_get_args()); } }
 if (!function_exists('in_the_loop')) { function in_the_loop() { return \OtomatiesCoreVendor\in_the_loop(...func_get_args()); } }
 if (!function_exists('includeIfExists')) { function includeIfExists() { return \OtomatiesCoreVendor\includeIfExists(...func_get_args()); } }
 if (!function_exists('includes_url')) { function includes_url() { return \OtomatiesCoreVendor\includes_url(...func_get_args()); } }
 if (!function_exists('index_rel_link')) { function index_rel_link() { return \OtomatiesCoreVendor\index_rel_link(...func_get_args()); } }
+if (!function_exists('inet_ntop')) { function inet_ntop() { return \OtomatiesCoreVendor\inet_ntop(...func_get_args()); } }
+if (!function_exists('inet_pton')) { function inet_pton() { return \OtomatiesCoreVendor\inet_pton(...func_get_args()); } }
+if (!function_exists('inflate_add')) { function inflate_add() { return \OtomatiesCoreVendor\inflate_add(...func_get_args()); } }
+if (!function_exists('inflate_get_read_len')) { function inflate_get_read_len() { return \OtomatiesCoreVendor\inflate_get_read_len(...func_get_args()); } }
+if (!function_exists('inflate_get_status')) { function inflate_get_status() { return \OtomatiesCoreVendor\inflate_get_status(...func_get_args()); } }
+if (!function_exists('inflate_init')) { function inflate_init() { return \OtomatiesCoreVendor\inflate_init(...func_get_args()); } }
+if (!function_exists('ini_alter')) { function ini_alter() { return \OtomatiesCoreVendor\ini_alter(...func_get_args()); } }
+if (!function_exists('ini_get')) { function ini_get() { return \OtomatiesCoreVendor\ini_get(...func_get_args()); } }
+if (!function_exists('ini_get_all')) { function ini_get_all() { return \OtomatiesCoreVendor\ini_get_all(...func_get_args()); } }
+if (!function_exists('ini_parse_quantity')) { function ini_parse_quantity() { return \OtomatiesCoreVendor\ini_parse_quantity(...func_get_args()); } }
+if (!function_exists('ini_restore')) { function ini_restore() { return \OtomatiesCoreVendor\ini_restore(...func_get_args()); } }
+if (!function_exists('ini_set')) { function ini_set() { return \OtomatiesCoreVendor\ini_set(...func_get_args()); } }
 if (!function_exists('inject_ignored_hooked_blocks_metadata_attributes')) { function inject_ignored_hooked_blocks_metadata_attributes() { return \OtomatiesCoreVendor\inject_ignored_hooked_blocks_metadata_attributes(...func_get_args()); } }
+if (!function_exists('inotify_add_watch')) { function inotify_add_watch() { return \OtomatiesCoreVendor\inotify_add_watch(...func_get_args()); } }
+if (!function_exists('inotify_init')) { function inotify_init() { return \OtomatiesCoreVendor\inotify_init(...func_get_args()); } }
+if (!function_exists('inotify_queue_len')) { function inotify_queue_len() { return \OtomatiesCoreVendor\inotify_queue_len(...func_get_args()); } }
+if (!function_exists('inotify_read')) { function inotify_read() { return \OtomatiesCoreVendor\inotify_read(...func_get_args()); } }
+if (!function_exists('inotify_rm_watch')) { function inotify_rm_watch() { return \OtomatiesCoreVendor\inotify_rm_watch(...func_get_args()); } }
 if (!function_exists('insert_blog')) { function insert_blog() { return \OtomatiesCoreVendor\insert_blog(...func_get_args()); } }
 if (!function_exists('insert_hooked_blocks')) { function insert_hooked_blocks() { return \OtomatiesCoreVendor\insert_hooked_blocks(...func_get_args()); } }
 if (!function_exists('insert_hooked_blocks_and_set_ignored_hooked_blocks_metadata')) { function insert_hooked_blocks_and_set_ignored_hooked_blocks_metadata() { return \OtomatiesCoreVendor\insert_hooked_blocks_and_set_ignored_hooked_blocks_metadata(...func_get_args()); } }
@@ -2673,8 +5106,98 @@ if (!function_exists('install_theme_search_form')) { function install_theme_sear
 if (!function_exists('install_themes_dashboard')) { function install_themes_dashboard() { return \OtomatiesCoreVendor\install_themes_dashboard(...func_get_args()); } }
 if (!function_exists('install_themes_feature_list')) { function install_themes_feature_list() { return \OtomatiesCoreVendor\install_themes_feature_list(...func_get_args()); } }
 if (!function_exists('install_themes_upload')) { function install_themes_upload() { return \OtomatiesCoreVendor\install_themes_upload(...func_get_args()); } }
+if (!function_exists('intcal_get_maximum')) { function intcal_get_maximum() { return \OtomatiesCoreVendor\intcal_get_maximum(...func_get_args()); } }
+if (!function_exists('intdiv')) { function intdiv() { return \OtomatiesCoreVendor\intdiv(...func_get_args()); } }
+if (!function_exists('interface_exists')) { function interface_exists() { return \OtomatiesCoreVendor\interface_exists(...func_get_args()); } }
+if (!function_exists('intl_error_name')) { function intl_error_name() { return \OtomatiesCoreVendor\intl_error_name(...func_get_args()); } }
+if (!function_exists('intl_get')) { function intl_get() { return \OtomatiesCoreVendor\intl_get(...func_get_args()); } }
+if (!function_exists('intl_get_error_code')) { function intl_get_error_code() { return \OtomatiesCoreVendor\intl_get_error_code(...func_get_args()); } }
+if (!function_exists('intl_get_error_message')) { function intl_get_error_message() { return \OtomatiesCoreVendor\intl_get_error_message(...func_get_args()); } }
+if (!function_exists('intl_is_failure')) { function intl_is_failure() { return \OtomatiesCoreVendor\intl_is_failure(...func_get_args()); } }
+if (!function_exists('intlcal_add')) { function intlcal_add() { return \OtomatiesCoreVendor\intlcal_add(...func_get_args()); } }
+if (!function_exists('intlcal_after')) { function intlcal_after() { return \OtomatiesCoreVendor\intlcal_after(...func_get_args()); } }
+if (!function_exists('intlcal_before')) { function intlcal_before() { return \OtomatiesCoreVendor\intlcal_before(...func_get_args()); } }
+if (!function_exists('intlcal_clear')) { function intlcal_clear() { return \OtomatiesCoreVendor\intlcal_clear(...func_get_args()); } }
+if (!function_exists('intlcal_create_instance')) { function intlcal_create_instance() { return \OtomatiesCoreVendor\intlcal_create_instance(...func_get_args()); } }
+if (!function_exists('intlcal_equals')) { function intlcal_equals() { return \OtomatiesCoreVendor\intlcal_equals(...func_get_args()); } }
+if (!function_exists('intlcal_field_difference')) { function intlcal_field_difference() { return \OtomatiesCoreVendor\intlcal_field_difference(...func_get_args()); } }
+if (!function_exists('intlcal_from_date_time')) { function intlcal_from_date_time() { return \OtomatiesCoreVendor\intlcal_from_date_time(...func_get_args()); } }
+if (!function_exists('intlcal_get')) { function intlcal_get() { return \OtomatiesCoreVendor\intlcal_get(...func_get_args()); } }
+if (!function_exists('intlcal_get_actual_maximum')) { function intlcal_get_actual_maximum() { return \OtomatiesCoreVendor\intlcal_get_actual_maximum(...func_get_args()); } }
+if (!function_exists('intlcal_get_actual_minimum')) { function intlcal_get_actual_minimum() { return \OtomatiesCoreVendor\intlcal_get_actual_minimum(...func_get_args()); } }
+if (!function_exists('intlcal_get_available_locales')) { function intlcal_get_available_locales() { return \OtomatiesCoreVendor\intlcal_get_available_locales(...func_get_args()); } }
+if (!function_exists('intlcal_get_day_of_week_type')) { function intlcal_get_day_of_week_type() { return \OtomatiesCoreVendor\intlcal_get_day_of_week_type(...func_get_args()); } }
+if (!function_exists('intlcal_get_error_code')) { function intlcal_get_error_code() { return \OtomatiesCoreVendor\intlcal_get_error_code(...func_get_args()); } }
+if (!function_exists('intlcal_get_error_message')) { function intlcal_get_error_message() { return \OtomatiesCoreVendor\intlcal_get_error_message(...func_get_args()); } }
+if (!function_exists('intlcal_get_first_day_of_week')) { function intlcal_get_first_day_of_week() { return \OtomatiesCoreVendor\intlcal_get_first_day_of_week(...func_get_args()); } }
+if (!function_exists('intlcal_get_greatest_minimum')) { function intlcal_get_greatest_minimum() { return \OtomatiesCoreVendor\intlcal_get_greatest_minimum(...func_get_args()); } }
+if (!function_exists('intlcal_get_keyword_values_for_locale')) { function intlcal_get_keyword_values_for_locale() { return \OtomatiesCoreVendor\intlcal_get_keyword_values_for_locale(...func_get_args()); } }
+if (!function_exists('intlcal_get_least_maximum')) { function intlcal_get_least_maximum() { return \OtomatiesCoreVendor\intlcal_get_least_maximum(...func_get_args()); } }
+if (!function_exists('intlcal_get_locale')) { function intlcal_get_locale() { return \OtomatiesCoreVendor\intlcal_get_locale(...func_get_args()); } }
+if (!function_exists('intlcal_get_maximum')) { function intlcal_get_maximum() { return \OtomatiesCoreVendor\intlcal_get_maximum(...func_get_args()); } }
+if (!function_exists('intlcal_get_minimal_days_in_first_week')) { function intlcal_get_minimal_days_in_first_week() { return \OtomatiesCoreVendor\intlcal_get_minimal_days_in_first_week(...func_get_args()); } }
+if (!function_exists('intlcal_get_minimum')) { function intlcal_get_minimum() { return \OtomatiesCoreVendor\intlcal_get_minimum(...func_get_args()); } }
+if (!function_exists('intlcal_get_now')) { function intlcal_get_now() { return \OtomatiesCoreVendor\intlcal_get_now(...func_get_args()); } }
+if (!function_exists('intlcal_get_repeated_wall_time_option')) { function intlcal_get_repeated_wall_time_option() { return \OtomatiesCoreVendor\intlcal_get_repeated_wall_time_option(...func_get_args()); } }
+if (!function_exists('intlcal_get_skipped_wall_time_option')) { function intlcal_get_skipped_wall_time_option() { return \OtomatiesCoreVendor\intlcal_get_skipped_wall_time_option(...func_get_args()); } }
+if (!function_exists('intlcal_get_time')) { function intlcal_get_time() { return \OtomatiesCoreVendor\intlcal_get_time(...func_get_args()); } }
+if (!function_exists('intlcal_get_time_zone')) { function intlcal_get_time_zone() { return \OtomatiesCoreVendor\intlcal_get_time_zone(...func_get_args()); } }
+if (!function_exists('intlcal_get_type')) { function intlcal_get_type() { return \OtomatiesCoreVendor\intlcal_get_type(...func_get_args()); } }
+if (!function_exists('intlcal_get_weekend_transition')) { function intlcal_get_weekend_transition() { return \OtomatiesCoreVendor\intlcal_get_weekend_transition(...func_get_args()); } }
+if (!function_exists('intlcal_greates_minimum')) { function intlcal_greates_minimum() { return \OtomatiesCoreVendor\intlcal_greates_minimum(...func_get_args()); } }
+if (!function_exists('intlcal_in_daylight_time')) { function intlcal_in_daylight_time() { return \OtomatiesCoreVendor\intlcal_in_daylight_time(...func_get_args()); } }
+if (!function_exists('intlcal_is_equivalent_to')) { function intlcal_is_equivalent_to() { return \OtomatiesCoreVendor\intlcal_is_equivalent_to(...func_get_args()); } }
+if (!function_exists('intlcal_is_lenient')) { function intlcal_is_lenient() { return \OtomatiesCoreVendor\intlcal_is_lenient(...func_get_args()); } }
+if (!function_exists('intlcal_is_set')) { function intlcal_is_set() { return \OtomatiesCoreVendor\intlcal_is_set(...func_get_args()); } }
+if (!function_exists('intlcal_is_weekend')) { function intlcal_is_weekend() { return \OtomatiesCoreVendor\intlcal_is_weekend(...func_get_args()); } }
+if (!function_exists('intlcal_roll')) { function intlcal_roll() { return \OtomatiesCoreVendor\intlcal_roll(...func_get_args()); } }
+if (!function_exists('intlcal_set')) { function intlcal_set() { return \OtomatiesCoreVendor\intlcal_set(...func_get_args()); } }
+if (!function_exists('intlcal_set_first_day_of_week')) { function intlcal_set_first_day_of_week() { return \OtomatiesCoreVendor\intlcal_set_first_day_of_week(...func_get_args()); } }
+if (!function_exists('intlcal_set_lenient')) { function intlcal_set_lenient() { return \OtomatiesCoreVendor\intlcal_set_lenient(...func_get_args()); } }
+if (!function_exists('intlcal_set_minimal_days_in_first_week')) { function intlcal_set_minimal_days_in_first_week() { return \OtomatiesCoreVendor\intlcal_set_minimal_days_in_first_week(...func_get_args()); } }
+if (!function_exists('intlcal_set_repeated_wall_time_option')) { function intlcal_set_repeated_wall_time_option() { return \OtomatiesCoreVendor\intlcal_set_repeated_wall_time_option(...func_get_args()); } }
+if (!function_exists('intlcal_set_skipped_wall_time_option')) { function intlcal_set_skipped_wall_time_option() { return \OtomatiesCoreVendor\intlcal_set_skipped_wall_time_option(...func_get_args()); } }
+if (!function_exists('intlcal_set_time')) { function intlcal_set_time() { return \OtomatiesCoreVendor\intlcal_set_time(...func_get_args()); } }
+if (!function_exists('intlcal_set_time_zone')) { function intlcal_set_time_zone() { return \OtomatiesCoreVendor\intlcal_set_time_zone(...func_get_args()); } }
+if (!function_exists('intlcal_to_date_time')) { function intlcal_to_date_time() { return \OtomatiesCoreVendor\intlcal_to_date_time(...func_get_args()); } }
+if (!function_exists('intlgregcal_create_instance')) { function intlgregcal_create_instance() { return \OtomatiesCoreVendor\intlgregcal_create_instance(...func_get_args()); } }
+if (!function_exists('intlgregcal_get_gregorian_change')) { function intlgregcal_get_gregorian_change() { return \OtomatiesCoreVendor\intlgregcal_get_gregorian_change(...func_get_args()); } }
+if (!function_exists('intlgregcal_is_leap_year')) { function intlgregcal_is_leap_year() { return \OtomatiesCoreVendor\intlgregcal_is_leap_year(...func_get_args()); } }
+if (!function_exists('intlgregcal_set_gregorian_change')) { function intlgregcal_set_gregorian_change() { return \OtomatiesCoreVendor\intlgregcal_set_gregorian_change(...func_get_args()); } }
+if (!function_exists('intltz_count_equivalent_ids')) { function intltz_count_equivalent_ids() { return \OtomatiesCoreVendor\intltz_count_equivalent_ids(...func_get_args()); } }
+if (!function_exists('intltz_create_default')) { function intltz_create_default() { return \OtomatiesCoreVendor\intltz_create_default(...func_get_args()); } }
+if (!function_exists('intltz_create_enumeration')) { function intltz_create_enumeration() { return \OtomatiesCoreVendor\intltz_create_enumeration(...func_get_args()); } }
+if (!function_exists('intltz_create_time_zone')) { function intltz_create_time_zone() { return \OtomatiesCoreVendor\intltz_create_time_zone(...func_get_args()); } }
+if (!function_exists('intltz_create_time_zone_id_enumeration')) { function intltz_create_time_zone_id_enumeration() { return \OtomatiesCoreVendor\intltz_create_time_zone_id_enumeration(...func_get_args()); } }
+if (!function_exists('intltz_from_date_time_zone')) { function intltz_from_date_time_zone() { return \OtomatiesCoreVendor\intltz_from_date_time_zone(...func_get_args()); } }
+if (!function_exists('intltz_getGMT')) { function intltz_getGMT() { return \OtomatiesCoreVendor\intltz_getGMT(...func_get_args()); } }
+if (!function_exists('intltz_get_canonical_id')) { function intltz_get_canonical_id() { return \OtomatiesCoreVendor\intltz_get_canonical_id(...func_get_args()); } }
+if (!function_exists('intltz_get_display_name')) { function intltz_get_display_name() { return \OtomatiesCoreVendor\intltz_get_display_name(...func_get_args()); } }
+if (!function_exists('intltz_get_dst_savings')) { function intltz_get_dst_savings() { return \OtomatiesCoreVendor\intltz_get_dst_savings(...func_get_args()); } }
+if (!function_exists('intltz_get_equivalent_id')) { function intltz_get_equivalent_id() { return \OtomatiesCoreVendor\intltz_get_equivalent_id(...func_get_args()); } }
+if (!function_exists('intltz_get_error_code')) { function intltz_get_error_code() { return \OtomatiesCoreVendor\intltz_get_error_code(...func_get_args()); } }
+if (!function_exists('intltz_get_error_message')) { function intltz_get_error_message() { return \OtomatiesCoreVendor\intltz_get_error_message(...func_get_args()); } }
+if (!function_exists('intltz_get_gmt')) { function intltz_get_gmt() { return \OtomatiesCoreVendor\intltz_get_gmt(...func_get_args()); } }
+if (!function_exists('intltz_get_iana_id')) { function intltz_get_iana_id() { return \OtomatiesCoreVendor\intltz_get_iana_id(...func_get_args()); } }
+if (!function_exists('intltz_get_id')) { function intltz_get_id() { return \OtomatiesCoreVendor\intltz_get_id(...func_get_args()); } }
+if (!function_exists('intltz_get_id_for_windows_id')) { function intltz_get_id_for_windows_id() { return \OtomatiesCoreVendor\intltz_get_id_for_windows_id(...func_get_args()); } }
+if (!function_exists('intltz_get_offset')) { function intltz_get_offset() { return \OtomatiesCoreVendor\intltz_get_offset(...func_get_args()); } }
+if (!function_exists('intltz_get_raw_offset')) { function intltz_get_raw_offset() { return \OtomatiesCoreVendor\intltz_get_raw_offset(...func_get_args()); } }
+if (!function_exists('intltz_get_region')) { function intltz_get_region() { return \OtomatiesCoreVendor\intltz_get_region(...func_get_args()); } }
+if (!function_exists('intltz_get_tz_data_version')) { function intltz_get_tz_data_version() { return \OtomatiesCoreVendor\intltz_get_tz_data_version(...func_get_args()); } }
+if (!function_exists('intltz_get_unknown')) { function intltz_get_unknown() { return \OtomatiesCoreVendor\intltz_get_unknown(...func_get_args()); } }
+if (!function_exists('intltz_get_windows_id')) { function intltz_get_windows_id() { return \OtomatiesCoreVendor\intltz_get_windows_id(...func_get_args()); } }
+if (!function_exists('intltz_has_same_rules')) { function intltz_has_same_rules() { return \OtomatiesCoreVendor\intltz_has_same_rules(...func_get_args()); } }
+if (!function_exists('intltz_to_date_time_zone')) { function intltz_to_date_time_zone() { return \OtomatiesCoreVendor\intltz_to_date_time_zone(...func_get_args()); } }
+if (!function_exists('intltz_use_daylight_time')) { function intltz_use_daylight_time() { return \OtomatiesCoreVendor\intltz_use_daylight_time(...func_get_args()); } }
+if (!function_exists('intlz_create_default')) { function intlz_create_default() { return \OtomatiesCoreVendor\intlz_create_default(...func_get_args()); } }
+if (!function_exists('intval')) { function intval() { return \OtomatiesCoreVendor\intval(...func_get_args()); } }
+if (!function_exists('ip2long')) { function ip2long() { return \OtomatiesCoreVendor\ip2long(...func_get_args()); } }
+if (!function_exists('iptcembed')) { function iptcembed() { return \OtomatiesCoreVendor\iptcembed(...func_get_args()); } }
+if (!function_exists('iptcparse')) { function iptcparse() { return \OtomatiesCoreVendor\iptcparse(...func_get_args()); } }
 if (!function_exists('isTranslationCompleted')) { function isTranslationCompleted() { return \OtomatiesCoreVendor\isTranslationCompleted(...func_get_args()); } }
 if (!function_exists('is_404')) { function is_404() { return \OtomatiesCoreVendor\is_404(...func_get_args()); } }
+if (!function_exists('is_a')) { function is_a() { return \OtomatiesCoreVendor\is_a(...func_get_args()); } }
 if (!function_exists('is_account_page')) { function is_account_page() { return \OtomatiesCoreVendor\is_account_page(...func_get_args()); } }
 if (!function_exists('is_active_sidebar')) { function is_active_sidebar() { return \OtomatiesCoreVendor\is_active_sidebar(...func_get_args()); } }
 if (!function_exists('is_active_widget')) { function is_active_widget() { return \OtomatiesCoreVendor\is_active_widget(...func_get_args()); } }
@@ -2685,12 +5208,15 @@ if (!function_exists('is_ajax')) { function is_ajax() { return \OtomatiesCoreVen
 if (!function_exists('is_allowed_http_origin')) { function is_allowed_http_origin() { return \OtomatiesCoreVendor\is_allowed_http_origin(...func_get_args()); } }
 if (!function_exists('is_archive')) { function is_archive() { return \OtomatiesCoreVendor\is_archive(...func_get_args()); } }
 if (!function_exists('is_archived')) { function is_archived() { return \OtomatiesCoreVendor\is_archived(...func_get_args()); } }
+if (!function_exists('is_array')) { function is_array() { return \OtomatiesCoreVendor\is_array(...func_get_args()); } }
 if (!function_exists('is_attachment')) { function is_attachment() { return \OtomatiesCoreVendor\is_attachment(...func_get_args()); } }
 if (!function_exists('is_author')) { function is_author() { return \OtomatiesCoreVendor\is_author(...func_get_args()); } }
 if (!function_exists('is_avatar_comment_type')) { function is_avatar_comment_type() { return \OtomatiesCoreVendor\is_avatar_comment_type(...func_get_args()); } }
 if (!function_exists('is_blog_admin')) { function is_blog_admin() { return \OtomatiesCoreVendor\is_blog_admin(...func_get_args()); } }
 if (!function_exists('is_blog_installed')) { function is_blog_installed() { return \OtomatiesCoreVendor\is_blog_installed(...func_get_args()); } }
 if (!function_exists('is_blog_user')) { function is_blog_user() { return \OtomatiesCoreVendor\is_blog_user(...func_get_args()); } }
+if (!function_exists('is_bool')) { function is_bool() { return \OtomatiesCoreVendor\is_bool(...func_get_args()); } }
+if (!function_exists('is_callable')) { function is_callable() { return \OtomatiesCoreVendor\is_callable(...func_get_args()); } }
 if (!function_exists('is_cart')) { function is_cart() { return \OtomatiesCoreVendor\is_cart(...func_get_args()); } }
 if (!function_exists('is_category')) { function is_category() { return \OtomatiesCoreVendor\is_category(...func_get_args()); } }
 if (!function_exists('is_checkout')) { function is_checkout() { return \OtomatiesCoreVendor\is_checkout(...func_get_args()); } }
@@ -2702,22 +5228,34 @@ if (!function_exists('is_countable')) { function is_countable() { return \Otomat
 if (!function_exists('is_customize_preview')) { function is_customize_preview() { return \OtomatiesCoreVendor\is_customize_preview(...func_get_args()); } }
 if (!function_exists('is_date')) { function is_date() { return \OtomatiesCoreVendor\is_date(...func_get_args()); } }
 if (!function_exists('is_day')) { function is_day() { return \OtomatiesCoreVendor\is_day(...func_get_args()); } }
+if (!function_exists('is_dir')) { function is_dir() { return \OtomatiesCoreVendor\is_dir(...func_get_args()); } }
+if (!function_exists('is_double')) { function is_double() { return \OtomatiesCoreVendor\is_double(...func_get_args()); } }
 if (!function_exists('is_dynamic_sidebar')) { function is_dynamic_sidebar() { return \OtomatiesCoreVendor\is_dynamic_sidebar(...func_get_args()); } }
 if (!function_exists('is_edit_account_page')) { function is_edit_account_page() { return \OtomatiesCoreVendor\is_edit_account_page(...func_get_args()); } }
 if (!function_exists('is_email')) { function is_email() { return \OtomatiesCoreVendor\is_email(...func_get_args()); } }
 if (!function_exists('is_email_address_unsafe')) { function is_email_address_unsafe() { return \OtomatiesCoreVendor\is_email_address_unsafe(...func_get_args()); } }
 if (!function_exists('is_embed')) { function is_embed() { return \OtomatiesCoreVendor\is_embed(...func_get_args()); } }
+if (!function_exists('is_executable')) { function is_executable() { return \OtomatiesCoreVendor\is_executable(...func_get_args()); } }
 if (!function_exists('is_favicon')) { function is_favicon() { return \OtomatiesCoreVendor\is_favicon(...func_get_args()); } }
 if (!function_exists('is_feed')) { function is_feed() { return \OtomatiesCoreVendor\is_feed(...func_get_args()); } }
+if (!function_exists('is_file')) { function is_file() { return \OtomatiesCoreVendor\is_file(...func_get_args()); } }
 if (!function_exists('is_filtered')) { function is_filtered() { return \OtomatiesCoreVendor\is_filtered(...func_get_args()); } }
+if (!function_exists('is_finite')) { function is_finite() { return \OtomatiesCoreVendor\is_finite(...func_get_args()); } }
+if (!function_exists('is_float')) { function is_float() { return \OtomatiesCoreVendor\is_float(...func_get_args()); } }
 if (!function_exists('is_front_page')) { function is_front_page() { return \OtomatiesCoreVendor\is_front_page(...func_get_args()); } }
 if (!function_exists('is_gd_image')) { function is_gd_image() { return \OtomatiesCoreVendor\is_gd_image(...func_get_args()); } }
 if (!function_exists('is_header_video_active')) { function is_header_video_active() { return \OtomatiesCoreVendor\is_header_video_active(...func_get_args()); } }
 if (!function_exists('is_home')) { function is_home() { return \OtomatiesCoreVendor\is_home(...func_get_args()); } }
+if (!function_exists('is_infinite')) { function is_infinite() { return \OtomatiesCoreVendor\is_infinite(...func_get_args()); } }
+if (!function_exists('is_int')) { function is_int() { return \OtomatiesCoreVendor\is_int(...func_get_args()); } }
+if (!function_exists('is_integer')) { function is_integer() { return \OtomatiesCoreVendor\is_integer(...func_get_args()); } }
+if (!function_exists('is_iterable')) { function is_iterable() { return \OtomatiesCoreVendor\is_iterable(...func_get_args()); } }
 if (!function_exists('is_lighttpd_before_150')) { function is_lighttpd_before_150() { return \OtomatiesCoreVendor\is_lighttpd_before_150(...func_get_args()); } }
+if (!function_exists('is_link')) { function is_link() { return \OtomatiesCoreVendor\is_link(...func_get_args()); } }
 if (!function_exists('is_local_attachment')) { function is_local_attachment() { return \OtomatiesCoreVendor\is_local_attachment(...func_get_args()); } }
 if (!function_exists('is_locale_switched')) { function is_locale_switched() { return \OtomatiesCoreVendor\is_locale_switched(...func_get_args()); } }
 if (!function_exists('is_login')) { function is_login() { return \OtomatiesCoreVendor\is_login(...func_get_args()); } }
+if (!function_exists('is_long')) { function is_long() { return \OtomatiesCoreVendor\is_long(...func_get_args()); } }
 if (!function_exists('is_lost_password_page')) { function is_lost_password_page() { return \OtomatiesCoreVendor\is_lost_password_page(...func_get_args()); } }
 if (!function_exists('is_main_blog')) { function is_main_blog() { return \OtomatiesCoreVendor\is_main_blog(...func_get_args()); } }
 if (!function_exists('is_main_network')) { function is_main_network() { return \OtomatiesCoreVendor\is_main_network(...func_get_args()); } }
@@ -2726,11 +5264,15 @@ if (!function_exists('is_main_site')) { function is_main_site() { return \Otomat
 if (!function_exists('is_month')) { function is_month() { return \OtomatiesCoreVendor\is_month(...func_get_args()); } }
 if (!function_exists('is_multi_author')) { function is_multi_author() { return \OtomatiesCoreVendor\is_multi_author(...func_get_args()); } }
 if (!function_exists('is_multisite')) { function is_multisite() { return \OtomatiesCoreVendor\is_multisite(...func_get_args()); } }
+if (!function_exists('is_nan')) { function is_nan() { return \OtomatiesCoreVendor\is_nan(...func_get_args()); } }
 if (!function_exists('is_nav_menu')) { function is_nav_menu() { return \OtomatiesCoreVendor\is_nav_menu(...func_get_args()); } }
 if (!function_exists('is_nav_menu_item')) { function is_nav_menu_item() { return \OtomatiesCoreVendor\is_nav_menu_item(...func_get_args()); } }
 if (!function_exists('is_network_admin')) { function is_network_admin() { return \OtomatiesCoreVendor\is_network_admin(...func_get_args()); } }
 if (!function_exists('is_network_only_plugin')) { function is_network_only_plugin() { return \OtomatiesCoreVendor\is_network_only_plugin(...func_get_args()); } }
 if (!function_exists('is_new_day')) { function is_new_day() { return \OtomatiesCoreVendor\is_new_day(...func_get_args()); } }
+if (!function_exists('is_null')) { function is_null() { return \OtomatiesCoreVendor\is_null(...func_get_args()); } }
+if (!function_exists('is_numeric')) { function is_numeric() { return \OtomatiesCoreVendor\is_numeric(...func_get_args()); } }
+if (!function_exists('is_object')) { function is_object() { return \OtomatiesCoreVendor\is_object(...func_get_args()); } }
 if (!function_exists('is_object_in_taxonomy')) { function is_object_in_taxonomy() { return \OtomatiesCoreVendor\is_object_in_taxonomy(...func_get_args()); } }
 if (!function_exists('is_object_in_term')) { function is_object_in_term() { return \OtomatiesCoreVendor\is_object_in_term(...func_get_args()); } }
 if (!function_exists('is_order_received_page')) { function is_order_received_page() { return \OtomatiesCoreVendor\is_order_received_page(...func_get_args()); } }
@@ -2759,9 +5301,13 @@ if (!function_exists('is_protected_ajax_action')) { function is_protected_ajax_a
 if (!function_exists('is_protected_endpoint')) { function is_protected_endpoint() { return \OtomatiesCoreVendor\is_protected_endpoint(...func_get_args()); } }
 if (!function_exists('is_protected_meta')) { function is_protected_meta() { return \OtomatiesCoreVendor\is_protected_meta(...func_get_args()); } }
 if (!function_exists('is_random_header_image')) { function is_random_header_image() { return \OtomatiesCoreVendor\is_random_header_image(...func_get_args()); } }
+if (!function_exists('is_readable')) { function is_readable() { return \OtomatiesCoreVendor\is_readable(...func_get_args()); } }
+if (!function_exists('is_real')) { function is_real() { return \OtomatiesCoreVendor\is_real(...func_get_args()); } }
 if (!function_exists('is_registered_sidebar')) { function is_registered_sidebar() { return \OtomatiesCoreVendor\is_registered_sidebar(...func_get_args()); } }
+if (!function_exists('is_resource')) { function is_resource() { return \OtomatiesCoreVendor\is_resource(...func_get_args()); } }
 if (!function_exists('is_robots')) { function is_robots() { return \OtomatiesCoreVendor\is_robots(...func_get_args()); } }
 if (!function_exists('is_rtl')) { function is_rtl() { return \OtomatiesCoreVendor\is_rtl(...func_get_args()); } }
+if (!function_exists('is_scalar')) { function is_scalar() { return \OtomatiesCoreVendor\is_scalar(...func_get_args()); } }
 if (!function_exists('is_search')) { function is_search() { return \OtomatiesCoreVendor\is_search(...func_get_args()); } }
 if (!function_exists('is_serialized')) { function is_serialized() { return \OtomatiesCoreVendor\is_serialized(...func_get_args()); } }
 if (!function_exists('is_serialized_string')) { function is_serialized_string() { return \OtomatiesCoreVendor\is_serialized_string(...func_get_args()); } }
@@ -2770,9 +5316,12 @@ if (!function_exists('is_single')) { function is_single() { return \OtomatiesCor
 if (!function_exists('is_singular')) { function is_singular() { return \OtomatiesCoreVendor\is_singular(...func_get_args()); } }
 if (!function_exists('is_site_admin')) { function is_site_admin() { return \OtomatiesCoreVendor\is_site_admin(...func_get_args()); } }
 if (!function_exists('is_site_meta_supported')) { function is_site_meta_supported() { return \OtomatiesCoreVendor\is_site_meta_supported(...func_get_args()); } }
+if (!function_exists('is_soap_fault')) { function is_soap_fault() { return \OtomatiesCoreVendor\is_soap_fault(...func_get_args()); } }
 if (!function_exists('is_ssl')) { function is_ssl() { return \OtomatiesCoreVendor\is_ssl(...func_get_args()); } }
 if (!function_exists('is_sticky')) { function is_sticky() { return \OtomatiesCoreVendor\is_sticky(...func_get_args()); } }
 if (!function_exists('is_store_notice_showing')) { function is_store_notice_showing() { return \OtomatiesCoreVendor\is_store_notice_showing(...func_get_args()); } }
+if (!function_exists('is_string')) { function is_string() { return \OtomatiesCoreVendor\is_string(...func_get_args()); } }
+if (!function_exists('is_subclass_of')) { function is_subclass_of() { return \OtomatiesCoreVendor\is_subclass_of(...func_get_args()); } }
 if (!function_exists('is_subdomain_install')) { function is_subdomain_install() { return \OtomatiesCoreVendor\is_subdomain_install(...func_get_args()); } }
 if (!function_exists('is_super_admin')) { function is_super_admin() { return \OtomatiesCoreVendor\is_super_admin(...func_get_args()); } }
 if (!function_exists('is_tag')) { function is_tag() { return \OtomatiesCoreVendor\is_tag(...func_get_args()); } }
@@ -2788,6 +5337,7 @@ if (!function_exists('is_time')) { function is_time() { return \OtomatiesCoreVen
 if (!function_exists('is_trackback')) { function is_trackback() { return \OtomatiesCoreVendor\is_trackback(...func_get_args()); } }
 if (!function_exists('is_uninstallable_plugin')) { function is_uninstallable_plugin() { return \OtomatiesCoreVendor\is_uninstallable_plugin(...func_get_args()); } }
 if (!function_exists('is_upload_space_available')) { function is_upload_space_available() { return \OtomatiesCoreVendor\is_upload_space_available(...func_get_args()); } }
+if (!function_exists('is_uploaded_file')) { function is_uploaded_file() { return \OtomatiesCoreVendor\is_uploaded_file(...func_get_args()); } }
 if (!function_exists('is_user_admin')) { function is_user_admin() { return \OtomatiesCoreVendor\is_user_admin(...func_get_args()); } }
 if (!function_exists('is_user_logged_in')) { function is_user_logged_in() { return \OtomatiesCoreVendor\is_user_logged_in(...func_get_args()); } }
 if (!function_exists('is_user_member_of_blog')) { function is_user_member_of_blog() { return \OtomatiesCoreVendor\is_user_member_of_blog(...func_get_args()); } }
@@ -2800,26 +5350,328 @@ if (!function_exists('is_woocommerce')) { function is_woocommerce() { return \Ot
 if (!function_exists('is_wp_error')) { function is_wp_error() { return \OtomatiesCoreVendor\is_wp_error(...func_get_args()); } }
 if (!function_exists('is_wp_version_compatible')) { function is_wp_version_compatible() { return \OtomatiesCoreVendor\is_wp_version_compatible(...func_get_args()); } }
 if (!function_exists('is_wpmu_sitewide_plugin')) { function is_wpmu_sitewide_plugin() { return \OtomatiesCoreVendor\is_wpmu_sitewide_plugin(...func_get_args()); } }
+if (!function_exists('is_writable')) { function is_writable() { return \OtomatiesCoreVendor\is_writable(...func_get_args()); } }
+if (!function_exists('is_writeable')) { function is_writeable() { return \OtomatiesCoreVendor\is_writeable(...func_get_args()); } }
 if (!function_exists('is_year')) { function is_year() { return \OtomatiesCoreVendor\is_year(...func_get_args()); } }
 if (!function_exists('iso8601_timezone_to_offset')) { function iso8601_timezone_to_offset() { return \OtomatiesCoreVendor\iso8601_timezone_to_offset(...func_get_args()); } }
 if (!function_exists('iso8601_to_datetime')) { function iso8601_to_datetime() { return \OtomatiesCoreVendor\iso8601_to_datetime(...func_get_args()); } }
+if (!function_exists('iterator_apply')) { function iterator_apply() { return \OtomatiesCoreVendor\iterator_apply(...func_get_args()); } }
+if (!function_exists('iterator_count')) { function iterator_count() { return \OtomatiesCoreVendor\iterator_count(...func_get_args()); } }
+if (!function_exists('iterator_to_array')) { function iterator_to_array() { return \OtomatiesCoreVendor\iterator_to_array(...func_get_args()); } }
+if (!function_exists('java')) { function java() { return \OtomatiesCoreVendor\java(...func_get_args()); } }
+if (!function_exists('java_last_exception_clear')) { function java_last_exception_clear() { return \OtomatiesCoreVendor\java_last_exception_clear(...func_get_args()); } }
+if (!function_exists('java_last_exception_get')) { function java_last_exception_get() { return \OtomatiesCoreVendor\java_last_exception_get(...func_get_args()); } }
+if (!function_exists('java_reload')) { function java_reload() { return \OtomatiesCoreVendor\java_reload(...func_get_args()); } }
+if (!function_exists('java_require')) { function java_require() { return \OtomatiesCoreVendor\java_require(...func_get_args()); } }
+if (!function_exists('java_set_encoding')) { function java_set_encoding() { return \OtomatiesCoreVendor\java_set_encoding(...func_get_args()); } }
+if (!function_exists('java_set_ignore_case')) { function java_set_ignore_case() { return \OtomatiesCoreVendor\java_set_ignore_case(...func_get_args()); } }
+if (!function_exists('java_throw_exceptions')) { function java_throw_exceptions() { return \OtomatiesCoreVendor\java_throw_exceptions(...func_get_args()); } }
+if (!function_exists('jddayofweek')) { function jddayofweek() { return \OtomatiesCoreVendor\jddayofweek(...func_get_args()); } }
+if (!function_exists('jdmonthname')) { function jdmonthname() { return \OtomatiesCoreVendor\jdmonthname(...func_get_args()); } }
+if (!function_exists('jdtofrench')) { function jdtofrench() { return \OtomatiesCoreVendor\jdtofrench(...func_get_args()); } }
+if (!function_exists('jdtogregorian')) { function jdtogregorian() { return \OtomatiesCoreVendor\jdtogregorian(...func_get_args()); } }
+if (!function_exists('jdtojewish')) { function jdtojewish() { return \OtomatiesCoreVendor\jdtojewish(...func_get_args()); } }
+if (!function_exists('jdtojulian')) { function jdtojulian() { return \OtomatiesCoreVendor\jdtojulian(...func_get_args()); } }
+if (!function_exists('jdtounix')) { function jdtounix() { return \OtomatiesCoreVendor\jdtounix(...func_get_args()); } }
+if (!function_exists('jewishtojd')) { function jewishtojd() { return \OtomatiesCoreVendor\jewishtojd(...func_get_args()); } }
+if (!function_exists('jobqueue_license_info')) { function jobqueue_license_info() { return \OtomatiesCoreVendor\jobqueue_license_info(...func_get_args()); } }
+if (!function_exists('join')) { function join() { return \OtomatiesCoreVendor\join(...func_get_args()); } }
+if (!function_exists('jpeg2wbmp')) { function jpeg2wbmp() { return \OtomatiesCoreVendor\jpeg2wbmp(...func_get_args()); } }
 if (!function_exists('js_escape')) { function js_escape() { return \OtomatiesCoreVendor\js_escape(...func_get_args()); } }
+if (!function_exists('json_decode')) { function json_decode() { return \OtomatiesCoreVendor\json_decode(...func_get_args()); } }
+if (!function_exists('json_encode')) { function json_encode() { return \OtomatiesCoreVendor\json_encode(...func_get_args()); } }
+if (!function_exists('json_last_error')) { function json_last_error() { return \OtomatiesCoreVendor\json_last_error(...func_get_args()); } }
+if (!function_exists('json_last_error_msg')) { function json_last_error_msg() { return \OtomatiesCoreVendor\json_last_error_msg(...func_get_args()); } }
 if (!function_exists('json_validate')) { function json_validate() { return \OtomatiesCoreVendor\json_validate(...func_get_args()); } }
+if (!function_exists('juliantojd')) { function juliantojd() { return \OtomatiesCoreVendor\juliantojd(...func_get_args()); } }
+if (!function_exists('kafka_err2name')) { function kafka_err2name() { return \OtomatiesCoreVendor\kafka_err2name(...func_get_args()); } }
+if (!function_exists('kafka_err2str')) { function kafka_err2str() { return \OtomatiesCoreVendor\kafka_err2str(...func_get_args()); } }
+if (!function_exists('kafka_get_err_descs')) { function kafka_get_err_descs() { return \OtomatiesCoreVendor\kafka_get_err_descs(...func_get_args()); } }
+if (!function_exists('kafka_offset_tail')) { function kafka_offset_tail() { return \OtomatiesCoreVendor\kafka_offset_tail(...func_get_args()); } }
+if (!function_exists('kafka_thread_cnt')) { function kafka_thread_cnt() { return \OtomatiesCoreVendor\kafka_thread_cnt(...func_get_args()); } }
+if (!function_exists('key')) { function key() { return \OtomatiesCoreVendor\key(...func_get_args()); } }
+if (!function_exists('key_exists')) { function key_exists() { return \OtomatiesCoreVendor\key_exists(...func_get_args()); } }
+if (!function_exists('krsort')) { function krsort() { return \OtomatiesCoreVendor\krsort(...func_get_args()); } }
 if (!function_exists('kses_init')) { function kses_init() { return \OtomatiesCoreVendor\kses_init(...func_get_args()); } }
 if (!function_exists('kses_init_filters')) { function kses_init_filters() { return \OtomatiesCoreVendor\kses_init_filters(...func_get_args()); } }
 if (!function_exists('kses_remove_filters')) { function kses_remove_filters() { return \OtomatiesCoreVendor\kses_remove_filters(...func_get_args()); } }
+if (!function_exists('ksort')) { function ksort() { return \OtomatiesCoreVendor\ksort(...func_get_args()); } }
 if (!function_exists('language_attributes')) { function language_attributes() { return \OtomatiesCoreVendor\language_attributes(...func_get_args()); } }
 if (!function_exists('laravel_cloud')) { function laravel_cloud() { return \OtomatiesCoreVendor\laravel_cloud(...func_get_args()); } }
 if (!function_exists('last')) { function last() { return \OtomatiesCoreVendor\last(...func_get_args()); } }
+if (!function_exists('lcfirst')) { function lcfirst() { return \OtomatiesCoreVendor\lcfirst(...func_get_args()); } }
+if (!function_exists('lcg_value')) { function lcg_value() { return \OtomatiesCoreVendor\lcg_value(...func_get_args()); } }
+if (!function_exists('lchgrp')) { function lchgrp() { return \OtomatiesCoreVendor\lchgrp(...func_get_args()); } }
+if (!function_exists('lchown')) { function lchown() { return \OtomatiesCoreVendor\lchown(...func_get_args()); } }
+if (!function_exists('ldap_8859_to_t61')) { function ldap_8859_to_t61() { return \OtomatiesCoreVendor\ldap_8859_to_t61(...func_get_args()); } }
+if (!function_exists('ldap_add')) { function ldap_add() { return \OtomatiesCoreVendor\ldap_add(...func_get_args()); } }
+if (!function_exists('ldap_add_ext')) { function ldap_add_ext() { return \OtomatiesCoreVendor\ldap_add_ext(...func_get_args()); } }
+if (!function_exists('ldap_bind')) { function ldap_bind() { return \OtomatiesCoreVendor\ldap_bind(...func_get_args()); } }
+if (!function_exists('ldap_bind_ext')) { function ldap_bind_ext() { return \OtomatiesCoreVendor\ldap_bind_ext(...func_get_args()); } }
+if (!function_exists('ldap_close')) { function ldap_close() { return \OtomatiesCoreVendor\ldap_close(...func_get_args()); } }
+if (!function_exists('ldap_compare')) { function ldap_compare() { return \OtomatiesCoreVendor\ldap_compare(...func_get_args()); } }
+if (!function_exists('ldap_connect')) { function ldap_connect() { return \OtomatiesCoreVendor\ldap_connect(...func_get_args()); } }
 if (!function_exists('ldap_connect_wallet')) { function ldap_connect_wallet() { return \OtomatiesCoreVendor\ldap_connect_wallet(...func_get_args()); } }
+if (!function_exists('ldap_control_paged_result')) { function ldap_control_paged_result() { return \OtomatiesCoreVendor\ldap_control_paged_result(...func_get_args()); } }
+if (!function_exists('ldap_control_paged_result_response')) { function ldap_control_paged_result_response() { return \OtomatiesCoreVendor\ldap_control_paged_result_response(...func_get_args()); } }
+if (!function_exists('ldap_count_entries')) { function ldap_count_entries() { return \OtomatiesCoreVendor\ldap_count_entries(...func_get_args()); } }
+if (!function_exists('ldap_count_references')) { function ldap_count_references() { return \OtomatiesCoreVendor\ldap_count_references(...func_get_args()); } }
+if (!function_exists('ldap_delete')) { function ldap_delete() { return \OtomatiesCoreVendor\ldap_delete(...func_get_args()); } }
+if (!function_exists('ldap_delete_ext')) { function ldap_delete_ext() { return \OtomatiesCoreVendor\ldap_delete_ext(...func_get_args()); } }
+if (!function_exists('ldap_dn2ufn')) { function ldap_dn2ufn() { return \OtomatiesCoreVendor\ldap_dn2ufn(...func_get_args()); } }
+if (!function_exists('ldap_err2str')) { function ldap_err2str() { return \OtomatiesCoreVendor\ldap_err2str(...func_get_args()); } }
+if (!function_exists('ldap_errno')) { function ldap_errno() { return \OtomatiesCoreVendor\ldap_errno(...func_get_args()); } }
+if (!function_exists('ldap_error')) { function ldap_error() { return \OtomatiesCoreVendor\ldap_error(...func_get_args()); } }
+if (!function_exists('ldap_escape')) { function ldap_escape() { return \OtomatiesCoreVendor\ldap_escape(...func_get_args()); } }
+if (!function_exists('ldap_exop')) { function ldap_exop() { return \OtomatiesCoreVendor\ldap_exop(...func_get_args()); } }
+if (!function_exists('ldap_exop_passwd')) { function ldap_exop_passwd() { return \OtomatiesCoreVendor\ldap_exop_passwd(...func_get_args()); } }
+if (!function_exists('ldap_exop_refresh')) { function ldap_exop_refresh() { return \OtomatiesCoreVendor\ldap_exop_refresh(...func_get_args()); } }
 if (!function_exists('ldap_exop_sync')) { function ldap_exop_sync() { return \OtomatiesCoreVendor\ldap_exop_sync(...func_get_args()); } }
+if (!function_exists('ldap_exop_whoami')) { function ldap_exop_whoami() { return \OtomatiesCoreVendor\ldap_exop_whoami(...func_get_args()); } }
+if (!function_exists('ldap_explode_dn')) { function ldap_explode_dn() { return \OtomatiesCoreVendor\ldap_explode_dn(...func_get_args()); } }
+if (!function_exists('ldap_first_attribute')) { function ldap_first_attribute() { return \OtomatiesCoreVendor\ldap_first_attribute(...func_get_args()); } }
+if (!function_exists('ldap_first_entry')) { function ldap_first_entry() { return \OtomatiesCoreVendor\ldap_first_entry(...func_get_args()); } }
+if (!function_exists('ldap_first_reference')) { function ldap_first_reference() { return \OtomatiesCoreVendor\ldap_first_reference(...func_get_args()); } }
+if (!function_exists('ldap_free_result')) { function ldap_free_result() { return \OtomatiesCoreVendor\ldap_free_result(...func_get_args()); } }
+if (!function_exists('ldap_get_attributes')) { function ldap_get_attributes() { return \OtomatiesCoreVendor\ldap_get_attributes(...func_get_args()); } }
+if (!function_exists('ldap_get_dn')) { function ldap_get_dn() { return \OtomatiesCoreVendor\ldap_get_dn(...func_get_args()); } }
+if (!function_exists('ldap_get_entries')) { function ldap_get_entries() { return \OtomatiesCoreVendor\ldap_get_entries(...func_get_args()); } }
+if (!function_exists('ldap_get_option')) { function ldap_get_option() { return \OtomatiesCoreVendor\ldap_get_option(...func_get_args()); } }
+if (!function_exists('ldap_get_values')) { function ldap_get_values() { return \OtomatiesCoreVendor\ldap_get_values(...func_get_args()); } }
+if (!function_exists('ldap_get_values_len')) { function ldap_get_values_len() { return \OtomatiesCoreVendor\ldap_get_values_len(...func_get_args()); } }
+if (!function_exists('ldap_list')) { function ldap_list() { return \OtomatiesCoreVendor\ldap_list(...func_get_args()); } }
+if (!function_exists('ldap_mod_add')) { function ldap_mod_add() { return \OtomatiesCoreVendor\ldap_mod_add(...func_get_args()); } }
+if (!function_exists('ldap_mod_add_ext')) { function ldap_mod_add_ext() { return \OtomatiesCoreVendor\ldap_mod_add_ext(...func_get_args()); } }
+if (!function_exists('ldap_mod_del')) { function ldap_mod_del() { return \OtomatiesCoreVendor\ldap_mod_del(...func_get_args()); } }
+if (!function_exists('ldap_mod_del_ext')) { function ldap_mod_del_ext() { return \OtomatiesCoreVendor\ldap_mod_del_ext(...func_get_args()); } }
+if (!function_exists('ldap_mod_replace')) { function ldap_mod_replace() { return \OtomatiesCoreVendor\ldap_mod_replace(...func_get_args()); } }
+if (!function_exists('ldap_mod_replace_ext')) { function ldap_mod_replace_ext() { return \OtomatiesCoreVendor\ldap_mod_replace_ext(...func_get_args()); } }
+if (!function_exists('ldap_modify')) { function ldap_modify() { return \OtomatiesCoreVendor\ldap_modify(...func_get_args()); } }
+if (!function_exists('ldap_modify_batch')) { function ldap_modify_batch() { return \OtomatiesCoreVendor\ldap_modify_batch(...func_get_args()); } }
+if (!function_exists('ldap_next_attribute')) { function ldap_next_attribute() { return \OtomatiesCoreVendor\ldap_next_attribute(...func_get_args()); } }
+if (!function_exists('ldap_next_entry')) { function ldap_next_entry() { return \OtomatiesCoreVendor\ldap_next_entry(...func_get_args()); } }
+if (!function_exists('ldap_next_reference')) { function ldap_next_reference() { return \OtomatiesCoreVendor\ldap_next_reference(...func_get_args()); } }
+if (!function_exists('ldap_parse_exop')) { function ldap_parse_exop() { return \OtomatiesCoreVendor\ldap_parse_exop(...func_get_args()); } }
+if (!function_exists('ldap_parse_reference')) { function ldap_parse_reference() { return \OtomatiesCoreVendor\ldap_parse_reference(...func_get_args()); } }
+if (!function_exists('ldap_parse_result')) { function ldap_parse_result() { return \OtomatiesCoreVendor\ldap_parse_result(...func_get_args()); } }
+if (!function_exists('ldap_read')) { function ldap_read() { return \OtomatiesCoreVendor\ldap_read(...func_get_args()); } }
+if (!function_exists('ldap_rename')) { function ldap_rename() { return \OtomatiesCoreVendor\ldap_rename(...func_get_args()); } }
+if (!function_exists('ldap_rename_ext')) { function ldap_rename_ext() { return \OtomatiesCoreVendor\ldap_rename_ext(...func_get_args()); } }
+if (!function_exists('ldap_sasl_bind')) { function ldap_sasl_bind() { return \OtomatiesCoreVendor\ldap_sasl_bind(...func_get_args()); } }
+if (!function_exists('ldap_search')) { function ldap_search() { return \OtomatiesCoreVendor\ldap_search(...func_get_args()); } }
+if (!function_exists('ldap_set_option')) { function ldap_set_option() { return \OtomatiesCoreVendor\ldap_set_option(...func_get_args()); } }
+if (!function_exists('ldap_set_rebind_proc')) { function ldap_set_rebind_proc() { return \OtomatiesCoreVendor\ldap_set_rebind_proc(...func_get_args()); } }
+if (!function_exists('ldap_sort')) { function ldap_sort() { return \OtomatiesCoreVendor\ldap_sort(...func_get_args()); } }
+if (!function_exists('ldap_start_tls')) { function ldap_start_tls() { return \OtomatiesCoreVendor\ldap_start_tls(...func_get_args()); } }
+if (!function_exists('ldap_t61_to_8859')) { function ldap_t61_to_8859() { return \OtomatiesCoreVendor\ldap_t61_to_8859(...func_get_args()); } }
+if (!function_exists('ldap_unbind')) { function ldap_unbind() { return \OtomatiesCoreVendor\ldap_unbind(...func_get_args()); } }
+if (!function_exists('levenshtein')) { function levenshtein() { return \OtomatiesCoreVendor\levenshtein(...func_get_args()); } }
+if (!function_exists('libvirt_check_version')) { function libvirt_check_version() { return \OtomatiesCoreVendor\libvirt_check_version(...func_get_args()); } }
+if (!function_exists('libvirt_connect')) { function libvirt_connect() { return \OtomatiesCoreVendor\libvirt_connect(...func_get_args()); } }
+if (!function_exists('libvirt_connect_get_all_domain_stats')) { function libvirt_connect_get_all_domain_stats() { return \OtomatiesCoreVendor\libvirt_connect_get_all_domain_stats(...func_get_args()); } }
+if (!function_exists('libvirt_connect_get_capabilities')) { function libvirt_connect_get_capabilities() { return \OtomatiesCoreVendor\libvirt_connect_get_capabilities(...func_get_args()); } }
+if (!function_exists('libvirt_connect_get_emulator')) { function libvirt_connect_get_emulator() { return \OtomatiesCoreVendor\libvirt_connect_get_emulator(...func_get_args()); } }
+if (!function_exists('libvirt_connect_get_encrypted')) { function libvirt_connect_get_encrypted() { return \OtomatiesCoreVendor\libvirt_connect_get_encrypted(...func_get_args()); } }
+if (!function_exists('libvirt_connect_get_hostname')) { function libvirt_connect_get_hostname() { return \OtomatiesCoreVendor\libvirt_connect_get_hostname(...func_get_args()); } }
+if (!function_exists('libvirt_connect_get_hypervisor')) { function libvirt_connect_get_hypervisor() { return \OtomatiesCoreVendor\libvirt_connect_get_hypervisor(...func_get_args()); } }
+if (!function_exists('libvirt_connect_get_information')) { function libvirt_connect_get_information() { return \OtomatiesCoreVendor\libvirt_connect_get_information(...func_get_args()); } }
+if (!function_exists('libvirt_connect_get_machine_types')) { function libvirt_connect_get_machine_types() { return \OtomatiesCoreVendor\libvirt_connect_get_machine_types(...func_get_args()); } }
+if (!function_exists('libvirt_connect_get_maxvcpus')) { function libvirt_connect_get_maxvcpus() { return \OtomatiesCoreVendor\libvirt_connect_get_maxvcpus(...func_get_args()); } }
+if (!function_exists('libvirt_connect_get_nic_models')) { function libvirt_connect_get_nic_models() { return \OtomatiesCoreVendor\libvirt_connect_get_nic_models(...func_get_args()); } }
+if (!function_exists('libvirt_connect_get_secure')) { function libvirt_connect_get_secure() { return \OtomatiesCoreVendor\libvirt_connect_get_secure(...func_get_args()); } }
+if (!function_exists('libvirt_connect_get_soundhw_models')) { function libvirt_connect_get_soundhw_models() { return \OtomatiesCoreVendor\libvirt_connect_get_soundhw_models(...func_get_args()); } }
+if (!function_exists('libvirt_connect_get_sysinfo')) { function libvirt_connect_get_sysinfo() { return \OtomatiesCoreVendor\libvirt_connect_get_sysinfo(...func_get_args()); } }
+if (!function_exists('libvirt_connect_get_uri')) { function libvirt_connect_get_uri() { return \OtomatiesCoreVendor\libvirt_connect_get_uri(...func_get_args()); } }
+if (!function_exists('libvirt_domain_attach_device')) { function libvirt_domain_attach_device() { return \OtomatiesCoreVendor\libvirt_domain_attach_device(...func_get_args()); } }
+if (!function_exists('libvirt_domain_block_commit')) { function libvirt_domain_block_commit() { return \OtomatiesCoreVendor\libvirt_domain_block_commit(...func_get_args()); } }
+if (!function_exists('libvirt_domain_block_job_abort')) { function libvirt_domain_block_job_abort() { return \OtomatiesCoreVendor\libvirt_domain_block_job_abort(...func_get_args()); } }
+if (!function_exists('libvirt_domain_block_job_info')) { function libvirt_domain_block_job_info() { return \OtomatiesCoreVendor\libvirt_domain_block_job_info(...func_get_args()); } }
+if (!function_exists('libvirt_domain_block_job_set_speed')) { function libvirt_domain_block_job_set_speed() { return \OtomatiesCoreVendor\libvirt_domain_block_job_set_speed(...func_get_args()); } }
+if (!function_exists('libvirt_domain_block_resize')) { function libvirt_domain_block_resize() { return \OtomatiesCoreVendor\libvirt_domain_block_resize(...func_get_args()); } }
+if (!function_exists('libvirt_domain_block_stats')) { function libvirt_domain_block_stats() { return \OtomatiesCoreVendor\libvirt_domain_block_stats(...func_get_args()); } }
+if (!function_exists('libvirt_domain_change_boot_devices')) { function libvirt_domain_change_boot_devices() { return \OtomatiesCoreVendor\libvirt_domain_change_boot_devices(...func_get_args()); } }
+if (!function_exists('libvirt_domain_change_memory')) { function libvirt_domain_change_memory() { return \OtomatiesCoreVendor\libvirt_domain_change_memory(...func_get_args()); } }
+if (!function_exists('libvirt_domain_change_vcpus')) { function libvirt_domain_change_vcpus() { return \OtomatiesCoreVendor\libvirt_domain_change_vcpus(...func_get_args()); } }
+if (!function_exists('libvirt_domain_core_dump')) { function libvirt_domain_core_dump() { return \OtomatiesCoreVendor\libvirt_domain_core_dump(...func_get_args()); } }
+if (!function_exists('libvirt_domain_create')) { function libvirt_domain_create() { return \OtomatiesCoreVendor\libvirt_domain_create(...func_get_args()); } }
+if (!function_exists('libvirt_domain_create_xml')) { function libvirt_domain_create_xml() { return \OtomatiesCoreVendor\libvirt_domain_create_xml(...func_get_args()); } }
+if (!function_exists('libvirt_domain_define_xml')) { function libvirt_domain_define_xml() { return \OtomatiesCoreVendor\libvirt_domain_define_xml(...func_get_args()); } }
+if (!function_exists('libvirt_domain_destroy')) { function libvirt_domain_destroy() { return \OtomatiesCoreVendor\libvirt_domain_destroy(...func_get_args()); } }
+if (!function_exists('libvirt_domain_detach_device')) { function libvirt_domain_detach_device() { return \OtomatiesCoreVendor\libvirt_domain_detach_device(...func_get_args()); } }
+if (!function_exists('libvirt_domain_disk_add')) { function libvirt_domain_disk_add() { return \OtomatiesCoreVendor\libvirt_domain_disk_add(...func_get_args()); } }
+if (!function_exists('libvirt_domain_disk_remove')) { function libvirt_domain_disk_remove() { return \OtomatiesCoreVendor\libvirt_domain_disk_remove(...func_get_args()); } }
+if (!function_exists('libvirt_domain_get_autostart')) { function libvirt_domain_get_autostart() { return \OtomatiesCoreVendor\libvirt_domain_get_autostart(...func_get_args()); } }
+if (!function_exists('libvirt_domain_get_block_info')) { function libvirt_domain_get_block_info() { return \OtomatiesCoreVendor\libvirt_domain_get_block_info(...func_get_args()); } }
+if (!function_exists('libvirt_domain_get_connect')) { function libvirt_domain_get_connect() { return \OtomatiesCoreVendor\libvirt_domain_get_connect(...func_get_args()); } }
+if (!function_exists('libvirt_domain_get_counts')) { function libvirt_domain_get_counts() { return \OtomatiesCoreVendor\libvirt_domain_get_counts(...func_get_args()); } }
+if (!function_exists('libvirt_domain_get_disk_devices')) { function libvirt_domain_get_disk_devices() { return \OtomatiesCoreVendor\libvirt_domain_get_disk_devices(...func_get_args()); } }
+if (!function_exists('libvirt_domain_get_id')) { function libvirt_domain_get_id() { return \OtomatiesCoreVendor\libvirt_domain_get_id(...func_get_args()); } }
+if (!function_exists('libvirt_domain_get_info')) { function libvirt_domain_get_info() { return \OtomatiesCoreVendor\libvirt_domain_get_info(...func_get_args()); } }
+if (!function_exists('libvirt_domain_get_interface_devices')) { function libvirt_domain_get_interface_devices() { return \OtomatiesCoreVendor\libvirt_domain_get_interface_devices(...func_get_args()); } }
+if (!function_exists('libvirt_domain_get_job_info')) { function libvirt_domain_get_job_info() { return \OtomatiesCoreVendor\libvirt_domain_get_job_info(...func_get_args()); } }
+if (!function_exists('libvirt_domain_get_metadata')) { function libvirt_domain_get_metadata() { return \OtomatiesCoreVendor\libvirt_domain_get_metadata(...func_get_args()); } }
+if (!function_exists('libvirt_domain_get_name')) { function libvirt_domain_get_name() { return \OtomatiesCoreVendor\libvirt_domain_get_name(...func_get_args()); } }
+if (!function_exists('libvirt_domain_get_network_info')) { function libvirt_domain_get_network_info() { return \OtomatiesCoreVendor\libvirt_domain_get_network_info(...func_get_args()); } }
+if (!function_exists('libvirt_domain_get_next_dev_ids')) { function libvirt_domain_get_next_dev_ids() { return \OtomatiesCoreVendor\libvirt_domain_get_next_dev_ids(...func_get_args()); } }
+if (!function_exists('libvirt_domain_get_screen_dimensions')) { function libvirt_domain_get_screen_dimensions() { return \OtomatiesCoreVendor\libvirt_domain_get_screen_dimensions(...func_get_args()); } }
+if (!function_exists('libvirt_domain_get_screenshot')) { function libvirt_domain_get_screenshot() { return \OtomatiesCoreVendor\libvirt_domain_get_screenshot(...func_get_args()); } }
+if (!function_exists('libvirt_domain_get_screenshot_api')) { function libvirt_domain_get_screenshot_api() { return \OtomatiesCoreVendor\libvirt_domain_get_screenshot_api(...func_get_args()); } }
+if (!function_exists('libvirt_domain_get_uuid')) { function libvirt_domain_get_uuid() { return \OtomatiesCoreVendor\libvirt_domain_get_uuid(...func_get_args()); } }
+if (!function_exists('libvirt_domain_get_uuid_string')) { function libvirt_domain_get_uuid_string() { return \OtomatiesCoreVendor\libvirt_domain_get_uuid_string(...func_get_args()); } }
+if (!function_exists('libvirt_domain_get_xml_desc')) { function libvirt_domain_get_xml_desc() { return \OtomatiesCoreVendor\libvirt_domain_get_xml_desc(...func_get_args()); } }
+if (!function_exists('libvirt_domain_has_current_snapshot')) { function libvirt_domain_has_current_snapshot() { return \OtomatiesCoreVendor\libvirt_domain_has_current_snapshot(...func_get_args()); } }
+if (!function_exists('libvirt_domain_interface_addresses')) { function libvirt_domain_interface_addresses() { return \OtomatiesCoreVendor\libvirt_domain_interface_addresses(...func_get_args()); } }
+if (!function_exists('libvirt_domain_interface_stats')) { function libvirt_domain_interface_stats() { return \OtomatiesCoreVendor\libvirt_domain_interface_stats(...func_get_args()); } }
+if (!function_exists('libvirt_domain_is_active')) { function libvirt_domain_is_active() { return \OtomatiesCoreVendor\libvirt_domain_is_active(...func_get_args()); } }
+if (!function_exists('libvirt_domain_is_persistent')) { function libvirt_domain_is_persistent() { return \OtomatiesCoreVendor\libvirt_domain_is_persistent(...func_get_args()); } }
+if (!function_exists('libvirt_domain_lookup_by_id')) { function libvirt_domain_lookup_by_id() { return \OtomatiesCoreVendor\libvirt_domain_lookup_by_id(...func_get_args()); } }
+if (!function_exists('libvirt_domain_lookup_by_name')) { function libvirt_domain_lookup_by_name() { return \OtomatiesCoreVendor\libvirt_domain_lookup_by_name(...func_get_args()); } }
+if (!function_exists('libvirt_domain_lookup_by_uuid')) { function libvirt_domain_lookup_by_uuid() { return \OtomatiesCoreVendor\libvirt_domain_lookup_by_uuid(...func_get_args()); } }
+if (!function_exists('libvirt_domain_lookup_by_uuid_string')) { function libvirt_domain_lookup_by_uuid_string() { return \OtomatiesCoreVendor\libvirt_domain_lookup_by_uuid_string(...func_get_args()); } }
+if (!function_exists('libvirt_domain_managedsave')) { function libvirt_domain_managedsave() { return \OtomatiesCoreVendor\libvirt_domain_managedsave(...func_get_args()); } }
+if (!function_exists('libvirt_domain_memory_peek')) { function libvirt_domain_memory_peek() { return \OtomatiesCoreVendor\libvirt_domain_memory_peek(...func_get_args()); } }
+if (!function_exists('libvirt_domain_memory_stats')) { function libvirt_domain_memory_stats() { return \OtomatiesCoreVendor\libvirt_domain_memory_stats(...func_get_args()); } }
+if (!function_exists('libvirt_domain_migrate')) { function libvirt_domain_migrate() { return \OtomatiesCoreVendor\libvirt_domain_migrate(...func_get_args()); } }
+if (!function_exists('libvirt_domain_migrate_to_uri')) { function libvirt_domain_migrate_to_uri() { return \OtomatiesCoreVendor\libvirt_domain_migrate_to_uri(...func_get_args()); } }
+if (!function_exists('libvirt_domain_migrate_to_uri2')) { function libvirt_domain_migrate_to_uri2() { return \OtomatiesCoreVendor\libvirt_domain_migrate_to_uri2(...func_get_args()); } }
+if (!function_exists('libvirt_domain_new')) { function libvirt_domain_new() { return \OtomatiesCoreVendor\libvirt_domain_new(...func_get_args()); } }
+if (!function_exists('libvirt_domain_new_get_vnc')) { function libvirt_domain_new_get_vnc() { return \OtomatiesCoreVendor\libvirt_domain_new_get_vnc(...func_get_args()); } }
+if (!function_exists('libvirt_domain_nic_add')) { function libvirt_domain_nic_add() { return \OtomatiesCoreVendor\libvirt_domain_nic_add(...func_get_args()); } }
+if (!function_exists('libvirt_domain_nic_remove')) { function libvirt_domain_nic_remove() { return \OtomatiesCoreVendor\libvirt_domain_nic_remove(...func_get_args()); } }
+if (!function_exists('libvirt_domain_qemu_agent_command')) { function libvirt_domain_qemu_agent_command() { return \OtomatiesCoreVendor\libvirt_domain_qemu_agent_command(...func_get_args()); } }
+if (!function_exists('libvirt_domain_reboot')) { function libvirt_domain_reboot() { return \OtomatiesCoreVendor\libvirt_domain_reboot(...func_get_args()); } }
+if (!function_exists('libvirt_domain_reset')) { function libvirt_domain_reset() { return \OtomatiesCoreVendor\libvirt_domain_reset(...func_get_args()); } }
+if (!function_exists('libvirt_domain_resume')) { function libvirt_domain_resume() { return \OtomatiesCoreVendor\libvirt_domain_resume(...func_get_args()); } }
+if (!function_exists('libvirt_domain_send_key_api')) { function libvirt_domain_send_key_api() { return \OtomatiesCoreVendor\libvirt_domain_send_key_api(...func_get_args()); } }
+if (!function_exists('libvirt_domain_send_keys')) { function libvirt_domain_send_keys() { return \OtomatiesCoreVendor\libvirt_domain_send_keys(...func_get_args()); } }
+if (!function_exists('libvirt_domain_send_pointer_event')) { function libvirt_domain_send_pointer_event() { return \OtomatiesCoreVendor\libvirt_domain_send_pointer_event(...func_get_args()); } }
+if (!function_exists('libvirt_domain_set_autostart')) { function libvirt_domain_set_autostart() { return \OtomatiesCoreVendor\libvirt_domain_set_autostart(...func_get_args()); } }
+if (!function_exists('libvirt_domain_set_max_memory')) { function libvirt_domain_set_max_memory() { return \OtomatiesCoreVendor\libvirt_domain_set_max_memory(...func_get_args()); } }
+if (!function_exists('libvirt_domain_set_memory')) { function libvirt_domain_set_memory() { return \OtomatiesCoreVendor\libvirt_domain_set_memory(...func_get_args()); } }
+if (!function_exists('libvirt_domain_set_memory_flags')) { function libvirt_domain_set_memory_flags() { return \OtomatiesCoreVendor\libvirt_domain_set_memory_flags(...func_get_args()); } }
+if (!function_exists('libvirt_domain_set_metadata')) { function libvirt_domain_set_metadata() { return \OtomatiesCoreVendor\libvirt_domain_set_metadata(...func_get_args()); } }
+if (!function_exists('libvirt_domain_shutdown')) { function libvirt_domain_shutdown() { return \OtomatiesCoreVendor\libvirt_domain_shutdown(...func_get_args()); } }
+if (!function_exists('libvirt_domain_snapshot_create')) { function libvirt_domain_snapshot_create() { return \OtomatiesCoreVendor\libvirt_domain_snapshot_create(...func_get_args()); } }
+if (!function_exists('libvirt_domain_snapshot_current')) { function libvirt_domain_snapshot_current() { return \OtomatiesCoreVendor\libvirt_domain_snapshot_current(...func_get_args()); } }
+if (!function_exists('libvirt_domain_snapshot_delete')) { function libvirt_domain_snapshot_delete() { return \OtomatiesCoreVendor\libvirt_domain_snapshot_delete(...func_get_args()); } }
+if (!function_exists('libvirt_domain_snapshot_get_xml')) { function libvirt_domain_snapshot_get_xml() { return \OtomatiesCoreVendor\libvirt_domain_snapshot_get_xml(...func_get_args()); } }
+if (!function_exists('libvirt_domain_snapshot_lookup_by_name')) { function libvirt_domain_snapshot_lookup_by_name() { return \OtomatiesCoreVendor\libvirt_domain_snapshot_lookup_by_name(...func_get_args()); } }
+if (!function_exists('libvirt_domain_snapshot_revert')) { function libvirt_domain_snapshot_revert() { return \OtomatiesCoreVendor\libvirt_domain_snapshot_revert(...func_get_args()); } }
+if (!function_exists('libvirt_domain_suspend')) { function libvirt_domain_suspend() { return \OtomatiesCoreVendor\libvirt_domain_suspend(...func_get_args()); } }
+if (!function_exists('libvirt_domain_undefine')) { function libvirt_domain_undefine() { return \OtomatiesCoreVendor\libvirt_domain_undefine(...func_get_args()); } }
+if (!function_exists('libvirt_domain_undefine_flags')) { function libvirt_domain_undefine_flags() { return \OtomatiesCoreVendor\libvirt_domain_undefine_flags(...func_get_args()); } }
+if (!function_exists('libvirt_domain_update_device')) { function libvirt_domain_update_device() { return \OtomatiesCoreVendor\libvirt_domain_update_device(...func_get_args()); } }
+if (!function_exists('libvirt_domain_xml_from_native')) { function libvirt_domain_xml_from_native() { return \OtomatiesCoreVendor\libvirt_domain_xml_from_native(...func_get_args()); } }
+if (!function_exists('libvirt_domain_xml_to_native')) { function libvirt_domain_xml_to_native() { return \OtomatiesCoreVendor\libvirt_domain_xml_to_native(...func_get_args()); } }
+if (!function_exists('libvirt_domain_xml_xpath')) { function libvirt_domain_xml_xpath() { return \OtomatiesCoreVendor\libvirt_domain_xml_xpath(...func_get_args()); } }
+if (!function_exists('libvirt_get_iso_images')) { function libvirt_get_iso_images() { return \OtomatiesCoreVendor\libvirt_get_iso_images(...func_get_args()); } }
+if (!function_exists('libvirt_get_last_error')) { function libvirt_get_last_error() { return \OtomatiesCoreVendor\libvirt_get_last_error(...func_get_args()); } }
+if (!function_exists('libvirt_get_last_error_code')) { function libvirt_get_last_error_code() { return \OtomatiesCoreVendor\libvirt_get_last_error_code(...func_get_args()); } }
+if (!function_exists('libvirt_get_last_error_domain')) { function libvirt_get_last_error_domain() { return \OtomatiesCoreVendor\libvirt_get_last_error_domain(...func_get_args()); } }
+if (!function_exists('libvirt_has_feature')) { function libvirt_has_feature() { return \OtomatiesCoreVendor\libvirt_has_feature(...func_get_args()); } }
+if (!function_exists('libvirt_image_create')) { function libvirt_image_create() { return \OtomatiesCoreVendor\libvirt_image_create(...func_get_args()); } }
+if (!function_exists('libvirt_image_remove')) { function libvirt_image_remove() { return \OtomatiesCoreVendor\libvirt_image_remove(...func_get_args()); } }
+if (!function_exists('libvirt_list_active_domain_ids')) { function libvirt_list_active_domain_ids() { return \OtomatiesCoreVendor\libvirt_list_active_domain_ids(...func_get_args()); } }
+if (!function_exists('libvirt_list_active_domains')) { function libvirt_list_active_domains() { return \OtomatiesCoreVendor\libvirt_list_active_domains(...func_get_args()); } }
+if (!function_exists('libvirt_list_active_storagepools')) { function libvirt_list_active_storagepools() { return \OtomatiesCoreVendor\libvirt_list_active_storagepools(...func_get_args()); } }
+if (!function_exists('libvirt_list_all_networks')) { function libvirt_list_all_networks() { return \OtomatiesCoreVendor\libvirt_list_all_networks(...func_get_args()); } }
+if (!function_exists('libvirt_list_all_nwfilters')) { function libvirt_list_all_nwfilters() { return \OtomatiesCoreVendor\libvirt_list_all_nwfilters(...func_get_args()); } }
+if (!function_exists('libvirt_list_domain_resources')) { function libvirt_list_domain_resources() { return \OtomatiesCoreVendor\libvirt_list_domain_resources(...func_get_args()); } }
+if (!function_exists('libvirt_list_domain_snapshots')) { function libvirt_list_domain_snapshots() { return \OtomatiesCoreVendor\libvirt_list_domain_snapshots(...func_get_args()); } }
+if (!function_exists('libvirt_list_domains')) { function libvirt_list_domains() { return \OtomatiesCoreVendor\libvirt_list_domains(...func_get_args()); } }
+if (!function_exists('libvirt_list_inactive_domains')) { function libvirt_list_inactive_domains() { return \OtomatiesCoreVendor\libvirt_list_inactive_domains(...func_get_args()); } }
+if (!function_exists('libvirt_list_inactive_storagepools')) { function libvirt_list_inactive_storagepools() { return \OtomatiesCoreVendor\libvirt_list_inactive_storagepools(...func_get_args()); } }
+if (!function_exists('libvirt_list_networks')) { function libvirt_list_networks() { return \OtomatiesCoreVendor\libvirt_list_networks(...func_get_args()); } }
+if (!function_exists('libvirt_list_nodedevs')) { function libvirt_list_nodedevs() { return \OtomatiesCoreVendor\libvirt_list_nodedevs(...func_get_args()); } }
+if (!function_exists('libvirt_list_nwfilters')) { function libvirt_list_nwfilters() { return \OtomatiesCoreVendor\libvirt_list_nwfilters(...func_get_args()); } }
+if (!function_exists('libvirt_list_storagepools')) { function libvirt_list_storagepools() { return \OtomatiesCoreVendor\libvirt_list_storagepools(...func_get_args()); } }
+if (!function_exists('libvirt_logfile_set')) { function libvirt_logfile_set() { return \OtomatiesCoreVendor\libvirt_logfile_set(...func_get_args()); } }
+if (!function_exists('libvirt_network_define_xml')) { function libvirt_network_define_xml() { return \OtomatiesCoreVendor\libvirt_network_define_xml(...func_get_args()); } }
+if (!function_exists('libvirt_network_get')) { function libvirt_network_get() { return \OtomatiesCoreVendor\libvirt_network_get(...func_get_args()); } }
+if (!function_exists('libvirt_network_get_active')) { function libvirt_network_get_active() { return \OtomatiesCoreVendor\libvirt_network_get_active(...func_get_args()); } }
+if (!function_exists('libvirt_network_get_autostart')) { function libvirt_network_get_autostart() { return \OtomatiesCoreVendor\libvirt_network_get_autostart(...func_get_args()); } }
+if (!function_exists('libvirt_network_get_bridge')) { function libvirt_network_get_bridge() { return \OtomatiesCoreVendor\libvirt_network_get_bridge(...func_get_args()); } }
+if (!function_exists('libvirt_network_get_information')) { function libvirt_network_get_information() { return \OtomatiesCoreVendor\libvirt_network_get_information(...func_get_args()); } }
+if (!function_exists('libvirt_network_get_name')) { function libvirt_network_get_name() { return \OtomatiesCoreVendor\libvirt_network_get_name(...func_get_args()); } }
+if (!function_exists('libvirt_network_get_uuid')) { function libvirt_network_get_uuid() { return \OtomatiesCoreVendor\libvirt_network_get_uuid(...func_get_args()); } }
+if (!function_exists('libvirt_network_get_uuid_string')) { function libvirt_network_get_uuid_string() { return \OtomatiesCoreVendor\libvirt_network_get_uuid_string(...func_get_args()); } }
+if (!function_exists('libvirt_network_get_xml_desc')) { function libvirt_network_get_xml_desc() { return \OtomatiesCoreVendor\libvirt_network_get_xml_desc(...func_get_args()); } }
+if (!function_exists('libvirt_network_set_active')) { function libvirt_network_set_active() { return \OtomatiesCoreVendor\libvirt_network_set_active(...func_get_args()); } }
+if (!function_exists('libvirt_network_set_autostart')) { function libvirt_network_set_autostart() { return \OtomatiesCoreVendor\libvirt_network_set_autostart(...func_get_args()); } }
+if (!function_exists('libvirt_network_undefine')) { function libvirt_network_undefine() { return \OtomatiesCoreVendor\libvirt_network_undefine(...func_get_args()); } }
+if (!function_exists('libvirt_node_get_cpu_stats')) { function libvirt_node_get_cpu_stats() { return \OtomatiesCoreVendor\libvirt_node_get_cpu_stats(...func_get_args()); } }
+if (!function_exists('libvirt_node_get_cpu_stats_for_each_cpu')) { function libvirt_node_get_cpu_stats_for_each_cpu() { return \OtomatiesCoreVendor\libvirt_node_get_cpu_stats_for_each_cpu(...func_get_args()); } }
+if (!function_exists('libvirt_node_get_free_memory')) { function libvirt_node_get_free_memory() { return \OtomatiesCoreVendor\libvirt_node_get_free_memory(...func_get_args()); } }
+if (!function_exists('libvirt_node_get_info')) { function libvirt_node_get_info() { return \OtomatiesCoreVendor\libvirt_node_get_info(...func_get_args()); } }
+if (!function_exists('libvirt_node_get_mem_stats')) { function libvirt_node_get_mem_stats() { return \OtomatiesCoreVendor\libvirt_node_get_mem_stats(...func_get_args()); } }
+if (!function_exists('libvirt_nodedev_capabilities')) { function libvirt_nodedev_capabilities() { return \OtomatiesCoreVendor\libvirt_nodedev_capabilities(...func_get_args()); } }
+if (!function_exists('libvirt_nodedev_get')) { function libvirt_nodedev_get() { return \OtomatiesCoreVendor\libvirt_nodedev_get(...func_get_args()); } }
+if (!function_exists('libvirt_nodedev_get_information')) { function libvirt_nodedev_get_information() { return \OtomatiesCoreVendor\libvirt_nodedev_get_information(...func_get_args()); } }
+if (!function_exists('libvirt_nodedev_get_xml_desc')) { function libvirt_nodedev_get_xml_desc() { return \OtomatiesCoreVendor\libvirt_nodedev_get_xml_desc(...func_get_args()); } }
+if (!function_exists('libvirt_nwfilter_define_xml')) { function libvirt_nwfilter_define_xml() { return \OtomatiesCoreVendor\libvirt_nwfilter_define_xml(...func_get_args()); } }
+if (!function_exists('libvirt_nwfilter_get_name')) { function libvirt_nwfilter_get_name() { return \OtomatiesCoreVendor\libvirt_nwfilter_get_name(...func_get_args()); } }
+if (!function_exists('libvirt_nwfilter_get_uuid')) { function libvirt_nwfilter_get_uuid() { return \OtomatiesCoreVendor\libvirt_nwfilter_get_uuid(...func_get_args()); } }
+if (!function_exists('libvirt_nwfilter_get_uuid_string')) { function libvirt_nwfilter_get_uuid_string() { return \OtomatiesCoreVendor\libvirt_nwfilter_get_uuid_string(...func_get_args()); } }
+if (!function_exists('libvirt_nwfilter_get_xml_desc')) { function libvirt_nwfilter_get_xml_desc() { return \OtomatiesCoreVendor\libvirt_nwfilter_get_xml_desc(...func_get_args()); } }
+if (!function_exists('libvirt_nwfilter_lookup_by_name')) { function libvirt_nwfilter_lookup_by_name() { return \OtomatiesCoreVendor\libvirt_nwfilter_lookup_by_name(...func_get_args()); } }
+if (!function_exists('libvirt_nwfilter_lookup_by_uuid_string')) { function libvirt_nwfilter_lookup_by_uuid_string() { return \OtomatiesCoreVendor\libvirt_nwfilter_lookup_by_uuid_string(...func_get_args()); } }
+if (!function_exists('libvirt_nwfilter_undefine')) { function libvirt_nwfilter_undefine() { return \OtomatiesCoreVendor\libvirt_nwfilter_undefine(...func_get_args()); } }
+if (!function_exists('libvirt_print_binding_resources')) { function libvirt_print_binding_resources() { return \OtomatiesCoreVendor\libvirt_print_binding_resources(...func_get_args()); } }
+if (!function_exists('libvirt_storagepool_build')) { function libvirt_storagepool_build() { return \OtomatiesCoreVendor\libvirt_storagepool_build(...func_get_args()); } }
+if (!function_exists('libvirt_storagepool_create')) { function libvirt_storagepool_create() { return \OtomatiesCoreVendor\libvirt_storagepool_create(...func_get_args()); } }
+if (!function_exists('libvirt_storagepool_define_xml')) { function libvirt_storagepool_define_xml() { return \OtomatiesCoreVendor\libvirt_storagepool_define_xml(...func_get_args()); } }
+if (!function_exists('libvirt_storagepool_delete')) { function libvirt_storagepool_delete() { return \OtomatiesCoreVendor\libvirt_storagepool_delete(...func_get_args()); } }
+if (!function_exists('libvirt_storagepool_destroy')) { function libvirt_storagepool_destroy() { return \OtomatiesCoreVendor\libvirt_storagepool_destroy(...func_get_args()); } }
+if (!function_exists('libvirt_storagepool_get_autostart')) { function libvirt_storagepool_get_autostart() { return \OtomatiesCoreVendor\libvirt_storagepool_get_autostart(...func_get_args()); } }
+if (!function_exists('libvirt_storagepool_get_info')) { function libvirt_storagepool_get_info() { return \OtomatiesCoreVendor\libvirt_storagepool_get_info(...func_get_args()); } }
+if (!function_exists('libvirt_storagepool_get_name')) { function libvirt_storagepool_get_name() { return \OtomatiesCoreVendor\libvirt_storagepool_get_name(...func_get_args()); } }
+if (!function_exists('libvirt_storagepool_get_uuid_string')) { function libvirt_storagepool_get_uuid_string() { return \OtomatiesCoreVendor\libvirt_storagepool_get_uuid_string(...func_get_args()); } }
+if (!function_exists('libvirt_storagepool_get_volume_count')) { function libvirt_storagepool_get_volume_count() { return \OtomatiesCoreVendor\libvirt_storagepool_get_volume_count(...func_get_args()); } }
+if (!function_exists('libvirt_storagepool_get_xml_desc')) { function libvirt_storagepool_get_xml_desc() { return \OtomatiesCoreVendor\libvirt_storagepool_get_xml_desc(...func_get_args()); } }
+if (!function_exists('libvirt_storagepool_is_active')) { function libvirt_storagepool_is_active() { return \OtomatiesCoreVendor\libvirt_storagepool_is_active(...func_get_args()); } }
+if (!function_exists('libvirt_storagepool_list_volumes')) { function libvirt_storagepool_list_volumes() { return \OtomatiesCoreVendor\libvirt_storagepool_list_volumes(...func_get_args()); } }
+if (!function_exists('libvirt_storagepool_lookup_by_name')) { function libvirt_storagepool_lookup_by_name() { return \OtomatiesCoreVendor\libvirt_storagepool_lookup_by_name(...func_get_args()); } }
+if (!function_exists('libvirt_storagepool_lookup_by_uuid_string')) { function libvirt_storagepool_lookup_by_uuid_string() { return \OtomatiesCoreVendor\libvirt_storagepool_lookup_by_uuid_string(...func_get_args()); } }
+if (!function_exists('libvirt_storagepool_lookup_by_volume')) { function libvirt_storagepool_lookup_by_volume() { return \OtomatiesCoreVendor\libvirt_storagepool_lookup_by_volume(...func_get_args()); } }
+if (!function_exists('libvirt_storagepool_refresh')) { function libvirt_storagepool_refresh() { return \OtomatiesCoreVendor\libvirt_storagepool_refresh(...func_get_args()); } }
+if (!function_exists('libvirt_storagepool_set_autostart')) { function libvirt_storagepool_set_autostart() { return \OtomatiesCoreVendor\libvirt_storagepool_set_autostart(...func_get_args()); } }
+if (!function_exists('libvirt_storagepool_undefine')) { function libvirt_storagepool_undefine() { return \OtomatiesCoreVendor\libvirt_storagepool_undefine(...func_get_args()); } }
+if (!function_exists('libvirt_storagevolume_create_xml')) { function libvirt_storagevolume_create_xml() { return \OtomatiesCoreVendor\libvirt_storagevolume_create_xml(...func_get_args()); } }
+if (!function_exists('libvirt_storagevolume_create_xml_from')) { function libvirt_storagevolume_create_xml_from() { return \OtomatiesCoreVendor\libvirt_storagevolume_create_xml_from(...func_get_args()); } }
+if (!function_exists('libvirt_storagevolume_delete')) { function libvirt_storagevolume_delete() { return \OtomatiesCoreVendor\libvirt_storagevolume_delete(...func_get_args()); } }
+if (!function_exists('libvirt_storagevolume_download')) { function libvirt_storagevolume_download() { return \OtomatiesCoreVendor\libvirt_storagevolume_download(...func_get_args()); } }
+if (!function_exists('libvirt_storagevolume_get_info')) { function libvirt_storagevolume_get_info() { return \OtomatiesCoreVendor\libvirt_storagevolume_get_info(...func_get_args()); } }
+if (!function_exists('libvirt_storagevolume_get_name')) { function libvirt_storagevolume_get_name() { return \OtomatiesCoreVendor\libvirt_storagevolume_get_name(...func_get_args()); } }
+if (!function_exists('libvirt_storagevolume_get_path')) { function libvirt_storagevolume_get_path() { return \OtomatiesCoreVendor\libvirt_storagevolume_get_path(...func_get_args()); } }
+if (!function_exists('libvirt_storagevolume_get_xml_desc')) { function libvirt_storagevolume_get_xml_desc() { return \OtomatiesCoreVendor\libvirt_storagevolume_get_xml_desc(...func_get_args()); } }
+if (!function_exists('libvirt_storagevolume_lookup_by_name')) { function libvirt_storagevolume_lookup_by_name() { return \OtomatiesCoreVendor\libvirt_storagevolume_lookup_by_name(...func_get_args()); } }
+if (!function_exists('libvirt_storagevolume_lookup_by_path')) { function libvirt_storagevolume_lookup_by_path() { return \OtomatiesCoreVendor\libvirt_storagevolume_lookup_by_path(...func_get_args()); } }
+if (!function_exists('libvirt_storagevolume_resize')) { function libvirt_storagevolume_resize() { return \OtomatiesCoreVendor\libvirt_storagevolume_resize(...func_get_args()); } }
+if (!function_exists('libvirt_storagevolume_upload')) { function libvirt_storagevolume_upload() { return \OtomatiesCoreVendor\libvirt_storagevolume_upload(...func_get_args()); } }
+if (!function_exists('libvirt_stream_abort')) { function libvirt_stream_abort() { return \OtomatiesCoreVendor\libvirt_stream_abort(...func_get_args()); } }
+if (!function_exists('libvirt_stream_close')) { function libvirt_stream_close() { return \OtomatiesCoreVendor\libvirt_stream_close(...func_get_args()); } }
+if (!function_exists('libvirt_stream_create')) { function libvirt_stream_create() { return \OtomatiesCoreVendor\libvirt_stream_create(...func_get_args()); } }
+if (!function_exists('libvirt_stream_finish')) { function libvirt_stream_finish() { return \OtomatiesCoreVendor\libvirt_stream_finish(...func_get_args()); } }
+if (!function_exists('libvirt_stream_recv')) { function libvirt_stream_recv() { return \OtomatiesCoreVendor\libvirt_stream_recv(...func_get_args()); } }
+if (!function_exists('libvirt_stream_send')) { function libvirt_stream_send() { return \OtomatiesCoreVendor\libvirt_stream_send(...func_get_args()); } }
+if (!function_exists('libvirt_version')) { function libvirt_version() { return \OtomatiesCoreVendor\libvirt_version(...func_get_args()); } }
+if (!function_exists('libxml_clear_errors')) { function libxml_clear_errors() { return \OtomatiesCoreVendor\libxml_clear_errors(...func_get_args()); } }
+if (!function_exists('libxml_disable_entity_loader')) { function libxml_disable_entity_loader() { return \OtomatiesCoreVendor\libxml_disable_entity_loader(...func_get_args()); } }
+if (!function_exists('libxml_get_errors')) { function libxml_get_errors() { return \OtomatiesCoreVendor\libxml_get_errors(...func_get_args()); } }
+if (!function_exists('libxml_get_external_entity_loader')) { function libxml_get_external_entity_loader() { return \OtomatiesCoreVendor\libxml_get_external_entity_loader(...func_get_args()); } }
+if (!function_exists('libxml_get_last_error')) { function libxml_get_last_error() { return \OtomatiesCoreVendor\libxml_get_last_error(...func_get_args()); } }
+if (!function_exists('libxml_set_external_entity_loader')) { function libxml_set_external_entity_loader() { return \OtomatiesCoreVendor\libxml_set_external_entity_loader(...func_get_args()); } }
+if (!function_exists('libxml_set_streams_context')) { function libxml_set_streams_context() { return \OtomatiesCoreVendor\libxml_set_streams_context(...func_get_args()); } }
+if (!function_exists('libxml_use_internal_errors')) { function libxml_use_internal_errors() { return \OtomatiesCoreVendor\libxml_use_internal_errors(...func_get_args()); } }
 if (!function_exists('like_escape')) { function like_escape() { return \OtomatiesCoreVendor\like_escape(...func_get_args()); } }
+if (!function_exists('link')) { function link() { return \OtomatiesCoreVendor\link(...func_get_args()); } }
 if (!function_exists('link_advanced_meta_box')) { function link_advanced_meta_box() { return \OtomatiesCoreVendor\link_advanced_meta_box(...func_get_args()); } }
 if (!function_exists('link_categories_meta_box')) { function link_categories_meta_box() { return \OtomatiesCoreVendor\link_categories_meta_box(...func_get_args()); } }
 if (!function_exists('link_pages')) { function link_pages() { return \OtomatiesCoreVendor\link_pages(...func_get_args()); } }
 if (!function_exists('link_submit_meta_box')) { function link_submit_meta_box() { return \OtomatiesCoreVendor\link_submit_meta_box(...func_get_args()); } }
 if (!function_exists('link_target_meta_box')) { function link_target_meta_box() { return \OtomatiesCoreVendor\link_target_meta_box(...func_get_args()); } }
 if (!function_exists('link_xfn_meta_box')) { function link_xfn_meta_box() { return \OtomatiesCoreVendor\link_xfn_meta_box(...func_get_args()); } }
+if (!function_exists('linkinfo')) { function linkinfo() { return \OtomatiesCoreVendor\linkinfo(...func_get_args()); } }
 if (!function_exists('links_add_base_url')) { function links_add_base_url() { return \OtomatiesCoreVendor\links_add_base_url(...func_get_args()); } }
 if (!function_exists('links_add_target')) { function links_add_target() { return \OtomatiesCoreVendor\links_add_target(...func_get_args()); } }
 if (!function_exists('links_popup_script')) { function links_popup_script() { return \OtomatiesCoreVendor\links_popup_script(...func_get_args()); } }
@@ -2842,12 +5694,57 @@ if (!function_exists('load_script_translations')) { function load_script_transla
 if (!function_exists('load_template')) { function load_template() { return \OtomatiesCoreVendor\load_template(...func_get_args()); } }
 if (!function_exists('load_textdomain')) { function load_textdomain() { return \OtomatiesCoreVendor\load_textdomain(...func_get_args()); } }
 if (!function_exists('load_theme_textdomain')) { function load_theme_textdomain() { return \OtomatiesCoreVendor\load_theme_textdomain(...func_get_args()); } }
+if (!function_exists('locale_accept_from_http')) { function locale_accept_from_http() { return \OtomatiesCoreVendor\locale_accept_from_http(...func_get_args()); } }
+if (!function_exists('locale_canonicalize')) { function locale_canonicalize() { return \OtomatiesCoreVendor\locale_canonicalize(...func_get_args()); } }
+if (!function_exists('locale_compose')) { function locale_compose() { return \OtomatiesCoreVendor\locale_compose(...func_get_args()); } }
+if (!function_exists('locale_filter_matches')) { function locale_filter_matches() { return \OtomatiesCoreVendor\locale_filter_matches(...func_get_args()); } }
+if (!function_exists('locale_get_all_variants')) { function locale_get_all_variants() { return \OtomatiesCoreVendor\locale_get_all_variants(...func_get_args()); } }
+if (!function_exists('locale_get_default')) { function locale_get_default() { return \OtomatiesCoreVendor\locale_get_default(...func_get_args()); } }
+if (!function_exists('locale_get_display_language')) { function locale_get_display_language() { return \OtomatiesCoreVendor\locale_get_display_language(...func_get_args()); } }
+if (!function_exists('locale_get_display_name')) { function locale_get_display_name() { return \OtomatiesCoreVendor\locale_get_display_name(...func_get_args()); } }
+if (!function_exists('locale_get_display_region')) { function locale_get_display_region() { return \OtomatiesCoreVendor\locale_get_display_region(...func_get_args()); } }
+if (!function_exists('locale_get_display_script')) { function locale_get_display_script() { return \OtomatiesCoreVendor\locale_get_display_script(...func_get_args()); } }
+if (!function_exists('locale_get_display_variant')) { function locale_get_display_variant() { return \OtomatiesCoreVendor\locale_get_display_variant(...func_get_args()); } }
+if (!function_exists('locale_get_keywords')) { function locale_get_keywords() { return \OtomatiesCoreVendor\locale_get_keywords(...func_get_args()); } }
+if (!function_exists('locale_get_primary_language')) { function locale_get_primary_language() { return \OtomatiesCoreVendor\locale_get_primary_language(...func_get_args()); } }
+if (!function_exists('locale_get_region')) { function locale_get_region() { return \OtomatiesCoreVendor\locale_get_region(...func_get_args()); } }
+if (!function_exists('locale_get_script')) { function locale_get_script() { return \OtomatiesCoreVendor\locale_get_script(...func_get_args()); } }
+if (!function_exists('locale_lookup')) { function locale_lookup() { return \OtomatiesCoreVendor\locale_lookup(...func_get_args()); } }
+if (!function_exists('locale_parse')) { function locale_parse() { return \OtomatiesCoreVendor\locale_parse(...func_get_args()); } }
+if (!function_exists('locale_set_default')) { function locale_set_default() { return \OtomatiesCoreVendor\locale_set_default(...func_get_args()); } }
 if (!function_exists('locale_stylesheet')) { function locale_stylesheet() { return \OtomatiesCoreVendor\locale_stylesheet(...func_get_args()); } }
+if (!function_exists('localeconv')) { function localeconv() { return \OtomatiesCoreVendor\localeconv(...func_get_args()); } }
+if (!function_exists('localtime')) { function localtime() { return \OtomatiesCoreVendor\localtime(...func_get_args()); } }
 if (!function_exists('locate_block_template')) { function locate_block_template() { return \OtomatiesCoreVendor\locate_block_template(...func_get_args()); } }
 if (!function_exists('locate_template')) { function locate_template() { return \OtomatiesCoreVendor\locate_template(...func_get_args()); } }
+if (!function_exists('log')) { function log() { return \OtomatiesCoreVendor\log(...func_get_args()); } }
+if (!function_exists('log10')) { function log10() { return \OtomatiesCoreVendor\log10(...func_get_args()); } }
+if (!function_exists('log1p')) { function log1p() { return \OtomatiesCoreVendor\log1p(...func_get_args()); } }
 if (!function_exists('logIO')) { function logIO() { return \OtomatiesCoreVendor\logIO(...func_get_args()); } }
 if (!function_exists('login_footer')) { function login_footer() { return \OtomatiesCoreVendor\login_footer(...func_get_args()); } }
 if (!function_exists('login_header')) { function login_header() { return \OtomatiesCoreVendor\login_header(...func_get_args()); } }
+if (!function_exists('long2ip')) { function long2ip() { return \OtomatiesCoreVendor\long2ip(...func_get_args()); } }
+if (!function_exists('lstat')) { function lstat() { return \OtomatiesCoreVendor\lstat(...func_get_args()); } }
+if (!function_exists('ltrim')) { function ltrim() { return \OtomatiesCoreVendor\ltrim(...func_get_args()); } }
+if (!function_exists('lzf_compress')) { function lzf_compress() { return \OtomatiesCoreVendor\lzf_compress(...func_get_args()); } }
+if (!function_exists('lzf_decompress')) { function lzf_decompress() { return \OtomatiesCoreVendor\lzf_decompress(...func_get_args()); } }
+if (!function_exists('lzf_optimized_for')) { function lzf_optimized_for() { return \OtomatiesCoreVendor\lzf_optimized_for(...func_get_args()); } }
+if (!function_exists('magic_quotes_runtime')) { function magic_quotes_runtime() { return \OtomatiesCoreVendor\magic_quotes_runtime(...func_get_args()); } }
+if (!function_exists('mail')) { function mail() { return \OtomatiesCoreVendor\mail(...func_get_args()); } }
+if (!function_exists('mailparse_determine_best_xfer_encoding')) { function mailparse_determine_best_xfer_encoding() { return \OtomatiesCoreVendor\mailparse_determine_best_xfer_encoding(...func_get_args()); } }
+if (!function_exists('mailparse_msg_create')) { function mailparse_msg_create() { return \OtomatiesCoreVendor\mailparse_msg_create(...func_get_args()); } }
+if (!function_exists('mailparse_msg_extract_part')) { function mailparse_msg_extract_part() { return \OtomatiesCoreVendor\mailparse_msg_extract_part(...func_get_args()); } }
+if (!function_exists('mailparse_msg_extract_part_file')) { function mailparse_msg_extract_part_file() { return \OtomatiesCoreVendor\mailparse_msg_extract_part_file(...func_get_args()); } }
+if (!function_exists('mailparse_msg_extract_whole_part_file')) { function mailparse_msg_extract_whole_part_file() { return \OtomatiesCoreVendor\mailparse_msg_extract_whole_part_file(...func_get_args()); } }
+if (!function_exists('mailparse_msg_free')) { function mailparse_msg_free() { return \OtomatiesCoreVendor\mailparse_msg_free(...func_get_args()); } }
+if (!function_exists('mailparse_msg_get_part')) { function mailparse_msg_get_part() { return \OtomatiesCoreVendor\mailparse_msg_get_part(...func_get_args()); } }
+if (!function_exists('mailparse_msg_get_part_data')) { function mailparse_msg_get_part_data() { return \OtomatiesCoreVendor\mailparse_msg_get_part_data(...func_get_args()); } }
+if (!function_exists('mailparse_msg_get_structure')) { function mailparse_msg_get_structure() { return \OtomatiesCoreVendor\mailparse_msg_get_structure(...func_get_args()); } }
+if (!function_exists('mailparse_msg_parse')) { function mailparse_msg_parse() { return \OtomatiesCoreVendor\mailparse_msg_parse(...func_get_args()); } }
+if (!function_exists('mailparse_msg_parse_file')) { function mailparse_msg_parse_file() { return \OtomatiesCoreVendor\mailparse_msg_parse_file(...func_get_args()); } }
+if (!function_exists('mailparse_rfc822_parse_addresses')) { function mailparse_rfc822_parse_addresses() { return \OtomatiesCoreVendor\mailparse_rfc822_parse_addresses(...func_get_args()); } }
+if (!function_exists('mailparse_stream_encode')) { function mailparse_stream_encode() { return \OtomatiesCoreVendor\mailparse_stream_encode(...func_get_args()); } }
+if (!function_exists('mailparse_uudecode_all')) { function mailparse_uudecode_all() { return \OtomatiesCoreVendor\mailparse_uudecode_all(...func_get_args()); } }
 if (!function_exists('maintenance_nag')) { function maintenance_nag() { return \OtomatiesCoreVendor\maintenance_nag(...func_get_args()); } }
 if (!function_exists('make_after_block_visitor')) { function make_after_block_visitor() { return \OtomatiesCoreVendor\make_after_block_visitor(...func_get_args()); } }
 if (!function_exists('make_before_block_visitor')) { function make_before_block_visitor() { return \OtomatiesCoreVendor\make_before_block_visitor(...func_get_args()); } }
@@ -2860,6 +5757,7 @@ if (!function_exists('make_site_theme_from_oldschool')) { function make_site_the
 if (!function_exists('make_url_footnote')) { function make_url_footnote() { return \OtomatiesCoreVendor\make_url_footnote(...func_get_args()); } }
 if (!function_exists('map_deep')) { function map_deep() { return \OtomatiesCoreVendor\map_deep(...func_get_args()); } }
 if (!function_exists('map_meta_cap')) { function map_meta_cap() { return \OtomatiesCoreVendor\map_meta_cap(...func_get_args()); } }
+if (!function_exists('max')) { function max() { return \OtomatiesCoreVendor\max(...func_get_args()); } }
 if (!function_exists('maybe_add_column')) { function maybe_add_column() { return \OtomatiesCoreVendor\maybe_add_column(...func_get_args()); } }
 if (!function_exists('maybe_add_existing_user_to_blog')) { function maybe_add_existing_user_to_blog() { return \OtomatiesCoreVendor\maybe_add_existing_user_to_blog(...func_get_args()); } }
 if (!function_exists('maybe_convert_table_to_utf8mb4')) { function maybe_convert_table_to_utf8mb4() { return \OtomatiesCoreVendor\maybe_convert_table_to_utf8mb4(...func_get_args()); } }
@@ -2874,6 +5772,7 @@ if (!function_exists('mb_check_encoding')) { function mb_check_encoding() { retu
 if (!function_exists('mb_chr')) { function mb_chr() { return \OtomatiesCoreVendor\mb_chr(...func_get_args()); } }
 if (!function_exists('mb_convert_case')) { function mb_convert_case() { return \OtomatiesCoreVendor\mb_convert_case(...func_get_args()); } }
 if (!function_exists('mb_convert_encoding')) { function mb_convert_encoding() { return \OtomatiesCoreVendor\mb_convert_encoding(...func_get_args()); } }
+if (!function_exists('mb_convert_kana')) { function mb_convert_kana() { return \OtomatiesCoreVendor\mb_convert_kana(...func_get_args()); } }
 if (!function_exists('mb_convert_variables')) { function mb_convert_variables() { return \OtomatiesCoreVendor\mb_convert_variables(...func_get_args()); } }
 if (!function_exists('mb_decode_mimeheader')) { function mb_decode_mimeheader() { return \OtomatiesCoreVendor\mb_decode_mimeheader(...func_get_args()); } }
 if (!function_exists('mb_decode_numericentity')) { function mb_decode_numericentity() { return \OtomatiesCoreVendor\mb_decode_numericentity(...func_get_args()); } }
@@ -2882,6 +5781,19 @@ if (!function_exists('mb_detect_order')) { function mb_detect_order() { return \
 if (!function_exists('mb_encode_mimeheader')) { function mb_encode_mimeheader() { return \OtomatiesCoreVendor\mb_encode_mimeheader(...func_get_args()); } }
 if (!function_exists('mb_encode_numericentity')) { function mb_encode_numericentity() { return \OtomatiesCoreVendor\mb_encode_numericentity(...func_get_args()); } }
 if (!function_exists('mb_encoding_aliases')) { function mb_encoding_aliases() { return \OtomatiesCoreVendor\mb_encoding_aliases(...func_get_args()); } }
+if (!function_exists('mb_ereg')) { function mb_ereg() { return \OtomatiesCoreVendor\mb_ereg(...func_get_args()); } }
+if (!function_exists('mb_ereg_match')) { function mb_ereg_match() { return \OtomatiesCoreVendor\mb_ereg_match(...func_get_args()); } }
+if (!function_exists('mb_ereg_replace')) { function mb_ereg_replace() { return \OtomatiesCoreVendor\mb_ereg_replace(...func_get_args()); } }
+if (!function_exists('mb_ereg_replace_callback')) { function mb_ereg_replace_callback() { return \OtomatiesCoreVendor\mb_ereg_replace_callback(...func_get_args()); } }
+if (!function_exists('mb_ereg_search')) { function mb_ereg_search() { return \OtomatiesCoreVendor\mb_ereg_search(...func_get_args()); } }
+if (!function_exists('mb_ereg_search_getpos')) { function mb_ereg_search_getpos() { return \OtomatiesCoreVendor\mb_ereg_search_getpos(...func_get_args()); } }
+if (!function_exists('mb_ereg_search_getregs')) { function mb_ereg_search_getregs() { return \OtomatiesCoreVendor\mb_ereg_search_getregs(...func_get_args()); } }
+if (!function_exists('mb_ereg_search_init')) { function mb_ereg_search_init() { return \OtomatiesCoreVendor\mb_ereg_search_init(...func_get_args()); } }
+if (!function_exists('mb_ereg_search_pos')) { function mb_ereg_search_pos() { return \OtomatiesCoreVendor\mb_ereg_search_pos(...func_get_args()); } }
+if (!function_exists('mb_ereg_search_regs')) { function mb_ereg_search_regs() { return \OtomatiesCoreVendor\mb_ereg_search_regs(...func_get_args()); } }
+if (!function_exists('mb_ereg_search_setpos')) { function mb_ereg_search_setpos() { return \OtomatiesCoreVendor\mb_ereg_search_setpos(...func_get_args()); } }
+if (!function_exists('mb_eregi')) { function mb_eregi() { return \OtomatiesCoreVendor\mb_eregi(...func_get_args()); } }
+if (!function_exists('mb_eregi_replace')) { function mb_eregi_replace() { return \OtomatiesCoreVendor\mb_eregi_replace(...func_get_args()); } }
 if (!function_exists('mb_get_info')) { function mb_get_info() { return \OtomatiesCoreVendor\mb_get_info(...func_get_args()); } }
 if (!function_exists('mb_http_input')) { function mb_http_input() { return \OtomatiesCoreVendor\mb_http_input(...func_get_args()); } }
 if (!function_exists('mb_http_output')) { function mb_http_output() { return \OtomatiesCoreVendor\mb_http_output(...func_get_args()); } }
@@ -2893,10 +5805,17 @@ if (!function_exists('mb_ltrim')) { function mb_ltrim() { return \OtomatiesCoreV
 if (!function_exists('mb_ord')) { function mb_ord() { return \OtomatiesCoreVendor\mb_ord(...func_get_args()); } }
 if (!function_exists('mb_output_handler')) { function mb_output_handler() { return \OtomatiesCoreVendor\mb_output_handler(...func_get_args()); } }
 if (!function_exists('mb_parse_str')) { function mb_parse_str() { return \OtomatiesCoreVendor\mb_parse_str(...func_get_args()); } }
+if (!function_exists('mb_preferred_mime_name')) { function mb_preferred_mime_name() { return \OtomatiesCoreVendor\mb_preferred_mime_name(...func_get_args()); } }
+if (!function_exists('mb_regex_encoding')) { function mb_regex_encoding() { return \OtomatiesCoreVendor\mb_regex_encoding(...func_get_args()); } }
+if (!function_exists('mb_regex_set_options')) { function mb_regex_set_options() { return \OtomatiesCoreVendor\mb_regex_set_options(...func_get_args()); } }
 if (!function_exists('mb_rtrim')) { function mb_rtrim() { return \OtomatiesCoreVendor\mb_rtrim(...func_get_args()); } }
 if (!function_exists('mb_scrub')) { function mb_scrub() { return \OtomatiesCoreVendor\mb_scrub(...func_get_args()); } }
+if (!function_exists('mb_send_mail')) { function mb_send_mail() { return \OtomatiesCoreVendor\mb_send_mail(...func_get_args()); } }
+if (!function_exists('mb_split')) { function mb_split() { return \OtomatiesCoreVendor\mb_split(...func_get_args()); } }
 if (!function_exists('mb_str_pad')) { function mb_str_pad() { return \OtomatiesCoreVendor\mb_str_pad(...func_get_args()); } }
 if (!function_exists('mb_str_split')) { function mb_str_split() { return \OtomatiesCoreVendor\mb_str_split(...func_get_args()); } }
+if (!function_exists('mb_strcut')) { function mb_strcut() { return \OtomatiesCoreVendor\mb_strcut(...func_get_args()); } }
+if (!function_exists('mb_strimwidth')) { function mb_strimwidth() { return \OtomatiesCoreVendor\mb_strimwidth(...func_get_args()); } }
 if (!function_exists('mb_stripos')) { function mb_stripos() { return \OtomatiesCoreVendor\mb_stripos(...func_get_args()); } }
 if (!function_exists('mb_stristr')) { function mb_stristr() { return \OtomatiesCoreVendor\mb_stristr(...func_get_args()); } }
 if (!function_exists('mb_strlen')) { function mb_strlen() { return \OtomatiesCoreVendor\mb_strlen(...func_get_args()); } }
@@ -2914,7 +5833,60 @@ if (!function_exists('mb_substr')) { function mb_substr() { return \OtomatiesCor
 if (!function_exists('mb_substr_count')) { function mb_substr_count() { return \OtomatiesCoreVendor\mb_substr_count(...func_get_args()); } }
 if (!function_exists('mb_trim')) { function mb_trim() { return \OtomatiesCoreVendor\mb_trim(...func_get_args()); } }
 if (!function_exists('mb_ucfirst')) { function mb_ucfirst() { return \OtomatiesCoreVendor\mb_ucfirst(...func_get_args()); } }
+if (!function_exists('mbereg')) { function mbereg() { return \OtomatiesCoreVendor\mbereg(...func_get_args()); } }
+if (!function_exists('mbereg_match')) { function mbereg_match() { return \OtomatiesCoreVendor\mbereg_match(...func_get_args()); } }
+if (!function_exists('mbereg_replace')) { function mbereg_replace() { return \OtomatiesCoreVendor\mbereg_replace(...func_get_args()); } }
+if (!function_exists('mbereg_search')) { function mbereg_search() { return \OtomatiesCoreVendor\mbereg_search(...func_get_args()); } }
+if (!function_exists('mbereg_search_getpos')) { function mbereg_search_getpos() { return \OtomatiesCoreVendor\mbereg_search_getpos(...func_get_args()); } }
+if (!function_exists('mbereg_search_getregs')) { function mbereg_search_getregs() { return \OtomatiesCoreVendor\mbereg_search_getregs(...func_get_args()); } }
+if (!function_exists('mbereg_search_init')) { function mbereg_search_init() { return \OtomatiesCoreVendor\mbereg_search_init(...func_get_args()); } }
+if (!function_exists('mbereg_search_pos')) { function mbereg_search_pos() { return \OtomatiesCoreVendor\mbereg_search_pos(...func_get_args()); } }
+if (!function_exists('mbereg_search_regs')) { function mbereg_search_regs() { return \OtomatiesCoreVendor\mbereg_search_regs(...func_get_args()); } }
+if (!function_exists('mbereg_search_setpos')) { function mbereg_search_setpos() { return \OtomatiesCoreVendor\mbereg_search_setpos(...func_get_args()); } }
+if (!function_exists('mberegi')) { function mberegi() { return \OtomatiesCoreVendor\mberegi(...func_get_args()); } }
+if (!function_exists('mberegi_replace')) { function mberegi_replace() { return \OtomatiesCoreVendor\mberegi_replace(...func_get_args()); } }
+if (!function_exists('mbregex_encoding')) { function mbregex_encoding() { return \OtomatiesCoreVendor\mbregex_encoding(...func_get_args()); } }
+if (!function_exists('mbsplit')) { function mbsplit() { return \OtomatiesCoreVendor\mbsplit(...func_get_args()); } }
 if (!function_exists('mbstring_binary_safe_encoding')) { function mbstring_binary_safe_encoding() { return \OtomatiesCoreVendor\mbstring_binary_safe_encoding(...func_get_args()); } }
+if (!function_exists('mcrypt_cbc')) { function mcrypt_cbc() { return \OtomatiesCoreVendor\mcrypt_cbc(...func_get_args()); } }
+if (!function_exists('mcrypt_cfb')) { function mcrypt_cfb() { return \OtomatiesCoreVendor\mcrypt_cfb(...func_get_args()); } }
+if (!function_exists('mcrypt_create_iv')) { function mcrypt_create_iv() { return \OtomatiesCoreVendor\mcrypt_create_iv(...func_get_args()); } }
+if (!function_exists('mcrypt_decrypt')) { function mcrypt_decrypt() { return \OtomatiesCoreVendor\mcrypt_decrypt(...func_get_args()); } }
+if (!function_exists('mcrypt_ecb')) { function mcrypt_ecb() { return \OtomatiesCoreVendor\mcrypt_ecb(...func_get_args()); } }
+if (!function_exists('mcrypt_enc_get_algorithms_name')) { function mcrypt_enc_get_algorithms_name() { return \OtomatiesCoreVendor\mcrypt_enc_get_algorithms_name(...func_get_args()); } }
+if (!function_exists('mcrypt_enc_get_block_size')) { function mcrypt_enc_get_block_size() { return \OtomatiesCoreVendor\mcrypt_enc_get_block_size(...func_get_args()); } }
+if (!function_exists('mcrypt_enc_get_iv_size')) { function mcrypt_enc_get_iv_size() { return \OtomatiesCoreVendor\mcrypt_enc_get_iv_size(...func_get_args()); } }
+if (!function_exists('mcrypt_enc_get_key_size')) { function mcrypt_enc_get_key_size() { return \OtomatiesCoreVendor\mcrypt_enc_get_key_size(...func_get_args()); } }
+if (!function_exists('mcrypt_enc_get_modes_name')) { function mcrypt_enc_get_modes_name() { return \OtomatiesCoreVendor\mcrypt_enc_get_modes_name(...func_get_args()); } }
+if (!function_exists('mcrypt_enc_get_supported_key_sizes')) { function mcrypt_enc_get_supported_key_sizes() { return \OtomatiesCoreVendor\mcrypt_enc_get_supported_key_sizes(...func_get_args()); } }
+if (!function_exists('mcrypt_enc_is_block_algorithm')) { function mcrypt_enc_is_block_algorithm() { return \OtomatiesCoreVendor\mcrypt_enc_is_block_algorithm(...func_get_args()); } }
+if (!function_exists('mcrypt_enc_is_block_algorithm_mode')) { function mcrypt_enc_is_block_algorithm_mode() { return \OtomatiesCoreVendor\mcrypt_enc_is_block_algorithm_mode(...func_get_args()); } }
+if (!function_exists('mcrypt_enc_is_block_mode')) { function mcrypt_enc_is_block_mode() { return \OtomatiesCoreVendor\mcrypt_enc_is_block_mode(...func_get_args()); } }
+if (!function_exists('mcrypt_enc_self_test')) { function mcrypt_enc_self_test() { return \OtomatiesCoreVendor\mcrypt_enc_self_test(...func_get_args()); } }
+if (!function_exists('mcrypt_encrypt')) { function mcrypt_encrypt() { return \OtomatiesCoreVendor\mcrypt_encrypt(...func_get_args()); } }
+if (!function_exists('mcrypt_generic')) { function mcrypt_generic() { return \OtomatiesCoreVendor\mcrypt_generic(...func_get_args()); } }
+if (!function_exists('mcrypt_generic_deinit')) { function mcrypt_generic_deinit() { return \OtomatiesCoreVendor\mcrypt_generic_deinit(...func_get_args()); } }
+if (!function_exists('mcrypt_generic_end')) { function mcrypt_generic_end() { return \OtomatiesCoreVendor\mcrypt_generic_end(...func_get_args()); } }
+if (!function_exists('mcrypt_generic_init')) { function mcrypt_generic_init() { return \OtomatiesCoreVendor\mcrypt_generic_init(...func_get_args()); } }
+if (!function_exists('mcrypt_get_block_size')) { function mcrypt_get_block_size() { return \OtomatiesCoreVendor\mcrypt_get_block_size(...func_get_args()); } }
+if (!function_exists('mcrypt_get_cipher_name')) { function mcrypt_get_cipher_name() { return \OtomatiesCoreVendor\mcrypt_get_cipher_name(...func_get_args()); } }
+if (!function_exists('mcrypt_get_iv_size')) { function mcrypt_get_iv_size() { return \OtomatiesCoreVendor\mcrypt_get_iv_size(...func_get_args()); } }
+if (!function_exists('mcrypt_get_key_size')) { function mcrypt_get_key_size() { return \OtomatiesCoreVendor\mcrypt_get_key_size(...func_get_args()); } }
+if (!function_exists('mcrypt_list_algorithms')) { function mcrypt_list_algorithms() { return \OtomatiesCoreVendor\mcrypt_list_algorithms(...func_get_args()); } }
+if (!function_exists('mcrypt_list_modes')) { function mcrypt_list_modes() { return \OtomatiesCoreVendor\mcrypt_list_modes(...func_get_args()); } }
+if (!function_exists('mcrypt_module_close')) { function mcrypt_module_close() { return \OtomatiesCoreVendor\mcrypt_module_close(...func_get_args()); } }
+if (!function_exists('mcrypt_module_get_algo_block_size')) { function mcrypt_module_get_algo_block_size() { return \OtomatiesCoreVendor\mcrypt_module_get_algo_block_size(...func_get_args()); } }
+if (!function_exists('mcrypt_module_get_algo_key_size')) { function mcrypt_module_get_algo_key_size() { return \OtomatiesCoreVendor\mcrypt_module_get_algo_key_size(...func_get_args()); } }
+if (!function_exists('mcrypt_module_get_supported_key_sizes')) { function mcrypt_module_get_supported_key_sizes() { return \OtomatiesCoreVendor\mcrypt_module_get_supported_key_sizes(...func_get_args()); } }
+if (!function_exists('mcrypt_module_is_block_algorithm')) { function mcrypt_module_is_block_algorithm() { return \OtomatiesCoreVendor\mcrypt_module_is_block_algorithm(...func_get_args()); } }
+if (!function_exists('mcrypt_module_is_block_algorithm_mode')) { function mcrypt_module_is_block_algorithm_mode() { return \OtomatiesCoreVendor\mcrypt_module_is_block_algorithm_mode(...func_get_args()); } }
+if (!function_exists('mcrypt_module_is_block_mode')) { function mcrypt_module_is_block_mode() { return \OtomatiesCoreVendor\mcrypt_module_is_block_mode(...func_get_args()); } }
+if (!function_exists('mcrypt_module_open')) { function mcrypt_module_open() { return \OtomatiesCoreVendor\mcrypt_module_open(...func_get_args()); } }
+if (!function_exists('mcrypt_module_self_test')) { function mcrypt_module_self_test() { return \OtomatiesCoreVendor\mcrypt_module_self_test(...func_get_args()); } }
+if (!function_exists('mcrypt_ofb')) { function mcrypt_ofb() { return \OtomatiesCoreVendor\mcrypt_ofb(...func_get_args()); } }
+if (!function_exists('md5')) { function md5() { return \OtomatiesCoreVendor\md5(...func_get_args()); } }
+if (!function_exists('md5_file')) { function md5_file() { return \OtomatiesCoreVendor\md5_file(...func_get_args()); } }
+if (!function_exists('mdecrypt_generic')) { function mdecrypt_generic() { return \OtomatiesCoreVendor\mdecrypt_generic(...func_get_args()); } }
 if (!function_exists('media_buttons')) { function media_buttons() { return \OtomatiesCoreVendor\media_buttons(...func_get_args()); } }
 if (!function_exists('media_handle_sideload')) { function media_handle_sideload() { return \OtomatiesCoreVendor\media_handle_sideload(...func_get_args()); } }
 if (!function_exists('media_handle_upload')) { function media_handle_upload() { return \OtomatiesCoreVendor\media_handle_upload(...func_get_args()); } }
@@ -2940,27 +5912,498 @@ if (!function_exists('media_upload_text_after')) { function media_upload_text_af
 if (!function_exists('media_upload_type_form')) { function media_upload_type_form() { return \OtomatiesCoreVendor\media_upload_type_form(...func_get_args()); } }
 if (!function_exists('media_upload_type_url_form')) { function media_upload_type_url_form() { return \OtomatiesCoreVendor\media_upload_type_url_form(...func_get_args()); } }
 if (!function_exists('media_upload_video')) { function media_upload_video() { return \OtomatiesCoreVendor\media_upload_video(...func_get_args()); } }
+if (!function_exists('memcache_add')) { function memcache_add() { return \OtomatiesCoreVendor\memcache_add(...func_get_args()); } }
+if (!function_exists('memcache_add_server')) { function memcache_add_server() { return \OtomatiesCoreVendor\memcache_add_server(...func_get_args()); } }
+if (!function_exists('memcache_append')) { function memcache_append() { return \OtomatiesCoreVendor\memcache_append(...func_get_args()); } }
+if (!function_exists('memcache_cas')) { function memcache_cas() { return \OtomatiesCoreVendor\memcache_cas(...func_get_args()); } }
+if (!function_exists('memcache_close')) { function memcache_close() { return \OtomatiesCoreVendor\memcache_close(...func_get_args()); } }
+if (!function_exists('memcache_connect')) { function memcache_connect() { return \OtomatiesCoreVendor\memcache_connect(...func_get_args()); } }
+if (!function_exists('memcache_debug')) { function memcache_debug() { return \OtomatiesCoreVendor\memcache_debug(...func_get_args()); } }
+if (!function_exists('memcache_decrement')) { function memcache_decrement() { return \OtomatiesCoreVendor\memcache_decrement(...func_get_args()); } }
+if (!function_exists('memcache_delete')) { function memcache_delete() { return \OtomatiesCoreVendor\memcache_delete(...func_get_args()); } }
+if (!function_exists('memcache_flush')) { function memcache_flush() { return \OtomatiesCoreVendor\memcache_flush(...func_get_args()); } }
+if (!function_exists('memcache_get')) { function memcache_get() { return \OtomatiesCoreVendor\memcache_get(...func_get_args()); } }
+if (!function_exists('memcache_get_extended_stats')) { function memcache_get_extended_stats() { return \OtomatiesCoreVendor\memcache_get_extended_stats(...func_get_args()); } }
+if (!function_exists('memcache_get_server_status')) { function memcache_get_server_status() { return \OtomatiesCoreVendor\memcache_get_server_status(...func_get_args()); } }
+if (!function_exists('memcache_get_stats')) { function memcache_get_stats() { return \OtomatiesCoreVendor\memcache_get_stats(...func_get_args()); } }
+if (!function_exists('memcache_get_version')) { function memcache_get_version() { return \OtomatiesCoreVendor\memcache_get_version(...func_get_args()); } }
+if (!function_exists('memcache_increment')) { function memcache_increment() { return \OtomatiesCoreVendor\memcache_increment(...func_get_args()); } }
+if (!function_exists('memcache_pconnect')) { function memcache_pconnect() { return \OtomatiesCoreVendor\memcache_pconnect(...func_get_args()); } }
+if (!function_exists('memcache_prepend')) { function memcache_prepend() { return \OtomatiesCoreVendor\memcache_prepend(...func_get_args()); } }
+if (!function_exists('memcache_replace')) { function memcache_replace() { return \OtomatiesCoreVendor\memcache_replace(...func_get_args()); } }
+if (!function_exists('memcache_set')) { function memcache_set() { return \OtomatiesCoreVendor\memcache_set(...func_get_args()); } }
+if (!function_exists('memcache_set_compress_threshold')) { function memcache_set_compress_threshold() { return \OtomatiesCoreVendor\memcache_set_compress_threshold(...func_get_args()); } }
+if (!function_exists('memcache_set_failure_callback')) { function memcache_set_failure_callback() { return \OtomatiesCoreVendor\memcache_set_failure_callback(...func_get_args()); } }
+if (!function_exists('memcache_set_server_params')) { function memcache_set_server_params() { return \OtomatiesCoreVendor\memcache_set_server_params(...func_get_args()); } }
+if (!function_exists('meminfo_dump')) { function meminfo_dump() { return \OtomatiesCoreVendor\meminfo_dump(...func_get_args()); } }
+if (!function_exists('memory_get_peak_usage')) { function memory_get_peak_usage() { return \OtomatiesCoreVendor\memory_get_peak_usage(...func_get_args()); } }
+if (!function_exists('memory_get_usage')) { function memory_get_usage() { return \OtomatiesCoreVendor\memory_get_usage(...func_get_args()); } }
+if (!function_exists('memory_reset_peak_usage')) { function memory_reset_peak_usage() { return \OtomatiesCoreVendor\memory_reset_peak_usage(...func_get_args()); } }
 if (!function_exists('menu_page_url')) { function menu_page_url() { return \OtomatiesCoreVendor\menu_page_url(...func_get_args()); } }
 if (!function_exists('meta_box_prefs')) { function meta_box_prefs() { return \OtomatiesCoreVendor\meta_box_prefs(...func_get_args()); } }
 if (!function_exists('meta_form')) { function meta_form() { return \OtomatiesCoreVendor\meta_form(...func_get_args()); } }
 if (!function_exists('meta_is_product_attribute')) { function meta_is_product_attribute() { return \OtomatiesCoreVendor\meta_is_product_attribute(...func_get_args()); } }
 if (!function_exists('metadata_exists')) { function metadata_exists() { return \OtomatiesCoreVendor\metadata_exists(...func_get_args()); } }
+if (!function_exists('metaphone')) { function metaphone() { return \OtomatiesCoreVendor\metaphone(...func_get_args()); } }
+if (!function_exists('method_exists')) { function method_exists() { return \OtomatiesCoreVendor\method_exists(...func_get_args()); } }
+if (!function_exists('mhash')) { function mhash() { return \OtomatiesCoreVendor\mhash(...func_get_args()); } }
+if (!function_exists('mhash_count')) { function mhash_count() { return \OtomatiesCoreVendor\mhash_count(...func_get_args()); } }
+if (!function_exists('mhash_get_block_size')) { function mhash_get_block_size() { return \OtomatiesCoreVendor\mhash_get_block_size(...func_get_args()); } }
+if (!function_exists('mhash_get_hash_name')) { function mhash_get_hash_name() { return \OtomatiesCoreVendor\mhash_get_hash_name(...func_get_args()); } }
+if (!function_exists('mhash_keygen_s2k')) { function mhash_keygen_s2k() { return \OtomatiesCoreVendor\mhash_keygen_s2k(...func_get_args()); } }
+if (!function_exists('microtime')) { function microtime() { return \OtomatiesCoreVendor\microtime(...func_get_args()); } }
+if (!function_exists('mime_content_type')) { function mime_content_type() { return \OtomatiesCoreVendor\mime_content_type(...func_get_args()); } }
+if (!function_exists('min')) { function min() { return \OtomatiesCoreVendor\min(...func_get_args()); } }
+if (!function_exists('ming_keypress')) { function ming_keypress() { return \OtomatiesCoreVendor\ming_keypress(...func_get_args()); } }
+if (!function_exists('ming_setcubicthreshold')) { function ming_setcubicthreshold() { return \OtomatiesCoreVendor\ming_setcubicthreshold(...func_get_args()); } }
+if (!function_exists('ming_setscale')) { function ming_setscale() { return \OtomatiesCoreVendor\ming_setscale(...func_get_args()); } }
+if (!function_exists('ming_setswfcompression')) { function ming_setswfcompression() { return \OtomatiesCoreVendor\ming_setswfcompression(...func_get_args()); } }
+if (!function_exists('ming_useconstants')) { function ming_useconstants() { return \OtomatiesCoreVendor\ming_useconstants(...func_get_args()); } }
+if (!function_exists('ming_useswfversion')) { function ming_useswfversion() { return \OtomatiesCoreVendor\ming_useswfversion(...func_get_args()); } }
+if (!function_exists('mkdir')) { function mkdir() { return \OtomatiesCoreVendor\mkdir(...func_get_args()); } }
+if (!function_exists('mktime')) { function mktime() { return \OtomatiesCoreVendor\mktime(...func_get_args()); } }
+if (!function_exists('money_format')) { function money_format() { return \OtomatiesCoreVendor\money_format(...func_get_args()); } }
+if (!function_exists('monitor_custom_event')) { function monitor_custom_event() { return \OtomatiesCoreVendor\monitor_custom_event(...func_get_args()); } }
+if (!function_exists('monitor_httperror_event')) { function monitor_httperror_event() { return \OtomatiesCoreVendor\monitor_httperror_event(...func_get_args()); } }
+if (!function_exists('monitor_license_info')) { function monitor_license_info() { return \OtomatiesCoreVendor\monitor_license_info(...func_get_args()); } }
+if (!function_exists('monitor_pass_error')) { function monitor_pass_error() { return \OtomatiesCoreVendor\monitor_pass_error(...func_get_args()); } }
+if (!function_exists('monitor_set_aggregation_hint')) { function monitor_set_aggregation_hint() { return \OtomatiesCoreVendor\monitor_set_aggregation_hint(...func_get_args()); } }
 if (!function_exists('move_dir')) { function move_dir() { return \OtomatiesCoreVendor\move_dir(...func_get_args()); } }
+if (!function_exists('move_uploaded_file')) { function move_uploaded_file() { return \OtomatiesCoreVendor\move_uploaded_file(...func_get_args()); } }
+if (!function_exists('mqseries_back')) { function mqseries_back() { return \OtomatiesCoreVendor\mqseries_back(...func_get_args()); } }
+if (!function_exists('mqseries_begin')) { function mqseries_begin() { return \OtomatiesCoreVendor\mqseries_begin(...func_get_args()); } }
+if (!function_exists('mqseries_close')) { function mqseries_close() { return \OtomatiesCoreVendor\mqseries_close(...func_get_args()); } }
+if (!function_exists('mqseries_cmit')) { function mqseries_cmit() { return \OtomatiesCoreVendor\mqseries_cmit(...func_get_args()); } }
+if (!function_exists('mqseries_conn')) { function mqseries_conn() { return \OtomatiesCoreVendor\mqseries_conn(...func_get_args()); } }
+if (!function_exists('mqseries_connx')) { function mqseries_connx() { return \OtomatiesCoreVendor\mqseries_connx(...func_get_args()); } }
+if (!function_exists('mqseries_disc')) { function mqseries_disc() { return \OtomatiesCoreVendor\mqseries_disc(...func_get_args()); } }
+if (!function_exists('mqseries_get')) { function mqseries_get() { return \OtomatiesCoreVendor\mqseries_get(...func_get_args()); } }
+if (!function_exists('mqseries_inq')) { function mqseries_inq() { return \OtomatiesCoreVendor\mqseries_inq(...func_get_args()); } }
+if (!function_exists('mqseries_open')) { function mqseries_open() { return \OtomatiesCoreVendor\mqseries_open(...func_get_args()); } }
+if (!function_exists('mqseries_put')) { function mqseries_put() { return \OtomatiesCoreVendor\mqseries_put(...func_get_args()); } }
+if (!function_exists('mqseries_put1')) { function mqseries_put1() { return \OtomatiesCoreVendor\mqseries_put1(...func_get_args()); } }
+if (!function_exists('mqseries_set')) { function mqseries_set() { return \OtomatiesCoreVendor\mqseries_set(...func_get_args()); } }
+if (!function_exists('mqseries_strerror')) { function mqseries_strerror() { return \OtomatiesCoreVendor\mqseries_strerror(...func_get_args()); } }
+if (!function_exists('ms_GetErrorObj')) { function ms_GetErrorObj() { return \OtomatiesCoreVendor\ms_GetErrorObj(...func_get_args()); } }
+if (!function_exists('ms_GetVersion')) { function ms_GetVersion() { return \OtomatiesCoreVendor\ms_GetVersion(...func_get_args()); } }
+if (!function_exists('ms_GetVersionInt')) { function ms_GetVersionInt() { return \OtomatiesCoreVendor\ms_GetVersionInt(...func_get_args()); } }
+if (!function_exists('ms_ResetErrorList')) { function ms_ResetErrorList() { return \OtomatiesCoreVendor\ms_ResetErrorList(...func_get_args()); } }
+if (!function_exists('ms_TokenizeMap')) { function ms_TokenizeMap() { return \OtomatiesCoreVendor\ms_TokenizeMap(...func_get_args()); } }
 if (!function_exists('ms_allowed_http_request_hosts')) { function ms_allowed_http_request_hosts() { return \OtomatiesCoreVendor\ms_allowed_http_request_hosts(...func_get_args()); } }
 if (!function_exists('ms_cookie_constants')) { function ms_cookie_constants() { return \OtomatiesCoreVendor\ms_cookie_constants(...func_get_args()); } }
 if (!function_exists('ms_deprecated_blogs_file')) { function ms_deprecated_blogs_file() { return \OtomatiesCoreVendor\ms_deprecated_blogs_file(...func_get_args()); } }
 if (!function_exists('ms_file_constants')) { function ms_file_constants() { return \OtomatiesCoreVendor\ms_file_constants(...func_get_args()); } }
+if (!function_exists('ms_iogetStdoutBufferBytes')) { function ms_iogetStdoutBufferBytes() { return \OtomatiesCoreVendor\ms_iogetStdoutBufferBytes(...func_get_args()); } }
+if (!function_exists('ms_iogetstdoutbufferstring')) { function ms_iogetstdoutbufferstring() { return \OtomatiesCoreVendor\ms_iogetstdoutbufferstring(...func_get_args()); } }
+if (!function_exists('ms_ioinstallstdinfrombuffer')) { function ms_ioinstallstdinfrombuffer() { return \OtomatiesCoreVendor\ms_ioinstallstdinfrombuffer(...func_get_args()); } }
+if (!function_exists('ms_ioinstallstdouttobuffer')) { function ms_ioinstallstdouttobuffer() { return \OtomatiesCoreVendor\ms_ioinstallstdouttobuffer(...func_get_args()); } }
+if (!function_exists('ms_ioresethandlers')) { function ms_ioresethandlers() { return \OtomatiesCoreVendor\ms_ioresethandlers(...func_get_args()); } }
+if (!function_exists('ms_iostripstdoutbuffercontentheaders')) { function ms_iostripstdoutbuffercontentheaders() { return \OtomatiesCoreVendor\ms_iostripstdoutbuffercontentheaders(...func_get_args()); } }
+if (!function_exists('ms_iostripstdoutbuffercontenttype')) { function ms_iostripstdoutbuffercontenttype() { return \OtomatiesCoreVendor\ms_iostripstdoutbuffercontenttype(...func_get_args()); } }
 if (!function_exists('ms_is_switched')) { function ms_is_switched() { return \OtomatiesCoreVendor\ms_is_switched(...func_get_args()); } }
 if (!function_exists('ms_load_current_site_and_network')) { function ms_load_current_site_and_network() { return \OtomatiesCoreVendor\ms_load_current_site_and_network(...func_get_args()); } }
 if (!function_exists('ms_not_installed')) { function ms_not_installed() { return \OtomatiesCoreVendor\ms_not_installed(...func_get_args()); } }
 if (!function_exists('ms_site_check')) { function ms_site_check() { return \OtomatiesCoreVendor\ms_site_check(...func_get_args()); } }
 if (!function_exists('ms_subdomain_constants')) { function ms_subdomain_constants() { return \OtomatiesCoreVendor\ms_subdomain_constants(...func_get_args()); } }
 if (!function_exists('ms_upload_constants')) { function ms_upload_constants() { return \OtomatiesCoreVendor\ms_upload_constants(...func_get_args()); } }
+if (!function_exists('msg_get_queue')) { function msg_get_queue() { return \OtomatiesCoreVendor\msg_get_queue(...func_get_args()); } }
+if (!function_exists('msg_queue_exists')) { function msg_queue_exists() { return \OtomatiesCoreVendor\msg_queue_exists(...func_get_args()); } }
+if (!function_exists('msg_receive')) { function msg_receive() { return \OtomatiesCoreVendor\msg_receive(...func_get_args()); } }
+if (!function_exists('msg_remove_queue')) { function msg_remove_queue() { return \OtomatiesCoreVendor\msg_remove_queue(...func_get_args()); } }
+if (!function_exists('msg_send')) { function msg_send() { return \OtomatiesCoreVendor\msg_send(...func_get_args()); } }
+if (!function_exists('msg_set_queue')) { function msg_set_queue() { return \OtomatiesCoreVendor\msg_set_queue(...func_get_args()); } }
+if (!function_exists('msg_stat_queue')) { function msg_stat_queue() { return \OtomatiesCoreVendor\msg_stat_queue(...func_get_args()); } }
+if (!function_exists('msgfmt_create')) { function msgfmt_create() { return \OtomatiesCoreVendor\msgfmt_create(...func_get_args()); } }
+if (!function_exists('msgfmt_format')) { function msgfmt_format() { return \OtomatiesCoreVendor\msgfmt_format(...func_get_args()); } }
+if (!function_exists('msgfmt_format_message')) { function msgfmt_format_message() { return \OtomatiesCoreVendor\msgfmt_format_message(...func_get_args()); } }
+if (!function_exists('msgfmt_get_error_code')) { function msgfmt_get_error_code() { return \OtomatiesCoreVendor\msgfmt_get_error_code(...func_get_args()); } }
+if (!function_exists('msgfmt_get_error_message')) { function msgfmt_get_error_message() { return \OtomatiesCoreVendor\msgfmt_get_error_message(...func_get_args()); } }
+if (!function_exists('msgfmt_get_locale')) { function msgfmt_get_locale() { return \OtomatiesCoreVendor\msgfmt_get_locale(...func_get_args()); } }
+if (!function_exists('msgfmt_get_pattern')) { function msgfmt_get_pattern() { return \OtomatiesCoreVendor\msgfmt_get_pattern(...func_get_args()); } }
+if (!function_exists('msgfmt_parse')) { function msgfmt_parse() { return \OtomatiesCoreVendor\msgfmt_parse(...func_get_args()); } }
+if (!function_exists('msgfmt_parse_message')) { function msgfmt_parse_message() { return \OtomatiesCoreVendor\msgfmt_parse_message(...func_get_args()); } }
+if (!function_exists('msgfmt_set_pattern')) { function msgfmt_set_pattern() { return \OtomatiesCoreVendor\msgfmt_set_pattern(...func_get_args()); } }
+if (!function_exists('msgpack_pack')) { function msgpack_pack() { return \OtomatiesCoreVendor\msgpack_pack(...func_get_args()); } }
+if (!function_exists('msgpack_serialize')) { function msgpack_serialize() { return \OtomatiesCoreVendor\msgpack_serialize(...func_get_args()); } }
+if (!function_exists('msgpack_unpack')) { function msgpack_unpack() { return \OtomatiesCoreVendor\msgpack_unpack(...func_get_args()); } }
+if (!function_exists('msgpack_unserialize')) { function msgpack_unserialize() { return \OtomatiesCoreVendor\msgpack_unserialize(...func_get_args()); } }
+if (!function_exists('mssql_bind')) { function mssql_bind() { return \OtomatiesCoreVendor\mssql_bind(...func_get_args()); } }
+if (!function_exists('mssql_close')) { function mssql_close() { return \OtomatiesCoreVendor\mssql_close(...func_get_args()); } }
+if (!function_exists('mssql_connect')) { function mssql_connect() { return \OtomatiesCoreVendor\mssql_connect(...func_get_args()); } }
+if (!function_exists('mssql_data_seek')) { function mssql_data_seek() { return \OtomatiesCoreVendor\mssql_data_seek(...func_get_args()); } }
+if (!function_exists('mssql_execute')) { function mssql_execute() { return \OtomatiesCoreVendor\mssql_execute(...func_get_args()); } }
+if (!function_exists('mssql_fetch_array')) { function mssql_fetch_array() { return \OtomatiesCoreVendor\mssql_fetch_array(...func_get_args()); } }
+if (!function_exists('mssql_fetch_assoc')) { function mssql_fetch_assoc() { return \OtomatiesCoreVendor\mssql_fetch_assoc(...func_get_args()); } }
+if (!function_exists('mssql_fetch_batch')) { function mssql_fetch_batch() { return \OtomatiesCoreVendor\mssql_fetch_batch(...func_get_args()); } }
+if (!function_exists('mssql_fetch_field')) { function mssql_fetch_field() { return \OtomatiesCoreVendor\mssql_fetch_field(...func_get_args()); } }
+if (!function_exists('mssql_fetch_object')) { function mssql_fetch_object() { return \OtomatiesCoreVendor\mssql_fetch_object(...func_get_args()); } }
+if (!function_exists('mssql_fetch_row')) { function mssql_fetch_row() { return \OtomatiesCoreVendor\mssql_fetch_row(...func_get_args()); } }
+if (!function_exists('mssql_field_length')) { function mssql_field_length() { return \OtomatiesCoreVendor\mssql_field_length(...func_get_args()); } }
+if (!function_exists('mssql_field_name')) { function mssql_field_name() { return \OtomatiesCoreVendor\mssql_field_name(...func_get_args()); } }
+if (!function_exists('mssql_field_seek')) { function mssql_field_seek() { return \OtomatiesCoreVendor\mssql_field_seek(...func_get_args()); } }
+if (!function_exists('mssql_field_type')) { function mssql_field_type() { return \OtomatiesCoreVendor\mssql_field_type(...func_get_args()); } }
+if (!function_exists('mssql_free_result')) { function mssql_free_result() { return \OtomatiesCoreVendor\mssql_free_result(...func_get_args()); } }
+if (!function_exists('mssql_free_statement')) { function mssql_free_statement() { return \OtomatiesCoreVendor\mssql_free_statement(...func_get_args()); } }
+if (!function_exists('mssql_get_last_message')) { function mssql_get_last_message() { return \OtomatiesCoreVendor\mssql_get_last_message(...func_get_args()); } }
+if (!function_exists('mssql_guid_string')) { function mssql_guid_string() { return \OtomatiesCoreVendor\mssql_guid_string(...func_get_args()); } }
+if (!function_exists('mssql_init')) { function mssql_init() { return \OtomatiesCoreVendor\mssql_init(...func_get_args()); } }
+if (!function_exists('mssql_min_error_severity')) { function mssql_min_error_severity() { return \OtomatiesCoreVendor\mssql_min_error_severity(...func_get_args()); } }
+if (!function_exists('mssql_min_message_severity')) { function mssql_min_message_severity() { return \OtomatiesCoreVendor\mssql_min_message_severity(...func_get_args()); } }
+if (!function_exists('mssql_next_result')) { function mssql_next_result() { return \OtomatiesCoreVendor\mssql_next_result(...func_get_args()); } }
+if (!function_exists('mssql_num_fields')) { function mssql_num_fields() { return \OtomatiesCoreVendor\mssql_num_fields(...func_get_args()); } }
+if (!function_exists('mssql_num_rows')) { function mssql_num_rows() { return \OtomatiesCoreVendor\mssql_num_rows(...func_get_args()); } }
+if (!function_exists('mssql_pconnect')) { function mssql_pconnect() { return \OtomatiesCoreVendor\mssql_pconnect(...func_get_args()); } }
+if (!function_exists('mssql_query')) { function mssql_query() { return \OtomatiesCoreVendor\mssql_query(...func_get_args()); } }
+if (!function_exists('mssql_result')) { function mssql_result() { return \OtomatiesCoreVendor\mssql_result(...func_get_args()); } }
+if (!function_exists('mssql_rows_affected')) { function mssql_rows_affected() { return \OtomatiesCoreVendor\mssql_rows_affected(...func_get_args()); } }
+if (!function_exists('mssql_select_db')) { function mssql_select_db() { return \OtomatiesCoreVendor\mssql_select_db(...func_get_args()); } }
+if (!function_exists('mt_getrandmax')) { function mt_getrandmax() { return \OtomatiesCoreVendor\mt_getrandmax(...func_get_args()); } }
+if (!function_exists('mt_rand')) { function mt_rand() { return \OtomatiesCoreVendor\mt_rand(...func_get_args()); } }
+if (!function_exists('mt_srand')) { function mt_srand() { return \OtomatiesCoreVendor\mt_srand(...func_get_args()); } }
 if (!function_exists('mu_dropdown_languages')) { function mu_dropdown_languages() { return \OtomatiesCoreVendor\mu_dropdown_languages(...func_get_args()); } }
 if (!function_exists('mu_options')) { function mu_options() { return \OtomatiesCoreVendor\mu_options(...func_get_args()); } }
 if (!function_exists('multisite_over_quota_message')) { function multisite_over_quota_message() { return \OtomatiesCoreVendor\multisite_over_quota_message(...func_get_args()); } }
+if (!function_exists('mysql')) { function mysql() { return \OtomatiesCoreVendor\mysql(...func_get_args()); } }
 if (!function_exists('mysql2date')) { function mysql2date() { return \OtomatiesCoreVendor\mysql2date(...func_get_args()); } }
+if (!function_exists('mysql_affected_rows')) { function mysql_affected_rows() { return \OtomatiesCoreVendor\mysql_affected_rows(...func_get_args()); } }
+if (!function_exists('mysql_client_encoding')) { function mysql_client_encoding() { return \OtomatiesCoreVendor\mysql_client_encoding(...func_get_args()); } }
+if (!function_exists('mysql_close')) { function mysql_close() { return \OtomatiesCoreVendor\mysql_close(...func_get_args()); } }
+if (!function_exists('mysql_connect')) { function mysql_connect() { return \OtomatiesCoreVendor\mysql_connect(...func_get_args()); } }
+if (!function_exists('mysql_data_seek')) { function mysql_data_seek() { return \OtomatiesCoreVendor\mysql_data_seek(...func_get_args()); } }
+if (!function_exists('mysql_db_name')) { function mysql_db_name() { return \OtomatiesCoreVendor\mysql_db_name(...func_get_args()); } }
+if (!function_exists('mysql_db_query')) { function mysql_db_query() { return \OtomatiesCoreVendor\mysql_db_query(...func_get_args()); } }
+if (!function_exists('mysql_dbname')) { function mysql_dbname() { return \OtomatiesCoreVendor\mysql_dbname(...func_get_args()); } }
+if (!function_exists('mysql_errno')) { function mysql_errno() { return \OtomatiesCoreVendor\mysql_errno(...func_get_args()); } }
+if (!function_exists('mysql_error')) { function mysql_error() { return \OtomatiesCoreVendor\mysql_error(...func_get_args()); } }
+if (!function_exists('mysql_escape_string')) { function mysql_escape_string() { return \OtomatiesCoreVendor\mysql_escape_string(...func_get_args()); } }
+if (!function_exists('mysql_fetch_array')) { function mysql_fetch_array() { return \OtomatiesCoreVendor\mysql_fetch_array(...func_get_args()); } }
+if (!function_exists('mysql_fetch_assoc')) { function mysql_fetch_assoc() { return \OtomatiesCoreVendor\mysql_fetch_assoc(...func_get_args()); } }
+if (!function_exists('mysql_fetch_field')) { function mysql_fetch_field() { return \OtomatiesCoreVendor\mysql_fetch_field(...func_get_args()); } }
+if (!function_exists('mysql_fetch_lengths')) { function mysql_fetch_lengths() { return \OtomatiesCoreVendor\mysql_fetch_lengths(...func_get_args()); } }
+if (!function_exists('mysql_fetch_object')) { function mysql_fetch_object() { return \OtomatiesCoreVendor\mysql_fetch_object(...func_get_args()); } }
+if (!function_exists('mysql_fetch_row')) { function mysql_fetch_row() { return \OtomatiesCoreVendor\mysql_fetch_row(...func_get_args()); } }
+if (!function_exists('mysql_field_flags')) { function mysql_field_flags() { return \OtomatiesCoreVendor\mysql_field_flags(...func_get_args()); } }
+if (!function_exists('mysql_field_len')) { function mysql_field_len() { return \OtomatiesCoreVendor\mysql_field_len(...func_get_args()); } }
+if (!function_exists('mysql_field_name')) { function mysql_field_name() { return \OtomatiesCoreVendor\mysql_field_name(...func_get_args()); } }
+if (!function_exists('mysql_field_seek')) { function mysql_field_seek() { return \OtomatiesCoreVendor\mysql_field_seek(...func_get_args()); } }
+if (!function_exists('mysql_field_table')) { function mysql_field_table() { return \OtomatiesCoreVendor\mysql_field_table(...func_get_args()); } }
+if (!function_exists('mysql_field_type')) { function mysql_field_type() { return \OtomatiesCoreVendor\mysql_field_type(...func_get_args()); } }
+if (!function_exists('mysql_fieldflags')) { function mysql_fieldflags() { return \OtomatiesCoreVendor\mysql_fieldflags(...func_get_args()); } }
+if (!function_exists('mysql_fieldlen')) { function mysql_fieldlen() { return \OtomatiesCoreVendor\mysql_fieldlen(...func_get_args()); } }
+if (!function_exists('mysql_fieldname')) { function mysql_fieldname() { return \OtomatiesCoreVendor\mysql_fieldname(...func_get_args()); } }
+if (!function_exists('mysql_fieldtable')) { function mysql_fieldtable() { return \OtomatiesCoreVendor\mysql_fieldtable(...func_get_args()); } }
+if (!function_exists('mysql_fieldtype')) { function mysql_fieldtype() { return \OtomatiesCoreVendor\mysql_fieldtype(...func_get_args()); } }
+if (!function_exists('mysql_free_result')) { function mysql_free_result() { return \OtomatiesCoreVendor\mysql_free_result(...func_get_args()); } }
+if (!function_exists('mysql_freeresult')) { function mysql_freeresult() { return \OtomatiesCoreVendor\mysql_freeresult(...func_get_args()); } }
+if (!function_exists('mysql_get_client_info')) { function mysql_get_client_info() { return \OtomatiesCoreVendor\mysql_get_client_info(...func_get_args()); } }
+if (!function_exists('mysql_get_host_info')) { function mysql_get_host_info() { return \OtomatiesCoreVendor\mysql_get_host_info(...func_get_args()); } }
+if (!function_exists('mysql_get_proto_info')) { function mysql_get_proto_info() { return \OtomatiesCoreVendor\mysql_get_proto_info(...func_get_args()); } }
+if (!function_exists('mysql_get_server_info')) { function mysql_get_server_info() { return \OtomatiesCoreVendor\mysql_get_server_info(...func_get_args()); } }
+if (!function_exists('mysql_info')) { function mysql_info() { return \OtomatiesCoreVendor\mysql_info(...func_get_args()); } }
+if (!function_exists('mysql_insert_id')) { function mysql_insert_id() { return \OtomatiesCoreVendor\mysql_insert_id(...func_get_args()); } }
+if (!function_exists('mysql_list_dbs')) { function mysql_list_dbs() { return \OtomatiesCoreVendor\mysql_list_dbs(...func_get_args()); } }
+if (!function_exists('mysql_list_fields')) { function mysql_list_fields() { return \OtomatiesCoreVendor\mysql_list_fields(...func_get_args()); } }
+if (!function_exists('mysql_list_processes')) { function mysql_list_processes() { return \OtomatiesCoreVendor\mysql_list_processes(...func_get_args()); } }
+if (!function_exists('mysql_list_tables')) { function mysql_list_tables() { return \OtomatiesCoreVendor\mysql_list_tables(...func_get_args()); } }
+if (!function_exists('mysql_listdbs')) { function mysql_listdbs() { return \OtomatiesCoreVendor\mysql_listdbs(...func_get_args()); } }
+if (!function_exists('mysql_listfields')) { function mysql_listfields() { return \OtomatiesCoreVendor\mysql_listfields(...func_get_args()); } }
+if (!function_exists('mysql_listtables')) { function mysql_listtables() { return \OtomatiesCoreVendor\mysql_listtables(...func_get_args()); } }
+if (!function_exists('mysql_num_fields')) { function mysql_num_fields() { return \OtomatiesCoreVendor\mysql_num_fields(...func_get_args()); } }
+if (!function_exists('mysql_num_rows')) { function mysql_num_rows() { return \OtomatiesCoreVendor\mysql_num_rows(...func_get_args()); } }
+if (!function_exists('mysql_numfields')) { function mysql_numfields() { return \OtomatiesCoreVendor\mysql_numfields(...func_get_args()); } }
+if (!function_exists('mysql_numrows')) { function mysql_numrows() { return \OtomatiesCoreVendor\mysql_numrows(...func_get_args()); } }
+if (!function_exists('mysql_pconnect')) { function mysql_pconnect() { return \OtomatiesCoreVendor\mysql_pconnect(...func_get_args()); } }
+if (!function_exists('mysql_ping')) { function mysql_ping() { return \OtomatiesCoreVendor\mysql_ping(...func_get_args()); } }
+if (!function_exists('mysql_query')) { function mysql_query() { return \OtomatiesCoreVendor\mysql_query(...func_get_args()); } }
+if (!function_exists('mysql_real_escape_string')) { function mysql_real_escape_string() { return \OtomatiesCoreVendor\mysql_real_escape_string(...func_get_args()); } }
+if (!function_exists('mysql_result')) { function mysql_result() { return \OtomatiesCoreVendor\mysql_result(...func_get_args()); } }
+if (!function_exists('mysql_select_db')) { function mysql_select_db() { return \OtomatiesCoreVendor\mysql_select_db(...func_get_args()); } }
+if (!function_exists('mysql_selectdb')) { function mysql_selectdb() { return \OtomatiesCoreVendor\mysql_selectdb(...func_get_args()); } }
+if (!function_exists('mysql_set_charset')) { function mysql_set_charset() { return \OtomatiesCoreVendor\mysql_set_charset(...func_get_args()); } }
+if (!function_exists('mysql_stat')) { function mysql_stat() { return \OtomatiesCoreVendor\mysql_stat(...func_get_args()); } }
+if (!function_exists('mysql_table_name')) { function mysql_table_name() { return \OtomatiesCoreVendor\mysql_table_name(...func_get_args()); } }
+if (!function_exists('mysql_tablename')) { function mysql_tablename() { return \OtomatiesCoreVendor\mysql_tablename(...func_get_args()); } }
+if (!function_exists('mysql_thread_id')) { function mysql_thread_id() { return \OtomatiesCoreVendor\mysql_thread_id(...func_get_args()); } }
 if (!function_exists('mysql_to_rfc3339')) { function mysql_to_rfc3339() { return \OtomatiesCoreVendor\mysql_to_rfc3339(...func_get_args()); } }
+if (!function_exists('mysql_unbuffered_query')) { function mysql_unbuffered_query() { return \OtomatiesCoreVendor\mysql_unbuffered_query(...func_get_args()); } }
+if (!function_exists('mysqli_affected_rows')) { function mysqli_affected_rows() { return \OtomatiesCoreVendor\mysqli_affected_rows(...func_get_args()); } }
+if (!function_exists('mysqli_autocommit')) { function mysqli_autocommit() { return \OtomatiesCoreVendor\mysqli_autocommit(...func_get_args()); } }
+if (!function_exists('mysqli_begin_transaction')) { function mysqli_begin_transaction() { return \OtomatiesCoreVendor\mysqli_begin_transaction(...func_get_args()); } }
+if (!function_exists('mysqli_bind_param')) { function mysqli_bind_param() { return \OtomatiesCoreVendor\mysqli_bind_param(...func_get_args()); } }
+if (!function_exists('mysqli_bind_result')) { function mysqli_bind_result() { return \OtomatiesCoreVendor\mysqli_bind_result(...func_get_args()); } }
+if (!function_exists('mysqli_change_user')) { function mysqli_change_user() { return \OtomatiesCoreVendor\mysqli_change_user(...func_get_args()); } }
+if (!function_exists('mysqli_character_set_name')) { function mysqli_character_set_name() { return \OtomatiesCoreVendor\mysqli_character_set_name(...func_get_args()); } }
+if (!function_exists('mysqli_client_encoding')) { function mysqli_client_encoding() { return \OtomatiesCoreVendor\mysqli_client_encoding(...func_get_args()); } }
+if (!function_exists('mysqli_close')) { function mysqli_close() { return \OtomatiesCoreVendor\mysqli_close(...func_get_args()); } }
+if (!function_exists('mysqli_commit')) { function mysqli_commit() { return \OtomatiesCoreVendor\mysqli_commit(...func_get_args()); } }
+if (!function_exists('mysqli_connect')) { function mysqli_connect() { return \OtomatiesCoreVendor\mysqli_connect(...func_get_args()); } }
+if (!function_exists('mysqli_connect_errno')) { function mysqli_connect_errno() { return \OtomatiesCoreVendor\mysqli_connect_errno(...func_get_args()); } }
+if (!function_exists('mysqli_connect_error')) { function mysqli_connect_error() { return \OtomatiesCoreVendor\mysqli_connect_error(...func_get_args()); } }
+if (!function_exists('mysqli_data_seek')) { function mysqli_data_seek() { return \OtomatiesCoreVendor\mysqli_data_seek(...func_get_args()); } }
+if (!function_exists('mysqli_debug')) { function mysqli_debug() { return \OtomatiesCoreVendor\mysqli_debug(...func_get_args()); } }
+if (!function_exists('mysqli_dump_debug_info')) { function mysqli_dump_debug_info() { return \OtomatiesCoreVendor\mysqli_dump_debug_info(...func_get_args()); } }
+if (!function_exists('mysqli_errno')) { function mysqli_errno() { return \OtomatiesCoreVendor\mysqli_errno(...func_get_args()); } }
+if (!function_exists('mysqli_error')) { function mysqli_error() { return \OtomatiesCoreVendor\mysqli_error(...func_get_args()); } }
+if (!function_exists('mysqli_error_list')) { function mysqli_error_list() { return \OtomatiesCoreVendor\mysqli_error_list(...func_get_args()); } }
+if (!function_exists('mysqli_escape_string')) { function mysqli_escape_string() { return \OtomatiesCoreVendor\mysqli_escape_string(...func_get_args()); } }
+if (!function_exists('mysqli_execute')) { function mysqli_execute() { return \OtomatiesCoreVendor\mysqli_execute(...func_get_args()); } }
+if (!function_exists('mysqli_execute_query')) { function mysqli_execute_query() { return \OtomatiesCoreVendor\mysqli_execute_query(...func_get_args()); } }
+if (!function_exists('mysqli_fetch')) { function mysqli_fetch() { return \OtomatiesCoreVendor\mysqli_fetch(...func_get_args()); } }
+if (!function_exists('mysqli_fetch_all')) { function mysqli_fetch_all() { return \OtomatiesCoreVendor\mysqli_fetch_all(...func_get_args()); } }
+if (!function_exists('mysqli_fetch_array')) { function mysqli_fetch_array() { return \OtomatiesCoreVendor\mysqli_fetch_array(...func_get_args()); } }
+if (!function_exists('mysqli_fetch_assoc')) { function mysqli_fetch_assoc() { return \OtomatiesCoreVendor\mysqli_fetch_assoc(...func_get_args()); } }
+if (!function_exists('mysqli_fetch_column')) { function mysqli_fetch_column() { return \OtomatiesCoreVendor\mysqli_fetch_column(...func_get_args()); } }
+if (!function_exists('mysqli_fetch_field')) { function mysqli_fetch_field() { return \OtomatiesCoreVendor\mysqli_fetch_field(...func_get_args()); } }
+if (!function_exists('mysqli_fetch_field_direct')) { function mysqli_fetch_field_direct() { return \OtomatiesCoreVendor\mysqli_fetch_field_direct(...func_get_args()); } }
+if (!function_exists('mysqli_fetch_fields')) { function mysqli_fetch_fields() { return \OtomatiesCoreVendor\mysqli_fetch_fields(...func_get_args()); } }
+if (!function_exists('mysqli_fetch_lengths')) { function mysqli_fetch_lengths() { return \OtomatiesCoreVendor\mysqli_fetch_lengths(...func_get_args()); } }
+if (!function_exists('mysqli_fetch_object')) { function mysqli_fetch_object() { return \OtomatiesCoreVendor\mysqli_fetch_object(...func_get_args()); } }
+if (!function_exists('mysqli_fetch_row')) { function mysqli_fetch_row() { return \OtomatiesCoreVendor\mysqli_fetch_row(...func_get_args()); } }
+if (!function_exists('mysqli_field_count')) { function mysqli_field_count() { return \OtomatiesCoreVendor\mysqli_field_count(...func_get_args()); } }
+if (!function_exists('mysqli_field_seek')) { function mysqli_field_seek() { return \OtomatiesCoreVendor\mysqli_field_seek(...func_get_args()); } }
+if (!function_exists('mysqli_field_tell')) { function mysqli_field_tell() { return \OtomatiesCoreVendor\mysqli_field_tell(...func_get_args()); } }
+if (!function_exists('mysqli_free_result')) { function mysqli_free_result() { return \OtomatiesCoreVendor\mysqli_free_result(...func_get_args()); } }
+if (!function_exists('mysqli_get_cache_stats')) { function mysqli_get_cache_stats() { return \OtomatiesCoreVendor\mysqli_get_cache_stats(...func_get_args()); } }
+if (!function_exists('mysqli_get_charset')) { function mysqli_get_charset() { return \OtomatiesCoreVendor\mysqli_get_charset(...func_get_args()); } }
+if (!function_exists('mysqli_get_client_info')) { function mysqli_get_client_info() { return \OtomatiesCoreVendor\mysqli_get_client_info(...func_get_args()); } }
+if (!function_exists('mysqli_get_client_stats')) { function mysqli_get_client_stats() { return \OtomatiesCoreVendor\mysqli_get_client_stats(...func_get_args()); } }
+if (!function_exists('mysqli_get_client_version')) { function mysqli_get_client_version() { return \OtomatiesCoreVendor\mysqli_get_client_version(...func_get_args()); } }
+if (!function_exists('mysqli_get_connection_stats')) { function mysqli_get_connection_stats() { return \OtomatiesCoreVendor\mysqli_get_connection_stats(...func_get_args()); } }
+if (!function_exists('mysqli_get_host_info')) { function mysqli_get_host_info() { return \OtomatiesCoreVendor\mysqli_get_host_info(...func_get_args()); } }
+if (!function_exists('mysqli_get_links_stats')) { function mysqli_get_links_stats() { return \OtomatiesCoreVendor\mysqli_get_links_stats(...func_get_args()); } }
+if (!function_exists('mysqli_get_metadata')) { function mysqli_get_metadata() { return \OtomatiesCoreVendor\mysqli_get_metadata(...func_get_args()); } }
+if (!function_exists('mysqli_get_proto_info')) { function mysqli_get_proto_info() { return \OtomatiesCoreVendor\mysqli_get_proto_info(...func_get_args()); } }
+if (!function_exists('mysqli_get_server_info')) { function mysqli_get_server_info() { return \OtomatiesCoreVendor\mysqli_get_server_info(...func_get_args()); } }
+if (!function_exists('mysqli_get_server_version')) { function mysqli_get_server_version() { return \OtomatiesCoreVendor\mysqli_get_server_version(...func_get_args()); } }
+if (!function_exists('mysqli_get_warnings')) { function mysqli_get_warnings() { return \OtomatiesCoreVendor\mysqli_get_warnings(...func_get_args()); } }
+if (!function_exists('mysqli_info')) { function mysqli_info() { return \OtomatiesCoreVendor\mysqli_info(...func_get_args()); } }
+if (!function_exists('mysqli_init')) { function mysqli_init() { return \OtomatiesCoreVendor\mysqli_init(...func_get_args()); } }
+if (!function_exists('mysqli_insert_id')) { function mysqli_insert_id() { return \OtomatiesCoreVendor\mysqli_insert_id(...func_get_args()); } }
+if (!function_exists('mysqli_kill')) { function mysqli_kill() { return \OtomatiesCoreVendor\mysqli_kill(...func_get_args()); } }
+if (!function_exists('mysqli_more_results')) { function mysqli_more_results() { return \OtomatiesCoreVendor\mysqli_more_results(...func_get_args()); } }
+if (!function_exists('mysqli_multi_query')) { function mysqli_multi_query() { return \OtomatiesCoreVendor\mysqli_multi_query(...func_get_args()); } }
+if (!function_exists('mysqli_next_result')) { function mysqli_next_result() { return \OtomatiesCoreVendor\mysqli_next_result(...func_get_args()); } }
+if (!function_exists('mysqli_num_fields')) { function mysqli_num_fields() { return \OtomatiesCoreVendor\mysqli_num_fields(...func_get_args()); } }
+if (!function_exists('mysqli_num_rows')) { function mysqli_num_rows() { return \OtomatiesCoreVendor\mysqli_num_rows(...func_get_args()); } }
+if (!function_exists('mysqli_options')) { function mysqli_options() { return \OtomatiesCoreVendor\mysqli_options(...func_get_args()); } }
+if (!function_exists('mysqli_param_count')) { function mysqli_param_count() { return \OtomatiesCoreVendor\mysqli_param_count(...func_get_args()); } }
+if (!function_exists('mysqli_ping')) { function mysqli_ping() { return \OtomatiesCoreVendor\mysqli_ping(...func_get_args()); } }
+if (!function_exists('mysqli_poll')) { function mysqli_poll() { return \OtomatiesCoreVendor\mysqli_poll(...func_get_args()); } }
+if (!function_exists('mysqli_prepare')) { function mysqli_prepare() { return \OtomatiesCoreVendor\mysqli_prepare(...func_get_args()); } }
+if (!function_exists('mysqli_query')) { function mysqli_query() { return \OtomatiesCoreVendor\mysqli_query(...func_get_args()); } }
+if (!function_exists('mysqli_real_connect')) { function mysqli_real_connect() { return \OtomatiesCoreVendor\mysqli_real_connect(...func_get_args()); } }
+if (!function_exists('mysqli_real_escape_string')) { function mysqli_real_escape_string() { return \OtomatiesCoreVendor\mysqli_real_escape_string(...func_get_args()); } }
+if (!function_exists('mysqli_real_query')) { function mysqli_real_query() { return \OtomatiesCoreVendor\mysqli_real_query(...func_get_args()); } }
+if (!function_exists('mysqli_reap_async_query')) { function mysqli_reap_async_query() { return \OtomatiesCoreVendor\mysqli_reap_async_query(...func_get_args()); } }
+if (!function_exists('mysqli_refresh')) { function mysqli_refresh() { return \OtomatiesCoreVendor\mysqli_refresh(...func_get_args()); } }
+if (!function_exists('mysqli_release_savepoint')) { function mysqli_release_savepoint() { return \OtomatiesCoreVendor\mysqli_release_savepoint(...func_get_args()); } }
+if (!function_exists('mysqli_report')) { function mysqli_report() { return \OtomatiesCoreVendor\mysqli_report(...func_get_args()); } }
+if (!function_exists('mysqli_rollback')) { function mysqli_rollback() { return \OtomatiesCoreVendor\mysqli_rollback(...func_get_args()); } }
+if (!function_exists('mysqli_savepoint')) { function mysqli_savepoint() { return \OtomatiesCoreVendor\mysqli_savepoint(...func_get_args()); } }
+if (!function_exists('mysqli_select_db')) { function mysqli_select_db() { return \OtomatiesCoreVendor\mysqli_select_db(...func_get_args()); } }
+if (!function_exists('mysqli_send_long_data')) { function mysqli_send_long_data() { return \OtomatiesCoreVendor\mysqli_send_long_data(...func_get_args()); } }
+if (!function_exists('mysqli_set_charset')) { function mysqli_set_charset() { return \OtomatiesCoreVendor\mysqli_set_charset(...func_get_args()); } }
+if (!function_exists('mysqli_set_local_infile_default')) { function mysqli_set_local_infile_default() { return \OtomatiesCoreVendor\mysqli_set_local_infile_default(...func_get_args()); } }
+if (!function_exists('mysqli_set_local_infile_handler')) { function mysqli_set_local_infile_handler() { return \OtomatiesCoreVendor\mysqli_set_local_infile_handler(...func_get_args()); } }
+if (!function_exists('mysqli_set_opt')) { function mysqli_set_opt() { return \OtomatiesCoreVendor\mysqli_set_opt(...func_get_args()); } }
+if (!function_exists('mysqli_sqlstate')) { function mysqli_sqlstate() { return \OtomatiesCoreVendor\mysqli_sqlstate(...func_get_args()); } }
+if (!function_exists('mysqli_ssl_set')) { function mysqli_ssl_set() { return \OtomatiesCoreVendor\mysqli_ssl_set(...func_get_args()); } }
+if (!function_exists('mysqli_stat')) { function mysqli_stat() { return \OtomatiesCoreVendor\mysqli_stat(...func_get_args()); } }
+if (!function_exists('mysqli_stmt_affected_rows')) { function mysqli_stmt_affected_rows() { return \OtomatiesCoreVendor\mysqli_stmt_affected_rows(...func_get_args()); } }
+if (!function_exists('mysqli_stmt_attr_get')) { function mysqli_stmt_attr_get() { return \OtomatiesCoreVendor\mysqli_stmt_attr_get(...func_get_args()); } }
+if (!function_exists('mysqli_stmt_attr_set')) { function mysqli_stmt_attr_set() { return \OtomatiesCoreVendor\mysqli_stmt_attr_set(...func_get_args()); } }
+if (!function_exists('mysqli_stmt_bind_param')) { function mysqli_stmt_bind_param() { return \OtomatiesCoreVendor\mysqli_stmt_bind_param(...func_get_args()); } }
+if (!function_exists('mysqli_stmt_bind_result')) { function mysqli_stmt_bind_result() { return \OtomatiesCoreVendor\mysqli_stmt_bind_result(...func_get_args()); } }
+if (!function_exists('mysqli_stmt_close')) { function mysqli_stmt_close() { return \OtomatiesCoreVendor\mysqli_stmt_close(...func_get_args()); } }
+if (!function_exists('mysqli_stmt_data_seek')) { function mysqli_stmt_data_seek() { return \OtomatiesCoreVendor\mysqli_stmt_data_seek(...func_get_args()); } }
+if (!function_exists('mysqli_stmt_errno')) { function mysqli_stmt_errno() { return \OtomatiesCoreVendor\mysqli_stmt_errno(...func_get_args()); } }
+if (!function_exists('mysqli_stmt_error')) { function mysqli_stmt_error() { return \OtomatiesCoreVendor\mysqli_stmt_error(...func_get_args()); } }
+if (!function_exists('mysqli_stmt_error_list')) { function mysqli_stmt_error_list() { return \OtomatiesCoreVendor\mysqli_stmt_error_list(...func_get_args()); } }
+if (!function_exists('mysqli_stmt_execute')) { function mysqli_stmt_execute() { return \OtomatiesCoreVendor\mysqli_stmt_execute(...func_get_args()); } }
+if (!function_exists('mysqli_stmt_fetch')) { function mysqli_stmt_fetch() { return \OtomatiesCoreVendor\mysqli_stmt_fetch(...func_get_args()); } }
+if (!function_exists('mysqli_stmt_field_count')) { function mysqli_stmt_field_count() { return \OtomatiesCoreVendor\mysqli_stmt_field_count(...func_get_args()); } }
+if (!function_exists('mysqli_stmt_free_result')) { function mysqli_stmt_free_result() { return \OtomatiesCoreVendor\mysqli_stmt_free_result(...func_get_args()); } }
+if (!function_exists('mysqli_stmt_get_result')) { function mysqli_stmt_get_result() { return \OtomatiesCoreVendor\mysqli_stmt_get_result(...func_get_args()); } }
+if (!function_exists('mysqli_stmt_get_warnings')) { function mysqli_stmt_get_warnings() { return \OtomatiesCoreVendor\mysqli_stmt_get_warnings(...func_get_args()); } }
+if (!function_exists('mysqli_stmt_init')) { function mysqli_stmt_init() { return \OtomatiesCoreVendor\mysqli_stmt_init(...func_get_args()); } }
+if (!function_exists('mysqli_stmt_insert_id')) { function mysqli_stmt_insert_id() { return \OtomatiesCoreVendor\mysqli_stmt_insert_id(...func_get_args()); } }
+if (!function_exists('mysqli_stmt_more_results')) { function mysqli_stmt_more_results() { return \OtomatiesCoreVendor\mysqli_stmt_more_results(...func_get_args()); } }
+if (!function_exists('mysqli_stmt_next_result')) { function mysqli_stmt_next_result() { return \OtomatiesCoreVendor\mysqli_stmt_next_result(...func_get_args()); } }
+if (!function_exists('mysqli_stmt_num_rows')) { function mysqli_stmt_num_rows() { return \OtomatiesCoreVendor\mysqli_stmt_num_rows(...func_get_args()); } }
+if (!function_exists('mysqli_stmt_param_count')) { function mysqli_stmt_param_count() { return \OtomatiesCoreVendor\mysqli_stmt_param_count(...func_get_args()); } }
+if (!function_exists('mysqli_stmt_prepare')) { function mysqli_stmt_prepare() { return \OtomatiesCoreVendor\mysqli_stmt_prepare(...func_get_args()); } }
+if (!function_exists('mysqli_stmt_reset')) { function mysqli_stmt_reset() { return \OtomatiesCoreVendor\mysqli_stmt_reset(...func_get_args()); } }
+if (!function_exists('mysqli_stmt_result_metadata')) { function mysqli_stmt_result_metadata() { return \OtomatiesCoreVendor\mysqli_stmt_result_metadata(...func_get_args()); } }
+if (!function_exists('mysqli_stmt_send_long_data')) { function mysqli_stmt_send_long_data() { return \OtomatiesCoreVendor\mysqli_stmt_send_long_data(...func_get_args()); } }
+if (!function_exists('mysqli_stmt_sqlstate')) { function mysqli_stmt_sqlstate() { return \OtomatiesCoreVendor\mysqli_stmt_sqlstate(...func_get_args()); } }
+if (!function_exists('mysqli_stmt_store_result')) { function mysqli_stmt_store_result() { return \OtomatiesCoreVendor\mysqli_stmt_store_result(...func_get_args()); } }
+if (!function_exists('mysqli_store_result')) { function mysqli_store_result() { return \OtomatiesCoreVendor\mysqli_store_result(...func_get_args()); } }
+if (!function_exists('mysqli_thread_id')) { function mysqli_thread_id() { return \OtomatiesCoreVendor\mysqli_thread_id(...func_get_args()); } }
+if (!function_exists('mysqli_thread_safe')) { function mysqli_thread_safe() { return \OtomatiesCoreVendor\mysqli_thread_safe(...func_get_args()); } }
+if (!function_exists('mysqli_use_result')) { function mysqli_use_result() { return \OtomatiesCoreVendor\mysqli_use_result(...func_get_args()); } }
+if (!function_exists('mysqli_warning_count')) { function mysqli_warning_count() { return \OtomatiesCoreVendor\mysqli_warning_count(...func_get_args()); } }
+if (!function_exists('natcasesort')) { function natcasesort() { return \OtomatiesCoreVendor\natcasesort(...func_get_args()); } }
+if (!function_exists('natsort')) { function natsort() { return \OtomatiesCoreVendor\natsort(...func_get_args()); } }
+if (!function_exists('ncurses_addch')) { function ncurses_addch() { return \OtomatiesCoreVendor\ncurses_addch(...func_get_args()); } }
+if (!function_exists('ncurses_addchnstr')) { function ncurses_addchnstr() { return \OtomatiesCoreVendor\ncurses_addchnstr(...func_get_args()); } }
+if (!function_exists('ncurses_addchstr')) { function ncurses_addchstr() { return \OtomatiesCoreVendor\ncurses_addchstr(...func_get_args()); } }
+if (!function_exists('ncurses_addnstr')) { function ncurses_addnstr() { return \OtomatiesCoreVendor\ncurses_addnstr(...func_get_args()); } }
+if (!function_exists('ncurses_addstr')) { function ncurses_addstr() { return \OtomatiesCoreVendor\ncurses_addstr(...func_get_args()); } }
+if (!function_exists('ncurses_assume_default_colors')) { function ncurses_assume_default_colors() { return \OtomatiesCoreVendor\ncurses_assume_default_colors(...func_get_args()); } }
+if (!function_exists('ncurses_attroff')) { function ncurses_attroff() { return \OtomatiesCoreVendor\ncurses_attroff(...func_get_args()); } }
+if (!function_exists('ncurses_attron')) { function ncurses_attron() { return \OtomatiesCoreVendor\ncurses_attron(...func_get_args()); } }
+if (!function_exists('ncurses_attrset')) { function ncurses_attrset() { return \OtomatiesCoreVendor\ncurses_attrset(...func_get_args()); } }
+if (!function_exists('ncurses_baudrate')) { function ncurses_baudrate() { return \OtomatiesCoreVendor\ncurses_baudrate(...func_get_args()); } }
+if (!function_exists('ncurses_beep')) { function ncurses_beep() { return \OtomatiesCoreVendor\ncurses_beep(...func_get_args()); } }
+if (!function_exists('ncurses_bkgd')) { function ncurses_bkgd() { return \OtomatiesCoreVendor\ncurses_bkgd(...func_get_args()); } }
+if (!function_exists('ncurses_bkgdset')) { function ncurses_bkgdset() { return \OtomatiesCoreVendor\ncurses_bkgdset(...func_get_args()); } }
+if (!function_exists('ncurses_border')) { function ncurses_border() { return \OtomatiesCoreVendor\ncurses_border(...func_get_args()); } }
+if (!function_exists('ncurses_bottom_panel')) { function ncurses_bottom_panel() { return \OtomatiesCoreVendor\ncurses_bottom_panel(...func_get_args()); } }
+if (!function_exists('ncurses_can_change_color')) { function ncurses_can_change_color() { return \OtomatiesCoreVendor\ncurses_can_change_color(...func_get_args()); } }
+if (!function_exists('ncurses_cbreak')) { function ncurses_cbreak() { return \OtomatiesCoreVendor\ncurses_cbreak(...func_get_args()); } }
+if (!function_exists('ncurses_clear')) { function ncurses_clear() { return \OtomatiesCoreVendor\ncurses_clear(...func_get_args()); } }
+if (!function_exists('ncurses_clrtobot')) { function ncurses_clrtobot() { return \OtomatiesCoreVendor\ncurses_clrtobot(...func_get_args()); } }
+if (!function_exists('ncurses_clrtoeol')) { function ncurses_clrtoeol() { return \OtomatiesCoreVendor\ncurses_clrtoeol(...func_get_args()); } }
+if (!function_exists('ncurses_color_content')) { function ncurses_color_content() { return \OtomatiesCoreVendor\ncurses_color_content(...func_get_args()); } }
+if (!function_exists('ncurses_color_set')) { function ncurses_color_set() { return \OtomatiesCoreVendor\ncurses_color_set(...func_get_args()); } }
+if (!function_exists('ncurses_curs_set')) { function ncurses_curs_set() { return \OtomatiesCoreVendor\ncurses_curs_set(...func_get_args()); } }
+if (!function_exists('ncurses_def_prog_mode')) { function ncurses_def_prog_mode() { return \OtomatiesCoreVendor\ncurses_def_prog_mode(...func_get_args()); } }
+if (!function_exists('ncurses_def_shell_mode')) { function ncurses_def_shell_mode() { return \OtomatiesCoreVendor\ncurses_def_shell_mode(...func_get_args()); } }
+if (!function_exists('ncurses_define_key')) { function ncurses_define_key() { return \OtomatiesCoreVendor\ncurses_define_key(...func_get_args()); } }
+if (!function_exists('ncurses_del_panel')) { function ncurses_del_panel() { return \OtomatiesCoreVendor\ncurses_del_panel(...func_get_args()); } }
+if (!function_exists('ncurses_delay_output')) { function ncurses_delay_output() { return \OtomatiesCoreVendor\ncurses_delay_output(...func_get_args()); } }
+if (!function_exists('ncurses_delch')) { function ncurses_delch() { return \OtomatiesCoreVendor\ncurses_delch(...func_get_args()); } }
+if (!function_exists('ncurses_deleteln')) { function ncurses_deleteln() { return \OtomatiesCoreVendor\ncurses_deleteln(...func_get_args()); } }
+if (!function_exists('ncurses_delwin')) { function ncurses_delwin() { return \OtomatiesCoreVendor\ncurses_delwin(...func_get_args()); } }
+if (!function_exists('ncurses_doupdate')) { function ncurses_doupdate() { return \OtomatiesCoreVendor\ncurses_doupdate(...func_get_args()); } }
+if (!function_exists('ncurses_echo')) { function ncurses_echo() { return \OtomatiesCoreVendor\ncurses_echo(...func_get_args()); } }
+if (!function_exists('ncurses_echochar')) { function ncurses_echochar() { return \OtomatiesCoreVendor\ncurses_echochar(...func_get_args()); } }
+if (!function_exists('ncurses_end')) { function ncurses_end() { return \OtomatiesCoreVendor\ncurses_end(...func_get_args()); } }
+if (!function_exists('ncurses_erase')) { function ncurses_erase() { return \OtomatiesCoreVendor\ncurses_erase(...func_get_args()); } }
+if (!function_exists('ncurses_erasechar')) { function ncurses_erasechar() { return \OtomatiesCoreVendor\ncurses_erasechar(...func_get_args()); } }
+if (!function_exists('ncurses_filter')) { function ncurses_filter() { return \OtomatiesCoreVendor\ncurses_filter(...func_get_args()); } }
+if (!function_exists('ncurses_flash')) { function ncurses_flash() { return \OtomatiesCoreVendor\ncurses_flash(...func_get_args()); } }
+if (!function_exists('ncurses_flushinp')) { function ncurses_flushinp() { return \OtomatiesCoreVendor\ncurses_flushinp(...func_get_args()); } }
+if (!function_exists('ncurses_getch')) { function ncurses_getch() { return \OtomatiesCoreVendor\ncurses_getch(...func_get_args()); } }
+if (!function_exists('ncurses_getmaxyx')) { function ncurses_getmaxyx() { return \OtomatiesCoreVendor\ncurses_getmaxyx(...func_get_args()); } }
+if (!function_exists('ncurses_getmouse')) { function ncurses_getmouse() { return \OtomatiesCoreVendor\ncurses_getmouse(...func_get_args()); } }
+if (!function_exists('ncurses_getyx')) { function ncurses_getyx() { return \OtomatiesCoreVendor\ncurses_getyx(...func_get_args()); } }
+if (!function_exists('ncurses_halfdelay')) { function ncurses_halfdelay() { return \OtomatiesCoreVendor\ncurses_halfdelay(...func_get_args()); } }
+if (!function_exists('ncurses_has_colors')) { function ncurses_has_colors() { return \OtomatiesCoreVendor\ncurses_has_colors(...func_get_args()); } }
+if (!function_exists('ncurses_has_ic')) { function ncurses_has_ic() { return \OtomatiesCoreVendor\ncurses_has_ic(...func_get_args()); } }
+if (!function_exists('ncurses_has_il')) { function ncurses_has_il() { return \OtomatiesCoreVendor\ncurses_has_il(...func_get_args()); } }
+if (!function_exists('ncurses_has_key')) { function ncurses_has_key() { return \OtomatiesCoreVendor\ncurses_has_key(...func_get_args()); } }
+if (!function_exists('ncurses_hide_panel')) { function ncurses_hide_panel() { return \OtomatiesCoreVendor\ncurses_hide_panel(...func_get_args()); } }
+if (!function_exists('ncurses_hline')) { function ncurses_hline() { return \OtomatiesCoreVendor\ncurses_hline(...func_get_args()); } }
+if (!function_exists('ncurses_inch')) { function ncurses_inch() { return \OtomatiesCoreVendor\ncurses_inch(...func_get_args()); } }
+if (!function_exists('ncurses_init')) { function ncurses_init() { return \OtomatiesCoreVendor\ncurses_init(...func_get_args()); } }
+if (!function_exists('ncurses_init_color')) { function ncurses_init_color() { return \OtomatiesCoreVendor\ncurses_init_color(...func_get_args()); } }
+if (!function_exists('ncurses_init_pair')) { function ncurses_init_pair() { return \OtomatiesCoreVendor\ncurses_init_pair(...func_get_args()); } }
+if (!function_exists('ncurses_insch')) { function ncurses_insch() { return \OtomatiesCoreVendor\ncurses_insch(...func_get_args()); } }
+if (!function_exists('ncurses_insdelln')) { function ncurses_insdelln() { return \OtomatiesCoreVendor\ncurses_insdelln(...func_get_args()); } }
+if (!function_exists('ncurses_insertln')) { function ncurses_insertln() { return \OtomatiesCoreVendor\ncurses_insertln(...func_get_args()); } }
+if (!function_exists('ncurses_insstr')) { function ncurses_insstr() { return \OtomatiesCoreVendor\ncurses_insstr(...func_get_args()); } }
+if (!function_exists('ncurses_instr')) { function ncurses_instr() { return \OtomatiesCoreVendor\ncurses_instr(...func_get_args()); } }
+if (!function_exists('ncurses_isendwin')) { function ncurses_isendwin() { return \OtomatiesCoreVendor\ncurses_isendwin(...func_get_args()); } }
+if (!function_exists('ncurses_keyok')) { function ncurses_keyok() { return \OtomatiesCoreVendor\ncurses_keyok(...func_get_args()); } }
+if (!function_exists('ncurses_keypad')) { function ncurses_keypad() { return \OtomatiesCoreVendor\ncurses_keypad(...func_get_args()); } }
+if (!function_exists('ncurses_killchar')) { function ncurses_killchar() { return \OtomatiesCoreVendor\ncurses_killchar(...func_get_args()); } }
+if (!function_exists('ncurses_longname')) { function ncurses_longname() { return \OtomatiesCoreVendor\ncurses_longname(...func_get_args()); } }
+if (!function_exists('ncurses_meta')) { function ncurses_meta() { return \OtomatiesCoreVendor\ncurses_meta(...func_get_args()); } }
+if (!function_exists('ncurses_mouse_trafo')) { function ncurses_mouse_trafo() { return \OtomatiesCoreVendor\ncurses_mouse_trafo(...func_get_args()); } }
+if (!function_exists('ncurses_mouseinterval')) { function ncurses_mouseinterval() { return \OtomatiesCoreVendor\ncurses_mouseinterval(...func_get_args()); } }
+if (!function_exists('ncurses_mousemask')) { function ncurses_mousemask() { return \OtomatiesCoreVendor\ncurses_mousemask(...func_get_args()); } }
+if (!function_exists('ncurses_move')) { function ncurses_move() { return \OtomatiesCoreVendor\ncurses_move(...func_get_args()); } }
+if (!function_exists('ncurses_move_panel')) { function ncurses_move_panel() { return \OtomatiesCoreVendor\ncurses_move_panel(...func_get_args()); } }
+if (!function_exists('ncurses_mvaddch')) { function ncurses_mvaddch() { return \OtomatiesCoreVendor\ncurses_mvaddch(...func_get_args()); } }
+if (!function_exists('ncurses_mvaddchnstr')) { function ncurses_mvaddchnstr() { return \OtomatiesCoreVendor\ncurses_mvaddchnstr(...func_get_args()); } }
+if (!function_exists('ncurses_mvaddchstr')) { function ncurses_mvaddchstr() { return \OtomatiesCoreVendor\ncurses_mvaddchstr(...func_get_args()); } }
+if (!function_exists('ncurses_mvaddnstr')) { function ncurses_mvaddnstr() { return \OtomatiesCoreVendor\ncurses_mvaddnstr(...func_get_args()); } }
+if (!function_exists('ncurses_mvaddstr')) { function ncurses_mvaddstr() { return \OtomatiesCoreVendor\ncurses_mvaddstr(...func_get_args()); } }
+if (!function_exists('ncurses_mvcur')) { function ncurses_mvcur() { return \OtomatiesCoreVendor\ncurses_mvcur(...func_get_args()); } }
+if (!function_exists('ncurses_mvdelch')) { function ncurses_mvdelch() { return \OtomatiesCoreVendor\ncurses_mvdelch(...func_get_args()); } }
+if (!function_exists('ncurses_mvgetch')) { function ncurses_mvgetch() { return \OtomatiesCoreVendor\ncurses_mvgetch(...func_get_args()); } }
+if (!function_exists('ncurses_mvhline')) { function ncurses_mvhline() { return \OtomatiesCoreVendor\ncurses_mvhline(...func_get_args()); } }
+if (!function_exists('ncurses_mvinch')) { function ncurses_mvinch() { return \OtomatiesCoreVendor\ncurses_mvinch(...func_get_args()); } }
+if (!function_exists('ncurses_mvwaddstr')) { function ncurses_mvwaddstr() { return \OtomatiesCoreVendor\ncurses_mvwaddstr(...func_get_args()); } }
+if (!function_exists('ncurses_napms')) { function ncurses_napms() { return \OtomatiesCoreVendor\ncurses_napms(...func_get_args()); } }
+if (!function_exists('ncurses_new_panel')) { function ncurses_new_panel() { return \OtomatiesCoreVendor\ncurses_new_panel(...func_get_args()); } }
+if (!function_exists('ncurses_newpad')) { function ncurses_newpad() { return \OtomatiesCoreVendor\ncurses_newpad(...func_get_args()); } }
+if (!function_exists('ncurses_newwin')) { function ncurses_newwin() { return \OtomatiesCoreVendor\ncurses_newwin(...func_get_args()); } }
+if (!function_exists('ncurses_nl')) { function ncurses_nl() { return \OtomatiesCoreVendor\ncurses_nl(...func_get_args()); } }
+if (!function_exists('ncurses_nocbreak')) { function ncurses_nocbreak() { return \OtomatiesCoreVendor\ncurses_nocbreak(...func_get_args()); } }
+if (!function_exists('ncurses_noecho')) { function ncurses_noecho() { return \OtomatiesCoreVendor\ncurses_noecho(...func_get_args()); } }
+if (!function_exists('ncurses_nonl')) { function ncurses_nonl() { return \OtomatiesCoreVendor\ncurses_nonl(...func_get_args()); } }
+if (!function_exists('ncurses_noqiflush')) { function ncurses_noqiflush() { return \OtomatiesCoreVendor\ncurses_noqiflush(...func_get_args()); } }
+if (!function_exists('ncurses_noraw')) { function ncurses_noraw() { return \OtomatiesCoreVendor\ncurses_noraw(...func_get_args()); } }
+if (!function_exists('ncurses_pair_content')) { function ncurses_pair_content() { return \OtomatiesCoreVendor\ncurses_pair_content(...func_get_args()); } }
+if (!function_exists('ncurses_panel_above')) { function ncurses_panel_above() { return \OtomatiesCoreVendor\ncurses_panel_above(...func_get_args()); } }
+if (!function_exists('ncurses_panel_below')) { function ncurses_panel_below() { return \OtomatiesCoreVendor\ncurses_panel_below(...func_get_args()); } }
+if (!function_exists('ncurses_panel_window')) { function ncurses_panel_window() { return \OtomatiesCoreVendor\ncurses_panel_window(...func_get_args()); } }
+if (!function_exists('ncurses_pnoutrefresh')) { function ncurses_pnoutrefresh() { return \OtomatiesCoreVendor\ncurses_pnoutrefresh(...func_get_args()); } }
+if (!function_exists('ncurses_prefresh')) { function ncurses_prefresh() { return \OtomatiesCoreVendor\ncurses_prefresh(...func_get_args()); } }
+if (!function_exists('ncurses_putp')) { function ncurses_putp() { return \OtomatiesCoreVendor\ncurses_putp(...func_get_args()); } }
+if (!function_exists('ncurses_qiflush')) { function ncurses_qiflush() { return \OtomatiesCoreVendor\ncurses_qiflush(...func_get_args()); } }
+if (!function_exists('ncurses_raw')) { function ncurses_raw() { return \OtomatiesCoreVendor\ncurses_raw(...func_get_args()); } }
+if (!function_exists('ncurses_refresh')) { function ncurses_refresh() { return \OtomatiesCoreVendor\ncurses_refresh(...func_get_args()); } }
+if (!function_exists('ncurses_replace_panel')) { function ncurses_replace_panel() { return \OtomatiesCoreVendor\ncurses_replace_panel(...func_get_args()); } }
+if (!function_exists('ncurses_reset_prog_mode')) { function ncurses_reset_prog_mode() { return \OtomatiesCoreVendor\ncurses_reset_prog_mode(...func_get_args()); } }
+if (!function_exists('ncurses_reset_shell_mode')) { function ncurses_reset_shell_mode() { return \OtomatiesCoreVendor\ncurses_reset_shell_mode(...func_get_args()); } }
+if (!function_exists('ncurses_resetty')) { function ncurses_resetty() { return \OtomatiesCoreVendor\ncurses_resetty(...func_get_args()); } }
+if (!function_exists('ncurses_savetty')) { function ncurses_savetty() { return \OtomatiesCoreVendor\ncurses_savetty(...func_get_args()); } }
+if (!function_exists('ncurses_scr_dump')) { function ncurses_scr_dump() { return \OtomatiesCoreVendor\ncurses_scr_dump(...func_get_args()); } }
+if (!function_exists('ncurses_scr_init')) { function ncurses_scr_init() { return \OtomatiesCoreVendor\ncurses_scr_init(...func_get_args()); } }
+if (!function_exists('ncurses_scr_restore')) { function ncurses_scr_restore() { return \OtomatiesCoreVendor\ncurses_scr_restore(...func_get_args()); } }
+if (!function_exists('ncurses_scr_set')) { function ncurses_scr_set() { return \OtomatiesCoreVendor\ncurses_scr_set(...func_get_args()); } }
+if (!function_exists('ncurses_scrl')) { function ncurses_scrl() { return \OtomatiesCoreVendor\ncurses_scrl(...func_get_args()); } }
+if (!function_exists('ncurses_show_panel')) { function ncurses_show_panel() { return \OtomatiesCoreVendor\ncurses_show_panel(...func_get_args()); } }
+if (!function_exists('ncurses_slk_attr')) { function ncurses_slk_attr() { return \OtomatiesCoreVendor\ncurses_slk_attr(...func_get_args()); } }
+if (!function_exists('ncurses_slk_attroff')) { function ncurses_slk_attroff() { return \OtomatiesCoreVendor\ncurses_slk_attroff(...func_get_args()); } }
+if (!function_exists('ncurses_slk_attron')) { function ncurses_slk_attron() { return \OtomatiesCoreVendor\ncurses_slk_attron(...func_get_args()); } }
+if (!function_exists('ncurses_slk_attrset')) { function ncurses_slk_attrset() { return \OtomatiesCoreVendor\ncurses_slk_attrset(...func_get_args()); } }
+if (!function_exists('ncurses_slk_clear')) { function ncurses_slk_clear() { return \OtomatiesCoreVendor\ncurses_slk_clear(...func_get_args()); } }
+if (!function_exists('ncurses_slk_color')) { function ncurses_slk_color() { return \OtomatiesCoreVendor\ncurses_slk_color(...func_get_args()); } }
+if (!function_exists('ncurses_slk_init')) { function ncurses_slk_init() { return \OtomatiesCoreVendor\ncurses_slk_init(...func_get_args()); } }
+if (!function_exists('ncurses_slk_noutrefresh')) { function ncurses_slk_noutrefresh() { return \OtomatiesCoreVendor\ncurses_slk_noutrefresh(...func_get_args()); } }
+if (!function_exists('ncurses_slk_refresh')) { function ncurses_slk_refresh() { return \OtomatiesCoreVendor\ncurses_slk_refresh(...func_get_args()); } }
+if (!function_exists('ncurses_slk_restore')) { function ncurses_slk_restore() { return \OtomatiesCoreVendor\ncurses_slk_restore(...func_get_args()); } }
+if (!function_exists('ncurses_slk_set')) { function ncurses_slk_set() { return \OtomatiesCoreVendor\ncurses_slk_set(...func_get_args()); } }
+if (!function_exists('ncurses_slk_touch')) { function ncurses_slk_touch() { return \OtomatiesCoreVendor\ncurses_slk_touch(...func_get_args()); } }
+if (!function_exists('ncurses_standend')) { function ncurses_standend() { return \OtomatiesCoreVendor\ncurses_standend(...func_get_args()); } }
+if (!function_exists('ncurses_standout')) { function ncurses_standout() { return \OtomatiesCoreVendor\ncurses_standout(...func_get_args()); } }
+if (!function_exists('ncurses_start_color')) { function ncurses_start_color() { return \OtomatiesCoreVendor\ncurses_start_color(...func_get_args()); } }
+if (!function_exists('ncurses_termattrs')) { function ncurses_termattrs() { return \OtomatiesCoreVendor\ncurses_termattrs(...func_get_args()); } }
+if (!function_exists('ncurses_termname')) { function ncurses_termname() { return \OtomatiesCoreVendor\ncurses_termname(...func_get_args()); } }
+if (!function_exists('ncurses_timeout')) { function ncurses_timeout() { return \OtomatiesCoreVendor\ncurses_timeout(...func_get_args()); } }
+if (!function_exists('ncurses_top_panel')) { function ncurses_top_panel() { return \OtomatiesCoreVendor\ncurses_top_panel(...func_get_args()); } }
+if (!function_exists('ncurses_typeahead')) { function ncurses_typeahead() { return \OtomatiesCoreVendor\ncurses_typeahead(...func_get_args()); } }
+if (!function_exists('ncurses_ungetch')) { function ncurses_ungetch() { return \OtomatiesCoreVendor\ncurses_ungetch(...func_get_args()); } }
+if (!function_exists('ncurses_ungetmouse')) { function ncurses_ungetmouse() { return \OtomatiesCoreVendor\ncurses_ungetmouse(...func_get_args()); } }
+if (!function_exists('ncurses_update_panels')) { function ncurses_update_panels() { return \OtomatiesCoreVendor\ncurses_update_panels(...func_get_args()); } }
+if (!function_exists('ncurses_use_default_colors')) { function ncurses_use_default_colors() { return \OtomatiesCoreVendor\ncurses_use_default_colors(...func_get_args()); } }
+if (!function_exists('ncurses_use_env')) { function ncurses_use_env() { return \OtomatiesCoreVendor\ncurses_use_env(...func_get_args()); } }
+if (!function_exists('ncurses_use_extended_names')) { function ncurses_use_extended_names() { return \OtomatiesCoreVendor\ncurses_use_extended_names(...func_get_args()); } }
+if (!function_exists('ncurses_vidattr')) { function ncurses_vidattr() { return \OtomatiesCoreVendor\ncurses_vidattr(...func_get_args()); } }
+if (!function_exists('ncurses_vline')) { function ncurses_vline() { return \OtomatiesCoreVendor\ncurses_vline(...func_get_args()); } }
+if (!function_exists('ncurses_waddch')) { function ncurses_waddch() { return \OtomatiesCoreVendor\ncurses_waddch(...func_get_args()); } }
+if (!function_exists('ncurses_waddstr')) { function ncurses_waddstr() { return \OtomatiesCoreVendor\ncurses_waddstr(...func_get_args()); } }
+if (!function_exists('ncurses_wattroff')) { function ncurses_wattroff() { return \OtomatiesCoreVendor\ncurses_wattroff(...func_get_args()); } }
+if (!function_exists('ncurses_wattron')) { function ncurses_wattron() { return \OtomatiesCoreVendor\ncurses_wattron(...func_get_args()); } }
+if (!function_exists('ncurses_wattrset')) { function ncurses_wattrset() { return \OtomatiesCoreVendor\ncurses_wattrset(...func_get_args()); } }
+if (!function_exists('ncurses_wborder')) { function ncurses_wborder() { return \OtomatiesCoreVendor\ncurses_wborder(...func_get_args()); } }
+if (!function_exists('ncurses_wclear')) { function ncurses_wclear() { return \OtomatiesCoreVendor\ncurses_wclear(...func_get_args()); } }
+if (!function_exists('ncurses_wcolor_set')) { function ncurses_wcolor_set() { return \OtomatiesCoreVendor\ncurses_wcolor_set(...func_get_args()); } }
+if (!function_exists('ncurses_werase')) { function ncurses_werase() { return \OtomatiesCoreVendor\ncurses_werase(...func_get_args()); } }
+if (!function_exists('ncurses_wgetch')) { function ncurses_wgetch() { return \OtomatiesCoreVendor\ncurses_wgetch(...func_get_args()); } }
+if (!function_exists('ncurses_whline')) { function ncurses_whline() { return \OtomatiesCoreVendor\ncurses_whline(...func_get_args()); } }
+if (!function_exists('ncurses_wmouse_trafo')) { function ncurses_wmouse_trafo() { return \OtomatiesCoreVendor\ncurses_wmouse_trafo(...func_get_args()); } }
+if (!function_exists('ncurses_wmove')) { function ncurses_wmove() { return \OtomatiesCoreVendor\ncurses_wmove(...func_get_args()); } }
+if (!function_exists('ncurses_wnoutrefresh')) { function ncurses_wnoutrefresh() { return \OtomatiesCoreVendor\ncurses_wnoutrefresh(...func_get_args()); } }
+if (!function_exists('ncurses_wrefresh')) { function ncurses_wrefresh() { return \OtomatiesCoreVendor\ncurses_wrefresh(...func_get_args()); } }
+if (!function_exists('ncurses_wstandend')) { function ncurses_wstandend() { return \OtomatiesCoreVendor\ncurses_wstandend(...func_get_args()); } }
+if (!function_exists('ncurses_wstandout')) { function ncurses_wstandout() { return \OtomatiesCoreVendor\ncurses_wstandout(...func_get_args()); } }
+if (!function_exists('ncurses_wvline')) { function ncurses_wvline() { return \OtomatiesCoreVendor\ncurses_wvline(...func_get_args()); } }
+if (!function_exists('net_get_interfaces')) { function net_get_interfaces() { return \OtomatiesCoreVendor\net_get_interfaces(...func_get_args()); } }
 if (!function_exists('network_admin_url')) { function network_admin_url() { return \OtomatiesCoreVendor\network_admin_url(...func_get_args()); } }
 if (!function_exists('network_domain_check')) { function network_domain_check() { return \OtomatiesCoreVendor\network_domain_check(...func_get_args()); } }
 if (!function_exists('network_edit_site_nav')) { function network_edit_site_nav() { return \OtomatiesCoreVendor\network_edit_site_nav(...func_get_args()); } }
@@ -2971,7 +6414,38 @@ if (!function_exists('network_step1')) { function network_step1() { return \Otom
 if (!function_exists('network_step2')) { function network_step2() { return \OtomatiesCoreVendor\network_step2(...func_get_args()); } }
 if (!function_exists('new_user_email_admin_notice')) { function new_user_email_admin_notice() { return \OtomatiesCoreVendor\new_user_email_admin_notice(...func_get_args()); } }
 if (!function_exists('newblog_notify_siteadmin')) { function newblog_notify_siteadmin() { return \OtomatiesCoreVendor\newblog_notify_siteadmin(...func_get_args()); } }
+if (!function_exists('newrelic_accept_distributed_trace_headers')) { function newrelic_accept_distributed_trace_headers() { return \OtomatiesCoreVendor\newrelic_accept_distributed_trace_headers(...func_get_args()); } }
+if (!function_exists('newrelic_accept_distributed_trace_payload')) { function newrelic_accept_distributed_trace_payload() { return \OtomatiesCoreVendor\newrelic_accept_distributed_trace_payload(...func_get_args()); } }
+if (!function_exists('newrelic_accept_distributed_trace_payload_httpsafe')) { function newrelic_accept_distributed_trace_payload_httpsafe() { return \OtomatiesCoreVendor\newrelic_accept_distributed_trace_payload_httpsafe(...func_get_args()); } }
+if (!function_exists('newrelic_add_custom_parameter')) { function newrelic_add_custom_parameter() { return \OtomatiesCoreVendor\newrelic_add_custom_parameter(...func_get_args()); } }
+if (!function_exists('newrelic_add_custom_span_parameter')) { function newrelic_add_custom_span_parameter() { return \OtomatiesCoreVendor\newrelic_add_custom_span_parameter(...func_get_args()); } }
+if (!function_exists('newrelic_add_custom_tracer')) { function newrelic_add_custom_tracer() { return \OtomatiesCoreVendor\newrelic_add_custom_tracer(...func_get_args()); } }
+if (!function_exists('newrelic_background_job')) { function newrelic_background_job() { return \OtomatiesCoreVendor\newrelic_background_job(...func_get_args()); } }
+if (!function_exists('newrelic_capture_params')) { function newrelic_capture_params() { return \OtomatiesCoreVendor\newrelic_capture_params(...func_get_args()); } }
+if (!function_exists('newrelic_create_distributed_trace_payload')) { function newrelic_create_distributed_trace_payload() { return \OtomatiesCoreVendor\newrelic_create_distributed_trace_payload(...func_get_args()); } }
+if (!function_exists('newrelic_custom_metric')) { function newrelic_custom_metric() { return \OtomatiesCoreVendor\newrelic_custom_metric(...func_get_args()); } }
+if (!function_exists('newrelic_disable_autorum')) { function newrelic_disable_autorum() { return \OtomatiesCoreVendor\newrelic_disable_autorum(...func_get_args()); } }
+if (!function_exists('newrelic_enable_params')) { function newrelic_enable_params() { return \OtomatiesCoreVendor\newrelic_enable_params(...func_get_args()); } }
+if (!function_exists('newrelic_end_of_transaction')) { function newrelic_end_of_transaction() { return \OtomatiesCoreVendor\newrelic_end_of_transaction(...func_get_args()); } }
+if (!function_exists('newrelic_end_transaction')) { function newrelic_end_transaction() { return \OtomatiesCoreVendor\newrelic_end_transaction(...func_get_args()); } }
+if (!function_exists('newrelic_get_browser_timing_footer')) { function newrelic_get_browser_timing_footer() { return \OtomatiesCoreVendor\newrelic_get_browser_timing_footer(...func_get_args()); } }
+if (!function_exists('newrelic_get_browser_timing_header')) { function newrelic_get_browser_timing_header() { return \OtomatiesCoreVendor\newrelic_get_browser_timing_header(...func_get_args()); } }
+if (!function_exists('newrelic_get_linking_metadata')) { function newrelic_get_linking_metadata() { return \OtomatiesCoreVendor\newrelic_get_linking_metadata(...func_get_args()); } }
+if (!function_exists('newrelic_get_trace_metadata')) { function newrelic_get_trace_metadata() { return \OtomatiesCoreVendor\newrelic_get_trace_metadata(...func_get_args()); } }
+if (!function_exists('newrelic_ignore_apdex')) { function newrelic_ignore_apdex() { return \OtomatiesCoreVendor\newrelic_ignore_apdex(...func_get_args()); } }
+if (!function_exists('newrelic_ignore_transaction')) { function newrelic_ignore_transaction() { return \OtomatiesCoreVendor\newrelic_ignore_transaction(...func_get_args()); } }
+if (!function_exists('newrelic_insert_distributed_trace_headers')) { function newrelic_insert_distributed_trace_headers() { return \OtomatiesCoreVendor\newrelic_insert_distributed_trace_headers(...func_get_args()); } }
+if (!function_exists('newrelic_is_sampled')) { function newrelic_is_sampled() { return \OtomatiesCoreVendor\newrelic_is_sampled(...func_get_args()); } }
+if (!function_exists('newrelic_name_transaction')) { function newrelic_name_transaction() { return \OtomatiesCoreVendor\newrelic_name_transaction(...func_get_args()); } }
+if (!function_exists('newrelic_notice_error')) { function newrelic_notice_error() { return \OtomatiesCoreVendor\newrelic_notice_error(...func_get_args()); } }
+if (!function_exists('newrelic_record_custom_event')) { function newrelic_record_custom_event() { return \OtomatiesCoreVendor\newrelic_record_custom_event(...func_get_args()); } }
+if (!function_exists('newrelic_record_datastore_segment')) { function newrelic_record_datastore_segment() { return \OtomatiesCoreVendor\newrelic_record_datastore_segment(...func_get_args()); } }
+if (!function_exists('newrelic_set_appname')) { function newrelic_set_appname() { return \OtomatiesCoreVendor\newrelic_set_appname(...func_get_args()); } }
+if (!function_exists('newrelic_set_user_attributes')) { function newrelic_set_user_attributes() { return \OtomatiesCoreVendor\newrelic_set_user_attributes(...func_get_args()); } }
+if (!function_exists('newrelic_set_user_id')) { function newrelic_set_user_id() { return \OtomatiesCoreVendor\newrelic_set_user_id(...func_get_args()); } }
+if (!function_exists('newrelic_start_transaction')) { function newrelic_start_transaction() { return \OtomatiesCoreVendor\newrelic_start_transaction(...func_get_args()); } }
 if (!function_exists('newuser_notify_siteadmin')) { function newuser_notify_siteadmin() { return \OtomatiesCoreVendor\newuser_notify_siteadmin(...func_get_args()); } }
+if (!function_exists('next')) { function next() { return \OtomatiesCoreVendor\next(...func_get_args()); } }
 if (!function_exists('next_comments_link')) { function next_comments_link() { return \OtomatiesCoreVendor\next_comments_link(...func_get_args()); } }
 if (!function_exists('next_image_link')) { function next_image_link() { return \OtomatiesCoreVendor\next_image_link(...func_get_args()); } }
 if (!function_exists('next_post')) { function next_post() { return \OtomatiesCoreVendor\next_post(...func_get_args()); } }
@@ -2980,13 +6454,283 @@ if (!function_exists('next_post_rel_link')) { function next_post_rel_link() { re
 if (!function_exists('next_posts')) { function next_posts() { return \OtomatiesCoreVendor\next_posts(...func_get_args()); } }
 if (!function_exists('next_posts_link')) { function next_posts_link() { return \OtomatiesCoreVendor\next_posts_link(...func_get_args()); } }
 if (!function_exists('next_widget_id_number')) { function next_widget_id_number() { return \OtomatiesCoreVendor\next_widget_id_number(...func_get_args()); } }
+if (!function_exists('ngettext')) { function ngettext() { return \OtomatiesCoreVendor\ngettext(...func_get_args()); } }
+if (!function_exists('nl2br')) { function nl2br() { return \OtomatiesCoreVendor\nl2br(...func_get_args()); } }
+if (!function_exists('nl_langinfo')) { function nl_langinfo() { return \OtomatiesCoreVendor\nl_langinfo(...func_get_args()); } }
 if (!function_exists('nocache_headers')) { function nocache_headers() { return \OtomatiesCoreVendor\nocache_headers(...func_get_args()); } }
 if (!function_exists('noindex')) { function noindex() { return \OtomatiesCoreVendor\noindex(...func_get_args()); } }
 if (!function_exists('normalize_whitespace')) { function normalize_whitespace() { return \OtomatiesCoreVendor\normalize_whitespace(...func_get_args()); } }
+if (!function_exists('normalizer_get_raw_decomposition')) { function normalizer_get_raw_decomposition() { return \OtomatiesCoreVendor\normalizer_get_raw_decomposition(...func_get_args()); } }
+if (!function_exists('normalizer_is_normalized')) { function normalizer_is_normalized() { return \OtomatiesCoreVendor\normalizer_is_normalized(...func_get_args()); } }
+if (!function_exists('normalizer_normalize')) { function normalizer_normalize() { return \OtomatiesCoreVendor\normalizer_normalize(...func_get_args()); } }
 if (!function_exists('note_sidebar_being_rendered')) { function note_sidebar_being_rendered() { return \OtomatiesCoreVendor\note_sidebar_being_rendered(...func_get_args()); } }
+if (!function_exists('number_format')) { function number_format() { return \OtomatiesCoreVendor\number_format(...func_get_args()); } }
 if (!function_exists('number_format_i18n')) { function number_format_i18n() { return \OtomatiesCoreVendor\number_format_i18n(...func_get_args()); } }
+if (!function_exists('numfmt_create')) { function numfmt_create() { return \OtomatiesCoreVendor\numfmt_create(...func_get_args()); } }
+if (!function_exists('numfmt_format')) { function numfmt_format() { return \OtomatiesCoreVendor\numfmt_format(...func_get_args()); } }
+if (!function_exists('numfmt_format_currency')) { function numfmt_format_currency() { return \OtomatiesCoreVendor\numfmt_format_currency(...func_get_args()); } }
+if (!function_exists('numfmt_get_attribute')) { function numfmt_get_attribute() { return \OtomatiesCoreVendor\numfmt_get_attribute(...func_get_args()); } }
+if (!function_exists('numfmt_get_error_code')) { function numfmt_get_error_code() { return \OtomatiesCoreVendor\numfmt_get_error_code(...func_get_args()); } }
+if (!function_exists('numfmt_get_error_message')) { function numfmt_get_error_message() { return \OtomatiesCoreVendor\numfmt_get_error_message(...func_get_args()); } }
+if (!function_exists('numfmt_get_locale')) { function numfmt_get_locale() { return \OtomatiesCoreVendor\numfmt_get_locale(...func_get_args()); } }
+if (!function_exists('numfmt_get_pattern')) { function numfmt_get_pattern() { return \OtomatiesCoreVendor\numfmt_get_pattern(...func_get_args()); } }
+if (!function_exists('numfmt_get_symbol')) { function numfmt_get_symbol() { return \OtomatiesCoreVendor\numfmt_get_symbol(...func_get_args()); } }
+if (!function_exists('numfmt_get_text_attribute')) { function numfmt_get_text_attribute() { return \OtomatiesCoreVendor\numfmt_get_text_attribute(...func_get_args()); } }
+if (!function_exists('numfmt_parse')) { function numfmt_parse() { return \OtomatiesCoreVendor\numfmt_parse(...func_get_args()); } }
+if (!function_exists('numfmt_parse_currency')) { function numfmt_parse_currency() { return \OtomatiesCoreVendor\numfmt_parse_currency(...func_get_args()); } }
+if (!function_exists('numfmt_set_attribute')) { function numfmt_set_attribute() { return \OtomatiesCoreVendor\numfmt_set_attribute(...func_get_args()); } }
+if (!function_exists('numfmt_set_pattern')) { function numfmt_set_pattern() { return \OtomatiesCoreVendor\numfmt_set_pattern(...func_get_args()); } }
+if (!function_exists('numfmt_set_symbol')) { function numfmt_set_symbol() { return \OtomatiesCoreVendor\numfmt_set_symbol(...func_get_args()); } }
+if (!function_exists('numfmt_set_text_attribute')) { function numfmt_set_text_attribute() { return \OtomatiesCoreVendor\numfmt_set_text_attribute(...func_get_args()); } }
+if (!function_exists('oauth_get_sbs')) { function oauth_get_sbs() { return \OtomatiesCoreVendor\oauth_get_sbs(...func_get_args()); } }
+if (!function_exists('oauth_urlencode')) { function oauth_urlencode() { return \OtomatiesCoreVendor\oauth_urlencode(...func_get_args()); } }
+if (!function_exists('ob_clean')) { function ob_clean() { return \OtomatiesCoreVendor\ob_clean(...func_get_args()); } }
+if (!function_exists('ob_deflatehandler')) { function ob_deflatehandler() { return \OtomatiesCoreVendor\ob_deflatehandler(...func_get_args()); } }
+if (!function_exists('ob_end_clean')) { function ob_end_clean() { return \OtomatiesCoreVendor\ob_end_clean(...func_get_args()); } }
+if (!function_exists('ob_end_flush')) { function ob_end_flush() { return \OtomatiesCoreVendor\ob_end_flush(...func_get_args()); } }
+if (!function_exists('ob_etaghandler')) { function ob_etaghandler() { return \OtomatiesCoreVendor\ob_etaghandler(...func_get_args()); } }
+if (!function_exists('ob_flush')) { function ob_flush() { return \OtomatiesCoreVendor\ob_flush(...func_get_args()); } }
+if (!function_exists('ob_get_clean')) { function ob_get_clean() { return \OtomatiesCoreVendor\ob_get_clean(...func_get_args()); } }
+if (!function_exists('ob_get_contents')) { function ob_get_contents() { return \OtomatiesCoreVendor\ob_get_contents(...func_get_args()); } }
+if (!function_exists('ob_get_flush')) { function ob_get_flush() { return \OtomatiesCoreVendor\ob_get_flush(...func_get_args()); } }
+if (!function_exists('ob_get_length')) { function ob_get_length() { return \OtomatiesCoreVendor\ob_get_length(...func_get_args()); } }
+if (!function_exists('ob_get_level')) { function ob_get_level() { return \OtomatiesCoreVendor\ob_get_level(...func_get_args()); } }
+if (!function_exists('ob_get_status')) { function ob_get_status() { return \OtomatiesCoreVendor\ob_get_status(...func_get_args()); } }
+if (!function_exists('ob_gzhandler')) { function ob_gzhandler() { return \OtomatiesCoreVendor\ob_gzhandler(...func_get_args()); } }
+if (!function_exists('ob_iconv_handler')) { function ob_iconv_handler() { return \OtomatiesCoreVendor\ob_iconv_handler(...func_get_args()); } }
+if (!function_exists('ob_implicit_flush')) { function ob_implicit_flush() { return \OtomatiesCoreVendor\ob_implicit_flush(...func_get_args()); } }
+if (!function_exists('ob_inflatehandler')) { function ob_inflatehandler() { return \OtomatiesCoreVendor\ob_inflatehandler(...func_get_args()); } }
+if (!function_exists('ob_list_handlers')) { function ob_list_handlers() { return \OtomatiesCoreVendor\ob_list_handlers(...func_get_args()); } }
+if (!function_exists('ob_start')) { function ob_start() { return \OtomatiesCoreVendor\ob_start(...func_get_args()); } }
+if (!function_exists('ob_tidyhandler')) { function ob_tidyhandler() { return \OtomatiesCoreVendor\ob_tidyhandler(...func_get_args()); } }
 if (!function_exists('object_get')) { function object_get() { return \OtomatiesCoreVendor\object_get(...func_get_args()); } }
+if (!function_exists('oci_bind_array_by_name')) { function oci_bind_array_by_name() { return \OtomatiesCoreVendor\oci_bind_array_by_name(...func_get_args()); } }
+if (!function_exists('oci_bind_by_name')) { function oci_bind_by_name() { return \OtomatiesCoreVendor\oci_bind_by_name(...func_get_args()); } }
+if (!function_exists('oci_cancel')) { function oci_cancel() { return \OtomatiesCoreVendor\oci_cancel(...func_get_args()); } }
+if (!function_exists('oci_client_version')) { function oci_client_version() { return \OtomatiesCoreVendor\oci_client_version(...func_get_args()); } }
+if (!function_exists('oci_close')) { function oci_close() { return \OtomatiesCoreVendor\oci_close(...func_get_args()); } }
+if (!function_exists('oci_commit')) { function oci_commit() { return \OtomatiesCoreVendor\oci_commit(...func_get_args()); } }
+if (!function_exists('oci_connect')) { function oci_connect() { return \OtomatiesCoreVendor\oci_connect(...func_get_args()); } }
+if (!function_exists('oci_define_by_name')) { function oci_define_by_name() { return \OtomatiesCoreVendor\oci_define_by_name(...func_get_args()); } }
+if (!function_exists('oci_error')) { function oci_error() { return \OtomatiesCoreVendor\oci_error(...func_get_args()); } }
+if (!function_exists('oci_execute')) { function oci_execute() { return \OtomatiesCoreVendor\oci_execute(...func_get_args()); } }
+if (!function_exists('oci_fetch')) { function oci_fetch() { return \OtomatiesCoreVendor\oci_fetch(...func_get_args()); } }
+if (!function_exists('oci_fetch_all')) { function oci_fetch_all() { return \OtomatiesCoreVendor\oci_fetch_all(...func_get_args()); } }
+if (!function_exists('oci_fetch_array')) { function oci_fetch_array() { return \OtomatiesCoreVendor\oci_fetch_array(...func_get_args()); } }
+if (!function_exists('oci_fetch_assoc')) { function oci_fetch_assoc() { return \OtomatiesCoreVendor\oci_fetch_assoc(...func_get_args()); } }
+if (!function_exists('oci_fetch_object')) { function oci_fetch_object() { return \OtomatiesCoreVendor\oci_fetch_object(...func_get_args()); } }
+if (!function_exists('oci_fetch_row')) { function oci_fetch_row() { return \OtomatiesCoreVendor\oci_fetch_row(...func_get_args()); } }
+if (!function_exists('oci_field_is_null')) { function oci_field_is_null() { return \OtomatiesCoreVendor\oci_field_is_null(...func_get_args()); } }
+if (!function_exists('oci_field_name')) { function oci_field_name() { return \OtomatiesCoreVendor\oci_field_name(...func_get_args()); } }
+if (!function_exists('oci_field_precision')) { function oci_field_precision() { return \OtomatiesCoreVendor\oci_field_precision(...func_get_args()); } }
+if (!function_exists('oci_field_scale')) { function oci_field_scale() { return \OtomatiesCoreVendor\oci_field_scale(...func_get_args()); } }
+if (!function_exists('oci_field_size')) { function oci_field_size() { return \OtomatiesCoreVendor\oci_field_size(...func_get_args()); } }
+if (!function_exists('oci_field_type')) { function oci_field_type() { return \OtomatiesCoreVendor\oci_field_type(...func_get_args()); } }
+if (!function_exists('oci_field_type_raw')) { function oci_field_type_raw() { return \OtomatiesCoreVendor\oci_field_type_raw(...func_get_args()); } }
+if (!function_exists('oci_free_cursor')) { function oci_free_cursor() { return \OtomatiesCoreVendor\oci_free_cursor(...func_get_args()); } }
+if (!function_exists('oci_free_descriptor')) { function oci_free_descriptor() { return \OtomatiesCoreVendor\oci_free_descriptor(...func_get_args()); } }
+if (!function_exists('oci_free_statement')) { function oci_free_statement() { return \OtomatiesCoreVendor\oci_free_statement(...func_get_args()); } }
+if (!function_exists('oci_get_implicit_resultset')) { function oci_get_implicit_resultset() { return \OtomatiesCoreVendor\oci_get_implicit_resultset(...func_get_args()); } }
+if (!function_exists('oci_internal_debug')) { function oci_internal_debug() { return \OtomatiesCoreVendor\oci_internal_debug(...func_get_args()); } }
+if (!function_exists('oci_lob_copy')) { function oci_lob_copy() { return \OtomatiesCoreVendor\oci_lob_copy(...func_get_args()); } }
+if (!function_exists('oci_lob_is_equal')) { function oci_lob_is_equal() { return \OtomatiesCoreVendor\oci_lob_is_equal(...func_get_args()); } }
+if (!function_exists('oci_new_collection')) { function oci_new_collection() { return \OtomatiesCoreVendor\oci_new_collection(...func_get_args()); } }
+if (!function_exists('oci_new_connect')) { function oci_new_connect() { return \OtomatiesCoreVendor\oci_new_connect(...func_get_args()); } }
+if (!function_exists('oci_new_cursor')) { function oci_new_cursor() { return \OtomatiesCoreVendor\oci_new_cursor(...func_get_args()); } }
+if (!function_exists('oci_new_descriptor')) { function oci_new_descriptor() { return \OtomatiesCoreVendor\oci_new_descriptor(...func_get_args()); } }
+if (!function_exists('oci_num_fields')) { function oci_num_fields() { return \OtomatiesCoreVendor\oci_num_fields(...func_get_args()); } }
+if (!function_exists('oci_num_rows')) { function oci_num_rows() { return \OtomatiesCoreVendor\oci_num_rows(...func_get_args()); } }
+if (!function_exists('oci_parse')) { function oci_parse() { return \OtomatiesCoreVendor\oci_parse(...func_get_args()); } }
+if (!function_exists('oci_password_change')) { function oci_password_change() { return \OtomatiesCoreVendor\oci_password_change(...func_get_args()); } }
+if (!function_exists('oci_pconnect')) { function oci_pconnect() { return \OtomatiesCoreVendor\oci_pconnect(...func_get_args()); } }
+if (!function_exists('oci_register_taf_callback')) { function oci_register_taf_callback() { return \OtomatiesCoreVendor\oci_register_taf_callback(...func_get_args()); } }
+if (!function_exists('oci_result')) { function oci_result() { return \OtomatiesCoreVendor\oci_result(...func_get_args()); } }
+if (!function_exists('oci_rollback')) { function oci_rollback() { return \OtomatiesCoreVendor\oci_rollback(...func_get_args()); } }
+if (!function_exists('oci_server_version')) { function oci_server_version() { return \OtomatiesCoreVendor\oci_server_version(...func_get_args()); } }
+if (!function_exists('oci_set_action')) { function oci_set_action() { return \OtomatiesCoreVendor\oci_set_action(...func_get_args()); } }
+if (!function_exists('oci_set_call_timeout')) { function oci_set_call_timeout() { return \OtomatiesCoreVendor\oci_set_call_timeout(...func_get_args()); } }
+if (!function_exists('oci_set_client_identifier')) { function oci_set_client_identifier() { return \OtomatiesCoreVendor\oci_set_client_identifier(...func_get_args()); } }
+if (!function_exists('oci_set_client_info')) { function oci_set_client_info() { return \OtomatiesCoreVendor\oci_set_client_info(...func_get_args()); } }
+if (!function_exists('oci_set_db_operation')) { function oci_set_db_operation() { return \OtomatiesCoreVendor\oci_set_db_operation(...func_get_args()); } }
+if (!function_exists('oci_set_edition')) { function oci_set_edition() { return \OtomatiesCoreVendor\oci_set_edition(...func_get_args()); } }
+if (!function_exists('oci_set_module_name')) { function oci_set_module_name() { return \OtomatiesCoreVendor\oci_set_module_name(...func_get_args()); } }
+if (!function_exists('oci_set_prefetch')) { function oci_set_prefetch() { return \OtomatiesCoreVendor\oci_set_prefetch(...func_get_args()); } }
+if (!function_exists('oci_set_prefetch_lob')) { function oci_set_prefetch_lob() { return \OtomatiesCoreVendor\oci_set_prefetch_lob(...func_get_args()); } }
+if (!function_exists('oci_statement_type')) { function oci_statement_type() { return \OtomatiesCoreVendor\oci_statement_type(...func_get_args()); } }
+if (!function_exists('oci_unregister_taf_callback')) { function oci_unregister_taf_callback() { return \OtomatiesCoreVendor\oci_unregister_taf_callback(...func_get_args()); } }
+if (!function_exists('ocibindbyname')) { function ocibindbyname() { return \OtomatiesCoreVendor\ocibindbyname(...func_get_args()); } }
+if (!function_exists('ocicancel')) { function ocicancel() { return \OtomatiesCoreVendor\ocicancel(...func_get_args()); } }
+if (!function_exists('ocicloselob')) { function ocicloselob() { return \OtomatiesCoreVendor\ocicloselob(...func_get_args()); } }
+if (!function_exists('ocicollappend')) { function ocicollappend() { return \OtomatiesCoreVendor\ocicollappend(...func_get_args()); } }
+if (!function_exists('ocicollassign')) { function ocicollassign() { return \OtomatiesCoreVendor\ocicollassign(...func_get_args()); } }
+if (!function_exists('ocicollassignelem')) { function ocicollassignelem() { return \OtomatiesCoreVendor\ocicollassignelem(...func_get_args()); } }
+if (!function_exists('ocicollgetelem')) { function ocicollgetelem() { return \OtomatiesCoreVendor\ocicollgetelem(...func_get_args()); } }
+if (!function_exists('ocicollmax')) { function ocicollmax() { return \OtomatiesCoreVendor\ocicollmax(...func_get_args()); } }
+if (!function_exists('ocicollsize')) { function ocicollsize() { return \OtomatiesCoreVendor\ocicollsize(...func_get_args()); } }
+if (!function_exists('ocicolltrim')) { function ocicolltrim() { return \OtomatiesCoreVendor\ocicolltrim(...func_get_args()); } }
+if (!function_exists('ocicolumnisnull')) { function ocicolumnisnull() { return \OtomatiesCoreVendor\ocicolumnisnull(...func_get_args()); } }
+if (!function_exists('ocicolumnname')) { function ocicolumnname() { return \OtomatiesCoreVendor\ocicolumnname(...func_get_args()); } }
+if (!function_exists('ocicolumnprecision')) { function ocicolumnprecision() { return \OtomatiesCoreVendor\ocicolumnprecision(...func_get_args()); } }
+if (!function_exists('ocicolumnscale')) { function ocicolumnscale() { return \OtomatiesCoreVendor\ocicolumnscale(...func_get_args()); } }
+if (!function_exists('ocicolumnsize')) { function ocicolumnsize() { return \OtomatiesCoreVendor\ocicolumnsize(...func_get_args()); } }
+if (!function_exists('ocicolumntype')) { function ocicolumntype() { return \OtomatiesCoreVendor\ocicolumntype(...func_get_args()); } }
+if (!function_exists('ocicolumntyperaw')) { function ocicolumntyperaw() { return \OtomatiesCoreVendor\ocicolumntyperaw(...func_get_args()); } }
+if (!function_exists('ocicommit')) { function ocicommit() { return \OtomatiesCoreVendor\ocicommit(...func_get_args()); } }
+if (!function_exists('ocidefinebyname')) { function ocidefinebyname() { return \OtomatiesCoreVendor\ocidefinebyname(...func_get_args()); } }
+if (!function_exists('ocierror')) { function ocierror() { return \OtomatiesCoreVendor\ocierror(...func_get_args()); } }
+if (!function_exists('ociexecute')) { function ociexecute() { return \OtomatiesCoreVendor\ociexecute(...func_get_args()); } }
+if (!function_exists('ocifetch')) { function ocifetch() { return \OtomatiesCoreVendor\ocifetch(...func_get_args()); } }
+if (!function_exists('ocifetchinto')) { function ocifetchinto() { return \OtomatiesCoreVendor\ocifetchinto(...func_get_args()); } }
+if (!function_exists('ocifetchstatement')) { function ocifetchstatement() { return \OtomatiesCoreVendor\ocifetchstatement(...func_get_args()); } }
+if (!function_exists('ocifreecollection')) { function ocifreecollection() { return \OtomatiesCoreVendor\ocifreecollection(...func_get_args()); } }
+if (!function_exists('ocifreecursor')) { function ocifreecursor() { return \OtomatiesCoreVendor\ocifreecursor(...func_get_args()); } }
+if (!function_exists('ocifreedesc')) { function ocifreedesc() { return \OtomatiesCoreVendor\ocifreedesc(...func_get_args()); } }
+if (!function_exists('ocifreestatement')) { function ocifreestatement() { return \OtomatiesCoreVendor\ocifreestatement(...func_get_args()); } }
+if (!function_exists('ociinternaldebug')) { function ociinternaldebug() { return \OtomatiesCoreVendor\ociinternaldebug(...func_get_args()); } }
+if (!function_exists('ociloadlob')) { function ociloadlob() { return \OtomatiesCoreVendor\ociloadlob(...func_get_args()); } }
+if (!function_exists('ocilogoff')) { function ocilogoff() { return \OtomatiesCoreVendor\ocilogoff(...func_get_args()); } }
+if (!function_exists('ocilogon')) { function ocilogon() { return \OtomatiesCoreVendor\ocilogon(...func_get_args()); } }
+if (!function_exists('ocinewcollection')) { function ocinewcollection() { return \OtomatiesCoreVendor\ocinewcollection(...func_get_args()); } }
+if (!function_exists('ocinewcursor')) { function ocinewcursor() { return \OtomatiesCoreVendor\ocinewcursor(...func_get_args()); } }
+if (!function_exists('ocinewdescriptor')) { function ocinewdescriptor() { return \OtomatiesCoreVendor\ocinewdescriptor(...func_get_args()); } }
+if (!function_exists('ocinlogon')) { function ocinlogon() { return \OtomatiesCoreVendor\ocinlogon(...func_get_args()); } }
+if (!function_exists('ocinumcols')) { function ocinumcols() { return \OtomatiesCoreVendor\ocinumcols(...func_get_args()); } }
+if (!function_exists('ociparse')) { function ociparse() { return \OtomatiesCoreVendor\ociparse(...func_get_args()); } }
+if (!function_exists('ocipasswordchange')) { function ocipasswordchange() { return \OtomatiesCoreVendor\ocipasswordchange(...func_get_args()); } }
+if (!function_exists('ociplogon')) { function ociplogon() { return \OtomatiesCoreVendor\ociplogon(...func_get_args()); } }
+if (!function_exists('ociresult')) { function ociresult() { return \OtomatiesCoreVendor\ociresult(...func_get_args()); } }
+if (!function_exists('ocirollback')) { function ocirollback() { return \OtomatiesCoreVendor\ocirollback(...func_get_args()); } }
+if (!function_exists('ocirowcount')) { function ocirowcount() { return \OtomatiesCoreVendor\ocirowcount(...func_get_args()); } }
+if (!function_exists('ocisavelob')) { function ocisavelob() { return \OtomatiesCoreVendor\ocisavelob(...func_get_args()); } }
+if (!function_exists('ocisavelobfile')) { function ocisavelobfile() { return \OtomatiesCoreVendor\ocisavelobfile(...func_get_args()); } }
+if (!function_exists('ociserverversion')) { function ociserverversion() { return \OtomatiesCoreVendor\ociserverversion(...func_get_args()); } }
+if (!function_exists('ocisetprefetch')) { function ocisetprefetch() { return \OtomatiesCoreVendor\ocisetprefetch(...func_get_args()); } }
+if (!function_exists('ocistatementtype')) { function ocistatementtype() { return \OtomatiesCoreVendor\ocistatementtype(...func_get_args()); } }
+if (!function_exists('ociwritelobtofile')) { function ociwritelobtofile() { return \OtomatiesCoreVendor\ociwritelobtofile(...func_get_args()); } }
+if (!function_exists('ociwritetemporarylob')) { function ociwritetemporarylob() { return \OtomatiesCoreVendor\ociwritetemporarylob(...func_get_args()); } }
+if (!function_exists('octdec')) { function octdec() { return \OtomatiesCoreVendor\octdec(...func_get_args()); } }
+if (!function_exists('odbc_autocommit')) { function odbc_autocommit() { return \OtomatiesCoreVendor\odbc_autocommit(...func_get_args()); } }
+if (!function_exists('odbc_binmode')) { function odbc_binmode() { return \OtomatiesCoreVendor\odbc_binmode(...func_get_args()); } }
+if (!function_exists('odbc_close')) { function odbc_close() { return \OtomatiesCoreVendor\odbc_close(...func_get_args()); } }
+if (!function_exists('odbc_close_all')) { function odbc_close_all() { return \OtomatiesCoreVendor\odbc_close_all(...func_get_args()); } }
+if (!function_exists('odbc_columnprivileges')) { function odbc_columnprivileges() { return \OtomatiesCoreVendor\odbc_columnprivileges(...func_get_args()); } }
+if (!function_exists('odbc_columns')) { function odbc_columns() { return \OtomatiesCoreVendor\odbc_columns(...func_get_args()); } }
+if (!function_exists('odbc_commit')) { function odbc_commit() { return \OtomatiesCoreVendor\odbc_commit(...func_get_args()); } }
+if (!function_exists('odbc_connect')) { function odbc_connect() { return \OtomatiesCoreVendor\odbc_connect(...func_get_args()); } }
+if (!function_exists('odbc_connection_string_is_quoted')) { function odbc_connection_string_is_quoted() { return \OtomatiesCoreVendor\odbc_connection_string_is_quoted(...func_get_args()); } }
+if (!function_exists('odbc_connection_string_quote')) { function odbc_connection_string_quote() { return \OtomatiesCoreVendor\odbc_connection_string_quote(...func_get_args()); } }
+if (!function_exists('odbc_connection_string_should_quote')) { function odbc_connection_string_should_quote() { return \OtomatiesCoreVendor\odbc_connection_string_should_quote(...func_get_args()); } }
+if (!function_exists('odbc_cursor')) { function odbc_cursor() { return \OtomatiesCoreVendor\odbc_cursor(...func_get_args()); } }
+if (!function_exists('odbc_data_source')) { function odbc_data_source() { return \OtomatiesCoreVendor\odbc_data_source(...func_get_args()); } }
+if (!function_exists('odbc_do')) { function odbc_do() { return \OtomatiesCoreVendor\odbc_do(...func_get_args()); } }
+if (!function_exists('odbc_error')) { function odbc_error() { return \OtomatiesCoreVendor\odbc_error(...func_get_args()); } }
+if (!function_exists('odbc_errormsg')) { function odbc_errormsg() { return \OtomatiesCoreVendor\odbc_errormsg(...func_get_args()); } }
+if (!function_exists('odbc_exec')) { function odbc_exec() { return \OtomatiesCoreVendor\odbc_exec(...func_get_args()); } }
+if (!function_exists('odbc_execute')) { function odbc_execute() { return \OtomatiesCoreVendor\odbc_execute(...func_get_args()); } }
+if (!function_exists('odbc_fetch_array')) { function odbc_fetch_array() { return \OtomatiesCoreVendor\odbc_fetch_array(...func_get_args()); } }
+if (!function_exists('odbc_fetch_into')) { function odbc_fetch_into() { return \OtomatiesCoreVendor\odbc_fetch_into(...func_get_args()); } }
+if (!function_exists('odbc_fetch_object')) { function odbc_fetch_object() { return \OtomatiesCoreVendor\odbc_fetch_object(...func_get_args()); } }
+if (!function_exists('odbc_fetch_row')) { function odbc_fetch_row() { return \OtomatiesCoreVendor\odbc_fetch_row(...func_get_args()); } }
+if (!function_exists('odbc_field_len')) { function odbc_field_len() { return \OtomatiesCoreVendor\odbc_field_len(...func_get_args()); } }
+if (!function_exists('odbc_field_name')) { function odbc_field_name() { return \OtomatiesCoreVendor\odbc_field_name(...func_get_args()); } }
+if (!function_exists('odbc_field_num')) { function odbc_field_num() { return \OtomatiesCoreVendor\odbc_field_num(...func_get_args()); } }
+if (!function_exists('odbc_field_precision')) { function odbc_field_precision() { return \OtomatiesCoreVendor\odbc_field_precision(...func_get_args()); } }
+if (!function_exists('odbc_field_scale')) { function odbc_field_scale() { return \OtomatiesCoreVendor\odbc_field_scale(...func_get_args()); } }
+if (!function_exists('odbc_field_type')) { function odbc_field_type() { return \OtomatiesCoreVendor\odbc_field_type(...func_get_args()); } }
+if (!function_exists('odbc_foreignkeys')) { function odbc_foreignkeys() { return \OtomatiesCoreVendor\odbc_foreignkeys(...func_get_args()); } }
+if (!function_exists('odbc_free_result')) { function odbc_free_result() { return \OtomatiesCoreVendor\odbc_free_result(...func_get_args()); } }
+if (!function_exists('odbc_gettypeinfo')) { function odbc_gettypeinfo() { return \OtomatiesCoreVendor\odbc_gettypeinfo(...func_get_args()); } }
+if (!function_exists('odbc_longreadlen')) { function odbc_longreadlen() { return \OtomatiesCoreVendor\odbc_longreadlen(...func_get_args()); } }
+if (!function_exists('odbc_next_result')) { function odbc_next_result() { return \OtomatiesCoreVendor\odbc_next_result(...func_get_args()); } }
+if (!function_exists('odbc_num_fields')) { function odbc_num_fields() { return \OtomatiesCoreVendor\odbc_num_fields(...func_get_args()); } }
+if (!function_exists('odbc_num_rows')) { function odbc_num_rows() { return \OtomatiesCoreVendor\odbc_num_rows(...func_get_args()); } }
+if (!function_exists('odbc_pconnect')) { function odbc_pconnect() { return \OtomatiesCoreVendor\odbc_pconnect(...func_get_args()); } }
+if (!function_exists('odbc_prepare')) { function odbc_prepare() { return \OtomatiesCoreVendor\odbc_prepare(...func_get_args()); } }
+if (!function_exists('odbc_primarykeys')) { function odbc_primarykeys() { return \OtomatiesCoreVendor\odbc_primarykeys(...func_get_args()); } }
+if (!function_exists('odbc_procedurecolumns')) { function odbc_procedurecolumns() { return \OtomatiesCoreVendor\odbc_procedurecolumns(...func_get_args()); } }
+if (!function_exists('odbc_procedures')) { function odbc_procedures() { return \OtomatiesCoreVendor\odbc_procedures(...func_get_args()); } }
+if (!function_exists('odbc_result')) { function odbc_result() { return \OtomatiesCoreVendor\odbc_result(...func_get_args()); } }
+if (!function_exists('odbc_result_all')) { function odbc_result_all() { return \OtomatiesCoreVendor\odbc_result_all(...func_get_args()); } }
+if (!function_exists('odbc_rollback')) { function odbc_rollback() { return \OtomatiesCoreVendor\odbc_rollback(...func_get_args()); } }
+if (!function_exists('odbc_setoption')) { function odbc_setoption() { return \OtomatiesCoreVendor\odbc_setoption(...func_get_args()); } }
+if (!function_exists('odbc_specialcolumns')) { function odbc_specialcolumns() { return \OtomatiesCoreVendor\odbc_specialcolumns(...func_get_args()); } }
+if (!function_exists('odbc_statistics')) { function odbc_statistics() { return \OtomatiesCoreVendor\odbc_statistics(...func_get_args()); } }
+if (!function_exists('odbc_tableprivileges')) { function odbc_tableprivileges() { return \OtomatiesCoreVendor\odbc_tableprivileges(...func_get_args()); } }
+if (!function_exists('odbc_tables')) { function odbc_tables() { return \OtomatiesCoreVendor\odbc_tables(...func_get_args()); } }
 if (!function_exists('once')) { function once() { return \OtomatiesCoreVendor\once(...func_get_args()); } }
+if (!function_exists('opcache_compile_file')) { function opcache_compile_file() { return \OtomatiesCoreVendor\opcache_compile_file(...func_get_args()); } }
+if (!function_exists('opcache_get_configuration')) { function opcache_get_configuration() { return \OtomatiesCoreVendor\opcache_get_configuration(...func_get_args()); } }
+if (!function_exists('opcache_get_status')) { function opcache_get_status() { return \OtomatiesCoreVendor\opcache_get_status(...func_get_args()); } }
+if (!function_exists('opcache_invalidate')) { function opcache_invalidate() { return \OtomatiesCoreVendor\opcache_invalidate(...func_get_args()); } }
+if (!function_exists('opcache_is_script_cached')) { function opcache_is_script_cached() { return \OtomatiesCoreVendor\opcache_is_script_cached(...func_get_args()); } }
+if (!function_exists('opcache_jit_blacklist')) { function opcache_jit_blacklist() { return \OtomatiesCoreVendor\opcache_jit_blacklist(...func_get_args()); } }
+if (!function_exists('opcache_reset')) { function opcache_reset() { return \OtomatiesCoreVendor\opcache_reset(...func_get_args()); } }
+if (!function_exists('opendir')) { function opendir() { return \OtomatiesCoreVendor\opendir(...func_get_args()); } }
+if (!function_exists('openlog')) { function openlog() { return \OtomatiesCoreVendor\openlog(...func_get_args()); } }
+if (!function_exists('openssl_cipher_iv_length')) { function openssl_cipher_iv_length() { return \OtomatiesCoreVendor\openssl_cipher_iv_length(...func_get_args()); } }
+if (!function_exists('openssl_cipher_key_length')) { function openssl_cipher_key_length() { return \OtomatiesCoreVendor\openssl_cipher_key_length(...func_get_args()); } }
+if (!function_exists('openssl_cms_decrypt')) { function openssl_cms_decrypt() { return \OtomatiesCoreVendor\openssl_cms_decrypt(...func_get_args()); } }
+if (!function_exists('openssl_cms_encrypt')) { function openssl_cms_encrypt() { return \OtomatiesCoreVendor\openssl_cms_encrypt(...func_get_args()); } }
+if (!function_exists('openssl_cms_read')) { function openssl_cms_read() { return \OtomatiesCoreVendor\openssl_cms_read(...func_get_args()); } }
+if (!function_exists('openssl_cms_sign')) { function openssl_cms_sign() { return \OtomatiesCoreVendor\openssl_cms_sign(...func_get_args()); } }
+if (!function_exists('openssl_cms_verify')) { function openssl_cms_verify() { return \OtomatiesCoreVendor\openssl_cms_verify(...func_get_args()); } }
+if (!function_exists('openssl_csr_export')) { function openssl_csr_export() { return \OtomatiesCoreVendor\openssl_csr_export(...func_get_args()); } }
+if (!function_exists('openssl_csr_export_to_file')) { function openssl_csr_export_to_file() { return \OtomatiesCoreVendor\openssl_csr_export_to_file(...func_get_args()); } }
+if (!function_exists('openssl_csr_get_public_key')) { function openssl_csr_get_public_key() { return \OtomatiesCoreVendor\openssl_csr_get_public_key(...func_get_args()); } }
+if (!function_exists('openssl_csr_get_subject')) { function openssl_csr_get_subject() { return \OtomatiesCoreVendor\openssl_csr_get_subject(...func_get_args()); } }
+if (!function_exists('openssl_csr_new')) { function openssl_csr_new() { return \OtomatiesCoreVendor\openssl_csr_new(...func_get_args()); } }
+if (!function_exists('openssl_csr_sign')) { function openssl_csr_sign() { return \OtomatiesCoreVendor\openssl_csr_sign(...func_get_args()); } }
+if (!function_exists('openssl_decrypt')) { function openssl_decrypt() { return \OtomatiesCoreVendor\openssl_decrypt(...func_get_args()); } }
+if (!function_exists('openssl_dh_compute_key')) { function openssl_dh_compute_key() { return \OtomatiesCoreVendor\openssl_dh_compute_key(...func_get_args()); } }
+if (!function_exists('openssl_digest')) { function openssl_digest() { return \OtomatiesCoreVendor\openssl_digest(...func_get_args()); } }
+if (!function_exists('openssl_encrypt')) { function openssl_encrypt() { return \OtomatiesCoreVendor\openssl_encrypt(...func_get_args()); } }
+if (!function_exists('openssl_error_string')) { function openssl_error_string() { return \OtomatiesCoreVendor\openssl_error_string(...func_get_args()); } }
+if (!function_exists('openssl_free_key')) { function openssl_free_key() { return \OtomatiesCoreVendor\openssl_free_key(...func_get_args()); } }
+if (!function_exists('openssl_get_cert_locations')) { function openssl_get_cert_locations() { return \OtomatiesCoreVendor\openssl_get_cert_locations(...func_get_args()); } }
+if (!function_exists('openssl_get_cipher_methods')) { function openssl_get_cipher_methods() { return \OtomatiesCoreVendor\openssl_get_cipher_methods(...func_get_args()); } }
+if (!function_exists('openssl_get_curve_names')) { function openssl_get_curve_names() { return \OtomatiesCoreVendor\openssl_get_curve_names(...func_get_args()); } }
+if (!function_exists('openssl_get_md_methods')) { function openssl_get_md_methods() { return \OtomatiesCoreVendor\openssl_get_md_methods(...func_get_args()); } }
+if (!function_exists('openssl_get_privatekey')) { function openssl_get_privatekey() { return \OtomatiesCoreVendor\openssl_get_privatekey(...func_get_args()); } }
+if (!function_exists('openssl_get_publickey')) { function openssl_get_publickey() { return \OtomatiesCoreVendor\openssl_get_publickey(...func_get_args()); } }
+if (!function_exists('openssl_open')) { function openssl_open() { return \OtomatiesCoreVendor\openssl_open(...func_get_args()); } }
+if (!function_exists('openssl_pbkdf2')) { function openssl_pbkdf2() { return \OtomatiesCoreVendor\openssl_pbkdf2(...func_get_args()); } }
+if (!function_exists('openssl_pkcs12_export')) { function openssl_pkcs12_export() { return \OtomatiesCoreVendor\openssl_pkcs12_export(...func_get_args()); } }
+if (!function_exists('openssl_pkcs12_export_to_file')) { function openssl_pkcs12_export_to_file() { return \OtomatiesCoreVendor\openssl_pkcs12_export_to_file(...func_get_args()); } }
+if (!function_exists('openssl_pkcs12_read')) { function openssl_pkcs12_read() { return \OtomatiesCoreVendor\openssl_pkcs12_read(...func_get_args()); } }
+if (!function_exists('openssl_pkcs7_decrypt')) { function openssl_pkcs7_decrypt() { return \OtomatiesCoreVendor\openssl_pkcs7_decrypt(...func_get_args()); } }
+if (!function_exists('openssl_pkcs7_encrypt')) { function openssl_pkcs7_encrypt() { return \OtomatiesCoreVendor\openssl_pkcs7_encrypt(...func_get_args()); } }
+if (!function_exists('openssl_pkcs7_read')) { function openssl_pkcs7_read() { return \OtomatiesCoreVendor\openssl_pkcs7_read(...func_get_args()); } }
+if (!function_exists('openssl_pkcs7_sign')) { function openssl_pkcs7_sign() { return \OtomatiesCoreVendor\openssl_pkcs7_sign(...func_get_args()); } }
+if (!function_exists('openssl_pkcs7_verify')) { function openssl_pkcs7_verify() { return \OtomatiesCoreVendor\openssl_pkcs7_verify(...func_get_args()); } }
+if (!function_exists('openssl_pkey_derive')) { function openssl_pkey_derive() { return \OtomatiesCoreVendor\openssl_pkey_derive(...func_get_args()); } }
+if (!function_exists('openssl_pkey_export')) { function openssl_pkey_export() { return \OtomatiesCoreVendor\openssl_pkey_export(...func_get_args()); } }
+if (!function_exists('openssl_pkey_export_to_file')) { function openssl_pkey_export_to_file() { return \OtomatiesCoreVendor\openssl_pkey_export_to_file(...func_get_args()); } }
+if (!function_exists('openssl_pkey_free')) { function openssl_pkey_free() { return \OtomatiesCoreVendor\openssl_pkey_free(...func_get_args()); } }
+if (!function_exists('openssl_pkey_get_details')) { function openssl_pkey_get_details() { return \OtomatiesCoreVendor\openssl_pkey_get_details(...func_get_args()); } }
+if (!function_exists('openssl_pkey_get_private')) { function openssl_pkey_get_private() { return \OtomatiesCoreVendor\openssl_pkey_get_private(...func_get_args()); } }
+if (!function_exists('openssl_pkey_get_public')) { function openssl_pkey_get_public() { return \OtomatiesCoreVendor\openssl_pkey_get_public(...func_get_args()); } }
+if (!function_exists('openssl_pkey_new')) { function openssl_pkey_new() { return \OtomatiesCoreVendor\openssl_pkey_new(...func_get_args()); } }
+if (!function_exists('openssl_private_decrypt')) { function openssl_private_decrypt() { return \OtomatiesCoreVendor\openssl_private_decrypt(...func_get_args()); } }
+if (!function_exists('openssl_private_encrypt')) { function openssl_private_encrypt() { return \OtomatiesCoreVendor\openssl_private_encrypt(...func_get_args()); } }
+if (!function_exists('openssl_public_decrypt')) { function openssl_public_decrypt() { return \OtomatiesCoreVendor\openssl_public_decrypt(...func_get_args()); } }
+if (!function_exists('openssl_public_encrypt')) { function openssl_public_encrypt() { return \OtomatiesCoreVendor\openssl_public_encrypt(...func_get_args()); } }
+if (!function_exists('openssl_random_pseudo_bytes')) { function openssl_random_pseudo_bytes() { return \OtomatiesCoreVendor\openssl_random_pseudo_bytes(...func_get_args()); } }
+if (!function_exists('openssl_seal')) { function openssl_seal() { return \OtomatiesCoreVendor\openssl_seal(...func_get_args()); } }
+if (!function_exists('openssl_sign')) { function openssl_sign() { return \OtomatiesCoreVendor\openssl_sign(...func_get_args()); } }
+if (!function_exists('openssl_spki_export')) { function openssl_spki_export() { return \OtomatiesCoreVendor\openssl_spki_export(...func_get_args()); } }
+if (!function_exists('openssl_spki_export_challenge')) { function openssl_spki_export_challenge() { return \OtomatiesCoreVendor\openssl_spki_export_challenge(...func_get_args()); } }
+if (!function_exists('openssl_spki_new')) { function openssl_spki_new() { return \OtomatiesCoreVendor\openssl_spki_new(...func_get_args()); } }
+if (!function_exists('openssl_spki_verify')) { function openssl_spki_verify() { return \OtomatiesCoreVendor\openssl_spki_verify(...func_get_args()); } }
+if (!function_exists('openssl_verify')) { function openssl_verify() { return \OtomatiesCoreVendor\openssl_verify(...func_get_args()); } }
+if (!function_exists('openssl_x509_check_private_key')) { function openssl_x509_check_private_key() { return \OtomatiesCoreVendor\openssl_x509_check_private_key(...func_get_args()); } }
+if (!function_exists('openssl_x509_checkpurpose')) { function openssl_x509_checkpurpose() { return \OtomatiesCoreVendor\openssl_x509_checkpurpose(...func_get_args()); } }
+if (!function_exists('openssl_x509_export')) { function openssl_x509_export() { return \OtomatiesCoreVendor\openssl_x509_export(...func_get_args()); } }
+if (!function_exists('openssl_x509_export_to_file')) { function openssl_x509_export_to_file() { return \OtomatiesCoreVendor\openssl_x509_export_to_file(...func_get_args()); } }
+if (!function_exists('openssl_x509_fingerprint')) { function openssl_x509_fingerprint() { return \OtomatiesCoreVendor\openssl_x509_fingerprint(...func_get_args()); } }
+if (!function_exists('openssl_x509_free')) { function openssl_x509_free() { return \OtomatiesCoreVendor\openssl_x509_free(...func_get_args()); } }
+if (!function_exists('openssl_x509_parse')) { function openssl_x509_parse() { return \OtomatiesCoreVendor\openssl_x509_parse(...func_get_args()); } }
+if (!function_exists('openssl_x509_read')) { function openssl_x509_read() { return \OtomatiesCoreVendor\openssl_x509_read(...func_get_args()); } }
+if (!function_exists('openssl_x509_verify')) { function openssl_x509_verify() { return \OtomatiesCoreVendor\openssl_x509_verify(...func_get_args()); } }
 if (!function_exists('option_update_filter')) { function option_update_filter() { return \OtomatiesCoreVendor\option_update_filter(...func_get_args()); } }
 if (!function_exists('optional')) { function optional() { return \OtomatiesCoreVendor\optional(...func_get_args()); } }
 if (!function_exists('options_discussion_add_js')) { function options_discussion_add_js() { return \OtomatiesCoreVendor\options_discussion_add_js(...func_get_args()); } }
@@ -2994,21 +6738,230 @@ if (!function_exists('options_general_add_js')) { function options_general_add_j
 if (!function_exists('options_permalink_add_js')) { function options_permalink_add_js() { return \OtomatiesCoreVendor\options_permalink_add_js(...func_get_args()); } }
 if (!function_exists('options_reading_add_js')) { function options_reading_add_js() { return \OtomatiesCoreVendor\options_reading_add_js(...func_get_args()); } }
 if (!function_exists('options_reading_blog_charset')) { function options_reading_blog_charset() { return \OtomatiesCoreVendor\options_reading_blog_charset(...func_get_args()); } }
+if (!function_exists('ord')) { function ord() { return \OtomatiesCoreVendor\ord(...func_get_args()); } }
+if (!function_exists('output_add_rewrite_var')) { function output_add_rewrite_var() { return \OtomatiesCoreVendor\output_add_rewrite_var(...func_get_args()); } }
+if (!function_exists('output_cache_disable')) { function output_cache_disable() { return \OtomatiesCoreVendor\output_cache_disable(...func_get_args()); } }
+if (!function_exists('output_cache_disable_compression')) { function output_cache_disable_compression() { return \OtomatiesCoreVendor\output_cache_disable_compression(...func_get_args()); } }
+if (!function_exists('output_cache_exists')) { function output_cache_exists() { return \OtomatiesCoreVendor\output_cache_exists(...func_get_args()); } }
+if (!function_exists('output_cache_fetch')) { function output_cache_fetch() { return \OtomatiesCoreVendor\output_cache_fetch(...func_get_args()); } }
+if (!function_exists('output_cache_get')) { function output_cache_get() { return \OtomatiesCoreVendor\output_cache_get(...func_get_args()); } }
+if (!function_exists('output_cache_output')) { function output_cache_output() { return \OtomatiesCoreVendor\output_cache_output(...func_get_args()); } }
+if (!function_exists('output_cache_put')) { function output_cache_put() { return \OtomatiesCoreVendor\output_cache_put(...func_get_args()); } }
+if (!function_exists('output_cache_remove')) { function output_cache_remove() { return \OtomatiesCoreVendor\output_cache_remove(...func_get_args()); } }
+if (!function_exists('output_cache_remove_key')) { function output_cache_remove_key() { return \OtomatiesCoreVendor\output_cache_remove_key(...func_get_args()); } }
+if (!function_exists('output_cache_remove_url')) { function output_cache_remove_url() { return \OtomatiesCoreVendor\output_cache_remove_url(...func_get_args()); } }
+if (!function_exists('output_cache_stop')) { function output_cache_stop() { return \OtomatiesCoreVendor\output_cache_stop(...func_get_args()); } }
+if (!function_exists('output_reset_rewrite_vars')) { function output_reset_rewrite_vars() { return \OtomatiesCoreVendor\output_reset_rewrite_vars(...func_get_args()); } }
+if (!function_exists('pack')) { function pack() { return \OtomatiesCoreVendor\pack(...func_get_args()); } }
 if (!function_exists('page_attributes_meta_box')) { function page_attributes_meta_box() { return \OtomatiesCoreVendor\page_attributes_meta_box(...func_get_args()); } }
 if (!function_exists('page_template_dropdown')) { function page_template_dropdown() { return \OtomatiesCoreVendor\page_template_dropdown(...func_get_args()); } }
 if (!function_exists('paginate_comments_links')) { function paginate_comments_links() { return \OtomatiesCoreVendor\paginate_comments_links(...func_get_args()); } }
 if (!function_exists('paginate_links')) { function paginate_links() { return \OtomatiesCoreVendor\paginate_links(...func_get_args()); } }
+if (!function_exists('pam_auth')) { function pam_auth() { return \OtomatiesCoreVendor\pam_auth(...func_get_args()); } }
+if (!function_exists('pam_chpass')) { function pam_chpass() { return \OtomatiesCoreVendor\pam_chpass(...func_get_args()); } }
 if (!function_exists('parent_dropdown')) { function parent_dropdown() { return \OtomatiesCoreVendor\parent_dropdown(...func_get_args()); } }
 if (!function_exists('parent_post_rel_link')) { function parent_post_rel_link() { return \OtomatiesCoreVendor\parent_post_rel_link(...func_get_args()); } }
 if (!function_exists('parseArgs')) { function parseArgs() { return \OtomatiesCoreVendor\parseArgs(...func_get_args()); } }
 if (!function_exists('parse_blocks')) { function parse_blocks() { return \OtomatiesCoreVendor\parse_blocks(...func_get_args()); } }
+if (!function_exists('parse_ini_file')) { function parse_ini_file() { return \OtomatiesCoreVendor\parse_ini_file(...func_get_args()); } }
+if (!function_exists('parse_ini_string')) { function parse_ini_string() { return \OtomatiesCoreVendor\parse_ini_string(...func_get_args()); } }
+if (!function_exists('parse_str')) { function parse_str() { return \OtomatiesCoreVendor\parse_str(...func_get_args()); } }
+if (!function_exists('parse_url')) { function parse_url() { return \OtomatiesCoreVendor\parse_url(...func_get_args()); } }
+if (!function_exists('passthru')) { function passthru() { return \OtomatiesCoreVendor\passthru(...func_get_args()); } }
+if (!function_exists('password_algos')) { function password_algos() { return \OtomatiesCoreVendor\password_algos(...func_get_args()); } }
+if (!function_exists('password_get_info')) { function password_get_info() { return \OtomatiesCoreVendor\password_get_info(...func_get_args()); } }
+if (!function_exists('password_hash')) { function password_hash() { return \OtomatiesCoreVendor\password_hash(...func_get_args()); } }
+if (!function_exists('password_needs_rehash')) { function password_needs_rehash() { return \OtomatiesCoreVendor\password_needs_rehash(...func_get_args()); } }
+if (!function_exists('password_verify')) { function password_verify() { return \OtomatiesCoreVendor\password_verify(...func_get_args()); } }
 if (!function_exists('path_is_absolute')) { function path_is_absolute() { return \OtomatiesCoreVendor\path_is_absolute(...func_get_args()); } }
 if (!function_exists('path_join')) { function path_join() { return \OtomatiesCoreVendor\path_join(...func_get_args()); } }
+if (!function_exists('pathinfo')) { function pathinfo() { return \OtomatiesCoreVendor\pathinfo(...func_get_args()); } }
 if (!function_exists('paused_plugins_notice')) { function paused_plugins_notice() { return \OtomatiesCoreVendor\paused_plugins_notice(...func_get_args()); } }
 if (!function_exists('paused_themes_notice')) { function paused_themes_notice() { return \OtomatiesCoreVendor\paused_themes_notice(...func_get_args()); } }
+if (!function_exists('pclose')) { function pclose() { return \OtomatiesCoreVendor\pclose(...func_get_args()); } }
+if (!function_exists('pcntl_alarm')) { function pcntl_alarm() { return \OtomatiesCoreVendor\pcntl_alarm(...func_get_args()); } }
+if (!function_exists('pcntl_async_signals')) { function pcntl_async_signals() { return \OtomatiesCoreVendor\pcntl_async_signals(...func_get_args()); } }
+if (!function_exists('pcntl_errno')) { function pcntl_errno() { return \OtomatiesCoreVendor\pcntl_errno(...func_get_args()); } }
+if (!function_exists('pcntl_exec')) { function pcntl_exec() { return \OtomatiesCoreVendor\pcntl_exec(...func_get_args()); } }
+if (!function_exists('pcntl_fork')) { function pcntl_fork() { return \OtomatiesCoreVendor\pcntl_fork(...func_get_args()); } }
+if (!function_exists('pcntl_get_last_error')) { function pcntl_get_last_error() { return \OtomatiesCoreVendor\pcntl_get_last_error(...func_get_args()); } }
+if (!function_exists('pcntl_getcpu')) { function pcntl_getcpu() { return \OtomatiesCoreVendor\pcntl_getcpu(...func_get_args()); } }
+if (!function_exists('pcntl_getcpuaffinity')) { function pcntl_getcpuaffinity() { return \OtomatiesCoreVendor\pcntl_getcpuaffinity(...func_get_args()); } }
+if (!function_exists('pcntl_getpriority')) { function pcntl_getpriority() { return \OtomatiesCoreVendor\pcntl_getpriority(...func_get_args()); } }
+if (!function_exists('pcntl_setcpuaffinity')) { function pcntl_setcpuaffinity() { return \OtomatiesCoreVendor\pcntl_setcpuaffinity(...func_get_args()); } }
+if (!function_exists('pcntl_setpriority')) { function pcntl_setpriority() { return \OtomatiesCoreVendor\pcntl_setpriority(...func_get_args()); } }
+if (!function_exists('pcntl_signal')) { function pcntl_signal() { return \OtomatiesCoreVendor\pcntl_signal(...func_get_args()); } }
+if (!function_exists('pcntl_signal_dispatch')) { function pcntl_signal_dispatch() { return \OtomatiesCoreVendor\pcntl_signal_dispatch(...func_get_args()); } }
+if (!function_exists('pcntl_signal_get_handler')) { function pcntl_signal_get_handler() { return \OtomatiesCoreVendor\pcntl_signal_get_handler(...func_get_args()); } }
+if (!function_exists('pcntl_sigprocmask')) { function pcntl_sigprocmask() { return \OtomatiesCoreVendor\pcntl_sigprocmask(...func_get_args()); } }
+if (!function_exists('pcntl_sigtimedwait')) { function pcntl_sigtimedwait() { return \OtomatiesCoreVendor\pcntl_sigtimedwait(...func_get_args()); } }
+if (!function_exists('pcntl_sigwaitinfo')) { function pcntl_sigwaitinfo() { return \OtomatiesCoreVendor\pcntl_sigwaitinfo(...func_get_args()); } }
+if (!function_exists('pcntl_strerror')) { function pcntl_strerror() { return \OtomatiesCoreVendor\pcntl_strerror(...func_get_args()); } }
+if (!function_exists('pcntl_unshare')) { function pcntl_unshare() { return \OtomatiesCoreVendor\pcntl_unshare(...func_get_args()); } }
+if (!function_exists('pcntl_wait')) { function pcntl_wait() { return \OtomatiesCoreVendor\pcntl_wait(...func_get_args()); } }
+if (!function_exists('pcntl_waitid')) { function pcntl_waitid() { return \OtomatiesCoreVendor\pcntl_waitid(...func_get_args()); } }
+if (!function_exists('pcntl_waitpid')) { function pcntl_waitpid() { return \OtomatiesCoreVendor\pcntl_waitpid(...func_get_args()); } }
+if (!function_exists('pcntl_wexitstatus')) { function pcntl_wexitstatus() { return \OtomatiesCoreVendor\pcntl_wexitstatus(...func_get_args()); } }
+if (!function_exists('pcntl_wifcontinued')) { function pcntl_wifcontinued() { return \OtomatiesCoreVendor\pcntl_wifcontinued(...func_get_args()); } }
+if (!function_exists('pcntl_wifexited')) { function pcntl_wifexited() { return \OtomatiesCoreVendor\pcntl_wifexited(...func_get_args()); } }
+if (!function_exists('pcntl_wifsignaled')) { function pcntl_wifsignaled() { return \OtomatiesCoreVendor\pcntl_wifsignaled(...func_get_args()); } }
+if (!function_exists('pcntl_wifstopped')) { function pcntl_wifstopped() { return \OtomatiesCoreVendor\pcntl_wifstopped(...func_get_args()); } }
+if (!function_exists('pcntl_wstopsig')) { function pcntl_wstopsig() { return \OtomatiesCoreVendor\pcntl_wstopsig(...func_get_args()); } }
+if (!function_exists('pcntl_wtermsig')) { function pcntl_wtermsig() { return \OtomatiesCoreVendor\pcntl_wtermsig(...func_get_args()); } }
+if (!function_exists('pdo_drivers')) { function pdo_drivers() { return \OtomatiesCoreVendor\pdo_drivers(...func_get_args()); } }
 if (!function_exists('permalink_anchor')) { function permalink_anchor() { return \OtomatiesCoreVendor\permalink_anchor(...func_get_args()); } }
 if (!function_exists('permalink_link')) { function permalink_link() { return \OtomatiesCoreVendor\permalink_link(...func_get_args()); } }
 if (!function_exists('permalink_single_rss')) { function permalink_single_rss() { return \OtomatiesCoreVendor\permalink_single_rss(...func_get_args()); } }
+if (!function_exists('pfsockopen')) { function pfsockopen() { return \OtomatiesCoreVendor\pfsockopen(...func_get_args()); } }
+if (!function_exists('pg_affected_rows')) { function pg_affected_rows() { return \OtomatiesCoreVendor\pg_affected_rows(...func_get_args()); } }
+if (!function_exists('pg_cancel_query')) { function pg_cancel_query() { return \OtomatiesCoreVendor\pg_cancel_query(...func_get_args()); } }
+if (!function_exists('pg_change_password')) { function pg_change_password() { return \OtomatiesCoreVendor\pg_change_password(...func_get_args()); } }
+if (!function_exists('pg_client_encoding')) { function pg_client_encoding() { return \OtomatiesCoreVendor\pg_client_encoding(...func_get_args()); } }
+if (!function_exists('pg_clientencoding')) { function pg_clientencoding() { return \OtomatiesCoreVendor\pg_clientencoding(...func_get_args()); } }
+if (!function_exists('pg_close')) { function pg_close() { return \OtomatiesCoreVendor\pg_close(...func_get_args()); } }
+if (!function_exists('pg_cmdtuples')) { function pg_cmdtuples() { return \OtomatiesCoreVendor\pg_cmdtuples(...func_get_args()); } }
+if (!function_exists('pg_connect')) { function pg_connect() { return \OtomatiesCoreVendor\pg_connect(...func_get_args()); } }
+if (!function_exists('pg_connect_poll')) { function pg_connect_poll() { return \OtomatiesCoreVendor\pg_connect_poll(...func_get_args()); } }
+if (!function_exists('pg_connection_busy')) { function pg_connection_busy() { return \OtomatiesCoreVendor\pg_connection_busy(...func_get_args()); } }
+if (!function_exists('pg_connection_reset')) { function pg_connection_reset() { return \OtomatiesCoreVendor\pg_connection_reset(...func_get_args()); } }
+if (!function_exists('pg_connection_status')) { function pg_connection_status() { return \OtomatiesCoreVendor\pg_connection_status(...func_get_args()); } }
+if (!function_exists('pg_consume_input')) { function pg_consume_input() { return \OtomatiesCoreVendor\pg_consume_input(...func_get_args()); } }
+if (!function_exists('pg_convert')) { function pg_convert() { return \OtomatiesCoreVendor\pg_convert(...func_get_args()); } }
+if (!function_exists('pg_copy_from')) { function pg_copy_from() { return \OtomatiesCoreVendor\pg_copy_from(...func_get_args()); } }
+if (!function_exists('pg_copy_to')) { function pg_copy_to() { return \OtomatiesCoreVendor\pg_copy_to(...func_get_args()); } }
+if (!function_exists('pg_dbname')) { function pg_dbname() { return \OtomatiesCoreVendor\pg_dbname(...func_get_args()); } }
+if (!function_exists('pg_delete')) { function pg_delete() { return \OtomatiesCoreVendor\pg_delete(...func_get_args()); } }
+if (!function_exists('pg_end_copy')) { function pg_end_copy() { return \OtomatiesCoreVendor\pg_end_copy(...func_get_args()); } }
+if (!function_exists('pg_enter_pipeline_mode')) { function pg_enter_pipeline_mode() { return \OtomatiesCoreVendor\pg_enter_pipeline_mode(...func_get_args()); } }
+if (!function_exists('pg_errormessage')) { function pg_errormessage() { return \OtomatiesCoreVendor\pg_errormessage(...func_get_args()); } }
+if (!function_exists('pg_escape_bytea')) { function pg_escape_bytea() { return \OtomatiesCoreVendor\pg_escape_bytea(...func_get_args()); } }
+if (!function_exists('pg_escape_identifier')) { function pg_escape_identifier() { return \OtomatiesCoreVendor\pg_escape_identifier(...func_get_args()); } }
+if (!function_exists('pg_escape_literal')) { function pg_escape_literal() { return \OtomatiesCoreVendor\pg_escape_literal(...func_get_args()); } }
+if (!function_exists('pg_escape_string')) { function pg_escape_string() { return \OtomatiesCoreVendor\pg_escape_string(...func_get_args()); } }
+if (!function_exists('pg_exec')) { function pg_exec() { return \OtomatiesCoreVendor\pg_exec(...func_get_args()); } }
+if (!function_exists('pg_execute')) { function pg_execute() { return \OtomatiesCoreVendor\pg_execute(...func_get_args()); } }
+if (!function_exists('pg_exit_pipeline_mode')) { function pg_exit_pipeline_mode() { return \OtomatiesCoreVendor\pg_exit_pipeline_mode(...func_get_args()); } }
+if (!function_exists('pg_fetch_all')) { function pg_fetch_all() { return \OtomatiesCoreVendor\pg_fetch_all(...func_get_args()); } }
+if (!function_exists('pg_fetch_all_columns')) { function pg_fetch_all_columns() { return \OtomatiesCoreVendor\pg_fetch_all_columns(...func_get_args()); } }
+if (!function_exists('pg_fetch_array')) { function pg_fetch_array() { return \OtomatiesCoreVendor\pg_fetch_array(...func_get_args()); } }
+if (!function_exists('pg_fetch_assoc')) { function pg_fetch_assoc() { return \OtomatiesCoreVendor\pg_fetch_assoc(...func_get_args()); } }
+if (!function_exists('pg_fetch_object')) { function pg_fetch_object() { return \OtomatiesCoreVendor\pg_fetch_object(...func_get_args()); } }
+if (!function_exists('pg_fetch_result')) { function pg_fetch_result() { return \OtomatiesCoreVendor\pg_fetch_result(...func_get_args()); } }
+if (!function_exists('pg_fetch_row')) { function pg_fetch_row() { return \OtomatiesCoreVendor\pg_fetch_row(...func_get_args()); } }
+if (!function_exists('pg_field_is_null')) { function pg_field_is_null() { return \OtomatiesCoreVendor\pg_field_is_null(...func_get_args()); } }
+if (!function_exists('pg_field_name')) { function pg_field_name() { return \OtomatiesCoreVendor\pg_field_name(...func_get_args()); } }
+if (!function_exists('pg_field_num')) { function pg_field_num() { return \OtomatiesCoreVendor\pg_field_num(...func_get_args()); } }
+if (!function_exists('pg_field_prtlen')) { function pg_field_prtlen() { return \OtomatiesCoreVendor\pg_field_prtlen(...func_get_args()); } }
+if (!function_exists('pg_field_size')) { function pg_field_size() { return \OtomatiesCoreVendor\pg_field_size(...func_get_args()); } }
+if (!function_exists('pg_field_table')) { function pg_field_table() { return \OtomatiesCoreVendor\pg_field_table(...func_get_args()); } }
+if (!function_exists('pg_field_type')) { function pg_field_type() { return \OtomatiesCoreVendor\pg_field_type(...func_get_args()); } }
+if (!function_exists('pg_field_type_oid')) { function pg_field_type_oid() { return \OtomatiesCoreVendor\pg_field_type_oid(...func_get_args()); } }
+if (!function_exists('pg_fieldisnull')) { function pg_fieldisnull() { return \OtomatiesCoreVendor\pg_fieldisnull(...func_get_args()); } }
+if (!function_exists('pg_fieldname')) { function pg_fieldname() { return \OtomatiesCoreVendor\pg_fieldname(...func_get_args()); } }
+if (!function_exists('pg_fieldnum')) { function pg_fieldnum() { return \OtomatiesCoreVendor\pg_fieldnum(...func_get_args()); } }
+if (!function_exists('pg_fieldprtlen')) { function pg_fieldprtlen() { return \OtomatiesCoreVendor\pg_fieldprtlen(...func_get_args()); } }
+if (!function_exists('pg_fieldsize')) { function pg_fieldsize() { return \OtomatiesCoreVendor\pg_fieldsize(...func_get_args()); } }
+if (!function_exists('pg_fieldtype')) { function pg_fieldtype() { return \OtomatiesCoreVendor\pg_fieldtype(...func_get_args()); } }
+if (!function_exists('pg_flush')) { function pg_flush() { return \OtomatiesCoreVendor\pg_flush(...func_get_args()); } }
+if (!function_exists('pg_free_result')) { function pg_free_result() { return \OtomatiesCoreVendor\pg_free_result(...func_get_args()); } }
+if (!function_exists('pg_freeresult')) { function pg_freeresult() { return \OtomatiesCoreVendor\pg_freeresult(...func_get_args()); } }
+if (!function_exists('pg_get_notify')) { function pg_get_notify() { return \OtomatiesCoreVendor\pg_get_notify(...func_get_args()); } }
+if (!function_exists('pg_get_pid')) { function pg_get_pid() { return \OtomatiesCoreVendor\pg_get_pid(...func_get_args()); } }
+if (!function_exists('pg_get_result')) { function pg_get_result() { return \OtomatiesCoreVendor\pg_get_result(...func_get_args()); } }
+if (!function_exists('pg_getlastoid')) { function pg_getlastoid() { return \OtomatiesCoreVendor\pg_getlastoid(...func_get_args()); } }
+if (!function_exists('pg_host')) { function pg_host() { return \OtomatiesCoreVendor\pg_host(...func_get_args()); } }
+if (!function_exists('pg_insert')) { function pg_insert() { return \OtomatiesCoreVendor\pg_insert(...func_get_args()); } }
+if (!function_exists('pg_jit')) { function pg_jit() { return \OtomatiesCoreVendor\pg_jit(...func_get_args()); } }
+if (!function_exists('pg_last_error')) { function pg_last_error() { return \OtomatiesCoreVendor\pg_last_error(...func_get_args()); } }
+if (!function_exists('pg_last_notice')) { function pg_last_notice() { return \OtomatiesCoreVendor\pg_last_notice(...func_get_args()); } }
+if (!function_exists('pg_last_oid')) { function pg_last_oid() { return \OtomatiesCoreVendor\pg_last_oid(...func_get_args()); } }
+if (!function_exists('pg_lo_close')) { function pg_lo_close() { return \OtomatiesCoreVendor\pg_lo_close(...func_get_args()); } }
+if (!function_exists('pg_lo_create')) { function pg_lo_create() { return \OtomatiesCoreVendor\pg_lo_create(...func_get_args()); } }
+if (!function_exists('pg_lo_export')) { function pg_lo_export() { return \OtomatiesCoreVendor\pg_lo_export(...func_get_args()); } }
+if (!function_exists('pg_lo_import')) { function pg_lo_import() { return \OtomatiesCoreVendor\pg_lo_import(...func_get_args()); } }
+if (!function_exists('pg_lo_open')) { function pg_lo_open() { return \OtomatiesCoreVendor\pg_lo_open(...func_get_args()); } }
+if (!function_exists('pg_lo_read')) { function pg_lo_read() { return \OtomatiesCoreVendor\pg_lo_read(...func_get_args()); } }
+if (!function_exists('pg_lo_read_all')) { function pg_lo_read_all() { return \OtomatiesCoreVendor\pg_lo_read_all(...func_get_args()); } }
+if (!function_exists('pg_lo_seek')) { function pg_lo_seek() { return \OtomatiesCoreVendor\pg_lo_seek(...func_get_args()); } }
+if (!function_exists('pg_lo_tell')) { function pg_lo_tell() { return \OtomatiesCoreVendor\pg_lo_tell(...func_get_args()); } }
+if (!function_exists('pg_lo_truncate')) { function pg_lo_truncate() { return \OtomatiesCoreVendor\pg_lo_truncate(...func_get_args()); } }
+if (!function_exists('pg_lo_unlink')) { function pg_lo_unlink() { return \OtomatiesCoreVendor\pg_lo_unlink(...func_get_args()); } }
+if (!function_exists('pg_lo_write')) { function pg_lo_write() { return \OtomatiesCoreVendor\pg_lo_write(...func_get_args()); } }
+if (!function_exists('pg_loclose')) { function pg_loclose() { return \OtomatiesCoreVendor\pg_loclose(...func_get_args()); } }
+if (!function_exists('pg_locreate')) { function pg_locreate() { return \OtomatiesCoreVendor\pg_locreate(...func_get_args()); } }
+if (!function_exists('pg_loexport')) { function pg_loexport() { return \OtomatiesCoreVendor\pg_loexport(...func_get_args()); } }
+if (!function_exists('pg_loimport')) { function pg_loimport() { return \OtomatiesCoreVendor\pg_loimport(...func_get_args()); } }
+if (!function_exists('pg_loopen')) { function pg_loopen() { return \OtomatiesCoreVendor\pg_loopen(...func_get_args()); } }
+if (!function_exists('pg_loread')) { function pg_loread() { return \OtomatiesCoreVendor\pg_loread(...func_get_args()); } }
+if (!function_exists('pg_loreadall')) { function pg_loreadall() { return \OtomatiesCoreVendor\pg_loreadall(...func_get_args()); } }
+if (!function_exists('pg_lounlink')) { function pg_lounlink() { return \OtomatiesCoreVendor\pg_lounlink(...func_get_args()); } }
+if (!function_exists('pg_lowrite')) { function pg_lowrite() { return \OtomatiesCoreVendor\pg_lowrite(...func_get_args()); } }
+if (!function_exists('pg_meta_data')) { function pg_meta_data() { return \OtomatiesCoreVendor\pg_meta_data(...func_get_args()); } }
+if (!function_exists('pg_num_fields')) { function pg_num_fields() { return \OtomatiesCoreVendor\pg_num_fields(...func_get_args()); } }
+if (!function_exists('pg_num_rows')) { function pg_num_rows() { return \OtomatiesCoreVendor\pg_num_rows(...func_get_args()); } }
+if (!function_exists('pg_numfields')) { function pg_numfields() { return \OtomatiesCoreVendor\pg_numfields(...func_get_args()); } }
+if (!function_exists('pg_numrows')) { function pg_numrows() { return \OtomatiesCoreVendor\pg_numrows(...func_get_args()); } }
+if (!function_exists('pg_options')) { function pg_options() { return \OtomatiesCoreVendor\pg_options(...func_get_args()); } }
+if (!function_exists('pg_parameter_status')) { function pg_parameter_status() { return \OtomatiesCoreVendor\pg_parameter_status(...func_get_args()); } }
+if (!function_exists('pg_pconnect')) { function pg_pconnect() { return \OtomatiesCoreVendor\pg_pconnect(...func_get_args()); } }
+if (!function_exists('pg_ping')) { function pg_ping() { return \OtomatiesCoreVendor\pg_ping(...func_get_args()); } }
+if (!function_exists('pg_pipeline_status')) { function pg_pipeline_status() { return \OtomatiesCoreVendor\pg_pipeline_status(...func_get_args()); } }
+if (!function_exists('pg_pipeline_sync')) { function pg_pipeline_sync() { return \OtomatiesCoreVendor\pg_pipeline_sync(...func_get_args()); } }
+if (!function_exists('pg_port')) { function pg_port() { return \OtomatiesCoreVendor\pg_port(...func_get_args()); } }
+if (!function_exists('pg_prepare')) { function pg_prepare() { return \OtomatiesCoreVendor\pg_prepare(...func_get_args()); } }
+if (!function_exists('pg_put_copy_data')) { function pg_put_copy_data() { return \OtomatiesCoreVendor\pg_put_copy_data(...func_get_args()); } }
+if (!function_exists('pg_put_copy_end')) { function pg_put_copy_end() { return \OtomatiesCoreVendor\pg_put_copy_end(...func_get_args()); } }
+if (!function_exists('pg_put_line')) { function pg_put_line() { return \OtomatiesCoreVendor\pg_put_line(...func_get_args()); } }
+if (!function_exists('pg_query')) { function pg_query() { return \OtomatiesCoreVendor\pg_query(...func_get_args()); } }
+if (!function_exists('pg_query_params')) { function pg_query_params() { return \OtomatiesCoreVendor\pg_query_params(...func_get_args()); } }
+if (!function_exists('pg_result')) { function pg_result() { return \OtomatiesCoreVendor\pg_result(...func_get_args()); } }
+if (!function_exists('pg_result_error')) { function pg_result_error() { return \OtomatiesCoreVendor\pg_result_error(...func_get_args()); } }
+if (!function_exists('pg_result_error_field')) { function pg_result_error_field() { return \OtomatiesCoreVendor\pg_result_error_field(...func_get_args()); } }
+if (!function_exists('pg_result_memory_size')) { function pg_result_memory_size() { return \OtomatiesCoreVendor\pg_result_memory_size(...func_get_args()); } }
+if (!function_exists('pg_result_seek')) { function pg_result_seek() { return \OtomatiesCoreVendor\pg_result_seek(...func_get_args()); } }
+if (!function_exists('pg_result_status')) { function pg_result_status() { return \OtomatiesCoreVendor\pg_result_status(...func_get_args()); } }
+if (!function_exists('pg_select')) { function pg_select() { return \OtomatiesCoreVendor\pg_select(...func_get_args()); } }
+if (!function_exists('pg_send_execute')) { function pg_send_execute() { return \OtomatiesCoreVendor\pg_send_execute(...func_get_args()); } }
+if (!function_exists('pg_send_prepare')) { function pg_send_prepare() { return \OtomatiesCoreVendor\pg_send_prepare(...func_get_args()); } }
+if (!function_exists('pg_send_query')) { function pg_send_query() { return \OtomatiesCoreVendor\pg_send_query(...func_get_args()); } }
+if (!function_exists('pg_send_query_params')) { function pg_send_query_params() { return \OtomatiesCoreVendor\pg_send_query_params(...func_get_args()); } }
+if (!function_exists('pg_set_chunked_rows_size')) { function pg_set_chunked_rows_size() { return \OtomatiesCoreVendor\pg_set_chunked_rows_size(...func_get_args()); } }
+if (!function_exists('pg_set_client_encoding')) { function pg_set_client_encoding() { return \OtomatiesCoreVendor\pg_set_client_encoding(...func_get_args()); } }
+if (!function_exists('pg_set_error_context_visibility')) { function pg_set_error_context_visibility() { return \OtomatiesCoreVendor\pg_set_error_context_visibility(...func_get_args()); } }
+if (!function_exists('pg_set_error_verbosity')) { function pg_set_error_verbosity() { return \OtomatiesCoreVendor\pg_set_error_verbosity(...func_get_args()); } }
+if (!function_exists('pg_setclientencoding')) { function pg_setclientencoding() { return \OtomatiesCoreVendor\pg_setclientencoding(...func_get_args()); } }
+if (!function_exists('pg_socket')) { function pg_socket() { return \OtomatiesCoreVendor\pg_socket(...func_get_args()); } }
+if (!function_exists('pg_socket_poll')) { function pg_socket_poll() { return \OtomatiesCoreVendor\pg_socket_poll(...func_get_args()); } }
+if (!function_exists('pg_trace')) { function pg_trace() { return \OtomatiesCoreVendor\pg_trace(...func_get_args()); } }
+if (!function_exists('pg_transaction_status')) { function pg_transaction_status() { return \OtomatiesCoreVendor\pg_transaction_status(...func_get_args()); } }
+if (!function_exists('pg_tty')) { function pg_tty() { return \OtomatiesCoreVendor\pg_tty(...func_get_args()); } }
+if (!function_exists('pg_unescape_bytea')) { function pg_unescape_bytea() { return \OtomatiesCoreVendor\pg_unescape_bytea(...func_get_args()); } }
+if (!function_exists('pg_untrace')) { function pg_untrace() { return \OtomatiesCoreVendor\pg_untrace(...func_get_args()); } }
+if (!function_exists('pg_update')) { function pg_update() { return \OtomatiesCoreVendor\pg_update(...func_get_args()); } }
+if (!function_exists('pg_version')) { function pg_version() { return \OtomatiesCoreVendor\pg_version(...func_get_args()); } }
+if (!function_exists('php_egg_logo_guid')) { function php_egg_logo_guid() { return \OtomatiesCoreVendor\php_egg_logo_guid(...func_get_args()); } }
+if (!function_exists('php_ini_loaded_file')) { function php_ini_loaded_file() { return \OtomatiesCoreVendor\php_ini_loaded_file(...func_get_args()); } }
+if (!function_exists('php_ini_scanned_files')) { function php_ini_scanned_files() { return \OtomatiesCoreVendor\php_ini_scanned_files(...func_get_args()); } }
+if (!function_exists('php_logo_guid')) { function php_logo_guid() { return \OtomatiesCoreVendor\php_logo_guid(...func_get_args()); } }
+if (!function_exists('php_real_logo_guid')) { function php_real_logo_guid() { return \OtomatiesCoreVendor\php_real_logo_guid(...func_get_args()); } }
+if (!function_exists('php_sapi_name')) { function php_sapi_name() { return \OtomatiesCoreVendor\php_sapi_name(...func_get_args()); } }
+if (!function_exists('php_strip_whitespace')) { function php_strip_whitespace() { return \OtomatiesCoreVendor\php_strip_whitespace(...func_get_args()); } }
+if (!function_exists('php_uname')) { function php_uname() { return \OtomatiesCoreVendor\php_uname(...func_get_args()); } }
+if (!function_exists('phpcredits')) { function phpcredits() { return \OtomatiesCoreVendor\phpcredits(...func_get_args()); } }
+if (!function_exists('phpdbg_break_file')) { function phpdbg_break_file() { return \OtomatiesCoreVendor\phpdbg_break_file(...func_get_args()); } }
+if (!function_exists('phpdbg_break_function')) { function phpdbg_break_function() { return \OtomatiesCoreVendor\phpdbg_break_function(...func_get_args()); } }
+if (!function_exists('phpdbg_break_method')) { function phpdbg_break_method() { return \OtomatiesCoreVendor\phpdbg_break_method(...func_get_args()); } }
+if (!function_exists('phpdbg_break_next')) { function phpdbg_break_next() { return \OtomatiesCoreVendor\phpdbg_break_next(...func_get_args()); } }
+if (!function_exists('phpdbg_clear')) { function phpdbg_clear() { return \OtomatiesCoreVendor\phpdbg_clear(...func_get_args()); } }
+if (!function_exists('phpdbg_color')) { function phpdbg_color() { return \OtomatiesCoreVendor\phpdbg_color(...func_get_args()); } }
+if (!function_exists('phpdbg_end_oplog')) { function phpdbg_end_oplog() { return \OtomatiesCoreVendor\phpdbg_end_oplog(...func_get_args()); } }
+if (!function_exists('phpdbg_exec')) { function phpdbg_exec() { return \OtomatiesCoreVendor\phpdbg_exec(...func_get_args()); } }
+if (!function_exists('phpdbg_get_executable')) { function phpdbg_get_executable() { return \OtomatiesCoreVendor\phpdbg_get_executable(...func_get_args()); } }
+if (!function_exists('phpdbg_prompt')) { function phpdbg_prompt() { return \OtomatiesCoreVendor\phpdbg_prompt(...func_get_args()); } }
+if (!function_exists('phpdbg_start_oplog')) { function phpdbg_start_oplog() { return \OtomatiesCoreVendor\phpdbg_start_oplog(...func_get_args()); } }
+if (!function_exists('phpinfo')) { function phpinfo() { return \OtomatiesCoreVendor\phpinfo(...func_get_args()); } }
+if (!function_exists('phpversion')) { function phpversion() { return \OtomatiesCoreVendor\phpversion(...func_get_args()); } }
+if (!function_exists('pi')) { function pi() { return \OtomatiesCoreVendor\pi(...func_get_args()); } }
 if (!function_exists('pingback')) { function pingback() { return \OtomatiesCoreVendor\pingback(...func_get_args()); } }
 if (!function_exists('pingback_ping_source_uri')) { function pingback_ping_source_uri() { return \OtomatiesCoreVendor\pingback_ping_source_uri(...func_get_args()); } }
 if (!function_exists('pings_open')) { function pings_open() { return \OtomatiesCoreVendor\pings_open(...func_get_args()); } }
@@ -3018,6 +6971,8 @@ if (!function_exists('plugin_dir_url')) { function plugin_dir_url() { return \Ot
 if (!function_exists('plugin_sandbox_scrape')) { function plugin_sandbox_scrape() { return \OtomatiesCoreVendor\plugin_sandbox_scrape(...func_get_args()); } }
 if (!function_exists('plugins_api')) { function plugins_api() { return \OtomatiesCoreVendor\plugins_api(...func_get_args()); } }
 if (!function_exists('plugins_url')) { function plugins_url() { return \OtomatiesCoreVendor\plugins_url(...func_get_args()); } }
+if (!function_exists('png2wbmp')) { function png2wbmp() { return \OtomatiesCoreVendor\png2wbmp(...func_get_args()); } }
+if (!function_exists('popen')) { function popen() { return \OtomatiesCoreVendor\popen(...func_get_args()); } }
 if (!function_exists('populate_network')) { function populate_network() { return \OtomatiesCoreVendor\populate_network(...func_get_args()); } }
 if (!function_exists('populate_network_meta')) { function populate_network_meta() { return \OtomatiesCoreVendor\populate_network_meta(...func_get_args()); } }
 if (!function_exists('populate_options')) { function populate_options() { return \OtomatiesCoreVendor\populate_options(...func_get_args()); } }
@@ -3032,6 +6987,46 @@ if (!function_exists('populate_roles_280')) { function populate_roles_280() { re
 if (!function_exists('populate_roles_300')) { function populate_roles_300() { return \OtomatiesCoreVendor\populate_roles_300(...func_get_args()); } }
 if (!function_exists('populate_site_meta')) { function populate_site_meta() { return \OtomatiesCoreVendor\populate_site_meta(...func_get_args()); } }
 if (!function_exists('popuplinks')) { function popuplinks() { return \OtomatiesCoreVendor\popuplinks(...func_get_args()); } }
+if (!function_exists('pos')) { function pos() { return \OtomatiesCoreVendor\pos(...func_get_args()); } }
+if (!function_exists('posix_access')) { function posix_access() { return \OtomatiesCoreVendor\posix_access(...func_get_args()); } }
+if (!function_exists('posix_ctermid')) { function posix_ctermid() { return \OtomatiesCoreVendor\posix_ctermid(...func_get_args()); } }
+if (!function_exists('posix_eaccess')) { function posix_eaccess() { return \OtomatiesCoreVendor\posix_eaccess(...func_get_args()); } }
+if (!function_exists('posix_errno')) { function posix_errno() { return \OtomatiesCoreVendor\posix_errno(...func_get_args()); } }
+if (!function_exists('posix_get_last_error')) { function posix_get_last_error() { return \OtomatiesCoreVendor\posix_get_last_error(...func_get_args()); } }
+if (!function_exists('posix_getcwd')) { function posix_getcwd() { return \OtomatiesCoreVendor\posix_getcwd(...func_get_args()); } }
+if (!function_exists('posix_getegid')) { function posix_getegid() { return \OtomatiesCoreVendor\posix_getegid(...func_get_args()); } }
+if (!function_exists('posix_geteuid')) { function posix_geteuid() { return \OtomatiesCoreVendor\posix_geteuid(...func_get_args()); } }
+if (!function_exists('posix_getgid')) { function posix_getgid() { return \OtomatiesCoreVendor\posix_getgid(...func_get_args()); } }
+if (!function_exists('posix_getgrgid')) { function posix_getgrgid() { return \OtomatiesCoreVendor\posix_getgrgid(...func_get_args()); } }
+if (!function_exists('posix_getgrnam')) { function posix_getgrnam() { return \OtomatiesCoreVendor\posix_getgrnam(...func_get_args()); } }
+if (!function_exists('posix_getgroups')) { function posix_getgroups() { return \OtomatiesCoreVendor\posix_getgroups(...func_get_args()); } }
+if (!function_exists('posix_getlogin')) { function posix_getlogin() { return \OtomatiesCoreVendor\posix_getlogin(...func_get_args()); } }
+if (!function_exists('posix_getpgid')) { function posix_getpgid() { return \OtomatiesCoreVendor\posix_getpgid(...func_get_args()); } }
+if (!function_exists('posix_getpgrp')) { function posix_getpgrp() { return \OtomatiesCoreVendor\posix_getpgrp(...func_get_args()); } }
+if (!function_exists('posix_getpid')) { function posix_getpid() { return \OtomatiesCoreVendor\posix_getpid(...func_get_args()); } }
+if (!function_exists('posix_getppid')) { function posix_getppid() { return \OtomatiesCoreVendor\posix_getppid(...func_get_args()); } }
+if (!function_exists('posix_getpwnam')) { function posix_getpwnam() { return \OtomatiesCoreVendor\posix_getpwnam(...func_get_args()); } }
+if (!function_exists('posix_getpwuid')) { function posix_getpwuid() { return \OtomatiesCoreVendor\posix_getpwuid(...func_get_args()); } }
+if (!function_exists('posix_getrlimit')) { function posix_getrlimit() { return \OtomatiesCoreVendor\posix_getrlimit(...func_get_args()); } }
+if (!function_exists('posix_getsid')) { function posix_getsid() { return \OtomatiesCoreVendor\posix_getsid(...func_get_args()); } }
+if (!function_exists('posix_getuid')) { function posix_getuid() { return \OtomatiesCoreVendor\posix_getuid(...func_get_args()); } }
+if (!function_exists('posix_initgroups')) { function posix_initgroups() { return \OtomatiesCoreVendor\posix_initgroups(...func_get_args()); } }
+if (!function_exists('posix_isatty')) { function posix_isatty() { return \OtomatiesCoreVendor\posix_isatty(...func_get_args()); } }
+if (!function_exists('posix_kill')) { function posix_kill() { return \OtomatiesCoreVendor\posix_kill(...func_get_args()); } }
+if (!function_exists('posix_mkfifo')) { function posix_mkfifo() { return \OtomatiesCoreVendor\posix_mkfifo(...func_get_args()); } }
+if (!function_exists('posix_mknod')) { function posix_mknod() { return \OtomatiesCoreVendor\posix_mknod(...func_get_args()); } }
+if (!function_exists('posix_setegid')) { function posix_setegid() { return \OtomatiesCoreVendor\posix_setegid(...func_get_args()); } }
+if (!function_exists('posix_seteuid')) { function posix_seteuid() { return \OtomatiesCoreVendor\posix_seteuid(...func_get_args()); } }
+if (!function_exists('posix_setgid')) { function posix_setgid() { return \OtomatiesCoreVendor\posix_setgid(...func_get_args()); } }
+if (!function_exists('posix_setpgid')) { function posix_setpgid() { return \OtomatiesCoreVendor\posix_setpgid(...func_get_args()); } }
+if (!function_exists('posix_setrlimit')) { function posix_setrlimit() { return \OtomatiesCoreVendor\posix_setrlimit(...func_get_args()); } }
+if (!function_exists('posix_setsid')) { function posix_setsid() { return \OtomatiesCoreVendor\posix_setsid(...func_get_args()); } }
+if (!function_exists('posix_setuid')) { function posix_setuid() { return \OtomatiesCoreVendor\posix_setuid(...func_get_args()); } }
+if (!function_exists('posix_strerror')) { function posix_strerror() { return \OtomatiesCoreVendor\posix_strerror(...func_get_args()); } }
+if (!function_exists('posix_sysconf')) { function posix_sysconf() { return \OtomatiesCoreVendor\posix_sysconf(...func_get_args()); } }
+if (!function_exists('posix_times')) { function posix_times() { return \OtomatiesCoreVendor\posix_times(...func_get_args()); } }
+if (!function_exists('posix_ttyname')) { function posix_ttyname() { return \OtomatiesCoreVendor\posix_ttyname(...func_get_args()); } }
+if (!function_exists('posix_uname')) { function posix_uname() { return \OtomatiesCoreVendor\posix_uname(...func_get_args()); } }
 if (!function_exists('post_author_meta_box')) { function post_author_meta_box() { return \OtomatiesCoreVendor\post_author_meta_box(...func_get_args()); } }
 if (!function_exists('post_categories_meta_box')) { function post_categories_meta_box() { return \OtomatiesCoreVendor\post_categories_meta_box(...func_get_args()); } }
 if (!function_exists('post_class')) { function post_class() { return \OtomatiesCoreVendor\post_class(...func_get_args()); } }
@@ -3061,10 +7056,23 @@ if (!function_exists('post_type_exists')) { function post_type_exists() { return
 if (!function_exists('post_type_supports')) { function post_type_supports() { return \OtomatiesCoreVendor\post_type_supports(...func_get_args()); } }
 if (!function_exists('postbox_classes')) { function postbox_classes() { return \OtomatiesCoreVendor\postbox_classes(...func_get_args()); } }
 if (!function_exists('posts_nav_link')) { function posts_nav_link() { return \OtomatiesCoreVendor\posts_nav_link(...func_get_args()); } }
+if (!function_exists('pow')) { function pow() { return \OtomatiesCoreVendor\pow(...func_get_args()); } }
 if (!function_exists('pre_schema_upgrade')) { function pre_schema_upgrade() { return \OtomatiesCoreVendor\pre_schema_upgrade(...func_get_args()); } }
+if (!function_exists('preg_filter')) { function preg_filter() { return \OtomatiesCoreVendor\preg_filter(...func_get_args()); } }
+if (!function_exists('preg_grep')) { function preg_grep() { return \OtomatiesCoreVendor\preg_grep(...func_get_args()); } }
+if (!function_exists('preg_last_error')) { function preg_last_error() { return \OtomatiesCoreVendor\preg_last_error(...func_get_args()); } }
+if (!function_exists('preg_last_error_msg')) { function preg_last_error_msg() { return \OtomatiesCoreVendor\preg_last_error_msg(...func_get_args()); } }
+if (!function_exists('preg_match')) { function preg_match() { return \OtomatiesCoreVendor\preg_match(...func_get_args()); } }
+if (!function_exists('preg_match_all')) { function preg_match_all() { return \OtomatiesCoreVendor\preg_match_all(...func_get_args()); } }
+if (!function_exists('preg_quote')) { function preg_quote() { return \OtomatiesCoreVendor\preg_quote(...func_get_args()); } }
+if (!function_exists('preg_replace')) { function preg_replace() { return \OtomatiesCoreVendor\preg_replace(...func_get_args()); } }
 if (!function_exists('preg_replace_array')) { function preg_replace_array() { return \OtomatiesCoreVendor\preg_replace_array(...func_get_args()); } }
+if (!function_exists('preg_replace_callback')) { function preg_replace_callback() { return \OtomatiesCoreVendor\preg_replace_callback(...func_get_args()); } }
+if (!function_exists('preg_replace_callback_array')) { function preg_replace_callback_array() { return \OtomatiesCoreVendor\preg_replace_callback_array(...func_get_args()); } }
+if (!function_exists('preg_split')) { function preg_split() { return \OtomatiesCoreVendor\preg_split(...func_get_args()); } }
 if (!function_exists('prep_atom_text_construct')) { function prep_atom_text_construct() { return \OtomatiesCoreVendor\prep_atom_text_construct(...func_get_args()); } }
 if (!function_exists('prepend_attachment')) { function prepend_attachment() { return \OtomatiesCoreVendor\prepend_attachment(...func_get_args()); } }
+if (!function_exists('prev')) { function prev() { return \OtomatiesCoreVendor\prev(...func_get_args()); } }
 if (!function_exists('prev_post_rel_link')) { function prev_post_rel_link() { return \OtomatiesCoreVendor\prev_post_rel_link(...func_get_args()); } }
 if (!function_exists('preview_theme')) { function preview_theme() { return \OtomatiesCoreVendor\preview_theme(...func_get_args()); } }
 if (!function_exists('preview_theme_ob_filter')) { function preview_theme_ob_filter() { return \OtomatiesCoreVendor\preview_theme_ob_filter(...func_get_args()); } }
@@ -3090,9 +7098,83 @@ if (!function_exists('print_emoji_styles')) { function print_emoji_styles() { re
 if (!function_exists('print_footer_scripts')) { function print_footer_scripts() { return \OtomatiesCoreVendor\print_footer_scripts(...func_get_args()); } }
 if (!function_exists('print_head_scripts')) { function print_head_scripts() { return \OtomatiesCoreVendor\print_head_scripts(...func_get_args()); } }
 if (!function_exists('print_late_styles')) { function print_late_styles() { return \OtomatiesCoreVendor\print_late_styles(...func_get_args()); } }
+if (!function_exists('print_r')) { function print_r() { return \OtomatiesCoreVendor\print_r(...func_get_args()); } }
+if (!function_exists('printf')) { function printf() { return \OtomatiesCoreVendor\printf(...func_get_args()); } }
 if (!function_exists('privacy_ping_filter')) { function privacy_ping_filter() { return \OtomatiesCoreVendor\privacy_ping_filter(...func_get_args()); } }
+if (!function_exists('proc_close')) { function proc_close() { return \OtomatiesCoreVendor\proc_close(...func_get_args()); } }
+if (!function_exists('proc_get_status')) { function proc_get_status() { return \OtomatiesCoreVendor\proc_get_status(...func_get_args()); } }
+if (!function_exists('proc_nice')) { function proc_nice() { return \OtomatiesCoreVendor\proc_nice(...func_get_args()); } }
+if (!function_exists('proc_open')) { function proc_open() { return \OtomatiesCoreVendor\proc_open(...func_get_args()); } }
+if (!function_exists('proc_terminate')) { function proc_terminate() { return \OtomatiesCoreVendor\proc_terminate(...func_get_args()); } }
+if (!function_exists('property_exists')) { function property_exists() { return \OtomatiesCoreVendor\property_exists(...func_get_args()); } }
+if (!function_exists('pspell_add_to_personal')) { function pspell_add_to_personal() { return \OtomatiesCoreVendor\pspell_add_to_personal(...func_get_args()); } }
+if (!function_exists('pspell_add_to_session')) { function pspell_add_to_session() { return \OtomatiesCoreVendor\pspell_add_to_session(...func_get_args()); } }
+if (!function_exists('pspell_check')) { function pspell_check() { return \OtomatiesCoreVendor\pspell_check(...func_get_args()); } }
+if (!function_exists('pspell_clear_session')) { function pspell_clear_session() { return \OtomatiesCoreVendor\pspell_clear_session(...func_get_args()); } }
+if (!function_exists('pspell_config_create')) { function pspell_config_create() { return \OtomatiesCoreVendor\pspell_config_create(...func_get_args()); } }
+if (!function_exists('pspell_config_data_dir')) { function pspell_config_data_dir() { return \OtomatiesCoreVendor\pspell_config_data_dir(...func_get_args()); } }
+if (!function_exists('pspell_config_dict_dir')) { function pspell_config_dict_dir() { return \OtomatiesCoreVendor\pspell_config_dict_dir(...func_get_args()); } }
+if (!function_exists('pspell_config_ignore')) { function pspell_config_ignore() { return \OtomatiesCoreVendor\pspell_config_ignore(...func_get_args()); } }
+if (!function_exists('pspell_config_mode')) { function pspell_config_mode() { return \OtomatiesCoreVendor\pspell_config_mode(...func_get_args()); } }
+if (!function_exists('pspell_config_personal')) { function pspell_config_personal() { return \OtomatiesCoreVendor\pspell_config_personal(...func_get_args()); } }
+if (!function_exists('pspell_config_repl')) { function pspell_config_repl() { return \OtomatiesCoreVendor\pspell_config_repl(...func_get_args()); } }
+if (!function_exists('pspell_config_runtogether')) { function pspell_config_runtogether() { return \OtomatiesCoreVendor\pspell_config_runtogether(...func_get_args()); } }
+if (!function_exists('pspell_config_save_repl')) { function pspell_config_save_repl() { return \OtomatiesCoreVendor\pspell_config_save_repl(...func_get_args()); } }
+if (!function_exists('pspell_new')) { function pspell_new() { return \OtomatiesCoreVendor\pspell_new(...func_get_args()); } }
+if (!function_exists('pspell_new_config')) { function pspell_new_config() { return \OtomatiesCoreVendor\pspell_new_config(...func_get_args()); } }
+if (!function_exists('pspell_new_personal')) { function pspell_new_personal() { return \OtomatiesCoreVendor\pspell_new_personal(...func_get_args()); } }
+if (!function_exists('pspell_save_wordlist')) { function pspell_save_wordlist() { return \OtomatiesCoreVendor\pspell_save_wordlist(...func_get_args()); } }
+if (!function_exists('pspell_store_replacement')) { function pspell_store_replacement() { return \OtomatiesCoreVendor\pspell_store_replacement(...func_get_args()); } }
+if (!function_exists('pspell_suggest')) { function pspell_suggest() { return \OtomatiesCoreVendor\pspell_suggest(...func_get_args()); } }
+if (!function_exists('putenv')) { function putenv() { return \OtomatiesCoreVendor\putenv(...func_get_args()); } }
 if (!function_exists('query_posts')) { function query_posts() { return \OtomatiesCoreVendor\query_posts(...func_get_args()); } }
+if (!function_exists('quoted_printable_decode')) { function quoted_printable_decode() { return \OtomatiesCoreVendor\quoted_printable_decode(...func_get_args()); } }
+if (!function_exists('quoted_printable_encode')) { function quoted_printable_encode() { return \OtomatiesCoreVendor\quoted_printable_encode(...func_get_args()); } }
+if (!function_exists('quotemeta')) { function quotemeta() { return \OtomatiesCoreVendor\quotemeta(...func_get_args()); } }
+if (!function_exists('rad2deg')) { function rad2deg() { return \OtomatiesCoreVendor\rad2deg(...func_get_args()); } }
+if (!function_exists('radius_acct_open')) { function radius_acct_open() { return \OtomatiesCoreVendor\radius_acct_open(...func_get_args()); } }
+if (!function_exists('radius_add_server')) { function radius_add_server() { return \OtomatiesCoreVendor\radius_add_server(...func_get_args()); } }
+if (!function_exists('radius_auth_open')) { function radius_auth_open() { return \OtomatiesCoreVendor\radius_auth_open(...func_get_args()); } }
+if (!function_exists('radius_close')) { function radius_close() { return \OtomatiesCoreVendor\radius_close(...func_get_args()); } }
+if (!function_exists('radius_config')) { function radius_config() { return \OtomatiesCoreVendor\radius_config(...func_get_args()); } }
+if (!function_exists('radius_create_request')) { function radius_create_request() { return \OtomatiesCoreVendor\radius_create_request(...func_get_args()); } }
+if (!function_exists('rand')) { function rand() { return \OtomatiesCoreVendor\rand(...func_get_args()); } }
+if (!function_exists('random_bytes')) { function random_bytes() { return \OtomatiesCoreVendor\random_bytes(...func_get_args()); } }
+if (!function_exists('random_int')) { function random_int() { return \OtomatiesCoreVendor\random_int(...func_get_args()); } }
+if (!function_exists('range')) { function range() { return \OtomatiesCoreVendor\range(...func_get_args()); } }
+if (!function_exists('rawurldecode')) { function rawurldecode() { return \OtomatiesCoreVendor\rawurldecode(...func_get_args()); } }
+if (!function_exists('rawurlencode')) { function rawurlencode() { return \OtomatiesCoreVendor\rawurlencode(...func_get_args()); } }
 if (!function_exists('rawurlencode_deep')) { function rawurlencode_deep() { return \OtomatiesCoreVendor\rawurlencode_deep(...func_get_args()); } }
+if (!function_exists('rd_kafka_err2str')) { function rd_kafka_err2str() { return \OtomatiesCoreVendor\rd_kafka_err2str(...func_get_args()); } }
+if (!function_exists('rd_kafka_errno')) { function rd_kafka_errno() { return \OtomatiesCoreVendor\rd_kafka_errno(...func_get_args()); } }
+if (!function_exists('rd_kafka_errno2err')) { function rd_kafka_errno2err() { return \OtomatiesCoreVendor\rd_kafka_errno2err(...func_get_args()); } }
+if (!function_exists('rd_kafka_get_err_descs')) { function rd_kafka_get_err_descs() { return \OtomatiesCoreVendor\rd_kafka_get_err_descs(...func_get_args()); } }
+if (!function_exists('rd_kafka_offset_tail')) { function rd_kafka_offset_tail() { return \OtomatiesCoreVendor\rd_kafka_offset_tail(...func_get_args()); } }
+if (!function_exists('rd_kafka_thread_cnt')) { function rd_kafka_thread_cnt() { return \OtomatiesCoreVendor\rd_kafka_thread_cnt(...func_get_args()); } }
+if (!function_exists('read_exif_data')) { function read_exif_data() { return \OtomatiesCoreVendor\read_exif_data(...func_get_args()); } }
+if (!function_exists('readdir')) { function readdir() { return \OtomatiesCoreVendor\readdir(...func_get_args()); } }
+if (!function_exists('readfile')) { function readfile() { return \OtomatiesCoreVendor\readfile(...func_get_args()); } }
+if (!function_exists('readgzfile')) { function readgzfile() { return \OtomatiesCoreVendor\readgzfile(...func_get_args()); } }
+if (!function_exists('readline')) { function readline() { return \OtomatiesCoreVendor\readline(...func_get_args()); } }
+if (!function_exists('readline_add_history')) { function readline_add_history() { return \OtomatiesCoreVendor\readline_add_history(...func_get_args()); } }
+if (!function_exists('readline_callback_handler_install')) { function readline_callback_handler_install() { return \OtomatiesCoreVendor\readline_callback_handler_install(...func_get_args()); } }
+if (!function_exists('readline_callback_handler_remove')) { function readline_callback_handler_remove() { return \OtomatiesCoreVendor\readline_callback_handler_remove(...func_get_args()); } }
+if (!function_exists('readline_callback_read_char')) { function readline_callback_read_char() { return \OtomatiesCoreVendor\readline_callback_read_char(...func_get_args()); } }
+if (!function_exists('readline_clear_history')) { function readline_clear_history() { return \OtomatiesCoreVendor\readline_clear_history(...func_get_args()); } }
+if (!function_exists('readline_completion_function')) { function readline_completion_function() { return \OtomatiesCoreVendor\readline_completion_function(...func_get_args()); } }
+if (!function_exists('readline_info')) { function readline_info() { return \OtomatiesCoreVendor\readline_info(...func_get_args()); } }
+if (!function_exists('readline_list_history')) { function readline_list_history() { return \OtomatiesCoreVendor\readline_list_history(...func_get_args()); } }
+if (!function_exists('readline_on_new_line')) { function readline_on_new_line() { return \OtomatiesCoreVendor\readline_on_new_line(...func_get_args()); } }
+if (!function_exists('readline_read_history')) { function readline_read_history() { return \OtomatiesCoreVendor\readline_read_history(...func_get_args()); } }
+if (!function_exists('readline_redisplay')) { function readline_redisplay() { return \OtomatiesCoreVendor\readline_redisplay(...func_get_args()); } }
+if (!function_exists('readline_write_history')) { function readline_write_history() { return \OtomatiesCoreVendor\readline_write_history(...func_get_args()); } }
+if (!function_exists('readlink')) { function readlink() { return \OtomatiesCoreVendor\readlink(...func_get_args()); } }
+if (!function_exists('realpath')) { function realpath() { return \OtomatiesCoreVendor\realpath(...func_get_args()); } }
+if (!function_exists('realpath_cache_get')) { function realpath_cache_get() { return \OtomatiesCoreVendor\realpath_cache_get(...func_get_args()); } }
+if (!function_exists('realpath_cache_size')) { function realpath_cache_size() { return \OtomatiesCoreVendor\realpath_cache_size(...func_get_args()); } }
+if (!function_exists('recode')) { function recode() { return \OtomatiesCoreVendor\recode(...func_get_args()); } }
+if (!function_exists('recode_file')) { function recode_file() { return \OtomatiesCoreVendor\recode_file(...func_get_args()); } }
+if (!function_exists('recode_string')) { function recode_string() { return \OtomatiesCoreVendor\recode_string(...func_get_args()); } }
 if (!function_exists('recurse_dirsize')) { function recurse_dirsize() { return \OtomatiesCoreVendor\recurse_dirsize(...func_get_args()); } }
 if (!function_exists('redirect_canonical')) { function redirect_canonical() { return \OtomatiesCoreVendor\redirect_canonical(...func_get_args()); } }
 if (!function_exists('redirect_guess_404_permalink')) { function redirect_guess_404_permalink() { return \OtomatiesCoreVendor\redirect_guess_404_permalink(...func_get_args()); } }
@@ -3190,6 +7272,7 @@ if (!function_exists('register_core_block_style_handles')) { function register_c
 if (!function_exists('register_core_block_types_from_metadata')) { function register_core_block_types_from_metadata() { return \OtomatiesCoreVendor\register_core_block_types_from_metadata(...func_get_args()); } }
 if (!function_exists('register_deactivation_hook')) { function register_deactivation_hook() { return \OtomatiesCoreVendor\register_deactivation_hook(...func_get_args()); } }
 if (!function_exists('register_default_headers')) { function register_default_headers() { return \OtomatiesCoreVendor\register_default_headers(...func_get_args()); } }
+if (!function_exists('register_event_handler')) { function register_event_handler() { return \OtomatiesCoreVendor\register_event_handler(...func_get_args()); } }
 if (!function_exists('register_importer')) { function register_importer() { return \OtomatiesCoreVendor\register_importer(...func_get_args()); } }
 if (!function_exists('register_initial_settings')) { function register_initial_settings() { return \OtomatiesCoreVendor\register_initial_settings(...func_get_args()); } }
 if (!function_exists('register_legacy_post_comments_block')) { function register_legacy_post_comments_block() { return \OtomatiesCoreVendor\register_legacy_post_comments_block(...func_get_args()); } }
@@ -3203,6 +7286,7 @@ if (!function_exists('register_post_type')) { function register_post_type() { re
 if (!function_exists('register_rest_field')) { function register_rest_field() { return \OtomatiesCoreVendor\register_rest_field(...func_get_args()); } }
 if (!function_exists('register_rest_route')) { function register_rest_route() { return \OtomatiesCoreVendor\register_rest_route(...func_get_args()); } }
 if (!function_exists('register_setting')) { function register_setting() { return \OtomatiesCoreVendor\register_setting(...func_get_args()); } }
+if (!function_exists('register_shutdown_function')) { function register_shutdown_function() { return \OtomatiesCoreVendor\register_shutdown_function(...func_get_args()); } }
 if (!function_exists('register_sidebar')) { function register_sidebar() { return \OtomatiesCoreVendor\register_sidebar(...func_get_args()); } }
 if (!function_exists('register_sidebar_widget')) { function register_sidebar_widget() { return \OtomatiesCoreVendor\register_sidebar_widget(...func_get_args()); } }
 if (!function_exists('register_sidebars')) { function register_sidebars() { return \OtomatiesCoreVendor\register_sidebars(...func_get_args()); } }
@@ -3211,6 +7295,7 @@ if (!function_exists('register_taxonomy_for_object_type')) { function register_t
 if (!function_exists('register_term_meta')) { function register_term_meta() { return \OtomatiesCoreVendor\register_term_meta(...func_get_args()); } }
 if (!function_exists('register_theme_directory')) { function register_theme_directory() { return \OtomatiesCoreVendor\register_theme_directory(...func_get_args()); } }
 if (!function_exists('register_theme_feature')) { function register_theme_feature() { return \OtomatiesCoreVendor\register_theme_feature(...func_get_args()); } }
+if (!function_exists('register_tick_function')) { function register_tick_function() { return \OtomatiesCoreVendor\register_tick_function(...func_get_args()); } }
 if (!function_exists('register_uninstall_hook')) { function register_uninstall_hook() { return \OtomatiesCoreVendor\register_uninstall_hook(...func_get_args()); } }
 if (!function_exists('register_widget')) { function register_widget() { return \OtomatiesCoreVendor\register_widget(...func_get_args()); } }
 if (!function_exists('register_widget_control')) { function register_widget_control() { return \OtomatiesCoreVendor\register_widget_control(...func_get_args()); } }
@@ -3244,6 +7329,7 @@ if (!function_exists('remove_theme_mod')) { function remove_theme_mod() { return
 if (!function_exists('remove_theme_mods')) { function remove_theme_mods() { return \OtomatiesCoreVendor\remove_theme_mods(...func_get_args()); } }
 if (!function_exists('remove_theme_support')) { function remove_theme_support() { return \OtomatiesCoreVendor\remove_theme_support(...func_get_args()); } }
 if (!function_exists('remove_user_from_blog')) { function remove_user_from_blog() { return \OtomatiesCoreVendor\remove_user_from_blog(...func_get_args()); } }
+if (!function_exists('rename')) { function rename() { return \OtomatiesCoreVendor\rename(...func_get_args()); } }
 if (!function_exists('render_block')) { function render_block() { return \OtomatiesCoreVendor\render_block(...func_get_args()); } }
 if (!function_exists('render_block_core_archives')) { function render_block_core_archives() { return \OtomatiesCoreVendor\render_block_core_archives(...func_get_args()); } }
 if (!function_exists('render_block_core_avatar')) { function render_block_core_avatar() { return \OtomatiesCoreVendor\render_block_core_avatar(...func_get_args()); } }
@@ -3311,12 +7397,20 @@ if (!function_exists('render_block_core_template_part')) { function render_block
 if (!function_exists('render_block_core_term_description')) { function render_block_core_term_description() { return \OtomatiesCoreVendor\render_block_core_term_description(...func_get_args()); } }
 if (!function_exists('render_block_core_widget_group')) { function render_block_core_widget_group() { return \OtomatiesCoreVendor\render_block_core_widget_group(...func_get_args()); } }
 if (!function_exists('request_filesystem_credentials')) { function request_filesystem_credentials() { return \OtomatiesCoreVendor\request_filesystem_credentials(...func_get_args()); } }
+if (!function_exists('request_parse_body')) { function request_parse_body() { return \OtomatiesCoreVendor\request_parse_body(...func_get_args()); } }
 if (!function_exists('require_if_theme_supports')) { function require_if_theme_supports() { return \OtomatiesCoreVendor\require_if_theme_supports(...func_get_args()); } }
 if (!function_exists('require_wp_db')) { function require_wp_db() { return \OtomatiesCoreVendor\require_wp_db(...func_get_args()); } }
+if (!function_exists('reset')) { function reset() { return \OtomatiesCoreVendor\reset(...func_get_args()); } }
 if (!function_exists('reset_mbstring_encoding')) { function reset_mbstring_encoding() { return \OtomatiesCoreVendor\reset_mbstring_encoding(...func_get_args()); } }
 if (!function_exists('reset_password')) { function reset_password() { return \OtomatiesCoreVendor\reset_password(...func_get_args()); } }
 if (!function_exists('resolve_block_template')) { function resolve_block_template() { return \OtomatiesCoreVendor\resolve_block_template(...func_get_args()); } }
 if (!function_exists('resolve_pattern_blocks')) { function resolve_pattern_blocks() { return \OtomatiesCoreVendor\resolve_pattern_blocks(...func_get_args()); } }
+if (!function_exists('resourcebundle_count')) { function resourcebundle_count() { return \OtomatiesCoreVendor\resourcebundle_count(...func_get_args()); } }
+if (!function_exists('resourcebundle_create')) { function resourcebundle_create() { return \OtomatiesCoreVendor\resourcebundle_create(...func_get_args()); } }
+if (!function_exists('resourcebundle_get')) { function resourcebundle_get() { return \OtomatiesCoreVendor\resourcebundle_get(...func_get_args()); } }
+if (!function_exists('resourcebundle_get_error_code')) { function resourcebundle_get_error_code() { return \OtomatiesCoreVendor\resourcebundle_get_error_code(...func_get_args()); } }
+if (!function_exists('resourcebundle_get_error_message')) { function resourcebundle_get_error_message() { return \OtomatiesCoreVendor\resourcebundle_get_error_message(...func_get_args()); } }
+if (!function_exists('resourcebundle_locales')) { function resourcebundle_locales() { return \OtomatiesCoreVendor\resourcebundle_locales(...func_get_args()); } }
 if (!function_exists('rest_add_application_passwords_to_index')) { function rest_add_application_passwords_to_index() { return \OtomatiesCoreVendor\rest_add_application_passwords_to_index(...func_get_args()); } }
 if (!function_exists('rest_api_default_filters')) { function rest_api_default_filters() { return \OtomatiesCoreVendor\rest_api_default_filters(...func_get_args()); } }
 if (!function_exists('rest_api_init')) { function rest_api_init() { return \OtomatiesCoreVendor\rest_api_init(...func_get_args()); } }
@@ -3396,6 +7490,9 @@ if (!function_exists('rest_validate_string_value_from_schema')) { function rest_
 if (!function_exists('rest_validate_value_from_schema')) { function rest_validate_value_from_schema() { return \OtomatiesCoreVendor\rest_validate_value_from_schema(...func_get_args()); } }
 if (!function_exists('restore_current_blog')) { function restore_current_blog() { return \OtomatiesCoreVendor\restore_current_blog(...func_get_args()); } }
 if (!function_exists('restore_current_locale')) { function restore_current_locale() { return \OtomatiesCoreVendor\restore_current_locale(...func_get_args()); } }
+if (!function_exists('restore_error_handler')) { function restore_error_handler() { return \OtomatiesCoreVendor\restore_error_handler(...func_get_args()); } }
+if (!function_exists('restore_exception_handler')) { function restore_exception_handler() { return \OtomatiesCoreVendor\restore_exception_handler(...func_get_args()); } }
+if (!function_exists('restore_include_path')) { function restore_include_path() { return \OtomatiesCoreVendor\restore_include_path(...func_get_args()); } }
 if (!function_exists('restore_previous_locale')) { function restore_previous_locale() { return \OtomatiesCoreVendor\restore_previous_locale(...func_get_args()); } }
 if (!function_exists('resume_plugin')) { function resume_plugin() { return \OtomatiesCoreVendor\resume_plugin(...func_get_args()); } }
 if (!function_exists('resume_theme')) { function resume_theme() { return \OtomatiesCoreVendor\resume_theme(...func_get_args()); } }
@@ -3403,11 +7500,65 @@ if (!function_exists('retrieve_password')) { function retrieve_password() { retu
 if (!function_exists('retrieve_widgets')) { function retrieve_widgets() { return \OtomatiesCoreVendor\retrieve_widgets(...func_get_args()); } }
 if (!function_exists('retry')) { function retry() { return \OtomatiesCoreVendor\retry(...func_get_args()); } }
 if (!function_exists('revoke_super_admin')) { function revoke_super_admin() { return \OtomatiesCoreVendor\revoke_super_admin(...func_get_args()); } }
+if (!function_exists('rewind')) { function rewind() { return \OtomatiesCoreVendor\rewind(...func_get_args()); } }
 if (!function_exists('rewind_posts')) { function rewind_posts() { return \OtomatiesCoreVendor\rewind_posts(...func_get_args()); } }
+if (!function_exists('rewinddir')) { function rewinddir() { return \OtomatiesCoreVendor\rewinddir(...func_get_args()); } }
 if (!function_exists('rich_edit_exists')) { function rich_edit_exists() { return \OtomatiesCoreVendor\rich_edit_exists(...func_get_args()); } }
+if (!function_exists('rmdir')) { function rmdir() { return \OtomatiesCoreVendor\rmdir(...func_get_args()); } }
+if (!function_exists('rnp_decrypt')) { function rnp_decrypt() { return \OtomatiesCoreVendor\rnp_decrypt(...func_get_args()); } }
+if (!function_exists('rnp_dump_packets')) { function rnp_dump_packets() { return \OtomatiesCoreVendor\rnp_dump_packets(...func_get_args()); } }
+if (!function_exists('rnp_dump_packets_to_json')) { function rnp_dump_packets_to_json() { return \OtomatiesCoreVendor\rnp_dump_packets_to_json(...func_get_args()); } }
+if (!function_exists('rnp_ffi_create')) { function rnp_ffi_create() { return \OtomatiesCoreVendor\rnp_ffi_create(...func_get_args()); } }
+if (!function_exists('rnp_ffi_set_pass_provider')) { function rnp_ffi_set_pass_provider() { return \OtomatiesCoreVendor\rnp_ffi_set_pass_provider(...func_get_args()); } }
+if (!function_exists('rnp_import_keys')) { function rnp_import_keys() { return \OtomatiesCoreVendor\rnp_import_keys(...func_get_args()); } }
+if (!function_exists('rnp_import_signatures')) { function rnp_import_signatures() { return \OtomatiesCoreVendor\rnp_import_signatures(...func_get_args()); } }
+if (!function_exists('rnp_key_export')) { function rnp_key_export() { return \OtomatiesCoreVendor\rnp_key_export(...func_get_args()); } }
+if (!function_exists('rnp_key_export_autocrypt')) { function rnp_key_export_autocrypt() { return \OtomatiesCoreVendor\rnp_key_export_autocrypt(...func_get_args()); } }
+if (!function_exists('rnp_key_export_revocation')) { function rnp_key_export_revocation() { return \OtomatiesCoreVendor\rnp_key_export_revocation(...func_get_args()); } }
+if (!function_exists('rnp_key_get_info')) { function rnp_key_get_info() { return \OtomatiesCoreVendor\rnp_key_get_info(...func_get_args()); } }
+if (!function_exists('rnp_key_remove')) { function rnp_key_remove() { return \OtomatiesCoreVendor\rnp_key_remove(...func_get_args()); } }
+if (!function_exists('rnp_key_revoke')) { function rnp_key_revoke() { return \OtomatiesCoreVendor\rnp_key_revoke(...func_get_args()); } }
+if (!function_exists('rnp_list_keys')) { function rnp_list_keys() { return \OtomatiesCoreVendor\rnp_list_keys(...func_get_args()); } }
+if (!function_exists('rnp_load_keys')) { function rnp_load_keys() { return \OtomatiesCoreVendor\rnp_load_keys(...func_get_args()); } }
+if (!function_exists('rnp_load_keys_from_path')) { function rnp_load_keys_from_path() { return \OtomatiesCoreVendor\rnp_load_keys_from_path(...func_get_args()); } }
+if (!function_exists('rnp_locate_key')) { function rnp_locate_key() { return \OtomatiesCoreVendor\rnp_locate_key(...func_get_args()); } }
+if (!function_exists('rnp_op_encrypt')) { function rnp_op_encrypt() { return \OtomatiesCoreVendor\rnp_op_encrypt(...func_get_args()); } }
+if (!function_exists('rnp_op_generate_key')) { function rnp_op_generate_key() { return \OtomatiesCoreVendor\rnp_op_generate_key(...func_get_args()); } }
+if (!function_exists('rnp_op_sign')) { function rnp_op_sign() { return \OtomatiesCoreVendor\rnp_op_sign(...func_get_args()); } }
+if (!function_exists('rnp_op_sign_cleartext')) { function rnp_op_sign_cleartext() { return \OtomatiesCoreVendor\rnp_op_sign_cleartext(...func_get_args()); } }
+if (!function_exists('rnp_op_sign_detached')) { function rnp_op_sign_detached() { return \OtomatiesCoreVendor\rnp_op_sign_detached(...func_get_args()); } }
+if (!function_exists('rnp_op_verify')) { function rnp_op_verify() { return \OtomatiesCoreVendor\rnp_op_verify(...func_get_args()); } }
+if (!function_exists('rnp_op_verify_detached')) { function rnp_op_verify_detached() { return \OtomatiesCoreVendor\rnp_op_verify_detached(...func_get_args()); } }
+if (!function_exists('rnp_save_keys')) { function rnp_save_keys() { return \OtomatiesCoreVendor\rnp_save_keys(...func_get_args()); } }
+if (!function_exists('rnp_save_keys_to_path')) { function rnp_save_keys_to_path() { return \OtomatiesCoreVendor\rnp_save_keys_to_path(...func_get_args()); } }
+if (!function_exists('rnp_supported_features')) { function rnp_supported_features() { return \OtomatiesCoreVendor\rnp_supported_features(...func_get_args()); } }
+if (!function_exists('round')) { function round() { return \OtomatiesCoreVendor\round(...func_get_args()); } }
+if (!function_exists('rpmaddtag')) { function rpmaddtag() { return \OtomatiesCoreVendor\rpmaddtag(...func_get_args()); } }
+if (!function_exists('rpmdbinfo')) { function rpmdbinfo() { return \OtomatiesCoreVendor\rpmdbinfo(...func_get_args()); } }
+if (!function_exists('rpmdbsearch')) { function rpmdbsearch() { return \OtomatiesCoreVendor\rpmdbsearch(...func_get_args()); } }
+if (!function_exists('rpmdefine')) { function rpmdefine() { return \OtomatiesCoreVendor\rpmdefine(...func_get_args()); } }
+if (!function_exists('rpminfo')) { function rpminfo() { return \OtomatiesCoreVendor\rpminfo(...func_get_args()); } }
+if (!function_exists('rpmvercmp')) { function rpmvercmp() { return \OtomatiesCoreVendor\rpmvercmp(...func_get_args()); } }
+if (!function_exists('rrd_create')) { function rrd_create() { return \OtomatiesCoreVendor\rrd_create(...func_get_args()); } }
+if (!function_exists('rrd_disconnect')) { function rrd_disconnect() { return \OtomatiesCoreVendor\rrd_disconnect(...func_get_args()); } }
+if (!function_exists('rrd_error')) { function rrd_error() { return \OtomatiesCoreVendor\rrd_error(...func_get_args()); } }
+if (!function_exists('rrd_fetch')) { function rrd_fetch() { return \OtomatiesCoreVendor\rrd_fetch(...func_get_args()); } }
+if (!function_exists('rrd_first')) { function rrd_first() { return \OtomatiesCoreVendor\rrd_first(...func_get_args()); } }
+if (!function_exists('rrd_graph')) { function rrd_graph() { return \OtomatiesCoreVendor\rrd_graph(...func_get_args()); } }
+if (!function_exists('rrd_info')) { function rrd_info() { return \OtomatiesCoreVendor\rrd_info(...func_get_args()); } }
+if (!function_exists('rrd_last')) { function rrd_last() { return \OtomatiesCoreVendor\rrd_last(...func_get_args()); } }
+if (!function_exists('rrd_lastupdate')) { function rrd_lastupdate() { return \OtomatiesCoreVendor\rrd_lastupdate(...func_get_args()); } }
+if (!function_exists('rrd_restore')) { function rrd_restore() { return \OtomatiesCoreVendor\rrd_restore(...func_get_args()); } }
+if (!function_exists('rrd_tune')) { function rrd_tune() { return \OtomatiesCoreVendor\rrd_tune(...func_get_args()); } }
+if (!function_exists('rrd_update')) { function rrd_update() { return \OtomatiesCoreVendor\rrd_update(...func_get_args()); } }
+if (!function_exists('rrd_version')) { function rrd_version() { return \OtomatiesCoreVendor\rrd_version(...func_get_args()); } }
+if (!function_exists('rrd_xport')) { function rrd_xport() { return \OtomatiesCoreVendor\rrd_xport(...func_get_args()); } }
+if (!function_exists('rrdc_disconnect')) { function rrdc_disconnect() { return \OtomatiesCoreVendor\rrdc_disconnect(...func_get_args()); } }
 if (!function_exists('rsd_link')) { function rsd_link() { return \OtomatiesCoreVendor\rsd_link(...func_get_args()); } }
+if (!function_exists('rsort')) { function rsort() { return \OtomatiesCoreVendor\rsort(...func_get_args()); } }
 if (!function_exists('rss2_site_icon')) { function rss2_site_icon() { return \OtomatiesCoreVendor\rss2_site_icon(...func_get_args()); } }
 if (!function_exists('rss_enclosure')) { function rss_enclosure() { return \OtomatiesCoreVendor\rss_enclosure(...func_get_args()); } }
+if (!function_exists('rtrim')) { function rtrim() { return \OtomatiesCoreVendor\rtrim(...func_get_args()); } }
 if (!function_exists('safecss_filter_attr')) { function safecss_filter_attr() { return \OtomatiesCoreVendor\safecss_filter_attr(...func_get_args()); } }
 if (!function_exists('sanitize_bookmark')) { function sanitize_bookmark() { return \OtomatiesCoreVendor\sanitize_bookmark(...func_get_args()); } }
 if (!function_exists('sanitize_bookmark_field')) { function sanitize_bookmark_field() { return \OtomatiesCoreVendor\sanitize_bookmark_field(...func_get_args()); } }
@@ -3439,8 +7590,16 @@ if (!function_exists('sanitize_url')) { function sanitize_url() { return \Otomat
 if (!function_exists('sanitize_user')) { function sanitize_user() { return \OtomatiesCoreVendor\sanitize_user(...func_get_args()); } }
 if (!function_exists('sanitize_user_field')) { function sanitize_user_field() { return \OtomatiesCoreVendor\sanitize_user_field(...func_get_args()); } }
 if (!function_exists('sanitize_user_object')) { function sanitize_user_object() { return \OtomatiesCoreVendor\sanitize_user_object(...func_get_args()); } }
+if (!function_exists('sapi_windows_cp_conv')) { function sapi_windows_cp_conv() { return \OtomatiesCoreVendor\sapi_windows_cp_conv(...func_get_args()); } }
+if (!function_exists('sapi_windows_cp_get')) { function sapi_windows_cp_get() { return \OtomatiesCoreVendor\sapi_windows_cp_get(...func_get_args()); } }
+if (!function_exists('sapi_windows_cp_is_utf8')) { function sapi_windows_cp_is_utf8() { return \OtomatiesCoreVendor\sapi_windows_cp_is_utf8(...func_get_args()); } }
+if (!function_exists('sapi_windows_cp_set')) { function sapi_windows_cp_set() { return \OtomatiesCoreVendor\sapi_windows_cp_set(...func_get_args()); } }
+if (!function_exists('sapi_windows_generate_ctrl_event')) { function sapi_windows_generate_ctrl_event() { return \OtomatiesCoreVendor\sapi_windows_generate_ctrl_event(...func_get_args()); } }
+if (!function_exists('sapi_windows_set_ctrl_handler')) { function sapi_windows_set_ctrl_handler() { return \OtomatiesCoreVendor\sapi_windows_set_ctrl_handler(...func_get_args()); } }
+if (!function_exists('sapi_windows_vt100_support')) { function sapi_windows_vt100_support() { return \OtomatiesCoreVendor\sapi_windows_vt100_support(...func_get_args()); } }
 if (!function_exists('saveDomDocument')) { function saveDomDocument() { return \OtomatiesCoreVendor\saveDomDocument(...func_get_args()); } }
 if (!function_exists('save_mod_rewrite_rules')) { function save_mod_rewrite_rules() { return \OtomatiesCoreVendor\save_mod_rewrite_rules(...func_get_args()); } }
+if (!function_exists('scandir')) { function scandir() { return \OtomatiesCoreVendor\scandir(...func_get_args()); } }
 if (!function_exists('screen_icon')) { function screen_icon() { return \OtomatiesCoreVendor\screen_icon(...func_get_args()); } }
 if (!function_exists('screen_layout')) { function screen_layout() { return \OtomatiesCoreVendor\screen_layout(...func_get_args()); } }
 if (!function_exists('screen_meta')) { function screen_meta() { return \OtomatiesCoreVendor\screen_meta(...func_get_args()); } }
@@ -3451,17 +7610,54 @@ if (!function_exists('seems_utf8')) { function seems_utf8() { return \OtomatiesC
 if (!function_exists('selected')) { function selected() { return \OtomatiesCoreVendor\selected(...func_get_args()); } }
 if (!function_exists('self_admin_url')) { function self_admin_url() { return \OtomatiesCoreVendor\self_admin_url(...func_get_args()); } }
 if (!function_exists('self_link')) { function self_link() { return \OtomatiesCoreVendor\self_link(...func_get_args()); } }
+if (!function_exists('sem_acquire')) { function sem_acquire() { return \OtomatiesCoreVendor\sem_acquire(...func_get_args()); } }
+if (!function_exists('sem_get')) { function sem_get() { return \OtomatiesCoreVendor\sem_get(...func_get_args()); } }
+if (!function_exists('sem_release')) { function sem_release() { return \OtomatiesCoreVendor\sem_release(...func_get_args()); } }
+if (!function_exists('sem_remove')) { function sem_remove() { return \OtomatiesCoreVendor\sem_remove(...func_get_args()); } }
 if (!function_exists('send_confirmation_on_profile_email')) { function send_confirmation_on_profile_email() { return \OtomatiesCoreVendor\send_confirmation_on_profile_email(...func_get_args()); } }
 if (!function_exists('send_frame_options_header')) { function send_frame_options_header() { return \OtomatiesCoreVendor\send_frame_options_header(...func_get_args()); } }
 if (!function_exists('send_nosniff_header')) { function send_nosniff_header() { return \OtomatiesCoreVendor\send_nosniff_header(...func_get_args()); } }
 if (!function_exists('send_origin_headers')) { function send_origin_headers() { return \OtomatiesCoreVendor\send_origin_headers(...func_get_args()); } }
 if (!function_exists('separate_comments')) { function separate_comments() { return \OtomatiesCoreVendor\separate_comments(...func_get_args()); } }
+if (!function_exists('serialize')) { function serialize() { return \OtomatiesCoreVendor\serialize(...func_get_args()); } }
 if (!function_exists('serialize_block')) { function serialize_block() { return \OtomatiesCoreVendor\serialize_block(...func_get_args()); } }
 if (!function_exists('serialize_block_attributes')) { function serialize_block_attributes() { return \OtomatiesCoreVendor\serialize_block_attributes(...func_get_args()); } }
 if (!function_exists('serialize_blocks')) { function serialize_blocks() { return \OtomatiesCoreVendor\serialize_blocks(...func_get_args()); } }
+if (!function_exists('session_abort')) { function session_abort() { return \OtomatiesCoreVendor\session_abort(...func_get_args()); } }
+if (!function_exists('session_cache_expire')) { function session_cache_expire() { return \OtomatiesCoreVendor\session_cache_expire(...func_get_args()); } }
+if (!function_exists('session_cache_limiter')) { function session_cache_limiter() { return \OtomatiesCoreVendor\session_cache_limiter(...func_get_args()); } }
+if (!function_exists('session_commit')) { function session_commit() { return \OtomatiesCoreVendor\session_commit(...func_get_args()); } }
+if (!function_exists('session_create_id')) { function session_create_id() { return \OtomatiesCoreVendor\session_create_id(...func_get_args()); } }
+if (!function_exists('session_decode')) { function session_decode() { return \OtomatiesCoreVendor\session_decode(...func_get_args()); } }
+if (!function_exists('session_destroy')) { function session_destroy() { return \OtomatiesCoreVendor\session_destroy(...func_get_args()); } }
+if (!function_exists('session_encode')) { function session_encode() { return \OtomatiesCoreVendor\session_encode(...func_get_args()); } }
+if (!function_exists('session_gc')) { function session_gc() { return \OtomatiesCoreVendor\session_gc(...func_get_args()); } }
+if (!function_exists('session_get_cookie_params')) { function session_get_cookie_params() { return \OtomatiesCoreVendor\session_get_cookie_params(...func_get_args()); } }
+if (!function_exists('session_id')) { function session_id() { return \OtomatiesCoreVendor\session_id(...func_get_args()); } }
+if (!function_exists('session_is_registered')) { function session_is_registered() { return \OtomatiesCoreVendor\session_is_registered(...func_get_args()); } }
+if (!function_exists('session_module_name')) { function session_module_name() { return \OtomatiesCoreVendor\session_module_name(...func_get_args()); } }
+if (!function_exists('session_name')) { function session_name() { return \OtomatiesCoreVendor\session_name(...func_get_args()); } }
+if (!function_exists('session_regenerate_id')) { function session_regenerate_id() { return \OtomatiesCoreVendor\session_regenerate_id(...func_get_args()); } }
+if (!function_exists('session_register')) { function session_register() { return \OtomatiesCoreVendor\session_register(...func_get_args()); } }
+if (!function_exists('session_register_shutdown')) { function session_register_shutdown() { return \OtomatiesCoreVendor\session_register_shutdown(...func_get_args()); } }
+if (!function_exists('session_reset')) { function session_reset() { return \OtomatiesCoreVendor\session_reset(...func_get_args()); } }
+if (!function_exists('session_save_path')) { function session_save_path() { return \OtomatiesCoreVendor\session_save_path(...func_get_args()); } }
+if (!function_exists('session_set_cookie_params')) { function session_set_cookie_params() { return \OtomatiesCoreVendor\session_set_cookie_params(...func_get_args()); } }
+if (!function_exists('session_set_save_handler')) { function session_set_save_handler() { return \OtomatiesCoreVendor\session_set_save_handler(...func_get_args()); } }
+if (!function_exists('session_start')) { function session_start() { return \OtomatiesCoreVendor\session_start(...func_get_args()); } }
+if (!function_exists('session_status')) { function session_status() { return \OtomatiesCoreVendor\session_status(...func_get_args()); } }
+if (!function_exists('session_unregister')) { function session_unregister() { return \OtomatiesCoreVendor\session_unregister(...func_get_args()); } }
+if (!function_exists('session_unset')) { function session_unset() { return \OtomatiesCoreVendor\session_unset(...func_get_args()); } }
+if (!function_exists('session_write_close')) { function session_write_close() { return \OtomatiesCoreVendor\session_write_close(...func_get_args()); } }
 if (!function_exists('set_current_screen')) { function set_current_screen() { return \OtomatiesCoreVendor\set_current_screen(...func_get_args()); } }
 if (!function_exists('set_current_user')) { function set_current_user() { return \OtomatiesCoreVendor\set_current_user(...func_get_args()); } }
+if (!function_exists('set_error_handler')) { function set_error_handler() { return \OtomatiesCoreVendor\set_error_handler(...func_get_args()); } }
+if (!function_exists('set_exception_handler')) { function set_exception_handler() { return \OtomatiesCoreVendor\set_exception_handler(...func_get_args()); } }
+if (!function_exists('set_file_buffer')) { function set_file_buffer() { return \OtomatiesCoreVendor\set_file_buffer(...func_get_args()); } }
 if (!function_exists('set_ignored_hooked_blocks_metadata')) { function set_ignored_hooked_blocks_metadata() { return \OtomatiesCoreVendor\set_ignored_hooked_blocks_metadata(...func_get_args()); } }
+if (!function_exists('set_include_path')) { function set_include_path() { return \OtomatiesCoreVendor\set_include_path(...func_get_args()); } }
+if (!function_exists('set_job_failed')) { function set_job_failed() { return \OtomatiesCoreVendor\set_job_failed(...func_get_args()); } }
+if (!function_exists('set_magic_quotes_runtime')) { function set_magic_quotes_runtime() { return \OtomatiesCoreVendor\set_magic_quotes_runtime(...func_get_args()); } }
 if (!function_exists('set_post_format')) { function set_post_format() { return \OtomatiesCoreVendor\set_post_format(...func_get_args()); } }
 if (!function_exists('set_post_thumbnail')) { function set_post_thumbnail() { return \OtomatiesCoreVendor\set_post_thumbnail(...func_get_args()); } }
 if (!function_exists('set_post_thumbnail_size')) { function set_post_thumbnail_size() { return \OtomatiesCoreVendor\set_post_thumbnail_size(...func_get_args()); } }
@@ -3469,15 +7665,37 @@ if (!function_exists('set_post_type')) { function set_post_type() { return \Otom
 if (!function_exists('set_query_var')) { function set_query_var() { return \OtomatiesCoreVendor\set_query_var(...func_get_args()); } }
 if (!function_exists('set_screen_options')) { function set_screen_options() { return \OtomatiesCoreVendor\set_screen_options(...func_get_args()); } }
 if (!function_exists('set_site_transient')) { function set_site_transient() { return \OtomatiesCoreVendor\set_site_transient(...func_get_args()); } }
+if (!function_exists('set_socket_blocking')) { function set_socket_blocking() { return \OtomatiesCoreVendor\set_socket_blocking(...func_get_args()); } }
 if (!function_exists('set_theme_mod')) { function set_theme_mod() { return \OtomatiesCoreVendor\set_theme_mod(...func_get_args()); } }
+if (!function_exists('set_time_limit')) { function set_time_limit() { return \OtomatiesCoreVendor\set_time_limit(...func_get_args()); } }
 if (!function_exists('set_transient')) { function set_transient() { return \OtomatiesCoreVendor\set_transient(...func_get_args()); } }
 if (!function_exists('set_url_scheme')) { function set_url_scheme() { return \OtomatiesCoreVendor\set_url_scheme(...func_get_args()); } }
 if (!function_exists('set_user_setting')) { function set_user_setting() { return \OtomatiesCoreVendor\set_user_setting(...func_get_args()); } }
+if (!function_exists('setcookie')) { function setcookie() { return \OtomatiesCoreVendor\setcookie(...func_get_args()); } }
+if (!function_exists('setlocale')) { function setlocale() { return \OtomatiesCoreVendor\setlocale(...func_get_args()); } }
+if (!function_exists('setrawcookie')) { function setrawcookie() { return \OtomatiesCoreVendor\setrawcookie(...func_get_args()); } }
 if (!function_exists('settings_errors')) { function settings_errors() { return \OtomatiesCoreVendor\settings_errors(...func_get_args()); } }
 if (!function_exists('settings_fields')) { function settings_fields() { return \OtomatiesCoreVendor\settings_fields(...func_get_args()); } }
+if (!function_exists('settype')) { function settype() { return \OtomatiesCoreVendor\settype(...func_get_args()); } }
 if (!function_exists('setup_config_display_header')) { function setup_config_display_header() { return \OtomatiesCoreVendor\setup_config_display_header(...func_get_args()); } }
 if (!function_exists('setup_postdata')) { function setup_postdata() { return \OtomatiesCoreVendor\setup_postdata(...func_get_args()); } }
 if (!function_exists('setup_userdata')) { function setup_userdata() { return \OtomatiesCoreVendor\setup_userdata(...func_get_args()); } }
+if (!function_exists('sha1')) { function sha1() { return \OtomatiesCoreVendor\sha1(...func_get_args()); } }
+if (!function_exists('sha1_file')) { function sha1_file() { return \OtomatiesCoreVendor\sha1_file(...func_get_args()); } }
+if (!function_exists('shell_exec')) { function shell_exec() { return \OtomatiesCoreVendor\shell_exec(...func_get_args()); } }
+if (!function_exists('shm_attach')) { function shm_attach() { return \OtomatiesCoreVendor\shm_attach(...func_get_args()); } }
+if (!function_exists('shm_detach')) { function shm_detach() { return \OtomatiesCoreVendor\shm_detach(...func_get_args()); } }
+if (!function_exists('shm_get_var')) { function shm_get_var() { return \OtomatiesCoreVendor\shm_get_var(...func_get_args()); } }
+if (!function_exists('shm_has_var')) { function shm_has_var() { return \OtomatiesCoreVendor\shm_has_var(...func_get_args()); } }
+if (!function_exists('shm_put_var')) { function shm_put_var() { return \OtomatiesCoreVendor\shm_put_var(...func_get_args()); } }
+if (!function_exists('shm_remove')) { function shm_remove() { return \OtomatiesCoreVendor\shm_remove(...func_get_args()); } }
+if (!function_exists('shm_remove_var')) { function shm_remove_var() { return \OtomatiesCoreVendor\shm_remove_var(...func_get_args()); } }
+if (!function_exists('shmop_close')) { function shmop_close() { return \OtomatiesCoreVendor\shmop_close(...func_get_args()); } }
+if (!function_exists('shmop_delete')) { function shmop_delete() { return \OtomatiesCoreVendor\shmop_delete(...func_get_args()); } }
+if (!function_exists('shmop_open')) { function shmop_open() { return \OtomatiesCoreVendor\shmop_open(...func_get_args()); } }
+if (!function_exists('shmop_read')) { function shmop_read() { return \OtomatiesCoreVendor\shmop_read(...func_get_args()); } }
+if (!function_exists('shmop_size')) { function shmop_size() { return \OtomatiesCoreVendor\shmop_size(...func_get_args()); } }
+if (!function_exists('shmop_write')) { function shmop_write() { return \OtomatiesCoreVendor\shmop_write(...func_get_args()); } }
 if (!function_exists('shortcode_atts')) { function shortcode_atts() { return \OtomatiesCoreVendor\shortcode_atts(...func_get_args()); } }
 if (!function_exists('shortcode_exists')) { function shortcode_exists() { return \OtomatiesCoreVendor\shortcode_exists(...func_get_args()); } }
 if (!function_exists('shortcode_parse_atts')) { function shortcode_parse_atts() { return \OtomatiesCoreVendor\shortcode_parse_atts(...func_get_args()); } }
@@ -3486,7 +7704,9 @@ if (!function_exists('showHelp')) { function showHelp() { return \OtomatiesCoreV
 if (!function_exists('show_admin_bar')) { function show_admin_bar() { return \OtomatiesCoreVendor\show_admin_bar(...func_get_args()); } }
 if (!function_exists('show_blog_form')) { function show_blog_form() { return \OtomatiesCoreVendor\show_blog_form(...func_get_args()); } }
 if (!function_exists('show_message')) { function show_message() { return \OtomatiesCoreVendor\show_message(...func_get_args()); } }
+if (!function_exists('show_source')) { function show_source() { return \OtomatiesCoreVendor\show_source(...func_get_args()); } }
 if (!function_exists('show_user_form')) { function show_user_form() { return \OtomatiesCoreVendor\show_user_form(...func_get_args()); } }
+if (!function_exists('shuffle')) { function shuffle() { return \OtomatiesCoreVendor\shuffle(...func_get_args()); } }
 if (!function_exists('shutdown_action_hook')) { function shutdown_action_hook() { return \OtomatiesCoreVendor\shutdown_action_hook(...func_get_args()); } }
 if (!function_exists('signup_another_blog')) { function signup_another_blog() { return \OtomatiesCoreVendor\signup_another_blog(...func_get_args()); } }
 if (!function_exists('signup_blog')) { function signup_blog() { return \OtomatiesCoreVendor\signup_blog(...func_get_args()); } }
@@ -3494,56 +7714,696 @@ if (!function_exists('signup_get_available_languages')) { function signup_get_av
 if (!function_exists('signup_nonce_check')) { function signup_nonce_check() { return \OtomatiesCoreVendor\signup_nonce_check(...func_get_args()); } }
 if (!function_exists('signup_nonce_fields')) { function signup_nonce_fields() { return \OtomatiesCoreVendor\signup_nonce_fields(...func_get_args()); } }
 if (!function_exists('signup_user')) { function signup_user() { return \OtomatiesCoreVendor\signup_user(...func_get_args()); } }
+if (!function_exists('simdjson_decode')) { function simdjson_decode() { return \OtomatiesCoreVendor\simdjson_decode(...func_get_args()); } }
+if (!function_exists('simdjson_is_valid')) { function simdjson_is_valid() { return \OtomatiesCoreVendor\simdjson_is_valid(...func_get_args()); } }
+if (!function_exists('simdjson_key_count')) { function simdjson_key_count() { return \OtomatiesCoreVendor\simdjson_key_count(...func_get_args()); } }
+if (!function_exists('simdjson_key_exists')) { function simdjson_key_exists() { return \OtomatiesCoreVendor\simdjson_key_exists(...func_get_args()); } }
+if (!function_exists('simdjson_key_value')) { function simdjson_key_value() { return \OtomatiesCoreVendor\simdjson_key_value(...func_get_args()); } }
+if (!function_exists('similar_text')) { function similar_text() { return \OtomatiesCoreVendor\similar_text(...func_get_args()); } }
+if (!function_exists('simplexml_import_dom')) { function simplexml_import_dom() { return \OtomatiesCoreVendor\simplexml_import_dom(...func_get_args()); } }
+if (!function_exists('simplexml_load_file')) { function simplexml_load_file() { return \OtomatiesCoreVendor\simplexml_load_file(...func_get_args()); } }
+if (!function_exists('simplexml_load_string')) { function simplexml_load_string() { return \OtomatiesCoreVendor\simplexml_load_string(...func_get_args()); } }
+if (!function_exists('sin')) { function sin() { return \OtomatiesCoreVendor\sin(...func_get_args()); } }
 if (!function_exists('single_cat_title')) { function single_cat_title() { return \OtomatiesCoreVendor\single_cat_title(...func_get_args()); } }
 if (!function_exists('single_month_title')) { function single_month_title() { return \OtomatiesCoreVendor\single_month_title(...func_get_args()); } }
 if (!function_exists('single_post_title')) { function single_post_title() { return \OtomatiesCoreVendor\single_post_title(...func_get_args()); } }
 if (!function_exists('single_tag_title')) { function single_tag_title() { return \OtomatiesCoreVendor\single_tag_title(...func_get_args()); } }
 if (!function_exists('single_term_title')) { function single_term_title() { return \OtomatiesCoreVendor\single_term_title(...func_get_args()); } }
+if (!function_exists('sinh')) { function sinh() { return \OtomatiesCoreVendor\sinh(...func_get_args()); } }
 if (!function_exists('site_admin_notice')) { function site_admin_notice() { return \OtomatiesCoreVendor\site_admin_notice(...func_get_args()); } }
 if (!function_exists('site_icon_url')) { function site_icon_url() { return \OtomatiesCoreVendor\site_icon_url(...func_get_args()); } }
 if (!function_exists('site_url')) { function site_url() { return \OtomatiesCoreVendor\site_url(...func_get_args()); } }
 if (!function_exists('size_format')) { function size_format() { return \OtomatiesCoreVendor\size_format(...func_get_args()); } }
+if (!function_exists('sizeof')) { function sizeof() { return \OtomatiesCoreVendor\sizeof(...func_get_args()); } }
+if (!function_exists('sleep')) { function sleep() { return \OtomatiesCoreVendor\sleep(...func_get_args()); } }
 if (!function_exists('smilies_init')) { function smilies_init() { return \OtomatiesCoreVendor\smilies_init(...func_get_args()); } }
+if (!function_exists('snappy_compress')) { function snappy_compress() { return \OtomatiesCoreVendor\snappy_compress(...func_get_args()); } }
+if (!function_exists('snappy_uncompress')) { function snappy_uncompress() { return \OtomatiesCoreVendor\snappy_uncompress(...func_get_args()); } }
+if (!function_exists('snmp2_get')) { function snmp2_get() { return \OtomatiesCoreVendor\snmp2_get(...func_get_args()); } }
+if (!function_exists('snmp2_getnext')) { function snmp2_getnext() { return \OtomatiesCoreVendor\snmp2_getnext(...func_get_args()); } }
+if (!function_exists('snmp2_real_walk')) { function snmp2_real_walk() { return \OtomatiesCoreVendor\snmp2_real_walk(...func_get_args()); } }
+if (!function_exists('snmp2_set')) { function snmp2_set() { return \OtomatiesCoreVendor\snmp2_set(...func_get_args()); } }
+if (!function_exists('snmp2_walk')) { function snmp2_walk() { return \OtomatiesCoreVendor\snmp2_walk(...func_get_args()); } }
+if (!function_exists('snmp3_get')) { function snmp3_get() { return \OtomatiesCoreVendor\snmp3_get(...func_get_args()); } }
+if (!function_exists('snmp3_getnext')) { function snmp3_getnext() { return \OtomatiesCoreVendor\snmp3_getnext(...func_get_args()); } }
+if (!function_exists('snmp3_real_walk')) { function snmp3_real_walk() { return \OtomatiesCoreVendor\snmp3_real_walk(...func_get_args()); } }
+if (!function_exists('snmp3_set')) { function snmp3_set() { return \OtomatiesCoreVendor\snmp3_set(...func_get_args()); } }
+if (!function_exists('snmp3_walk')) { function snmp3_walk() { return \OtomatiesCoreVendor\snmp3_walk(...func_get_args()); } }
+if (!function_exists('snmp_get_quick_print')) { function snmp_get_quick_print() { return \OtomatiesCoreVendor\snmp_get_quick_print(...func_get_args()); } }
+if (!function_exists('snmp_get_valueretrieval')) { function snmp_get_valueretrieval() { return \OtomatiesCoreVendor\snmp_get_valueretrieval(...func_get_args()); } }
+if (!function_exists('snmp_read_mib')) { function snmp_read_mib() { return \OtomatiesCoreVendor\snmp_read_mib(...func_get_args()); } }
+if (!function_exists('snmp_set_enum_print')) { function snmp_set_enum_print() { return \OtomatiesCoreVendor\snmp_set_enum_print(...func_get_args()); } }
+if (!function_exists('snmp_set_oid_numeric_print')) { function snmp_set_oid_numeric_print() { return \OtomatiesCoreVendor\snmp_set_oid_numeric_print(...func_get_args()); } }
+if (!function_exists('snmp_set_oid_output_format')) { function snmp_set_oid_output_format() { return \OtomatiesCoreVendor\snmp_set_oid_output_format(...func_get_args()); } }
+if (!function_exists('snmp_set_quick_print')) { function snmp_set_quick_print() { return \OtomatiesCoreVendor\snmp_set_quick_print(...func_get_args()); } }
+if (!function_exists('snmp_set_valueretrieval')) { function snmp_set_valueretrieval() { return \OtomatiesCoreVendor\snmp_set_valueretrieval(...func_get_args()); } }
+if (!function_exists('snmpget')) { function snmpget() { return \OtomatiesCoreVendor\snmpget(...func_get_args()); } }
+if (!function_exists('snmpgetnext')) { function snmpgetnext() { return \OtomatiesCoreVendor\snmpgetnext(...func_get_args()); } }
+if (!function_exists('snmprealwalk')) { function snmprealwalk() { return \OtomatiesCoreVendor\snmprealwalk(...func_get_args()); } }
+if (!function_exists('snmpset')) { function snmpset() { return \OtomatiesCoreVendor\snmpset(...func_get_args()); } }
+if (!function_exists('snmpwalk')) { function snmpwalk() { return \OtomatiesCoreVendor\snmpwalk(...func_get_args()); } }
+if (!function_exists('snmpwalkoid')) { function snmpwalkoid() { return \OtomatiesCoreVendor\snmpwalkoid(...func_get_args()); } }
+if (!function_exists('socket_accept')) { function socket_accept() { return \OtomatiesCoreVendor\socket_accept(...func_get_args()); } }
+if (!function_exists('socket_addrinfo_bind')) { function socket_addrinfo_bind() { return \OtomatiesCoreVendor\socket_addrinfo_bind(...func_get_args()); } }
+if (!function_exists('socket_addrinfo_connect')) { function socket_addrinfo_connect() { return \OtomatiesCoreVendor\socket_addrinfo_connect(...func_get_args()); } }
+if (!function_exists('socket_addrinfo_explain')) { function socket_addrinfo_explain() { return \OtomatiesCoreVendor\socket_addrinfo_explain(...func_get_args()); } }
+if (!function_exists('socket_addrinfo_lookup')) { function socket_addrinfo_lookup() { return \OtomatiesCoreVendor\socket_addrinfo_lookup(...func_get_args()); } }
+if (!function_exists('socket_atmark')) { function socket_atmark() { return \OtomatiesCoreVendor\socket_atmark(...func_get_args()); } }
+if (!function_exists('socket_bind')) { function socket_bind() { return \OtomatiesCoreVendor\socket_bind(...func_get_args()); } }
+if (!function_exists('socket_clear_error')) { function socket_clear_error() { return \OtomatiesCoreVendor\socket_clear_error(...func_get_args()); } }
+if (!function_exists('socket_close')) { function socket_close() { return \OtomatiesCoreVendor\socket_close(...func_get_args()); } }
+if (!function_exists('socket_cmsg_space')) { function socket_cmsg_space() { return \OtomatiesCoreVendor\socket_cmsg_space(...func_get_args()); } }
+if (!function_exists('socket_connect')) { function socket_connect() { return \OtomatiesCoreVendor\socket_connect(...func_get_args()); } }
+if (!function_exists('socket_create')) { function socket_create() { return \OtomatiesCoreVendor\socket_create(...func_get_args()); } }
+if (!function_exists('socket_create_listen')) { function socket_create_listen() { return \OtomatiesCoreVendor\socket_create_listen(...func_get_args()); } }
+if (!function_exists('socket_create_pair')) { function socket_create_pair() { return \OtomatiesCoreVendor\socket_create_pair(...func_get_args()); } }
+if (!function_exists('socket_export_stream')) { function socket_export_stream() { return \OtomatiesCoreVendor\socket_export_stream(...func_get_args()); } }
+if (!function_exists('socket_get_option')) { function socket_get_option() { return \OtomatiesCoreVendor\socket_get_option(...func_get_args()); } }
+if (!function_exists('socket_get_status')) { function socket_get_status() { return \OtomatiesCoreVendor\socket_get_status(...func_get_args()); } }
+if (!function_exists('socket_getopt')) { function socket_getopt() { return \OtomatiesCoreVendor\socket_getopt(...func_get_args()); } }
+if (!function_exists('socket_getpeername')) { function socket_getpeername() { return \OtomatiesCoreVendor\socket_getpeername(...func_get_args()); } }
+if (!function_exists('socket_getsockname')) { function socket_getsockname() { return \OtomatiesCoreVendor\socket_getsockname(...func_get_args()); } }
+if (!function_exists('socket_import_stream')) { function socket_import_stream() { return \OtomatiesCoreVendor\socket_import_stream(...func_get_args()); } }
+if (!function_exists('socket_last_error')) { function socket_last_error() { return \OtomatiesCoreVendor\socket_last_error(...func_get_args()); } }
+if (!function_exists('socket_listen')) { function socket_listen() { return \OtomatiesCoreVendor\socket_listen(...func_get_args()); } }
+if (!function_exists('socket_read')) { function socket_read() { return \OtomatiesCoreVendor\socket_read(...func_get_args()); } }
+if (!function_exists('socket_recv')) { function socket_recv() { return \OtomatiesCoreVendor\socket_recv(...func_get_args()); } }
+if (!function_exists('socket_recvfrom')) { function socket_recvfrom() { return \OtomatiesCoreVendor\socket_recvfrom(...func_get_args()); } }
+if (!function_exists('socket_recvmsg')) { function socket_recvmsg() { return \OtomatiesCoreVendor\socket_recvmsg(...func_get_args()); } }
+if (!function_exists('socket_select')) { function socket_select() { return \OtomatiesCoreVendor\socket_select(...func_get_args()); } }
+if (!function_exists('socket_send')) { function socket_send() { return \OtomatiesCoreVendor\socket_send(...func_get_args()); } }
+if (!function_exists('socket_sendmsg')) { function socket_sendmsg() { return \OtomatiesCoreVendor\socket_sendmsg(...func_get_args()); } }
+if (!function_exists('socket_sendto')) { function socket_sendto() { return \OtomatiesCoreVendor\socket_sendto(...func_get_args()); } }
+if (!function_exists('socket_set_block')) { function socket_set_block() { return \OtomatiesCoreVendor\socket_set_block(...func_get_args()); } }
+if (!function_exists('socket_set_blocking')) { function socket_set_blocking() { return \OtomatiesCoreVendor\socket_set_blocking(...func_get_args()); } }
+if (!function_exists('socket_set_nonblock')) { function socket_set_nonblock() { return \OtomatiesCoreVendor\socket_set_nonblock(...func_get_args()); } }
+if (!function_exists('socket_set_option')) { function socket_set_option() { return \OtomatiesCoreVendor\socket_set_option(...func_get_args()); } }
+if (!function_exists('socket_set_timeout')) { function socket_set_timeout() { return \OtomatiesCoreVendor\socket_set_timeout(...func_get_args()); } }
+if (!function_exists('socket_setopt')) { function socket_setopt() { return \OtomatiesCoreVendor\socket_setopt(...func_get_args()); } }
+if (!function_exists('socket_shutdown')) { function socket_shutdown() { return \OtomatiesCoreVendor\socket_shutdown(...func_get_args()); } }
+if (!function_exists('socket_strerror')) { function socket_strerror() { return \OtomatiesCoreVendor\socket_strerror(...func_get_args()); } }
+if (!function_exists('socket_write')) { function socket_write() { return \OtomatiesCoreVendor\socket_write(...func_get_args()); } }
+if (!function_exists('socket_wsaprotocol_info_export')) { function socket_wsaprotocol_info_export() { return \OtomatiesCoreVendor\socket_wsaprotocol_info_export(...func_get_args()); } }
+if (!function_exists('socket_wsaprotocol_info_import')) { function socket_wsaprotocol_info_import() { return \OtomatiesCoreVendor\socket_wsaprotocol_info_import(...func_get_args()); } }
+if (!function_exists('socket_wsaprotocol_info_release')) { function socket_wsaprotocol_info_release() { return \OtomatiesCoreVendor\socket_wsaprotocol_info_release(...func_get_args()); } }
+if (!function_exists('sodium_add')) { function sodium_add() { return \OtomatiesCoreVendor\sodium_add(...func_get_args()); } }
+if (!function_exists('sodium_base642bin')) { function sodium_base642bin() { return \OtomatiesCoreVendor\sodium_base642bin(...func_get_args()); } }
+if (!function_exists('sodium_bin2base64')) { function sodium_bin2base64() { return \OtomatiesCoreVendor\sodium_bin2base64(...func_get_args()); } }
+if (!function_exists('sodium_bin2hex')) { function sodium_bin2hex() { return \OtomatiesCoreVendor\sodium_bin2hex(...func_get_args()); } }
+if (!function_exists('sodium_compare')) { function sodium_compare() { return \OtomatiesCoreVendor\sodium_compare(...func_get_args()); } }
+if (!function_exists('sodium_crypto_aead_aegis128l_decrypt')) { function sodium_crypto_aead_aegis128l_decrypt() { return \OtomatiesCoreVendor\sodium_crypto_aead_aegis128l_decrypt(...func_get_args()); } }
+if (!function_exists('sodium_crypto_aead_aegis128l_encrypt')) { function sodium_crypto_aead_aegis128l_encrypt() { return \OtomatiesCoreVendor\sodium_crypto_aead_aegis128l_encrypt(...func_get_args()); } }
+if (!function_exists('sodium_crypto_aead_aegis128l_keygen')) { function sodium_crypto_aead_aegis128l_keygen() { return \OtomatiesCoreVendor\sodium_crypto_aead_aegis128l_keygen(...func_get_args()); } }
+if (!function_exists('sodium_crypto_aead_aegis256_decrypt')) { function sodium_crypto_aead_aegis256_decrypt() { return \OtomatiesCoreVendor\sodium_crypto_aead_aegis256_decrypt(...func_get_args()); } }
+if (!function_exists('sodium_crypto_aead_aegis256_encrypt')) { function sodium_crypto_aead_aegis256_encrypt() { return \OtomatiesCoreVendor\sodium_crypto_aead_aegis256_encrypt(...func_get_args()); } }
+if (!function_exists('sodium_crypto_aead_aegis256_keygen')) { function sodium_crypto_aead_aegis256_keygen() { return \OtomatiesCoreVendor\sodium_crypto_aead_aegis256_keygen(...func_get_args()); } }
+if (!function_exists('sodium_crypto_aead_aes256gcm_decrypt')) { function sodium_crypto_aead_aes256gcm_decrypt() { return \OtomatiesCoreVendor\sodium_crypto_aead_aes256gcm_decrypt(...func_get_args()); } }
+if (!function_exists('sodium_crypto_aead_aes256gcm_encrypt')) { function sodium_crypto_aead_aes256gcm_encrypt() { return \OtomatiesCoreVendor\sodium_crypto_aead_aes256gcm_encrypt(...func_get_args()); } }
+if (!function_exists('sodium_crypto_aead_aes256gcm_is_available')) { function sodium_crypto_aead_aes256gcm_is_available() { return \OtomatiesCoreVendor\sodium_crypto_aead_aes256gcm_is_available(...func_get_args()); } }
+if (!function_exists('sodium_crypto_aead_aes256gcm_keygen')) { function sodium_crypto_aead_aes256gcm_keygen() { return \OtomatiesCoreVendor\sodium_crypto_aead_aes256gcm_keygen(...func_get_args()); } }
+if (!function_exists('sodium_crypto_aead_chacha20poly1305_decrypt')) { function sodium_crypto_aead_chacha20poly1305_decrypt() { return \OtomatiesCoreVendor\sodium_crypto_aead_chacha20poly1305_decrypt(...func_get_args()); } }
+if (!function_exists('sodium_crypto_aead_chacha20poly1305_encrypt')) { function sodium_crypto_aead_chacha20poly1305_encrypt() { return \OtomatiesCoreVendor\sodium_crypto_aead_chacha20poly1305_encrypt(...func_get_args()); } }
+if (!function_exists('sodium_crypto_aead_chacha20poly1305_ietf_decrypt')) { function sodium_crypto_aead_chacha20poly1305_ietf_decrypt() { return \OtomatiesCoreVendor\sodium_crypto_aead_chacha20poly1305_ietf_decrypt(...func_get_args()); } }
+if (!function_exists('sodium_crypto_aead_chacha20poly1305_ietf_encrypt')) { function sodium_crypto_aead_chacha20poly1305_ietf_encrypt() { return \OtomatiesCoreVendor\sodium_crypto_aead_chacha20poly1305_ietf_encrypt(...func_get_args()); } }
+if (!function_exists('sodium_crypto_aead_chacha20poly1305_ietf_keygen')) { function sodium_crypto_aead_chacha20poly1305_ietf_keygen() { return \OtomatiesCoreVendor\sodium_crypto_aead_chacha20poly1305_ietf_keygen(...func_get_args()); } }
+if (!function_exists('sodium_crypto_aead_chacha20poly1305_keygen')) { function sodium_crypto_aead_chacha20poly1305_keygen() { return \OtomatiesCoreVendor\sodium_crypto_aead_chacha20poly1305_keygen(...func_get_args()); } }
+if (!function_exists('sodium_crypto_aead_xchacha20poly1305_ietf_decrypt')) { function sodium_crypto_aead_xchacha20poly1305_ietf_decrypt() { return \OtomatiesCoreVendor\sodium_crypto_aead_xchacha20poly1305_ietf_decrypt(...func_get_args()); } }
+if (!function_exists('sodium_crypto_aead_xchacha20poly1305_ietf_encrypt')) { function sodium_crypto_aead_xchacha20poly1305_ietf_encrypt() { return \OtomatiesCoreVendor\sodium_crypto_aead_xchacha20poly1305_ietf_encrypt(...func_get_args()); } }
+if (!function_exists('sodium_crypto_aead_xchacha20poly1305_ietf_keygen')) { function sodium_crypto_aead_xchacha20poly1305_ietf_keygen() { return \OtomatiesCoreVendor\sodium_crypto_aead_xchacha20poly1305_ietf_keygen(...func_get_args()); } }
+if (!function_exists('sodium_crypto_auth')) { function sodium_crypto_auth() { return \OtomatiesCoreVendor\sodium_crypto_auth(...func_get_args()); } }
+if (!function_exists('sodium_crypto_auth_keygen')) { function sodium_crypto_auth_keygen() { return \OtomatiesCoreVendor\sodium_crypto_auth_keygen(...func_get_args()); } }
+if (!function_exists('sodium_crypto_auth_verify')) { function sodium_crypto_auth_verify() { return \OtomatiesCoreVendor\sodium_crypto_auth_verify(...func_get_args()); } }
+if (!function_exists('sodium_crypto_box')) { function sodium_crypto_box() { return \OtomatiesCoreVendor\sodium_crypto_box(...func_get_args()); } }
+if (!function_exists('sodium_crypto_box_keypair')) { function sodium_crypto_box_keypair() { return \OtomatiesCoreVendor\sodium_crypto_box_keypair(...func_get_args()); } }
+if (!function_exists('sodium_crypto_box_keypair_from_secretkey_and_publickey')) { function sodium_crypto_box_keypair_from_secretkey_and_publickey() { return \OtomatiesCoreVendor\sodium_crypto_box_keypair_from_secretkey_and_publickey(...func_get_args()); } }
+if (!function_exists('sodium_crypto_box_open')) { function sodium_crypto_box_open() { return \OtomatiesCoreVendor\sodium_crypto_box_open(...func_get_args()); } }
+if (!function_exists('sodium_crypto_box_publickey')) { function sodium_crypto_box_publickey() { return \OtomatiesCoreVendor\sodium_crypto_box_publickey(...func_get_args()); } }
+if (!function_exists('sodium_crypto_box_publickey_from_secretkey')) { function sodium_crypto_box_publickey_from_secretkey() { return \OtomatiesCoreVendor\sodium_crypto_box_publickey_from_secretkey(...func_get_args()); } }
+if (!function_exists('sodium_crypto_box_seal')) { function sodium_crypto_box_seal() { return \OtomatiesCoreVendor\sodium_crypto_box_seal(...func_get_args()); } }
+if (!function_exists('sodium_crypto_box_seal_open')) { function sodium_crypto_box_seal_open() { return \OtomatiesCoreVendor\sodium_crypto_box_seal_open(...func_get_args()); } }
+if (!function_exists('sodium_crypto_box_secretkey')) { function sodium_crypto_box_secretkey() { return \OtomatiesCoreVendor\sodium_crypto_box_secretkey(...func_get_args()); } }
+if (!function_exists('sodium_crypto_box_seed_keypair')) { function sodium_crypto_box_seed_keypair() { return \OtomatiesCoreVendor\sodium_crypto_box_seed_keypair(...func_get_args()); } }
+if (!function_exists('sodium_crypto_core_ristretto255_add')) { function sodium_crypto_core_ristretto255_add() { return \OtomatiesCoreVendor\sodium_crypto_core_ristretto255_add(...func_get_args()); } }
+if (!function_exists('sodium_crypto_core_ristretto255_from_hash')) { function sodium_crypto_core_ristretto255_from_hash() { return \OtomatiesCoreVendor\sodium_crypto_core_ristretto255_from_hash(...func_get_args()); } }
+if (!function_exists('sodium_crypto_core_ristretto255_is_valid_point')) { function sodium_crypto_core_ristretto255_is_valid_point() { return \OtomatiesCoreVendor\sodium_crypto_core_ristretto255_is_valid_point(...func_get_args()); } }
+if (!function_exists('sodium_crypto_core_ristretto255_random')) { function sodium_crypto_core_ristretto255_random() { return \OtomatiesCoreVendor\sodium_crypto_core_ristretto255_random(...func_get_args()); } }
+if (!function_exists('sodium_crypto_core_ristretto255_scalar_add')) { function sodium_crypto_core_ristretto255_scalar_add() { return \OtomatiesCoreVendor\sodium_crypto_core_ristretto255_scalar_add(...func_get_args()); } }
+if (!function_exists('sodium_crypto_core_ristretto255_scalar_complement')) { function sodium_crypto_core_ristretto255_scalar_complement() { return \OtomatiesCoreVendor\sodium_crypto_core_ristretto255_scalar_complement(...func_get_args()); } }
+if (!function_exists('sodium_crypto_core_ristretto255_scalar_invert')) { function sodium_crypto_core_ristretto255_scalar_invert() { return \OtomatiesCoreVendor\sodium_crypto_core_ristretto255_scalar_invert(...func_get_args()); } }
+if (!function_exists('sodium_crypto_core_ristretto255_scalar_mul')) { function sodium_crypto_core_ristretto255_scalar_mul() { return \OtomatiesCoreVendor\sodium_crypto_core_ristretto255_scalar_mul(...func_get_args()); } }
+if (!function_exists('sodium_crypto_core_ristretto255_scalar_negate')) { function sodium_crypto_core_ristretto255_scalar_negate() { return \OtomatiesCoreVendor\sodium_crypto_core_ristretto255_scalar_negate(...func_get_args()); } }
+if (!function_exists('sodium_crypto_core_ristretto255_scalar_random')) { function sodium_crypto_core_ristretto255_scalar_random() { return \OtomatiesCoreVendor\sodium_crypto_core_ristretto255_scalar_random(...func_get_args()); } }
+if (!function_exists('sodium_crypto_core_ristretto255_scalar_reduce')) { function sodium_crypto_core_ristretto255_scalar_reduce() { return \OtomatiesCoreVendor\sodium_crypto_core_ristretto255_scalar_reduce(...func_get_args()); } }
+if (!function_exists('sodium_crypto_core_ristretto255_scalar_sub')) { function sodium_crypto_core_ristretto255_scalar_sub() { return \OtomatiesCoreVendor\sodium_crypto_core_ristretto255_scalar_sub(...func_get_args()); } }
+if (!function_exists('sodium_crypto_core_ristretto255_sub')) { function sodium_crypto_core_ristretto255_sub() { return \OtomatiesCoreVendor\sodium_crypto_core_ristretto255_sub(...func_get_args()); } }
+if (!function_exists('sodium_crypto_generichash')) { function sodium_crypto_generichash() { return \OtomatiesCoreVendor\sodium_crypto_generichash(...func_get_args()); } }
+if (!function_exists('sodium_crypto_generichash_final')) { function sodium_crypto_generichash_final() { return \OtomatiesCoreVendor\sodium_crypto_generichash_final(...func_get_args()); } }
+if (!function_exists('sodium_crypto_generichash_init')) { function sodium_crypto_generichash_init() { return \OtomatiesCoreVendor\sodium_crypto_generichash_init(...func_get_args()); } }
+if (!function_exists('sodium_crypto_generichash_keygen')) { function sodium_crypto_generichash_keygen() { return \OtomatiesCoreVendor\sodium_crypto_generichash_keygen(...func_get_args()); } }
+if (!function_exists('sodium_crypto_generichash_update')) { function sodium_crypto_generichash_update() { return \OtomatiesCoreVendor\sodium_crypto_generichash_update(...func_get_args()); } }
+if (!function_exists('sodium_crypto_kdf_derive_from_key')) { function sodium_crypto_kdf_derive_from_key() { return \OtomatiesCoreVendor\sodium_crypto_kdf_derive_from_key(...func_get_args()); } }
+if (!function_exists('sodium_crypto_kdf_keygen')) { function sodium_crypto_kdf_keygen() { return \OtomatiesCoreVendor\sodium_crypto_kdf_keygen(...func_get_args()); } }
+if (!function_exists('sodium_crypto_kx')) { function sodium_crypto_kx() { return \OtomatiesCoreVendor\sodium_crypto_kx(...func_get_args()); } }
+if (!function_exists('sodium_crypto_kx_client_session_keys')) { function sodium_crypto_kx_client_session_keys() { return \OtomatiesCoreVendor\sodium_crypto_kx_client_session_keys(...func_get_args()); } }
+if (!function_exists('sodium_crypto_kx_keypair')) { function sodium_crypto_kx_keypair() { return \OtomatiesCoreVendor\sodium_crypto_kx_keypair(...func_get_args()); } }
+if (!function_exists('sodium_crypto_kx_publickey')) { function sodium_crypto_kx_publickey() { return \OtomatiesCoreVendor\sodium_crypto_kx_publickey(...func_get_args()); } }
+if (!function_exists('sodium_crypto_kx_secretkey')) { function sodium_crypto_kx_secretkey() { return \OtomatiesCoreVendor\sodium_crypto_kx_secretkey(...func_get_args()); } }
+if (!function_exists('sodium_crypto_kx_seed_keypair')) { function sodium_crypto_kx_seed_keypair() { return \OtomatiesCoreVendor\sodium_crypto_kx_seed_keypair(...func_get_args()); } }
+if (!function_exists('sodium_crypto_kx_server_session_keys')) { function sodium_crypto_kx_server_session_keys() { return \OtomatiesCoreVendor\sodium_crypto_kx_server_session_keys(...func_get_args()); } }
+if (!function_exists('sodium_crypto_pwhash')) { function sodium_crypto_pwhash() { return \OtomatiesCoreVendor\sodium_crypto_pwhash(...func_get_args()); } }
+if (!function_exists('sodium_crypto_pwhash_scryptsalsa208sha256')) { function sodium_crypto_pwhash_scryptsalsa208sha256() { return \OtomatiesCoreVendor\sodium_crypto_pwhash_scryptsalsa208sha256(...func_get_args()); } }
+if (!function_exists('sodium_crypto_pwhash_scryptsalsa208sha256_str')) { function sodium_crypto_pwhash_scryptsalsa208sha256_str() { return \OtomatiesCoreVendor\sodium_crypto_pwhash_scryptsalsa208sha256_str(...func_get_args()); } }
+if (!function_exists('sodium_crypto_pwhash_scryptsalsa208sha256_str_verify')) { function sodium_crypto_pwhash_scryptsalsa208sha256_str_verify() { return \OtomatiesCoreVendor\sodium_crypto_pwhash_scryptsalsa208sha256_str_verify(...func_get_args()); } }
+if (!function_exists('sodium_crypto_pwhash_str')) { function sodium_crypto_pwhash_str() { return \OtomatiesCoreVendor\sodium_crypto_pwhash_str(...func_get_args()); } }
+if (!function_exists('sodium_crypto_pwhash_str_needs_rehash')) { function sodium_crypto_pwhash_str_needs_rehash() { return \OtomatiesCoreVendor\sodium_crypto_pwhash_str_needs_rehash(...func_get_args()); } }
+if (!function_exists('sodium_crypto_pwhash_str_verify')) { function sodium_crypto_pwhash_str_verify() { return \OtomatiesCoreVendor\sodium_crypto_pwhash_str_verify(...func_get_args()); } }
+if (!function_exists('sodium_crypto_scalarmult')) { function sodium_crypto_scalarmult() { return \OtomatiesCoreVendor\sodium_crypto_scalarmult(...func_get_args()); } }
+if (!function_exists('sodium_crypto_scalarmult_base')) { function sodium_crypto_scalarmult_base() { return \OtomatiesCoreVendor\sodium_crypto_scalarmult_base(...func_get_args()); } }
+if (!function_exists('sodium_crypto_scalarmult_ristretto255')) { function sodium_crypto_scalarmult_ristretto255() { return \OtomatiesCoreVendor\sodium_crypto_scalarmult_ristretto255(...func_get_args()); } }
+if (!function_exists('sodium_crypto_scalarmult_ristretto255_base')) { function sodium_crypto_scalarmult_ristretto255_base() { return \OtomatiesCoreVendor\sodium_crypto_scalarmult_ristretto255_base(...func_get_args()); } }
+if (!function_exists('sodium_crypto_secretbox')) { function sodium_crypto_secretbox() { return \OtomatiesCoreVendor\sodium_crypto_secretbox(...func_get_args()); } }
+if (!function_exists('sodium_crypto_secretbox_keygen')) { function sodium_crypto_secretbox_keygen() { return \OtomatiesCoreVendor\sodium_crypto_secretbox_keygen(...func_get_args()); } }
+if (!function_exists('sodium_crypto_secretbox_open')) { function sodium_crypto_secretbox_open() { return \OtomatiesCoreVendor\sodium_crypto_secretbox_open(...func_get_args()); } }
+if (!function_exists('sodium_crypto_secretstream_xchacha20poly1305_init_pull')) { function sodium_crypto_secretstream_xchacha20poly1305_init_pull() { return \OtomatiesCoreVendor\sodium_crypto_secretstream_xchacha20poly1305_init_pull(...func_get_args()); } }
+if (!function_exists('sodium_crypto_secretstream_xchacha20poly1305_init_push')) { function sodium_crypto_secretstream_xchacha20poly1305_init_push() { return \OtomatiesCoreVendor\sodium_crypto_secretstream_xchacha20poly1305_init_push(...func_get_args()); } }
+if (!function_exists('sodium_crypto_secretstream_xchacha20poly1305_keygen')) { function sodium_crypto_secretstream_xchacha20poly1305_keygen() { return \OtomatiesCoreVendor\sodium_crypto_secretstream_xchacha20poly1305_keygen(...func_get_args()); } }
+if (!function_exists('sodium_crypto_secretstream_xchacha20poly1305_pull')) { function sodium_crypto_secretstream_xchacha20poly1305_pull() { return \OtomatiesCoreVendor\sodium_crypto_secretstream_xchacha20poly1305_pull(...func_get_args()); } }
+if (!function_exists('sodium_crypto_secretstream_xchacha20poly1305_push')) { function sodium_crypto_secretstream_xchacha20poly1305_push() { return \OtomatiesCoreVendor\sodium_crypto_secretstream_xchacha20poly1305_push(...func_get_args()); } }
+if (!function_exists('sodium_crypto_secretstream_xchacha20poly1305_rekey')) { function sodium_crypto_secretstream_xchacha20poly1305_rekey() { return \OtomatiesCoreVendor\sodium_crypto_secretstream_xchacha20poly1305_rekey(...func_get_args()); } }
+if (!function_exists('sodium_crypto_shorthash')) { function sodium_crypto_shorthash() { return \OtomatiesCoreVendor\sodium_crypto_shorthash(...func_get_args()); } }
+if (!function_exists('sodium_crypto_shorthash_keygen')) { function sodium_crypto_shorthash_keygen() { return \OtomatiesCoreVendor\sodium_crypto_shorthash_keygen(...func_get_args()); } }
+if (!function_exists('sodium_crypto_sign')) { function sodium_crypto_sign() { return \OtomatiesCoreVendor\sodium_crypto_sign(...func_get_args()); } }
+if (!function_exists('sodium_crypto_sign_detached')) { function sodium_crypto_sign_detached() { return \OtomatiesCoreVendor\sodium_crypto_sign_detached(...func_get_args()); } }
+if (!function_exists('sodium_crypto_sign_ed25519_pk_to_curve25519')) { function sodium_crypto_sign_ed25519_pk_to_curve25519() { return \OtomatiesCoreVendor\sodium_crypto_sign_ed25519_pk_to_curve25519(...func_get_args()); } }
+if (!function_exists('sodium_crypto_sign_ed25519_sk_to_curve25519')) { function sodium_crypto_sign_ed25519_sk_to_curve25519() { return \OtomatiesCoreVendor\sodium_crypto_sign_ed25519_sk_to_curve25519(...func_get_args()); } }
+if (!function_exists('sodium_crypto_sign_keypair')) { function sodium_crypto_sign_keypair() { return \OtomatiesCoreVendor\sodium_crypto_sign_keypair(...func_get_args()); } }
+if (!function_exists('sodium_crypto_sign_keypair_from_secretkey_and_publickey')) { function sodium_crypto_sign_keypair_from_secretkey_and_publickey() { return \OtomatiesCoreVendor\sodium_crypto_sign_keypair_from_secretkey_and_publickey(...func_get_args()); } }
+if (!function_exists('sodium_crypto_sign_open')) { function sodium_crypto_sign_open() { return \OtomatiesCoreVendor\sodium_crypto_sign_open(...func_get_args()); } }
+if (!function_exists('sodium_crypto_sign_publickey')) { function sodium_crypto_sign_publickey() { return \OtomatiesCoreVendor\sodium_crypto_sign_publickey(...func_get_args()); } }
+if (!function_exists('sodium_crypto_sign_publickey_from_secretkey')) { function sodium_crypto_sign_publickey_from_secretkey() { return \OtomatiesCoreVendor\sodium_crypto_sign_publickey_from_secretkey(...func_get_args()); } }
+if (!function_exists('sodium_crypto_sign_secretkey')) { function sodium_crypto_sign_secretkey() { return \OtomatiesCoreVendor\sodium_crypto_sign_secretkey(...func_get_args()); } }
+if (!function_exists('sodium_crypto_sign_seed_keypair')) { function sodium_crypto_sign_seed_keypair() { return \OtomatiesCoreVendor\sodium_crypto_sign_seed_keypair(...func_get_args()); } }
+if (!function_exists('sodium_crypto_sign_verify_detached')) { function sodium_crypto_sign_verify_detached() { return \OtomatiesCoreVendor\sodium_crypto_sign_verify_detached(...func_get_args()); } }
+if (!function_exists('sodium_crypto_stream')) { function sodium_crypto_stream() { return \OtomatiesCoreVendor\sodium_crypto_stream(...func_get_args()); } }
+if (!function_exists('sodium_crypto_stream_keygen')) { function sodium_crypto_stream_keygen() { return \OtomatiesCoreVendor\sodium_crypto_stream_keygen(...func_get_args()); } }
+if (!function_exists('sodium_crypto_stream_xchacha20')) { function sodium_crypto_stream_xchacha20() { return \OtomatiesCoreVendor\sodium_crypto_stream_xchacha20(...func_get_args()); } }
+if (!function_exists('sodium_crypto_stream_xchacha20_keygen')) { function sodium_crypto_stream_xchacha20_keygen() { return \OtomatiesCoreVendor\sodium_crypto_stream_xchacha20_keygen(...func_get_args()); } }
+if (!function_exists('sodium_crypto_stream_xchacha20_xor')) { function sodium_crypto_stream_xchacha20_xor() { return \OtomatiesCoreVendor\sodium_crypto_stream_xchacha20_xor(...func_get_args()); } }
+if (!function_exists('sodium_crypto_stream_xchacha20_xor_ic')) { function sodium_crypto_stream_xchacha20_xor_ic() { return \OtomatiesCoreVendor\sodium_crypto_stream_xchacha20_xor_ic(...func_get_args()); } }
+if (!function_exists('sodium_crypto_stream_xor')) { function sodium_crypto_stream_xor() { return \OtomatiesCoreVendor\sodium_crypto_stream_xor(...func_get_args()); } }
+if (!function_exists('sodium_hex2bin')) { function sodium_hex2bin() { return \OtomatiesCoreVendor\sodium_hex2bin(...func_get_args()); } }
+if (!function_exists('sodium_increment')) { function sodium_increment() { return \OtomatiesCoreVendor\sodium_increment(...func_get_args()); } }
+if (!function_exists('sodium_library_version_major')) { function sodium_library_version_major() { return \OtomatiesCoreVendor\sodium_library_version_major(...func_get_args()); } }
+if (!function_exists('sodium_library_version_minor')) { function sodium_library_version_minor() { return \OtomatiesCoreVendor\sodium_library_version_minor(...func_get_args()); } }
+if (!function_exists('sodium_memcmp')) { function sodium_memcmp() { return \OtomatiesCoreVendor\sodium_memcmp(...func_get_args()); } }
+if (!function_exists('sodium_memzero')) { function sodium_memzero() { return \OtomatiesCoreVendor\sodium_memzero(...func_get_args()); } }
+if (!function_exists('sodium_pad')) { function sodium_pad() { return \OtomatiesCoreVendor\sodium_pad(...func_get_args()); } }
+if (!function_exists('sodium_randombytes_buf')) { function sodium_randombytes_buf() { return \OtomatiesCoreVendor\sodium_randombytes_buf(...func_get_args()); } }
+if (!function_exists('sodium_randombytes_random16')) { function sodium_randombytes_random16() { return \OtomatiesCoreVendor\sodium_randombytes_random16(...func_get_args()); } }
+if (!function_exists('sodium_randombytes_uniform')) { function sodium_randombytes_uniform() { return \OtomatiesCoreVendor\sodium_randombytes_uniform(...func_get_args()); } }
+if (!function_exists('sodium_unpad')) { function sodium_unpad() { return \OtomatiesCoreVendor\sodium_unpad(...func_get_args()); } }
+if (!function_exists('sodium_version_string')) { function sodium_version_string() { return \OtomatiesCoreVendor\sodium_version_string(...func_get_args()); } }
+if (!function_exists('solr_get_version')) { function solr_get_version() { return \OtomatiesCoreVendor\solr_get_version(...func_get_args()); } }
+if (!function_exists('sort')) { function sort() { return \OtomatiesCoreVendor\sort(...func_get_args()); } }
 if (!function_exists('sort_menu')) { function sort_menu() { return \OtomatiesCoreVendor\sort_menu(...func_get_args()); } }
+if (!function_exists('soundex')) { function soundex() { return \OtomatiesCoreVendor\soundex(...func_get_args()); } }
 if (!function_exists('spawn_cron')) { function spawn_cron() { return \OtomatiesCoreVendor\spawn_cron(...func_get_args()); } }
+if (!function_exists('spl_autoload')) { function spl_autoload() { return \OtomatiesCoreVendor\spl_autoload(...func_get_args()); } }
+if (!function_exists('spl_autoload_call')) { function spl_autoload_call() { return \OtomatiesCoreVendor\spl_autoload_call(...func_get_args()); } }
+if (!function_exists('spl_autoload_extensions')) { function spl_autoload_extensions() { return \OtomatiesCoreVendor\spl_autoload_extensions(...func_get_args()); } }
+if (!function_exists('spl_autoload_functions')) { function spl_autoload_functions() { return \OtomatiesCoreVendor\spl_autoload_functions(...func_get_args()); } }
+if (!function_exists('spl_autoload_register')) { function spl_autoload_register() { return \OtomatiesCoreVendor\spl_autoload_register(...func_get_args()); } }
+if (!function_exists('spl_autoload_unregister')) { function spl_autoload_unregister() { return \OtomatiesCoreVendor\spl_autoload_unregister(...func_get_args()); } }
+if (!function_exists('spl_classes')) { function spl_classes() { return \OtomatiesCoreVendor\spl_classes(...func_get_args()); } }
+if (!function_exists('spl_object_hash')) { function spl_object_hash() { return \OtomatiesCoreVendor\spl_object_hash(...func_get_args()); } }
+if (!function_exists('spl_object_id')) { function spl_object_id() { return \OtomatiesCoreVendor\spl_object_id(...func_get_args()); } }
+if (!function_exists('split')) { function split() { return \OtomatiesCoreVendor\split(...func_get_args()); } }
+if (!function_exists('spliti')) { function spliti() { return \OtomatiesCoreVendor\spliti(...func_get_args()); } }
+if (!function_exists('sprintf')) { function sprintf() { return \OtomatiesCoreVendor\sprintf(...func_get_args()); } }
+if (!function_exists('sql_regcase')) { function sql_regcase() { return \OtomatiesCoreVendor\sql_regcase(...func_get_args()); } }
+if (!function_exists('sqlite_array_query')) { function sqlite_array_query() { return \OtomatiesCoreVendor\sqlite_array_query(...func_get_args()); } }
+if (!function_exists('sqlite_busy_timeout')) { function sqlite_busy_timeout() { return \OtomatiesCoreVendor\sqlite_busy_timeout(...func_get_args()); } }
+if (!function_exists('sqlite_changes')) { function sqlite_changes() { return \OtomatiesCoreVendor\sqlite_changes(...func_get_args()); } }
+if (!function_exists('sqlite_close')) { function sqlite_close() { return \OtomatiesCoreVendor\sqlite_close(...func_get_args()); } }
+if (!function_exists('sqlite_column')) { function sqlite_column() { return \OtomatiesCoreVendor\sqlite_column(...func_get_args()); } }
+if (!function_exists('sqlite_create_aggregate')) { function sqlite_create_aggregate() { return \OtomatiesCoreVendor\sqlite_create_aggregate(...func_get_args()); } }
+if (!function_exists('sqlite_create_function')) { function sqlite_create_function() { return \OtomatiesCoreVendor\sqlite_create_function(...func_get_args()); } }
+if (!function_exists('sqlite_current')) { function sqlite_current() { return \OtomatiesCoreVendor\sqlite_current(...func_get_args()); } }
+if (!function_exists('sqlite_error_string')) { function sqlite_error_string() { return \OtomatiesCoreVendor\sqlite_error_string(...func_get_args()); } }
+if (!function_exists('sqlite_escape_string')) { function sqlite_escape_string() { return \OtomatiesCoreVendor\sqlite_escape_string(...func_get_args()); } }
+if (!function_exists('sqlite_exec')) { function sqlite_exec() { return \OtomatiesCoreVendor\sqlite_exec(...func_get_args()); } }
+if (!function_exists('sqlite_factory')) { function sqlite_factory() { return \OtomatiesCoreVendor\sqlite_factory(...func_get_args()); } }
+if (!function_exists('sqlite_fetch_all')) { function sqlite_fetch_all() { return \OtomatiesCoreVendor\sqlite_fetch_all(...func_get_args()); } }
+if (!function_exists('sqlite_fetch_array')) { function sqlite_fetch_array() { return \OtomatiesCoreVendor\sqlite_fetch_array(...func_get_args()); } }
+if (!function_exists('sqlite_fetch_column_types')) { function sqlite_fetch_column_types() { return \OtomatiesCoreVendor\sqlite_fetch_column_types(...func_get_args()); } }
+if (!function_exists('sqlite_fetch_object')) { function sqlite_fetch_object() { return \OtomatiesCoreVendor\sqlite_fetch_object(...func_get_args()); } }
+if (!function_exists('sqlite_fetch_single')) { function sqlite_fetch_single() { return \OtomatiesCoreVendor\sqlite_fetch_single(...func_get_args()); } }
+if (!function_exists('sqlite_fetch_string')) { function sqlite_fetch_string() { return \OtomatiesCoreVendor\sqlite_fetch_string(...func_get_args()); } }
+if (!function_exists('sqlite_field_name')) { function sqlite_field_name() { return \OtomatiesCoreVendor\sqlite_field_name(...func_get_args()); } }
+if (!function_exists('sqlite_has_more')) { function sqlite_has_more() { return \OtomatiesCoreVendor\sqlite_has_more(...func_get_args()); } }
+if (!function_exists('sqlite_has_prev')) { function sqlite_has_prev() { return \OtomatiesCoreVendor\sqlite_has_prev(...func_get_args()); } }
+if (!function_exists('sqlite_last_error')) { function sqlite_last_error() { return \OtomatiesCoreVendor\sqlite_last_error(...func_get_args()); } }
+if (!function_exists('sqlite_last_insert_rowid')) { function sqlite_last_insert_rowid() { return \OtomatiesCoreVendor\sqlite_last_insert_rowid(...func_get_args()); } }
+if (!function_exists('sqlite_libencoding')) { function sqlite_libencoding() { return \OtomatiesCoreVendor\sqlite_libencoding(...func_get_args()); } }
+if (!function_exists('sqlite_libversion')) { function sqlite_libversion() { return \OtomatiesCoreVendor\sqlite_libversion(...func_get_args()); } }
+if (!function_exists('sqlite_next')) { function sqlite_next() { return \OtomatiesCoreVendor\sqlite_next(...func_get_args()); } }
+if (!function_exists('sqlite_num_fields')) { function sqlite_num_fields() { return \OtomatiesCoreVendor\sqlite_num_fields(...func_get_args()); } }
+if (!function_exists('sqlite_num_rows')) { function sqlite_num_rows() { return \OtomatiesCoreVendor\sqlite_num_rows(...func_get_args()); } }
+if (!function_exists('sqlite_open')) { function sqlite_open() { return \OtomatiesCoreVendor\sqlite_open(...func_get_args()); } }
+if (!function_exists('sqlite_popen')) { function sqlite_popen() { return \OtomatiesCoreVendor\sqlite_popen(...func_get_args()); } }
+if (!function_exists('sqlite_prev')) { function sqlite_prev() { return \OtomatiesCoreVendor\sqlite_prev(...func_get_args()); } }
+if (!function_exists('sqlite_query')) { function sqlite_query() { return \OtomatiesCoreVendor\sqlite_query(...func_get_args()); } }
+if (!function_exists('sqlite_rewind')) { function sqlite_rewind() { return \OtomatiesCoreVendor\sqlite_rewind(...func_get_args()); } }
+if (!function_exists('sqlite_seek')) { function sqlite_seek() { return \OtomatiesCoreVendor\sqlite_seek(...func_get_args()); } }
+if (!function_exists('sqlite_single_query')) { function sqlite_single_query() { return \OtomatiesCoreVendor\sqlite_single_query(...func_get_args()); } }
+if (!function_exists('sqlite_udf_decode_binary')) { function sqlite_udf_decode_binary() { return \OtomatiesCoreVendor\sqlite_udf_decode_binary(...func_get_args()); } }
+if (!function_exists('sqlite_udf_encode_binary')) { function sqlite_udf_encode_binary() { return \OtomatiesCoreVendor\sqlite_udf_encode_binary(...func_get_args()); } }
+if (!function_exists('sqlite_unbuffered_query')) { function sqlite_unbuffered_query() { return \OtomatiesCoreVendor\sqlite_unbuffered_query(...func_get_args()); } }
+if (!function_exists('sqlite_valid')) { function sqlite_valid() { return \OtomatiesCoreVendor\sqlite_valid(...func_get_args()); } }
+if (!function_exists('sqlsrv_begin_transaction')) { function sqlsrv_begin_transaction() { return \OtomatiesCoreVendor\sqlsrv_begin_transaction(...func_get_args()); } }
+if (!function_exists('sqlsrv_cancel')) { function sqlsrv_cancel() { return \OtomatiesCoreVendor\sqlsrv_cancel(...func_get_args()); } }
+if (!function_exists('sqlsrv_client_info')) { function sqlsrv_client_info() { return \OtomatiesCoreVendor\sqlsrv_client_info(...func_get_args()); } }
+if (!function_exists('sqlsrv_close')) { function sqlsrv_close() { return \OtomatiesCoreVendor\sqlsrv_close(...func_get_args()); } }
+if (!function_exists('sqlsrv_commit')) { function sqlsrv_commit() { return \OtomatiesCoreVendor\sqlsrv_commit(...func_get_args()); } }
+if (!function_exists('sqlsrv_configure')) { function sqlsrv_configure() { return \OtomatiesCoreVendor\sqlsrv_configure(...func_get_args()); } }
+if (!function_exists('sqlsrv_connect')) { function sqlsrv_connect() { return \OtomatiesCoreVendor\sqlsrv_connect(...func_get_args()); } }
+if (!function_exists('sqlsrv_errors')) { function sqlsrv_errors() { return \OtomatiesCoreVendor\sqlsrv_errors(...func_get_args()); } }
+if (!function_exists('sqlsrv_execute')) { function sqlsrv_execute() { return \OtomatiesCoreVendor\sqlsrv_execute(...func_get_args()); } }
+if (!function_exists('sqlsrv_fetch')) { function sqlsrv_fetch() { return \OtomatiesCoreVendor\sqlsrv_fetch(...func_get_args()); } }
+if (!function_exists('sqlsrv_fetch_array')) { function sqlsrv_fetch_array() { return \OtomatiesCoreVendor\sqlsrv_fetch_array(...func_get_args()); } }
+if (!function_exists('sqlsrv_fetch_object')) { function sqlsrv_fetch_object() { return \OtomatiesCoreVendor\sqlsrv_fetch_object(...func_get_args()); } }
+if (!function_exists('sqlsrv_field_metadata')) { function sqlsrv_field_metadata() { return \OtomatiesCoreVendor\sqlsrv_field_metadata(...func_get_args()); } }
+if (!function_exists('sqlsrv_free_stmt')) { function sqlsrv_free_stmt() { return \OtomatiesCoreVendor\sqlsrv_free_stmt(...func_get_args()); } }
+if (!function_exists('sqlsrv_get_config')) { function sqlsrv_get_config() { return \OtomatiesCoreVendor\sqlsrv_get_config(...func_get_args()); } }
+if (!function_exists('sqlsrv_get_field')) { function sqlsrv_get_field() { return \OtomatiesCoreVendor\sqlsrv_get_field(...func_get_args()); } }
+if (!function_exists('sqlsrv_has_rows')) { function sqlsrv_has_rows() { return \OtomatiesCoreVendor\sqlsrv_has_rows(...func_get_args()); } }
+if (!function_exists('sqlsrv_next_result')) { function sqlsrv_next_result() { return \OtomatiesCoreVendor\sqlsrv_next_result(...func_get_args()); } }
+if (!function_exists('sqlsrv_num_fields')) { function sqlsrv_num_fields() { return \OtomatiesCoreVendor\sqlsrv_num_fields(...func_get_args()); } }
+if (!function_exists('sqlsrv_num_rows')) { function sqlsrv_num_rows() { return \OtomatiesCoreVendor\sqlsrv_num_rows(...func_get_args()); } }
+if (!function_exists('sqlsrv_prepare')) { function sqlsrv_prepare() { return \OtomatiesCoreVendor\sqlsrv_prepare(...func_get_args()); } }
+if (!function_exists('sqlsrv_query')) { function sqlsrv_query() { return \OtomatiesCoreVendor\sqlsrv_query(...func_get_args()); } }
+if (!function_exists('sqlsrv_rollback')) { function sqlsrv_rollback() { return \OtomatiesCoreVendor\sqlsrv_rollback(...func_get_args()); } }
+if (!function_exists('sqlsrv_rows_affected')) { function sqlsrv_rows_affected() { return \OtomatiesCoreVendor\sqlsrv_rows_affected(...func_get_args()); } }
+if (!function_exists('sqlsrv_send_stream_data')) { function sqlsrv_send_stream_data() { return \OtomatiesCoreVendor\sqlsrv_send_stream_data(...func_get_args()); } }
+if (!function_exists('sqlsrv_server_info')) { function sqlsrv_server_info() { return \OtomatiesCoreVendor\sqlsrv_server_info(...func_get_args()); } }
+if (!function_exists('sqrt')) { function sqrt() { return \OtomatiesCoreVendor\sqrt(...func_get_args()); } }
+if (!function_exists('srand')) { function srand() { return \OtomatiesCoreVendor\srand(...func_get_args()); } }
+if (!function_exists('sscanf')) { function sscanf() { return \OtomatiesCoreVendor\sscanf(...func_get_args()); } }
+if (!function_exists('ssh2_auth_agent')) { function ssh2_auth_agent() { return \OtomatiesCoreVendor\ssh2_auth_agent(...func_get_args()); } }
+if (!function_exists('ssh2_auth_hostbased_file')) { function ssh2_auth_hostbased_file() { return \OtomatiesCoreVendor\ssh2_auth_hostbased_file(...func_get_args()); } }
+if (!function_exists('ssh2_auth_none')) { function ssh2_auth_none() { return \OtomatiesCoreVendor\ssh2_auth_none(...func_get_args()); } }
+if (!function_exists('ssh2_auth_password')) { function ssh2_auth_password() { return \OtomatiesCoreVendor\ssh2_auth_password(...func_get_args()); } }
+if (!function_exists('ssh2_auth_pubkey_file')) { function ssh2_auth_pubkey_file() { return \OtomatiesCoreVendor\ssh2_auth_pubkey_file(...func_get_args()); } }
+if (!function_exists('ssh2_connect')) { function ssh2_connect() { return \OtomatiesCoreVendor\ssh2_connect(...func_get_args()); } }
+if (!function_exists('ssh2_disconnect')) { function ssh2_disconnect() { return \OtomatiesCoreVendor\ssh2_disconnect(...func_get_args()); } }
+if (!function_exists('ssh2_exec')) { function ssh2_exec() { return \OtomatiesCoreVendor\ssh2_exec(...func_get_args()); } }
+if (!function_exists('ssh2_fetch_stream')) { function ssh2_fetch_stream() { return \OtomatiesCoreVendor\ssh2_fetch_stream(...func_get_args()); } }
+if (!function_exists('ssh2_fingerprint')) { function ssh2_fingerprint() { return \OtomatiesCoreVendor\ssh2_fingerprint(...func_get_args()); } }
+if (!function_exists('ssh2_forward_accept')) { function ssh2_forward_accept() { return \OtomatiesCoreVendor\ssh2_forward_accept(...func_get_args()); } }
+if (!function_exists('ssh2_forward_listen')) { function ssh2_forward_listen() { return \OtomatiesCoreVendor\ssh2_forward_listen(...func_get_args()); } }
+if (!function_exists('ssh2_methods_negotiated')) { function ssh2_methods_negotiated() { return \OtomatiesCoreVendor\ssh2_methods_negotiated(...func_get_args()); } }
+if (!function_exists('ssh2_poll')) { function ssh2_poll() { return \OtomatiesCoreVendor\ssh2_poll(...func_get_args()); } }
+if (!function_exists('ssh2_publickey_add')) { function ssh2_publickey_add() { return \OtomatiesCoreVendor\ssh2_publickey_add(...func_get_args()); } }
+if (!function_exists('ssh2_publickey_init')) { function ssh2_publickey_init() { return \OtomatiesCoreVendor\ssh2_publickey_init(...func_get_args()); } }
+if (!function_exists('ssh2_publickey_list')) { function ssh2_publickey_list() { return \OtomatiesCoreVendor\ssh2_publickey_list(...func_get_args()); } }
+if (!function_exists('ssh2_publickey_remove')) { function ssh2_publickey_remove() { return \OtomatiesCoreVendor\ssh2_publickey_remove(...func_get_args()); } }
+if (!function_exists('ssh2_scp_recv')) { function ssh2_scp_recv() { return \OtomatiesCoreVendor\ssh2_scp_recv(...func_get_args()); } }
+if (!function_exists('ssh2_scp_send')) { function ssh2_scp_send() { return \OtomatiesCoreVendor\ssh2_scp_send(...func_get_args()); } }
+if (!function_exists('ssh2_send_eof')) { function ssh2_send_eof() { return \OtomatiesCoreVendor\ssh2_send_eof(...func_get_args()); } }
+if (!function_exists('ssh2_sftp')) { function ssh2_sftp() { return \OtomatiesCoreVendor\ssh2_sftp(...func_get_args()); } }
+if (!function_exists('ssh2_sftp_chmod')) { function ssh2_sftp_chmod() { return \OtomatiesCoreVendor\ssh2_sftp_chmod(...func_get_args()); } }
+if (!function_exists('ssh2_sftp_lstat')) { function ssh2_sftp_lstat() { return \OtomatiesCoreVendor\ssh2_sftp_lstat(...func_get_args()); } }
+if (!function_exists('ssh2_sftp_mkdir')) { function ssh2_sftp_mkdir() { return \OtomatiesCoreVendor\ssh2_sftp_mkdir(...func_get_args()); } }
+if (!function_exists('ssh2_sftp_readlink')) { function ssh2_sftp_readlink() { return \OtomatiesCoreVendor\ssh2_sftp_readlink(...func_get_args()); } }
+if (!function_exists('ssh2_sftp_realpath')) { function ssh2_sftp_realpath() { return \OtomatiesCoreVendor\ssh2_sftp_realpath(...func_get_args()); } }
+if (!function_exists('ssh2_sftp_rename')) { function ssh2_sftp_rename() { return \OtomatiesCoreVendor\ssh2_sftp_rename(...func_get_args()); } }
+if (!function_exists('ssh2_sftp_rmdir')) { function ssh2_sftp_rmdir() { return \OtomatiesCoreVendor\ssh2_sftp_rmdir(...func_get_args()); } }
+if (!function_exists('ssh2_sftp_stat')) { function ssh2_sftp_stat() { return \OtomatiesCoreVendor\ssh2_sftp_stat(...func_get_args()); } }
+if (!function_exists('ssh2_sftp_symlink')) { function ssh2_sftp_symlink() { return \OtomatiesCoreVendor\ssh2_sftp_symlink(...func_get_args()); } }
+if (!function_exists('ssh2_sftp_unlink')) { function ssh2_sftp_unlink() { return \OtomatiesCoreVendor\ssh2_sftp_unlink(...func_get_args()); } }
+if (!function_exists('ssh2_shell')) { function ssh2_shell() { return \OtomatiesCoreVendor\ssh2_shell(...func_get_args()); } }
+if (!function_exists('ssh2_tunnel')) { function ssh2_tunnel() { return \OtomatiesCoreVendor\ssh2_tunnel(...func_get_args()); } }
 if (!function_exists('startElement')) { function startElement() { return \OtomatiesCoreVendor\startElement(...func_get_args()); } }
 if (!function_exists('start_post_rel_link')) { function start_post_rel_link() { return \OtomatiesCoreVendor\start_post_rel_link(...func_get_args()); } }
 if (!function_exists('start_wp')) { function start_wp() { return \OtomatiesCoreVendor\start_wp(...func_get_args()); } }
+if (!function_exists('stat')) { function stat() { return \OtomatiesCoreVendor\stat(...func_get_args()); } }
+if (!function_exists('stats_absolute_deviation')) { function stats_absolute_deviation() { return \OtomatiesCoreVendor\stats_absolute_deviation(...func_get_args()); } }
+if (!function_exists('stats_cdf_beta')) { function stats_cdf_beta() { return \OtomatiesCoreVendor\stats_cdf_beta(...func_get_args()); } }
+if (!function_exists('stats_cdf_binomial')) { function stats_cdf_binomial() { return \OtomatiesCoreVendor\stats_cdf_binomial(...func_get_args()); } }
+if (!function_exists('stats_cdf_cauchy')) { function stats_cdf_cauchy() { return \OtomatiesCoreVendor\stats_cdf_cauchy(...func_get_args()); } }
+if (!function_exists('stats_cdf_chisquare')) { function stats_cdf_chisquare() { return \OtomatiesCoreVendor\stats_cdf_chisquare(...func_get_args()); } }
+if (!function_exists('stats_cdf_exponential')) { function stats_cdf_exponential() { return \OtomatiesCoreVendor\stats_cdf_exponential(...func_get_args()); } }
+if (!function_exists('stats_cdf_f')) { function stats_cdf_f() { return \OtomatiesCoreVendor\stats_cdf_f(...func_get_args()); } }
+if (!function_exists('stats_cdf_gamma')) { function stats_cdf_gamma() { return \OtomatiesCoreVendor\stats_cdf_gamma(...func_get_args()); } }
+if (!function_exists('stats_cdf_laplace')) { function stats_cdf_laplace() { return \OtomatiesCoreVendor\stats_cdf_laplace(...func_get_args()); } }
+if (!function_exists('stats_cdf_logistic')) { function stats_cdf_logistic() { return \OtomatiesCoreVendor\stats_cdf_logistic(...func_get_args()); } }
+if (!function_exists('stats_cdf_negative_binomial')) { function stats_cdf_negative_binomial() { return \OtomatiesCoreVendor\stats_cdf_negative_binomial(...func_get_args()); } }
+if (!function_exists('stats_cdf_noncentral_chisquare')) { function stats_cdf_noncentral_chisquare() { return \OtomatiesCoreVendor\stats_cdf_noncentral_chisquare(...func_get_args()); } }
+if (!function_exists('stats_cdf_noncentral_f')) { function stats_cdf_noncentral_f() { return \OtomatiesCoreVendor\stats_cdf_noncentral_f(...func_get_args()); } }
+if (!function_exists('stats_cdf_noncentral_t')) { function stats_cdf_noncentral_t() { return \OtomatiesCoreVendor\stats_cdf_noncentral_t(...func_get_args()); } }
+if (!function_exists('stats_cdf_normal')) { function stats_cdf_normal() { return \OtomatiesCoreVendor\stats_cdf_normal(...func_get_args()); } }
+if (!function_exists('stats_cdf_poisson')) { function stats_cdf_poisson() { return \OtomatiesCoreVendor\stats_cdf_poisson(...func_get_args()); } }
+if (!function_exists('stats_cdf_t')) { function stats_cdf_t() { return \OtomatiesCoreVendor\stats_cdf_t(...func_get_args()); } }
+if (!function_exists('stats_cdf_uniform')) { function stats_cdf_uniform() { return \OtomatiesCoreVendor\stats_cdf_uniform(...func_get_args()); } }
+if (!function_exists('stats_cdf_weibull')) { function stats_cdf_weibull() { return \OtomatiesCoreVendor\stats_cdf_weibull(...func_get_args()); } }
+if (!function_exists('stats_covariance')) { function stats_covariance() { return \OtomatiesCoreVendor\stats_covariance(...func_get_args()); } }
+if (!function_exists('stats_dens_beta')) { function stats_dens_beta() { return \OtomatiesCoreVendor\stats_dens_beta(...func_get_args()); } }
+if (!function_exists('stats_dens_cauchy')) { function stats_dens_cauchy() { return \OtomatiesCoreVendor\stats_dens_cauchy(...func_get_args()); } }
+if (!function_exists('stats_dens_chisquare')) { function stats_dens_chisquare() { return \OtomatiesCoreVendor\stats_dens_chisquare(...func_get_args()); } }
+if (!function_exists('stats_dens_exponential')) { function stats_dens_exponential() { return \OtomatiesCoreVendor\stats_dens_exponential(...func_get_args()); } }
+if (!function_exists('stats_dens_f')) { function stats_dens_f() { return \OtomatiesCoreVendor\stats_dens_f(...func_get_args()); } }
+if (!function_exists('stats_dens_gamma')) { function stats_dens_gamma() { return \OtomatiesCoreVendor\stats_dens_gamma(...func_get_args()); } }
+if (!function_exists('stats_dens_laplace')) { function stats_dens_laplace() { return \OtomatiesCoreVendor\stats_dens_laplace(...func_get_args()); } }
+if (!function_exists('stats_dens_logistic')) { function stats_dens_logistic() { return \OtomatiesCoreVendor\stats_dens_logistic(...func_get_args()); } }
+if (!function_exists('stats_dens_normal')) { function stats_dens_normal() { return \OtomatiesCoreVendor\stats_dens_normal(...func_get_args()); } }
+if (!function_exists('stats_dens_pmf_binomial')) { function stats_dens_pmf_binomial() { return \OtomatiesCoreVendor\stats_dens_pmf_binomial(...func_get_args()); } }
+if (!function_exists('stats_dens_pmf_hypergeometric')) { function stats_dens_pmf_hypergeometric() { return \OtomatiesCoreVendor\stats_dens_pmf_hypergeometric(...func_get_args()); } }
+if (!function_exists('stats_dens_pmf_negative_binomial')) { function stats_dens_pmf_negative_binomial() { return \OtomatiesCoreVendor\stats_dens_pmf_negative_binomial(...func_get_args()); } }
+if (!function_exists('stats_dens_pmf_poisson')) { function stats_dens_pmf_poisson() { return \OtomatiesCoreVendor\stats_dens_pmf_poisson(...func_get_args()); } }
+if (!function_exists('stats_dens_t')) { function stats_dens_t() { return \OtomatiesCoreVendor\stats_dens_t(...func_get_args()); } }
+if (!function_exists('stats_dens_uniform')) { function stats_dens_uniform() { return \OtomatiesCoreVendor\stats_dens_uniform(...func_get_args()); } }
+if (!function_exists('stats_dens_weibull')) { function stats_dens_weibull() { return \OtomatiesCoreVendor\stats_dens_weibull(...func_get_args()); } }
+if (!function_exists('stats_harmonic_mean')) { function stats_harmonic_mean() { return \OtomatiesCoreVendor\stats_harmonic_mean(...func_get_args()); } }
+if (!function_exists('stats_kurtosis')) { function stats_kurtosis() { return \OtomatiesCoreVendor\stats_kurtosis(...func_get_args()); } }
+if (!function_exists('stats_rand_gen_beta')) { function stats_rand_gen_beta() { return \OtomatiesCoreVendor\stats_rand_gen_beta(...func_get_args()); } }
+if (!function_exists('stats_rand_gen_chisquare')) { function stats_rand_gen_chisquare() { return \OtomatiesCoreVendor\stats_rand_gen_chisquare(...func_get_args()); } }
+if (!function_exists('stats_rand_gen_exponential')) { function stats_rand_gen_exponential() { return \OtomatiesCoreVendor\stats_rand_gen_exponential(...func_get_args()); } }
+if (!function_exists('stats_rand_gen_f')) { function stats_rand_gen_f() { return \OtomatiesCoreVendor\stats_rand_gen_f(...func_get_args()); } }
+if (!function_exists('stats_rand_gen_funiform')) { function stats_rand_gen_funiform() { return \OtomatiesCoreVendor\stats_rand_gen_funiform(...func_get_args()); } }
+if (!function_exists('stats_rand_gen_gamma')) { function stats_rand_gen_gamma() { return \OtomatiesCoreVendor\stats_rand_gen_gamma(...func_get_args()); } }
+if (!function_exists('stats_rand_gen_ibinomial')) { function stats_rand_gen_ibinomial() { return \OtomatiesCoreVendor\stats_rand_gen_ibinomial(...func_get_args()); } }
+if (!function_exists('stats_rand_gen_ibinomial_negative')) { function stats_rand_gen_ibinomial_negative() { return \OtomatiesCoreVendor\stats_rand_gen_ibinomial_negative(...func_get_args()); } }
+if (!function_exists('stats_rand_gen_int')) { function stats_rand_gen_int() { return \OtomatiesCoreVendor\stats_rand_gen_int(...func_get_args()); } }
+if (!function_exists('stats_rand_gen_ipoisson')) { function stats_rand_gen_ipoisson() { return \OtomatiesCoreVendor\stats_rand_gen_ipoisson(...func_get_args()); } }
+if (!function_exists('stats_rand_gen_iuniform')) { function stats_rand_gen_iuniform() { return \OtomatiesCoreVendor\stats_rand_gen_iuniform(...func_get_args()); } }
+if (!function_exists('stats_rand_gen_noncentral_f')) { function stats_rand_gen_noncentral_f() { return \OtomatiesCoreVendor\stats_rand_gen_noncentral_f(...func_get_args()); } }
+if (!function_exists('stats_rand_gen_noncentral_t')) { function stats_rand_gen_noncentral_t() { return \OtomatiesCoreVendor\stats_rand_gen_noncentral_t(...func_get_args()); } }
+if (!function_exists('stats_rand_gen_normal')) { function stats_rand_gen_normal() { return \OtomatiesCoreVendor\stats_rand_gen_normal(...func_get_args()); } }
+if (!function_exists('stats_rand_gen_t')) { function stats_rand_gen_t() { return \OtomatiesCoreVendor\stats_rand_gen_t(...func_get_args()); } }
+if (!function_exists('stats_rand_get_seeds')) { function stats_rand_get_seeds() { return \OtomatiesCoreVendor\stats_rand_get_seeds(...func_get_args()); } }
+if (!function_exists('stats_rand_phrase_to_seeds')) { function stats_rand_phrase_to_seeds() { return \OtomatiesCoreVendor\stats_rand_phrase_to_seeds(...func_get_args()); } }
+if (!function_exists('stats_rand_ranf')) { function stats_rand_ranf() { return \OtomatiesCoreVendor\stats_rand_ranf(...func_get_args()); } }
+if (!function_exists('stats_rand_setall')) { function stats_rand_setall() { return \OtomatiesCoreVendor\stats_rand_setall(...func_get_args()); } }
+if (!function_exists('stats_skew')) { function stats_skew() { return \OtomatiesCoreVendor\stats_skew(...func_get_args()); } }
+if (!function_exists('stats_standard_deviation')) { function stats_standard_deviation() { return \OtomatiesCoreVendor\stats_standard_deviation(...func_get_args()); } }
+if (!function_exists('stats_stat_binomial_coef')) { function stats_stat_binomial_coef() { return \OtomatiesCoreVendor\stats_stat_binomial_coef(...func_get_args()); } }
+if (!function_exists('stats_stat_correlation')) { function stats_stat_correlation() { return \OtomatiesCoreVendor\stats_stat_correlation(...func_get_args()); } }
+if (!function_exists('stats_stat_factorial')) { function stats_stat_factorial() { return \OtomatiesCoreVendor\stats_stat_factorial(...func_get_args()); } }
+if (!function_exists('stats_stat_independent_t')) { function stats_stat_independent_t() { return \OtomatiesCoreVendor\stats_stat_independent_t(...func_get_args()); } }
+if (!function_exists('stats_stat_innerproduct')) { function stats_stat_innerproduct() { return \OtomatiesCoreVendor\stats_stat_innerproduct(...func_get_args()); } }
+if (!function_exists('stats_stat_paired_t')) { function stats_stat_paired_t() { return \OtomatiesCoreVendor\stats_stat_paired_t(...func_get_args()); } }
+if (!function_exists('stats_stat_percentile')) { function stats_stat_percentile() { return \OtomatiesCoreVendor\stats_stat_percentile(...func_get_args()); } }
+if (!function_exists('stats_stat_powersum')) { function stats_stat_powersum() { return \OtomatiesCoreVendor\stats_stat_powersum(...func_get_args()); } }
+if (!function_exists('stats_variance')) { function stats_variance() { return \OtomatiesCoreVendor\stats_variance(...func_get_args()); } }
 if (!function_exists('status_header')) { function status_header() { return \OtomatiesCoreVendor\status_header(...func_get_args()); } }
 if (!function_exists('stick_post')) { function stick_post() { return \OtomatiesCoreVendor\stick_post(...func_get_args()); } }
 if (!function_exists('sticky_class')) { function sticky_class() { return \OtomatiesCoreVendor\sticky_class(...func_get_args()); } }
+if (!function_exists('stomp_abort')) { function stomp_abort() { return \OtomatiesCoreVendor\stomp_abort(...func_get_args()); } }
+if (!function_exists('stomp_ack')) { function stomp_ack() { return \OtomatiesCoreVendor\stomp_ack(...func_get_args()); } }
+if (!function_exists('stomp_begin')) { function stomp_begin() { return \OtomatiesCoreVendor\stomp_begin(...func_get_args()); } }
+if (!function_exists('stomp_close')) { function stomp_close() { return \OtomatiesCoreVendor\stomp_close(...func_get_args()); } }
+if (!function_exists('stomp_commit')) { function stomp_commit() { return \OtomatiesCoreVendor\stomp_commit(...func_get_args()); } }
+if (!function_exists('stomp_connect')) { function stomp_connect() { return \OtomatiesCoreVendor\stomp_connect(...func_get_args()); } }
+if (!function_exists('stomp_error')) { function stomp_error() { return \OtomatiesCoreVendor\stomp_error(...func_get_args()); } }
+if (!function_exists('stomp_get_session_id')) { function stomp_get_session_id() { return \OtomatiesCoreVendor\stomp_get_session_id(...func_get_args()); } }
+if (!function_exists('stomp_get_timeout')) { function stomp_get_timeout() { return \OtomatiesCoreVendor\stomp_get_timeout(...func_get_args()); } }
+if (!function_exists('stomp_has_frame')) { function stomp_has_frame() { return \OtomatiesCoreVendor\stomp_has_frame(...func_get_args()); } }
+if (!function_exists('stomp_read_frame')) { function stomp_read_frame() { return \OtomatiesCoreVendor\stomp_read_frame(...func_get_args()); } }
+if (!function_exists('stomp_send')) { function stomp_send() { return \OtomatiesCoreVendor\stomp_send(...func_get_args()); } }
+if (!function_exists('stomp_set_timeout')) { function stomp_set_timeout() { return \OtomatiesCoreVendor\stomp_set_timeout(...func_get_args()); } }
+if (!function_exists('stomp_subscribe')) { function stomp_subscribe() { return \OtomatiesCoreVendor\stomp_subscribe(...func_get_args()); } }
+if (!function_exists('stomp_unsubscribe')) { function stomp_unsubscribe() { return \OtomatiesCoreVendor\stomp_unsubscribe(...func_get_args()); } }
+if (!function_exists('stomp_version')) { function stomp_version() { return \OtomatiesCoreVendor\stomp_version(...func_get_args()); } }
 if (!function_exists('str')) { function str() { return \OtomatiesCoreVendor\str(...func_get_args()); } }
+if (!function_exists('str_contains')) { function str_contains() { return \OtomatiesCoreVendor\str_contains(...func_get_args()); } }
 if (!function_exists('str_decrement')) { function str_decrement() { return \OtomatiesCoreVendor\str_decrement(...func_get_args()); } }
+if (!function_exists('str_ends_with')) { function str_ends_with() { return \OtomatiesCoreVendor\str_ends_with(...func_get_args()); } }
+if (!function_exists('str_getcsv')) { function str_getcsv() { return \OtomatiesCoreVendor\str_getcsv(...func_get_args()); } }
 if (!function_exists('str_increment')) { function str_increment() { return \OtomatiesCoreVendor\str_increment(...func_get_args()); } }
+if (!function_exists('str_ireplace')) { function str_ireplace() { return \OtomatiesCoreVendor\str_ireplace(...func_get_args()); } }
+if (!function_exists('str_pad')) { function str_pad() { return \OtomatiesCoreVendor\str_pad(...func_get_args()); } }
+if (!function_exists('str_repeat')) { function str_repeat() { return \OtomatiesCoreVendor\str_repeat(...func_get_args()); } }
+if (!function_exists('str_replace')) { function str_replace() { return \OtomatiesCoreVendor\str_replace(...func_get_args()); } }
+if (!function_exists('str_rot13')) { function str_rot13() { return \OtomatiesCoreVendor\str_rot13(...func_get_args()); } }
+if (!function_exists('str_shuffle')) { function str_shuffle() { return \OtomatiesCoreVendor\str_shuffle(...func_get_args()); } }
+if (!function_exists('str_split')) { function str_split() { return \OtomatiesCoreVendor\str_split(...func_get_args()); } }
+if (!function_exists('str_starts_with')) { function str_starts_with() { return \OtomatiesCoreVendor\str_starts_with(...func_get_args()); } }
+if (!function_exists('str_word_count')) { function str_word_count() { return \OtomatiesCoreVendor\str_word_count(...func_get_args()); } }
+if (!function_exists('strcasecmp')) { function strcasecmp() { return \OtomatiesCoreVendor\strcasecmp(...func_get_args()); } }
+if (!function_exists('strchr')) { function strchr() { return \OtomatiesCoreVendor\strchr(...func_get_args()); } }
+if (!function_exists('strcmp')) { function strcmp() { return \OtomatiesCoreVendor\strcmp(...func_get_args()); } }
+if (!function_exists('strcoll')) { function strcoll() { return \OtomatiesCoreVendor\strcoll(...func_get_args()); } }
+if (!function_exists('strcspn')) { function strcspn() { return \OtomatiesCoreVendor\strcspn(...func_get_args()); } }
+if (!function_exists('stream_bucket_append')) { function stream_bucket_append() { return \OtomatiesCoreVendor\stream_bucket_append(...func_get_args()); } }
+if (!function_exists('stream_bucket_make_writeable')) { function stream_bucket_make_writeable() { return \OtomatiesCoreVendor\stream_bucket_make_writeable(...func_get_args()); } }
+if (!function_exists('stream_bucket_new')) { function stream_bucket_new() { return \OtomatiesCoreVendor\stream_bucket_new(...func_get_args()); } }
+if (!function_exists('stream_bucket_prepend')) { function stream_bucket_prepend() { return \OtomatiesCoreVendor\stream_bucket_prepend(...func_get_args()); } }
+if (!function_exists('stream_context_create')) { function stream_context_create() { return \OtomatiesCoreVendor\stream_context_create(...func_get_args()); } }
+if (!function_exists('stream_context_get_default')) { function stream_context_get_default() { return \OtomatiesCoreVendor\stream_context_get_default(...func_get_args()); } }
+if (!function_exists('stream_context_get_options')) { function stream_context_get_options() { return \OtomatiesCoreVendor\stream_context_get_options(...func_get_args()); } }
+if (!function_exists('stream_context_get_params')) { function stream_context_get_params() { return \OtomatiesCoreVendor\stream_context_get_params(...func_get_args()); } }
+if (!function_exists('stream_context_set_default')) { function stream_context_set_default() { return \OtomatiesCoreVendor\stream_context_set_default(...func_get_args()); } }
+if (!function_exists('stream_context_set_option')) { function stream_context_set_option() { return \OtomatiesCoreVendor\stream_context_set_option(...func_get_args()); } }
 if (!function_exists('stream_context_set_options')) { function stream_context_set_options() { return \OtomatiesCoreVendor\stream_context_set_options(...func_get_args()); } }
+if (!function_exists('stream_context_set_params')) { function stream_context_set_params() { return \OtomatiesCoreVendor\stream_context_set_params(...func_get_args()); } }
+if (!function_exists('stream_copy_to_stream')) { function stream_copy_to_stream() { return \OtomatiesCoreVendor\stream_copy_to_stream(...func_get_args()); } }
+if (!function_exists('stream_filter_append')) { function stream_filter_append() { return \OtomatiesCoreVendor\stream_filter_append(...func_get_args()); } }
+if (!function_exists('stream_filter_prepend')) { function stream_filter_prepend() { return \OtomatiesCoreVendor\stream_filter_prepend(...func_get_args()); } }
+if (!function_exists('stream_filter_register')) { function stream_filter_register() { return \OtomatiesCoreVendor\stream_filter_register(...func_get_args()); } }
+if (!function_exists('stream_filter_remove')) { function stream_filter_remove() { return \OtomatiesCoreVendor\stream_filter_remove(...func_get_args()); } }
+if (!function_exists('stream_get_contents')) { function stream_get_contents() { return \OtomatiesCoreVendor\stream_get_contents(...func_get_args()); } }
+if (!function_exists('stream_get_filters')) { function stream_get_filters() { return \OtomatiesCoreVendor\stream_get_filters(...func_get_args()); } }
+if (!function_exists('stream_get_line')) { function stream_get_line() { return \OtomatiesCoreVendor\stream_get_line(...func_get_args()); } }
+if (!function_exists('stream_get_meta_data')) { function stream_get_meta_data() { return \OtomatiesCoreVendor\stream_get_meta_data(...func_get_args()); } }
+if (!function_exists('stream_get_transports')) { function stream_get_transports() { return \OtomatiesCoreVendor\stream_get_transports(...func_get_args()); } }
+if (!function_exists('stream_get_wrappers')) { function stream_get_wrappers() { return \OtomatiesCoreVendor\stream_get_wrappers(...func_get_args()); } }
+if (!function_exists('stream_is_local')) { function stream_is_local() { return \OtomatiesCoreVendor\stream_is_local(...func_get_args()); } }
+if (!function_exists('stream_isatty')) { function stream_isatty() { return \OtomatiesCoreVendor\stream_isatty(...func_get_args()); } }
 if (!function_exists('stream_preview_image')) { function stream_preview_image() { return \OtomatiesCoreVendor\stream_preview_image(...func_get_args()); } }
+if (!function_exists('stream_register_wrapper')) { function stream_register_wrapper() { return \OtomatiesCoreVendor\stream_register_wrapper(...func_get_args()); } }
+if (!function_exists('stream_resolve_include_path')) { function stream_resolve_include_path() { return \OtomatiesCoreVendor\stream_resolve_include_path(...func_get_args()); } }
+if (!function_exists('stream_select')) { function stream_select() { return \OtomatiesCoreVendor\stream_select(...func_get_args()); } }
+if (!function_exists('stream_set_blocking')) { function stream_set_blocking() { return \OtomatiesCoreVendor\stream_set_blocking(...func_get_args()); } }
+if (!function_exists('stream_set_chunk_size')) { function stream_set_chunk_size() { return \OtomatiesCoreVendor\stream_set_chunk_size(...func_get_args()); } }
+if (!function_exists('stream_set_read_buffer')) { function stream_set_read_buffer() { return \OtomatiesCoreVendor\stream_set_read_buffer(...func_get_args()); } }
+if (!function_exists('stream_set_timeout')) { function stream_set_timeout() { return \OtomatiesCoreVendor\stream_set_timeout(...func_get_args()); } }
+if (!function_exists('stream_set_write_buffer')) { function stream_set_write_buffer() { return \OtomatiesCoreVendor\stream_set_write_buffer(...func_get_args()); } }
+if (!function_exists('stream_socket_accept')) { function stream_socket_accept() { return \OtomatiesCoreVendor\stream_socket_accept(...func_get_args()); } }
+if (!function_exists('stream_socket_client')) { function stream_socket_client() { return \OtomatiesCoreVendor\stream_socket_client(...func_get_args()); } }
+if (!function_exists('stream_socket_enable_crypto')) { function stream_socket_enable_crypto() { return \OtomatiesCoreVendor\stream_socket_enable_crypto(...func_get_args()); } }
+if (!function_exists('stream_socket_get_name')) { function stream_socket_get_name() { return \OtomatiesCoreVendor\stream_socket_get_name(...func_get_args()); } }
+if (!function_exists('stream_socket_pair')) { function stream_socket_pair() { return \OtomatiesCoreVendor\stream_socket_pair(...func_get_args()); } }
+if (!function_exists('stream_socket_recvfrom')) { function stream_socket_recvfrom() { return \OtomatiesCoreVendor\stream_socket_recvfrom(...func_get_args()); } }
+if (!function_exists('stream_socket_sendto')) { function stream_socket_sendto() { return \OtomatiesCoreVendor\stream_socket_sendto(...func_get_args()); } }
+if (!function_exists('stream_socket_server')) { function stream_socket_server() { return \OtomatiesCoreVendor\stream_socket_server(...func_get_args()); } }
+if (!function_exists('stream_socket_shutdown')) { function stream_socket_shutdown() { return \OtomatiesCoreVendor\stream_socket_shutdown(...func_get_args()); } }
+if (!function_exists('stream_supports_lock')) { function stream_supports_lock() { return \OtomatiesCoreVendor\stream_supports_lock(...func_get_args()); } }
+if (!function_exists('stream_wrapper_register')) { function stream_wrapper_register() { return \OtomatiesCoreVendor\stream_wrapper_register(...func_get_args()); } }
+if (!function_exists('stream_wrapper_restore')) { function stream_wrapper_restore() { return \OtomatiesCoreVendor\stream_wrapper_restore(...func_get_args()); } }
+if (!function_exists('stream_wrapper_unregister')) { function stream_wrapper_unregister() { return \OtomatiesCoreVendor\stream_wrapper_unregister(...func_get_args()); } }
+if (!function_exists('strftime')) { function strftime() { return \OtomatiesCoreVendor\strftime(...func_get_args()); } }
 if (!function_exists('strip_core_block_namespace')) { function strip_core_block_namespace() { return \OtomatiesCoreVendor\strip_core_block_namespace(...func_get_args()); } }
 if (!function_exists('strip_fragment_from_url')) { function strip_fragment_from_url() { return \OtomatiesCoreVendor\strip_fragment_from_url(...func_get_args()); } }
 if (!function_exists('strip_shortcode_tag')) { function strip_shortcode_tag() { return \OtomatiesCoreVendor\strip_shortcode_tag(...func_get_args()); } }
 if (!function_exists('strip_shortcodes')) { function strip_shortcodes() { return \OtomatiesCoreVendor\strip_shortcodes(...func_get_args()); } }
+if (!function_exists('strip_tags')) { function strip_tags() { return \OtomatiesCoreVendor\strip_tags(...func_get_args()); } }
+if (!function_exists('stripcslashes')) { function stripcslashes() { return \OtomatiesCoreVendor\stripcslashes(...func_get_args()); } }
+if (!function_exists('stripos')) { function stripos() { return \OtomatiesCoreVendor\stripos(...func_get_args()); } }
+if (!function_exists('stripslashes')) { function stripslashes() { return \OtomatiesCoreVendor\stripslashes(...func_get_args()); } }
 if (!function_exists('stripslashes_deep')) { function stripslashes_deep() { return \OtomatiesCoreVendor\stripslashes_deep(...func_get_args()); } }
 if (!function_exists('stripslashes_from_strings_only')) { function stripslashes_from_strings_only() { return \OtomatiesCoreVendor\stripslashes_from_strings_only(...func_get_args()); } }
+if (!function_exists('stristr')) { function stristr() { return \OtomatiesCoreVendor\stristr(...func_get_args()); } }
+if (!function_exists('strlen')) { function strlen() { return \OtomatiesCoreVendor\strlen(...func_get_args()); } }
+if (!function_exists('strnatcasecmp')) { function strnatcasecmp() { return \OtomatiesCoreVendor\strnatcasecmp(...func_get_args()); } }
+if (!function_exists('strnatcmp')) { function strnatcmp() { return \OtomatiesCoreVendor\strnatcmp(...func_get_args()); } }
+if (!function_exists('strncasecmp')) { function strncasecmp() { return \OtomatiesCoreVendor\strncasecmp(...func_get_args()); } }
+if (!function_exists('strncmp')) { function strncmp() { return \OtomatiesCoreVendor\strncmp(...func_get_args()); } }
+if (!function_exists('strpbrk')) { function strpbrk() { return \OtomatiesCoreVendor\strpbrk(...func_get_args()); } }
+if (!function_exists('strpos')) { function strpos() { return \OtomatiesCoreVendor\strpos(...func_get_args()); } }
+if (!function_exists('strptime')) { function strptime() { return \OtomatiesCoreVendor\strptime(...func_get_args()); } }
+if (!function_exists('strrchr')) { function strrchr() { return \OtomatiesCoreVendor\strrchr(...func_get_args()); } }
+if (!function_exists('strrev')) { function strrev() { return \OtomatiesCoreVendor\strrev(...func_get_args()); } }
+if (!function_exists('strripos')) { function strripos() { return \OtomatiesCoreVendor\strripos(...func_get_args()); } }
+if (!function_exists('strrpos')) { function strrpos() { return \OtomatiesCoreVendor\strrpos(...func_get_args()); } }
+if (!function_exists('strspn')) { function strspn() { return \OtomatiesCoreVendor\strspn(...func_get_args()); } }
+if (!function_exists('strstr')) { function strstr() { return \OtomatiesCoreVendor\strstr(...func_get_args()); } }
+if (!function_exists('strtok')) { function strtok() { return \OtomatiesCoreVendor\strtok(...func_get_args()); } }
+if (!function_exists('strtolower')) { function strtolower() { return \OtomatiesCoreVendor\strtolower(...func_get_args()); } }
+if (!function_exists('strtotime')) { function strtotime() { return \OtomatiesCoreVendor\strtotime(...func_get_args()); } }
+if (!function_exists('strtoupper')) { function strtoupper() { return \OtomatiesCoreVendor\strtoupper(...func_get_args()); } }
+if (!function_exists('strtr')) { function strtr() { return \OtomatiesCoreVendor\strtr(...func_get_args()); } }
+if (!function_exists('strval')) { function strval() { return \OtomatiesCoreVendor\strval(...func_get_args()); } }
 if (!function_exists('styles_for_block_core_search')) { function styles_for_block_core_search() { return \OtomatiesCoreVendor\styles_for_block_core_search(...func_get_args()); } }
 if (!function_exists('submit_button')) { function submit_button() { return \OtomatiesCoreVendor\submit_button(...func_get_args()); } }
+if (!function_exists('substr')) { function substr() { return \OtomatiesCoreVendor\substr(...func_get_args()); } }
+if (!function_exists('substr_compare')) { function substr_compare() { return \OtomatiesCoreVendor\substr_compare(...func_get_args()); } }
+if (!function_exists('substr_count')) { function substr_count() { return \OtomatiesCoreVendor\substr_count(...func_get_args()); } }
+if (!function_exists('substr_replace')) { function substr_replace() { return \OtomatiesCoreVendor\substr_replace(...func_get_args()); } }
+if (!function_exists('suhosin_encrypt_cookie')) { function suhosin_encrypt_cookie() { return \OtomatiesCoreVendor\suhosin_encrypt_cookie(...func_get_args()); } }
+if (!function_exists('suhosin_get_raw_cookies')) { function suhosin_get_raw_cookies() { return \OtomatiesCoreVendor\suhosin_get_raw_cookies(...func_get_args()); } }
+if (!function_exists('svn_add')) { function svn_add() { return \OtomatiesCoreVendor\svn_add(...func_get_args()); } }
+if (!function_exists('svn_auth_get_parameter')) { function svn_auth_get_parameter() { return \OtomatiesCoreVendor\svn_auth_get_parameter(...func_get_args()); } }
+if (!function_exists('svn_auth_set_parameter')) { function svn_auth_set_parameter() { return \OtomatiesCoreVendor\svn_auth_set_parameter(...func_get_args()); } }
+if (!function_exists('svn_blame')) { function svn_blame() { return \OtomatiesCoreVendor\svn_blame(...func_get_args()); } }
+if (!function_exists('svn_cat')) { function svn_cat() { return \OtomatiesCoreVendor\svn_cat(...func_get_args()); } }
+if (!function_exists('svn_checkout')) { function svn_checkout() { return \OtomatiesCoreVendor\svn_checkout(...func_get_args()); } }
+if (!function_exists('svn_cleanup')) { function svn_cleanup() { return \OtomatiesCoreVendor\svn_cleanup(...func_get_args()); } }
+if (!function_exists('svn_client_version')) { function svn_client_version() { return \OtomatiesCoreVendor\svn_client_version(...func_get_args()); } }
+if (!function_exists('svn_commit')) { function svn_commit() { return \OtomatiesCoreVendor\svn_commit(...func_get_args()); } }
+if (!function_exists('svn_config_ensure')) { function svn_config_ensure() { return \OtomatiesCoreVendor\svn_config_ensure(...func_get_args()); } }
+if (!function_exists('svn_copy')) { function svn_copy() { return \OtomatiesCoreVendor\svn_copy(...func_get_args()); } }
+if (!function_exists('svn_delete')) { function svn_delete() { return \OtomatiesCoreVendor\svn_delete(...func_get_args()); } }
+if (!function_exists('svn_diff')) { function svn_diff() { return \OtomatiesCoreVendor\svn_diff(...func_get_args()); } }
+if (!function_exists('svn_export')) { function svn_export() { return \OtomatiesCoreVendor\svn_export(...func_get_args()); } }
+if (!function_exists('svn_fs_abort_txn')) { function svn_fs_abort_txn() { return \OtomatiesCoreVendor\svn_fs_abort_txn(...func_get_args()); } }
+if (!function_exists('svn_fs_apply_text')) { function svn_fs_apply_text() { return \OtomatiesCoreVendor\svn_fs_apply_text(...func_get_args()); } }
+if (!function_exists('svn_fs_begin_txn2')) { function svn_fs_begin_txn2() { return \OtomatiesCoreVendor\svn_fs_begin_txn2(...func_get_args()); } }
+if (!function_exists('svn_fs_change_node_prop')) { function svn_fs_change_node_prop() { return \OtomatiesCoreVendor\svn_fs_change_node_prop(...func_get_args()); } }
+if (!function_exists('svn_fs_check_path')) { function svn_fs_check_path() { return \OtomatiesCoreVendor\svn_fs_check_path(...func_get_args()); } }
+if (!function_exists('svn_fs_contents_changed')) { function svn_fs_contents_changed() { return \OtomatiesCoreVendor\svn_fs_contents_changed(...func_get_args()); } }
+if (!function_exists('svn_fs_copy')) { function svn_fs_copy() { return \OtomatiesCoreVendor\svn_fs_copy(...func_get_args()); } }
+if (!function_exists('svn_fs_delete')) { function svn_fs_delete() { return \OtomatiesCoreVendor\svn_fs_delete(...func_get_args()); } }
+if (!function_exists('svn_fs_dir_entries')) { function svn_fs_dir_entries() { return \OtomatiesCoreVendor\svn_fs_dir_entries(...func_get_args()); } }
+if (!function_exists('svn_fs_file_contents')) { function svn_fs_file_contents() { return \OtomatiesCoreVendor\svn_fs_file_contents(...func_get_args()); } }
+if (!function_exists('svn_fs_file_length')) { function svn_fs_file_length() { return \OtomatiesCoreVendor\svn_fs_file_length(...func_get_args()); } }
+if (!function_exists('svn_fs_is_dir')) { function svn_fs_is_dir() { return \OtomatiesCoreVendor\svn_fs_is_dir(...func_get_args()); } }
+if (!function_exists('svn_fs_is_file')) { function svn_fs_is_file() { return \OtomatiesCoreVendor\svn_fs_is_file(...func_get_args()); } }
+if (!function_exists('svn_fs_make_dir')) { function svn_fs_make_dir() { return \OtomatiesCoreVendor\svn_fs_make_dir(...func_get_args()); } }
+if (!function_exists('svn_fs_make_file')) { function svn_fs_make_file() { return \OtomatiesCoreVendor\svn_fs_make_file(...func_get_args()); } }
+if (!function_exists('svn_fs_node_created_rev')) { function svn_fs_node_created_rev() { return \OtomatiesCoreVendor\svn_fs_node_created_rev(...func_get_args()); } }
+if (!function_exists('svn_fs_node_prop')) { function svn_fs_node_prop() { return \OtomatiesCoreVendor\svn_fs_node_prop(...func_get_args()); } }
+if (!function_exists('svn_fs_props_changed')) { function svn_fs_props_changed() { return \OtomatiesCoreVendor\svn_fs_props_changed(...func_get_args()); } }
+if (!function_exists('svn_fs_revision_prop')) { function svn_fs_revision_prop() { return \OtomatiesCoreVendor\svn_fs_revision_prop(...func_get_args()); } }
+if (!function_exists('svn_fs_revision_root')) { function svn_fs_revision_root() { return \OtomatiesCoreVendor\svn_fs_revision_root(...func_get_args()); } }
+if (!function_exists('svn_fs_txn_root')) { function svn_fs_txn_root() { return \OtomatiesCoreVendor\svn_fs_txn_root(...func_get_args()); } }
+if (!function_exists('svn_fs_youngest_rev')) { function svn_fs_youngest_rev() { return \OtomatiesCoreVendor\svn_fs_youngest_rev(...func_get_args()); } }
+if (!function_exists('svn_import')) { function svn_import() { return \OtomatiesCoreVendor\svn_import(...func_get_args()); } }
+if (!function_exists('svn_info')) { function svn_info() { return \OtomatiesCoreVendor\svn_info(...func_get_args()); } }
+if (!function_exists('svn_lock')) { function svn_lock() { return \OtomatiesCoreVendor\svn_lock(...func_get_args()); } }
+if (!function_exists('svn_log')) { function svn_log() { return \OtomatiesCoreVendor\svn_log(...func_get_args()); } }
+if (!function_exists('svn_ls')) { function svn_ls() { return \OtomatiesCoreVendor\svn_ls(...func_get_args()); } }
+if (!function_exists('svn_mkdir')) { function svn_mkdir() { return \OtomatiesCoreVendor\svn_mkdir(...func_get_args()); } }
+if (!function_exists('svn_move')) { function svn_move() { return \OtomatiesCoreVendor\svn_move(...func_get_args()); } }
+if (!function_exists('svn_propget')) { function svn_propget() { return \OtomatiesCoreVendor\svn_propget(...func_get_args()); } }
+if (!function_exists('svn_proplist')) { function svn_proplist() { return \OtomatiesCoreVendor\svn_proplist(...func_get_args()); } }
+if (!function_exists('svn_repos_create')) { function svn_repos_create() { return \OtomatiesCoreVendor\svn_repos_create(...func_get_args()); } }
+if (!function_exists('svn_repos_fs')) { function svn_repos_fs() { return \OtomatiesCoreVendor\svn_repos_fs(...func_get_args()); } }
+if (!function_exists('svn_repos_fs_begin_txn_for_commit')) { function svn_repos_fs_begin_txn_for_commit() { return \OtomatiesCoreVendor\svn_repos_fs_begin_txn_for_commit(...func_get_args()); } }
+if (!function_exists('svn_repos_fs_commit_txn')) { function svn_repos_fs_commit_txn() { return \OtomatiesCoreVendor\svn_repos_fs_commit_txn(...func_get_args()); } }
+if (!function_exists('svn_repos_hotcopy')) { function svn_repos_hotcopy() { return \OtomatiesCoreVendor\svn_repos_hotcopy(...func_get_args()); } }
+if (!function_exists('svn_repos_open')) { function svn_repos_open() { return \OtomatiesCoreVendor\svn_repos_open(...func_get_args()); } }
+if (!function_exists('svn_repos_recover')) { function svn_repos_recover() { return \OtomatiesCoreVendor\svn_repos_recover(...func_get_args()); } }
+if (!function_exists('svn_resolved')) { function svn_resolved() { return \OtomatiesCoreVendor\svn_resolved(...func_get_args()); } }
+if (!function_exists('svn_revert')) { function svn_revert() { return \OtomatiesCoreVendor\svn_revert(...func_get_args()); } }
+if (!function_exists('svn_status')) { function svn_status() { return \OtomatiesCoreVendor\svn_status(...func_get_args()); } }
+if (!function_exists('svn_switch')) { function svn_switch() { return \OtomatiesCoreVendor\svn_switch(...func_get_args()); } }
+if (!function_exists('svn_unlock')) { function svn_unlock() { return \OtomatiesCoreVendor\svn_unlock(...func_get_args()); } }
+if (!function_exists('svn_update')) { function svn_update() { return \OtomatiesCoreVendor\svn_update(...func_get_args()); } }
 if (!function_exists('switch_theme')) { function switch_theme() { return \OtomatiesCoreVendor\switch_theme(...func_get_args()); } }
 if (!function_exists('switch_to_blog')) { function switch_to_blog() { return \OtomatiesCoreVendor\switch_to_blog(...func_get_args()); } }
 if (!function_exists('switch_to_locale')) { function switch_to_locale() { return \OtomatiesCoreVendor\switch_to_locale(...func_get_args()); } }
 if (!function_exists('switch_to_user_locale')) { function switch_to_user_locale() { return \OtomatiesCoreVendor\switch_to_user_locale(...func_get_args()); } }
+if (!function_exists('swoole_async_dns_lookup_coro')) { function swoole_async_dns_lookup_coro() { return \OtomatiesCoreVendor\swoole_async_dns_lookup_coro(...func_get_args()); } }
+if (!function_exists('swoole_async_set')) { function swoole_async_set() { return \OtomatiesCoreVendor\swoole_async_set(...func_get_args()); } }
+if (!function_exists('swoole_clear_dns_cache')) { function swoole_clear_dns_cache() { return \OtomatiesCoreVendor\swoole_clear_dns_cache(...func_get_args()); } }
+if (!function_exists('swoole_clear_error')) { function swoole_clear_error() { return \OtomatiesCoreVendor\swoole_clear_error(...func_get_args()); } }
+if (!function_exists('swoole_client_select')) { function swoole_client_select() { return \OtomatiesCoreVendor\swoole_client_select(...func_get_args()); } }
+if (!function_exists('swoole_coroutine_create')) { function swoole_coroutine_create() { return \OtomatiesCoreVendor\swoole_coroutine_create(...func_get_args()); } }
+if (!function_exists('swoole_coroutine_defer')) { function swoole_coroutine_defer() { return \OtomatiesCoreVendor\swoole_coroutine_defer(...func_get_args()); } }
+if (!function_exists('swoole_coroutine_socketpair')) { function swoole_coroutine_socketpair() { return \OtomatiesCoreVendor\swoole_coroutine_socketpair(...func_get_args()); } }
+if (!function_exists('swoole_cpu_num')) { function swoole_cpu_num() { return \OtomatiesCoreVendor\swoole_cpu_num(...func_get_args()); } }
+if (!function_exists('swoole_errno')) { function swoole_errno() { return \OtomatiesCoreVendor\swoole_errno(...func_get_args()); } }
+if (!function_exists('swoole_error_log')) { function swoole_error_log() { return \OtomatiesCoreVendor\swoole_error_log(...func_get_args()); } }
+if (!function_exists('swoole_error_log_ex')) { function swoole_error_log_ex() { return \OtomatiesCoreVendor\swoole_error_log_ex(...func_get_args()); } }
+if (!function_exists('swoole_event_add')) { function swoole_event_add() { return \OtomatiesCoreVendor\swoole_event_add(...func_get_args()); } }
+if (!function_exists('swoole_event_cycle')) { function swoole_event_cycle() { return \OtomatiesCoreVendor\swoole_event_cycle(...func_get_args()); } }
+if (!function_exists('swoole_event_defer')) { function swoole_event_defer() { return \OtomatiesCoreVendor\swoole_event_defer(...func_get_args()); } }
+if (!function_exists('swoole_event_del')) { function swoole_event_del() { return \OtomatiesCoreVendor\swoole_event_del(...func_get_args()); } }
+if (!function_exists('swoole_event_dispatch')) { function swoole_event_dispatch() { return \OtomatiesCoreVendor\swoole_event_dispatch(...func_get_args()); } }
+if (!function_exists('swoole_event_exit')) { function swoole_event_exit() { return \OtomatiesCoreVendor\swoole_event_exit(...func_get_args()); } }
+if (!function_exists('swoole_event_isset')) { function swoole_event_isset() { return \OtomatiesCoreVendor\swoole_event_isset(...func_get_args()); } }
+if (!function_exists('swoole_event_set')) { function swoole_event_set() { return \OtomatiesCoreVendor\swoole_event_set(...func_get_args()); } }
+if (!function_exists('swoole_event_wait')) { function swoole_event_wait() { return \OtomatiesCoreVendor\swoole_event_wait(...func_get_args()); } }
+if (!function_exists('swoole_event_write')) { function swoole_event_write() { return \OtomatiesCoreVendor\swoole_event_write(...func_get_args()); } }
+if (!function_exists('swoole_get_local_ip')) { function swoole_get_local_ip() { return \OtomatiesCoreVendor\swoole_get_local_ip(...func_get_args()); } }
+if (!function_exists('swoole_get_local_mac')) { function swoole_get_local_mac() { return \OtomatiesCoreVendor\swoole_get_local_mac(...func_get_args()); } }
+if (!function_exists('swoole_get_mime_type')) { function swoole_get_mime_type() { return \OtomatiesCoreVendor\swoole_get_mime_type(...func_get_args()); } }
+if (!function_exists('swoole_get_object_by_handle')) { function swoole_get_object_by_handle() { return \OtomatiesCoreVendor\swoole_get_object_by_handle(...func_get_args()); } }
+if (!function_exists('swoole_get_objects')) { function swoole_get_objects() { return \OtomatiesCoreVendor\swoole_get_objects(...func_get_args()); } }
+if (!function_exists('swoole_get_vm_status')) { function swoole_get_vm_status() { return \OtomatiesCoreVendor\swoole_get_vm_status(...func_get_args()); } }
+if (!function_exists('swoole_hashcode')) { function swoole_hashcode() { return \OtomatiesCoreVendor\swoole_hashcode(...func_get_args()); } }
+if (!function_exists('swoole_ignore_error')) { function swoole_ignore_error() { return \OtomatiesCoreVendor\swoole_ignore_error(...func_get_args()); } }
+if (!function_exists('swoole_internal_call_user_shutdown_begin')) { function swoole_internal_call_user_shutdown_begin() { return \OtomatiesCoreVendor\swoole_internal_call_user_shutdown_begin(...func_get_args()); } }
+if (!function_exists('swoole_last_error')) { function swoole_last_error() { return \OtomatiesCoreVendor\swoole_last_error(...func_get_args()); } }
+if (!function_exists('swoole_mime_type_add')) { function swoole_mime_type_add() { return \OtomatiesCoreVendor\swoole_mime_type_add(...func_get_args()); } }
+if (!function_exists('swoole_mime_type_delete')) { function swoole_mime_type_delete() { return \OtomatiesCoreVendor\swoole_mime_type_delete(...func_get_args()); } }
+if (!function_exists('swoole_mime_type_exists')) { function swoole_mime_type_exists() { return \OtomatiesCoreVendor\swoole_mime_type_exists(...func_get_args()); } }
+if (!function_exists('swoole_mime_type_get')) { function swoole_mime_type_get() { return \OtomatiesCoreVendor\swoole_mime_type_get(...func_get_args()); } }
+if (!function_exists('swoole_mime_type_list')) { function swoole_mime_type_list() { return \OtomatiesCoreVendor\swoole_mime_type_list(...func_get_args()); } }
+if (!function_exists('swoole_mime_type_set')) { function swoole_mime_type_set() { return \OtomatiesCoreVendor\swoole_mime_type_set(...func_get_args()); } }
+if (!function_exists('swoole_select')) { function swoole_select() { return \OtomatiesCoreVendor\swoole_select(...func_get_args()); } }
+if (!function_exists('swoole_set_process_name')) { function swoole_set_process_name() { return \OtomatiesCoreVendor\swoole_set_process_name(...func_get_args()); } }
+if (!function_exists('swoole_strerror')) { function swoole_strerror() { return \OtomatiesCoreVendor\swoole_strerror(...func_get_args()); } }
+if (!function_exists('swoole_substr_json_decode')) { function swoole_substr_json_decode() { return \OtomatiesCoreVendor\swoole_substr_json_decode(...func_get_args()); } }
+if (!function_exists('swoole_substr_unserialize')) { function swoole_substr_unserialize() { return \OtomatiesCoreVendor\swoole_substr_unserialize(...func_get_args()); } }
+if (!function_exists('swoole_test_kernel_coroutine')) { function swoole_test_kernel_coroutine() { return \OtomatiesCoreVendor\swoole_test_kernel_coroutine(...func_get_args()); } }
+if (!function_exists('swoole_timer_after')) { function swoole_timer_after() { return \OtomatiesCoreVendor\swoole_timer_after(...func_get_args()); } }
+if (!function_exists('swoole_timer_clear')) { function swoole_timer_clear() { return \OtomatiesCoreVendor\swoole_timer_clear(...func_get_args()); } }
+if (!function_exists('swoole_timer_clear_all')) { function swoole_timer_clear_all() { return \OtomatiesCoreVendor\swoole_timer_clear_all(...func_get_args()); } }
+if (!function_exists('swoole_timer_exists')) { function swoole_timer_exists() { return \OtomatiesCoreVendor\swoole_timer_exists(...func_get_args()); } }
+if (!function_exists('swoole_timer_info')) { function swoole_timer_info() { return \OtomatiesCoreVendor\swoole_timer_info(...func_get_args()); } }
+if (!function_exists('swoole_timer_list')) { function swoole_timer_list() { return \OtomatiesCoreVendor\swoole_timer_list(...func_get_args()); } }
+if (!function_exists('swoole_timer_set')) { function swoole_timer_set() { return \OtomatiesCoreVendor\swoole_timer_set(...func_get_args()); } }
+if (!function_exists('swoole_timer_stats')) { function swoole_timer_stats() { return \OtomatiesCoreVendor\swoole_timer_stats(...func_get_args()); } }
+if (!function_exists('swoole_timer_tick')) { function swoole_timer_tick() { return \OtomatiesCoreVendor\swoole_timer_tick(...func_get_args()); } }
+if (!function_exists('swoole_version')) { function swoole_version() { return \OtomatiesCoreVendor\swoole_version(...func_get_args()); } }
+if (!function_exists('sybase_affected_rows')) { function sybase_affected_rows() { return \OtomatiesCoreVendor\sybase_affected_rows(...func_get_args()); } }
+if (!function_exists('sybase_close')) { function sybase_close() { return \OtomatiesCoreVendor\sybase_close(...func_get_args()); } }
+if (!function_exists('sybase_connect')) { function sybase_connect() { return \OtomatiesCoreVendor\sybase_connect(...func_get_args()); } }
+if (!function_exists('sybase_data_seek')) { function sybase_data_seek() { return \OtomatiesCoreVendor\sybase_data_seek(...func_get_args()); } }
+if (!function_exists('sybase_deadlock_retry_count')) { function sybase_deadlock_retry_count() { return \OtomatiesCoreVendor\sybase_deadlock_retry_count(...func_get_args()); } }
+if (!function_exists('sybase_fetch_array')) { function sybase_fetch_array() { return \OtomatiesCoreVendor\sybase_fetch_array(...func_get_args()); } }
+if (!function_exists('sybase_fetch_assoc')) { function sybase_fetch_assoc() { return \OtomatiesCoreVendor\sybase_fetch_assoc(...func_get_args()); } }
+if (!function_exists('sybase_fetch_field')) { function sybase_fetch_field() { return \OtomatiesCoreVendor\sybase_fetch_field(...func_get_args()); } }
+if (!function_exists('sybase_fetch_object')) { function sybase_fetch_object() { return \OtomatiesCoreVendor\sybase_fetch_object(...func_get_args()); } }
+if (!function_exists('sybase_fetch_row')) { function sybase_fetch_row() { return \OtomatiesCoreVendor\sybase_fetch_row(...func_get_args()); } }
+if (!function_exists('sybase_field_seek')) { function sybase_field_seek() { return \OtomatiesCoreVendor\sybase_field_seek(...func_get_args()); } }
+if (!function_exists('sybase_free_result')) { function sybase_free_result() { return \OtomatiesCoreVendor\sybase_free_result(...func_get_args()); } }
+if (!function_exists('sybase_get_last_message')) { function sybase_get_last_message() { return \OtomatiesCoreVendor\sybase_get_last_message(...func_get_args()); } }
+if (!function_exists('sybase_min_client_severity')) { function sybase_min_client_severity() { return \OtomatiesCoreVendor\sybase_min_client_severity(...func_get_args()); } }
+if (!function_exists('sybase_min_server_severity')) { function sybase_min_server_severity() { return \OtomatiesCoreVendor\sybase_min_server_severity(...func_get_args()); } }
+if (!function_exists('sybase_num_fields')) { function sybase_num_fields() { return \OtomatiesCoreVendor\sybase_num_fields(...func_get_args()); } }
+if (!function_exists('sybase_num_rows')) { function sybase_num_rows() { return \OtomatiesCoreVendor\sybase_num_rows(...func_get_args()); } }
+if (!function_exists('sybase_pconnect')) { function sybase_pconnect() { return \OtomatiesCoreVendor\sybase_pconnect(...func_get_args()); } }
+if (!function_exists('sybase_query')) { function sybase_query() { return \OtomatiesCoreVendor\sybase_query(...func_get_args()); } }
+if (!function_exists('sybase_result')) { function sybase_result() { return \OtomatiesCoreVendor\sybase_result(...func_get_args()); } }
+if (!function_exists('sybase_select_db')) { function sybase_select_db() { return \OtomatiesCoreVendor\sybase_select_db(...func_get_args()); } }
+if (!function_exists('sybase_set_message_handler')) { function sybase_set_message_handler() { return \OtomatiesCoreVendor\sybase_set_message_handler(...func_get_args()); } }
+if (!function_exists('sybase_unbuffered_query')) { function sybase_unbuffered_query() { return \OtomatiesCoreVendor\sybase_unbuffered_query(...func_get_args()); } }
+if (!function_exists('symlink')) { function symlink() { return \OtomatiesCoreVendor\symlink(...func_get_args()); } }
 if (!function_exists('sync_category_tag_slugs')) { function sync_category_tag_slugs() { return \OtomatiesCoreVendor\sync_category_tag_slugs(...func_get_args()); } }
+if (!function_exists('sys_get_temp_dir')) { function sys_get_temp_dir() { return \OtomatiesCoreVendor\sys_get_temp_dir(...func_get_args()); } }
+if (!function_exists('sys_getloadavg')) { function sys_getloadavg() { return \OtomatiesCoreVendor\sys_getloadavg(...func_get_args()); } }
+if (!function_exists('syslog')) { function syslog() { return \OtomatiesCoreVendor\syslog(...func_get_args()); } }
+if (!function_exists('system')) { function system() { return \OtomatiesCoreVendor\system(...func_get_args()); } }
 if (!function_exists('tag_description')) { function tag_description() { return \OtomatiesCoreVendor\tag_description(...func_get_args()); } }
 if (!function_exists('tag_escape')) { function tag_escape() { return \OtomatiesCoreVendor\tag_escape(...func_get_args()); } }
 if (!function_exists('tag_exists')) { function tag_exists() { return \OtomatiesCoreVendor\tag_exists(...func_get_args()); } }
+if (!function_exists('tan')) { function tan() { return \OtomatiesCoreVendor\tan(...func_get_args()); } }
+if (!function_exists('tanh')) { function tanh() { return \OtomatiesCoreVendor\tanh(...func_get_args()); } }
 if (!function_exists('tap')) { function tap() { return \OtomatiesCoreVendor\tap(...func_get_args()); } }
 if (!function_exists('taxonomy_exists')) { function taxonomy_exists() { return \OtomatiesCoreVendor\taxonomy_exists(...func_get_args()); } }
 if (!function_exists('taxonomy_is_product_attribute')) { function taxonomy_is_product_attribute() { return \OtomatiesCoreVendor\taxonomy_is_product_attribute(...func_get_args()); } }
 if (!function_exists('taxonomy_meta_box_sanitize_cb_checkboxes')) { function taxonomy_meta_box_sanitize_cb_checkboxes() { return \OtomatiesCoreVendor\taxonomy_meta_box_sanitize_cb_checkboxes(...func_get_args()); } }
 if (!function_exists('taxonomy_meta_box_sanitize_cb_input')) { function taxonomy_meta_box_sanitize_cb_input() { return \OtomatiesCoreVendor\taxonomy_meta_box_sanitize_cb_input(...func_get_args()); } }
+if (!function_exists('tempnam')) { function tempnam() { return \OtomatiesCoreVendor\tempnam(...func_get_args()); } }
 if (!function_exists('term_description')) { function term_description() { return \OtomatiesCoreVendor\term_description(...func_get_args()); } }
 if (!function_exists('term_exists')) { function term_exists() { return \OtomatiesCoreVendor\term_exists(...func_get_args()); } }
 if (!function_exists('term_is_ancestor_of')) { function term_is_ancestor_of() { return \OtomatiesCoreVendor\term_is_ancestor_of(...func_get_args()); } }
 if (!function_exists('textColorGreen')) { function textColorGreen() { return \OtomatiesCoreVendor\textColorGreen(...func_get_args()); } }
 if (!function_exists('textColorNormal')) { function textColorNormal() { return \OtomatiesCoreVendor\textColorNormal(...func_get_args()); } }
 if (!function_exists('textColorRed')) { function textColorRed() { return \OtomatiesCoreVendor\textColorRed(...func_get_args()); } }
+if (!function_exists('textdomain')) { function textdomain() { return \OtomatiesCoreVendor\textdomain(...func_get_args()); } }
 if (!function_exists('the_ID')) { function the_ID() { return \OtomatiesCoreVendor\the_ID(...func_get_args()); } }
 if (!function_exists('the_archive_description')) { function the_archive_description() { return \OtomatiesCoreVendor\the_archive_description(...func_get_args()); } }
 if (!function_exists('the_archive_title')) { function the_archive_title() { return \OtomatiesCoreVendor\the_archive_title(...func_get_args()); } }
@@ -3625,10 +8485,50 @@ if (!function_exists('theme_update_available')) { function theme_update_availabl
 if (!function_exists('themes_api')) { function themes_api() { return \OtomatiesCoreVendor\themes_api(...func_get_args()); } }
 if (!function_exists('throw_if')) { function throw_if() { return \OtomatiesCoreVendor\throw_if(...func_get_args()); } }
 if (!function_exists('throw_unless')) { function throw_unless() { return \OtomatiesCoreVendor\throw_unless(...func_get_args()); } }
+if (!function_exists('tidy_access_count')) { function tidy_access_count() { return \OtomatiesCoreVendor\tidy_access_count(...func_get_args()); } }
+if (!function_exists('tidy_clean_repair')) { function tidy_clean_repair() { return \OtomatiesCoreVendor\tidy_clean_repair(...func_get_args()); } }
+if (!function_exists('tidy_config_count')) { function tidy_config_count() { return \OtomatiesCoreVendor\tidy_config_count(...func_get_args()); } }
+if (!function_exists('tidy_diagnose')) { function tidy_diagnose() { return \OtomatiesCoreVendor\tidy_diagnose(...func_get_args()); } }
+if (!function_exists('tidy_error_count')) { function tidy_error_count() { return \OtomatiesCoreVendor\tidy_error_count(...func_get_args()); } }
+if (!function_exists('tidy_get_body')) { function tidy_get_body() { return \OtomatiesCoreVendor\tidy_get_body(...func_get_args()); } }
+if (!function_exists('tidy_get_config')) { function tidy_get_config() { return \OtomatiesCoreVendor\tidy_get_config(...func_get_args()); } }
+if (!function_exists('tidy_get_error_buffer')) { function tidy_get_error_buffer() { return \OtomatiesCoreVendor\tidy_get_error_buffer(...func_get_args()); } }
+if (!function_exists('tidy_get_head')) { function tidy_get_head() { return \OtomatiesCoreVendor\tidy_get_head(...func_get_args()); } }
+if (!function_exists('tidy_get_html')) { function tidy_get_html() { return \OtomatiesCoreVendor\tidy_get_html(...func_get_args()); } }
+if (!function_exists('tidy_get_html_ver')) { function tidy_get_html_ver() { return \OtomatiesCoreVendor\tidy_get_html_ver(...func_get_args()); } }
+if (!function_exists('tidy_get_opt_doc')) { function tidy_get_opt_doc() { return \OtomatiesCoreVendor\tidy_get_opt_doc(...func_get_args()); } }
+if (!function_exists('tidy_get_output')) { function tidy_get_output() { return \OtomatiesCoreVendor\tidy_get_output(...func_get_args()); } }
+if (!function_exists('tidy_get_release')) { function tidy_get_release() { return \OtomatiesCoreVendor\tidy_get_release(...func_get_args()); } }
+if (!function_exists('tidy_get_root')) { function tidy_get_root() { return \OtomatiesCoreVendor\tidy_get_root(...func_get_args()); } }
+if (!function_exists('tidy_get_status')) { function tidy_get_status() { return \OtomatiesCoreVendor\tidy_get_status(...func_get_args()); } }
+if (!function_exists('tidy_getopt')) { function tidy_getopt() { return \OtomatiesCoreVendor\tidy_getopt(...func_get_args()); } }
+if (!function_exists('tidy_is_xhtml')) { function tidy_is_xhtml() { return \OtomatiesCoreVendor\tidy_is_xhtml(...func_get_args()); } }
+if (!function_exists('tidy_is_xml')) { function tidy_is_xml() { return \OtomatiesCoreVendor\tidy_is_xml(...func_get_args()); } }
+if (!function_exists('tidy_parse_file')) { function tidy_parse_file() { return \OtomatiesCoreVendor\tidy_parse_file(...func_get_args()); } }
+if (!function_exists('tidy_parse_string')) { function tidy_parse_string() { return \OtomatiesCoreVendor\tidy_parse_string(...func_get_args()); } }
+if (!function_exists('tidy_repair_file')) { function tidy_repair_file() { return \OtomatiesCoreVendor\tidy_repair_file(...func_get_args()); } }
+if (!function_exists('tidy_repair_string')) { function tidy_repair_string() { return \OtomatiesCoreVendor\tidy_repair_string(...func_get_args()); } }
+if (!function_exists('tidy_warning_count')) { function tidy_warning_count() { return \OtomatiesCoreVendor\tidy_warning_count(...func_get_args()); } }
+if (!function_exists('time')) { function time() { return \OtomatiesCoreVendor\time(...func_get_args()); } }
+if (!function_exists('time_nanosleep')) { function time_nanosleep() { return \OtomatiesCoreVendor\time_nanosleep(...func_get_args()); } }
+if (!function_exists('time_sleep_until')) { function time_sleep_until() { return \OtomatiesCoreVendor\time_sleep_until(...func_get_args()); } }
 if (!function_exists('timer_float')) { function timer_float() { return \OtomatiesCoreVendor\timer_float(...func_get_args()); } }
 if (!function_exists('timer_start')) { function timer_start() { return \OtomatiesCoreVendor\timer_start(...func_get_args()); } }
 if (!function_exists('timer_stop')) { function timer_stop() { return \OtomatiesCoreVendor\timer_stop(...func_get_args()); } }
+if (!function_exists('timezone_abbreviations_list')) { function timezone_abbreviations_list() { return \OtomatiesCoreVendor\timezone_abbreviations_list(...func_get_args()); } }
+if (!function_exists('timezone_identifiers_list')) { function timezone_identifiers_list() { return \OtomatiesCoreVendor\timezone_identifiers_list(...func_get_args()); } }
+if (!function_exists('timezone_location_get')) { function timezone_location_get() { return \OtomatiesCoreVendor\timezone_location_get(...func_get_args()); } }
+if (!function_exists('timezone_name_from_abbr')) { function timezone_name_from_abbr() { return \OtomatiesCoreVendor\timezone_name_from_abbr(...func_get_args()); } }
+if (!function_exists('timezone_name_get')) { function timezone_name_get() { return \OtomatiesCoreVendor\timezone_name_get(...func_get_args()); } }
+if (!function_exists('timezone_offset_get')) { function timezone_offset_get() { return \OtomatiesCoreVendor\timezone_offset_get(...func_get_args()); } }
+if (!function_exists('timezone_open')) { function timezone_open() { return \OtomatiesCoreVendor\timezone_open(...func_get_args()); } }
+if (!function_exists('timezone_transitions_get')) { function timezone_transitions_get() { return \OtomatiesCoreVendor\timezone_transitions_get(...func_get_args()); } }
+if (!function_exists('timezone_version_get')) { function timezone_version_get() { return \OtomatiesCoreVendor\timezone_version_get(...func_get_args()); } }
 if (!function_exists('tinymce_include')) { function tinymce_include() { return \OtomatiesCoreVendor\tinymce_include(...func_get_args()); } }
+if (!function_exists('tmpfile')) { function tmpfile() { return \OtomatiesCoreVendor\tmpfile(...func_get_args()); } }
+if (!function_exists('token_get_all')) { function token_get_all() { return \OtomatiesCoreVendor\token_get_all(...func_get_args()); } }
+if (!function_exists('token_name')) { function token_name() { return \OtomatiesCoreVendor\token_name(...func_get_args()); } }
+if (!function_exists('touch')) { function touch() { return \OtomatiesCoreVendor\touch(...func_get_args()); } }
 if (!function_exists('touch_time')) { function touch_time() { return \OtomatiesCoreVendor\touch_time(...func_get_args()); } }
 if (!function_exists('trackback')) { function trackback() { return \OtomatiesCoreVendor\trackback(...func_get_args()); } }
 if (!function_exists('trackback_rdf')) { function trackback_rdf() { return \OtomatiesCoreVendor\trackback_rdf(...func_get_args()); } }
@@ -3636,6 +8536,7 @@ if (!function_exists('trackback_response')) { function trackback_response() { re
 if (!function_exists('trackback_url')) { function trackback_url() { return \OtomatiesCoreVendor\trackback_url(...func_get_args()); } }
 if (!function_exists('trackback_url_list')) { function trackback_url_list() { return \OtomatiesCoreVendor\trackback_url_list(...func_get_args()); } }
 if (!function_exists('trailingslashit')) { function trailingslashit() { return \OtomatiesCoreVendor\trailingslashit(...func_get_args()); } }
+if (!function_exists('trait_exists')) { function trait_exists() { return \OtomatiesCoreVendor\trait_exists(...func_get_args()); } }
 if (!function_exists('trait_uses_recursive')) { function trait_uses_recursive() { return \OtomatiesCoreVendor\trait_uses_recursive(...func_get_args()); } }
 if (!function_exists('transform')) { function transform() { return \OtomatiesCoreVendor\transform(...func_get_args()); } }
 if (!function_exists('translate')) { function translate() { return \OtomatiesCoreVendor\translate(...func_get_args()); } }
@@ -3647,17 +8548,35 @@ if (!function_exists('translate_user_role')) { function translate_user_role() { 
 if (!function_exists('translate_with_context')) { function translate_with_context() { return \OtomatiesCoreVendor\translate_with_context(...func_get_args()); } }
 if (!function_exists('translate_with_gettext_context')) { function translate_with_gettext_context() { return \OtomatiesCoreVendor\translate_with_gettext_context(...func_get_args()); } }
 if (!function_exists('translations_api')) { function translations_api() { return \OtomatiesCoreVendor\translations_api(...func_get_args()); } }
+if (!function_exists('transliterator_create')) { function transliterator_create() { return \OtomatiesCoreVendor\transliterator_create(...func_get_args()); } }
+if (!function_exists('transliterator_create_from_rules')) { function transliterator_create_from_rules() { return \OtomatiesCoreVendor\transliterator_create_from_rules(...func_get_args()); } }
+if (!function_exists('transliterator_create_inverse')) { function transliterator_create_inverse() { return \OtomatiesCoreVendor\transliterator_create_inverse(...func_get_args()); } }
+if (!function_exists('transliterator_get_error_code')) { function transliterator_get_error_code() { return \OtomatiesCoreVendor\transliterator_get_error_code(...func_get_args()); } }
+if (!function_exists('transliterator_get_error_message')) { function transliterator_get_error_message() { return \OtomatiesCoreVendor\transliterator_get_error_message(...func_get_args()); } }
+if (!function_exists('transliterator_list_ids')) { function transliterator_list_ids() { return \OtomatiesCoreVendor\transliterator_list_ids(...func_get_args()); } }
+if (!function_exists('transliterator_transliterate')) { function transliterator_transliterate() { return \OtomatiesCoreVendor\transliterator_transliterate(...func_get_args()); } }
 if (!function_exists('traverse_and_serialize_block')) { function traverse_and_serialize_block() { return \OtomatiesCoreVendor\traverse_and_serialize_block(...func_get_args()); } }
 if (!function_exists('traverse_and_serialize_blocks')) { function traverse_and_serialize_blocks() { return \OtomatiesCoreVendor\traverse_and_serialize_blocks(...func_get_args()); } }
 if (!function_exists('trigger_deprecation')) { function trigger_deprecation() { return \OtomatiesCoreVendor\trigger_deprecation(...func_get_args()); } }
+if (!function_exists('trigger_error')) { function trigger_error() { return \OtomatiesCoreVendor\trigger_error(...func_get_args()); } }
+if (!function_exists('trim')) { function trim() { return \OtomatiesCoreVendor\trim(...func_get_args()); } }
 if (!function_exists('type_url_form_audio')) { function type_url_form_audio() { return \OtomatiesCoreVendor\type_url_form_audio(...func_get_args()); } }
 if (!function_exists('type_url_form_file')) { function type_url_form_file() { return \OtomatiesCoreVendor\type_url_form_file(...func_get_args()); } }
 if (!function_exists('type_url_form_image')) { function type_url_form_image() { return \OtomatiesCoreVendor\type_url_form_image(...func_get_args()); } }
 if (!function_exists('type_url_form_video')) { function type_url_form_video() { return \OtomatiesCoreVendor\type_url_form_video(...func_get_args()); } }
+if (!function_exists('uasort')) { function uasort() { return \OtomatiesCoreVendor\uasort(...func_get_args()); } }
+if (!function_exists('ucfirst')) { function ucfirst() { return \OtomatiesCoreVendor\ucfirst(...func_get_args()); } }
+if (!function_exists('ucwords')) { function ucwords() { return \OtomatiesCoreVendor\ucwords(...func_get_args()); } }
+if (!function_exists('uksort')) { function uksort() { return \OtomatiesCoreVendor\uksort(...func_get_args()); } }
+if (!function_exists('umask')) { function umask() { return \OtomatiesCoreVendor\umask(...func_get_args()); } }
 if (!function_exists('undismiss_core_update')) { function undismiss_core_update() { return \OtomatiesCoreVendor\undismiss_core_update(...func_get_args()); } }
 if (!function_exists('unescape_invalid_shortcodes')) { function unescape_invalid_shortcodes() { return \OtomatiesCoreVendor\unescape_invalid_shortcodes(...func_get_args()); } }
 if (!function_exists('uninstall_plugin')) { function uninstall_plugin() { return \OtomatiesCoreVendor\uninstall_plugin(...func_get_args()); } }
+if (!function_exists('uniqid')) { function uniqid() { return \OtomatiesCoreVendor\uniqid(...func_get_args()); } }
+if (!function_exists('unixtojd')) { function unixtojd() { return \OtomatiesCoreVendor\unixtojd(...func_get_args()); } }
+if (!function_exists('unlink')) { function unlink() { return \OtomatiesCoreVendor\unlink(...func_get_args()); } }
 if (!function_exists('unload_textdomain')) { function unload_textdomain() { return \OtomatiesCoreVendor\unload_textdomain(...func_get_args()); } }
+if (!function_exists('unpack')) { function unpack() { return \OtomatiesCoreVendor\unpack(...func_get_args()); } }
 if (!function_exists('unregister_block_bindings_source')) { function unregister_block_bindings_source() { return \OtomatiesCoreVendor\unregister_block_bindings_source(...func_get_args()); } }
 if (!function_exists('unregister_block_pattern')) { function unregister_block_pattern() { return \OtomatiesCoreVendor\unregister_block_pattern(...func_get_args()); } }
 if (!function_exists('unregister_block_pattern_category')) { function unregister_block_pattern_category() { return \OtomatiesCoreVendor\unregister_block_pattern_category(...func_get_args()); } }
@@ -3665,6 +8584,7 @@ if (!function_exists('unregister_block_style')) { function unregister_block_styl
 if (!function_exists('unregister_block_template')) { function unregister_block_template() { return \OtomatiesCoreVendor\unregister_block_template(...func_get_args()); } }
 if (!function_exists('unregister_block_type')) { function unregister_block_type() { return \OtomatiesCoreVendor\unregister_block_type(...func_get_args()); } }
 if (!function_exists('unregister_default_headers')) { function unregister_default_headers() { return \OtomatiesCoreVendor\unregister_default_headers(...func_get_args()); } }
+if (!function_exists('unregister_event_handler')) { function unregister_event_handler() { return \OtomatiesCoreVendor\unregister_event_handler(...func_get_args()); } }
 if (!function_exists('unregister_meta_key')) { function unregister_meta_key() { return \OtomatiesCoreVendor\unregister_meta_key(...func_get_args()); } }
 if (!function_exists('unregister_nav_menu')) { function unregister_nav_menu() { return \OtomatiesCoreVendor\unregister_nav_menu(...func_get_args()); } }
 if (!function_exists('unregister_post_meta')) { function unregister_post_meta() { return \OtomatiesCoreVendor\unregister_post_meta(...func_get_args()); } }
@@ -3675,11 +8595,37 @@ if (!function_exists('unregister_sidebar_widget')) { function unregister_sidebar
 if (!function_exists('unregister_taxonomy')) { function unregister_taxonomy() { return \OtomatiesCoreVendor\unregister_taxonomy(...func_get_args()); } }
 if (!function_exists('unregister_taxonomy_for_object_type')) { function unregister_taxonomy_for_object_type() { return \OtomatiesCoreVendor\unregister_taxonomy_for_object_type(...func_get_args()); } }
 if (!function_exists('unregister_term_meta')) { function unregister_term_meta() { return \OtomatiesCoreVendor\unregister_term_meta(...func_get_args()); } }
+if (!function_exists('unregister_tick_function')) { function unregister_tick_function() { return \OtomatiesCoreVendor\unregister_tick_function(...func_get_args()); } }
 if (!function_exists('unregister_widget')) { function unregister_widget() { return \OtomatiesCoreVendor\unregister_widget(...func_get_args()); } }
 if (!function_exists('unregister_widget_control')) { function unregister_widget_control() { return \OtomatiesCoreVendor\unregister_widget_control(...func_get_args()); } }
+if (!function_exists('unserialize')) { function unserialize() { return \OtomatiesCoreVendor\unserialize(...func_get_args()); } }
 if (!function_exists('unstick_post')) { function unstick_post() { return \OtomatiesCoreVendor\unstick_post(...func_get_args()); } }
 if (!function_exists('untrailingslashit')) { function untrailingslashit() { return \OtomatiesCoreVendor\untrailingslashit(...func_get_args()); } }
 if (!function_exists('unzip_file')) { function unzip_file() { return \OtomatiesCoreVendor\unzip_file(...func_get_args()); } }
+if (!function_exists('uopz_add_function')) { function uopz_add_function() { return \OtomatiesCoreVendor\uopz_add_function(...func_get_args()); } }
+if (!function_exists('uopz_allow_exit')) { function uopz_allow_exit() { return \OtomatiesCoreVendor\uopz_allow_exit(...func_get_args()); } }
+if (!function_exists('uopz_call_user_func')) { function uopz_call_user_func() { return \OtomatiesCoreVendor\uopz_call_user_func(...func_get_args()); } }
+if (!function_exists('uopz_call_user_func_array')) { function uopz_call_user_func_array() { return \OtomatiesCoreVendor\uopz_call_user_func_array(...func_get_args()); } }
+if (!function_exists('uopz_del_function')) { function uopz_del_function() { return \OtomatiesCoreVendor\uopz_del_function(...func_get_args()); } }
+if (!function_exists('uopz_extend')) { function uopz_extend() { return \OtomatiesCoreVendor\uopz_extend(...func_get_args()); } }
+if (!function_exists('uopz_flags')) { function uopz_flags() { return \OtomatiesCoreVendor\uopz_flags(...func_get_args()); } }
+if (!function_exists('uopz_get_exit_status')) { function uopz_get_exit_status() { return \OtomatiesCoreVendor\uopz_get_exit_status(...func_get_args()); } }
+if (!function_exists('uopz_get_hook')) { function uopz_get_hook() { return \OtomatiesCoreVendor\uopz_get_hook(...func_get_args()); } }
+if (!function_exists('uopz_get_mock')) { function uopz_get_mock() { return \OtomatiesCoreVendor\uopz_get_mock(...func_get_args()); } }
+if (!function_exists('uopz_get_property')) { function uopz_get_property() { return \OtomatiesCoreVendor\uopz_get_property(...func_get_args()); } }
+if (!function_exists('uopz_get_return')) { function uopz_get_return() { return \OtomatiesCoreVendor\uopz_get_return(...func_get_args()); } }
+if (!function_exists('uopz_get_static')) { function uopz_get_static() { return \OtomatiesCoreVendor\uopz_get_static(...func_get_args()); } }
+if (!function_exists('uopz_implement')) { function uopz_implement() { return \OtomatiesCoreVendor\uopz_implement(...func_get_args()); } }
+if (!function_exists('uopz_redefine')) { function uopz_redefine() { return \OtomatiesCoreVendor\uopz_redefine(...func_get_args()); } }
+if (!function_exists('uopz_set_hook')) { function uopz_set_hook() { return \OtomatiesCoreVendor\uopz_set_hook(...func_get_args()); } }
+if (!function_exists('uopz_set_mock')) { function uopz_set_mock() { return \OtomatiesCoreVendor\uopz_set_mock(...func_get_args()); } }
+if (!function_exists('uopz_set_property')) { function uopz_set_property() { return \OtomatiesCoreVendor\uopz_set_property(...func_get_args()); } }
+if (!function_exists('uopz_set_return')) { function uopz_set_return() { return \OtomatiesCoreVendor\uopz_set_return(...func_get_args()); } }
+if (!function_exists('uopz_set_static')) { function uopz_set_static() { return \OtomatiesCoreVendor\uopz_set_static(...func_get_args()); } }
+if (!function_exists('uopz_undefine')) { function uopz_undefine() { return \OtomatiesCoreVendor\uopz_undefine(...func_get_args()); } }
+if (!function_exists('uopz_unset_hook')) { function uopz_unset_hook() { return \OtomatiesCoreVendor\uopz_unset_hook(...func_get_args()); } }
+if (!function_exists('uopz_unset_mock')) { function uopz_unset_mock() { return \OtomatiesCoreVendor\uopz_unset_mock(...func_get_args()); } }
+if (!function_exists('uopz_unset_return')) { function uopz_unset_return() { return \OtomatiesCoreVendor\uopz_unset_return(...func_get_args()); } }
 if (!function_exists('update_archived')) { function update_archived() { return \OtomatiesCoreVendor\update_archived(...func_get_args()); } }
 if (!function_exists('update_attached_file')) { function update_attached_file() { return \OtomatiesCoreVendor\update_attached_file(...func_get_args()); } }
 if (!function_exists('update_blog_details')) { function update_blog_details() { return \OtomatiesCoreVendor\update_blog_details(...func_get_args()); } }
@@ -3778,14 +8724,19 @@ if (!function_exists('upload_is_file_too_big')) { function upload_is_file_too_bi
 if (!function_exists('upload_is_user_over_quota')) { function upload_is_user_over_quota() { return \OtomatiesCoreVendor\upload_is_user_over_quota(...func_get_args()); } }
 if (!function_exists('upload_size_limit_filter')) { function upload_size_limit_filter() { return \OtomatiesCoreVendor\upload_size_limit_filter(...func_get_args()); } }
 if (!function_exists('upload_space_setting')) { function upload_space_setting() { return \OtomatiesCoreVendor\upload_space_setting(...func_get_args()); } }
+if (!function_exists('uploadprogress_get_contents')) { function uploadprogress_get_contents() { return \OtomatiesCoreVendor\uploadprogress_get_contents(...func_get_args()); } }
+if (!function_exists('uploadprogress_get_info')) { function uploadprogress_get_info() { return \OtomatiesCoreVendor\uploadprogress_get_info(...func_get_args()); } }
 if (!function_exists('url_is_accessable_via_ssl')) { function url_is_accessable_via_ssl() { return \OtomatiesCoreVendor\url_is_accessable_via_ssl(...func_get_args()); } }
 if (!function_exists('url_shorten')) { function url_shorten() { return \OtomatiesCoreVendor\url_shorten(...func_get_args()); } }
 if (!function_exists('url_to_postid')) { function url_to_postid() { return \OtomatiesCoreVendor\url_to_postid(...func_get_args()); } }
+if (!function_exists('urldecode')) { function urldecode() { return \OtomatiesCoreVendor\urldecode(...func_get_args()); } }
 if (!function_exists('urldecode_deep')) { function urldecode_deep() { return \OtomatiesCoreVendor\urldecode_deep(...func_get_args()); } }
+if (!function_exists('urlencode')) { function urlencode() { return \OtomatiesCoreVendor\urlencode(...func_get_args()); } }
 if (!function_exists('urlencode_deep')) { function urlencode_deep() { return \OtomatiesCoreVendor\urlencode_deep(...func_get_args()); } }
 if (!function_exists('use_block_editor_for_post')) { function use_block_editor_for_post() { return \OtomatiesCoreVendor\use_block_editor_for_post(...func_get_args()); } }
 if (!function_exists('use_block_editor_for_post_type')) { function use_block_editor_for_post_type() { return \OtomatiesCoreVendor\use_block_editor_for_post_type(...func_get_args()); } }
 if (!function_exists('use_codepress')) { function use_codepress() { return \OtomatiesCoreVendor\use_codepress(...func_get_args()); } }
+if (!function_exists('use_soap_error_handler')) { function use_soap_error_handler() { return \OtomatiesCoreVendor\use_soap_error_handler(...func_get_args()); } }
 if (!function_exists('use_ssl_preference')) { function use_ssl_preference() { return \OtomatiesCoreVendor\use_ssl_preference(...func_get_args()); } }
 if (!function_exists('user_admin_url')) { function user_admin_url() { return \OtomatiesCoreVendor\user_admin_url(...func_get_args()); } }
 if (!function_exists('user_can')) { function user_can() { return \OtomatiesCoreVendor\user_can(...func_get_args()); } }
@@ -3801,11 +8752,168 @@ if (!function_exists('user_can_edit_user')) { function user_can_edit_user() { re
 if (!function_exists('user_can_for_site')) { function user_can_for_site() { return \OtomatiesCoreVendor\user_can_for_site(...func_get_args()); } }
 if (!function_exists('user_can_richedit')) { function user_can_richedit() { return \OtomatiesCoreVendor\user_can_richedit(...func_get_args()); } }
 if (!function_exists('user_can_set_post_date')) { function user_can_set_post_date() { return \OtomatiesCoreVendor\user_can_set_post_date(...func_get_args()); } }
+if (!function_exists('user_error')) { function user_error() { return \OtomatiesCoreVendor\user_error(...func_get_args()); } }
 if (!function_exists('user_pass_ok')) { function user_pass_ok() { return \OtomatiesCoreVendor\user_pass_ok(...func_get_args()); } }
 if (!function_exists('user_trailingslashit')) { function user_trailingslashit() { return \OtomatiesCoreVendor\user_trailingslashit(...func_get_args()); } }
 if (!function_exists('username_exists')) { function username_exists() { return \OtomatiesCoreVendor\username_exists(...func_get_args()); } }
 if (!function_exists('users_can_register_signup_filter')) { function users_can_register_signup_filter() { return \OtomatiesCoreVendor\users_can_register_signup_filter(...func_get_args()); } }
+if (!function_exists('usleep')) { function usleep() { return \OtomatiesCoreVendor\usleep(...func_get_args()); } }
+if (!function_exists('usort')) { function usort() { return \OtomatiesCoreVendor\usort(...func_get_args()); } }
+if (!function_exists('utf8_decode')) { function utf8_decode() { return \OtomatiesCoreVendor\utf8_decode(...func_get_args()); } }
+if (!function_exists('utf8_encode')) { function utf8_encode() { return \OtomatiesCoreVendor\utf8_encode(...func_get_args()); } }
 if (!function_exists('utf8_uri_encode')) { function utf8_uri_encode() { return \OtomatiesCoreVendor\utf8_uri_encode(...func_get_args()); } }
+if (!function_exists('uuid_compare')) { function uuid_compare() { return \OtomatiesCoreVendor\uuid_compare(...func_get_args()); } }
+if (!function_exists('uuid_create')) { function uuid_create() { return \OtomatiesCoreVendor\uuid_create(...func_get_args()); } }
+if (!function_exists('uuid_generate_md5')) { function uuid_generate_md5() { return \OtomatiesCoreVendor\uuid_generate_md5(...func_get_args()); } }
+if (!function_exists('uuid_generate_sha1')) { function uuid_generate_sha1() { return \OtomatiesCoreVendor\uuid_generate_sha1(...func_get_args()); } }
+if (!function_exists('uuid_is_null')) { function uuid_is_null() { return \OtomatiesCoreVendor\uuid_is_null(...func_get_args()); } }
+if (!function_exists('uuid_is_valid')) { function uuid_is_valid() { return \OtomatiesCoreVendor\uuid_is_valid(...func_get_args()); } }
+if (!function_exists('uuid_mac')) { function uuid_mac() { return \OtomatiesCoreVendor\uuid_mac(...func_get_args()); } }
+if (!function_exists('uuid_parse')) { function uuid_parse() { return \OtomatiesCoreVendor\uuid_parse(...func_get_args()); } }
+if (!function_exists('uuid_time')) { function uuid_time() { return \OtomatiesCoreVendor\uuid_time(...func_get_args()); } }
+if (!function_exists('uuid_type')) { function uuid_type() { return \OtomatiesCoreVendor\uuid_type(...func_get_args()); } }
+if (!function_exists('uuid_unparse')) { function uuid_unparse() { return \OtomatiesCoreVendor\uuid_unparse(...func_get_args()); } }
+if (!function_exists('uuid_variant')) { function uuid_variant() { return \OtomatiesCoreVendor\uuid_variant(...func_get_args()); } }
+if (!function_exists('uv_accept')) { function uv_accept() { return \OtomatiesCoreVendor\uv_accept(...func_get_args()); } }
+if (!function_exists('uv_async_init')) { function uv_async_init() { return \OtomatiesCoreVendor\uv_async_init(...func_get_args()); } }
+if (!function_exists('uv_async_send')) { function uv_async_send() { return \OtomatiesCoreVendor\uv_async_send(...func_get_args()); } }
+if (!function_exists('uv_chdir')) { function uv_chdir() { return \OtomatiesCoreVendor\uv_chdir(...func_get_args()); } }
+if (!function_exists('uv_check_init')) { function uv_check_init() { return \OtomatiesCoreVendor\uv_check_init(...func_get_args()); } }
+if (!function_exists('uv_check_start')) { function uv_check_start() { return \OtomatiesCoreVendor\uv_check_start(...func_get_args()); } }
+if (!function_exists('uv_check_stop')) { function uv_check_stop() { return \OtomatiesCoreVendor\uv_check_stop(...func_get_args()); } }
+if (!function_exists('uv_close')) { function uv_close() { return \OtomatiesCoreVendor\uv_close(...func_get_args()); } }
+if (!function_exists('uv_cpu_info')) { function uv_cpu_info() { return \OtomatiesCoreVendor\uv_cpu_info(...func_get_args()); } }
+if (!function_exists('uv_default_loop')) { function uv_default_loop() { return \OtomatiesCoreVendor\uv_default_loop(...func_get_args()); } }
+if (!function_exists('uv_err_name')) { function uv_err_name() { return \OtomatiesCoreVendor\uv_err_name(...func_get_args()); } }
+if (!function_exists('uv_exepath')) { function uv_exepath() { return \OtomatiesCoreVendor\uv_exepath(...func_get_args()); } }
+if (!function_exists('uv_fs_chmod')) { function uv_fs_chmod() { return \OtomatiesCoreVendor\uv_fs_chmod(...func_get_args()); } }
+if (!function_exists('uv_fs_chown')) { function uv_fs_chown() { return \OtomatiesCoreVendor\uv_fs_chown(...func_get_args()); } }
+if (!function_exists('uv_fs_close')) { function uv_fs_close() { return \OtomatiesCoreVendor\uv_fs_close(...func_get_args()); } }
+if (!function_exists('uv_fs_event_init')) { function uv_fs_event_init() { return \OtomatiesCoreVendor\uv_fs_event_init(...func_get_args()); } }
+if (!function_exists('uv_fs_fchmod')) { function uv_fs_fchmod() { return \OtomatiesCoreVendor\uv_fs_fchmod(...func_get_args()); } }
+if (!function_exists('uv_fs_fchown')) { function uv_fs_fchown() { return \OtomatiesCoreVendor\uv_fs_fchown(...func_get_args()); } }
+if (!function_exists('uv_fs_fdatasync')) { function uv_fs_fdatasync() { return \OtomatiesCoreVendor\uv_fs_fdatasync(...func_get_args()); } }
+if (!function_exists('uv_fs_fstat')) { function uv_fs_fstat() { return \OtomatiesCoreVendor\uv_fs_fstat(...func_get_args()); } }
+if (!function_exists('uv_fs_fsync')) { function uv_fs_fsync() { return \OtomatiesCoreVendor\uv_fs_fsync(...func_get_args()); } }
+if (!function_exists('uv_fs_ftruncate')) { function uv_fs_ftruncate() { return \OtomatiesCoreVendor\uv_fs_ftruncate(...func_get_args()); } }
+if (!function_exists('uv_fs_futime')) { function uv_fs_futime() { return \OtomatiesCoreVendor\uv_fs_futime(...func_get_args()); } }
+if (!function_exists('uv_fs_link')) { function uv_fs_link() { return \OtomatiesCoreVendor\uv_fs_link(...func_get_args()); } }
+if (!function_exists('uv_fs_lstat')) { function uv_fs_lstat() { return \OtomatiesCoreVendor\uv_fs_lstat(...func_get_args()); } }
+if (!function_exists('uv_fs_mkdir')) { function uv_fs_mkdir() { return \OtomatiesCoreVendor\uv_fs_mkdir(...func_get_args()); } }
+if (!function_exists('uv_fs_open')) { function uv_fs_open() { return \OtomatiesCoreVendor\uv_fs_open(...func_get_args()); } }
+if (!function_exists('uv_fs_poll_init')) { function uv_fs_poll_init() { return \OtomatiesCoreVendor\uv_fs_poll_init(...func_get_args()); } }
+if (!function_exists('uv_fs_poll_start')) { function uv_fs_poll_start() { return \OtomatiesCoreVendor\uv_fs_poll_start(...func_get_args()); } }
+if (!function_exists('uv_fs_poll_stop')) { function uv_fs_poll_stop() { return \OtomatiesCoreVendor\uv_fs_poll_stop(...func_get_args()); } }
+if (!function_exists('uv_fs_read')) { function uv_fs_read() { return \OtomatiesCoreVendor\uv_fs_read(...func_get_args()); } }
+if (!function_exists('uv_fs_readdir')) { function uv_fs_readdir() { return \OtomatiesCoreVendor\uv_fs_readdir(...func_get_args()); } }
+if (!function_exists('uv_fs_readlink')) { function uv_fs_readlink() { return \OtomatiesCoreVendor\uv_fs_readlink(...func_get_args()); } }
+if (!function_exists('uv_fs_rename')) { function uv_fs_rename() { return \OtomatiesCoreVendor\uv_fs_rename(...func_get_args()); } }
+if (!function_exists('uv_fs_rmdir')) { function uv_fs_rmdir() { return \OtomatiesCoreVendor\uv_fs_rmdir(...func_get_args()); } }
+if (!function_exists('uv_fs_sendfile')) { function uv_fs_sendfile() { return \OtomatiesCoreVendor\uv_fs_sendfile(...func_get_args()); } }
+if (!function_exists('uv_fs_stat')) { function uv_fs_stat() { return \OtomatiesCoreVendor\uv_fs_stat(...func_get_args()); } }
+if (!function_exists('uv_fs_symlink')) { function uv_fs_symlink() { return \OtomatiesCoreVendor\uv_fs_symlink(...func_get_args()); } }
+if (!function_exists('uv_fs_unlink')) { function uv_fs_unlink() { return \OtomatiesCoreVendor\uv_fs_unlink(...func_get_args()); } }
+if (!function_exists('uv_fs_utime')) { function uv_fs_utime() { return \OtomatiesCoreVendor\uv_fs_utime(...func_get_args()); } }
+if (!function_exists('uv_fs_write')) { function uv_fs_write() { return \OtomatiesCoreVendor\uv_fs_write(...func_get_args()); } }
+if (!function_exists('uv_get_free_memory')) { function uv_get_free_memory() { return \OtomatiesCoreVendor\uv_get_free_memory(...func_get_args()); } }
+if (!function_exists('uv_get_total_memory')) { function uv_get_total_memory() { return \OtomatiesCoreVendor\uv_get_total_memory(...func_get_args()); } }
+if (!function_exists('uv_getaddrinfo')) { function uv_getaddrinfo() { return \OtomatiesCoreVendor\uv_getaddrinfo(...func_get_args()); } }
+if (!function_exists('uv_guess_handle')) { function uv_guess_handle() { return \OtomatiesCoreVendor\uv_guess_handle(...func_get_args()); } }
+if (!function_exists('uv_hrtime')) { function uv_hrtime() { return \OtomatiesCoreVendor\uv_hrtime(...func_get_args()); } }
+if (!function_exists('uv_idle_init')) { function uv_idle_init() { return \OtomatiesCoreVendor\uv_idle_init(...func_get_args()); } }
+if (!function_exists('uv_idle_start')) { function uv_idle_start() { return \OtomatiesCoreVendor\uv_idle_start(...func_get_args()); } }
+if (!function_exists('uv_idle_stop')) { function uv_idle_stop() { return \OtomatiesCoreVendor\uv_idle_stop(...func_get_args()); } }
+if (!function_exists('uv_interface_addresses')) { function uv_interface_addresses() { return \OtomatiesCoreVendor\uv_interface_addresses(...func_get_args()); } }
+if (!function_exists('uv_ip4_addr')) { function uv_ip4_addr() { return \OtomatiesCoreVendor\uv_ip4_addr(...func_get_args()); } }
+if (!function_exists('uv_ip4_name')) { function uv_ip4_name() { return \OtomatiesCoreVendor\uv_ip4_name(...func_get_args()); } }
+if (!function_exists('uv_ip6_addr')) { function uv_ip6_addr() { return \OtomatiesCoreVendor\uv_ip6_addr(...func_get_args()); } }
+if (!function_exists('uv_ip6_name')) { function uv_ip6_name() { return \OtomatiesCoreVendor\uv_ip6_name(...func_get_args()); } }
+if (!function_exists('uv_is_active')) { function uv_is_active() { return \OtomatiesCoreVendor\uv_is_active(...func_get_args()); } }
+if (!function_exists('uv_is_closing')) { function uv_is_closing() { return \OtomatiesCoreVendor\uv_is_closing(...func_get_args()); } }
+if (!function_exists('uv_is_readable')) { function uv_is_readable() { return \OtomatiesCoreVendor\uv_is_readable(...func_get_args()); } }
+if (!function_exists('uv_is_writable')) { function uv_is_writable() { return \OtomatiesCoreVendor\uv_is_writable(...func_get_args()); } }
+if (!function_exists('uv_kill')) { function uv_kill() { return \OtomatiesCoreVendor\uv_kill(...func_get_args()); } }
+if (!function_exists('uv_last_error')) { function uv_last_error() { return \OtomatiesCoreVendor\uv_last_error(...func_get_args()); } }
+if (!function_exists('uv_listen')) { function uv_listen() { return \OtomatiesCoreVendor\uv_listen(...func_get_args()); } }
+if (!function_exists('uv_loadavg')) { function uv_loadavg() { return \OtomatiesCoreVendor\uv_loadavg(...func_get_args()); } }
+if (!function_exists('uv_loop_delete')) { function uv_loop_delete() { return \OtomatiesCoreVendor\uv_loop_delete(...func_get_args()); } }
+if (!function_exists('uv_loop_new')) { function uv_loop_new() { return \OtomatiesCoreVendor\uv_loop_new(...func_get_args()); } }
+if (!function_exists('uv_mutex_init')) { function uv_mutex_init() { return \OtomatiesCoreVendor\uv_mutex_init(...func_get_args()); } }
+if (!function_exists('uv_mutex_lock')) { function uv_mutex_lock() { return \OtomatiesCoreVendor\uv_mutex_lock(...func_get_args()); } }
+if (!function_exists('uv_mutex_trylock')) { function uv_mutex_trylock() { return \OtomatiesCoreVendor\uv_mutex_trylock(...func_get_args()); } }
+if (!function_exists('uv_now')) { function uv_now() { return \OtomatiesCoreVendor\uv_now(...func_get_args()); } }
+if (!function_exists('uv_pipe_bind')) { function uv_pipe_bind() { return \OtomatiesCoreVendor\uv_pipe_bind(...func_get_args()); } }
+if (!function_exists('uv_pipe_connect')) { function uv_pipe_connect() { return \OtomatiesCoreVendor\uv_pipe_connect(...func_get_args()); } }
+if (!function_exists('uv_pipe_init')) { function uv_pipe_init() { return \OtomatiesCoreVendor\uv_pipe_init(...func_get_args()); } }
+if (!function_exists('uv_pipe_open')) { function uv_pipe_open() { return \OtomatiesCoreVendor\uv_pipe_open(...func_get_args()); } }
+if (!function_exists('uv_pipe_pending_instances')) { function uv_pipe_pending_instances() { return \OtomatiesCoreVendor\uv_pipe_pending_instances(...func_get_args()); } }
+if (!function_exists('uv_poll_init')) { function uv_poll_init() { return \OtomatiesCoreVendor\uv_poll_init(...func_get_args()); } }
+if (!function_exists('uv_poll_start')) { function uv_poll_start() { return \OtomatiesCoreVendor\uv_poll_start(...func_get_args()); } }
+if (!function_exists('uv_poll_stop')) { function uv_poll_stop() { return \OtomatiesCoreVendor\uv_poll_stop(...func_get_args()); } }
+if (!function_exists('uv_prepare_init')) { function uv_prepare_init() { return \OtomatiesCoreVendor\uv_prepare_init(...func_get_args()); } }
+if (!function_exists('uv_prepare_start')) { function uv_prepare_start() { return \OtomatiesCoreVendor\uv_prepare_start(...func_get_args()); } }
+if (!function_exists('uv_prepare_stop')) { function uv_prepare_stop() { return \OtomatiesCoreVendor\uv_prepare_stop(...func_get_args()); } }
+if (!function_exists('uv_process_kill')) { function uv_process_kill() { return \OtomatiesCoreVendor\uv_process_kill(...func_get_args()); } }
+if (!function_exists('uv_queue_work')) { function uv_queue_work() { return \OtomatiesCoreVendor\uv_queue_work(...func_get_args()); } }
+if (!function_exists('uv_read_start')) { function uv_read_start() { return \OtomatiesCoreVendor\uv_read_start(...func_get_args()); } }
+if (!function_exists('uv_read_stop')) { function uv_read_stop() { return \OtomatiesCoreVendor\uv_read_stop(...func_get_args()); } }
+if (!function_exists('uv_ref')) { function uv_ref() { return \OtomatiesCoreVendor\uv_ref(...func_get_args()); } }
+if (!function_exists('uv_resident_set_memory')) { function uv_resident_set_memory() { return \OtomatiesCoreVendor\uv_resident_set_memory(...func_get_args()); } }
+if (!function_exists('uv_run')) { function uv_run() { return \OtomatiesCoreVendor\uv_run(...func_get_args()); } }
+if (!function_exists('uv_run_once')) { function uv_run_once() { return \OtomatiesCoreVendor\uv_run_once(...func_get_args()); } }
+if (!function_exists('uv_rwlock_init')) { function uv_rwlock_init() { return \OtomatiesCoreVendor\uv_rwlock_init(...func_get_args()); } }
+if (!function_exists('uv_rwlock_rdlock')) { function uv_rwlock_rdlock() { return \OtomatiesCoreVendor\uv_rwlock_rdlock(...func_get_args()); } }
+if (!function_exists('uv_rwlock_rdunlock')) { function uv_rwlock_rdunlock() { return \OtomatiesCoreVendor\uv_rwlock_rdunlock(...func_get_args()); } }
+if (!function_exists('uv_rwlock_tryrdlock')) { function uv_rwlock_tryrdlock() { return \OtomatiesCoreVendor\uv_rwlock_tryrdlock(...func_get_args()); } }
+if (!function_exists('uv_rwlock_trywrlock')) { function uv_rwlock_trywrlock() { return \OtomatiesCoreVendor\uv_rwlock_trywrlock(...func_get_args()); } }
+if (!function_exists('uv_rwlock_wrlock')) { function uv_rwlock_wrlock() { return \OtomatiesCoreVendor\uv_rwlock_wrlock(...func_get_args()); } }
+if (!function_exists('uv_rwlock_wrunlock')) { function uv_rwlock_wrunlock() { return \OtomatiesCoreVendor\uv_rwlock_wrunlock(...func_get_args()); } }
+if (!function_exists('uv_sem_init')) { function uv_sem_init() { return \OtomatiesCoreVendor\uv_sem_init(...func_get_args()); } }
+if (!function_exists('uv_sem_post')) { function uv_sem_post() { return \OtomatiesCoreVendor\uv_sem_post(...func_get_args()); } }
+if (!function_exists('uv_sem_trywait')) { function uv_sem_trywait() { return \OtomatiesCoreVendor\uv_sem_trywait(...func_get_args()); } }
+if (!function_exists('uv_sem_wait')) { function uv_sem_wait() { return \OtomatiesCoreVendor\uv_sem_wait(...func_get_args()); } }
+if (!function_exists('uv_shutdown')) { function uv_shutdown() { return \OtomatiesCoreVendor\uv_shutdown(...func_get_args()); } }
+if (!function_exists('uv_signal_stop')) { function uv_signal_stop() { return \OtomatiesCoreVendor\uv_signal_stop(...func_get_args()); } }
+if (!function_exists('uv_spawn')) { function uv_spawn() { return \OtomatiesCoreVendor\uv_spawn(...func_get_args()); } }
+if (!function_exists('uv_stdio_new')) { function uv_stdio_new() { return \OtomatiesCoreVendor\uv_stdio_new(...func_get_args()); } }
+if (!function_exists('uv_stop')) { function uv_stop() { return \OtomatiesCoreVendor\uv_stop(...func_get_args()); } }
+if (!function_exists('uv_strerror')) { function uv_strerror() { return \OtomatiesCoreVendor\uv_strerror(...func_get_args()); } }
+if (!function_exists('uv_tcp_bind')) { function uv_tcp_bind() { return \OtomatiesCoreVendor\uv_tcp_bind(...func_get_args()); } }
+if (!function_exists('uv_tcp_bind6')) { function uv_tcp_bind6() { return \OtomatiesCoreVendor\uv_tcp_bind6(...func_get_args()); } }
+if (!function_exists('uv_tcp_connect')) { function uv_tcp_connect() { return \OtomatiesCoreVendor\uv_tcp_connect(...func_get_args()); } }
+if (!function_exists('uv_tcp_connect6')) { function uv_tcp_connect6() { return \OtomatiesCoreVendor\uv_tcp_connect6(...func_get_args()); } }
+if (!function_exists('uv_tcp_getpeername')) { function uv_tcp_getpeername() { return \OtomatiesCoreVendor\uv_tcp_getpeername(...func_get_args()); } }
+if (!function_exists('uv_tcp_getsockname')) { function uv_tcp_getsockname() { return \OtomatiesCoreVendor\uv_tcp_getsockname(...func_get_args()); } }
+if (!function_exists('uv_tcp_init')) { function uv_tcp_init() { return \OtomatiesCoreVendor\uv_tcp_init(...func_get_args()); } }
+if (!function_exists('uv_tcp_nodelay')) { function uv_tcp_nodelay() { return \OtomatiesCoreVendor\uv_tcp_nodelay(...func_get_args()); } }
+if (!function_exists('uv_timer_again')) { function uv_timer_again() { return \OtomatiesCoreVendor\uv_timer_again(...func_get_args()); } }
+if (!function_exists('uv_timer_get_repeat')) { function uv_timer_get_repeat() { return \OtomatiesCoreVendor\uv_timer_get_repeat(...func_get_args()); } }
+if (!function_exists('uv_timer_init')) { function uv_timer_init() { return \OtomatiesCoreVendor\uv_timer_init(...func_get_args()); } }
+if (!function_exists('uv_timer_set_repeat')) { function uv_timer_set_repeat() { return \OtomatiesCoreVendor\uv_timer_set_repeat(...func_get_args()); } }
+if (!function_exists('uv_timer_start')) { function uv_timer_start() { return \OtomatiesCoreVendor\uv_timer_start(...func_get_args()); } }
+if (!function_exists('uv_timer_stop')) { function uv_timer_stop() { return \OtomatiesCoreVendor\uv_timer_stop(...func_get_args()); } }
+if (!function_exists('uv_tty_get_winsize')) { function uv_tty_get_winsize() { return \OtomatiesCoreVendor\uv_tty_get_winsize(...func_get_args()); } }
+if (!function_exists('uv_tty_init')) { function uv_tty_init() { return \OtomatiesCoreVendor\uv_tty_init(...func_get_args()); } }
+if (!function_exists('uv_tty_reset_mode')) { function uv_tty_reset_mode() { return \OtomatiesCoreVendor\uv_tty_reset_mode(...func_get_args()); } }
+if (!function_exists('uv_tty_set_mode')) { function uv_tty_set_mode() { return \OtomatiesCoreVendor\uv_tty_set_mode(...func_get_args()); } }
+if (!function_exists('uv_udp_bind')) { function uv_udp_bind() { return \OtomatiesCoreVendor\uv_udp_bind(...func_get_args()); } }
+if (!function_exists('uv_udp_bind6')) { function uv_udp_bind6() { return \OtomatiesCoreVendor\uv_udp_bind6(...func_get_args()); } }
+if (!function_exists('uv_udp_getsockname')) { function uv_udp_getsockname() { return \OtomatiesCoreVendor\uv_udp_getsockname(...func_get_args()); } }
+if (!function_exists('uv_udp_init')) { function uv_udp_init() { return \OtomatiesCoreVendor\uv_udp_init(...func_get_args()); } }
+if (!function_exists('uv_udp_recv_start')) { function uv_udp_recv_start() { return \OtomatiesCoreVendor\uv_udp_recv_start(...func_get_args()); } }
+if (!function_exists('uv_udp_recv_stop')) { function uv_udp_recv_stop() { return \OtomatiesCoreVendor\uv_udp_recv_stop(...func_get_args()); } }
+if (!function_exists('uv_udp_send')) { function uv_udp_send() { return \OtomatiesCoreVendor\uv_udp_send(...func_get_args()); } }
+if (!function_exists('uv_udp_send6')) { function uv_udp_send6() { return \OtomatiesCoreVendor\uv_udp_send6(...func_get_args()); } }
+if (!function_exists('uv_udp_set_broadcast')) { function uv_udp_set_broadcast() { return \OtomatiesCoreVendor\uv_udp_set_broadcast(...func_get_args()); } }
+if (!function_exists('uv_udp_set_membership')) { function uv_udp_set_membership() { return \OtomatiesCoreVendor\uv_udp_set_membership(...func_get_args()); } }
+if (!function_exists('uv_udp_set_multicast_loop')) { function uv_udp_set_multicast_loop() { return \OtomatiesCoreVendor\uv_udp_set_multicast_loop(...func_get_args()); } }
+if (!function_exists('uv_udp_set_multicast_ttl')) { function uv_udp_set_multicast_ttl() { return \OtomatiesCoreVendor\uv_udp_set_multicast_ttl(...func_get_args()); } }
+if (!function_exists('uv_unref')) { function uv_unref() { return \OtomatiesCoreVendor\uv_unref(...func_get_args()); } }
+if (!function_exists('uv_update_time')) { function uv_update_time() { return \OtomatiesCoreVendor\uv_update_time(...func_get_args()); } }
+if (!function_exists('uv_uptime')) { function uv_uptime() { return \OtomatiesCoreVendor\uv_uptime(...func_get_args()); } }
+if (!function_exists('uv_walk')) { function uv_walk() { return \OtomatiesCoreVendor\uv_walk(...func_get_args()); } }
+if (!function_exists('uv_write')) { function uv_write() { return \OtomatiesCoreVendor\uv_write(...func_get_args()); } }
+if (!function_exists('uv_write2')) { function uv_write2() { return \OtomatiesCoreVendor\uv_write2(...func_get_args()); } }
 if (!function_exists('valid_unicode')) { function valid_unicode() { return \OtomatiesCoreVendor\valid_unicode(...func_get_args()); } }
 if (!function_exists('validate_active_plugins')) { function validate_active_plugins() { return \OtomatiesCoreVendor\validate_active_plugins(...func_get_args()); } }
 if (!function_exists('validate_another_blog_signup')) { function validate_another_blog_signup() { return \OtomatiesCoreVendor\validate_another_blog_signup(...func_get_args()); } }
@@ -3822,13 +8930,154 @@ if (!function_exists('validate_user_form')) { function validate_user_form() { re
 if (!function_exists('validate_user_signup')) { function validate_user_signup() { return \OtomatiesCoreVendor\validate_user_signup(...func_get_args()); } }
 if (!function_exists('validate_username')) { function validate_username() { return \OtomatiesCoreVendor\validate_username(...func_get_args()); } }
 if (!function_exists('value')) { function value() { return \OtomatiesCoreVendor\value(...func_get_args()); } }
+if (!function_exists('var_dump')) { function var_dump() { return \OtomatiesCoreVendor\var_dump(...func_get_args()); } }
+if (!function_exists('var_export')) { function var_export() { return \OtomatiesCoreVendor\var_export(...func_get_args()); } }
+if (!function_exists('variant_abs')) { function variant_abs() { return \OtomatiesCoreVendor\variant_abs(...func_get_args()); } }
+if (!function_exists('variant_add')) { function variant_add() { return \OtomatiesCoreVendor\variant_add(...func_get_args()); } }
+if (!function_exists('variant_and')) { function variant_and() { return \OtomatiesCoreVendor\variant_and(...func_get_args()); } }
+if (!function_exists('variant_cast')) { function variant_cast() { return \OtomatiesCoreVendor\variant_cast(...func_get_args()); } }
+if (!function_exists('variant_cat')) { function variant_cat() { return \OtomatiesCoreVendor\variant_cat(...func_get_args()); } }
+if (!function_exists('variant_cmp')) { function variant_cmp() { return \OtomatiesCoreVendor\variant_cmp(...func_get_args()); } }
+if (!function_exists('variant_date_from_timestamp')) { function variant_date_from_timestamp() { return \OtomatiesCoreVendor\variant_date_from_timestamp(...func_get_args()); } }
+if (!function_exists('variant_date_to_timestamp')) { function variant_date_to_timestamp() { return \OtomatiesCoreVendor\variant_date_to_timestamp(...func_get_args()); } }
+if (!function_exists('variant_div')) { function variant_div() { return \OtomatiesCoreVendor\variant_div(...func_get_args()); } }
+if (!function_exists('variant_eqv')) { function variant_eqv() { return \OtomatiesCoreVendor\variant_eqv(...func_get_args()); } }
+if (!function_exists('variant_fix')) { function variant_fix() { return \OtomatiesCoreVendor\variant_fix(...func_get_args()); } }
+if (!function_exists('variant_get_type')) { function variant_get_type() { return \OtomatiesCoreVendor\variant_get_type(...func_get_args()); } }
+if (!function_exists('variant_idiv')) { function variant_idiv() { return \OtomatiesCoreVendor\variant_idiv(...func_get_args()); } }
+if (!function_exists('variant_imp')) { function variant_imp() { return \OtomatiesCoreVendor\variant_imp(...func_get_args()); } }
+if (!function_exists('variant_int')) { function variant_int() { return \OtomatiesCoreVendor\variant_int(...func_get_args()); } }
+if (!function_exists('variant_mod')) { function variant_mod() { return \OtomatiesCoreVendor\variant_mod(...func_get_args()); } }
+if (!function_exists('variant_mul')) { function variant_mul() { return \OtomatiesCoreVendor\variant_mul(...func_get_args()); } }
+if (!function_exists('variant_neg')) { function variant_neg() { return \OtomatiesCoreVendor\variant_neg(...func_get_args()); } }
+if (!function_exists('variant_not')) { function variant_not() { return \OtomatiesCoreVendor\variant_not(...func_get_args()); } }
+if (!function_exists('variant_or')) { function variant_or() { return \OtomatiesCoreVendor\variant_or(...func_get_args()); } }
+if (!function_exists('variant_pow')) { function variant_pow() { return \OtomatiesCoreVendor\variant_pow(...func_get_args()); } }
+if (!function_exists('variant_round')) { function variant_round() { return \OtomatiesCoreVendor\variant_round(...func_get_args()); } }
+if (!function_exists('variant_set')) { function variant_set() { return \OtomatiesCoreVendor\variant_set(...func_get_args()); } }
+if (!function_exists('variant_set_type')) { function variant_set_type() { return \OtomatiesCoreVendor\variant_set_type(...func_get_args()); } }
+if (!function_exists('variant_sub')) { function variant_sub() { return \OtomatiesCoreVendor\variant_sub(...func_get_args()); } }
+if (!function_exists('variant_xor')) { function variant_xor() { return \OtomatiesCoreVendor\variant_xor(...func_get_args()); } }
 if (!function_exists('verify_file_md5')) { function verify_file_md5() { return \OtomatiesCoreVendor\verify_file_md5(...func_get_args()); } }
 if (!function_exists('verify_file_signature')) { function verify_file_signature() { return \OtomatiesCoreVendor\verify_file_signature(...func_get_args()); } }
+if (!function_exists('version_compare')) { function version_compare() { return \OtomatiesCoreVendor\version_compare(...func_get_args()); } }
+if (!function_exists('vfprintf')) { function vfprintf() { return \OtomatiesCoreVendor\vfprintf(...func_get_args()); } }
+if (!function_exists('virtual')) { function virtual() { return \OtomatiesCoreVendor\virtual(...func_get_args()); } }
+if (!function_exists('vprintf')) { function vprintf() { return \OtomatiesCoreVendor\vprintf(...func_get_args()); } }
+if (!function_exists('vsprintf')) { function vsprintf() { return \OtomatiesCoreVendor\vsprintf(...func_get_args()); } }
 if (!function_exists('walk_category_dropdown_tree')) { function walk_category_dropdown_tree() { return \OtomatiesCoreVendor\walk_category_dropdown_tree(...func_get_args()); } }
 if (!function_exists('walk_category_tree')) { function walk_category_tree() { return \OtomatiesCoreVendor\walk_category_tree(...func_get_args()); } }
 if (!function_exists('walk_nav_menu_tree')) { function walk_nav_menu_tree() { return \OtomatiesCoreVendor\walk_nav_menu_tree(...func_get_args()); } }
 if (!function_exists('walk_page_dropdown_tree')) { function walk_page_dropdown_tree() { return \OtomatiesCoreVendor\walk_page_dropdown_tree(...func_get_args()); } }
 if (!function_exists('walk_page_tree')) { function walk_page_tree() { return \OtomatiesCoreVendor\walk_page_tree(...func_get_args()); } }
+if (!function_exists('wb_call_function')) { function wb_call_function() { return \OtomatiesCoreVendor\wb_call_function(...func_get_args()); } }
+if (!function_exists('wb_create_font')) { function wb_create_font() { return \OtomatiesCoreVendor\wb_create_font(...func_get_args()); } }
+if (!function_exists('wb_create_image')) { function wb_create_image() { return \OtomatiesCoreVendor\wb_create_image(...func_get_args()); } }
+if (!function_exists('wb_create_mask')) { function wb_create_mask() { return \OtomatiesCoreVendor\wb_create_mask(...func_get_args()); } }
+if (!function_exists('wb_create_timer')) { function wb_create_timer() { return \OtomatiesCoreVendor\wb_create_timer(...func_get_args()); } }
+if (!function_exists('wb_create_window')) { function wb_create_window() { return \OtomatiesCoreVendor\wb_create_window(...func_get_args()); } }
+if (!function_exists('wb_delete_items')) { function wb_delete_items() { return \OtomatiesCoreVendor\wb_delete_items(...func_get_args()); } }
+if (!function_exists('wb_destroy_control')) { function wb_destroy_control() { return \OtomatiesCoreVendor\wb_destroy_control(...func_get_args()); } }
+if (!function_exists('wb_destroy_font')) { function wb_destroy_font() { return \OtomatiesCoreVendor\wb_destroy_font(...func_get_args()); } }
+if (!function_exists('wb_destroy_image')) { function wb_destroy_image() { return \OtomatiesCoreVendor\wb_destroy_image(...func_get_args()); } }
+if (!function_exists('wb_destroy_timer')) { function wb_destroy_timer() { return \OtomatiesCoreVendor\wb_destroy_timer(...func_get_args()); } }
+if (!function_exists('wb_destroy_window')) { function wb_destroy_window() { return \OtomatiesCoreVendor\wb_destroy_window(...func_get_args()); } }
+if (!function_exists('wb_draw_ellipse')) { function wb_draw_ellipse() { return \OtomatiesCoreVendor\wb_draw_ellipse(...func_get_args()); } }
+if (!function_exists('wb_draw_image')) { function wb_draw_image() { return \OtomatiesCoreVendor\wb_draw_image(...func_get_args()); } }
+if (!function_exists('wb_draw_line')) { function wb_draw_line() { return \OtomatiesCoreVendor\wb_draw_line(...func_get_args()); } }
+if (!function_exists('wb_draw_point')) { function wb_draw_point() { return \OtomatiesCoreVendor\wb_draw_point(...func_get_args()); } }
+if (!function_exists('wb_draw_rect')) { function wb_draw_rect() { return \OtomatiesCoreVendor\wb_draw_rect(...func_get_args()); } }
+if (!function_exists('wb_draw_text')) { function wb_draw_text() { return \OtomatiesCoreVendor\wb_draw_text(...func_get_args()); } }
+if (!function_exists('wb_exec')) { function wb_exec() { return \OtomatiesCoreVendor\wb_exec(...func_get_args()); } }
+if (!function_exists('wb_find_file')) { function wb_find_file() { return \OtomatiesCoreVendor\wb_find_file(...func_get_args()); } }
+if (!function_exists('wb_get_address')) { function wb_get_address() { return \OtomatiesCoreVendor\wb_get_address(...func_get_args()); } }
+if (!function_exists('wb_get_class')) { function wb_get_class() { return \OtomatiesCoreVendor\wb_get_class(...func_get_args()); } }
+if (!function_exists('wb_get_control')) { function wb_get_control() { return \OtomatiesCoreVendor\wb_get_control(...func_get_args()); } }
+if (!function_exists('wb_get_enabled')) { function wb_get_enabled() { return \OtomatiesCoreVendor\wb_get_enabled(...func_get_args()); } }
+if (!function_exists('wb_get_enum_callback')) { function wb_get_enum_callback() { return \OtomatiesCoreVendor\wb_get_enum_callback(...func_get_args()); } }
+if (!function_exists('wb_get_focus')) { function wb_get_focus() { return \OtomatiesCoreVendor\wb_get_focus(...func_get_args()); } }
+if (!function_exists('wb_get_function_address')) { function wb_get_function_address() { return \OtomatiesCoreVendor\wb_get_function_address(...func_get_args()); } }
+if (!function_exists('wb_get_hook_callback')) { function wb_get_hook_callback() { return \OtomatiesCoreVendor\wb_get_hook_callback(...func_get_args()); } }
+if (!function_exists('wb_get_id')) { function wb_get_id() { return \OtomatiesCoreVendor\wb_get_id(...func_get_args()); } }
+if (!function_exists('wb_get_image_data')) { function wb_get_image_data() { return \OtomatiesCoreVendor\wb_get_image_data(...func_get_args()); } }
+if (!function_exists('wb_get_instance')) { function wb_get_instance() { return \OtomatiesCoreVendor\wb_get_instance(...func_get_args()); } }
+if (!function_exists('wb_get_item_count')) { function wb_get_item_count() { return \OtomatiesCoreVendor\wb_get_item_count(...func_get_args()); } }
+if (!function_exists('wb_get_item_list')) { function wb_get_item_list() { return \OtomatiesCoreVendor\wb_get_item_list(...func_get_args()); } }
+if (!function_exists('wb_get_level')) { function wb_get_level() { return \OtomatiesCoreVendor\wb_get_level(...func_get_args()); } }
+if (!function_exists('wb_get_midi_callback')) { function wb_get_midi_callback() { return \OtomatiesCoreVendor\wb_get_midi_callback(...func_get_args()); } }
+if (!function_exists('wb_get_parent')) { function wb_get_parent() { return \OtomatiesCoreVendor\wb_get_parent(...func_get_args()); } }
+if (!function_exists('wb_get_pixel')) { function wb_get_pixel() { return \OtomatiesCoreVendor\wb_get_pixel(...func_get_args()); } }
+if (!function_exists('wb_get_position')) { function wb_get_position() { return \OtomatiesCoreVendor\wb_get_position(...func_get_args()); } }
+if (!function_exists('wb_get_registry_key')) { function wb_get_registry_key() { return \OtomatiesCoreVendor\wb_get_registry_key(...func_get_args()); } }
+if (!function_exists('wb_get_selected')) { function wb_get_selected() { return \OtomatiesCoreVendor\wb_get_selected(...func_get_args()); } }
+if (!function_exists('wb_get_size')) { function wb_get_size() { return \OtomatiesCoreVendor\wb_get_size(...func_get_args()); } }
+if (!function_exists('wb_get_state')) { function wb_get_state() { return \OtomatiesCoreVendor\wb_get_state(...func_get_args()); } }
+if (!function_exists('wb_get_system_info')) { function wb_get_system_info() { return \OtomatiesCoreVendor\wb_get_system_info(...func_get_args()); } }
+if (!function_exists('wb_get_value')) { function wb_get_value() { return \OtomatiesCoreVendor\wb_get_value(...func_get_args()); } }
+if (!function_exists('wb_get_visible')) { function wb_get_visible() { return \OtomatiesCoreVendor\wb_get_visible(...func_get_args()); } }
+if (!function_exists('wb_load_image')) { function wb_load_image() { return \OtomatiesCoreVendor\wb_load_image(...func_get_args()); } }
+if (!function_exists('wb_load_library')) { function wb_load_library() { return \OtomatiesCoreVendor\wb_load_library(...func_get_args()); } }
+if (!function_exists('wb_main_loop')) { function wb_main_loop() { return \OtomatiesCoreVendor\wb_main_loop(...func_get_args()); } }
+if (!function_exists('wb_message_box')) { function wb_message_box() { return \OtomatiesCoreVendor\wb_message_box(...func_get_args()); } }
+if (!function_exists('wb_peek')) { function wb_peek() { return \OtomatiesCoreVendor\wb_peek(...func_get_args()); } }
+if (!function_exists('wb_play_sound')) { function wb_play_sound() { return \OtomatiesCoreVendor\wb_play_sound(...func_get_args()); } }
+if (!function_exists('wb_poke')) { function wb_poke() { return \OtomatiesCoreVendor\wb_poke(...func_get_args()); } }
+if (!function_exists('wb_refresh')) { function wb_refresh() { return \OtomatiesCoreVendor\wb_refresh(...func_get_args()); } }
+if (!function_exists('wb_release_library')) { function wb_release_library() { return \OtomatiesCoreVendor\wb_release_library(...func_get_args()); } }
+if (!function_exists('wb_save_image')) { function wb_save_image() { return \OtomatiesCoreVendor\wb_save_image(...func_get_args()); } }
+if (!function_exists('wb_send_message')) { function wb_send_message() { return \OtomatiesCoreVendor\wb_send_message(...func_get_args()); } }
+if (!function_exists('wb_set_area')) { function wb_set_area() { return \OtomatiesCoreVendor\wb_set_area(...func_get_args()); } }
+if (!function_exists('wb_set_cursor')) { function wb_set_cursor() { return \OtomatiesCoreVendor\wb_set_cursor(...func_get_args()); } }
+if (!function_exists('wb_set_enabled')) { function wb_set_enabled() { return \OtomatiesCoreVendor\wb_set_enabled(...func_get_args()); } }
+if (!function_exists('wb_set_focus')) { function wb_set_focus() { return \OtomatiesCoreVendor\wb_set_focus(...func_get_args()); } }
+if (!function_exists('wb_set_font')) { function wb_set_font() { return \OtomatiesCoreVendor\wb_set_font(...func_get_args()); } }
+if (!function_exists('wb_set_handler')) { function wb_set_handler() { return \OtomatiesCoreVendor\wb_set_handler(...func_get_args()); } }
+if (!function_exists('wb_set_image')) { function wb_set_image() { return \OtomatiesCoreVendor\wb_set_image(...func_get_args()); } }
+if (!function_exists('wb_set_item_image')) { function wb_set_item_image() { return \OtomatiesCoreVendor\wb_set_item_image(...func_get_args()); } }
+if (!function_exists('wb_set_location')) { function wb_set_location() { return \OtomatiesCoreVendor\wb_set_location(...func_get_args()); } }
+if (!function_exists('wb_set_position')) { function wb_set_position() { return \OtomatiesCoreVendor\wb_set_position(...func_get_args()); } }
+if (!function_exists('wb_set_range')) { function wb_set_range() { return \OtomatiesCoreVendor\wb_set_range(...func_get_args()); } }
+if (!function_exists('wb_set_registry_key')) { function wb_set_registry_key() { return \OtomatiesCoreVendor\wb_set_registry_key(...func_get_args()); } }
+if (!function_exists('wb_set_size')) { function wb_set_size() { return \OtomatiesCoreVendor\wb_set_size(...func_get_args()); } }
+if (!function_exists('wb_set_state')) { function wb_set_state() { return \OtomatiesCoreVendor\wb_set_state(...func_get_args()); } }
+if (!function_exists('wb_set_style')) { function wb_set_style() { return \OtomatiesCoreVendor\wb_set_style(...func_get_args()); } }
+if (!function_exists('wb_set_visible')) { function wb_set_visible() { return \OtomatiesCoreVendor\wb_set_visible(...func_get_args()); } }
+if (!function_exists('wb_sort')) { function wb_sort() { return \OtomatiesCoreVendor\wb_sort(...func_get_args()); } }
+if (!function_exists('wb_stop_sound')) { function wb_stop_sound() { return \OtomatiesCoreVendor\wb_stop_sound(...func_get_args()); } }
+if (!function_exists('wb_sys_dlg_color')) { function wb_sys_dlg_color() { return \OtomatiesCoreVendor\wb_sys_dlg_color(...func_get_args()); } }
+if (!function_exists('wb_sys_dlg_path')) { function wb_sys_dlg_path() { return \OtomatiesCoreVendor\wb_sys_dlg_path(...func_get_args()); } }
+if (!function_exists('wb_wait')) { function wb_wait() { return \OtomatiesCoreVendor\wb_wait(...func_get_args()); } }
+if (!function_exists('wbtemp_clear_listview_columns')) { function wbtemp_clear_listview_columns() { return \OtomatiesCoreVendor\wbtemp_clear_listview_columns(...func_get_args()); } }
+if (!function_exists('wbtemp_create_control')) { function wbtemp_create_control() { return \OtomatiesCoreVendor\wbtemp_create_control(...func_get_args()); } }
+if (!function_exists('wbtemp_create_item')) { function wbtemp_create_item() { return \OtomatiesCoreVendor\wbtemp_create_item(...func_get_args()); } }
+if (!function_exists('wbtemp_create_listview_column')) { function wbtemp_create_listview_column() { return \OtomatiesCoreVendor\wbtemp_create_listview_column(...func_get_args()); } }
+if (!function_exists('wbtemp_create_listview_item')) { function wbtemp_create_listview_item() { return \OtomatiesCoreVendor\wbtemp_create_listview_item(...func_get_args()); } }
+if (!function_exists('wbtemp_create_menu')) { function wbtemp_create_menu() { return \OtomatiesCoreVendor\wbtemp_create_menu(...func_get_args()); } }
+if (!function_exists('wbtemp_create_statusbar_items')) { function wbtemp_create_statusbar_items() { return \OtomatiesCoreVendor\wbtemp_create_statusbar_items(...func_get_args()); } }
+if (!function_exists('wbtemp_create_toolbar')) { function wbtemp_create_toolbar() { return \OtomatiesCoreVendor\wbtemp_create_toolbar(...func_get_args()); } }
+if (!function_exists('wbtemp_create_treeview_item')) { function wbtemp_create_treeview_item() { return \OtomatiesCoreVendor\wbtemp_create_treeview_item(...func_get_args()); } }
+if (!function_exists('wbtemp_get_listview_columns')) { function wbtemp_get_listview_columns() { return \OtomatiesCoreVendor\wbtemp_get_listview_columns(...func_get_args()); } }
+if (!function_exists('wbtemp_get_listview_item_checked')) { function wbtemp_get_listview_item_checked() { return \OtomatiesCoreVendor\wbtemp_get_listview_item_checked(...func_get_args()); } }
+if (!function_exists('wbtemp_get_listview_text')) { function wbtemp_get_listview_text() { return \OtomatiesCoreVendor\wbtemp_get_listview_text(...func_get_args()); } }
+if (!function_exists('wbtemp_get_menu_item_checked')) { function wbtemp_get_menu_item_checked() { return \OtomatiesCoreVendor\wbtemp_get_menu_item_checked(...func_get_args()); } }
+if (!function_exists('wbtemp_get_text')) { function wbtemp_get_text() { return \OtomatiesCoreVendor\wbtemp_get_text(...func_get_args()); } }
+if (!function_exists('wbtemp_get_treeview_item_text')) { function wbtemp_get_treeview_item_text() { return \OtomatiesCoreVendor\wbtemp_get_treeview_item_text(...func_get_args()); } }
+if (!function_exists('wbtemp_select_all_listview_items')) { function wbtemp_select_all_listview_items() { return \OtomatiesCoreVendor\wbtemp_select_all_listview_items(...func_get_args()); } }
+if (!function_exists('wbtemp_select_listview_item')) { function wbtemp_select_listview_item() { return \OtomatiesCoreVendor\wbtemp_select_listview_item(...func_get_args()); } }
+if (!function_exists('wbtemp_select_tab')) { function wbtemp_select_tab() { return \OtomatiesCoreVendor\wbtemp_select_tab(...func_get_args()); } }
+if (!function_exists('wbtemp_set_accel_table')) { function wbtemp_set_accel_table() { return \OtomatiesCoreVendor\wbtemp_set_accel_table(...func_get_args()); } }
+if (!function_exists('wbtemp_set_listview_item_checked')) { function wbtemp_set_listview_item_checked() { return \OtomatiesCoreVendor\wbtemp_set_listview_item_checked(...func_get_args()); } }
+if (!function_exists('wbtemp_set_listview_item_text')) { function wbtemp_set_listview_item_text() { return \OtomatiesCoreVendor\wbtemp_set_listview_item_text(...func_get_args()); } }
+if (!function_exists('wbtemp_set_menu_item_checked')) { function wbtemp_set_menu_item_checked() { return \OtomatiesCoreVendor\wbtemp_set_menu_item_checked(...func_get_args()); } }
+if (!function_exists('wbtemp_set_menu_item_image')) { function wbtemp_set_menu_item_image() { return \OtomatiesCoreVendor\wbtemp_set_menu_item_image(...func_get_args()); } }
+if (!function_exists('wbtemp_set_menu_item_selected')) { function wbtemp_set_menu_item_selected() { return \OtomatiesCoreVendor\wbtemp_set_menu_item_selected(...func_get_args()); } }
+if (!function_exists('wbtemp_set_text')) { function wbtemp_set_text() { return \OtomatiesCoreVendor\wbtemp_set_text(...func_get_args()); } }
+if (!function_exists('wbtemp_set_treeview_item_selected')) { function wbtemp_set_treeview_item_selected() { return \OtomatiesCoreVendor\wbtemp_set_treeview_item_selected(...func_get_args()); } }
+if (!function_exists('wbtemp_set_treeview_item_text')) { function wbtemp_set_treeview_item_text() { return \OtomatiesCoreVendor\wbtemp_set_treeview_item_text(...func_get_args()); } }
+if (!function_exists('wbtemp_set_treeview_item_value')) { function wbtemp_set_treeview_item_value() { return \OtomatiesCoreVendor\wbtemp_set_treeview_item_value(...func_get_args()); } }
+if (!function_exists('wbtemp_set_value')) { function wbtemp_set_value() { return \OtomatiesCoreVendor\wbtemp_set_value(...func_get_args()); } }
+if (!function_exists('wbtemp_sys_dlg_open')) { function wbtemp_sys_dlg_open() { return \OtomatiesCoreVendor\wbtemp_sys_dlg_open(...func_get_args()); } }
+if (!function_exists('wbtemp_sys_dlg_save')) { function wbtemp_sys_dlg_save() { return \OtomatiesCoreVendor\wbtemp_sys_dlg_save(...func_get_args()); } }
 if (!function_exists('wc_add_aria_label_to_pagination_numbers')) { function wc_add_aria_label_to_pagination_numbers() { return \OtomatiesCoreVendor\wc_add_aria_label_to_pagination_numbers(...func_get_args()); } }
 if (!function_exists('wc_add_notice')) { function wc_add_notice() { return \OtomatiesCoreVendor\wc_add_notice(...func_get_args()); } }
 if (!function_exists('wc_add_number_precision')) { function wc_add_number_precision() { return \OtomatiesCoreVendor\wc_add_number_precision(...func_get_args()); } }
@@ -4405,10 +9654,48 @@ if (!function_exists('wc_walk_category_dropdown_tree')) { function wc_walk_categ
 if (!function_exists('wc_webhook_execute_queue')) { function wc_webhook_execute_queue() { return \OtomatiesCoreVendor\wc_webhook_execute_queue(...func_get_args()); } }
 if (!function_exists('wc_webhook_process_delivery')) { function wc_webhook_process_delivery() { return \OtomatiesCoreVendor\wc_webhook_process_delivery(...func_get_args()); } }
 if (!function_exists('wc_wp_theme_get_element_class_name')) { function wc_wp_theme_get_element_class_name() { return \OtomatiesCoreVendor\wc_wp_theme_get_element_class_name(...func_get_args()); } }
+if (!function_exists('wddx_add_vars')) { function wddx_add_vars() { return \OtomatiesCoreVendor\wddx_add_vars(...func_get_args()); } }
+if (!function_exists('wddx_deserialize')) { function wddx_deserialize() { return \OtomatiesCoreVendor\wddx_deserialize(...func_get_args()); } }
+if (!function_exists('wddx_packet_end')) { function wddx_packet_end() { return \OtomatiesCoreVendor\wddx_packet_end(...func_get_args()); } }
+if (!function_exists('wddx_packet_start')) { function wddx_packet_start() { return \OtomatiesCoreVendor\wddx_packet_start(...func_get_args()); } }
+if (!function_exists('wddx_serialize_value')) { function wddx_serialize_value() { return \OtomatiesCoreVendor\wddx_serialize_value(...func_get_args()); } }
+if (!function_exists('wddx_serialize_vars')) { function wddx_serialize_vars() { return \OtomatiesCoreVendor\wddx_serialize_vars(...func_get_args()); } }
 if (!function_exists('weblog_ping')) { function weblog_ping() { return \OtomatiesCoreVendor\weblog_ping(...func_get_args()); } }
 if (!function_exists('welcome_user_msg_filter')) { function welcome_user_msg_filter() { return \OtomatiesCoreVendor\welcome_user_msg_filter(...func_get_args()); } }
 if (!function_exists('when')) { function when() { return \OtomatiesCoreVendor\when(...func_get_args()); } }
+if (!function_exists('win32_continue_service')) { function win32_continue_service() { return \OtomatiesCoreVendor\win32_continue_service(...func_get_args()); } }
+if (!function_exists('win32_create_service')) { function win32_create_service() { return \OtomatiesCoreVendor\win32_create_service(...func_get_args()); } }
+if (!function_exists('win32_delete_service')) { function win32_delete_service() { return \OtomatiesCoreVendor\win32_delete_service(...func_get_args()); } }
+if (!function_exists('win32_get_last_control_message')) { function win32_get_last_control_message() { return \OtomatiesCoreVendor\win32_get_last_control_message(...func_get_args()); } }
+if (!function_exists('win32_pause_service')) { function win32_pause_service() { return \OtomatiesCoreVendor\win32_pause_service(...func_get_args()); } }
+if (!function_exists('win32_query_service_status')) { function win32_query_service_status() { return \OtomatiesCoreVendor\win32_query_service_status(...func_get_args()); } }
+if (!function_exists('win32_set_service_status')) { function win32_set_service_status() { return \OtomatiesCoreVendor\win32_set_service_status(...func_get_args()); } }
+if (!function_exists('win32_start_service')) { function win32_start_service() { return \OtomatiesCoreVendor\win32_start_service(...func_get_args()); } }
+if (!function_exists('win32_start_service_ctrl_dispatcher')) { function win32_start_service_ctrl_dispatcher() { return \OtomatiesCoreVendor\win32_start_service_ctrl_dispatcher(...func_get_args()); } }
+if (!function_exists('win32_stop_service')) { function win32_stop_service() { return \OtomatiesCoreVendor\win32_stop_service(...func_get_args()); } }
 if (!function_exists('win_is_writable')) { function win_is_writable() { return \OtomatiesCoreVendor\win_is_writable(...func_get_args()); } }
+if (!function_exists('wincache_fcache_fileinfo')) { function wincache_fcache_fileinfo() { return \OtomatiesCoreVendor\wincache_fcache_fileinfo(...func_get_args()); } }
+if (!function_exists('wincache_fcache_meminfo')) { function wincache_fcache_meminfo() { return \OtomatiesCoreVendor\wincache_fcache_meminfo(...func_get_args()); } }
+if (!function_exists('wincache_lock')) { function wincache_lock() { return \OtomatiesCoreVendor\wincache_lock(...func_get_args()); } }
+if (!function_exists('wincache_ocache_fileinfo')) { function wincache_ocache_fileinfo() { return \OtomatiesCoreVendor\wincache_ocache_fileinfo(...func_get_args()); } }
+if (!function_exists('wincache_ocache_meminfo')) { function wincache_ocache_meminfo() { return \OtomatiesCoreVendor\wincache_ocache_meminfo(...func_get_args()); } }
+if (!function_exists('wincache_refresh_if_changed')) { function wincache_refresh_if_changed() { return \OtomatiesCoreVendor\wincache_refresh_if_changed(...func_get_args()); } }
+if (!function_exists('wincache_rplist_fileinfo')) { function wincache_rplist_fileinfo() { return \OtomatiesCoreVendor\wincache_rplist_fileinfo(...func_get_args()); } }
+if (!function_exists('wincache_rplist_meminfo')) { function wincache_rplist_meminfo() { return \OtomatiesCoreVendor\wincache_rplist_meminfo(...func_get_args()); } }
+if (!function_exists('wincache_scache_info')) { function wincache_scache_info() { return \OtomatiesCoreVendor\wincache_scache_info(...func_get_args()); } }
+if (!function_exists('wincache_scache_meminfo')) { function wincache_scache_meminfo() { return \OtomatiesCoreVendor\wincache_scache_meminfo(...func_get_args()); } }
+if (!function_exists('wincache_ucache_add')) { function wincache_ucache_add() { return \OtomatiesCoreVendor\wincache_ucache_add(...func_get_args()); } }
+if (!function_exists('wincache_ucache_cas')) { function wincache_ucache_cas() { return \OtomatiesCoreVendor\wincache_ucache_cas(...func_get_args()); } }
+if (!function_exists('wincache_ucache_clear')) { function wincache_ucache_clear() { return \OtomatiesCoreVendor\wincache_ucache_clear(...func_get_args()); } }
+if (!function_exists('wincache_ucache_dec')) { function wincache_ucache_dec() { return \OtomatiesCoreVendor\wincache_ucache_dec(...func_get_args()); } }
+if (!function_exists('wincache_ucache_delete')) { function wincache_ucache_delete() { return \OtomatiesCoreVendor\wincache_ucache_delete(...func_get_args()); } }
+if (!function_exists('wincache_ucache_exists')) { function wincache_ucache_exists() { return \OtomatiesCoreVendor\wincache_ucache_exists(...func_get_args()); } }
+if (!function_exists('wincache_ucache_get')) { function wincache_ucache_get() { return \OtomatiesCoreVendor\wincache_ucache_get(...func_get_args()); } }
+if (!function_exists('wincache_ucache_inc')) { function wincache_ucache_inc() { return \OtomatiesCoreVendor\wincache_ucache_inc(...func_get_args()); } }
+if (!function_exists('wincache_ucache_info')) { function wincache_ucache_info() { return \OtomatiesCoreVendor\wincache_ucache_info(...func_get_args()); } }
+if (!function_exists('wincache_ucache_meminfo')) { function wincache_ucache_meminfo() { return \OtomatiesCoreVendor\wincache_ucache_meminfo(...func_get_args()); } }
+if (!function_exists('wincache_ucache_set')) { function wincache_ucache_set() { return \OtomatiesCoreVendor\wincache_ucache_set(...func_get_args()); } }
+if (!function_exists('wincache_unlock')) { function wincache_unlock() { return \OtomatiesCoreVendor\wincache_unlock(...func_get_args()); } }
 if (!function_exists('windows_os')) { function windows_os() { return \OtomatiesCoreVendor\windows_os(...func_get_args()); } }
 if (!function_exists('with')) { function with() { return \OtomatiesCoreVendor\with(...func_get_args()); } }
 if (!function_exists('wlwmanifest_link')) { function wlwmanifest_link() { return \OtomatiesCoreVendor\wlwmanifest_link(...func_get_args()); } }
@@ -4618,6 +9905,7 @@ if (!function_exists('woocommerce_wp_radio')) { function woocommerce_wp_radio() 
 if (!function_exists('woocommerce_wp_select')) { function woocommerce_wp_select() { return \OtomatiesCoreVendor\woocommerce_wp_select(...func_get_args()); } }
 if (!function_exists('woocommerce_wp_text_input')) { function woocommerce_wp_text_input() { return \OtomatiesCoreVendor\woocommerce_wp_text_input(...func_get_args()); } }
 if (!function_exists('woocommerce_wp_textarea_input')) { function woocommerce_wp_textarea_input() { return \OtomatiesCoreVendor\woocommerce_wp_textarea_input(...func_get_args()); } }
+if (!function_exists('wordwrap')) { function wordwrap() { return \OtomatiesCoreVendor\wordwrap(...func_get_args()); } }
 if (!function_exists('wp')) { function wp() { return \OtomatiesCoreVendor\wp(...func_get_args()); } }
 if (!function_exists('wp_add_dashboard_widget')) { function wp_add_dashboard_widget() { return \OtomatiesCoreVendor\wp_add_dashboard_widget(...func_get_args()); } }
 if (!function_exists('wp_add_editor_classic_theme_styles')) { function wp_add_editor_classic_theme_styles() { return \OtomatiesCoreVendor\wp_add_editor_classic_theme_styles(...func_get_args()); } }
@@ -5934,11 +11222,245 @@ if (!function_exists('wptexturize')) { function wptexturize() { return \Otomatie
 if (!function_exists('wptexturize_primes')) { function wptexturize_primes() { return \OtomatiesCoreVendor\wptexturize_primes(...func_get_args()); } }
 if (!function_exists('wpview_media_sandbox_styles')) { function wpview_media_sandbox_styles() { return \OtomatiesCoreVendor\wpview_media_sandbox_styles(...func_get_args()); } }
 if (!function_exists('write_post')) { function write_post() { return \OtomatiesCoreVendor\write_post(...func_get_args()); } }
+if (!function_exists('xcache_asm')) { function xcache_asm() { return \OtomatiesCoreVendor\xcache_asm(...func_get_args()); } }
+if (!function_exists('xcache_clear_cache')) { function xcache_clear_cache() { return \OtomatiesCoreVendor\xcache_clear_cache(...func_get_args()); } }
+if (!function_exists('xcache_coredump')) { function xcache_coredump() { return \OtomatiesCoreVendor\xcache_coredump(...func_get_args()); } }
+if (!function_exists('xcache_count')) { function xcache_count() { return \OtomatiesCoreVendor\xcache_count(...func_get_args()); } }
+if (!function_exists('xcache_coverager_decode')) { function xcache_coverager_decode() { return \OtomatiesCoreVendor\xcache_coverager_decode(...func_get_args()); } }
+if (!function_exists('xcache_coverager_get')) { function xcache_coverager_get() { return \OtomatiesCoreVendor\xcache_coverager_get(...func_get_args()); } }
+if (!function_exists('xcache_coverager_start')) { function xcache_coverager_start() { return \OtomatiesCoreVendor\xcache_coverager_start(...func_get_args()); } }
+if (!function_exists('xcache_coverager_stop')) { function xcache_coverager_stop() { return \OtomatiesCoreVendor\xcache_coverager_stop(...func_get_args()); } }
+if (!function_exists('xcache_dasm_file')) { function xcache_dasm_file() { return \OtomatiesCoreVendor\xcache_dasm_file(...func_get_args()); } }
+if (!function_exists('xcache_dasm_string')) { function xcache_dasm_string() { return \OtomatiesCoreVendor\xcache_dasm_string(...func_get_args()); } }
+if (!function_exists('xcache_dec')) { function xcache_dec() { return \OtomatiesCoreVendor\xcache_dec(...func_get_args()); } }
+if (!function_exists('xcache_decode')) { function xcache_decode() { return \OtomatiesCoreVendor\xcache_decode(...func_get_args()); } }
+if (!function_exists('xcache_encode')) { function xcache_encode() { return \OtomatiesCoreVendor\xcache_encode(...func_get_args()); } }
+if (!function_exists('xcache_get')) { function xcache_get() { return \OtomatiesCoreVendor\xcache_get(...func_get_args()); } }
+if (!function_exists('xcache_get_data_type')) { function xcache_get_data_type() { return \OtomatiesCoreVendor\xcache_get_data_type(...func_get_args()); } }
+if (!function_exists('xcache_get_op_spec')) { function xcache_get_op_spec() { return \OtomatiesCoreVendor\xcache_get_op_spec(...func_get_args()); } }
+if (!function_exists('xcache_get_op_type')) { function xcache_get_op_type() { return \OtomatiesCoreVendor\xcache_get_op_type(...func_get_args()); } }
+if (!function_exists('xcache_get_opcode')) { function xcache_get_opcode() { return \OtomatiesCoreVendor\xcache_get_opcode(...func_get_args()); } }
+if (!function_exists('xcache_get_opcode_spec')) { function xcache_get_opcode_spec() { return \OtomatiesCoreVendor\xcache_get_opcode_spec(...func_get_args()); } }
+if (!function_exists('xcache_inc')) { function xcache_inc() { return \OtomatiesCoreVendor\xcache_inc(...func_get_args()); } }
+if (!function_exists('xcache_info')) { function xcache_info() { return \OtomatiesCoreVendor\xcache_info(...func_get_args()); } }
+if (!function_exists('xcache_is_autoglobal')) { function xcache_is_autoglobal() { return \OtomatiesCoreVendor\xcache_is_autoglobal(...func_get_args()); } }
+if (!function_exists('xcache_isset')) { function xcache_isset() { return \OtomatiesCoreVendor\xcache_isset(...func_get_args()); } }
+if (!function_exists('xcache_list')) { function xcache_list() { return \OtomatiesCoreVendor\xcache_list(...func_get_args()); } }
+if (!function_exists('xcache_set')) { function xcache_set() { return \OtomatiesCoreVendor\xcache_set(...func_get_args()); } }
+if (!function_exists('xcache_unset')) { function xcache_unset() { return \OtomatiesCoreVendor\xcache_unset(...func_get_args()); } }
+if (!function_exists('xcache_unset_by_prefix')) { function xcache_unset_by_prefix() { return \OtomatiesCoreVendor\xcache_unset_by_prefix(...func_get_args()); } }
+if (!function_exists('xdebug_break')) { function xdebug_break() { return \OtomatiesCoreVendor\xdebug_break(...func_get_args()); } }
+if (!function_exists('xdebug_call_class')) { function xdebug_call_class() { return \OtomatiesCoreVendor\xdebug_call_class(...func_get_args()); } }
+if (!function_exists('xdebug_call_file')) { function xdebug_call_file() { return \OtomatiesCoreVendor\xdebug_call_file(...func_get_args()); } }
+if (!function_exists('xdebug_call_function')) { function xdebug_call_function() { return \OtomatiesCoreVendor\xdebug_call_function(...func_get_args()); } }
+if (!function_exists('xdebug_call_line')) { function xdebug_call_line() { return \OtomatiesCoreVendor\xdebug_call_line(...func_get_args()); } }
+if (!function_exists('xdebug_clear_aggr_profiling_data')) { function xdebug_clear_aggr_profiling_data() { return \OtomatiesCoreVendor\xdebug_clear_aggr_profiling_data(...func_get_args()); } }
+if (!function_exists('xdebug_code_coverage_started')) { function xdebug_code_coverage_started() { return \OtomatiesCoreVendor\xdebug_code_coverage_started(...func_get_args()); } }
+if (!function_exists('xdebug_connect_to_client')) { function xdebug_connect_to_client() { return \OtomatiesCoreVendor\xdebug_connect_to_client(...func_get_args()); } }
+if (!function_exists('xdebug_debug_zval')) { function xdebug_debug_zval() { return \OtomatiesCoreVendor\xdebug_debug_zval(...func_get_args()); } }
+if (!function_exists('xdebug_debug_zval_stdout')) { function xdebug_debug_zval_stdout() { return \OtomatiesCoreVendor\xdebug_debug_zval_stdout(...func_get_args()); } }
+if (!function_exists('xdebug_disable')) { function xdebug_disable() { return \OtomatiesCoreVendor\xdebug_disable(...func_get_args()); } }
+if (!function_exists('xdebug_dump_aggr_profiling_data')) { function xdebug_dump_aggr_profiling_data() { return \OtomatiesCoreVendor\xdebug_dump_aggr_profiling_data(...func_get_args()); } }
+if (!function_exists('xdebug_dump_superglobals')) { function xdebug_dump_superglobals() { return \OtomatiesCoreVendor\xdebug_dump_superglobals(...func_get_args()); } }
+if (!function_exists('xdebug_enable')) { function xdebug_enable() { return \OtomatiesCoreVendor\xdebug_enable(...func_get_args()); } }
+if (!function_exists('xdebug_get_code_coverage')) { function xdebug_get_code_coverage() { return \OtomatiesCoreVendor\xdebug_get_code_coverage(...func_get_args()); } }
+if (!function_exists('xdebug_get_collected_errors')) { function xdebug_get_collected_errors() { return \OtomatiesCoreVendor\xdebug_get_collected_errors(...func_get_args()); } }
+if (!function_exists('xdebug_get_declared_vars')) { function xdebug_get_declared_vars() { return \OtomatiesCoreVendor\xdebug_get_declared_vars(...func_get_args()); } }
+if (!function_exists('xdebug_get_formatted_function_stack')) { function xdebug_get_formatted_function_stack() { return \OtomatiesCoreVendor\xdebug_get_formatted_function_stack(...func_get_args()); } }
+if (!function_exists('xdebug_get_function_count')) { function xdebug_get_function_count() { return \OtomatiesCoreVendor\xdebug_get_function_count(...func_get_args()); } }
+if (!function_exists('xdebug_get_function_stack')) { function xdebug_get_function_stack() { return \OtomatiesCoreVendor\xdebug_get_function_stack(...func_get_args()); } }
+if (!function_exists('xdebug_get_gc_run_count')) { function xdebug_get_gc_run_count() { return \OtomatiesCoreVendor\xdebug_get_gc_run_count(...func_get_args()); } }
+if (!function_exists('xdebug_get_gc_total_collected_roots')) { function xdebug_get_gc_total_collected_roots() { return \OtomatiesCoreVendor\xdebug_get_gc_total_collected_roots(...func_get_args()); } }
+if (!function_exists('xdebug_get_gcstats_filename')) { function xdebug_get_gcstats_filename() { return \OtomatiesCoreVendor\xdebug_get_gcstats_filename(...func_get_args()); } }
+if (!function_exists('xdebug_get_headers')) { function xdebug_get_headers() { return \OtomatiesCoreVendor\xdebug_get_headers(...func_get_args()); } }
+if (!function_exists('xdebug_get_monitored_functions')) { function xdebug_get_monitored_functions() { return \OtomatiesCoreVendor\xdebug_get_monitored_functions(...func_get_args()); } }
+if (!function_exists('xdebug_get_profiler_filename')) { function xdebug_get_profiler_filename() { return \OtomatiesCoreVendor\xdebug_get_profiler_filename(...func_get_args()); } }
+if (!function_exists('xdebug_get_stack_depth')) { function xdebug_get_stack_depth() { return \OtomatiesCoreVendor\xdebug_get_stack_depth(...func_get_args()); } }
+if (!function_exists('xdebug_get_tracefile_name')) { function xdebug_get_tracefile_name() { return \OtomatiesCoreVendor\xdebug_get_tracefile_name(...func_get_args()); } }
+if (!function_exists('xdebug_info')) { function xdebug_info() { return \OtomatiesCoreVendor\xdebug_info(...func_get_args()); } }
+if (!function_exists('xdebug_is_debugger_active')) { function xdebug_is_debugger_active() { return \OtomatiesCoreVendor\xdebug_is_debugger_active(...func_get_args()); } }
+if (!function_exists('xdebug_is_enabled')) { function xdebug_is_enabled() { return \OtomatiesCoreVendor\xdebug_is_enabled(...func_get_args()); } }
+if (!function_exists('xdebug_memory_usage')) { function xdebug_memory_usage() { return \OtomatiesCoreVendor\xdebug_memory_usage(...func_get_args()); } }
+if (!function_exists('xdebug_notify')) { function xdebug_notify() { return \OtomatiesCoreVendor\xdebug_notify(...func_get_args()); } }
+if (!function_exists('xdebug_peak_memory_usage')) { function xdebug_peak_memory_usage() { return \OtomatiesCoreVendor\xdebug_peak_memory_usage(...func_get_args()); } }
+if (!function_exists('xdebug_print_function_stack')) { function xdebug_print_function_stack() { return \OtomatiesCoreVendor\xdebug_print_function_stack(...func_get_args()); } }
+if (!function_exists('xdebug_set_filter')) { function xdebug_set_filter() { return \OtomatiesCoreVendor\xdebug_set_filter(...func_get_args()); } }
+if (!function_exists('xdebug_start_code_coverage')) { function xdebug_start_code_coverage() { return \OtomatiesCoreVendor\xdebug_start_code_coverage(...func_get_args()); } }
+if (!function_exists('xdebug_start_error_collection')) { function xdebug_start_error_collection() { return \OtomatiesCoreVendor\xdebug_start_error_collection(...func_get_args()); } }
+if (!function_exists('xdebug_start_function_monitor')) { function xdebug_start_function_monitor() { return \OtomatiesCoreVendor\xdebug_start_function_monitor(...func_get_args()); } }
+if (!function_exists('xdebug_start_gcstats')) { function xdebug_start_gcstats() { return \OtomatiesCoreVendor\xdebug_start_gcstats(...func_get_args()); } }
+if (!function_exists('xdebug_start_trace')) { function xdebug_start_trace() { return \OtomatiesCoreVendor\xdebug_start_trace(...func_get_args()); } }
+if (!function_exists('xdebug_stop_code_coverage')) { function xdebug_stop_code_coverage() { return \OtomatiesCoreVendor\xdebug_stop_code_coverage(...func_get_args()); } }
+if (!function_exists('xdebug_stop_error_collection')) { function xdebug_stop_error_collection() { return \OtomatiesCoreVendor\xdebug_stop_error_collection(...func_get_args()); } }
+if (!function_exists('xdebug_stop_function_monitor')) { function xdebug_stop_function_monitor() { return \OtomatiesCoreVendor\xdebug_stop_function_monitor(...func_get_args()); } }
+if (!function_exists('xdebug_stop_gcstats')) { function xdebug_stop_gcstats() { return \OtomatiesCoreVendor\xdebug_stop_gcstats(...func_get_args()); } }
+if (!function_exists('xdebug_stop_trace')) { function xdebug_stop_trace() { return \OtomatiesCoreVendor\xdebug_stop_trace(...func_get_args()); } }
+if (!function_exists('xdebug_time_index')) { function xdebug_time_index() { return \OtomatiesCoreVendor\xdebug_time_index(...func_get_args()); } }
+if (!function_exists('xdebug_var_dump')) { function xdebug_var_dump() { return \OtomatiesCoreVendor\xdebug_var_dump(...func_get_args()); } }
+if (!function_exists('xdiff_file_bdiff')) { function xdiff_file_bdiff() { return \OtomatiesCoreVendor\xdiff_file_bdiff(...func_get_args()); } }
+if (!function_exists('xdiff_file_bdiff_size')) { function xdiff_file_bdiff_size() { return \OtomatiesCoreVendor\xdiff_file_bdiff_size(...func_get_args()); } }
+if (!function_exists('xdiff_file_bpatch')) { function xdiff_file_bpatch() { return \OtomatiesCoreVendor\xdiff_file_bpatch(...func_get_args()); } }
+if (!function_exists('xdiff_file_diff')) { function xdiff_file_diff() { return \OtomatiesCoreVendor\xdiff_file_diff(...func_get_args()); } }
+if (!function_exists('xdiff_file_diff_binary')) { function xdiff_file_diff_binary() { return \OtomatiesCoreVendor\xdiff_file_diff_binary(...func_get_args()); } }
+if (!function_exists('xdiff_file_merge3')) { function xdiff_file_merge3() { return \OtomatiesCoreVendor\xdiff_file_merge3(...func_get_args()); } }
+if (!function_exists('xdiff_file_patch')) { function xdiff_file_patch() { return \OtomatiesCoreVendor\xdiff_file_patch(...func_get_args()); } }
+if (!function_exists('xdiff_file_patch_binary')) { function xdiff_file_patch_binary() { return \OtomatiesCoreVendor\xdiff_file_patch_binary(...func_get_args()); } }
+if (!function_exists('xdiff_file_rabdiff')) { function xdiff_file_rabdiff() { return \OtomatiesCoreVendor\xdiff_file_rabdiff(...func_get_args()); } }
+if (!function_exists('xdiff_string_bdiff')) { function xdiff_string_bdiff() { return \OtomatiesCoreVendor\xdiff_string_bdiff(...func_get_args()); } }
+if (!function_exists('xdiff_string_bdiff_size')) { function xdiff_string_bdiff_size() { return \OtomatiesCoreVendor\xdiff_string_bdiff_size(...func_get_args()); } }
+if (!function_exists('xdiff_string_bpatch')) { function xdiff_string_bpatch() { return \OtomatiesCoreVendor\xdiff_string_bpatch(...func_get_args()); } }
+if (!function_exists('xdiff_string_diff')) { function xdiff_string_diff() { return \OtomatiesCoreVendor\xdiff_string_diff(...func_get_args()); } }
+if (!function_exists('xdiff_string_diff_binary')) { function xdiff_string_diff_binary() { return \OtomatiesCoreVendor\xdiff_string_diff_binary(...func_get_args()); } }
+if (!function_exists('xdiff_string_merge3')) { function xdiff_string_merge3() { return \OtomatiesCoreVendor\xdiff_string_merge3(...func_get_args()); } }
+if (!function_exists('xdiff_string_patch')) { function xdiff_string_patch() { return \OtomatiesCoreVendor\xdiff_string_patch(...func_get_args()); } }
+if (!function_exists('xdiff_string_patch_binary')) { function xdiff_string_patch_binary() { return \OtomatiesCoreVendor\xdiff_string_patch_binary(...func_get_args()); } }
+if (!function_exists('xdiff_string_rabdiff')) { function xdiff_string_rabdiff() { return \OtomatiesCoreVendor\xdiff_string_rabdiff(...func_get_args()); } }
 if (!function_exists('xfn_check')) { function xfn_check() { return \OtomatiesCoreVendor\xfn_check(...func_get_args()); } }
+if (!function_exists('xhprof_disable')) { function xhprof_disable() { return \OtomatiesCoreVendor\xhprof_disable(...func_get_args()); } }
+if (!function_exists('xhprof_enable')) { function xhprof_enable() { return \OtomatiesCoreVendor\xhprof_enable(...func_get_args()); } }
+if (!function_exists('xhprof_sample_disable')) { function xhprof_sample_disable() { return \OtomatiesCoreVendor\xhprof_sample_disable(...func_get_args()); } }
+if (!function_exists('xhprof_sample_enable')) { function xhprof_sample_enable() { return \OtomatiesCoreVendor\xhprof_sample_enable(...func_get_args()); } }
+if (!function_exists('xml_error_string')) { function xml_error_string() { return \OtomatiesCoreVendor\xml_error_string(...func_get_args()); } }
+if (!function_exists('xml_get_current_byte_index')) { function xml_get_current_byte_index() { return \OtomatiesCoreVendor\xml_get_current_byte_index(...func_get_args()); } }
+if (!function_exists('xml_get_current_column_number')) { function xml_get_current_column_number() { return \OtomatiesCoreVendor\xml_get_current_column_number(...func_get_args()); } }
+if (!function_exists('xml_get_current_line_number')) { function xml_get_current_line_number() { return \OtomatiesCoreVendor\xml_get_current_line_number(...func_get_args()); } }
+if (!function_exists('xml_get_error_code')) { function xml_get_error_code() { return \OtomatiesCoreVendor\xml_get_error_code(...func_get_args()); } }
+if (!function_exists('xml_parse')) { function xml_parse() { return \OtomatiesCoreVendor\xml_parse(...func_get_args()); } }
+if (!function_exists('xml_parse_into_struct')) { function xml_parse_into_struct() { return \OtomatiesCoreVendor\xml_parse_into_struct(...func_get_args()); } }
+if (!function_exists('xml_parser_create')) { function xml_parser_create() { return \OtomatiesCoreVendor\xml_parser_create(...func_get_args()); } }
+if (!function_exists('xml_parser_create_ns')) { function xml_parser_create_ns() { return \OtomatiesCoreVendor\xml_parser_create_ns(...func_get_args()); } }
+if (!function_exists('xml_parser_free')) { function xml_parser_free() { return \OtomatiesCoreVendor\xml_parser_free(...func_get_args()); } }
+if (!function_exists('xml_parser_get_option')) { function xml_parser_get_option() { return \OtomatiesCoreVendor\xml_parser_get_option(...func_get_args()); } }
+if (!function_exists('xml_parser_set_option')) { function xml_parser_set_option() { return \OtomatiesCoreVendor\xml_parser_set_option(...func_get_args()); } }
+if (!function_exists('xml_set_character_data_handler')) { function xml_set_character_data_handler() { return \OtomatiesCoreVendor\xml_set_character_data_handler(...func_get_args()); } }
+if (!function_exists('xml_set_default_handler')) { function xml_set_default_handler() { return \OtomatiesCoreVendor\xml_set_default_handler(...func_get_args()); } }
+if (!function_exists('xml_set_element_handler')) { function xml_set_element_handler() { return \OtomatiesCoreVendor\xml_set_element_handler(...func_get_args()); } }
+if (!function_exists('xml_set_end_namespace_decl_handler')) { function xml_set_end_namespace_decl_handler() { return \OtomatiesCoreVendor\xml_set_end_namespace_decl_handler(...func_get_args()); } }
+if (!function_exists('xml_set_external_entity_ref_handler')) { function xml_set_external_entity_ref_handler() { return \OtomatiesCoreVendor\xml_set_external_entity_ref_handler(...func_get_args()); } }
+if (!function_exists('xml_set_notation_decl_handler')) { function xml_set_notation_decl_handler() { return \OtomatiesCoreVendor\xml_set_notation_decl_handler(...func_get_args()); } }
+if (!function_exists('xml_set_object')) { function xml_set_object() { return \OtomatiesCoreVendor\xml_set_object(...func_get_args()); } }
+if (!function_exists('xml_set_processing_instruction_handler')) { function xml_set_processing_instruction_handler() { return \OtomatiesCoreVendor\xml_set_processing_instruction_handler(...func_get_args()); } }
+if (!function_exists('xml_set_start_namespace_decl_handler')) { function xml_set_start_namespace_decl_handler() { return \OtomatiesCoreVendor\xml_set_start_namespace_decl_handler(...func_get_args()); } }
+if (!function_exists('xml_set_unparsed_entity_decl_handler')) { function xml_set_unparsed_entity_decl_handler() { return \OtomatiesCoreVendor\xml_set_unparsed_entity_decl_handler(...func_get_args()); } }
+if (!function_exists('xmlrpc_decode')) { function xmlrpc_decode() { return \OtomatiesCoreVendor\xmlrpc_decode(...func_get_args()); } }
+if (!function_exists('xmlrpc_decode_request')) { function xmlrpc_decode_request() { return \OtomatiesCoreVendor\xmlrpc_decode_request(...func_get_args()); } }
+if (!function_exists('xmlrpc_encode')) { function xmlrpc_encode() { return \OtomatiesCoreVendor\xmlrpc_encode(...func_get_args()); } }
+if (!function_exists('xmlrpc_encode_request')) { function xmlrpc_encode_request() { return \OtomatiesCoreVendor\xmlrpc_encode_request(...func_get_args()); } }
+if (!function_exists('xmlrpc_get_type')) { function xmlrpc_get_type() { return \OtomatiesCoreVendor\xmlrpc_get_type(...func_get_args()); } }
 if (!function_exists('xmlrpc_getpostcategory')) { function xmlrpc_getpostcategory() { return \OtomatiesCoreVendor\xmlrpc_getpostcategory(...func_get_args()); } }
 if (!function_exists('xmlrpc_getposttitle')) { function xmlrpc_getposttitle() { return \OtomatiesCoreVendor\xmlrpc_getposttitle(...func_get_args()); } }
+if (!function_exists('xmlrpc_is_fault')) { function xmlrpc_is_fault() { return \OtomatiesCoreVendor\xmlrpc_is_fault(...func_get_args()); } }
+if (!function_exists('xmlrpc_parse_method_descriptions')) { function xmlrpc_parse_method_descriptions() { return \OtomatiesCoreVendor\xmlrpc_parse_method_descriptions(...func_get_args()); } }
 if (!function_exists('xmlrpc_pingback_error')) { function xmlrpc_pingback_error() { return \OtomatiesCoreVendor\xmlrpc_pingback_error(...func_get_args()); } }
 if (!function_exists('xmlrpc_removepostdata')) { function xmlrpc_removepostdata() { return \OtomatiesCoreVendor\xmlrpc_removepostdata(...func_get_args()); } }
+if (!function_exists('xmlrpc_server_add_introspection_data')) { function xmlrpc_server_add_introspection_data() { return \OtomatiesCoreVendor\xmlrpc_server_add_introspection_data(...func_get_args()); } }
+if (!function_exists('xmlrpc_server_call_method')) { function xmlrpc_server_call_method() { return \OtomatiesCoreVendor\xmlrpc_server_call_method(...func_get_args()); } }
+if (!function_exists('xmlrpc_server_create')) { function xmlrpc_server_create() { return \OtomatiesCoreVendor\xmlrpc_server_create(...func_get_args()); } }
+if (!function_exists('xmlrpc_server_destroy')) { function xmlrpc_server_destroy() { return \OtomatiesCoreVendor\xmlrpc_server_destroy(...func_get_args()); } }
+if (!function_exists('xmlrpc_server_register_introspection_callback')) { function xmlrpc_server_register_introspection_callback() { return \OtomatiesCoreVendor\xmlrpc_server_register_introspection_callback(...func_get_args()); } }
+if (!function_exists('xmlrpc_server_register_method')) { function xmlrpc_server_register_method() { return \OtomatiesCoreVendor\xmlrpc_server_register_method(...func_get_args()); } }
+if (!function_exists('xmlrpc_set_type')) { function xmlrpc_set_type() { return \OtomatiesCoreVendor\xmlrpc_set_type(...func_get_args()); } }
+if (!function_exists('xmlwriter_end_attribute')) { function xmlwriter_end_attribute() { return \OtomatiesCoreVendor\xmlwriter_end_attribute(...func_get_args()); } }
+if (!function_exists('xmlwriter_end_cdata')) { function xmlwriter_end_cdata() { return \OtomatiesCoreVendor\xmlwriter_end_cdata(...func_get_args()); } }
+if (!function_exists('xmlwriter_end_comment')) { function xmlwriter_end_comment() { return \OtomatiesCoreVendor\xmlwriter_end_comment(...func_get_args()); } }
+if (!function_exists('xmlwriter_end_document')) { function xmlwriter_end_document() { return \OtomatiesCoreVendor\xmlwriter_end_document(...func_get_args()); } }
+if (!function_exists('xmlwriter_end_dtd')) { function xmlwriter_end_dtd() { return \OtomatiesCoreVendor\xmlwriter_end_dtd(...func_get_args()); } }
+if (!function_exists('xmlwriter_end_dtd_attlist')) { function xmlwriter_end_dtd_attlist() { return \OtomatiesCoreVendor\xmlwriter_end_dtd_attlist(...func_get_args()); } }
+if (!function_exists('xmlwriter_end_dtd_element')) { function xmlwriter_end_dtd_element() { return \OtomatiesCoreVendor\xmlwriter_end_dtd_element(...func_get_args()); } }
+if (!function_exists('xmlwriter_end_dtd_entity')) { function xmlwriter_end_dtd_entity() { return \OtomatiesCoreVendor\xmlwriter_end_dtd_entity(...func_get_args()); } }
+if (!function_exists('xmlwriter_end_element')) { function xmlwriter_end_element() { return \OtomatiesCoreVendor\xmlwriter_end_element(...func_get_args()); } }
+if (!function_exists('xmlwriter_end_pi')) { function xmlwriter_end_pi() { return \OtomatiesCoreVendor\xmlwriter_end_pi(...func_get_args()); } }
+if (!function_exists('xmlwriter_flush')) { function xmlwriter_flush() { return \OtomatiesCoreVendor\xmlwriter_flush(...func_get_args()); } }
+if (!function_exists('xmlwriter_full_end_element')) { function xmlwriter_full_end_element() { return \OtomatiesCoreVendor\xmlwriter_full_end_element(...func_get_args()); } }
+if (!function_exists('xmlwriter_open_memory')) { function xmlwriter_open_memory() { return \OtomatiesCoreVendor\xmlwriter_open_memory(...func_get_args()); } }
+if (!function_exists('xmlwriter_open_uri')) { function xmlwriter_open_uri() { return \OtomatiesCoreVendor\xmlwriter_open_uri(...func_get_args()); } }
+if (!function_exists('xmlwriter_output_memory')) { function xmlwriter_output_memory() { return \OtomatiesCoreVendor\xmlwriter_output_memory(...func_get_args()); } }
+if (!function_exists('xmlwriter_set_indent')) { function xmlwriter_set_indent() { return \OtomatiesCoreVendor\xmlwriter_set_indent(...func_get_args()); } }
+if (!function_exists('xmlwriter_set_indent_string')) { function xmlwriter_set_indent_string() { return \OtomatiesCoreVendor\xmlwriter_set_indent_string(...func_get_args()); } }
+if (!function_exists('xmlwriter_start_attribute')) { function xmlwriter_start_attribute() { return \OtomatiesCoreVendor\xmlwriter_start_attribute(...func_get_args()); } }
+if (!function_exists('xmlwriter_start_attribute_ns')) { function xmlwriter_start_attribute_ns() { return \OtomatiesCoreVendor\xmlwriter_start_attribute_ns(...func_get_args()); } }
+if (!function_exists('xmlwriter_start_cdata')) { function xmlwriter_start_cdata() { return \OtomatiesCoreVendor\xmlwriter_start_cdata(...func_get_args()); } }
+if (!function_exists('xmlwriter_start_comment')) { function xmlwriter_start_comment() { return \OtomatiesCoreVendor\xmlwriter_start_comment(...func_get_args()); } }
+if (!function_exists('xmlwriter_start_document')) { function xmlwriter_start_document() { return \OtomatiesCoreVendor\xmlwriter_start_document(...func_get_args()); } }
+if (!function_exists('xmlwriter_start_dtd')) { function xmlwriter_start_dtd() { return \OtomatiesCoreVendor\xmlwriter_start_dtd(...func_get_args()); } }
+if (!function_exists('xmlwriter_start_dtd_attlist')) { function xmlwriter_start_dtd_attlist() { return \OtomatiesCoreVendor\xmlwriter_start_dtd_attlist(...func_get_args()); } }
+if (!function_exists('xmlwriter_start_dtd_element')) { function xmlwriter_start_dtd_element() { return \OtomatiesCoreVendor\xmlwriter_start_dtd_element(...func_get_args()); } }
+if (!function_exists('xmlwriter_start_dtd_entity')) { function xmlwriter_start_dtd_entity() { return \OtomatiesCoreVendor\xmlwriter_start_dtd_entity(...func_get_args()); } }
+if (!function_exists('xmlwriter_start_element')) { function xmlwriter_start_element() { return \OtomatiesCoreVendor\xmlwriter_start_element(...func_get_args()); } }
+if (!function_exists('xmlwriter_start_element_ns')) { function xmlwriter_start_element_ns() { return \OtomatiesCoreVendor\xmlwriter_start_element_ns(...func_get_args()); } }
+if (!function_exists('xmlwriter_start_pi')) { function xmlwriter_start_pi() { return \OtomatiesCoreVendor\xmlwriter_start_pi(...func_get_args()); } }
+if (!function_exists('xmlwriter_text')) { function xmlwriter_text() { return \OtomatiesCoreVendor\xmlwriter_text(...func_get_args()); } }
+if (!function_exists('xmlwriter_write_attribute')) { function xmlwriter_write_attribute() { return \OtomatiesCoreVendor\xmlwriter_write_attribute(...func_get_args()); } }
+if (!function_exists('xmlwriter_write_attribute_ns')) { function xmlwriter_write_attribute_ns() { return \OtomatiesCoreVendor\xmlwriter_write_attribute_ns(...func_get_args()); } }
+if (!function_exists('xmlwriter_write_cdata')) { function xmlwriter_write_cdata() { return \OtomatiesCoreVendor\xmlwriter_write_cdata(...func_get_args()); } }
+if (!function_exists('xmlwriter_write_comment')) { function xmlwriter_write_comment() { return \OtomatiesCoreVendor\xmlwriter_write_comment(...func_get_args()); } }
+if (!function_exists('xmlwriter_write_dtd')) { function xmlwriter_write_dtd() { return \OtomatiesCoreVendor\xmlwriter_write_dtd(...func_get_args()); } }
+if (!function_exists('xmlwriter_write_dtd_attlist')) { function xmlwriter_write_dtd_attlist() { return \OtomatiesCoreVendor\xmlwriter_write_dtd_attlist(...func_get_args()); } }
+if (!function_exists('xmlwriter_write_dtd_element')) { function xmlwriter_write_dtd_element() { return \OtomatiesCoreVendor\xmlwriter_write_dtd_element(...func_get_args()); } }
+if (!function_exists('xmlwriter_write_dtd_entity')) { function xmlwriter_write_dtd_entity() { return \OtomatiesCoreVendor\xmlwriter_write_dtd_entity(...func_get_args()); } }
+if (!function_exists('xmlwriter_write_element')) { function xmlwriter_write_element() { return \OtomatiesCoreVendor\xmlwriter_write_element(...func_get_args()); } }
+if (!function_exists('xmlwriter_write_element_ns')) { function xmlwriter_write_element_ns() { return \OtomatiesCoreVendor\xmlwriter_write_element_ns(...func_get_args()); } }
+if (!function_exists('xmlwriter_write_pi')) { function xmlwriter_write_pi() { return \OtomatiesCoreVendor\xmlwriter_write_pi(...func_get_args()); } }
+if (!function_exists('xmlwriter_write_raw')) { function xmlwriter_write_raw() { return \OtomatiesCoreVendor\xmlwriter_write_raw(...func_get_args()); } }
+if (!function_exists('xxtea_decrypt')) { function xxtea_decrypt() { return \OtomatiesCoreVendor\xxtea_decrypt(...func_get_args()); } }
+if (!function_exists('xxtea_encrypt')) { function xxtea_encrypt() { return \OtomatiesCoreVendor\xxtea_encrypt(...func_get_args()); } }
+if (!function_exists('yaml_emit')) { function yaml_emit() { return \OtomatiesCoreVendor\yaml_emit(...func_get_args()); } }
+if (!function_exists('yaml_emit_file')) { function yaml_emit_file() { return \OtomatiesCoreVendor\yaml_emit_file(...func_get_args()); } }
+if (!function_exists('yaml_parse')) { function yaml_parse() { return \OtomatiesCoreVendor\yaml_parse(...func_get_args()); } }
+if (!function_exists('yaml_parse_file')) { function yaml_parse_file() { return \OtomatiesCoreVendor\yaml_parse_file(...func_get_args()); } }
+if (!function_exists('yaml_parse_url')) { function yaml_parse_url() { return \OtomatiesCoreVendor\yaml_parse_url(...func_get_args()); } }
+if (!function_exists('zem_get_extension_info_by_id')) { function zem_get_extension_info_by_id() { return \OtomatiesCoreVendor\zem_get_extension_info_by_id(...func_get_args()); } }
+if (!function_exists('zem_get_extension_info_by_name')) { function zem_get_extension_info_by_name() { return \OtomatiesCoreVendor\zem_get_extension_info_by_name(...func_get_args()); } }
+if (!function_exists('zem_get_extensions_info')) { function zem_get_extensions_info() { return \OtomatiesCoreVendor\zem_get_extensions_info(...func_get_args()); } }
+if (!function_exists('zem_get_license_info')) { function zem_get_license_info() { return \OtomatiesCoreVendor\zem_get_license_info(...func_get_args()); } }
+if (!function_exists('zend_current_obfuscation_level')) { function zend_current_obfuscation_level() { return \OtomatiesCoreVendor\zend_current_obfuscation_level(...func_get_args()); } }
+if (!function_exists('zend_disk_cache_clear')) { function zend_disk_cache_clear() { return \OtomatiesCoreVendor\zend_disk_cache_clear(...func_get_args()); } }
+if (!function_exists('zend_disk_cache_delete')) { function zend_disk_cache_delete() { return \OtomatiesCoreVendor\zend_disk_cache_delete(...func_get_args()); } }
+if (!function_exists('zend_disk_cache_fetch')) { function zend_disk_cache_fetch() { return \OtomatiesCoreVendor\zend_disk_cache_fetch(...func_get_args()); } }
+if (!function_exists('zend_disk_cache_info')) { function zend_disk_cache_info() { return \OtomatiesCoreVendor\zend_disk_cache_info(...func_get_args()); } }
+if (!function_exists('zend_disk_cache_store')) { function zend_disk_cache_store() { return \OtomatiesCoreVendor\zend_disk_cache_store(...func_get_args()); } }
+if (!function_exists('zend_get_id')) { function zend_get_id() { return \OtomatiesCoreVendor\zend_get_id(...func_get_args()); } }
+if (!function_exists('zend_is_configuration_changed')) { function zend_is_configuration_changed() { return \OtomatiesCoreVendor\zend_is_configuration_changed(...func_get_args()); } }
+if (!function_exists('zend_loader_current_file')) { function zend_loader_current_file() { return \OtomatiesCoreVendor\zend_loader_current_file(...func_get_args()); } }
+if (!function_exists('zend_loader_enabled')) { function zend_loader_enabled() { return \OtomatiesCoreVendor\zend_loader_enabled(...func_get_args()); } }
+if (!function_exists('zend_loader_file_encoded')) { function zend_loader_file_encoded() { return \OtomatiesCoreVendor\zend_loader_file_encoded(...func_get_args()); } }
+if (!function_exists('zend_loader_file_licensed')) { function zend_loader_file_licensed() { return \OtomatiesCoreVendor\zend_loader_file_licensed(...func_get_args()); } }
+if (!function_exists('zend_loader_install_license')) { function zend_loader_install_license() { return \OtomatiesCoreVendor\zend_loader_install_license(...func_get_args()); } }
+if (!function_exists('zend_logo_guid')) { function zend_logo_guid() { return \OtomatiesCoreVendor\zend_logo_guid(...func_get_args()); } }
+if (!function_exists('zend_obfuscate_class_name')) { function zend_obfuscate_class_name() { return \OtomatiesCoreVendor\zend_obfuscate_class_name(...func_get_args()); } }
+if (!function_exists('zend_obfuscate_function_name')) { function zend_obfuscate_function_name() { return \OtomatiesCoreVendor\zend_obfuscate_function_name(...func_get_args()); } }
+if (!function_exists('zend_optimizer_version')) { function zend_optimizer_version() { return \OtomatiesCoreVendor\zend_optimizer_version(...func_get_args()); } }
+if (!function_exists('zend_runtime_obfuscate')) { function zend_runtime_obfuscate() { return \OtomatiesCoreVendor\zend_runtime_obfuscate(...func_get_args()); } }
+if (!function_exists('zend_send_buffer')) { function zend_send_buffer() { return \OtomatiesCoreVendor\zend_send_buffer(...func_get_args()); } }
+if (!function_exists('zend_send_file')) { function zend_send_file() { return \OtomatiesCoreVendor\zend_send_file(...func_get_args()); } }
+if (!function_exists('zend_set_configuration_changed')) { function zend_set_configuration_changed() { return \OtomatiesCoreVendor\zend_set_configuration_changed(...func_get_args()); } }
+if (!function_exists('zend_shm_cache_clear')) { function zend_shm_cache_clear() { return \OtomatiesCoreVendor\zend_shm_cache_clear(...func_get_args()); } }
+if (!function_exists('zend_shm_cache_delete')) { function zend_shm_cache_delete() { return \OtomatiesCoreVendor\zend_shm_cache_delete(...func_get_args()); } }
+if (!function_exists('zend_shm_cache_fetch')) { function zend_shm_cache_fetch() { return \OtomatiesCoreVendor\zend_shm_cache_fetch(...func_get_args()); } }
+if (!function_exists('zend_shm_cache_info')) { function zend_shm_cache_info() { return \OtomatiesCoreVendor\zend_shm_cache_info(...func_get_args()); } }
+if (!function_exists('zend_shm_cache_store')) { function zend_shm_cache_store() { return \OtomatiesCoreVendor\zend_shm_cache_store(...func_get_args()); } }
+if (!function_exists('zend_version')) { function zend_version() { return \OtomatiesCoreVendor\zend_version(...func_get_args()); } }
 if (!function_exists('zeroise')) { function zeroise() { return \OtomatiesCoreVendor\zeroise(...func_get_args()); } }
+if (!function_exists('zip_close')) { function zip_close() { return \OtomatiesCoreVendor\zip_close(...func_get_args()); } }
+if (!function_exists('zip_entry_close')) { function zip_entry_close() { return \OtomatiesCoreVendor\zip_entry_close(...func_get_args()); } }
+if (!function_exists('zip_entry_compressedsize')) { function zip_entry_compressedsize() { return \OtomatiesCoreVendor\zip_entry_compressedsize(...func_get_args()); } }
+if (!function_exists('zip_entry_compressionmethod')) { function zip_entry_compressionmethod() { return \OtomatiesCoreVendor\zip_entry_compressionmethod(...func_get_args()); } }
+if (!function_exists('zip_entry_filesize')) { function zip_entry_filesize() { return \OtomatiesCoreVendor\zip_entry_filesize(...func_get_args()); } }
+if (!function_exists('zip_entry_name')) { function zip_entry_name() { return \OtomatiesCoreVendor\zip_entry_name(...func_get_args()); } }
+if (!function_exists('zip_entry_open')) { function zip_entry_open() { return \OtomatiesCoreVendor\zip_entry_open(...func_get_args()); } }
+if (!function_exists('zip_entry_read')) { function zip_entry_read() { return \OtomatiesCoreVendor\zip_entry_read(...func_get_args()); } }
+if (!function_exists('zip_open')) { function zip_open() { return \OtomatiesCoreVendor\zip_open(...func_get_args()); } }
+if (!function_exists('zip_read')) { function zip_read() { return \OtomatiesCoreVendor\zip_read(...func_get_args()); } }
+if (!function_exists('zlib_decode')) { function zlib_decode() { return \OtomatiesCoreVendor\zlib_decode(...func_get_args()); } }
+if (!function_exists('zlib_encode')) { function zlib_encode() { return \OtomatiesCoreVendor\zlib_encode(...func_get_args()); } }
+if (!function_exists('zlib_get_coding_type')) { function zlib_get_coding_type() { return \OtomatiesCoreVendor\zlib_get_coding_type(...func_get_args()); } }
+if (!function_exists('zstd_compress')) { function zstd_compress() { return \OtomatiesCoreVendor\zstd_compress(...func_get_args()); } }
+if (!function_exists('zstd_compress_dict')) { function zstd_compress_dict() { return \OtomatiesCoreVendor\zstd_compress_dict(...func_get_args()); } }
+if (!function_exists('zstd_compress_usingcdict')) { function zstd_compress_usingcdict() { return \OtomatiesCoreVendor\zstd_compress_usingcdict(...func_get_args()); } }
+if (!function_exists('zstd_decompress_dict')) { function zstd_decompress_dict() { return \OtomatiesCoreVendor\zstd_decompress_dict(...func_get_args()); } }
+if (!function_exists('zstd_decompress_usingcdict')) { function zstd_decompress_usingcdict() { return \OtomatiesCoreVendor\zstd_decompress_usingcdict(...func_get_args()); } }
+if (!function_exists('zstd_uncompress')) { function zstd_uncompress() { return \OtomatiesCoreVendor\zstd_uncompress(...func_get_args()); } }
+if (!function_exists('zstd_uncompress_dict')) { function zstd_uncompress_dict() { return \OtomatiesCoreVendor\zstd_uncompress_dict(...func_get_args()); } }
+if (!function_exists('zstd_uncompress_usingcdict')) { function zstd_uncompress_usingcdict() { return \OtomatiesCoreVendor\zstd_uncompress_usingcdict(...func_get_args()); } }
 
 return $loader;

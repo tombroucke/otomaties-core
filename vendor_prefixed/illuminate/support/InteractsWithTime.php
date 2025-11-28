@@ -5,7 +5,6 @@ namespace OtomatiesCoreVendor\Illuminate\Support;
 use OtomatiesCoreVendor\Carbon\CarbonInterval;
 use DateInterval;
 use DateTimeInterface;
-/** @internal */
 trait InteractsWithTime
 {
     /**
@@ -17,7 +16,7 @@ trait InteractsWithTime
     protected function secondsUntil($delay)
     {
         $delay = $this->parseDateInterval($delay);
-        return $delay instanceof DateTimeInterface ? \max(0, $delay->getTimestamp() - $this->currentTime()) : (int) $delay;
+        return $delay instanceof DateTimeInterface ? max(0, $delay->getTimestamp() - $this->currentTime()) : (int) $delay;
     }
     /**
      * Get the "available at" UNIX timestamp.
@@ -61,8 +60,8 @@ trait InteractsWithTime
      */
     protected function runTimeForHumans($startTime, $endTime = null)
     {
-        $endTime ??= \microtime(\true);
+        $endTime ??= microtime(\true);
         $runTime = ($endTime - $startTime) * 1000;
-        return $runTime > 1000 ? CarbonInterval::milliseconds($runTime)->cascade()->forHumans(short: \true) : \number_format($runTime, 2) . 'ms';
+        return $runTime > 1000 ? CarbonInterval::milliseconds($runTime)->cascade()->forHumans(short: \true) : number_format($runTime, 2) . 'ms';
     }
 }

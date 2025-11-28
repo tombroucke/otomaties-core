@@ -3,7 +3,6 @@
 namespace OtomatiesCoreVendor\Illuminate\Support;
 
 use InvalidArgumentException;
-/** @internal */
 class ConfigurationUrlParser
 {
     /**
@@ -29,7 +28,7 @@ class ConfigurationUrlParser
      */
     public function parseConfiguration($config)
     {
-        if (\is_string($config)) {
+        if (is_string($config)) {
             $config = ['url' => $config];
         }
         $url = Arr::pull($config, 'url');
@@ -37,8 +36,8 @@ class ConfigurationUrlParser
             return $config;
         }
         $rawComponents = $this->parseUrl($url);
-        $decodedComponents = $this->parseStringsToNativeTypes(\array_map(\rawurldecode(...), $rawComponents));
-        return \array_merge($config, $this->getPrimaryOptions($decodedComponents), $this->getQueryOptions($rawComponents));
+        $decodedComponents = $this->parseStringsToNativeTypes(array_map(rawurldecode(...), $rawComponents));
+        return array_merge($config, $this->getPrimaryOptions($decodedComponents), $this->getQueryOptions($rawComponents));
     }
     /**
      * Get the primary database connection options.
@@ -48,7 +47,7 @@ class ConfigurationUrlParser
      */
     protected function getPrimaryOptions($url)
     {
-        return \array_filter(['driver' => $this->getDriver($url), 'database' => $this->getDatabase($url), 'host' => $url['host'] ?? null, 'port' => $url['port'] ?? null, 'username' => $url['user'] ?? null, 'password' => $url['pass'] ?? null], fn($value) => !\is_null($value));
+        return array_filter(['driver' => $this->getDriver($url), 'database' => $this->getDatabase($url), 'host' => $url['host'] ?? null, 'port' => $url['port'] ?? null, 'username' => $url['user'] ?? null, 'password' => $url['pass'] ?? null], fn($value) => !is_null($value));
     }
     /**
      * Get the database driver from the URL.
@@ -73,7 +72,7 @@ class ConfigurationUrlParser
     protected function getDatabase($url)
     {
         $path = $url['path'] ?? null;
-        return $path && $path !== '/' ? \substr($path, 1) : null;
+        return $path && $path !== '/' ? substr($path, 1) : null;
     }
     /**
      * Get all of the additional database options from the query string.
@@ -88,7 +87,7 @@ class ConfigurationUrlParser
             return [];
         }
         $query = [];
-        \parse_str($queryString, $query);
+        parse_str($queryString, $query);
         return $this->parseStringsToNativeTypes($query);
     }
     /**
@@ -101,8 +100,8 @@ class ConfigurationUrlParser
      */
     protected function parseUrl($url)
     {
-        $url = \preg_replace('#^(sqlite3?):///#', '$1://null/', $url);
-        $parsedUrl = \parse_url($url);
+        $url = preg_replace('#^(sqlite3?):///#', '$1://null/', $url);
+        $parsedUrl = parse_url($url);
         if ($parsedUrl === \false) {
             throw new InvalidArgumentException('The database configuration URL is malformed.');
         }
@@ -116,14 +115,14 @@ class ConfigurationUrlParser
      */
     protected function parseStringsToNativeTypes($value)
     {
-        if (\is_array($value)) {
-            return \array_map($this->parseStringsToNativeTypes(...), $value);
+        if (is_array($value)) {
+            return array_map($this->parseStringsToNativeTypes(...), $value);
         }
-        if (!\is_string($value)) {
+        if (!is_string($value)) {
             return $value;
         }
-        $parsedValue = \json_decode($value, \true);
-        if (\json_last_error() === \JSON_ERROR_NONE) {
+        $parsedValue = json_decode($value, \true);
+        if (json_last_error() === \JSON_ERROR_NONE) {
             return $parsedValue;
         }
         return $value;

@@ -5,7 +5,6 @@ namespace OtomatiesCoreVendor\Illuminate\Support;
 use BackedEnum;
 use OtomatiesCoreVendor\Illuminate\Contracts\Support\DeferringDisplayableValue;
 use OtomatiesCoreVendor\Illuminate\Contracts\Support\Htmlable;
-/** @internal */
 class EncodedHtmlString extends HtmlString
 {
     /**
@@ -43,14 +42,14 @@ class EncodedHtmlString extends HtmlString
     public static function convert($value, bool $withQuote = \true, bool $doubleEncode = \true)
     {
         $flag = $withQuote ? \ENT_QUOTES : \ENT_NOQUOTES;
-        return \htmlspecialchars($value ?? '', $flag | \ENT_SUBSTITUTE, 'UTF-8', $doubleEncode);
+        return htmlspecialchars($value ?? '', $flag | \ENT_SUBSTITUTE, 'UTF-8', $doubleEncode);
     }
     /**
      * Get the HTML string.
      *
      * @return string
      */
-    #[\OtomatiesCoreVendor\Override]
+    #[\Override]
     public function toHtml()
     {
         $value = $this->html;

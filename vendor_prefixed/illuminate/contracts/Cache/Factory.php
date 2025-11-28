@@ -2,7 +2,6 @@
 
 namespace OtomatiesCoreVendor\Illuminate\Contracts\Cache;
 
-/** @internal */
 interface Factory
 {
     /**

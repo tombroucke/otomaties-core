@@ -4,7 +4,6 @@ namespace OtomatiesCoreVendor\Illuminate\Support\Testing\Fakes;
 
 use OtomatiesCoreVendor\Illuminate\Contracts\Mail\Mailable;
 use OtomatiesCoreVendor\Illuminate\Mail\PendingMail;
-/** @internal */
 class PendingMailFake extends PendingMail
 {
     /**

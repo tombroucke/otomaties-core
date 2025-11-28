@@ -10,7 +10,6 @@
  */
 namespace OtomatiesCoreVendor\Symfony\Component\Translation\Exception;
 
-/** @internal */
 class IncompleteDsnException extends InvalidArgumentException
 {
     public function __construct(string $message, ?string $dsn = null, ?\Throwable $previous = null)

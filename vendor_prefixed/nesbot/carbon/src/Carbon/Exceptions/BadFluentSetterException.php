@@ -13,7 +13,6 @@ namespace OtomatiesCoreVendor\Carbon\Exceptions;
 
 use BadMethodCallException as BaseBadMethodCallException;
 use Throwable;
-/** @internal */
 class BadFluentSetterException extends BaseBadMethodCallException implements BadMethodCallException
 {
     /**
@@ -39,7 +38,7 @@ class BadFluentSetterException extends BaseBadMethodCallException implements Bad
      *
      * @return string
      */
-    public function getSetter() : string
+    public function getSetter(): string
     {
         return $this->setter;
     }

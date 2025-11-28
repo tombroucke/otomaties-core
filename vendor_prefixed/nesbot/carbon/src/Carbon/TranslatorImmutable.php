@@ -14,7 +14,6 @@ namespace OtomatiesCoreVendor\Carbon;
 use OtomatiesCoreVendor\Carbon\Exceptions\ImmutableException;
 use OtomatiesCoreVendor\Symfony\Component\Config\ConfigCacheFactoryInterface;
 use OtomatiesCoreVendor\Symfony\Component\Translation\Formatter\MessageFormatterInterface;
-/** @internal */
 class TranslatorImmutable extends Translator
 {
     private bool $constructed = \false;
@@ -26,12 +25,12 @@ class TranslatorImmutable extends Translator
     /**
      * @codeCoverageIgnore
      */
-    public function setDirectories(array $directories) : static
+    public function setDirectories(array $directories): static
     {
         $this->disallowMutation(__METHOD__);
         return parent::setDirectories($directories);
     }
-    public function setLocale($locale) : void
+    public function setLocale($locale): void
     {
         $this->disallowMutation(__METHOD__);
         parent::setLocale($locale);
@@ -39,7 +38,7 @@ class TranslatorImmutable extends Translator
     /**
      * @codeCoverageIgnore
      */
-    public function setMessages(string $locale, array $messages) : static
+    public function setMessages(string $locale, array $messages): static
     {
         $this->disallowMutation(__METHOD__);
         return parent::setMessages($locale, $messages);
@@ -47,7 +46,7 @@ class TranslatorImmutable extends Translator
     /**
      * @codeCoverageIgnore
      */
-    public function setTranslations(array $messages) : static
+    public function setTranslations(array $messages): static
     {
         $this->disallowMutation(__METHOD__);
         return parent::setTranslations($messages);
@@ -55,12 +54,12 @@ class TranslatorImmutable extends Translator
     /**
      * @codeCoverageIgnore
      */
-    public function setConfigCacheFactory(ConfigCacheFactoryInterface $configCacheFactory) : void
+    public function setConfigCacheFactory(ConfigCacheFactoryInterface $configCacheFactory): void
     {
         $this->disallowMutation(__METHOD__);
         parent::setConfigCacheFactory($configCacheFactory);
     }
-    public function resetMessages(?string $locale = null) : bool
+    public function resetMessages(?string $locale = null): bool
     {
         $this->disallowMutation(__METHOD__);
         return parent::resetMessages($locale);
@@ -68,7 +67,7 @@ class TranslatorImmutable extends Translator
     /**
      * @codeCoverageIgnore
      */
-    public function setFallbackLocales(array $locales) : void
+    public function setFallbackLocales(array $locales): void
     {
         $this->disallowMutation(__METHOD__);
         parent::setFallbackLocales($locales);

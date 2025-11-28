@@ -2,7 +2,6 @@
 
 namespace OtomatiesCoreVendor\Composer\Installers;
 
-/** @internal */
 class PantheonInstaller extends BaseInstaller
 {
     /** @var array<string, string> */

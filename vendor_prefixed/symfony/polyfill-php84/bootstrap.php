@@ -24,82 +24,71 @@ if (\defined('CURL_VERSION_HTTP3') || \PHP_VERSION_ID < 80200 && \function_exist
         \define('CURL_HTTP_VERSION_3ONLY', 31);
     }
 }
-if (!\function_exists('OtomatiesCoreVendor\\array_find')) {
-    /** @internal */
+if (!\function_exists('array_find') && !\function_exists('OtomatiesCoreVendor\array_find')) {
     function array_find(array $array, callable $callback)
     {
         return p\Php84::array_find($array, $callback);
     }
 }
-if (!\function_exists('OtomatiesCoreVendor\\array_find_key')) {
-    /** @internal */
+if (!\function_exists('array_find_key') && !\function_exists('OtomatiesCoreVendor\array_find_key')) {
     function array_find_key(array $array, callable $callback)
     {
         return p\Php84::array_find_key($array, $callback);
     }
 }
-if (!\function_exists('OtomatiesCoreVendor\\array_any')) {
-    /** @internal */
-    function array_any(array $array, callable $callback) : bool
+if (!\function_exists('array_any') && !\function_exists('OtomatiesCoreVendor\array_any')) {
+    function array_any(array $array, callable $callback): bool
     {
         return p\Php84::array_any($array, $callback);
     }
 }
-if (!\function_exists('OtomatiesCoreVendor\\array_all')) {
-    /** @internal */
-    function array_all(array $array, callable $callback) : bool
+if (!\function_exists('array_all') && !\function_exists('OtomatiesCoreVendor\array_all')) {
+    function array_all(array $array, callable $callback): bool
     {
         return p\Php84::array_all($array, $callback);
     }
 }
-if (!\function_exists('OtomatiesCoreVendor\\fpow')) {
-    /** @internal */
-    function fpow(float $num, float $exponent) : float
+if (!\function_exists('fpow') && !\function_exists('OtomatiesCoreVendor\fpow')) {
+    function fpow(float $num, float $exponent): float
     {
         return p\Php84::fpow($num, $exponent);
     }
 }
 if (\extension_loaded('mbstring')) {
-    if (!\function_exists('OtomatiesCoreVendor\\mb_ucfirst')) {
-        /** @internal */
-        function mb_ucfirst(string $string, ?string $encoding = null) : string
+    if (!\function_exists('mb_ucfirst') && !\function_exists('OtomatiesCoreVendor\mb_ucfirst')) {
+        function mb_ucfirst(string $string, ?string $encoding = null): string
         {
             return p\Php84::mb_ucfirst($string, $encoding);
         }
     }
-    if (!\function_exists('OtomatiesCoreVendor\\mb_lcfirst')) {
-        /** @internal */
-        function mb_lcfirst(string $string, ?string $encoding = null) : string
+    if (!\function_exists('mb_lcfirst') && !\function_exists('OtomatiesCoreVendor\mb_lcfirst')) {
+        function mb_lcfirst(string $string, ?string $encoding = null): string
         {
             return p\Php84::mb_lcfirst($string, $encoding);
         }
     }
-    if (!\function_exists('OtomatiesCoreVendor\\mb_trim')) {
-        /** @internal */
-        function mb_trim(string $string, ?string $characters = null, ?string $encoding = null) : string
+    if (!\function_exists('mb_trim') && !\function_exists('OtomatiesCoreVendor\mb_trim')) {
+        function mb_trim(string $string, ?string $characters = null, ?string $encoding = null): string
         {
             return p\Php84::mb_trim($string, $characters, $encoding);
         }
     }
-    if (!\function_exists('OtomatiesCoreVendor\\mb_ltrim')) {
-        /** @internal */
-        function mb_ltrim(string $string, ?string $characters = null, ?string $encoding = null) : string
+    if (!\function_exists('mb_ltrim') && !\function_exists('OtomatiesCoreVendor\mb_ltrim')) {
+        function mb_ltrim(string $string, ?string $characters = null, ?string $encoding = null): string
         {
             return p\Php84::mb_ltrim($string, $characters, $encoding);
         }
     }
-    if (!\function_exists('OtomatiesCoreVendor\\mb_rtrim')) {
-        /** @internal */
-        function mb_rtrim(string $string, ?string $characters = null, ?string $encoding = null) : string
+    if (!\function_exists('mb_rtrim') && !\function_exists('OtomatiesCoreVendor\mb_rtrim')) {
+        function mb_rtrim(string $string, ?string $characters = null, ?string $encoding = null): string
         {
             return p\Php84::mb_rtrim($string, $characters, $encoding);
         }
     }
 }
 if (\extension_loaded('bcmath')) {
-    if (!\function_exists('OtomatiesCoreVendor\\bcdivmod')) {
-        /** @internal */
-        function bcdivmod(string $num1, string $num2, ?int $scale = null) : ?array
+    if (!\function_exists('bcdivmod') && !\function_exists('OtomatiesCoreVendor\bcdivmod')) {
+        function bcdivmod(string $num1, string $num2, ?int $scale = null): ?array
         {
             return p\Php84::bcdivmod($num1, $num2, $scale);
         }
@@ -108,8 +97,7 @@ if (\extension_loaded('bcmath')) {
 if (\PHP_VERSION_ID >= 80200) {
     return require __DIR__ . '/bootstrap82.php';
 }
-if (\extension_loaded('intl') && !\function_exists('OtomatiesCoreVendor\\grapheme_str_split')) {
-    /** @internal */
+if (\extension_loaded('intl') && (!\function_exists('grapheme_str_split') && !\function_exists('OtomatiesCoreVendor\grapheme_str_split'))) {
     function grapheme_str_split(string $string, int $length = 1)
     {
         return p\Php84::grapheme_str_split($string, $length);

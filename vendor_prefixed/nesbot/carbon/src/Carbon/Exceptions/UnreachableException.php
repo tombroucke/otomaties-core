@@ -12,7 +12,6 @@ declare (strict_types=1);
 namespace OtomatiesCoreVendor\Carbon\Exceptions;
 
 use RuntimeException as BaseRuntimeException;
-/** @internal */
 class UnreachableException extends BaseRuntimeException implements RuntimeException
 {
     //

@@ -17,7 +17,6 @@ use OtomatiesCoreVendor\Carbon\CarbonImmutable;
  * Trait Mutability.
  *
  * Utils to know if the current object is mutable or immutable and convert it.
- * @internal
  */
 trait Mutability
 {
@@ -25,14 +24,14 @@ trait Mutability
     /**
      * Returns true if the current class/instance is mutable.
      */
-    public static function isMutable() : bool
+    public static function isMutable(): bool
     {
         return \false;
     }
     /**
      * Returns true if the current class/instance is immutable.
      */
-    public static function isImmutable() : bool
+    public static function isImmutable(): bool
     {
         return !static::isMutable();
     }

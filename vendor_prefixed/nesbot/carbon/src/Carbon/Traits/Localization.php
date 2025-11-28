@@ -25,7 +25,6 @@ use OtomatiesCoreVendor\Symfony\Contracts\Translation\TranslatorInterface;
  * Trait Localization.
  *
  * Embed default and locale translators and translation base methods.
- * @internal
  */
 trait Localization
 {
@@ -37,21 +36,21 @@ trait Localization
     /**
      * Return true if the current instance has its own translator.
      */
-    public function hasLocalTranslator() : bool
+    public function hasLocalTranslator(): bool
     {
         return isset($this->localTranslator);
     }
     /**
      * Get the translator of the current instance or the default if none set.
      */
-    public function getLocalTranslator() : TranslatorInterface
+    public function getLocalTranslator(): TranslatorInterface
     {
         return $this->localTranslator ?? $this->transmitFactory(static fn() => static::getTranslator());
     }
     /**
      * Set the translator for the current instance.
      */
-    public function setLocalTranslator(TranslatorInterface $translator) : self
+    public function setLocalTranslator(TranslatorInterface $translator): self
     {
         $this->localTranslator = $translator;
         return $this;
@@ -101,11 +100,11 @@ trait Localization
      *
      * @return string
      */
-    public static function translateWith(TranslatorInterface $translator, string $key, array $parameters = [], $number = null) : string
+    public static function translateWith(TranslatorInterface $translator, string $key, array $parameters = [], $number = null): string
     {
         $message = static::getTranslationMessageWith($translator, $key, null, $key);
         if ($message instanceof Closure) {
-            return (string) $message(...\array_values($parameters));
+            return (string) $message(...array_values($parameters));
         }
         if ($number !== null) {
             $parameters['%count%'] = $number;
@@ -126,11 +125,11 @@ trait Localization
      *
      * @return string
      */
-    public function translate(string $key, array $parameters = [], string|int|float|null $number = null, ?TranslatorInterface $translator = null, bool $altNumbers = \false) : string
+    public function translate(string $key, array $parameters = [], string|int|float|null $number = null, ?TranslatorInterface $translator = null, bool $altNumbers = \false): string
     {
         $translation = static::translateWith($translator ?? $this->getLocalTranslator(), $key, $parameters, $number);
         if ($number !== null && $altNumbers) {
-            return \str_replace((string) $number, $this->translateNumber((int) $number), $translation);
+            return str_replace((string) $number, $this->translateNumber((int) $number), $translation);
         }
         return $translation;
     }
@@ -141,7 +140,7 @@ trait Localization
      *
      * @return string
      */
-    public function translateNumber(int $number) : string
+    public function translateNumber(int $number): string
     {
         $translateKey = "alt_numbers.{$number}";
         $symbol = $this->translate($translateKey);
@@ -153,7 +152,7 @@ trait Localization
             foreach ([10000, 1000, 100] as $exp) {
                 $key = "alt_numbers_pow.{$exp}";
                 if ($number >= $exp && $number < $exp * 10 && ($pow = $this->translate($key)) !== $key) {
-                    $unit = \floor($number / $exp);
+                    $unit = floor($number / $exp);
                     $number -= $unit * $exp;
                     $start .= ($unit > 1 ? $this->translate("alt_numbers.{$unit}") : '') . $pow;
                 }
@@ -162,7 +161,7 @@ trait Localization
             while ($number) {
                 $chunk = $number % 100;
                 $result = $this->translate("alt_numbers.{$chunk}") . $result;
-                $number = \floor($number / 100);
+                $number = floor($number / 100);
             }
             return "{$start}{$result}";
         }
@@ -171,7 +170,7 @@ trait Localization
             while ($number) {
                 $chunk = $number % 10;
                 $result = $this->translate("alt_numbers.{$chunk}") . $result;
-                $number = \floor($number / 10);
+                $number = floor($number / 10);
             }
             return $result;
         }
@@ -193,7 +192,7 @@ trait Localization
      *
      * @return string
      */
-    public static function translateTimeString(string $timeString, ?string $from = null, ?string $to = null, int $mode = CarbonInterface::TRANSLATE_ALL) : string
+    public static function translateTimeString(string $timeString, ?string $from = null, ?string $to = null, int $mode = CarbonInterface::TRANSLATE_ALL): string
     {
         // Fallback source and destination locales
         $from = $from ?: static::getLocale();
@@ -202,7 +201,7 @@ trait Localization
             return $timeString;
         }
         // Standardize apostrophe
-        $timeString = \strtr($timeString, ['’' => "'"]);
+        $timeString = strtr($timeString, ['’' => "'"]);
         $fromTranslations = [];
         $toTranslations = [];
         foreach (['from', 'to'] as $key) {
@@ -218,7 +217,7 @@ trait Localization
             $weekdays = $messages['weekdays'] ?? [];
             $meridiem = $messages['meridiem'] ?? ['AM', 'PM'];
             if (isset($messages['ordinal_words'])) {
-                $timeString = self::replaceOrdinalWords($timeString, $key === 'from' ? \array_flip($messages['ordinal_words']) : $messages['ordinal_words']);
+                $timeString = self::replaceOrdinalWords($timeString, $key === 'from' ? array_flip($messages['ordinal_words']) : $messages['ordinal_words']);
             }
             if ($key === 'from') {
                 foreach (['months', 'weekdays'] as $variable) {
@@ -230,17 +229,17 @@ trait Localization
                     }
                 }
             }
-            ${$translationKey} = \array_merge($mode & CarbonInterface::TRANSLATE_MONTHS ? static::getTranslationArray($months, static::MONTHS_PER_YEAR, $timeString) : [], $mode & CarbonInterface::TRANSLATE_MONTHS ? static::getTranslationArray($messages['months_short'] ?? [], static::MONTHS_PER_YEAR, $timeString) : [], $mode & CarbonInterface::TRANSLATE_DAYS ? static::getTranslationArray($weekdays, static::DAYS_PER_WEEK, $timeString) : [], $mode & CarbonInterface::TRANSLATE_DAYS ? static::getTranslationArray($messages['weekdays_short'] ?? [], static::DAYS_PER_WEEK, $timeString) : [], $mode & CarbonInterface::TRANSLATE_DIFF ? static::translateWordsByKeys(['diff_now', 'diff_today', 'diff_yesterday', 'diff_tomorrow', 'diff_before_yesterday', 'diff_after_tomorrow'], $messages, $key) : [], $mode & CarbonInterface::TRANSLATE_UNITS ? static::translateWordsByKeys(['year', 'month', 'week', 'day', 'hour', 'minute', 'second'], $messages, $key) : [], $mode & CarbonInterface::TRANSLATE_MERIDIEM ? \array_map(function ($hour) use($meridiem) {
+            ${$translationKey} = array_merge($mode & CarbonInterface::TRANSLATE_MONTHS ? static::getTranslationArray($months, static::MONTHS_PER_YEAR, $timeString) : [], $mode & CarbonInterface::TRANSLATE_MONTHS ? static::getTranslationArray($messages['months_short'] ?? [], static::MONTHS_PER_YEAR, $timeString) : [], $mode & CarbonInterface::TRANSLATE_DAYS ? static::getTranslationArray($weekdays, static::DAYS_PER_WEEK, $timeString) : [], $mode & CarbonInterface::TRANSLATE_DAYS ? static::getTranslationArray($messages['weekdays_short'] ?? [], static::DAYS_PER_WEEK, $timeString) : [], $mode & CarbonInterface::TRANSLATE_DIFF ? static::translateWordsByKeys(['diff_now', 'diff_today', 'diff_yesterday', 'diff_tomorrow', 'diff_before_yesterday', 'diff_after_tomorrow'], $messages, $key) : [], $mode & CarbonInterface::TRANSLATE_UNITS ? static::translateWordsByKeys(['year', 'month', 'week', 'day', 'hour', 'minute', 'second'], $messages, $key) : [], $mode & CarbonInterface::TRANSLATE_MERIDIEM ? array_map(function ($hour) use ($meridiem) {
                 if (\is_array($meridiem)) {
                     return $meridiem[$hour < static::HOURS_PER_DAY / 2 ? 0 : 1];
                 }
                 return $meridiem($hour, 0, \false);
-            }, \range(0, 23)) : []);
+            }, range(0, 23)) : []);
         }
-        return \substr(\preg_replace_callback('/(?<=[\\d\\s+.\\/,_-])(' . \implode('|', $fromTranslations) . ')(?=[\\d\\s+.\\/,_-])/iu', function ($match) use($fromTranslations, $toTranslations) {
+        return substr(preg_replace_callback('/(?<=[\d\s+.\/,_-])(' . implode('|', $fromTranslations) . ')(?=[\d\s+.\/,_-])/iu', function ($match) use ($fromTranslations, $toTranslations) {
             [$chunk] = $match;
             foreach ($fromTranslations as $index => $word) {
-                if (\preg_match("/^{$word}\$/iu", $chunk)) {
+                if (preg_match("/^{$word}\$/iu", $chunk)) {
                     return $toTranslations[$index] ?? '';
                 }
             }
@@ -256,7 +255,7 @@ trait Localization
      *
      * @return string
      */
-    public function translateTimeStringTo(string $timeString, ?string $to = null) : string
+    public function translateTimeStringTo(string $timeString, ?string $to = null): string
     {
         return static::translateTimeString($timeString, $this->getTranslatorLocale(), $to);
     }
@@ -268,7 +267,7 @@ trait Localization
      *
      * @return $this|string
      */
-    public function locale(?string $locale = null, string ...$fallbackLocales) : static|string
+    public function locale(?string $locale = null, string ...$fallbackLocales): static|string
     {
         if ($locale === null) {
             return $this->getTranslatorLocale();
@@ -293,7 +292,7 @@ trait Localization
      *
      * @return string
      */
-    public static function getLocale() : string
+    public static function getLocale(): string
     {
         return static::getLocaleAwareTranslator()->getLocale();
     }
@@ -303,7 +302,7 @@ trait Localization
      *
      * @param string $locale locale ex. en
      */
-    public static function setLocale(string $locale) : void
+    public static function setLocale(string $locale): void
     {
         static::getLocaleAwareTranslator()->setLocale($locale);
     }
@@ -314,14 +313,14 @@ trait Localization
      *
      * @param string $locale
      */
-    public static function setFallbackLocale(string $locale) : void
+    public static function setFallbackLocale(string $locale): void
     {
         $translator = static::getTranslator();
-        if (\method_exists($translator, 'setFallbackLocales')) {
+        if (method_exists($translator, 'setFallbackLocales')) {
             $translator->setFallbackLocales([$locale]);
             if ($translator instanceof Translator) {
                 $preferredLocale = $translator->getLocale();
-                $translator->setMessages($preferredLocale, \array_replace_recursive($translator->getMessages()[$locale] ?? [], Translator::get($locale)->getMessages()[$locale] ?? [], $translator->getMessages($preferredLocale)));
+                $translator->setMessages($preferredLocale, array_replace_recursive($translator->getMessages()[$locale] ?? [], Translator::get($locale)->getMessages()[$locale] ?? [], $translator->getMessages($preferredLocale)));
             }
         }
     }
@@ -330,10 +329,10 @@ trait Localization
      *
      * @see https://symfony.com/doc/current/components/translation.html#fallback-locales
      */
-    public static function getFallbackLocale() : ?string
+    public static function getFallbackLocale(): ?string
     {
         $translator = static::getTranslator();
-        if (\method_exists($translator, 'getFallbackLocales')) {
+        if (method_exists($translator, 'getFallbackLocales')) {
             return $translator->getFallbackLocales()[0] ?? null;
         }
         return null;
@@ -347,12 +346,12 @@ trait Localization
      *
      * @return mixed
      */
-    public static function executeWithLocale(string $locale, callable $func) : mixed
+    public static function executeWithLocale(string $locale, callable $func): mixed
     {
         $currentLocale = static::getLocale();
         static::setLocale($locale);
         $newLocale = static::getLocale();
-        $result = $func($newLocale === 'en' && \strtolower(\substr((string) $locale, 0, 2)) !== 'en' ? \false : $newLocale, static::getTranslator());
+        $result = $func($newLocale === 'en' && strtolower(substr((string) $locale, 0, 2)) !== 'en' ? \false : $newLocale, static::getTranslator());
         static::setLocale($currentLocale);
         return $result;
     }
@@ -364,7 +363,7 @@ trait Localization
      *
      * @return bool
      */
-    public static function localeHasShortUnits(string $locale) : bool
+    public static function localeHasShortUnits(string $locale): bool
     {
         return static::executeWithLocale($locale, function ($newLocale, TranslatorInterface $translator) {
             return $newLocale && (($y = static::translateWith($translator, 'y')) !== 'y' && $y !== static::translateWith($translator, 'year')) || ($y = static::translateWith($translator, 'd')) !== 'd' && $y !== static::translateWith($translator, 'day') || ($y = static::translateWith($translator, 'h')) !== 'h' && $y !== static::translateWith($translator, 'hour');
@@ -378,7 +377,7 @@ trait Localization
      *
      * @return bool
      */
-    public static function localeHasDiffSyntax(string $locale) : bool
+    public static function localeHasDiffSyntax(string $locale): bool
     {
         return static::executeWithLocale($locale, function ($newLocale, TranslatorInterface $translator) {
             if (!$newLocale) {
@@ -403,7 +402,7 @@ trait Localization
      *
      * @return bool
      */
-    public static function localeHasDiffOneDayWords(string $locale) : bool
+    public static function localeHasDiffOneDayWords(string $locale): bool
     {
         return static::executeWithLocale($locale, function ($newLocale, TranslatorInterface $translator) {
             return $newLocale && $translator->trans('diff_now') !== 'diff_now' && $translator->trans('diff_yesterday') !== 'diff_yesterday' && $translator->trans('diff_tomorrow') !== 'diff_tomorrow';
@@ -417,7 +416,7 @@ trait Localization
      *
      * @return bool
      */
-    public static function localeHasDiffTwoDayWords(string $locale) : bool
+    public static function localeHasDiffTwoDayWords(string $locale): bool
     {
         return static::executeWithLocale($locale, function ($newLocale, TranslatorInterface $translator) {
             return $newLocale && $translator->trans('diff_before_yesterday') !== 'diff_before_yesterday' && $translator->trans('diff_after_tomorrow') !== 'diff_after_tomorrow';
@@ -468,7 +467,7 @@ trait Localization
      * If null or omitted, current local translator is used.
      * If no local translator is in use, current global translator is used.
      */
-    protected function getTranslatorLocale($translator = null) : ?string
+    protected function getTranslatorLocale($translator = null): ?string
     {
         if (\func_num_args() === 0) {
             $translator = $this->getLocalTranslator();
@@ -488,7 +487,7 @@ trait Localization
         if (\func_num_args() === 0) {
             $translator = static::getTranslator();
         }
-        if ($translator && !($translator instanceof LocaleAwareInterface || \method_exists($translator, 'getLocale'))) {
+        if ($translator && !($translator instanceof LocaleAwareInterface || method_exists($translator, 'getLocale'))) {
             throw new NotLocaleAwareException($translator);
             // @codeCoverageIgnore
         }
@@ -514,10 +513,10 @@ trait Localization
      */
     private static function cleanWordFromTranslationString($word)
     {
-        $word = \str_replace([':count', '%count', ':time'], '', $word);
-        $word = \strtr($word, ['’' => "'"]);
-        $word = \preg_replace('/\\{(?:-?\\d+(?:\\.\\d+)?|-?Inf)(?:,(?:-?\\d+|-?Inf))?}|[\\[\\]](?:-?\\d+(?:\\.\\d+)?|-?Inf)(?:,(?:-?\\d+|-?Inf))?[\\[\\]]/', '', $word);
-        return \trim($word);
+        $word = str_replace([':count', '%count', ':time'], '', $word);
+        $word = strtr($word, ['’' => "'"]);
+        $word = preg_replace('/\{(?:-?\d+(?:\.\d+)?|-?Inf)(?:,(?:-?\d+|-?Inf))?}|[\[\]](?:-?\d+(?:\.\d+)?|-?Inf)(?:,(?:-?\d+|-?Inf))?[\[\]]/', '', $word);
+        return trim($word);
     }
     /**
      * Translate a list of words.
@@ -528,15 +527,15 @@ trait Localization
      *
      * @return string[]
      */
-    private static function translateWordsByKeys($keys, $messages, $key) : array
+    private static function translateWordsByKeys($keys, $messages, $key): array
     {
-        return \array_map(function ($wordKey) use($messages, $key) {
+        return array_map(function ($wordKey) use ($messages, $key) {
             $message = $key === 'from' && isset($messages[$wordKey . '_regexp']) ? $messages[$wordKey . '_regexp'] : $messages[$wordKey] ?? null;
             if (!$message) {
                 return '>>DO NOT REPLACE<<';
             }
-            $parts = \explode('|', $message);
-            return $key === 'to' ? self::cleanWordFromTranslationString(\end($parts)) : '(?:' . \implode('|', \array_map(static::cleanWordFromTranslationString(...), $parts)) . ')';
+            $parts = explode('|', $message);
+            return $key === 'to' ? self::cleanWordFromTranslationString(end($parts)) : '(?:' . implode('|', array_map(static::cleanWordFromTranslationString(...), $parts)) . ')';
         }, $keys);
     }
     /**
@@ -548,11 +547,11 @@ trait Localization
      *
      * @return string[]
      */
-    private static function getTranslationArray($translation, $length, $timeString) : array
+    private static function getTranslationArray($translation, $length, $timeString): array
     {
         $filler = '>>DO NOT REPLACE<<';
         if (\is_array($translation)) {
-            return \array_pad($translation, $length, $filler);
+            return array_pad($translation, $length, $filler);
         }
         $list = [];
         $date = static::now();
@@ -561,10 +560,10 @@ trait Localization
         }
         return $list;
     }
-    private static function replaceOrdinalWords(string $timeString, array $ordinalWords) : string
+    private static function replaceOrdinalWords(string $timeString, array $ordinalWords): string
     {
-        return \preg_replace_callback('/(?<![a-z])[a-z]+(?![a-z])/i', function (array $match) use($ordinalWords) {
-            return $ordinalWords[\mb_strtolower($match[0])] ?? $match[0];
+        return preg_replace_callback('/(?<![a-z])[a-z]+(?![a-z])/i', function (array $match) use ($ordinalWords) {
+            return $ordinalWords[mb_strtolower($match[0])] ?? $match[0];
         }, $timeString);
     }
 }

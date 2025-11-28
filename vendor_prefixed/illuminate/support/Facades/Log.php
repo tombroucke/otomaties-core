@@ -36,7 +36,6 @@ namespace OtomatiesCoreVendor\Illuminate\Support\Facades;
  * @method static \Illuminate\Log\Logger|mixed unless(\Closure|mixed|null $value = null, callable|null $callback = null, callable|null $default = null)
  *
  * @see \Illuminate\Log\LogManager
- * @internal
  */
 class Log extends Facade
 {

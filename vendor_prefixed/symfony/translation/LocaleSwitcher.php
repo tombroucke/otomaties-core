@@ -14,7 +14,6 @@ use OtomatiesCoreVendor\Symfony\Component\Routing\RequestContext;
 use OtomatiesCoreVendor\Symfony\Contracts\Translation\LocaleAwareInterface;
 /**
  * @author Kevin Bond <kevinbond@gmail.com>
- * @internal
  */
 class LocaleSwitcher implements LocaleAwareInterface
 {
@@ -26,11 +25,11 @@ class LocaleSwitcher implements LocaleAwareInterface
     {
         $this->defaultLocale = $locale;
     }
-    public function setLocale(string $locale) : void
+    public function setLocale(string $locale): void
     {
         // Silently ignore if the intl extension is not loaded
         try {
-            if (\class_exists(\Locale::class, \false)) {
+            if (class_exists(\Locale::class, \false)) {
                 \Locale::setDefault($locale);
             }
         } catch (\Exception) {
@@ -41,7 +40,7 @@ class LocaleSwitcher implements LocaleAwareInterface
             $service->setLocale($locale);
         }
     }
-    public function getLocale() : string
+    public function getLocale(): string
     {
         return $this->locale;
     }
@@ -54,7 +53,7 @@ class LocaleSwitcher implements LocaleAwareInterface
      *
      * @return T
      */
-    public function runWithLocale(string $locale, callable $callback) : mixed
+    public function runWithLocale(string $locale, callable $callback): mixed
     {
         $original = $this->getLocale();
         $this->setLocale($locale);
@@ -64,7 +63,7 @@ class LocaleSwitcher implements LocaleAwareInterface
             $this->setLocale($original);
         }
     }
-    public function reset() : void
+    public function reset(): void
     {
         $this->setLocale($this->defaultLocale);
     }

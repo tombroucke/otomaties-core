@@ -5,7 +5,6 @@ namespace OtomatiesCoreVendor\Illuminate\Support;
 use ArrayAccess;
 use ArrayObject;
 use OtomatiesCoreVendor\Illuminate\Support\Traits\Macroable;
-/** @internal */
 class Optional implements ArrayAccess
 {
     use Macroable {
@@ -34,7 +33,7 @@ class Optional implements ArrayAccess
      */
     public function __get($key)
     {
-        if (\is_object($this->value)) {
+        if (is_object($this->value)) {
             return $this->value->{$key} ?? null;
         }
     }
@@ -46,10 +45,10 @@ class Optional implements ArrayAccess
      */
     public function __isset($name)
     {
-        if (\is_object($this->value)) {
+        if (is_object($this->value)) {
             return isset($this->value->{$name});
         }
-        if (\is_array($this->value) || $this->value instanceof ArrayObject) {
+        if (is_array($this->value) || $this->value instanceof ArrayObject) {
             return isset($this->value[$name]);
         }
         return \false;
@@ -60,7 +59,7 @@ class Optional implements ArrayAccess
      * @param  mixed  $key
      * @return bool
      */
-    public function offsetExists($key) : bool
+    public function offsetExists($key): bool
     {
         return Arr::accessible($this->value) && Arr::exists($this->value, $key);
     }
@@ -70,7 +69,7 @@ class Optional implements ArrayAccess
      * @param  mixed  $key
      * @return mixed
      */
-    public function offsetGet($key) : mixed
+    public function offsetGet($key): mixed
     {
         return Arr::get($this->value, $key);
     }
@@ -81,7 +80,7 @@ class Optional implements ArrayAccess
      * @param  mixed  $value
      * @return void
      */
-    public function offsetSet($key, $value) : void
+    public function offsetSet($key, $value): void
     {
         if (Arr::accessible($this->value)) {
             $this->value[$key] = $value;
@@ -93,7 +92,7 @@ class Optional implements ArrayAccess
      * @param  string  $key
      * @return void
      */
-    public function offsetUnset($key) : void
+    public function offsetUnset($key): void
     {
         if (Arr::accessible($this->value)) {
             unset($this->value[$key]);
@@ -111,7 +110,7 @@ class Optional implements ArrayAccess
         if (static::hasMacro($method)) {
             return $this->macroCall($method, $parameters);
         }
-        if (\is_object($this->value)) {
+        if (is_object($this->value)) {
             return $this->value->{$method}(...$parameters);
         }
     }

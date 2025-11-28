@@ -6,7 +6,6 @@ use Attribute;
 use OtomatiesCoreVendor\Illuminate\Contracts\Container\Container;
 use OtomatiesCoreVendor\Illuminate\Contracts\Container\ContextualAttribute;
 use OtomatiesCoreVendor\Illuminate\Log\Context\Repository;
-/** @internal */
 #[Attribute(Attribute::TARGET_PARAMETER)]
 class Context implements ContextualAttribute
 {
@@ -23,7 +22,7 @@ class Context implements ContextualAttribute
      * @param  \Illuminate\Contracts\Container\Container  $container
      * @return mixed
      */
-    public static function resolve(self $attribute, Container $container) : mixed
+    public static function resolve(self $attribute, Container $container): mixed
     {
         $repository = $container->make(Repository::class);
         return match ($attribute->hidden) {

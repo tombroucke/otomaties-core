@@ -829,14 +829,13 @@ use DateTimeInterface;
  * @method        int              yearsInMillennium()                                                                Return the number of years contained in the current millennium
  *
  * </autodoc>
- * @internal
  */
 class CarbonImmutable extends DateTimeImmutable implements CarbonInterface
 {
     use Date {
         __clone as dateTraitClone;
     }
-    public function __clone() : void
+    public function __clone(): void
     {
         $this->dateTraitClone();
         $this->endOfTime = \false;
@@ -847,7 +846,7 @@ class CarbonImmutable extends DateTimeImmutable implements CarbonInterface
      *
      * @return static
      */
-    public static function startOfTime() : static
+    public static function startOfTime(): static
     {
         $date = static::parse('0001-01-01')->years(self::getStartOfTimeYear());
         $date->startOfTime = \true;
@@ -858,7 +857,7 @@ class CarbonImmutable extends DateTimeImmutable implements CarbonInterface
      *
      * @return static
      */
-    public static function endOfTime() : static
+    public static function endOfTime(): static
     {
         $date = static::parse('9999-12-31 23:59:59.999999')->years(self::getEndOfTimeYear());
         $date->endOfTime = \true;
@@ -867,7 +866,7 @@ class CarbonImmutable extends DateTimeImmutable implements CarbonInterface
     /**
      * @codeCoverageIgnore
      */
-    private static function getEndOfTimeYear() : int
+    private static function getEndOfTimeYear(): int
     {
         return 1118290769066902787;
         // PHP_INT_MAX no longer work since PHP 8.1
@@ -875,7 +874,7 @@ class CarbonImmutable extends DateTimeImmutable implements CarbonInterface
     /**
      * @codeCoverageIgnore
      */
-    private static function getStartOfTimeYear() : int
+    private static function getStartOfTimeYear(): int
     {
         return -1118290769066898816;
         // PHP_INT_MIN no longer work since PHP 8.1

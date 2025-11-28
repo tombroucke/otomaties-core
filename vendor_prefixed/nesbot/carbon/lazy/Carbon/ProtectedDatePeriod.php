@@ -11,8 +11,7 @@
 namespace OtomatiesCoreVendor\Carbon;
 
 use DatePeriod;
-if (!\class_exists(DatePeriodBase::class, \false)) {
-    /** @internal */
+if (!class_exists(DatePeriodBase::class, \false)) {
     class DatePeriodBase extends DatePeriod
     {
         /**

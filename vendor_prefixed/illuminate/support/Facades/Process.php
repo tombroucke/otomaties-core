@@ -46,7 +46,6 @@ use OtomatiesCoreVendor\Illuminate\Process\Factory;
  *
  * @see \Illuminate\Process\PendingProcess
  * @see \Illuminate\Process\Factory
- * @internal
  */
 class Process extends Facade
 {
@@ -67,7 +66,7 @@ class Process extends Facade
      */
     public static function fake(Closure|array|null $callback = null)
     {
-        return tap(static::getFacadeRoot(), function ($fake) use($callback) {
+        return tap(static::getFacadeRoot(), function ($fake) use ($callback) {
             static::swap($fake->fake($callback));
         });
     }

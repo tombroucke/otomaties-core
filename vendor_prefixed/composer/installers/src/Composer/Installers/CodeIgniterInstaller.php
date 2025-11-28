@@ -2,7 +2,6 @@
 
 namespace OtomatiesCoreVendor\Composer\Installers;
 
-/** @internal */
 class CodeIgniterInstaller extends BaseInstaller
 {
     /** @var array<string, string> */

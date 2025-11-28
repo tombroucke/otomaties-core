@@ -3,7 +3,6 @@
 namespace OtomatiesCoreVendor\Illuminate\Support;
 
 use Throwable;
-/** @internal */
 class Timebox
 {
     /**
@@ -26,13 +25,13 @@ class Timebox
     public function call(callable $callback, int $microseconds)
     {
         $exception = null;
-        $start = \microtime(\true);
+        $start = microtime(\true);
         try {
             $result = $callback($this);
         } catch (Throwable $caught) {
             $exception = $caught;
         }
-        $remainder = \intval($microseconds - (\microtime(\true) - $start) * 1000000);
+        $remainder = intval($microseconds - (microtime(\true) - $start) * 1000000);
         if (!$this->earlyReturn && $remainder > 0) {
             $this->usleep($remainder);
         }

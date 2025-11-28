@@ -75,7 +75,6 @@ namespace OtomatiesCoreVendor\Illuminate\Support\Facades;
  * @method static void flushMacros()
  *
  * @see \Illuminate\Session\SessionManager
- * @internal
  */
 class Session extends Facade
 {

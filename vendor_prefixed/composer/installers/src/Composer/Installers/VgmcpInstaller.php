@@ -2,7 +2,6 @@
 
 namespace OtomatiesCoreVendor\Composer\Installers;
 
-/** @internal */
 class VgmcpInstaller extends BaseInstaller
 {
     /** @var array<string, string> */
@@ -15,7 +14,7 @@ class VgmcpInstaller extends BaseInstaller
      * For package type vgmcp-theme, cut off a trailing '-theme' if present.
      *
      */
-    public function inflectPackageVars(array $vars) : array
+    public function inflectPackageVars(array $vars): array
     {
         if ($vars['type'] === 'vgmcp-bundle') {
             return $this->inflectPluginVars($vars);
@@ -29,22 +28,22 @@ class VgmcpInstaller extends BaseInstaller
      * @param array<string, string> $vars
      * @return array<string, string>
      */
-    protected function inflectPluginVars(array $vars) : array
+    protected function inflectPluginVars(array $vars): array
     {
         $vars['name'] = $this->pregReplace('/-bundle$/', '', $vars['name']);
-        $vars['name'] = \str_replace(array('-', '_'), ' ', $vars['name']);
-        $vars['name'] = \str_replace(' ', '', \ucwords($vars['name']));
+        $vars['name'] = str_replace(array('-', '_'), ' ', $vars['name']);
+        $vars['name'] = str_replace(' ', '', ucwords($vars['name']));
         return $vars;
     }
     /**
      * @param array<string, string> $vars
      * @return array<string, string>
      */
-    protected function inflectThemeVars(array $vars) : array
+    protected function inflectThemeVars(array $vars): array
     {
         $vars['name'] = $this->pregReplace('/-theme$/', '', $vars['name']);
-        $vars['name'] = \str_replace(array('-', '_'), ' ', $vars['name']);
-        $vars['name'] = \str_replace(' ', '', \ucwords($vars['name']));
+        $vars['name'] = str_replace(array('-', '_'), ' ', $vars['name']);
+        $vars['name'] = str_replace(' ', '', ucwords($vars['name']));
         return $vars;
     }
 }

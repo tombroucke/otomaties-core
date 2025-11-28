@@ -5,7 +5,6 @@ namespace OtomatiesCoreVendor\Illuminate\Support;
 use Closure;
 use InvalidArgumentException;
 use RuntimeException;
-/** @internal */
 abstract class MultipleInstanceManager
 {
     /**
@@ -53,21 +52,21 @@ abstract class MultipleInstanceManager
      *
      * @return string
      */
-    public abstract function getDefaultInstance();
+    abstract public function getDefaultInstance();
     /**
      * Set the default instance name.
      *
      * @param  string  $name
      * @return void
      */
-    public abstract function setDefaultInstance($name);
+    abstract public function setDefaultInstance($name);
     /**
      * Get the instance specific configuration.
      *
      * @param  string  $name
      * @return array
      */
-    public abstract function getInstanceConfig($name);
+    abstract public function getInstanceConfig($name);
     /**
      * Get an instance by name.
      *
@@ -101,22 +100,22 @@ abstract class MultipleInstanceManager
     protected function resolve($name)
     {
         $config = $this->getInstanceConfig($name);
-        if (\is_null($config)) {
+        if (is_null($config)) {
             throw new InvalidArgumentException("Instance [{$name}] is not defined.");
         }
-        if (!\array_key_exists($this->driverKey, $config)) {
+        if (!array_key_exists($this->driverKey, $config)) {
             throw new RuntimeException("Instance [{$name}] does not specify a {$this->driverKey}.");
         }
         $driverName = $config[$this->driverKey];
         if (isset($this->customCreators[$driverName])) {
             return $this->callCustomCreator($config);
         } else {
-            $createMethod = 'create' . \ucfirst($driverName) . \ucfirst($this->driverKey);
-            if (\method_exists($this, $createMethod)) {
+            $createMethod = 'create' . ucfirst($driverName) . ucfirst($this->driverKey);
+            if (method_exists($this, $createMethod)) {
                 return $this->{$createMethod}($config);
             }
-            $createMethod = 'create' . Str::studly($driverName) . \ucfirst($this->driverKey);
-            if (\method_exists($this, $createMethod)) {
+            $createMethod = 'create' . Str::studly($driverName) . ucfirst($this->driverKey);
+            if (method_exists($this, $createMethod)) {
                 return $this->{$createMethod}($config);
             }
             throw new InvalidArgumentException("Instance {$this->driverKey} [{$config[$this->driverKey]}] is not supported.");

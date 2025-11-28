@@ -37,7 +37,6 @@ use InvalidArgumentException;
  * @method static        nowWithSameTz()
  * @method static static yesterday($timezone = null)
  * @method static static tomorrow($timezone = null)
- * @internal
  */
 trait Comparison
 {
@@ -55,7 +54,7 @@ trait Comparison
      *
      * @see equalTo()
      */
-    public function eq(DateTimeInterface|string $date) : bool
+    public function eq(DateTimeInterface|string $date): bool
     {
         return $this->equalTo($date);
     }
@@ -69,7 +68,7 @@ trait Comparison
      * Carbon::parse('2018-07-25 12:45:16')->equalTo('2018-07-25 12:45:17'); // false
      * ```
      */
-    public function equalTo(DateTimeInterface|string $date) : bool
+    public function equalTo(DateTimeInterface|string $date): bool
     {
         return $this == $this->resolveCarbon($date);
     }
@@ -85,7 +84,7 @@ trait Comparison
      *
      * @see notEqualTo()
      */
-    public function ne(DateTimeInterface|string $date) : bool
+    public function ne(DateTimeInterface|string $date): bool
     {
         return $this->notEqualTo($date);
     }
@@ -99,7 +98,7 @@ trait Comparison
      * Carbon::parse('2018-07-25 12:45:16')->notEqualTo('2018-07-25 12:45:17'); // true
      * ```
      */
-    public function notEqualTo(DateTimeInterface|string $date) : bool
+    public function notEqualTo(DateTimeInterface|string $date): bool
     {
         return !$this->equalTo($date);
     }
@@ -115,7 +114,7 @@ trait Comparison
      *
      * @see greaterThan()
      */
-    public function gt(DateTimeInterface|string $date) : bool
+    public function gt(DateTimeInterface|string $date): bool
     {
         return $this->greaterThan($date);
     }
@@ -129,7 +128,7 @@ trait Comparison
      * Carbon::parse('2018-07-25 12:45:16')->greaterThan('2018-07-25 12:45:17'); // false
      * ```
      */
-    public function greaterThan(DateTimeInterface|string $date) : bool
+    public function greaterThan(DateTimeInterface|string $date): bool
     {
         return $this > $this->resolveCarbon($date);
     }
@@ -145,7 +144,7 @@ trait Comparison
      *
      * @see greaterThan()
      */
-    public function isAfter(DateTimeInterface|string $date) : bool
+    public function isAfter(DateTimeInterface|string $date): bool
     {
         return $this->greaterThan($date);
     }
@@ -161,7 +160,7 @@ trait Comparison
      *
      * @see greaterThanOrEqualTo()
      */
-    public function gte(DateTimeInterface|string $date) : bool
+    public function gte(DateTimeInterface|string $date): bool
     {
         return $this->greaterThanOrEqualTo($date);
     }
@@ -175,7 +174,7 @@ trait Comparison
      * Carbon::parse('2018-07-25 12:45:16')->greaterThanOrEqualTo('2018-07-25 12:45:17'); // false
      * ```
      */
-    public function greaterThanOrEqualTo(DateTimeInterface|string $date) : bool
+    public function greaterThanOrEqualTo(DateTimeInterface|string $date): bool
     {
         return $this >= $this->resolveCarbon($date);
     }
@@ -191,7 +190,7 @@ trait Comparison
      *
      * @see lessThan()
      */
-    public function lt(DateTimeInterface|string $date) : bool
+    public function lt(DateTimeInterface|string $date): bool
     {
         return $this->lessThan($date);
     }
@@ -205,7 +204,7 @@ trait Comparison
      * Carbon::parse('2018-07-25 12:45:16')->lessThan('2018-07-25 12:45:17'); // true
      * ```
      */
-    public function lessThan(DateTimeInterface|string $date) : bool
+    public function lessThan(DateTimeInterface|string $date): bool
     {
         return $this < $this->resolveCarbon($date);
     }
@@ -221,7 +220,7 @@ trait Comparison
      *
      * @see lessThan()
      */
-    public function isBefore(DateTimeInterface|string $date) : bool
+    public function isBefore(DateTimeInterface|string $date): bool
     {
         return $this->lessThan($date);
     }
@@ -237,7 +236,7 @@ trait Comparison
      *
      * @see lessThanOrEqualTo()
      */
-    public function lte(DateTimeInterface|string $date) : bool
+    public function lte(DateTimeInterface|string $date): bool
     {
         return $this->lessThanOrEqualTo($date);
     }
@@ -251,7 +250,7 @@ trait Comparison
      * Carbon::parse('2018-07-25 12:45:16')->lessThanOrEqualTo('2018-07-25 12:45:17'); // true
      * ```
      */
-    public function lessThanOrEqualTo(DateTimeInterface|string $date) : bool
+    public function lessThanOrEqualTo(DateTimeInterface|string $date): bool
     {
         return $this <= $this->resolveCarbon($date);
     }
@@ -272,7 +271,7 @@ trait Comparison
      *
      * @param bool $equal Indicates if an equal to comparison should be done
      */
-    public function between(DateTimeInterface|string $date1, DateTimeInterface|string $date2, bool $equal = \true) : bool
+    public function between(DateTimeInterface|string $date1, DateTimeInterface|string $date2, bool $equal = \true): bool
     {
         $date1 = $this->resolveCarbon($date1);
         $date2 = $this->resolveCarbon($date2);
@@ -294,7 +293,7 @@ trait Comparison
      * Carbon::parse('2018-07-25')->betweenIncluded('2018-07-25', '2018-08-01'); // true
      * ```
      */
-    public function betweenIncluded(DateTimeInterface|string $date1, DateTimeInterface|string $date2) : bool
+    public function betweenIncluded(DateTimeInterface|string $date1, DateTimeInterface|string $date2): bool
     {
         return $this->between($date1, $date2, \true);
     }
@@ -308,7 +307,7 @@ trait Comparison
      * Carbon::parse('2018-07-25')->betweenExcluded('2018-07-25', '2018-08-01'); // false
      * ```
      */
-    public function betweenExcluded(DateTimeInterface|string $date1, DateTimeInterface|string $date2) : bool
+    public function betweenExcluded(DateTimeInterface|string $date1, DateTimeInterface|string $date2): bool
     {
         return $this->between($date1, $date2, \false);
     }
@@ -325,7 +324,7 @@ trait Comparison
      *
      * @param bool $equal Indicates if an equal to comparison should be done
      */
-    public function isBetween(DateTimeInterface|string $date1, DateTimeInterface|string $date2, bool $equal = \true) : bool
+    public function isBetween(DateTimeInterface|string $date1, DateTimeInterface|string $date2, bool $equal = \true): bool
     {
         return $this->between($date1, $date2, $equal);
     }
@@ -338,7 +337,7 @@ trait Comparison
      * Carbon::parse('2019-07-15')->isWeekday(); // true
      * ```
      */
-    public function isWeekday() : bool
+    public function isWeekday(): bool
     {
         return !$this->isWeekend();
     }
@@ -351,7 +350,7 @@ trait Comparison
      * Carbon::parse('2019-07-15')->isWeekend(); // false
      * ```
      */
-    public function isWeekend() : bool
+    public function isWeekend(): bool
     {
         return \in_array($this->dayOfWeek, $this->transmitFactory(static fn() => static::getWeekendDays()), \true);
     }
@@ -364,7 +363,7 @@ trait Comparison
      * Carbon::tomorrow()->isYesterday(); // false
      * ```
      */
-    public function isYesterday() : bool
+    public function isYesterday(): bool
     {
         return $this->toDateString() === $this->transmitFactory(fn() => static::yesterday($this->getTimezone())->toDateString());
     }
@@ -377,7 +376,7 @@ trait Comparison
      * Carbon::tomorrow()->isToday(); // false
      * ```
      */
-    public function isToday() : bool
+    public function isToday(): bool
     {
         return $this->toDateString() === $this->nowWithSameTz()->toDateString();
     }
@@ -390,7 +389,7 @@ trait Comparison
      * Carbon::yesterday()->isTomorrow(); // false
      * ```
      */
-    public function isTomorrow() : bool
+    public function isTomorrow(): bool
     {
         return $this->toDateString() === $this->transmitFactory(fn() => static::tomorrow($this->getTimezone())->toDateString());
     }
@@ -403,7 +402,7 @@ trait Comparison
      * Carbon::now()->subHours(5)->isFuture(); // false
      * ```
      */
-    public function isFuture() : bool
+    public function isFuture(): bool
     {
         return $this->greaterThan($this->nowWithSameTz());
     }
@@ -416,7 +415,7 @@ trait Comparison
      * Carbon::now()->addHours(5)->isPast(); // false
      * ```
      */
-    public function isPast() : bool
+    public function isPast(): bool
     {
         return $this->lessThan($this->nowWithSameTz());
     }
@@ -430,7 +429,7 @@ trait Comparison
      * Carbon::now()->subHours(5)->isNowOrFuture(); // false
      * ```
      */
-    public function isNowOrFuture() : bool
+    public function isNowOrFuture(): bool
     {
         return $this->greaterThanOrEqualTo($this->nowWithSameTz());
     }
@@ -444,7 +443,7 @@ trait Comparison
      * Carbon::now()->addHours(5)->isNowOrPast(); // false
      * ```
      */
-    public function isNowOrPast() : bool
+    public function isNowOrPast(): bool
     {
         return $this->lessThanOrEqualTo($this->nowWithSameTz());
     }
@@ -457,7 +456,7 @@ trait Comparison
      * Carbon::parse('2019-01-01')->isLeapYear(); // false
      * ```
      */
-    public function isLeapYear() : bool
+    public function isLeapYear(): bool
     {
         return $this->rawFormat('L') === '1';
     }
@@ -477,7 +476,7 @@ trait Comparison
      *
      * @see https://en.wikipedia.org/wiki/ISO_8601#Week_dates
      */
-    public function isLongYear() : bool
+    public function isLongYear(): bool
     {
         return static::create($this->year, 12, 28, 0, 0, 0, $this->tz)->weekOfYear === static::WEEKS_PER_YEAR + 1;
     }
@@ -495,7 +494,7 @@ trait Comparison
      *
      * @see https://en.wikipedia.org/wiki/ISO_8601#Week_dates
      */
-    public function isLongIsoYear() : bool
+    public function isLongIsoYear(): bool
     {
         return static::create($this->isoWeekYear, 12, 28, 0, 0, 0, $this->tz)->weekOfYear === 53;
     }
@@ -511,7 +510,7 @@ trait Comparison
      * @param string                   $format date formats to compare.
      * @param DateTimeInterface|string $date   instance to compare with or null to use current day.
      */
-    public function isSameAs(string $format, DateTimeInterface|string $date) : bool
+    public function isSameAs(string $format, DateTimeInterface|string $date): bool
     {
         return $this->rawFormat($format) === $this->resolveCarbon($date)->rawFormat($format);
     }
@@ -531,7 +530,7 @@ trait Comparison
      *
      * @return bool
      */
-    public function isSameUnit(string $unit, DateTimeInterface|string $date) : bool
+    public function isSameUnit(string $unit, DateTimeInterface|string $date): bool
     {
         if ($unit === 'quarter') {
             $other = $this->resolveCarbon($date);
@@ -585,9 +584,9 @@ trait Comparison
      *
      * @throws BadMethodCallException
      */
-    public function isCurrentUnit(string $unit) : bool
+    public function isCurrentUnit(string $unit): bool
     {
-        return $this->{'isSame' . \ucfirst($unit)}('now');
+        return $this->{'isSame' . ucfirst($unit)}('now');
     }
     /**
      * Checks if the passed in date is in the same quarter as the instance quarter (and year if needed).
@@ -605,7 +604,7 @@ trait Comparison
      *
      * @return bool
      */
-    public function isSameQuarter(DateTimeInterface|string $date, bool $ofSameYear = \true) : bool
+    public function isSameQuarter(DateTimeInterface|string $date, bool $ofSameYear = \true): bool
     {
         $date = $this->resolveCarbon($date);
         return $this->quarter === $date->quarter && (!$ofSameYear || $this->isSameYear($date));
@@ -626,7 +625,7 @@ trait Comparison
      *
      * @return bool
      */
-    public function isSameMonth(DateTimeInterface|string $date, bool $ofSameYear = \true) : bool
+    public function isSameMonth(DateTimeInterface|string $date, bool $ofSameYear = \true): bool
     {
         return $this->isSameAs($ofSameYear ? 'Y-m' : 'm', $date);
     }
@@ -645,9 +644,9 @@ trait Comparison
      *
      * @return bool
      */
-    public function isDayOfWeek($dayOfWeek) : bool
+    public function isDayOfWeek($dayOfWeek): bool
     {
-        if (\is_string($dayOfWeek) && \defined($constant = static::class . '::' . \strtoupper($dayOfWeek))) {
+        if (\is_string($dayOfWeek) && \defined($constant = static::class . '::' . strtoupper($dayOfWeek))) {
             $dayOfWeek = \constant($constant);
         }
         return $this->dayOfWeek === $dayOfWeek;
@@ -667,7 +666,7 @@ trait Comparison
      *
      * @return bool
      */
-    public function isBirthday(DateTimeInterface|string|null $date = null) : bool
+    public function isBirthday(DateTimeInterface|string|null $date = null): bool
     {
         return $this->isSameAs('md', $date ?? 'now');
     }
@@ -683,7 +682,7 @@ trait Comparison
      * Carbon::parse('2019-04-30')->isLastOfMonth(); // true
      * ```
      */
-    public function isLastOfMonth() : bool
+    public function isLastOfMonth(): bool
     {
         return $this->day === $this->daysInMonth;
     }
@@ -696,7 +695,7 @@ trait Comparison
      * Carbon::parse('2019-02-28 20:13:00')->isStartOfUnit(Unit::Hour, '15 minutes'); // true
      * ```
      */
-    public function isStartOfUnit(Unit $unit, Unit|DateInterval|Closure|CarbonConverterInterface|string|null $interval = null, mixed ...$params) : bool
+    public function isStartOfUnit(Unit $unit, Unit|DateInterval|Closure|CarbonConverterInterface|string|null $interval = null, mixed ...$params): bool
     {
         $interval ??= match ($unit) {
             Unit::Day, Unit::Hour, Unit::Minute, Unit::Second, Unit::Millisecond, Unit::Microsecond => Unit::Microsecond,
@@ -719,7 +718,7 @@ trait Comparison
      * Carbon::parse('2019-02-28 20:13:00')->isEndOfUnit(Unit::Hour, '15 minutes'); // false
      * ```
      */
-    public function isEndOfUnit(Unit $unit, Unit|DateInterval|Closure|CarbonConverterInterface|string|null $interval = null, mixed ...$params) : bool
+    public function isEndOfUnit(Unit $unit, Unit|DateInterval|Closure|CarbonConverterInterface|string|null $interval = null, mixed ...$params): bool
     {
         $interval ??= match ($unit) {
             Unit::Day, Unit::Hour, Unit::Minute, Unit::Second, Unit::Millisecond, Unit::Microsecond => Unit::Microsecond,
@@ -736,56 +735,56 @@ trait Comparison
     /**
      * Determines if the instance is start of millisecond (first microsecond by default but interval can be customized).
      */
-    public function isStartOfMillisecond(Unit|DateInterval|Closure|CarbonConverterInterface|string|null $interval = null) : bool
+    public function isStartOfMillisecond(Unit|DateInterval|Closure|CarbonConverterInterface|string|null $interval = null): bool
     {
         return $this->isStartOfUnit(Unit::Millisecond, $interval);
     }
     /**
      * Determines if the instance is end of millisecond (last microsecond by default but interval can be customized).
      */
-    public function isEndOfMillisecond(Unit|DateInterval|Closure|CarbonConverterInterface|string|null $interval = null) : bool
+    public function isEndOfMillisecond(Unit|DateInterval|Closure|CarbonConverterInterface|string|null $interval = null): bool
     {
         return $this->isEndOfUnit(Unit::Millisecond, $interval);
     }
     /**
      * Determines if the instance is start of second (first microsecond by default but interval can be customized).
      */
-    public function isStartOfSecond(Unit|DateInterval|Closure|CarbonConverterInterface|string|null $interval = null) : bool
+    public function isStartOfSecond(Unit|DateInterval|Closure|CarbonConverterInterface|string|null $interval = null): bool
     {
         return $this->isStartOfUnit(Unit::Second, $interval);
     }
     /**
      * Determines if the instance is end of second (last microsecond by default but interval can be customized).
      */
-    public function isEndOfSecond(Unit|DateInterval|Closure|CarbonConverterInterface|string|null $interval = null) : bool
+    public function isEndOfSecond(Unit|DateInterval|Closure|CarbonConverterInterface|string|null $interval = null): bool
     {
         return $this->isEndOfUnit(Unit::Second, $interval);
     }
     /**
      * Determines if the instance is start of minute (first microsecond by default but interval can be customized).
      */
-    public function isStartOfMinute(Unit|DateInterval|Closure|CarbonConverterInterface|string|null $interval = null) : bool
+    public function isStartOfMinute(Unit|DateInterval|Closure|CarbonConverterInterface|string|null $interval = null): bool
     {
         return $this->isStartOfUnit(Unit::Minute, $interval);
     }
     /**
      * Determines if the instance is end of minute (last microsecond by default but interval can be customized).
      */
-    public function isEndOfMinute(Unit|DateInterval|Closure|CarbonConverterInterface|string|null $interval = null) : bool
+    public function isEndOfMinute(Unit|DateInterval|Closure|CarbonConverterInterface|string|null $interval = null): bool
     {
         return $this->isEndOfUnit(Unit::Minute, $interval);
     }
     /**
      * Determines if the instance is start of hour (first microsecond by default but interval can be customized).
      */
-    public function isStartOfHour(Unit|DateInterval|Closure|CarbonConverterInterface|string|null $interval = null) : bool
+    public function isStartOfHour(Unit|DateInterval|Closure|CarbonConverterInterface|string|null $interval = null): bool
     {
         return $this->isStartOfUnit(Unit::Hour, $interval);
     }
     /**
      * Determines if the instance is end of hour (last microsecond by default but interval can be customized).
      */
-    public function isEndOfHour(Unit|DateInterval|Closure|CarbonConverterInterface|string|null $interval = null) : bool
+    public function isEndOfHour(Unit|DateInterval|Closure|CarbonConverterInterface|string|null $interval = null): bool
     {
         return $this->isEndOfUnit(Unit::Hour, $interval);
     }
@@ -807,10 +806,10 @@ trait Comparison
      *                                                                                          is in the last 15 minutes of the day, with Unit::Hour, it
      *                                                                                          checks if it's in the last hour of the day.
      */
-    public function isStartOfDay(Unit|DateInterval|Closure|CarbonConverterInterface|string|bool $checkMicroseconds = \false, Unit|DateInterval|Closure|CarbonConverterInterface|string|null $interval = null) : bool
+    public function isStartOfDay(Unit|DateInterval|Closure|CarbonConverterInterface|string|bool $checkMicroseconds = \false, Unit|DateInterval|Closure|CarbonConverterInterface|string|null $interval = null): bool
     {
         if ($checkMicroseconds === \true) {
-            @\trigger_error("Since 3.8.0, it's deprecated to use \$checkMicroseconds.\n" . "It will be removed in 4.0.0.\n" . "Instead, you should use either isStartOfDay(interval: Unit::Microsecond) or isStartOfDay(interval: Unit::Second)\n" . 'And you can now use any custom interval as precision, such as isStartOfDay(interval: "15 minutes")', \E_USER_DEPRECATED);
+            @trigger_error("Since 3.8.0, it's deprecated to use \$checkMicroseconds.\n" . "It will be removed in 4.0.0.\n" . "Instead, you should use either isStartOfDay(interval: Unit::Microsecond) or isStartOfDay(interval: Unit::Second)\n" . 'And you can now use any custom interval as precision, such as isStartOfDay(interval: "15 minutes")', \E_USER_DEPRECATED);
         }
         if ($interval === null && !\is_bool($checkMicroseconds)) {
             $interval = $checkMicroseconds;
@@ -851,10 +850,10 @@ trait Comparison
      *                                                                                          is in the last 15 minutes of the day, with Unit::Hour, it
      *                                                                                          checks if it's in the last hour of the day.
      */
-    public function isEndOfDay(Unit|DateInterval|Closure|CarbonConverterInterface|string|bool $checkMicroseconds = \false, Unit|DateInterval|Closure|CarbonConverterInterface|string|null $interval = null) : bool
+    public function isEndOfDay(Unit|DateInterval|Closure|CarbonConverterInterface|string|bool $checkMicroseconds = \false, Unit|DateInterval|Closure|CarbonConverterInterface|string|null $interval = null): bool
     {
         if ($checkMicroseconds === \true) {
-            @\trigger_error("Since 3.8.0, it's deprecated to use \$checkMicroseconds.\n" . "It will be removed in 4.0.0.\n" . "Instead, you should use either isEndOfDay(interval: Unit::Microsecond) or isEndOfDay(interval: Unit::Second)\n" . 'And you can now use any custom interval as precision, such as isEndOfDay(interval: "15 minutes")', \E_USER_DEPRECATED);
+            @trigger_error("Since 3.8.0, it's deprecated to use \$checkMicroseconds.\n" . "It will be removed in 4.0.0.\n" . "Instead, you should use either isEndOfDay(interval: Unit::Microsecond) or isEndOfDay(interval: Unit::Second)\n" . 'And you can now use any custom interval as precision, such as isEndOfDay(interval: "15 minutes")', \E_USER_DEPRECATED);
         }
         if ($interval === null && !\is_bool($checkMicroseconds)) {
             $interval = $checkMicroseconds;
@@ -881,7 +880,7 @@ trait Comparison
      * Carbon::parse('2024-08-31')->isStartOfWeek(); // false
      * ```
      */
-    public function isStartOfWeek(Unit|DateInterval|Closure|CarbonConverterInterface|string|null $interval = null, WeekDay|int|null $weekStartsAt = null) : bool
+    public function isStartOfWeek(Unit|DateInterval|Closure|CarbonConverterInterface|string|null $interval = null, WeekDay|int|null $weekStartsAt = null): bool
     {
         return $this->isStartOfUnit(Unit::Week, $interval, $weekStartsAt);
     }
@@ -894,91 +893,91 @@ trait Comparison
      * Carbon::parse('2024-08-31')->isEndOfWeek(); // false
      * ```
      */
-    public function isEndOfWeek(Unit|DateInterval|Closure|CarbonConverterInterface|string|null $interval = null, WeekDay|int|null $weekEndsAt = null) : bool
+    public function isEndOfWeek(Unit|DateInterval|Closure|CarbonConverterInterface|string|null $interval = null, WeekDay|int|null $weekEndsAt = null): bool
     {
         return $this->isEndOfUnit(Unit::Week, $interval, $weekEndsAt);
     }
     /**
      * Determines if the instance is start of month (first day by default but interval can be customized).
      */
-    public function isStartOfMonth(Unit|DateInterval|Closure|CarbonConverterInterface|string|null $interval = null) : bool
+    public function isStartOfMonth(Unit|DateInterval|Closure|CarbonConverterInterface|string|null $interval = null): bool
     {
         return $this->isStartOfUnit(Unit::Month, $interval);
     }
     /**
      * Determines if the instance is end of month (last day by default but interval can be customized).
      */
-    public function isEndOfMonth(Unit|DateInterval|Closure|CarbonConverterInterface|string|null $interval = null) : bool
+    public function isEndOfMonth(Unit|DateInterval|Closure|CarbonConverterInterface|string|null $interval = null): bool
     {
         return $this->isEndOfUnit(Unit::Month, $interval);
     }
     /**
      * Determines if the instance is start of quarter (first day by default but interval can be customized).
      */
-    public function isStartOfQuarter(Unit|DateInterval|Closure|CarbonConverterInterface|string|null $interval = null) : bool
+    public function isStartOfQuarter(Unit|DateInterval|Closure|CarbonConverterInterface|string|null $interval = null): bool
     {
         return $this->isStartOfUnit(Unit::Quarter, $interval);
     }
     /**
      * Determines if the instance is end of quarter (last day by default but interval can be customized).
      */
-    public function isEndOfQuarter(Unit|DateInterval|Closure|CarbonConverterInterface|string|null $interval = null) : bool
+    public function isEndOfQuarter(Unit|DateInterval|Closure|CarbonConverterInterface|string|null $interval = null): bool
     {
         return $this->isEndOfUnit(Unit::Quarter, $interval);
     }
     /**
      * Determines if the instance is start of year (first day by default but interval can be customized).
      */
-    public function isStartOfYear(Unit|DateInterval|Closure|CarbonConverterInterface|string|null $interval = null) : bool
+    public function isStartOfYear(Unit|DateInterval|Closure|CarbonConverterInterface|string|null $interval = null): bool
     {
         return $this->isStartOfUnit(Unit::Year, $interval);
     }
     /**
      * Determines if the instance is end of year (last day by default but interval can be customized).
      */
-    public function isEndOfYear(Unit|DateInterval|Closure|CarbonConverterInterface|string|null $interval = null) : bool
+    public function isEndOfYear(Unit|DateInterval|Closure|CarbonConverterInterface|string|null $interval = null): bool
     {
         return $this->isEndOfUnit(Unit::Year, $interval);
     }
     /**
      * Determines if the instance is start of decade (first day by default but interval can be customized).
      */
-    public function isStartOfDecade(Unit|DateInterval|Closure|CarbonConverterInterface|string|null $interval = null) : bool
+    public function isStartOfDecade(Unit|DateInterval|Closure|CarbonConverterInterface|string|null $interval = null): bool
     {
         return $this->isStartOfUnit(Unit::Decade, $interval);
     }
     /**
      * Determines if the instance is end of decade (last day by default but interval can be customized).
      */
-    public function isEndOfDecade(Unit|DateInterval|Closure|CarbonConverterInterface|string|null $interval = null) : bool
+    public function isEndOfDecade(Unit|DateInterval|Closure|CarbonConverterInterface|string|null $interval = null): bool
     {
         return $this->isEndOfUnit(Unit::Decade, $interval);
     }
     /**
      * Determines if the instance is start of century (first day by default but interval can be customized).
      */
-    public function isStartOfCentury(Unit|DateInterval|Closure|CarbonConverterInterface|string|null $interval = null) : bool
+    public function isStartOfCentury(Unit|DateInterval|Closure|CarbonConverterInterface|string|null $interval = null): bool
     {
         return $this->isStartOfUnit(Unit::Century, $interval);
     }
     /**
      * Determines if the instance is end of century (last day by default but interval can be customized).
      */
-    public function isEndOfCentury(Unit|DateInterval|Closure|CarbonConverterInterface|string|null $interval = null) : bool
+    public function isEndOfCentury(Unit|DateInterval|Closure|CarbonConverterInterface|string|null $interval = null): bool
     {
         return $this->isEndOfUnit(Unit::Century, $interval);
     }
     /**
      * Determines if the instance is start of millennium (first day by default but interval can be customized).
      */
-    public function isStartOfMillennium(Unit|DateInterval|Closure|CarbonConverterInterface|string|null $interval = null) : bool
+    public function isStartOfMillennium(Unit|DateInterval|Closure|CarbonConverterInterface|string|null $interval = null): bool
     {
         return $this->isStartOfUnit(Unit::Millennium, $interval);
     }
     /**
      * Determines if the instance is end of millennium (last day by default but interval can be customized).
      */
-    public function isEndOfMillennium(Unit|DateInterval|Closure|CarbonConverterInterface|string|null $interval = null) : bool
+    public function isEndOfMillennium(Unit|DateInterval|Closure|CarbonConverterInterface|string|null $interval = null): bool
     {
         return $this->isEndOfUnit(Unit::Millennium, $interval);
     }
@@ -992,7 +991,7 @@ trait Comparison
      * Carbon::parse('2019-02-28 00:00:01')->isMidnight(); // false
      * ```
      */
-    public function isMidnight() : bool
+    public function isMidnight(): bool
     {
         return $this->isStartOfDay();
     }
@@ -1007,7 +1006,7 @@ trait Comparison
      * Carbon::parse('2019-02-28 12:00:01')->isMidday(); // false
      * ```
      */
-    public function isMidday() : bool
+    public function isMidday(): bool
     {
         /* @var CarbonInterface $this */
         return $this->rawFormat('G:i:s') === static::$midDayAt . ':00:00';
@@ -1021,7 +1020,7 @@ trait Comparison
      * Carbon::hasFormat('13:12:45', 'h:i:s'); // false
      * ```
      */
-    public static function hasFormat(string $date, string $format) : bool
+    public static function hasFormat(string $date, string $format): bool
     {
         return FactoryImmutable::getInstance()->hasFormat($date, $format);
     }
@@ -1039,7 +1038,7 @@ trait Comparison
      *
      * @return bool
      */
-    public static function hasFormatWithModifiers(?string $date, string $format) : bool
+    public static function hasFormatWithModifiers(?string $date, string $format): bool
     {
         return FactoryImmutable::getInstance()->hasFormatWithModifiers($date, $format);
     }
@@ -1053,7 +1052,7 @@ trait Comparison
      * Carbon::canBeCreatedFromFormat('13:12:45', 'h:i:s'); // false
      * ```
      */
-    public static function canBeCreatedFromFormat(?string $date, string $format) : bool
+    public static function canBeCreatedFromFormat(?string $date, string $format): bool
     {
         if ($date === null) {
             return \false;
@@ -1091,25 +1090,25 @@ trait Comparison
      *
      * @param string $tester day name, month name, hour, date, etc. as string
      */
-    public function is(WeekDay|Month|string $tester) : bool
+    public function is(WeekDay|Month|string $tester): bool
     {
         if ($tester instanceof BackedEnum) {
             $tester = $tester->name;
         }
-        $tester = \trim($tester);
-        if (\preg_match('/^\\d+$/', $tester)) {
+        $tester = trim($tester);
+        if (preg_match('/^\d+$/', $tester)) {
             return $this->year === (int) $tester;
         }
-        if (\preg_match('/^(?:Jan|January|Feb|February|Mar|March|Apr|April|May|Jun|June|Jul|July|Aug|August|Sep|September|Oct|October|Nov|November|Dec|December)$/i', $tester)) {
+        if (preg_match('/^(?:Jan|January|Feb|February|Mar|March|Apr|April|May|Jun|June|Jul|July|Aug|August|Sep|September|Oct|October|Nov|November|Dec|December)$/i', $tester)) {
             return $this->isSameMonth($this->transmitFactory(static fn() => static::parse("{$tester} 1st")), \false);
         }
-        if (\preg_match('/^\\d{3,}-\\d{1,2}$/', $tester)) {
+        if (preg_match('/^\d{3,}-\d{1,2}$/', $tester)) {
             return $this->isSameMonth($this->transmitFactory(static fn() => static::parse($tester)));
         }
-        if (\preg_match('/^(\\d{1,2})-(\\d{1,2})$/', $tester, $match)) {
+        if (preg_match('/^(\d{1,2})-(\d{1,2})$/', $tester, $match)) {
             return $this->month === (int) $match[1] && $this->day === (int) $match[2];
         }
-        $modifier = \preg_replace('/(\\d)h$/i', '$1:00', $tester);
+        $modifier = preg_replace('/(\d)h$/i', '$1:00', $tester);
         /* @var CarbonInterface $max */
         $median = $this->transmitFactory(static fn() => static::parse('5555-06-15 12:30:30.555555'))->modify($modifier);
         $current = $this->avoidMutation();
@@ -1118,16 +1117,16 @@ trait Comparison
         if ($current->eq($other)) {
             return \true;
         }
-        if (\preg_match('/\\d:\\d{1,2}:\\d{1,2}$/', $tester)) {
+        if (preg_match('/\d:\d{1,2}:\d{1,2}$/', $tester)) {
             return $current->startOfSecond()->eq($other);
         }
-        if (\preg_match('/\\d:\\d{1,2}$/', $tester)) {
+        if (preg_match('/\d:\d{1,2}$/', $tester)) {
             return $current->startOfMinute()->eq($other);
         }
-        if (\preg_match('/\\d(?:h|am|pm)$/', $tester)) {
+        if (preg_match('/\d(?:h|am|pm)$/', $tester)) {
             return $current->startOfHour()->eq($other);
         }
-        if (\preg_match('/^(?:january|february|march|april|may|june|july|august|september|october|november|december)(?:\\s+\\d+)?$/i', $tester)) {
+        if (preg_match('/^(?:january|february|march|april|may|june|july|august|september|october|november|december)(?:\s+\d+)?$/i', $tester)) {
             return $current->startOfMonth()->eq($other->startOfMonth());
         }
         $units = ['month' => [1, 'year'], 'day' => [1, 'month'], 'hour' => [0, 'day'], 'minute' => [0, 'hour'], 'second' => [0, 'minute'], 'microsecond' => [0, 'second']];
@@ -1144,7 +1143,7 @@ trait Comparison
      *
      * @return bool
      */
-    public function isStartOfTime() : bool
+    public function isStartOfTime(): bool
     {
         return $this->startOfTime ?? \false;
     }
@@ -1153,7 +1152,7 @@ trait Comparison
      *
      * @return bool
      */
-    public function isEndOfTime() : bool
+    public function isEndOfTime(): bool
     {
         return $this->endOfTime ?? \false;
     }

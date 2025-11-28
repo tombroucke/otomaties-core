@@ -14,19 +14,18 @@ use OtomatiesCoreVendor\PhpParser\Node;
 use OtomatiesCoreVendor\PhpParser\NodeVisitor;
 /**
  * @author Mathieu Santostefano <msantostefano@protonmail.com>
- * @internal
  */
 final class TransMethodVisitor extends AbstractVisitor implements NodeVisitor
 {
-    public function beforeTraverse(array $nodes) : ?Node
+    public function beforeTraverse(array $nodes): ?Node
     {
         return null;
     }
-    public function enterNode(Node $node) : ?Node
+    public function enterNode(Node $node): ?Node
     {
         return null;
     }
-    public function leaveNode(Node $node) : ?Node
+    public function leaveNode(Node $node): ?Node
     {
         if (!$node instanceof Node\Expr\MethodCall && !$node instanceof Node\Expr\FuncCall) {
             return null;
@@ -37,7 +36,7 @@ final class TransMethodVisitor extends AbstractVisitor implements NodeVisitor
         $name = $node->name instanceof Node\Name ? $node->name->getLast() : (string) $node->name;
         if ('trans' === $name || 't' === $name) {
             $firstNamedArgumentIndex = $this->nodeFirstNamedArgumentIndex($node);
-            if (!($messages = $this->getStringArguments($node, 0 < $firstNamedArgumentIndex ? 0 : 'id'))) {
+            if (!$messages = $this->getStringArguments($node, 0 < $firstNamedArgumentIndex ? 0 : 'id')) {
                 return null;
             }
             $domain = $this->getStringArguments($node, 2 < $firstNamedArgumentIndex ? 2 : 'domain')[0] ?? null;
@@ -47,7 +46,7 @@ final class TransMethodVisitor extends AbstractVisitor implements NodeVisitor
         }
         return null;
     }
-    public function afterTraverse(array $nodes) : ?Node
+    public function afterTraverse(array $nodes): ?Node
     {
         return null;
     }

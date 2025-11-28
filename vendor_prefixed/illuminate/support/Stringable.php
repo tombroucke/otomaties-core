@@ -11,7 +11,6 @@ use OtomatiesCoreVendor\Illuminate\Support\Traits\Macroable;
 use OtomatiesCoreVendor\Illuminate\Support\Traits\Tappable;
 use JsonSerializable;
 use Stringable as BaseStringable;
-/** @internal */
 class Stringable implements JsonSerializable, ArrayAccess, BaseStringable
 {
     use Conditionable, Dumpable, Macroable, Tappable;
@@ -58,7 +57,7 @@ class Stringable implements JsonSerializable, ArrayAccess, BaseStringable
      */
     public function append(...$values)
     {
-        return new static($this->value . \implode('', $values));
+        return new static($this->value . implode('', $values));
     }
     /**
      * Append a new line to the string.
@@ -68,7 +67,7 @@ class Stringable implements JsonSerializable, ArrayAccess, BaseStringable
      */
     public function newLine($count = 1)
     {
-        return $this->append(\str_repeat(\PHP_EOL, $count));
+        return $this->append(str_repeat(\PHP_EOL, $count));
     }
     /**
      * Transliterate a UTF-8 value to ASCII.
@@ -88,7 +87,7 @@ class Stringable implements JsonSerializable, ArrayAccess, BaseStringable
      */
     public function basename($suffix = '')
     {
-        return new static(\basename($this->value, $suffix));
+        return new static(basename($this->value, $suffix));
     }
     /**
      * Get the character at the specified index.
@@ -242,7 +241,7 @@ class Stringable implements JsonSerializable, ArrayAccess, BaseStringable
      */
     public function dirname($levels = 1)
     {
-        return new static(\dirname($this->value, $levels));
+        return new static(dirname($this->value, $levels));
     }
     /**
      * Determine if a given string ends with a given substring.
@@ -297,7 +296,7 @@ class Stringable implements JsonSerializable, ArrayAccess, BaseStringable
      */
     public function explode($delimiter, $limit = \PHP_INT_MAX)
     {
-        return new Collection(\explode($delimiter, $this->value, $limit));
+        return new Collection(explode($delimiter, $this->value, $limit));
     }
     /**
      * Split a string using a regular expression or by length.
@@ -309,10 +308,10 @@ class Stringable implements JsonSerializable, ArrayAccess, BaseStringable
      */
     public function split($pattern, $limit = -1, $flags = 0)
     {
-        if (\filter_var($pattern, \FILTER_VALIDATE_INT) !== \false) {
-            return new Collection(\mb_str_split($this->value, $pattern));
+        if (filter_var($pattern, \FILTER_VALIDATE_INT) !== \false) {
+            return new Collection(mb_str_split($this->value, $pattern));
         }
-        $segments = \preg_split($pattern, $this->value, $limit, $flags);
+        $segments = preg_split($pattern, $this->value, $limit, $flags);
         return !empty($segments) ? new Collection($segments) : new Collection();
     }
     /**
@@ -629,7 +628,7 @@ class Stringable implements JsonSerializable, ArrayAccess, BaseStringable
      */
     public function prepend(...$values)
     {
-        return new static(\implode('', $values) . $this->value);
+        return new static(implode('', $values) . $this->value);
     }
     /**
      * Remove any occurrence of the given string in the subject.
@@ -659,7 +658,7 @@ class Stringable implements JsonSerializable, ArrayAccess, BaseStringable
      */
     public function repeat(int $times)
     {
-        return new static(\str_repeat($this->value, $times));
+        return new static(str_repeat($this->value, $times));
     }
     /**
      * Replace the given value in the given string.
@@ -739,9 +738,9 @@ class Stringable implements JsonSerializable, ArrayAccess, BaseStringable
     public function replaceMatches($pattern, $replace, $limit = -1)
     {
         if ($replace instanceof Closure) {
-            return new static(\preg_replace_callback($pattern, $replace, $this->value, $limit));
+            return new static(preg_replace_callback($pattern, $replace, $this->value, $limit));
         }
-        return new static(\preg_replace($pattern, $replace, $this->value, $limit));
+        return new static(preg_replace($pattern, $replace, $this->value, $limit));
     }
     /**
      * Parse input from a string to a collection, according to a format.
@@ -751,7 +750,7 @@ class Stringable implements JsonSerializable, ArrayAccess, BaseStringable
      */
     public function scan($format)
     {
-        return new Collection(\sscanf($this->value, $format));
+        return new Collection(sscanf($this->value, $format));
     }
     /**
      * Remove all "extra" blank space from the given string.
@@ -780,7 +779,7 @@ class Stringable implements JsonSerializable, ArrayAccess, BaseStringable
      */
     public function stripTags($allowedTags = null)
     {
-        return new static(\strip_tags($this->value, $allowedTags));
+        return new static(strip_tags($this->value, $allowedTags));
     }
     /**
      * Convert the given string to upper-case.
@@ -942,7 +941,7 @@ class Stringable implements JsonSerializable, ArrayAccess, BaseStringable
      */
     public function swap(array $map)
     {
-        return new static(\strtr($this->value, $map));
+        return new static(strtr($this->value, $map));
     }
     /**
      * Take the first or last {$limit} characters.
@@ -965,7 +964,7 @@ class Stringable implements JsonSerializable, ArrayAccess, BaseStringable
      */
     public function trim($characters = null)
     {
-        return new static(Str::trim(...\array_merge([$this->value], \func_get_args())));
+        return new static(Str::trim(...array_merge([$this->value], func_get_args())));
     }
     /**
      * Left trim the string of the given characters.
@@ -975,7 +974,7 @@ class Stringable implements JsonSerializable, ArrayAccess, BaseStringable
      */
     public function ltrim($characters = null)
     {
-        return new static(Str::ltrim(...\array_merge([$this->value], \func_get_args())));
+        return new static(Str::ltrim(...array_merge([$this->value], func_get_args())));
     }
     /**
      * Right trim the string of the given characters.
@@ -985,7 +984,7 @@ class Stringable implements JsonSerializable, ArrayAccess, BaseStringable
      */
     public function rtrim($characters = null)
     {
-        return new static(Str::rtrim(...\array_merge([$this->value], \func_get_args())));
+        return new static(Str::rtrim(...array_merge([$this->value], func_get_args())));
     }
     /**
      * Make a string's first character lowercase.
@@ -1270,7 +1269,7 @@ class Stringable implements JsonSerializable, ArrayAccess, BaseStringable
      */
     public function toBase64()
     {
-        return new static(\base64_encode($this->value));
+        return new static(base64_encode($this->value));
     }
     /**
      * Decode the Base64 encoded string.
@@ -1280,7 +1279,7 @@ class Stringable implements JsonSerializable, ArrayAccess, BaseStringable
      */
     public function fromBase64($strict = \false)
     {
-        return new static(\base64_decode($this->value, $strict));
+        return new static(base64_decode($this->value, $strict));
     }
     /**
      * Hash the string using the given algorithm.
@@ -1290,7 +1289,7 @@ class Stringable implements JsonSerializable, ArrayAccess, BaseStringable
      */
     public function hash(string $algorithm)
     {
-        return new static(\hash($algorithm, $this->value));
+        return new static(hash($algorithm, $this->value));
     }
     /**
      * Encrypt the string.
@@ -1349,7 +1348,7 @@ class Stringable implements JsonSerializable, ArrayAccess, BaseStringable
      */
     public function toInteger($base = 10)
     {
-        return \intval($this->value, $base);
+        return intval($this->value, $base);
     }
     /**
      * Get the underlying string value as a float.
@@ -1358,7 +1357,7 @@ class Stringable implements JsonSerializable, ArrayAccess, BaseStringable
      */
     public function toFloat()
     {
-        return \floatval($this->value);
+        return floatval($this->value);
     }
     /**
      * Get the underlying string value as a boolean.
@@ -1369,7 +1368,7 @@ class Stringable implements JsonSerializable, ArrayAccess, BaseStringable
      */
     public function toBoolean()
     {
-        return \filter_var($this->value, \FILTER_VALIDATE_BOOLEAN);
+        return filter_var($this->value, \FILTER_VALIDATE_BOOLEAN);
     }
     /**
      * Get the underlying string value as a Carbon instance.
@@ -1382,7 +1381,7 @@ class Stringable implements JsonSerializable, ArrayAccess, BaseStringable
      */
     public function toDate($format = null, $tz = null)
     {
-        if (\is_null($format)) {
+        if (is_null($format)) {
             return Date::parse($this->value, $tz);
         }
         return Date::createFromFormat($format, $this->value, $tz);
@@ -1401,7 +1400,7 @@ class Stringable implements JsonSerializable, ArrayAccess, BaseStringable
      *
      * @return string
      */
-    public function jsonSerialize() : string
+    public function jsonSerialize(): string
     {
         return $this->__toString();
     }
@@ -1411,7 +1410,7 @@ class Stringable implements JsonSerializable, ArrayAccess, BaseStringable
      * @param  mixed  $offset
      * @return bool
      */
-    public function offsetExists(mixed $offset) : bool
+    public function offsetExists(mixed $offset): bool
     {
         return isset($this->value[$offset]);
     }
@@ -1421,7 +1420,7 @@ class Stringable implements JsonSerializable, ArrayAccess, BaseStringable
      * @param  mixed  $offset
      * @return string
      */
-    public function offsetGet(mixed $offset) : string
+    public function offsetGet(mixed $offset): string
     {
         return $this->value[$offset];
     }
@@ -1431,7 +1430,7 @@ class Stringable implements JsonSerializable, ArrayAccess, BaseStringable
      * @param  mixed  $offset
      * @return void
      */
-    public function offsetSet(mixed $offset, mixed $value) : void
+    public function offsetSet(mixed $offset, mixed $value): void
     {
         $this->value[$offset] = $value;
     }
@@ -1441,7 +1440,7 @@ class Stringable implements JsonSerializable, ArrayAccess, BaseStringable
      * @param  mixed  $offset
      * @return void
      */
-    public function offsetUnset(mixed $offset) : void
+    public function offsetUnset(mixed $offset): void
     {
         unset($this->value[$offset]);
     }

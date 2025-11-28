@@ -11,7 +11,6 @@ use OtomatiesCoreVendor\Composer\Package\PackageInterface;
 use OtomatiesCoreVendor\Composer\Repository\InstalledRepositoryInterface;
 use OtomatiesCoreVendor\Composer\Util\Filesystem;
 use OtomatiesCoreVendor\React\Promise\PromiseInterface;
-/** @internal */
 class Installer extends LibraryInstaller
 {
     /**
@@ -39,14 +38,14 @@ class Installer extends LibraryInstaller
         if ($frameworkType === \false) {
             throw new \InvalidArgumentException('Sorry the package type of this package is not yet supported.');
         }
-        $class = 'Composer\\Installers\\' . $this->supportedTypes[$frameworkType];
+        $class = 'Composer\Installers\\' . $this->supportedTypes[$frameworkType];
         /**
          * @var BaseInstaller
          */
         $installer = new $class($package, $this->composer, $this->getIO());
         $path = $installer->getInstallPath($package, $frameworkType);
         if (!$this->filesystem->isAbsolutePath($path)) {
-            $path = \getcwd() . '/' . $path;
+            $path = getcwd() . '/' . $path;
         }
         return $path;
     }
@@ -54,8 +53,8 @@ class Installer extends LibraryInstaller
     {
         $installPath = $this->getPackageBasePath($package);
         $io = $this->io;
-        $outputStatus = function () use($io, $installPath) {
-            $io->write(\sprintf('Deleting %s - %s', $installPath, !\file_exists($installPath) ? '<comment>deleted</comment>' : '<error>not deleted</error>'));
+        $outputStatus = function () use ($io, $installPath) {
+            $io->write(sprintf('Deleting %s - %s', $installPath, !file_exists($installPath) ? '<comment>deleted</comment>' : '<error>not deleted</error>'));
         };
         $promise = parent::uninstall($repo, $package);
         // Composer v2 might return a promise here
@@ -78,7 +77,7 @@ class Installer extends LibraryInstaller
             return \false;
         }
         $locationPattern = $this->getLocationPattern($frameworkType);
-        return \preg_match('#' . $frameworkType . '-' . $locationPattern . '#', $packageType, $matches) === 1;
+        return preg_match('#' . $frameworkType . '-' . $locationPattern . '#', $packageType, $matches) === 1;
     }
     /**
      * Finds a supported framework type if it exists and returns it
@@ -87,10 +86,10 @@ class Installer extends LibraryInstaller
      */
     protected function findFrameworkType(string $type)
     {
-        \krsort($this->supportedTypes);
+        krsort($this->supportedTypes);
         foreach ($this->supportedTypes as $key => $val) {
-            if ($key === \substr($type, 0, \strlen($key))) {
-                return \substr($type, 0, \strlen($key));
+            if ($key === substr($type, 0, strlen($key))) {
+                return substr($type, 0, strlen($key));
             }
         }
         return \false;
@@ -99,21 +98,21 @@ class Installer extends LibraryInstaller
      * Get the second part of the regular expression to check for support of a
      * package type
      */
-    protected function getLocationPattern(string $frameworkType) : string
+    protected function getLocationPattern(string $frameworkType): string
     {
         $pattern = null;
         if (!empty($this->supportedTypes[$frameworkType])) {
-            $frameworkClass = 'Composer\\Installers\\' . $this->supportedTypes[$frameworkType];
+            $frameworkClass = 'Composer\Installers\\' . $this->supportedTypes[$frameworkType];
             /** @var BaseInstaller $framework */
             $framework = new $frameworkClass(new Package('dummy/pkg', '1.0.0.0', '1.0.0'), $this->composer, $this->getIO());
-            $locations = \array_keys($framework->getLocations($frameworkType));
+            $locations = array_keys($framework->getLocations($frameworkType));
             if ($locations) {
-                $pattern = '(' . \implode('|', $locations) . ')';
+                $pattern = '(' . implode('|', $locations) . ')';
             }
         }
-        return $pattern ?: '(\\w+)';
+        return $pattern ?: '(\w+)';
     }
-    private function getIO() : IOInterface
+    private function getIO(): IOInterface
     {
         return $this->io;
     }
@@ -126,7 +125,7 @@ class Installer extends LibraryInstaller
      *  - false - enable all installers (useful with
      *     wikimedia/composer-merge-plugin or similar)
      */
-    protected function removeDisabledInstallers() : void
+    protected function removeDisabledInstallers(): void
     {
         $extra = $this->composer->getPackage()->getExtra();
         if (!isset($extra['installer-disable']) || $extra['installer-disable'] === \false) {
@@ -136,12 +135,12 @@ class Installer extends LibraryInstaller
         // Get installers to disable
         $disable = $extra['installer-disable'];
         // Ensure $disabled is an array
-        if (!\is_array($disable)) {
+        if (!is_array($disable)) {
             $disable = array($disable);
         }
         // Check which installers should be disabled
         $all = array(\true, "all", "*");
-        $intersect = \array_intersect($all, $disable);
+        $intersect = array_intersect($all, $disable);
         if (!empty($intersect)) {
             // Disable all installers
             $this->supportedTypes = array();
@@ -149,7 +148,7 @@ class Installer extends LibraryInstaller
         }
         // Disable specified installers
         foreach ($disable as $key => $installer) {
-            if (\is_string($installer) && \key_exists($installer, $this->supportedTypes)) {
+            if (is_string($installer) && key_exists($installer, $this->supportedTypes)) {
                 unset($this->supportedTypes[$installer]);
             }
         }

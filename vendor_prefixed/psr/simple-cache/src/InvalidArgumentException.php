@@ -7,7 +7,6 @@ namespace OtomatiesCoreVendor\Psr\SimpleCache;
  *
  * When an invalid argument is passed it must throw an exception which implements
  * this interface
- * @internal
  */
 interface InvalidArgumentException extends CacheException
 {

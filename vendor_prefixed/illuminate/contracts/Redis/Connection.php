@@ -3,7 +3,6 @@
 namespace OtomatiesCoreVendor\Illuminate\Contracts\Redis;
 
 use Closure;
-/** @internal */
 interface Connection
 {
     /**

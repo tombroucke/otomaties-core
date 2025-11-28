@@ -22,7 +22,6 @@ namespace OtomatiesCoreVendor\Illuminate\Support\Facades;
  * @method static void flushMacros()
  *
  * @see \Illuminate\Config\Repository
- * @internal
  */
 class Config extends Facade
 {

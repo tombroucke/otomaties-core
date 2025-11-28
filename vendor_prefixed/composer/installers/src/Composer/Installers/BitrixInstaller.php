@@ -21,7 +21,6 @@ use OtomatiesCoreVendor\Composer\Util\Filesystem;
  *
  * @author Nik Samokhvalov <nik@samokhvalov.info>
  * @author Denis Kulichkin <onexhovia@gmail.com>
- * @internal
  */
 class BitrixInstaller extends BaseInstaller
 {
@@ -41,7 +40,7 @@ class BitrixInstaller extends BaseInstaller
      * @var string[] Storage for informations about duplicates at all the time of installation packages.
      */
     private static $checkedDuplicates = array();
-    public function inflectPackageVars(array $vars) : array
+    public function inflectPackageVars(array $vars): array
     {
         /** @phpstan-ignore-next-line */
         if ($this->composer->getPackage()) {
@@ -58,7 +57,7 @@ class BitrixInstaller extends BaseInstaller
     /**
      * {@inheritdoc}
      */
-    protected function templatePath(string $path, array $vars = array()) : string
+    protected function templatePath(string $path, array $vars = array()): string
     {
         $templatePath = parent::templatePath($path, $vars);
         $this->checkDuplicates($templatePath, $vars);
@@ -69,18 +68,18 @@ class BitrixInstaller extends BaseInstaller
      *
      * @param array<string, string> $vars
      */
-    protected function checkDuplicates(string $path, array $vars = array()) : void
+    protected function checkDuplicates(string $path, array $vars = array()): void
     {
-        $packageType = \substr($vars['type'], \strlen('bitrix') + 1);
-        $localDir = \explode('/', $vars['bitrix_dir']);
-        \array_pop($localDir);
+        $packageType = substr($vars['type'], strlen('bitrix') + 1);
+        $localDir = explode('/', $vars['bitrix_dir']);
+        array_pop($localDir);
         $localDir[] = 'local';
-        $localDir = \implode('/', $localDir);
-        $oldPath = \str_replace(array('{$bitrix_dir}', '{$name}'), array($localDir, $vars['name']), $this->locations[$packageType]);
-        if (\in_array($oldPath, static::$checkedDuplicates)) {
+        $localDir = implode('/', $localDir);
+        $oldPath = str_replace(array('{$bitrix_dir}', '{$name}'), array($localDir, $vars['name']), $this->locations[$packageType]);
+        if (in_array($oldPath, static::$checkedDuplicates)) {
             return;
         }
-        if ($oldPath !== $path && \file_exists($oldPath) && $this->io->isInteractive()) {
+        if ($oldPath !== $path && file_exists($oldPath) && $this->io->isInteractive()) {
             $this->io->writeError('    <error>Duplication of packages:</error>');
             $this->io->writeError('    <info>Package ' . $oldPath . ' will be called instead package ' . $path . '</info>');
             while (\true) {

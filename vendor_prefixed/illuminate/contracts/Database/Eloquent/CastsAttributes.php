@@ -6,7 +6,6 @@ use OtomatiesCoreVendor\Illuminate\Database\Eloquent\Model;
 /**
  * @template TGet
  * @template TSet
- * @internal
  */
 interface CastsAttributes
 {

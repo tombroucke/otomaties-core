@@ -8,7 +8,6 @@ namespace OtomatiesCoreVendor\Illuminate\Contracts\Pagination;
  * @template-covariant TValue
  *
  * @method $this through(callable(TValue): mixed $callback)
- * @internal
  */
 interface Paginator
 {

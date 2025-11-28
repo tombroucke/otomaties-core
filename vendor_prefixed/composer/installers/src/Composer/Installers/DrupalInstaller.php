@@ -2,7 +2,6 @@
 
 namespace OtomatiesCoreVendor\Composer\Installers;
 
-/** @internal */
 class DrupalInstaller extends BaseInstaller
 {
     /** @var array<string, string> */

@@ -2,7 +2,6 @@
 
 namespace OtomatiesCoreVendor\Composer\Installers;
 
-/** @internal */
 class ClanCatsFrameworkInstaller extends BaseInstaller
 {
     /** @var array<string, string> */

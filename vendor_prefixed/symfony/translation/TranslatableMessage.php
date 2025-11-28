@@ -14,7 +14,6 @@ use OtomatiesCoreVendor\Symfony\Contracts\Translation\TranslatableInterface;
 use OtomatiesCoreVendor\Symfony\Contracts\Translation\TranslatorInterface;
 /**
  * @author Nate Wiebe <nate@northern.co>
- * @internal
  */
 class TranslatableMessage implements TranslatableInterface
 {
@@ -24,24 +23,24 @@ class TranslatableMessage implements TranslatableInterface
     /**
      * @deprecated since Symfony 7.4
      */
-    public function __toString() : string
+    public function __toString(): string
     {
         trigger_deprecation('symfony/translation', '7.4', 'Method "%s()" is deprecated.', __METHOD__);
         return $this->getMessage();
     }
-    public function getMessage() : string
+    public function getMessage(): string
     {
         return $this->message;
     }
-    public function getParameters() : array
+    public function getParameters(): array
     {
         return $this->parameters;
     }
-    public function getDomain() : ?string
+    public function getDomain(): ?string
     {
         return $this->domain;
     }
-    public function trans(TranslatorInterface $translator, ?string $locale = null) : string
+    public function trans(TranslatorInterface $translator, ?string $locale = null): string
     {
         $parameters = $this->getParameters();
         foreach ($parameters as $k => $v) {

@@ -17,7 +17,6 @@ use Closure;
  * Trait ToStringFormat.
  *
  * Handle global format customization for string cast of the object.
- * @internal
  */
 trait ToStringFormat
 {
@@ -26,7 +25,7 @@ trait ToStringFormat
      *
      * @return void
      */
-    public static function resetToStringFormat() : void
+    public static function resetToStringFormat(): void
     {
         FactoryImmutable::getDefaultInstance()->resetToStringFormat();
     }
@@ -42,7 +41,7 @@ trait ToStringFormat
      *
      * @return void
      */
-    public static function setToStringFormat(string|Closure|null $format) : void
+    public static function setToStringFormat(string|Closure|null $format): void
     {
         FactoryImmutable::getDefaultInstance()->setToStringFormat($format);
     }

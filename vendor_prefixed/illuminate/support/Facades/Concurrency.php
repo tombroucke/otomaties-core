@@ -20,7 +20,6 @@ use OtomatiesCoreVendor\Illuminate\Concurrency\ConcurrencyManager;
  * @method static \Illuminate\Support\Defer\DeferredCallback defer(\Closure|array $tasks)
  *
  * @see \Illuminate\Concurrency\ConcurrencyManager
- * @internal
  */
 class Concurrency extends Facade
 {

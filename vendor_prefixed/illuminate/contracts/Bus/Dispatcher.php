@@ -2,7 +2,6 @@
 
 namespace OtomatiesCoreVendor\Illuminate\Contracts\Bus;
 
-/** @internal */
 interface Dispatcher
 {
     /**

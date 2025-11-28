@@ -3,7 +3,6 @@
 namespace OtomatiesCoreVendor\Illuminate\Contracts\Debug;
 
 use Throwable;
-/** @internal */
 interface ExceptionHandler
 {
     /**

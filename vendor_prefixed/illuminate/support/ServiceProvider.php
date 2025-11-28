@@ -12,7 +12,6 @@ use OtomatiesCoreVendor\Illuminate\View\Compilers\BladeCompiler;
 /**
  * @property array<string, string> $bindings All of the container bindings that should be registered.
  * @property array<array-key, string> $singletons All of the singletons that should be registered.
- * @internal
  */
 abstract class ServiceProvider
 {
@@ -110,7 +109,7 @@ abstract class ServiceProvider
     public function callBootingCallbacks()
     {
         $index = 0;
-        while ($index < \count($this->bootingCallbacks)) {
+        while ($index < count($this->bootingCallbacks)) {
             $this->app->call($this->bootingCallbacks[$index]);
             $index++;
         }
@@ -123,7 +122,7 @@ abstract class ServiceProvider
     public function callBootedCallbacks()
     {
         $index = 0;
-        while ($index < \count($this->bootedCallbacks)) {
+        while ($index < count($this->bootedCallbacks)) {
             $this->app->call($this->bootedCallbacks[$index]);
             $index++;
         }
@@ -139,7 +138,7 @@ abstract class ServiceProvider
     {
         if (!($this->app instanceof CachesConfiguration && $this->app->configurationIsCached())) {
             $config = $this->app->make('config');
-            $config->set($key, \array_merge(require $path, $config->get($key, [])));
+            $config->set($key, array_merge(require $path, $config->get($key, [])));
         }
     }
     /**
@@ -153,7 +152,7 @@ abstract class ServiceProvider
     {
         if (!($this->app instanceof CachesConfiguration && $this->app->configurationIsCached())) {
             $config = $this->app->make('config');
-            $config->set($key, \array_replace_recursive(require $path, $config->get($key, [])));
+            $config->set($key, array_replace_recursive(require $path, $config->get($key, [])));
         }
     }
     /**
@@ -177,10 +176,10 @@ abstract class ServiceProvider
      */
     protected function loadViewsFrom($path, $namespace)
     {
-        $this->callAfterResolving('view', function ($view) use($path, $namespace) {
-            if (isset($this->app->config['view']['paths']) && \is_array($this->app->config['view']['paths'])) {
+        $this->callAfterResolving('view', function ($view) use ($path, $namespace) {
+            if (isset($this->app->config['view']['paths']) && is_array($this->app->config['view']['paths'])) {
                 foreach ($this->app->config['view']['paths'] as $viewPath) {
-                    if (\is_dir($appPath = $viewPath . '/vendor/' . $namespace)) {
+                    if (is_dir($appPath = $viewPath . '/vendor/' . $namespace)) {
                         $view->addNamespace($namespace, $appPath);
                     }
                 }
@@ -197,9 +196,9 @@ abstract class ServiceProvider
      */
     protected function loadViewComponentsAs($prefix, array $components)
     {
-        $this->callAfterResolving(BladeCompiler::class, function ($blade) use($prefix, $components) {
+        $this->callAfterResolving(BladeCompiler::class, function ($blade) use ($prefix, $components) {
             foreach ($components as $alias => $component) {
-                $blade->component($component, \is_string($alias) ? $alias : null, $prefix);
+                $blade->component($component, is_string($alias) ? $alias : null, $prefix);
             }
         });
     }
@@ -212,7 +211,7 @@ abstract class ServiceProvider
      */
     protected function loadTranslationsFrom($path, $namespace = null)
     {
-        $this->callAfterResolving('translator', fn($translator) => \is_null($namespace) ? $translator->addPath($path) : $translator->addNamespace($namespace, $path));
+        $this->callAfterResolving('translator', fn($translator) => is_null($namespace) ? $translator->addPath($path) : $translator->addNamespace($namespace, $path));
     }
     /**
      * Register a JSON translation file path.
@@ -222,7 +221,7 @@ abstract class ServiceProvider
      */
     protected function loadJsonTranslationsFrom($path)
     {
-        $this->callAfterResolving('translator', function ($translator) use($path) {
+        $this->callAfterResolving('translator', function ($translator) use ($path) {
             $translator->addJsonPath($path);
         });
     }
@@ -234,7 +233,7 @@ abstract class ServiceProvider
      */
     protected function loadMigrationsFrom($paths)
     {
-        $this->callAfterResolving('migrator', function ($migrator) use($paths) {
+        $this->callAfterResolving('migrator', function ($migrator) use ($paths) {
             foreach ((array) $paths as $path) {
                 $migrator->path($path);
             }
@@ -250,7 +249,7 @@ abstract class ServiceProvider
      */
     protected function loadFactoriesFrom($paths)
     {
-        $this->callAfterResolving(ModelFactory::class, function ($factory) use($paths) {
+        $this->callAfterResolving(ModelFactory::class, function ($factory) use ($paths) {
             foreach ((array) $paths as $path) {
                 $factory->load($path);
             }
@@ -281,7 +280,7 @@ abstract class ServiceProvider
     {
         $this->publishes($paths, $groups);
         if ($this->app->config->get('database.migrations.update_date_on_publish', \false)) {
-            static::$publishableMigrationPaths = \array_unique(\array_merge(static::$publishableMigrationPaths, \array_keys($paths)));
+            static::$publishableMigrationPaths = array_unique(array_merge(static::$publishableMigrationPaths, array_keys($paths)));
         }
     }
     /**
@@ -294,7 +293,7 @@ abstract class ServiceProvider
     protected function publishes(array $paths, $groups = null)
     {
         $this->ensurePublishArrayInitialized($class = static::class);
-        static::$publishes[$class] = \array_merge(static::$publishes[$class], $paths);
+        static::$publishes[$class] = array_merge(static::$publishes[$class], $paths);
         foreach ((array) $groups as $group) {
             $this->addPublishGroup($group, $paths);
         }
@@ -307,7 +306,7 @@ abstract class ServiceProvider
      */
     protected function ensurePublishArrayInitialized($class)
     {
-        if (!\array_key_exists($class, static::$publishes)) {
+        if (!array_key_exists($class, static::$publishes)) {
             static::$publishes[$class] = [];
         }
     }
@@ -320,10 +319,10 @@ abstract class ServiceProvider
      */
     protected function addPublishGroup($group, $paths)
     {
-        if (!\array_key_exists($group, static::$publishGroups)) {
+        if (!array_key_exists($group, static::$publishGroups)) {
             static::$publishGroups[$group] = [];
         }
-        static::$publishGroups[$group] = \array_merge(static::$publishGroups[$group], $paths);
+        static::$publishGroups[$group] = array_merge(static::$publishGroups[$group], $paths);
     }
     /**
      * Get the paths to publish.
@@ -334,11 +333,11 @@ abstract class ServiceProvider
      */
     public static function pathsToPublish($provider = null, $group = null)
     {
-        if (!\is_null($paths = static::pathsForProviderOrGroup($provider, $group))) {
+        if (!is_null($paths = static::pathsForProviderOrGroup($provider, $group))) {
             return $paths;
         }
         return (new Collection(static::$publishes))->reduce(function ($paths, $p) {
-            return \array_merge($paths, $p);
+            return array_merge($paths, $p);
         }, []);
     }
     /**
@@ -352,9 +351,9 @@ abstract class ServiceProvider
     {
         if ($provider && $group) {
             return static::pathsForProviderAndGroup($provider, $group);
-        } elseif ($group && \array_key_exists($group, static::$publishGroups)) {
+        } elseif ($group && array_key_exists($group, static::$publishGroups)) {
             return static::$publishGroups[$group];
-        } elseif ($provider && \array_key_exists($provider, static::$publishes)) {
+        } elseif ($provider && array_key_exists($provider, static::$publishes)) {
             return static::$publishes[$provider];
         } elseif ($group || $provider) {
             return [];
@@ -370,7 +369,7 @@ abstract class ServiceProvider
     protected static function pathsForProviderAndGroup($provider, $group)
     {
         if (!empty(static::$publishes[$provider]) && !empty(static::$publishGroups[$group])) {
-            return \array_intersect_key(static::$publishes[$provider], static::$publishGroups[$group]);
+            return array_intersect_key(static::$publishes[$provider], static::$publishGroups[$group]);
         }
         return [];
     }
@@ -381,7 +380,7 @@ abstract class ServiceProvider
      */
     public static function publishableProviders()
     {
-        return \array_keys(static::$publishes);
+        return array_keys(static::$publishes);
     }
     /**
      * Get the migration paths available for publishing.
@@ -399,7 +398,7 @@ abstract class ServiceProvider
      */
     public static function publishableGroups()
     {
-        return \array_keys(static::$publishGroups);
+        return array_keys(static::$publishGroups);
     }
     /**
      * Register the package's custom Artisan commands.
@@ -409,8 +408,8 @@ abstract class ServiceProvider
      */
     public function commands($commands)
     {
-        $commands = \is_array($commands) ? $commands : \func_get_args();
-        Artisan::starting(function ($artisan) use($commands) {
+        $commands = is_array($commands) ? $commands : func_get_args();
+        Artisan::starting(function ($artisan) use ($commands) {
             $artisan->resolveCommands($commands);
         });
     }
@@ -424,9 +423,9 @@ abstract class ServiceProvider
      */
     protected function optimizes(?string $optimize = null, ?string $clear = null, ?string $key = null)
     {
-        $key ??= (string) Str::of(\get_class($this))->classBasename()->before('ServiceProvider')->kebab()->lower()->trim();
+        $key ??= (string) Str::of(get_class($this))->classBasename()->before('ServiceProvider')->kebab()->lower()->trim();
         if (empty($key)) {
-            $key = class_basename(\get_class($this));
+            $key = class_basename(get_class($this));
         }
         if ($optimize) {
             static::$optimizeCommands[$key] = $optimize;
@@ -481,11 +480,11 @@ abstract class ServiceProvider
     public static function addProviderToBootstrapFile(string $provider, ?string $path = null)
     {
         $path ??= app()->getBootstrapProvidersPath();
-        if (!\file_exists($path)) {
+        if (!file_exists($path)) {
             return \false;
         }
-        if (\function_exists('opcache_invalidate')) {
-            \opcache_invalidate($path, \true);
+        if (function_exists('opcache_invalidate')) {
+            opcache_invalidate($path, \true);
         }
         $providers = (new Collection(require $path))->merge([$provider])->unique()->sort()->values()->map(fn($p) => '    ' . $p . '::class,')->implode(\PHP_EOL);
         $content = '<?php
@@ -493,7 +492,7 @@ abstract class ServiceProvider
 return [
 ' . $providers . '
 ];';
-        \file_put_contents($path, $content . \PHP_EOL);
+        file_put_contents($path, $content . \PHP_EOL);
         return \true;
     }
     /**
@@ -507,20 +506,20 @@ return [
     public static function removeProviderFromBootstrapFile(string|array $providersToRemove, ?string $path = null, bool $strict = \false)
     {
         $path ??= app()->getBootstrapProvidersPath();
-        if (!\file_exists($path)) {
+        if (!file_exists($path)) {
             return \false;
         }
-        if (\function_exists('opcache_invalidate')) {
-            \opcache_invalidate($path, \true);
+        if (function_exists('opcache_invalidate')) {
+            opcache_invalidate($path, \true);
         }
         $providersToRemove = Arr::wrap($providersToRemove);
-        $providers = (new Collection(require $path))->unique()->sort()->values()->when($strict, static fn(Collection $providerCollection) => $providerCollection->reject(fn(string $p) => \in_array($p, $providersToRemove, \true)), static fn(Collection $providerCollection) => $providerCollection->reject(fn(string $p) => Str::contains($p, $providersToRemove)))->map(fn($p) => '    ' . $p . '::class,')->implode(\PHP_EOL);
+        $providers = (new Collection(require $path))->unique()->sort()->values()->when($strict, static fn(Collection $providerCollection) => $providerCollection->reject(fn(string $p) => in_array($p, $providersToRemove, \true)), static fn(Collection $providerCollection) => $providerCollection->reject(fn(string $p) => Str::contains($p, $providersToRemove)))->map(fn($p) => '    ' . $p . '::class,')->implode(\PHP_EOL);
         $content = '<?php
 
 return [
 ' . $providers . '
 ];';
-        \file_put_contents($path, $content . \PHP_EOL);
+        file_put_contents($path, $content . \PHP_EOL);
         return \true;
     }
 }

@@ -5,23 +5,22 @@ namespace OtomatiesCoreVendor\Doctrine\Inflector;
 
 use OtomatiesCoreVendor\Doctrine\Inflector\Rules\Ruleset;
 use function array_unshift;
-/** @internal */
 abstract class GenericLanguageInflectorFactory implements LanguageInflectorFactory
 {
     /** @var Ruleset[] */
     private $singularRulesets = [];
     /** @var Ruleset[] */
     private $pluralRulesets = [];
-    public final function __construct()
+    final public function __construct()
     {
         $this->singularRulesets[] = $this->getSingularRuleset();
         $this->pluralRulesets[] = $this->getPluralRuleset();
     }
-    public final function build() : Inflector
+    final public function build(): Inflector
     {
         return new Inflector(new CachedWordInflector(new RulesetInflector(...$this->singularRulesets)), new CachedWordInflector(new RulesetInflector(...$this->pluralRulesets)));
     }
-    public final function withSingularRules(?Ruleset $singularRules, bool $reset = \false) : LanguageInflectorFactory
+    final public function withSingularRules(?Ruleset $singularRules, bool $reset = \false): LanguageInflectorFactory
     {
         if ($reset) {
             $this->singularRulesets = [];
@@ -31,7 +30,7 @@ abstract class GenericLanguageInflectorFactory implements LanguageInflectorFacto
         }
         return $this;
     }
-    public final function withPluralRules(?Ruleset $pluralRules, bool $reset = \false) : LanguageInflectorFactory
+    final public function withPluralRules(?Ruleset $pluralRules, bool $reset = \false): LanguageInflectorFactory
     {
         if ($reset) {
             $this->pluralRulesets = [];
@@ -41,6 +40,6 @@ abstract class GenericLanguageInflectorFactory implements LanguageInflectorFacto
         }
         return $this;
     }
-    protected abstract function getSingularRuleset() : Ruleset;
-    protected abstract function getPluralRuleset() : Ruleset;
+    abstract protected function getSingularRuleset(): Ruleset;
+    abstract protected function getPluralRuleset(): Ruleset;
 }

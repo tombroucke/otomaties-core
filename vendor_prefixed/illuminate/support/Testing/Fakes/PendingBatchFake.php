@@ -4,7 +4,6 @@ namespace OtomatiesCoreVendor\Illuminate\Support\Testing\Fakes;
 
 use OtomatiesCoreVendor\Illuminate\Bus\PendingBatch;
 use OtomatiesCoreVendor\Illuminate\Support\Collection;
-/** @internal */
 class PendingBatchFake extends PendingBatch
 {
     /**

@@ -2,7 +2,6 @@
 
 namespace OtomatiesCoreVendor\Composer\Installers;
 
-/** @internal */
 class Concrete5Installer extends BaseInstaller
 {
     /** @var array<string, string> */

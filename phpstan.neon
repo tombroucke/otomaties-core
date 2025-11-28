@@ -6,7 +6,7 @@ parameters:
 		- app
 		- otomaties-core.php
 	bootstrapFiles:
-		- vendor_prefixed/vendor/autoload.php
+		- vendor_prefixed/autoload.php
 		- phpstan-bootstrap.php
 		- vendor/php-stubs/woocommerce-stubs/woocommerce-stubs.php
 		- vendor/php-stubs/wp-cli-stubs/wp-cli-stubs.php

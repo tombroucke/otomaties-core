@@ -128,7 +128,6 @@ use Throwable;
  * @method Carbon              yesterday(DateTimeZone|string|int|null $timezone = null)                                                                             Create a Carbon instance for yesterday.
  *
  * </autodoc>
- * @internal
  */
 class Factory
 {
@@ -189,7 +188,7 @@ class Factory
         's' => '([0-5][0-9])',
         'u' => '([0-9]{1,6})',
         'v' => '([0-9]{1,3})',
-        'e' => '([a-zA-Z]{1,5})|([a-zA-Z]*\\/[a-zA-Z]*)',
+        'e' => '([a-zA-Z]{1,5})|([a-zA-Z]*\/[a-zA-Z]*)',
         'I' => '(0|1)',
         'O' => '([+-](1[0123]|0[0-9])[0134][05])',
         'P' => '([+-](1[0123]|0[0-9]):[0134][05])',
@@ -207,7 +206,7 @@ class Factory
      *
      * @var array
      */
-    protected array $regexFormatModifiers = ['*' => '.+', ' ' => '[   ]', '#' => '[;:\\/.,()-]', '?' => '([^a]|[a])', '!' => '', '|' => '', '+' => ''];
+    protected array $regexFormatModifiers = ['*' => '.+', ' ' => '[   ]', '#' => '[;:\/.,()-]', '?' => '([^a]|[a])', '!' => '', '|' => '', '+' => ''];
     public function __construct(array $settings = [], ?string $className = null)
     {
         if ($className) {
@@ -215,50 +214,50 @@ class Factory
         }
         $this->settings = $settings;
     }
-    public function getClassName() : string
+    public function getClassName(): string
     {
         return $this->className;
     }
-    public function setClassName(string $className) : self
+    public function setClassName(string $className): self
     {
         $this->className = $className;
         return $this;
     }
-    public function className(?string $className = null) : self|string
+    public function className(?string $className = null): self|string
     {
         return $className === null ? $this->getClassName() : $this->setClassName($className);
     }
-    public function getSettings() : array
+    public function getSettings(): array
     {
         return $this->settings;
     }
-    public function setSettings(array $settings) : self
+    public function setSettings(array $settings): self
     {
         $this->settings = $settings;
         return $this;
     }
-    public function settings(?array $settings = null) : self|array
+    public function settings(?array $settings = null): self|array
     {
         return $settings === null ? $this->getSettings() : $this->setSettings($settings);
     }
-    public function mergeSettings(array $settings) : self
+    public function mergeSettings(array $settings): self
     {
-        $this->settings = \array_merge($this->settings, $settings);
+        $this->settings = array_merge($this->settings, $settings);
         return $this;
     }
-    public function setHumanDiffOptions(int $humanDiffOptions) : void
+    public function setHumanDiffOptions(int $humanDiffOptions): void
     {
         $this->mergeSettings(['humanDiffOptions' => $humanDiffOptions]);
     }
-    public function enableHumanDiffOption($humanDiffOption) : void
+    public function enableHumanDiffOption($humanDiffOption): void
     {
         $this->setHumanDiffOptions($this->getHumanDiffOptions() | $humanDiffOption);
     }
-    public function disableHumanDiffOption(int $humanDiffOption) : void
+    public function disableHumanDiffOption(int $humanDiffOption): void
     {
         $this->setHumanDiffOptions($this->getHumanDiffOptions() & ~$humanDiffOption);
     }
-    public function getHumanDiffOptions() : int
+    public function getHumanDiffOptions(): int
     {
         return (int) ($this->getSettings()['humanDiffOptions'] ?? 0);
     }
@@ -281,7 +280,7 @@ class Factory
      *
      * @param-closure-this  static  $macro
      */
-    public function macro(string $name, ?callable $macro) : void
+    public function macro(string $name, ?callable $macro): void
     {
         $macros = $this->getSettings()['macros'] ?? [];
         $macros[$name] = $macro;
@@ -290,7 +289,7 @@ class Factory
     /**
      * Remove all macros and generic macros.
      */
-    public function resetMacros() : void
+    public function resetMacros(): void
     {
         $this->mergeSettings(['macros' => null, 'genericMacros' => null]);
     }
@@ -302,12 +301,12 @@ class Factory
      *
      * @return void
      */
-    public function genericMacro(callable $macro, int $priority = 0) : void
+    public function genericMacro(callable $macro, int $priority = 0): void
     {
         $genericMacros = $this->getSettings()['genericMacros'] ?? [];
         if (!isset($genericMacros[$priority])) {
             $genericMacros[$priority] = [];
-            \krsort($genericMacros, \SORT_NUMERIC);
+            krsort($genericMacros, \SORT_NUMERIC);
         }
         $genericMacros[$priority][] = $macro;
         $this->mergeSettings(['genericMacros' => $genericMacros]);
@@ -315,28 +314,28 @@ class Factory
     /**
      * Checks if macro is registered globally.
      */
-    public function hasMacro(string $name) : bool
+    public function hasMacro(string $name): bool
     {
         return isset($this->getSettings()['macros'][$name]);
     }
     /**
      * Get the raw callable macro registered globally for a given name.
      */
-    public function getMacro(string $name) : ?callable
+    public function getMacro(string $name): ?callable
     {
         return $this->getSettings()['macros'][$name] ?? null;
     }
     /**
      * Set the default translator instance to use.
      */
-    public function setTranslator(TranslatorInterface $translator) : void
+    public function setTranslator(TranslatorInterface $translator): void
     {
         $this->translator = $translator;
     }
     /**
      * Initialize the default translator instance if necessary.
      */
-    public function getTranslator() : TranslatorInterface
+    public function getTranslator(): TranslatorInterface
     {
         return $this->translator ??= Translator::get();
     }
@@ -345,28 +344,28 @@ class Factory
      *
      * @return void
      */
-    public function resetToStringFormat() : void
+    public function resetToStringFormat(): void
     {
         $this->setToStringFormat(null);
     }
     /**
      * Set the default format used when type juggling a Carbon instance to a string.
      */
-    public function setToStringFormat(string|Closure|null $format) : void
+    public function setToStringFormat(string|Closure|null $format): void
     {
         $this->mergeSettings(['toStringFormat' => $format]);
     }
     /**
      * JSON serialize all Carbon instances using the given callback.
      */
-    public function serializeUsing(string|callable|null $format) : void
+    public function serializeUsing(string|callable|null $format): void
     {
         $this->mergeSettings(['toJsonFormat' => $format]);
     }
     /**
      * Enable the strict mode (or disable with passing false).
      */
-    public function useStrictMode(bool $strictModeEnabled = \true) : void
+    public function useStrictMode(bool $strictModeEnabled = \true): void
     {
         $this->mergeSettings(['strictMode' => $strictModeEnabled]);
     }
@@ -374,49 +373,49 @@ class Factory
      * Returns true if the strict mode is globally in use, false else.
      * (It can be overridden in specific instances.)
      */
-    public function isStrictModeEnabled() : bool
+    public function isStrictModeEnabled(): bool
     {
         return $this->getSettings()['strictMode'] ?? \true;
     }
     /**
      * Indicates if months should be calculated with overflow.
      */
-    public function useMonthsOverflow(bool $monthsOverflow = \true) : void
+    public function useMonthsOverflow(bool $monthsOverflow = \true): void
     {
         $this->mergeSettings(['monthOverflow' => $monthsOverflow]);
     }
     /**
      * Reset the month overflow behavior.
      */
-    public function resetMonthsOverflow() : void
+    public function resetMonthsOverflow(): void
     {
         $this->useMonthsOverflow();
     }
     /**
      * Get the month overflow global behavior (can be overridden in specific instances).
      */
-    public function shouldOverflowMonths() : bool
+    public function shouldOverflowMonths(): bool
     {
         return $this->getSettings()['monthOverflow'] ?? \true;
     }
     /**
      * Indicates if years should be calculated with overflow.
      */
-    public function useYearsOverflow(bool $yearsOverflow = \true) : void
+    public function useYearsOverflow(bool $yearsOverflow = \true): void
     {
         $this->mergeSettings(['yearOverflow' => $yearsOverflow]);
     }
     /**
      * Reset the month overflow behavior.
      */
-    public function resetYearsOverflow() : void
+    public function resetYearsOverflow(): void
     {
         $this->useYearsOverflow();
     }
     /**
      * Get the month overflow global behavior (can be overridden in specific instances).
      */
-    public function shouldOverflowYears() : bool
+    public function shouldOverflowYears(): bool
     {
         return $this->getSettings()['yearOverflow'] ?? \true;
     }
@@ -425,14 +424,14 @@ class Factory
      *
      * @return array
      */
-    public function getWeekendDays() : array
+    public function getWeekendDays(): array
     {
         return $this->weekendDays;
     }
     /**
      * Set weekend days
      */
-    public function setWeekendDays(array $days) : void
+    public function setWeekendDays(array $days): void
     {
         $this->weekendDays = $days;
     }
@@ -445,12 +444,12 @@ class Factory
      * Carbon::hasFormat('13:12:45', 'h:i:s'); // false
      * ```
      */
-    public function hasFormat(string $date, string $format) : bool
+    public function hasFormat(string $date, string $format): bool
     {
         // createFromFormat() is known to handle edge cases silently.
         // E.g. "1975-5-1" (Y-n-j) will still be parsed correctly when "Y-m-d" is supplied as the format.
         // To ensure we're really testing against our desired format, perform an additional regex validation.
-        return $this->matchFormatPattern($date, \preg_quote($format, '/'), $this->regexFormats);
+        return $this->matchFormatPattern($date, preg_quote($format, '/'), $this->regexFormats);
     }
     /**
      * Checks if the (date)time string is in a given format.
@@ -461,9 +460,9 @@ class Factory
      * Carbon::hasFormatWithModifiers('31/08/2015', 'm#d#Y'); // false
      * ```
      */
-    public function hasFormatWithModifiers(string $date, string $format) : bool
+    public function hasFormatWithModifiers(string $date, string $format): bool
     {
-        return $this->matchFormatPattern($date, $format, \array_merge($this->regexFormats, $this->regexFormatModifiers));
+        return $this->matchFormatPattern($date, $format, array_merge($this->regexFormats, $this->regexFormatModifiers));
     }
     /**
      * Set a Carbon instance (real or mock) to be returned when a "now"
@@ -487,7 +486,7 @@ class Factory
      *
      * @param DateTimeInterface|Closure|static|string|false|null $testNow real or mock Carbon instance
      */
-    public function setTestNow(mixed $testNow = null) : void
+    public function setTestNow(mixed $testNow = null): void
     {
         $this->useTimezoneFromTestNow = \false;
         $this->testNow = $testNow instanceof self || $testNow instanceof Closure ? $testNow : $this->make($testNow);
@@ -511,10 +510,10 @@ class Factory
      *
      * @param DateTimeInterface|Closure|static|string|false|null $testNow real or mock Carbon instance
      */
-    public function setTestNowAndTimezone(mixed $testNow = null, $timezone = null) : void
+    public function setTestNowAndTimezone(mixed $testNow = null, $timezone = null): void
     {
         if ($testNow) {
-            $this->testDefaultTimezone ??= \date_default_timezone_get();
+            $this->testDefaultTimezone ??= date_default_timezone_get();
         }
         $useDateInstanceTimezone = $testNow instanceof DateTimeInterface;
         if ($useDateInstanceTimezone) {
@@ -544,7 +543,7 @@ class Factory
      *
      * @return T
      */
-    public function withTestNow(mixed $testNow, callable $callback) : mixed
+    public function withTestNow(mixed $testNow, callable $callback): mixed
     {
         $this->setTestNow($testNow);
         try {
@@ -560,7 +559,7 @@ class Factory
      *
      * @return Closure|CarbonInterface|null the current instance used for testing
      */
-    public function getTestNow() : Closure|CarbonInterface|null
+    public function getTestNow(): Closure|CarbonInterface|null
     {
         if ($this->testNow === null) {
             $factory = FactoryImmutable::getDefaultInstance();
@@ -570,7 +569,7 @@ class Factory
         }
         return $this->testNow;
     }
-    public function handleTestNowClosure(Closure|CarbonInterface|null $testNow, DateTimeZone|string|int|null $timezone = null) : ?CarbonInterface
+    public function handleTestNowClosure(Closure|CarbonInterface|null $testNow, DateTimeZone|string|int|null $timezone = null): ?CarbonInterface
     {
         if ($testNow instanceof Closure) {
             $callback = Callback::fromClosure($testNow);
@@ -594,36 +593,36 @@ class Factory
      *
      * @return bool true if there is a test instance, otherwise false
      */
-    public function hasTestNow() : bool
+    public function hasTestNow(): bool
     {
         return $this->getTestNow() !== null;
     }
-    public function withTimeZone(DateTimeZone|string|int|null $timezone) : static
+    public function withTimeZone(DateTimeZone|string|int|null $timezone): static
     {
         $factory = clone $this;
         $factory->settings['timezone'] = $timezone;
         return $factory;
     }
-    public function __call(string $name, array $arguments) : mixed
+    public function __call(string $name, array $arguments): mixed
     {
         $method = new ReflectionMethod($this->className, $name);
         $settings = $this->settings;
         if ($settings && isset($settings['timezone'])) {
-            $timezoneParameters = \array_filter($method->getParameters(), function ($parameter) {
+            $timezoneParameters = array_filter($method->getParameters(), function ($parameter) {
                 return \in_array($parameter->getName(), ['tz', 'timezone'], \true);
             });
             $timezoneSetting = $settings['timezone'];
             if (isset($arguments[0]) && \in_array($name, ['instance', 'make', 'create', 'parse'], \true)) {
                 if ($arguments[0] instanceof DateTimeInterface) {
                     $settings['innerTimezone'] = $settings['timezone'];
-                } elseif (\is_string($arguments[0]) && \date_parse($arguments[0])['is_localtime']) {
+                } elseif (\is_string($arguments[0]) && date_parse($arguments[0])['is_localtime']) {
                     unset($settings['timezone'], $settings['innerTimezone']);
                 }
             }
             if (\count($timezoneParameters)) {
-                $index = \key($timezoneParameters);
+                $index = key($timezoneParameters);
                 if (!isset($arguments[$index])) {
-                    \array_splice($arguments, \key($timezoneParameters), 0, [$timezoneSetting]);
+                    array_splice($arguments, key($timezoneParameters), 0, [$timezoneSetting]);
                 }
                 unset($settings['timezone']);
             }
@@ -643,7 +642,7 @@ class Factory
     /**
      * Get the mocked date passed in setTestNow() and if it's a Closure, execute it.
      */
-    protected function getMockedTestNow(DateTimeZone|string|int|null $timezone) : ?CarbonInterface
+    protected function getMockedTestNow(DateTimeZone|string|int|null $timezone): ?CarbonInterface
     {
         $testNow = $this->handleTestNowClosure($this->getTestNow());
         if ($testNow instanceof CarbonInterface) {
@@ -670,24 +669,24 @@ class Factory
      *
      * @return bool
      */
-    private function matchFormatPattern(string $date, string $format, array $replacements) : bool
+    private function matchFormatPattern(string $date, string $format, array $replacements): bool
     {
         // Preg quote, but remove escaped backslashes since we'll deal with escaped characters in the format string.
-        $regex = \str_replace('\\\\', '\\', $format);
+        $regex = str_replace('\\\\', '\\', $format);
         // Replace not-escaped letters
-        $regex = \preg_replace_callback('/(?<!\\\\)((?:\\\\{2})*)([' . \implode('', \array_keys($replacements)) . '])/', static fn($match) => $match[1] . \strtr($match[2], $replacements), $regex);
+        $regex = preg_replace_callback('/(?<!\\\\)((?:\\\\{2})*)([' . implode('', array_keys($replacements)) . '])/', static fn($match) => $match[1] . strtr($match[2], $replacements), $regex);
         // Replace escaped letters by the letter itself
-        $regex = \preg_replace('/(?<!\\\\)((?:\\\\{2})*)\\\\(\\w)/', '$1$2', $regex);
+        $regex = preg_replace('/(?<!\\\\)((?:\\\\{2})*)\\\\(\w)/', '$1$2', $regex);
         // Escape not escaped slashes
-        $regex = \preg_replace('#(?<!\\\\)((?:\\\\{2})*)/#', '$1\\/', $regex);
-        return (bool) @\preg_match('/^' . $regex . '$/', $date);
+        $regex = preg_replace('#(?<!\\\\)((?:\\\\{2})*)/#', '$1\/', $regex);
+        return (bool) @preg_match('/^' . $regex . '$/', $date);
     }
-    private function setDefaultTimezone(string $timezone, ?DateTimeInterface $date = null) : void
+    private function setDefaultTimezone(string $timezone, ?DateTimeInterface $date = null): void
     {
         $previous = null;
         $success = \false;
         try {
-            $success = \date_default_timezone_set($timezone);
+            $success = date_default_timezone_set($timezone);
         } catch (Throwable $exception) {
             $previous = $exception;
         }

@@ -13,7 +13,6 @@ use function array_merge;
  * - The first ruleset that returns a different value for an irregular word wins
  * - The first ruleset that returns a different value for a regular word wins
  * - If none of the above match, the word is left as-is
- * @internal
  */
 class RulesetInflector implements WordInflector
 {
@@ -23,7 +22,7 @@ class RulesetInflector implements WordInflector
     {
         $this->rulesets = array_merge([$ruleset], $rulesets);
     }
-    public function inflect(string $word) : string
+    public function inflect(string $word): string
     {
         if ($word === '') {
             return '';

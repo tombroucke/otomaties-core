@@ -4,7 +4,6 @@ namespace OtomatiesCoreVendor\Illuminate\Support\Traits;
 
 use Closure;
 use OtomatiesCoreVendor\Illuminate\Support\HigherOrderWhenProxy;
-/** @internal */
 trait Conditionable
 {
     /**
@@ -21,10 +20,10 @@ trait Conditionable
     public function when($value = null, ?callable $callback = null, ?callable $default = null)
     {
         $value = $value instanceof Closure ? $value($this) : $value;
-        if (\func_num_args() === 0) {
+        if (func_num_args() === 0) {
             return new HigherOrderWhenProxy($this);
         }
-        if (\func_num_args() === 1) {
+        if (func_num_args() === 1) {
             return (new HigherOrderWhenProxy($this))->condition($value);
         }
         if ($value) {
@@ -48,10 +47,10 @@ trait Conditionable
     public function unless($value = null, ?callable $callback = null, ?callable $default = null)
     {
         $value = $value instanceof Closure ? $value($this) : $value;
-        if (\func_num_args() === 0) {
+        if (func_num_args() === 0) {
             return (new HigherOrderWhenProxy($this))->negateConditionOnCapture();
         }
-        if (\func_num_args() === 1) {
+        if (func_num_args() === 1) {
             return (new HigherOrderWhenProxy($this))->condition(!$value);
         }
         if (!$value) {

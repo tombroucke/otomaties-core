@@ -2,7 +2,6 @@
 
 namespace OtomatiesCoreVendor\Illuminate\Support\Traits;
 
-/** @internal */
 trait Tappable
 {
     /**

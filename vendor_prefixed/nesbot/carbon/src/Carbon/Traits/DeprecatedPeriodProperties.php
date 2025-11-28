@@ -13,7 +13,6 @@ namespace OtomatiesCoreVendor\Carbon\Traits;
 
 use OtomatiesCoreVendor\Carbon\CarbonInterface;
 use OtomatiesCoreVendor\Carbon\CarbonInterval;
-/** @internal */
 trait DeprecatedPeriodProperties
 {
     /**

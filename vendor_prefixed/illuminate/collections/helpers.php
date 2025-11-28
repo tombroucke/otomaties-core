@@ -4,7 +4,7 @@ namespace OtomatiesCoreVendor;
 
 use OtomatiesCoreVendor\Illuminate\Support\Arr;
 use OtomatiesCoreVendor\Illuminate\Support\Collection;
-if (!\function_exists('OtomatiesCoreVendor\\collect')) {
+if (!\function_exists('OtomatiesCoreVendor\collect')) {
     /**
      * Create a collection from the given value.
      *
@@ -13,14 +13,13 @@ if (!\function_exists('OtomatiesCoreVendor\\collect')) {
      *
      * @param  \Illuminate\Contracts\Support\Arrayable<TKey, TValue>|iterable<TKey, TValue>|null  $value
      * @return \Illuminate\Support\Collection<TKey, TValue>
-     * @internal
      */
-    function collect($value = []) : Collection
+    function collect($value = []): Collection
     {
         return new Collection($value);
     }
 }
-if (!\function_exists('OtomatiesCoreVendor\\data_fill')) {
+if (!\function_exists('OtomatiesCoreVendor\data_fill')) {
     /**
      * Fill in data where it's missing.
      *
@@ -28,23 +27,21 @@ if (!\function_exists('OtomatiesCoreVendor\\data_fill')) {
      * @param  string|array  $key
      * @param  mixed  $value
      * @return mixed
-     * @internal
      */
     function data_fill(&$target, $key, $value)
     {
         return data_set($target, $key, $value, \false);
     }
 }
-if (!\function_exists('OtomatiesCoreVendor\\data_has')) {
+if (!\function_exists('OtomatiesCoreVendor\data_has')) {
     /**
      * Determine if a key / property exists on an array or object using "dot" notation.
      *
      * @param  mixed  $target
      * @param  string|array|int|null  $key
      * @return bool
-     * @internal
      */
-    function data_has($target, $key) : bool
+    function data_has($target, $key): bool
     {
         if (\is_null($key) || $key === []) {
             return \false;
@@ -62,7 +59,7 @@ if (!\function_exists('OtomatiesCoreVendor\\data_has')) {
         return \true;
     }
 }
-if (!\function_exists('OtomatiesCoreVendor\\data_get')) {
+if (!\function_exists('OtomatiesCoreVendor\data_get')) {
     /**
      * Get an item from an array or object using "dot" notation.
      *
@@ -70,7 +67,6 @@ if (!\function_exists('OtomatiesCoreVendor\\data_get')) {
      * @param  string|array|int|null  $key
      * @param  mixed  $default
      * @return mixed
-     * @internal
      */
     function data_get($target, $key, $default = null)
     {
@@ -96,10 +92,10 @@ if (!\function_exists('OtomatiesCoreVendor\\data_get')) {
                 return \in_array('*', $key) ? Arr::collapse($result) : $result;
             }
             $segment = match ($segment) {
-                '\\*' => '*',
-                '\\{first}' => '{first}',
+                '\*' => '*',
+                '\{first}' => '{first}',
                 '{first}' => \array_key_first(Arr::from($target)),
-                '\\{last}' => '{last}',
+                '\{last}' => '{last}',
                 '{last}' => \array_key_last(Arr::from($target)),
                 default => $segment,
             };
@@ -114,7 +110,7 @@ if (!\function_exists('OtomatiesCoreVendor\\data_get')) {
         return $target;
     }
 }
-if (!\function_exists('OtomatiesCoreVendor\\data_set')) {
+if (!\function_exists('OtomatiesCoreVendor\data_set')) {
     /**
      * Set an item on an array or object using dot notation.
      *
@@ -123,7 +119,6 @@ if (!\function_exists('OtomatiesCoreVendor\\data_set')) {
      * @param  mixed  $value
      * @param  bool  $overwrite
      * @return mixed
-     * @internal
      */
     function data_set(&$target, $key, $value, $overwrite = \true)
     {
@@ -170,14 +165,13 @@ if (!\function_exists('OtomatiesCoreVendor\\data_set')) {
         return $target;
     }
 }
-if (!\function_exists('OtomatiesCoreVendor\\data_forget')) {
+if (!\function_exists('OtomatiesCoreVendor\data_forget')) {
     /**
      * Remove / unset an item from an array or object using "dot" notation.
      *
      * @param  mixed  $target
      * @param  string|array|int|null  $key
      * @return mixed
-     * @internal
      */
     function data_forget(&$target, $key)
     {
@@ -204,33 +198,31 @@ if (!\function_exists('OtomatiesCoreVendor\\data_forget')) {
         return $target;
     }
 }
-if (!\function_exists('OtomatiesCoreVendor\\head')) {
+if (!\function_exists('OtomatiesCoreVendor\head')) {
     /**
      * Get the first element of an array. Useful for method chaining.
      *
      * @param  array  $array
      * @return mixed
-     * @internal
      */
     function head($array)
     {
         return empty($array) ? \false : array_first($array);
     }
 }
-if (!\function_exists('OtomatiesCoreVendor\\last')) {
+if (!\function_exists('OtomatiesCoreVendor\last')) {
     /**
      * Get the last element from an array.
      *
      * @param  array  $array
      * @return mixed
-     * @internal
      */
     function last($array)
     {
         return empty($array) ? \false : array_last($array);
     }
 }
-if (!\function_exists('OtomatiesCoreVendor\\value')) {
+if (!\function_exists('OtomatiesCoreVendor\value')) {
     /**
      * Return the default value of the given value.
      *
@@ -240,14 +232,13 @@ if (!\function_exists('OtomatiesCoreVendor\\value')) {
      * @param  TValue|\Closure(TArgs): TValue  $value
      * @param  TArgs  ...$args
      * @return TValue
-     * @internal
      */
     function value($value, ...$args)
     {
         return $value instanceof \Closure ? $value(...$args) : $value;
     }
 }
-if (!\function_exists('OtomatiesCoreVendor\\when')) {
+if (!\function_exists('OtomatiesCoreVendor\when')) {
     /**
      * Return a value if the given condition is true.
      *
@@ -255,7 +246,6 @@ if (!\function_exists('OtomatiesCoreVendor\\when')) {
      * @param  \Closure|mixed  $value
      * @param  \Closure|mixed  $default
      * @return mixed
-     * @internal
      */
     function when($condition, $value, $default = null)
     {

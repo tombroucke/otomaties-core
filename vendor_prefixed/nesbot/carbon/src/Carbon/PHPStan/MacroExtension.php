@@ -28,7 +28,6 @@ use Throwable;
  * Class MacroExtension.
  *
  * @codeCoverageIgnore Pure PHPStan wrapper.
- * @internal
  */
 final class MacroExtension implements MethodsClassReflectionExtension
 {
@@ -54,7 +53,7 @@ final class MacroExtension implements MethodsClassReflectionExtension
     /**
      * {@inheritdoc}
      */
-    public function hasMethod(ClassReflection $classReflection, string $methodName) : bool
+    public function hasMethod(ClassReflection $classReflection, string $methodName): bool
     {
         if ($classReflection->getName() !== CarbonInterface::class && !$classReflection->isSubclassOf(CarbonInterface::class)) {
             return \false;
@@ -65,7 +64,7 @@ final class MacroExtension implements MethodsClassReflectionExtension
     /**
      * {@inheritdoc}
      */
-    public function getMethod(ClassReflection $classReflection, string $methodName) : MethodReflection
+    public function getMethod(ClassReflection $classReflection, string $methodName): MethodReflection
     {
         $macros = FactoryImmutable::getDefaultInstance()->getSettings()['macros'] ?? [];
         $macro = $macros[$methodName] ?? throw new InvalidArgumentException("Macro '{$methodName}' not found");

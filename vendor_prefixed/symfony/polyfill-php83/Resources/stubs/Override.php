@@ -11,7 +11,6 @@ namespace OtomatiesCoreVendor;
  * file that was distributed with this source code.
  */
 if (\PHP_VERSION_ID < 80300) {
-    /** @internal */
     #[\Attribute(\Attribute::TARGET_METHOD)]
     final class Override
     {
@@ -19,4 +18,5 @@ if (\PHP_VERSION_ID < 80300) {
         {
         }
     }
+    \class_alias('OtomatiesCoreVendor\Override', 'Override', \false);
 }

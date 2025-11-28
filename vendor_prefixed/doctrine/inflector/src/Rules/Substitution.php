@@ -3,7 +3,6 @@
 declare (strict_types=1);
 namespace OtomatiesCoreVendor\Doctrine\Inflector\Rules;
 
-/** @internal */
 final class Substitution
 {
     /** @var Word */
@@ -15,11 +14,11 @@ final class Substitution
         $this->from = $from;
         $this->to = $to;
     }
-    public function getFrom() : Word
+    public function getFrom(): Word
     {
         return $this->from;
     }
-    public function getTo() : Word
+    public function getTo(): Word
     {
         return $this->to;
     }

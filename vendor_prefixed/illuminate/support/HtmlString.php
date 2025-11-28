@@ -4,7 +4,6 @@ namespace OtomatiesCoreVendor\Illuminate\Support;
 
 use OtomatiesCoreVendor\Illuminate\Contracts\Support\Htmlable;
 use Stringable;
-/** @internal */
 class HtmlString implements Htmlable, Stringable
 {
     /**

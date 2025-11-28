@@ -4,7 +4,6 @@ declare (strict_types=1);
 namespace OtomatiesCoreVendor\Doctrine\Inflector\Rules;
 
 use function preg_match;
-/** @internal */
 final class Pattern
 {
     /** @var string */
@@ -20,15 +19,15 @@ final class Pattern
             $this->regex = '/' . $this->pattern . '/i';
         }
     }
-    public function getPattern() : string
+    public function getPattern(): string
     {
         return $this->pattern;
     }
-    public function getRegex() : string
+    public function getRegex(): string
     {
         return $this->regex;
     }
-    public function matches(string $word) : bool
+    public function matches(string $word): bool
     {
         return preg_match($this->getRegex(), $word) === 1;
     }

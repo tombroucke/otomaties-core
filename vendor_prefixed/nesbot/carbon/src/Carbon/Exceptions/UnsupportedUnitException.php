@@ -14,7 +14,6 @@ namespace OtomatiesCoreVendor\Carbon\Exceptions;
 use Exception;
 /**
  * @codeCoverageIgnore
- * @internal
  */
 class UnsupportedUnitException extends UnitException
 {

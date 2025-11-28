@@ -3,7 +3,6 @@
 namespace OtomatiesCoreVendor\Illuminate\Contracts\View;
 
 use OtomatiesCoreVendor\Illuminate\Contracts\Support\Renderable;
-/** @internal */
 interface View extends Renderable
 {
     /**

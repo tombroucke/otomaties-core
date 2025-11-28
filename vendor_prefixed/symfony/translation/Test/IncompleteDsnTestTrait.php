@@ -13,13 +13,12 @@ namespace OtomatiesCoreVendor\Symfony\Component\Translation\Test;
 use OtomatiesCoreVendor\PHPUnit\Framework\Attributes\DataProvider;
 use OtomatiesCoreVendor\Symfony\Component\Translation\Exception\IncompleteDsnException;
 use OtomatiesCoreVendor\Symfony\Component\Translation\Provider\Dsn;
-/** @internal */
 trait IncompleteDsnTestTrait
 {
     /**
      * @return iterable<array{0: string, 1?: string|null}>
      */
-    public static abstract function incompleteDsnProvider() : iterable;
+    abstract public static function incompleteDsnProvider(): iterable;
     /**
      * @dataProvider incompleteDsnProvider
      */

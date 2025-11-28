@@ -12,17 +12,16 @@ namespace OtomatiesCoreVendor\Symfony\Component\Translation;
 
 use OtomatiesCoreVendor\Symfony\Contracts\Translation\TranslatableInterface;
 use OtomatiesCoreVendor\Symfony\Contracts\Translation\TranslatorInterface;
-/** @internal */
 final class StaticMessage implements TranslatableInterface
 {
     public function __construct(private string $message)
     {
     }
-    public function getMessage() : string
+    public function getMessage(): string
     {
         return $this->message;
     }
-    public function trans(TranslatorInterface $translator, ?string $locale = null) : string
+    public function trans(TranslatorInterface $translator, ?string $locale = null): string
     {
         return $this->getMessage();
     }

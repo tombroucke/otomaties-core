@@ -16,7 +16,6 @@ use Traversable;
  *
  * @extends \Illuminate\Contracts\Support\Arrayable<TKey, TValue>
  * @extends \IteratorAggregate<TKey, TValue>
- * @internal
  */
 interface Enumerable extends Arrayable, Countable, IteratorAggregate, Jsonable, JsonSerializable
 {
@@ -1079,13 +1078,13 @@ interface Enumerable extends Arrayable, Countable, IteratorAggregate, Jsonable, 
      *
      * @return \Traversable<TKey, TValue>
      */
-    public function getIterator() : Traversable;
+    public function getIterator(): Traversable;
     /**
      * Count the number of items in the collection.
      *
      * @return int
      */
-    public function count() : int;
+    public function count(): int;
     /**
      * Count the number of items in the collection by a field or using a callback.
      *
@@ -1122,7 +1121,7 @@ interface Enumerable extends Arrayable, Countable, IteratorAggregate, Jsonable, 
      *
      * @return mixed
      */
-    public function jsonSerialize() : mixed;
+    public function jsonSerialize(): mixed;
     /**
      * Get the collection of items as JSON.
      *

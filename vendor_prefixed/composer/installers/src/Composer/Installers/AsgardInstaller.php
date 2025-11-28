@@ -2,7 +2,6 @@
 
 namespace OtomatiesCoreVendor\Composer\Installers;
 
-/** @internal */
 class AsgardInstaller extends BaseInstaller
 {
     /** @var array<string, string> */
@@ -14,7 +13,7 @@ class AsgardInstaller extends BaseInstaller
      *
      * For package type asgard-theme, cut off a trailing '-theme' if present.
      */
-    public function inflectPackageVars(array $vars) : array
+    public function inflectPackageVars(array $vars): array
     {
         if ($vars['type'] === 'asgard-module') {
             return $this->inflectPluginVars($vars);
@@ -28,22 +27,22 @@ class AsgardInstaller extends BaseInstaller
      * @param array<string, string> $vars
      * @return array<string, string>
      */
-    protected function inflectPluginVars(array $vars) : array
+    protected function inflectPluginVars(array $vars): array
     {
         $vars['name'] = $this->pregReplace('/-module$/', '', $vars['name']);
-        $vars['name'] = \str_replace(array('-', '_'), ' ', $vars['name']);
-        $vars['name'] = \str_replace(' ', '', \ucwords($vars['name']));
+        $vars['name'] = str_replace(array('-', '_'), ' ', $vars['name']);
+        $vars['name'] = str_replace(' ', '', ucwords($vars['name']));
         return $vars;
     }
     /**
      * @param array<string, string> $vars
      * @return array<string, string>
      */
-    protected function inflectThemeVars(array $vars) : array
+    protected function inflectThemeVars(array $vars): array
     {
         $vars['name'] = $this->pregReplace('/-theme$/', '', $vars['name']);
-        $vars['name'] = \str_replace(array('-', '_'), ' ', $vars['name']);
-        $vars['name'] = \str_replace(' ', '', \ucwords($vars['name']));
+        $vars['name'] = str_replace(array('-', '_'), ' ', $vars['name']);
+        $vars['name'] = str_replace(' ', '', ucwords($vars['name']));
         return $vars;
     }
 }

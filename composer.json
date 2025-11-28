@@ -24,6 +24,13 @@
       "phpstan/extension-installer": true
     }
   },
+  "extra": {
+    "scoped-dependencies": {
+      "illuminate/container": "^12.40",
+      "illuminate/support": "^12.40",
+      "illuminate/config": "^12.40"
+    }
+  },
   "scripts": {
     "build": [
       "@build:php"
@@ -44,6 +51,7 @@
     "laravel/pint": "^1.26",
     "php-stubs/woocommerce-stubs": "^9.5",
     "php-stubs/wp-cli-stubs": "^2.12",
-    "phpunit/phpunit": "^12.4"
+    "phpunit/phpunit": "^12.4",
+    "humbug/php-scoper": "^0.18.18"
   }
 }

@@ -15,11 +15,10 @@ use OtomatiesCoreVendor\Symfony\Component\DependencyInjection\ContainerBuilder;
 use OtomatiesCoreVendor\Symfony\Component\DependencyInjection\Reference;
 /**
  * Adds tagged translation.extractor services to translation extractor.
- * @internal
  */
 class TranslationExtractorPass implements CompilerPassInterface
 {
-    public function process(ContainerBuilder $container) : void
+    public function process(ContainerBuilder $container): void
     {
         if (!$container->hasDefinition('translation.extractor')) {
             return;

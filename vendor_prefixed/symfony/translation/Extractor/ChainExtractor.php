@@ -15,7 +15,6 @@ use OtomatiesCoreVendor\Symfony\Component\Translation\MessageCatalogue;
  * ChainExtractor extracts translation messages from template files.
  *
  * @author Michel Salib <michelsalib@hotmail.com>
- * @internal
  */
 class ChainExtractor implements ExtractorInterface
 {
@@ -28,17 +27,17 @@ class ChainExtractor implements ExtractorInterface
     /**
      * Adds a loader to the translation extractor.
      */
-    public function addExtractor(string $format, ExtractorInterface $extractor) : void
+    public function addExtractor(string $format, ExtractorInterface $extractor): void
     {
         $this->extractors[$format] = $extractor;
     }
-    public function setPrefix(string $prefix) : void
+    public function setPrefix(string $prefix): void
     {
         foreach ($this->extractors as $extractor) {
             $extractor->setPrefix($prefix);
         }
     }
-    public function extract(string|iterable $directory, MessageCatalogue $catalogue) : void
+    public function extract(string|iterable $directory, MessageCatalogue $catalogue): void
     {
         foreach ($this->extractors as $extractor) {
             $extractor->extract($directory, $catalogue);

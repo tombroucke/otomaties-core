@@ -3,7 +3,6 @@
 namespace OtomatiesCoreVendor\Illuminate\Contracts\Validation;
 
 use OtomatiesCoreVendor\Illuminate\Contracts\Support\MessageProvider;
-/** @internal */
 interface Validator extends MessageProvider
 {
     /**

@@ -15,7 +15,6 @@ use OtomatiesCoreVendor\Illuminate\Support\Str;
 use OtomatiesCoreVendor\Illuminate\Support\Traits\ForwardsCalls;
 use OtomatiesCoreVendor\Illuminate\Support\Traits\ReflectsClosures;
 use OtomatiesCoreVendor\PHPUnit\Framework\Assert as PHPUnit;
-/** @internal */
 class MailFake implements Factory, Fake, Mailer, MailQueue
 {
     use ForwardsCalls, ReflectsClosures;
@@ -63,11 +62,11 @@ class MailFake implements Factory, Fake, Mailer, MailQueue
     public function assertSent($mailable, $callback = null)
     {
         [$mailable, $callback] = $this->prepareMailableAndCallback($mailable, $callback);
-        if (\is_numeric($callback)) {
+        if (is_numeric($callback)) {
             return $this->assertSentTimes($mailable, $callback);
         }
-        $suggestion = \count($this->queuedMailables) ? ' Did you mean to use assertQueued() instead?' : '';
-        if (\is_array($callback) || \is_string($callback)) {
+        $suggestion = count($this->queuedMailables) ? ' Did you mean to use assertQueued() instead?' : '';
+        if (is_array($callback) || is_string($callback)) {
             foreach (Arr::wrap($callback) as $address) {
                 $callback = fn($mail) => $mail->hasTo($address);
                 PHPUnit::assertTrue($this->sent($mailable, $callback)->count() > 0, "The expected [{$mailable}] mailable was not sent to address [{$address}]." . $suggestion);
@@ -86,7 +85,7 @@ class MailFake implements Factory, Fake, Mailer, MailQueue
     protected function assertSentTimes($mailable, $times = 1)
     {
         $count = $this->sent($mailable)->count();
-        PHPUnit::assertSame($times, $count, \sprintf("The expected [{$mailable}] mailable was sent {$count} %s instead of {$times} %s.", Str::plural('time', $count), Str::plural('time', $times)));
+        PHPUnit::assertSame($times, $count, sprintf("The expected [{$mailable}] mailable was sent {$count} %s instead of {$times} %s.", Str::plural('time', $count), Str::plural('time', $times)));
     }
     /**
      * Determine if a mailable was not sent or queued to be sent based on a truth-test callback.
@@ -109,7 +108,7 @@ class MailFake implements Factory, Fake, Mailer, MailQueue
      */
     public function assertNotSent($mailable, $callback = null)
     {
-        if (\is_string($callback) || \is_array($callback)) {
+        if (is_string($callback) || is_array($callback)) {
             foreach (Arr::wrap($callback) as $address) {
                 $callback = fn($mail) => $mail->hasTo($address);
                 PHPUnit::assertCount(0, $this->sent($mailable, $callback), "The unexpected [{$mailable}] mailable was sent to address [{$address}].");
@@ -136,7 +135,7 @@ class MailFake implements Factory, Fake, Mailer, MailQueue
      */
     public function assertNothingSent()
     {
-        $mailableNames = (new Collection($this->mailables))->map(fn($mailable) => \get_class($mailable))->join("\n- ");
+        $mailableNames = (new Collection($this->mailables))->map(fn($mailable) => get_class($mailable))->join("\n- ");
         PHPUnit::assertEmpty($this->mailables, "The following mailables were sent unexpectedly:\n\n- {$mailableNames}\n");
     }
     /**
@@ -149,10 +148,10 @@ class MailFake implements Factory, Fake, Mailer, MailQueue
     public function assertQueued($mailable, $callback = null)
     {
         [$mailable, $callback] = $this->prepareMailableAndCallback($mailable, $callback);
-        if (\is_numeric($callback)) {
+        if (is_numeric($callback)) {
             return $this->assertQueuedTimes($mailable, $callback);
         }
-        if (\is_string($callback) || \is_array($callback)) {
+        if (is_string($callback) || is_array($callback)) {
             foreach (Arr::wrap($callback) as $address) {
                 $callback = fn($mail) => $mail->hasTo($address);
                 PHPUnit::assertTrue($this->queued($mailable, $callback)->count() > 0, "The expected [{$mailable}] mailable was not queued to address [{$address}].");
@@ -171,7 +170,7 @@ class MailFake implements Factory, Fake, Mailer, MailQueue
     protected function assertQueuedTimes($mailable, $times = 1)
     {
         $count = $this->queued($mailable)->count();
-        PHPUnit::assertSame($times, $count, \sprintf("The expected [{$mailable}] mailable was queued {$count} %s instead of {$times} %s.", Str::plural('time', $count), Str::plural('time', $times)));
+        PHPUnit::assertSame($times, $count, sprintf("The expected [{$mailable}] mailable was queued {$count} %s instead of {$times} %s.", Str::plural('time', $count), Str::plural('time', $times)));
     }
     /**
      * Determine if a mailable was not queued based on a truth-test callback.
@@ -182,7 +181,7 @@ class MailFake implements Factory, Fake, Mailer, MailQueue
      */
     public function assertNotQueued($mailable, $callback = null)
     {
-        if (\is_string($callback) || \is_array($callback)) {
+        if (is_string($callback) || is_array($callback)) {
             foreach (Arr::wrap($callback) as $address) {
                 $callback = fn($mail) => $mail->hasTo($address);
                 PHPUnit::assertCount(0, $this->queued($mailable, $callback), "The unexpected [{$mailable}] mailable was queued to address [{$address}].");
@@ -199,7 +198,7 @@ class MailFake implements Factory, Fake, Mailer, MailQueue
      */
     public function assertNothingQueued()
     {
-        $mailableNames = (new Collection($this->queuedMailables))->map(fn($mailable) => \get_class($mailable))->join("\n- ");
+        $mailableNames = (new Collection($this->queuedMailables))->map(fn($mailable) => get_class($mailable))->join("\n- ");
         PHPUnit::assertEmpty($this->queuedMailables, "The following mailables were queued unexpectedly:\n\n- {$mailableNames}\n");
     }
     /**

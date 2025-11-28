@@ -2,7 +2,6 @@
 
 namespace OtomatiesCoreVendor\Composer\Installers;
 
-/** @internal */
 class ChefInstaller extends BaseInstaller
 {
     /** @var array<string, string> */

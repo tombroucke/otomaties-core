@@ -11,7 +11,6 @@ declare (strict_types=1);
  */
 namespace OtomatiesCoreVendor\Carbon;
 
-/** @internal */
 class CarbonPeriodImmutable extends CarbonPeriod
 {
     /**
@@ -28,7 +27,7 @@ class CarbonPeriodImmutable extends CarbonPeriod
      * Prepare the instance to be set (self if mutable to be mutated,
      * copy if immutable to generate a new instance).
      */
-    protected function copyIfImmutable() : static
+    protected function copyIfImmutable(): static
     {
         return $this->constructed ? clone $this : $this;
     }

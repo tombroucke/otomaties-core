@@ -3,7 +3,6 @@
 namespace OtomatiesCoreVendor\Illuminate\Contracts\Database;
 
 use Throwable;
-/** @internal */
 interface ConcurrencyErrorDetector
 {
     /**
@@ -12,5 +11,5 @@ interface ConcurrencyErrorDetector
      * @param  \Throwable  $e
      * @return bool
      */
-    public function causedByConcurrencyError(Throwable $e) : bool;
+    public function causedByConcurrencyError(Throwable $e): bool;
 }

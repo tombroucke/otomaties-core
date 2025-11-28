@@ -33,7 +33,6 @@ namespace OtomatiesCoreVendor\Illuminate\Support\Facades;
  * @method static void flushMacros()
  *
  * @see \Illuminate\Translation\Translator
- * @internal
  */
 class Lang extends Facade
 {

@@ -3,7 +3,6 @@
 namespace OtomatiesCoreVendor\Illuminate\Contracts\Pipeline;
 
 use Closure;
-/** @internal */
 interface Pipeline
 {
     /**

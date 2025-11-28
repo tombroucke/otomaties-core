@@ -12,7 +12,6 @@ namespace OtomatiesCoreVendor\Symfony\Component\Translation\Exception;
 
 /**
  * @author Oskar Stark <oskarstark@googlemail.com>
- * @internal
  */
 class MissingRequiredOptionException extends IncompleteDsnException
 {

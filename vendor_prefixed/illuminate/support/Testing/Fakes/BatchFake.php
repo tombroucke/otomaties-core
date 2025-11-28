@@ -7,7 +7,6 @@ use OtomatiesCoreVendor\Illuminate\Bus\Batch;
 use OtomatiesCoreVendor\Illuminate\Bus\UpdatedBatchJobCounts;
 use OtomatiesCoreVendor\Illuminate\Support\Carbon;
 use OtomatiesCoreVendor\Illuminate\Support\Collection;
-/** @internal */
 class BatchFake extends Batch
 {
     /**

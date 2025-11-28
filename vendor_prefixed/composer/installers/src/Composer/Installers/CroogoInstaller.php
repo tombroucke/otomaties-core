@@ -2,7 +2,6 @@
 
 namespace OtomatiesCoreVendor\Composer\Installers;
 
-/** @internal */
 class CroogoInstaller extends BaseInstaller
 {
     /** @var array<string, string> */
@@ -10,10 +9,10 @@ class CroogoInstaller extends BaseInstaller
     /**
      * Format package name to CamelCase
      */
-    public function inflectPackageVars(array $vars) : array
+    public function inflectPackageVars(array $vars): array
     {
-        $vars['name'] = \strtolower(\str_replace(array('-', '_'), ' ', $vars['name']));
-        $vars['name'] = \str_replace(' ', '', \ucwords($vars['name']));
+        $vars['name'] = strtolower(str_replace(array('-', '_'), ' ', $vars['name']));
+        $vars['name'] = str_replace(' ', '', ucwords($vars['name']));
         return $vars;
     }
 }

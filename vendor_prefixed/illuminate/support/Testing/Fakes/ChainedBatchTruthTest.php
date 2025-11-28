@@ -3,7 +3,6 @@
 namespace OtomatiesCoreVendor\Illuminate\Support\Testing\Fakes;
 
 use Closure;
-/** @internal */
 class ChainedBatchTruthTest
 {
     /**
@@ -29,6 +28,6 @@ class ChainedBatchTruthTest
      */
     public function __invoke($pendingBatch)
     {
-        return \call_user_func($this->callback, $pendingBatch);
+        return call_user_func($this->callback, $pendingBatch);
     }
 }

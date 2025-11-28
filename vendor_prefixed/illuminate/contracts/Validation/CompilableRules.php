@@ -2,7 +2,6 @@
 
 namespace OtomatiesCoreVendor\Illuminate\Contracts\Validation;
 
-/** @internal */
 interface CompilableRules
 {
     /**

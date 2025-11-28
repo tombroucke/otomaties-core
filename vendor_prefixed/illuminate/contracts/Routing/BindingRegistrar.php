@@ -2,7 +2,6 @@
 
 namespace OtomatiesCoreVendor\Illuminate\Contracts\Routing;
 
-/** @internal */
 interface BindingRegistrar
 {
     /**

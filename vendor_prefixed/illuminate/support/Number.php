@@ -5,7 +5,6 @@ namespace OtomatiesCoreVendor\Illuminate\Support;
 use OtomatiesCoreVendor\Illuminate\Support\Traits\Macroable;
 use NumberFormatter;
 use RuntimeException;
-/** @internal */
 class Number
 {
     use Macroable;
@@ -34,9 +33,9 @@ class Number
     {
         static::ensureIntlExtensionIsInstalled();
         $formatter = new NumberFormatter($locale ?? static::$locale, NumberFormatter::DECIMAL);
-        if (!\is_null($maxPrecision)) {
+        if (!is_null($maxPrecision)) {
             $formatter->setAttribute(NumberFormatter::MAX_FRACTION_DIGITS, $maxPrecision);
-        } elseif (!\is_null($precision)) {
+        } elseif (!is_null($precision)) {
             $formatter->setAttribute(NumberFormatter::FRACTION_DIGITS, $precision);
         }
         return $formatter->format($number);
@@ -49,7 +48,7 @@ class Number
      * @param  string|null  $locale
      * @return int|float|false
      */
-    public static function parse(string $string, ?int $type = NumberFormatter::TYPE_DOUBLE, ?string $locale = null) : int|float|false
+    public static function parse(string $string, ?int $type = NumberFormatter::TYPE_DOUBLE, ?string $locale = null): int|float|false
     {
         static::ensureIntlExtensionIsInstalled();
         $formatter = new NumberFormatter($locale ?? static::$locale, NumberFormatter::DECIMAL);
@@ -62,7 +61,7 @@ class Number
      * @param  string|null  $locale
      * @return int|false
      */
-    public static function parseInt(string $string, ?string $locale = null) : int|false
+    public static function parseInt(string $string, ?string $locale = null): int|false
     {
         return self::parse($string, NumberFormatter::TYPE_INT32, $locale);
     }
@@ -73,7 +72,7 @@ class Number
      * @param  string|null  $locale
      * @return float|false
      */
-    public static function parseFloat(string $string, ?string $locale = null) : float|false
+    public static function parseFloat(string $string, ?string $locale = null): float|false
     {
         return self::parse($string, NumberFormatter::TYPE_DOUBLE, $locale);
     }
@@ -89,10 +88,10 @@ class Number
     public static function spell(int|float $number, ?string $locale = null, ?int $after = null, ?int $until = null)
     {
         static::ensureIntlExtensionIsInstalled();
-        if (!\is_null($after) && $number <= $after) {
+        if (!is_null($after) && $number <= $after) {
             return static::format($number, locale: $locale);
         }
-        if (!\is_null($until) && $number >= $until) {
+        if (!is_null($until) && $number >= $until) {
             return static::format($number, locale: $locale);
         }
         $formatter = new NumberFormatter($locale ?? static::$locale, NumberFormatter::SPELLOUT);
@@ -138,7 +137,7 @@ class Number
     {
         static::ensureIntlExtensionIsInstalled();
         $formatter = new NumberFormatter($locale ?? static::$locale, NumberFormatter::PERCENT);
-        if (!\is_null($maxPrecision)) {
+        if (!is_null($maxPrecision)) {
             $formatter->setAttribute(NumberFormatter::MAX_FRACTION_DIGITS, $maxPrecision);
         } else {
             $formatter->setAttribute(NumberFormatter::FRACTION_DIGITS, $precision);
@@ -158,7 +157,7 @@ class Number
     {
         static::ensureIntlExtensionIsInstalled();
         $formatter = new NumberFormatter($locale ?? static::$locale, NumberFormatter::CURRENCY);
-        if (!\is_null($precision)) {
+        if (!is_null($precision)) {
             $formatter->setAttribute(NumberFormatter::FRACTION_DIGITS, $precision);
         }
         return $formatter->formatCurrency($number, !empty($in) ? $in : static::$currency);
@@ -174,11 +173,11 @@ class Number
     public static function fileSize(int|float $bytes, int $precision = 0, ?int $maxPrecision = null)
     {
         $units = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
-        $unitCount = \count($units);
+        $unitCount = count($units);
         for ($i = 0; $bytes / 1024 > 0.90000000000000002 && $i < $unitCount - 1; $i++) {
             $bytes /= 1024;
         }
-        return \sprintf('%s %s', static::format($bytes, $precision, $maxPrecision), $units[$i]);
+        return sprintf('%s %s', static::format($bytes, $precision, $maxPrecision), $units[$i]);
     }
     /**
      * Convert the number to its human-readable equivalent.
@@ -220,17 +219,17 @@ class Number
             $units = [3 => 'K', 6 => 'M', 9 => 'B', 12 => 'T', 15 => 'Q'];
         }
         switch (\true) {
-            case \floatval($number) === 0.0:
+            case floatval($number) === 0.0:
                 return $precision > 0 ? static::format(0, $precision, $maxPrecision) : '0';
             case $number < 0:
-                return \sprintf('-%s', static::summarize(\abs($number), $precision, $maxPrecision, $units));
+                return sprintf('-%s', static::summarize(abs($number), $precision, $maxPrecision, $units));
             case $number >= 1000000000000000.0:
-                return \sprintf('%s' . \end($units), static::summarize($number / 1000000000000000.0, $precision, $maxPrecision, $units));
+                return sprintf('%s' . end($units), static::summarize($number / 1000000000000000.0, $precision, $maxPrecision, $units));
         }
-        $numberExponent = \floor(\log10($number));
+        $numberExponent = floor(log10($number));
         $displayExponent = $numberExponent - $numberExponent % 3;
-        $number /= \pow(10, $displayExponent);
-        return \trim(\sprintf('%s%s', static::format($number, $precision, $maxPrecision), $units[$displayExponent] ?? ''));
+        $number /= pow(10, $displayExponent);
+        return trim(sprintf('%s%s', static::format($number, $precision, $maxPrecision), $units[$displayExponent] ?? ''));
     }
     /**
      * Clamp the given number between the given minimum and maximum.
@@ -242,7 +241,7 @@ class Number
      */
     public static function clamp(int|float $number, int|float $min, int|float $max)
     {
-        return \min(\max($number, $min), $max);
+        return min(max($number, $min), $max);
     }
     /**
      * Split the given number into pairs of min/max values.
@@ -273,7 +272,7 @@ class Number
      */
     public static function trim(int|float $number)
     {
-        return \json_decode(\json_encode($number));
+        return json_decode(json_encode($number));
     }
     /**
      * Execute the given callback using the given locale.
@@ -356,8 +355,8 @@ class Number
      */
     protected static function ensureIntlExtensionIsInstalled()
     {
-        if (!\extension_loaded('intl')) {
-            $method = \debug_backtrace(\DEBUG_BACKTRACE_IGNORE_ARGS, 2)[1]['function'];
+        if (!extension_loaded('intl')) {
+            $method = debug_backtrace(\DEBUG_BACKTRACE_IGNORE_ARGS, 2)[1]['function'];
             throw new RuntimeException('The "intl" PHP extension is required to use the [' . $method . '] method.');
         }
     }

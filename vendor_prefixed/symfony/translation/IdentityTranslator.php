@@ -17,7 +17,6 @@ use OtomatiesCoreVendor\Symfony\Contracts\Translation\TranslatorTrait;
  * IdentityTranslator does not translate anything.
  *
  * @author Fabien Potencier <fabien@symfony.com>
- * @internal
  */
 class IdentityTranslator implements TranslatorInterface, LocaleAwareInterface
 {

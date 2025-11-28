@@ -51,7 +51,6 @@ namespace OtomatiesCoreVendor\Illuminate\Support\Facades;
  * @method static void flushMacros()
  *
  * @see \Illuminate\Database\Schema\Builder
- * @internal
  */
 class Schema extends Facade
 {

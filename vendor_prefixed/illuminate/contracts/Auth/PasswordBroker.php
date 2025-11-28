@@ -3,7 +3,6 @@
 namespace OtomatiesCoreVendor\Illuminate\Contracts\Auth;
 
 use Closure;
-/** @internal */
 interface PasswordBroker
 {
     /**

@@ -5,7 +5,6 @@ namespace OtomatiesCoreVendor\Illuminate\Container\Attributes;
 use Attribute;
 use OtomatiesCoreVendor\Illuminate\Contracts\Container\Container;
 use OtomatiesCoreVendor\Illuminate\Contracts\Container\ContextualAttribute;
-/** @internal */
 #[Attribute(Attribute::TARGET_PARAMETER)]
 class Give implements ContextualAttribute
 {
@@ -25,7 +24,7 @@ class Give implements ContextualAttribute
      * @param  \Illuminate\Contracts\Container\Container  $container
      * @return mixed
      */
-    public static function resolve(self $attribute, Container $container) : mixed
+    public static function resolve(self $attribute, Container $container): mixed
     {
         return $container->make($attribute->class, $attribute->params);
     }

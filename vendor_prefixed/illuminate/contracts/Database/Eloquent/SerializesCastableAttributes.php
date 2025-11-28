@@ -3,7 +3,6 @@
 namespace OtomatiesCoreVendor\Illuminate\Contracts\Database\Eloquent;
 
 use OtomatiesCoreVendor\Illuminate\Database\Eloquent\Model;
-/** @internal */
 interface SerializesCastableAttributes
 {
     /**

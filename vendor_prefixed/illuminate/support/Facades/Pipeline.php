@@ -20,7 +20,6 @@ namespace OtomatiesCoreVendor\Illuminate\Support\Facades;
  * @method static void flushMacros()
  *
  * @see \Illuminate\Pipeline\Pipeline
- * @internal
  */
 class Pipeline extends Facade
 {

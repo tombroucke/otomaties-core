@@ -31,7 +31,6 @@ use OtomatiesCoreVendor\Carbon\WeekDay;
  * @method $this setTime(int $hour, int $minute, int $second = 0, int $microseconds = 0)
  * @method $this setDate(int $year, int $month, int $day)
  * @method $this addMonths(int $value = 1)
- * @internal
  */
 trait Boundaries
 {
@@ -252,7 +251,7 @@ trait Boundaries
      *
      * @return static
      */
-    public function startOfWeek(WeekDay|int|null $weekStartsAt = null) : static
+    public function startOfWeek(WeekDay|int|null $weekStartsAt = null): static
     {
         return $this->subDays((static::DAYS_PER_WEEK + $this->dayOfWeek - (WeekDay::int($weekStartsAt) ?? $this->firstWeekDay)) % static::DAYS_PER_WEEK)->startOfDay();
     }
@@ -270,7 +269,7 @@ trait Boundaries
      *
      * @return static
      */
-    public function endOfWeek(WeekDay|int|null $weekEndsAt = null) : static
+    public function endOfWeek(WeekDay|int|null $weekEndsAt = null): static
     {
         return $this->addDays((static::DAYS_PER_WEEK - $this->dayOfWeek + (WeekDay::int($weekEndsAt) ?? $this->lastWeekDay)) % static::DAYS_PER_WEEK)->endOfDay();
     }
@@ -282,7 +281,7 @@ trait Boundaries
      * echo Carbon::parse('2018-07-25 12:45:16')->startOfHour();
      * ```
      */
-    public function startOfHour() : static
+    public function startOfHour(): static
     {
         return $this->setTime($this->hour, 0, 0, 0);
     }
@@ -294,7 +293,7 @@ trait Boundaries
      * echo Carbon::parse('2018-07-25 12:45:16')->endOfHour();
      * ```
      */
-    public function endOfHour() : static
+    public function endOfHour(): static
     {
         return $this->setTime($this->hour, static::MINUTES_PER_HOUR - 1, static::SECONDS_PER_MINUTE - 1, static::MICROSECONDS_PER_SECOND - 1);
     }
@@ -306,7 +305,7 @@ trait Boundaries
      * echo Carbon::parse('2018-07-25 12:45:16')->startOfMinute();
      * ```
      */
-    public function startOfMinute() : static
+    public function startOfMinute(): static
     {
         return $this->setTime($this->hour, $this->minute, 0, 0);
     }
@@ -318,7 +317,7 @@ trait Boundaries
      * echo Carbon::parse('2018-07-25 12:45:16')->endOfMinute();
      * ```
      */
-    public function endOfMinute() : static
+    public function endOfMinute(): static
     {
         return $this->setTime($this->hour, $this->minute, static::SECONDS_PER_MINUTE - 1, static::MICROSECONDS_PER_SECOND - 1);
     }
@@ -332,7 +331,7 @@ trait Boundaries
      *   ->format('H:i:s.u');
      * ```
      */
-    public function startOfSecond() : static
+    public function startOfSecond(): static
     {
         return $this->setTime($this->hour, $this->minute, $this->second, 0);
     }
@@ -346,7 +345,7 @@ trait Boundaries
      *   ->format('H:i:s.u');
      * ```
      */
-    public function endOfSecond() : static
+    public function endOfSecond(): static
     {
         return $this->setTime($this->hour, $this->minute, $this->second, static::MICROSECONDS_PER_SECOND - 1);
     }
@@ -360,9 +359,9 @@ trait Boundaries
      *   ->format('H:i:s.u');
      * ```
      */
-    public function startOfMillisecond() : static
+    public function startOfMillisecond(): static
     {
-        $millisecond = (int) \floor($this->micro / 1000);
+        $millisecond = (int) floor($this->micro / 1000);
         return $this->setTime($this->hour, $this->minute, $this->second, $millisecond * 1000);
     }
     /**
@@ -375,9 +374,9 @@ trait Boundaries
      *   ->format('H:i:s.u');
      * ```
      */
-    public function endOfMillisecond() : static
+    public function endOfMillisecond(): static
     {
-        $millisecond = (int) \floor($this->micro / 1000);
+        $millisecond = (int) floor($this->micro / 1000);
         return $this->setTime($this->hour, $this->minute, $this->second, $millisecond * 1000 + 999);
     }
     /**
@@ -390,11 +389,11 @@ trait Boundaries
      *   ->endOf(Unit::Week, Carbon::FRIDAY);
      * ```
      */
-    public function startOf(Unit|string $unit, mixed ...$params) : static
+    public function startOf(Unit|string $unit, mixed ...$params): static
     {
-        $ucfUnit = \ucfirst($unit instanceof Unit ? $unit->value : static::singularUnit($unit));
+        $ucfUnit = ucfirst($unit instanceof Unit ? $unit->value : static::singularUnit($unit));
         $method = "startOf{$ucfUnit}";
-        if (!\method_exists($this, $method)) {
+        if (!method_exists($this, $method)) {
             throw new UnknownUnitException($unit);
         }
         return $this->{$method}(...$params);
@@ -409,11 +408,11 @@ trait Boundaries
      *   ->endOf(Unit::Week, Carbon::FRIDAY);
      * ```
      */
-    public function endOf(Unit|string $unit, mixed ...$params) : static
+    public function endOf(Unit|string $unit, mixed ...$params): static
     {
-        $ucfUnit = \ucfirst($unit instanceof Unit ? $unit->value : static::singularUnit($unit));
+        $ucfUnit = ucfirst($unit instanceof Unit ? $unit->value : static::singularUnit($unit));
         $method = "endOf{$ucfUnit}";
-        if (!\method_exists($this, $method)) {
+        if (!method_exists($this, $method)) {
             throw new UnknownUnitException($unit);
         }
         return $this->{$method}(...$params);

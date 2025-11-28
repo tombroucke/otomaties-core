@@ -2,7 +2,6 @@
 
 namespace OtomatiesCoreVendor\Illuminate\Contracts\Notifications;
 
-/** @internal */
 interface Factory
 {
     /**

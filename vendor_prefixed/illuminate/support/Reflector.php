@@ -8,7 +8,6 @@ use ReflectionEnum;
 use ReflectionMethod;
 use ReflectionNamedType;
 use ReflectionUnionType;
-/** @internal */
 class Reflector
 {
     /**
@@ -20,27 +19,27 @@ class Reflector
      */
     public static function isCallable($var, $syntaxOnly = \false)
     {
-        if (!\is_array($var)) {
-            return \is_callable($var, $syntaxOnly);
+        if (!is_array($var)) {
+            return is_callable($var, $syntaxOnly);
         }
-        if (!isset($var[0], $var[1]) || !\is_string($var[1] ?? null)) {
+        if (!isset($var[0], $var[1]) || !is_string($var[1] ?? null)) {
             return \false;
         }
-        if ($syntaxOnly && (\is_string($var[0]) || \is_object($var[0])) && \is_string($var[1])) {
+        if ($syntaxOnly && (is_string($var[0]) || is_object($var[0])) && is_string($var[1])) {
             return \true;
         }
-        $class = \is_object($var[0]) ? \get_class($var[0]) : $var[0];
+        $class = is_object($var[0]) ? get_class($var[0]) : $var[0];
         $method = $var[1];
-        if (!\class_exists($class)) {
+        if (!class_exists($class)) {
             return \false;
         }
-        if (\method_exists($class, $method)) {
+        if (method_exists($class, $method)) {
             return (new ReflectionMethod($class, $method))->isPublic();
         }
-        if (\is_object($var[0]) && \method_exists($class, '__call')) {
+        if (is_object($var[0]) && method_exists($class, '__call')) {
             return (new ReflectionMethod($class, '__call'))->isPublic();
         }
-        if (!\is_object($var[0]) && \method_exists($class, '__callStatic')) {
+        if (!is_object($var[0]) && method_exists($class, '__callStatic')) {
             return (new ReflectionMethod($class, '__callStatic'))->isPublic();
         }
         return \false;
@@ -73,8 +72,8 @@ class Reflector
         $reflectionClass = new ReflectionClass($objectOrClass);
         $attributes = [];
         do {
-            $attributes[$reflectionClass->name] = new Collection(\array_map(fn(ReflectionAttribute $reflectionAttribute) => $reflectionAttribute->newInstance(), $reflectionClass->getAttributes($attribute)));
-        } while ($includeParents && \false !== ($reflectionClass = $reflectionClass->getParentClass()));
+            $attributes[$reflectionClass->name] = new Collection(array_map(fn(ReflectionAttribute $reflectionAttribute) => $reflectionAttribute->newInstance(), $reflectionClass->getAttributes($attribute)));
+        } while ($includeParents && \false !== $reflectionClass = $reflectionClass->getParentClass());
         return $includeParents ? new Collection($attributes) : array_first($attributes);
     }
     /**
@@ -101,7 +100,7 @@ class Reflector
     {
         $type = $parameter->getType();
         if (!$type instanceof ReflectionUnionType) {
-            return \array_filter([static::getParameterClassName($parameter)]);
+            return array_filter([static::getParameterClassName($parameter)]);
         }
         $unionTypes = [];
         foreach ($type->getTypes() as $listedType) {
@@ -110,7 +109,7 @@ class Reflector
             }
             $unionTypes[] = static::getTypeName($parameter, $listedType);
         }
-        return \array_filter($unionTypes);
+        return array_filter($unionTypes);
     }
     /**
      * Get the given type's class name.
@@ -122,11 +121,11 @@ class Reflector
     protected static function getTypeName($parameter, $type)
     {
         $name = $type->getName();
-        if (!\is_null($class = $parameter->getDeclaringClass())) {
+        if (!is_null($class = $parameter->getDeclaringClass())) {
             if ($name === 'self') {
                 return $class->getName();
             }
-            if ($name === 'parent' && ($parent = $class->getParentClass())) {
+            if ($name === 'parent' && $parent = $class->getParentClass()) {
                 return $parent->getName();
             }
         }
@@ -142,7 +141,7 @@ class Reflector
     public static function isParameterSubclassOf($parameter, $className)
     {
         $paramClassName = static::getParameterClassName($parameter);
-        return $paramClassName && (\class_exists($paramClassName) || \interface_exists($paramClassName)) && (new ReflectionClass($paramClassName))->isSubclassOf($className);
+        return $paramClassName && (class_exists($paramClassName) || interface_exists($paramClassName)) && (new ReflectionClass($paramClassName))->isSubclassOf($className);
     }
     /**
      * Determine if the parameter's type is a Backed Enum with a string backing type.
@@ -156,10 +155,10 @@ class Reflector
             return \false;
         }
         $backedEnumClass = $parameter->getType()?->getName();
-        if (\is_null($backedEnumClass)) {
+        if (is_null($backedEnumClass)) {
             return \false;
         }
-        if (\enum_exists($backedEnumClass)) {
+        if (enum_exists($backedEnumClass)) {
             $reflectionBackedEnum = new ReflectionEnum($backedEnumClass);
             return $reflectionBackedEnum->isBacked() && $reflectionBackedEnum->getBackingType()->getName() == 'string';
         }

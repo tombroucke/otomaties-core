@@ -7,25 +7,24 @@ use OtomatiesCoreVendor\Doctrine\Inflector\Rules\Pattern;
 use OtomatiesCoreVendor\Doctrine\Inflector\Rules\Substitution;
 use OtomatiesCoreVendor\Doctrine\Inflector\Rules\Transformation;
 use OtomatiesCoreVendor\Doctrine\Inflector\Rules\Word;
-/** @internal */
 class Inflectible
 {
     /** @return Transformation[] */
-    public static function getSingular() : iterable
+    public static function getSingular(): iterable
     {
-        (yield new Transformation(new Pattern('/l[ae]r$/i'), ''));
+        yield new Transformation(new Pattern('/l[ae]r$/i'), '');
     }
     /** @return Transformation[] */
-    public static function getPlural() : iterable
+    public static function getPlural(): iterable
     {
-        (yield new Transformation(new Pattern('/([eöiü][^aoıueöiü]{0,6})$/u'), '\\1ler'));
-        (yield new Transformation(new Pattern('/([aoıu][^aoıueöiü]{0,6})$/u'), '\\1lar'));
+        yield new Transformation(new Pattern('/([eöiü][^aoıueöiü]{0,6})$/u'), '\1ler');
+        yield new Transformation(new Pattern('/([aoıu][^aoıueöiü]{0,6})$/u'), '\1lar');
     }
     /** @return Substitution[] */
-    public static function getIrregular() : iterable
+    public static function getIrregular(): iterable
     {
-        (yield new Substitution(new Word('ben'), new Word('biz')));
-        (yield new Substitution(new Word('sen'), new Word('siz')));
-        (yield new Substitution(new Word('o'), new Word('onlar')));
+        yield new Substitution(new Word('ben'), new Word('biz'));
+        yield new Substitution(new Word('sen'), new Word('siz'));
+        yield new Substitution(new Word('o'), new Word('onlar'));
     }
 }

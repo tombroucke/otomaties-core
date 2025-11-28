@@ -16,22 +16,21 @@ use OtomatiesCoreVendor\PhpParser\NodeVisitor;
  * @author Mathieu Santostefano <msantostefano@protonmail.com>
  *
  * Code mostly comes from https://github.com/php-translation/extractor/blob/master/src/Visitor/Php/Symfony/Constraint.php
- * @internal
  */
 final class ConstraintVisitor extends AbstractVisitor implements NodeVisitor
 {
     public function __construct(private readonly array $constraintClassNames = [])
     {
     }
-    public function beforeTraverse(array $nodes) : ?Node
+    public function beforeTraverse(array $nodes): ?Node
     {
         return null;
     }
-    public function enterNode(Node $node) : ?Node
+    public function enterNode(Node $node): ?Node
     {
         return null;
     }
-    public function leaveNode(Node $node) : ?Node
+    public function leaveNode(Node $node): ?Node
     {
         if (!$node instanceof Node\Expr\New_ && !$node instanceof Node\Attribute) {
             return null;
@@ -68,7 +67,7 @@ final class ConstraintVisitor extends AbstractVisitor implements NodeVisitor
                 if (!$item->key instanceof Node\Scalar\String_) {
                     continue;
                 }
-                if (\false === \stripos($item->key->value ?? '', 'message')) {
+                if (\false === stripos($item->key->value ?? '', 'message')) {
                     continue;
                 }
                 if (!$item->value instanceof Node\Scalar\String_) {
@@ -83,7 +82,7 @@ final class ConstraintVisitor extends AbstractVisitor implements NodeVisitor
         }
         return null;
     }
-    public function afterTraverse(array $nodes) : ?Node
+    public function afterTraverse(array $nodes): ?Node
     {
         return null;
     }

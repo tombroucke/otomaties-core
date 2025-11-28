@@ -20,29 +20,28 @@ use DateTimeZone;
 use ReflectionFunction;
 use ReflectionNamedType;
 use ReflectionType;
-/** @internal */
 final class Callback
 {
     private ?ReflectionFunction $function;
     private function __construct(private readonly Closure $closure)
     {
     }
-    public static function fromClosure(Closure $closure) : self
+    public static function fromClosure(Closure $closure): self
     {
         return new self($closure);
     }
-    public static function parameter(mixed $closure, mixed $value, string|int $index = 0) : mixed
+    public static function parameter(mixed $closure, mixed $value, string|int $index = 0): mixed
     {
         if ($closure instanceof Closure) {
             return self::fromClosure($closure)->prepareParameter($value, $index);
         }
         return $value;
     }
-    public function getReflectionFunction() : ReflectionFunction
+    public function getReflectionFunction(): ReflectionFunction
     {
         return $this->function ??= new ReflectionFunction($this->closure);
     }
-    public function prepareParameter(mixed $value, string|int $index = 0) : mixed
+    public function prepareParameter(mixed $value, string|int $index = 0): mixed
     {
         $type = $this->getParameterType($index);
         if (!$type instanceof ReflectionNamedType) {
@@ -52,16 +51,16 @@ final class Callback
         if ($name === CarbonInterface::class) {
             $name = $value instanceof DateTime ? Carbon::class : CarbonImmutable::class;
         }
-        if (!\class_exists($name) || \is_a($value, $name)) {
+        if (!class_exists($name) || is_a($value, $name)) {
             return $value;
         }
         $class = $this->getPromotedClass($value);
-        if ($class && \is_a($name, $class, \true)) {
+        if ($class && is_a($name, $class, \true)) {
             return $name::instance($value);
         }
         return $value;
     }
-    public function call(mixed ...$arguments) : mixed
+    public function call(mixed ...$arguments): mixed
     {
         foreach ($arguments as $index => &$value) {
             if ($this->getPromotedClass($value)) {
@@ -70,7 +69,7 @@ final class Callback
         }
         return ($this->closure)(...$arguments);
     }
-    private function getParameterType(string|int $index) : ?ReflectionType
+    private function getParameterType(string|int $index): ?ReflectionType
     {
         $parameters = $this->getReflectionFunction()->getParameters();
         if (\is_int($index)) {
@@ -84,7 +83,7 @@ final class Callback
         return null;
     }
     /** @return class-string|null */
-    private function getPromotedClass(mixed $value) : ?string
+    private function getPromotedClass(mixed $value): ?string
     {
         if ($value instanceof DateTimeInterface) {
             return CarbonInterface::class;
