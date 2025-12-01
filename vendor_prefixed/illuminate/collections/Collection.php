@@ -153,7 +153,7 @@ class Collection implements ArrayAccess, CanBeEscapedWhenCastToString, Enumerabl
     {
         if (\func_num_args() === 1) {
             if ($this->useAsCallable($key)) {
-                return array_any($this->items, $key);
+                return \OtomatiesCoreVendor\array_any($this->items, $key);
             }
             return \in_array($key, $this->items);
         }
@@ -510,7 +510,7 @@ class Collection implements ArrayAccess, CanBeEscapedWhenCastToString, Enumerabl
     public function has($key)
     {
         $keys = \is_array($key) ? $key : \func_get_args();
-        return array_all($keys, fn($key) => \array_key_exists($key ?? '', $this->items));
+        return \OtomatiesCoreVendor\array_all($keys, fn($key) => \array_key_exists($key ?? '', $this->items));
     }
     /**
      * Determine if any of the keys exist in the collection.
@@ -524,7 +524,7 @@ class Collection implements ArrayAccess, CanBeEscapedWhenCastToString, Enumerabl
             return \false;
         }
         $keys = \is_array($key) ? $key : \func_get_args();
-        return array_any($keys, fn($key) => \array_key_exists($key ?? '', $this->items));
+        return \OtomatiesCoreVendor\array_any($keys, fn($key) => \array_key_exists($key ?? '', $this->items));
     }
     /**
      * Concatenate values of a given key as a string.
@@ -1005,7 +1005,7 @@ class Collection implements ArrayAccess, CanBeEscapedWhenCastToString, Enumerabl
         if (!$this->useAsCallable($value)) {
             return \array_search($value, $this->items, $strict);
         }
-        return array_find_key($this->items, $value) ?? \false;
+        return \OtomatiesCoreVendor\array_find_key($this->items, $value) ?? \false;
     }
     /**
      * Get the item before the given item.

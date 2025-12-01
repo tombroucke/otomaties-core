@@ -11,6 +11,23 @@ use Isolated\Symfony\Component\Finder\Finder;
 // to auto-load any code here: it can result in a conflict or even corrupt
 // the PHP-Scoper analysis.
 
+// Dynamically extract function names from Symfony polyfill bootstrap files
+$polyFillFunctions = [];
+$polyfillPaths = glob(__DIR__ . '/vendor/symfony/polyfill*/bootstrap*.php');
+
+foreach ($polyfillPaths as $polyfillPath) {
+    $content = file_get_contents($polyfillPath);
+    // Match function definitions: function functionName(
+    if (preg_match_all('/function\s+(\w+)\s*\(/', $content, $matches)) {
+        $polyFillFunctions = array_merge($polyFillFunctions, $matches[1]);
+    }
+}
+$polyFillFunctions = array_unique($polyFillFunctions);
+
+if (count($polyFillFunctions) === 0) {
+    throw new RuntimeException('Failed to extract polyfill function names.');
+}
+
 return [
     // The prefix configuration. If a non-null value is used, a random prefix
     // will be generated instead.
@@ -51,17 +68,24 @@ return [
     //
     // For more see: https://github.com/humbug/php-scoper/blob/master/docs/configuration.md#patchers
     'patchers' => [
-        static function (string $filePath, string $prefix, string $contents): string {
-            // Fix Illuminate Container calling array_last() - prefix it to the scoped root namespace
-            if (str_contains($filePath, 'illuminate/container/Container.php')) {
-                $contents = preg_replace(
-                    '/([^\\\\a-zA-Z_])array_last\(/',
-                    '$1\\\\' . $prefix . '\\\\array_last(',
-                    $contents
-                );
+        static function (string $filePath, string $prefix, string $contents) use ($polyFillFunctions): string {
+
+            // Check if any part of the file path matches an entry in $filePaths
+            if (! str_contains($filePath, 'vendor/symfony/polyfill')) {
+                // Patch all functions in the list
+                foreach ($polyFillFunctions as $function) {
+                    $contents = preg_replace(
+                        '/([^\\\\a-zA-Z_])' . preg_quote($function, '/') . '\(/',
+                        '$1\\\\' . $prefix . '\\\\' . $function . '(',
+                        $contents
+                    );
+                }
             }
 
             return $contents;
         },
+    ],
+
+    'expose-functions' => [
     ],
 ];

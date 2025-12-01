@@ -214,7 +214,7 @@ if (!\function_exists('OtomatiesCoreVendor\\head')) {
      */
     function head($array)
     {
-        return empty($array) ? \false : array_first($array);
+        return empty($array) ? \false : \OtomatiesCoreVendor\array_first($array);
     }
 }
 if (!\function_exists('OtomatiesCoreVendor\\last')) {
@@ -227,7 +227,7 @@ if (!\function_exists('OtomatiesCoreVendor\\last')) {
      */
     function last($array)
     {
-        return empty($array) ? \false : array_last($array);
+        return empty($array) ? \false : \OtomatiesCoreVendor\array_last($array);
     }
 }
 if (!\function_exists('OtomatiesCoreVendor\\value')) {

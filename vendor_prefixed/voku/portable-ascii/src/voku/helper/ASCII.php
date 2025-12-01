@@ -908,7 +908,7 @@ final class ASCII
                                 echo "char: " . $c . "\n";
                                 echo "ord: " . $ord . "\n";
                                 echo "new_char: " . $new_char . "\n";
-                                echo "new_char: " . mb_chr($new_char) . "\n";
+                                echo "new_char: " . \OtomatiesCoreVendor\mb_chr($new_char) . "\n";
                                 echo "ascii: " . $UTF8_TO_TRANSLIT[$bank][$new_char] . "\n";
                                 echo "bank:" . $bank . "\n\n";
                 */
@@ -928,7 +928,7 @@ final class ASCII
                                 echo "char: " . $c . "\n";
                                 echo "ord: " . $ord . "\n";
                                 echo "new_char: " . $new_char . "\n";
-                                echo "new_char: " . mb_chr($new_char) . "\n";
+                                echo "new_char: " . \OtomatiesCoreVendor\mb_chr($new_char) . "\n";
                                 echo "bank:" . $bank . "\n\n";
                 */
                 $c = $unknown ?? $c;

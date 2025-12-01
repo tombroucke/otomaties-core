@@ -75,7 +75,7 @@ class Reflector
         do {
             $attributes[$reflectionClass->name] = new Collection(\array_map(fn(ReflectionAttribute $reflectionAttribute) => $reflectionAttribute->newInstance(), $reflectionClass->getAttributes($attribute)));
         } while ($includeParents && \false !== ($reflectionClass = $reflectionClass->getParentClass()));
-        return $includeParents ? new Collection($attributes) : array_first($attributes);
+        return $includeParents ? new Collection($attributes) : \OtomatiesCoreVendor\array_first($attributes);
     }
     /**
      * Get the class name of the given parameter's type, if possible.

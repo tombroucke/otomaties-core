@@ -40,7 +40,7 @@ class Inflector
         if ($tableized === null) {
             throw new RuntimeException(sprintf('preg_replace returned null for value "%s"', $word));
         }
-        return mb_strtolower($tableized);
+        return \OtomatiesCoreVendor\mb_strtolower($tableized);
     }
     /**
      * Converts a word into the format for a Doctrine class name. Converts 'table_name' to 'TableName'.
@@ -165,7 +165,7 @@ class Inflector
         // Remove all non url friendly characters with the unaccent function
         $unaccented = $this->unaccent($string);
         if (function_exists('mb_strtolower')) {
-            $lowered = mb_strtolower($unaccented);
+            $lowered = \OtomatiesCoreVendor\mb_strtolower($unaccented);
         } else {
             $lowered = strtolower($unaccented);
         }

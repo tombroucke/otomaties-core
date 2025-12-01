@@ -270,7 +270,7 @@ class Fluent implements Arrayable, ArrayAccess, IteratorAggregate, Jsonable, Jso
         if (static::hasMacro($method)) {
             return $this->macroCall($method, $parameters);
         }
-        $this->attributes[$method] = \count($parameters) > 0 ? array_first($parameters) : \true;
+        $this->attributes[$method] = \count($parameters) > 0 ? \OtomatiesCoreVendor\array_first($parameters) : \true;
         return $this;
     }
     /**
