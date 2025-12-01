@@ -20,6 +20,7 @@ class Plugin extends Container
         Modules\Discussion::class,
         Modules\Security::class,
         Modules\Connect::class,
+        Modules\HealthTests::class,
     ];
 
     public function __construct(private string $version = '1.0.0', private string $env = 'production')
