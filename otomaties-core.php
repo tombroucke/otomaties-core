@@ -8,7 +8,7 @@
  * Author URI:      https://tombroucke.be
  * Text Domain:     otomaties-core
  * Domain Path:     resources/languages
- * Version:         2.0.0-beta1
+ * Version:           2.0.0-beta2
  */
 
 // If this file is called directly, abort.
