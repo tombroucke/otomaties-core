@@ -6,6 +6,7 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Otomaties\\Core\\' => array($baseDir . '/app'),
     'OtomatiesCoreVendor\\voku\\' => array($vendorDir . '/voku/portable-ascii/src/voku'),
     'OtomatiesCoreVendor\\Symfony\\Polyfill\\Php85\\' => array($vendorDir . '/symfony/polyfill-php85'),
     'OtomatiesCoreVendor\\Symfony\\Polyfill\\Php84\\' => array($vendorDir . '/symfony/polyfill-php84'),
@@ -17,7 +18,6 @@ return array(
     'OtomatiesCoreVendor\\Psr\\SimpleCache\\' => array($vendorDir . '/psr/simple-cache/src'),
     'OtomatiesCoreVendor\\Psr\\Container\\' => array($vendorDir . '/psr/container/src'),
     'OtomatiesCoreVendor\\Psr\\Clock\\' => array($vendorDir . '/psr/clock/src'),
-    'OtomatiesCoreVendor\\Otomaties\\Core\\' => array($baseDir . '/app'),
     'OtomatiesCoreVendor\\Illuminate\\Support\\' => array($vendorDir . '/illuminate/support', $vendorDir . '/illuminate/collections', $vendorDir . '/illuminate/macroable', $vendorDir . '/illuminate/conditionable'),
     'OtomatiesCoreVendor\\Illuminate\\Contracts\\' => array($vendorDir . '/illuminate/contracts'),
     'OtomatiesCoreVendor\\Illuminate\\Container\\' => array($vendorDir . '/illuminate/container'),

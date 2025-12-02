@@ -86,6 +86,5 @@ return [
         },
     ],
 
-    'expose-functions' => [
-    ],
+    'exclude-namespaces' => ['Otomaties\\Core'],
 ];

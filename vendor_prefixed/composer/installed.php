@@ -3,7 +3,7 @@
         'name' => 'tombroucke/otomaties-core',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => 'c511e281cb62c25d5c48302ecc08a6e209fa264a',
+        'reference' => '5e3b82ed2e22dcd9b543678c60439cff6019f19b',
         'type' => 'wordpress-muplugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -235,7 +235,7 @@
         'tombroucke/otomaties-core' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => 'c511e281cb62c25d5c48302ecc08a6e209fa264a',
+            'reference' => '5e3b82ed2e22dcd9b543678c60439cff6019f19b',
             'type' => 'wordpress-muplugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

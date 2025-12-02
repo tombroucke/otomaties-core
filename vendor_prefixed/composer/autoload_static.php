@@ -23,6 +23,7 @@ class ComposerStaticInit019eb709a5d868a1c621127d8aca3084
     public static $prefixLengthsPsr4 = array (
         'O' =>
         array (
+            'Otomaties\\Core\\' => 15,
             'OtomatiesCoreVendor\\voku\\' => 25,
             'OtomatiesCoreVendor\\Symfony\\Polyfill\\Php85\\' => 43,
             'OtomatiesCoreVendor\\Symfony\\Polyfill\\Php84\\' => 43,
@@ -34,7 +35,6 @@ class ComposerStaticInit019eb709a5d868a1c621127d8aca3084
             'OtomatiesCoreVendor\\Psr\\SimpleCache\\' => 36,
             'OtomatiesCoreVendor\\Psr\\Container\\' => 34,
             'OtomatiesCoreVendor\\Psr\\Clock\\' => 30,
-            'OtomatiesCoreVendor\\Otomaties\\Core\\' => 35,
             'OtomatiesCoreVendor\\Illuminate\\Support\\' => 39,
             'OtomatiesCoreVendor\\Illuminate\\Contracts\\' => 41,
             'OtomatiesCoreVendor\\Illuminate\\Container\\' => 41,
@@ -47,6 +47,10 @@ class ComposerStaticInit019eb709a5d868a1c621127d8aca3084
     );
 
     public static $prefixDirsPsr4 = array (
+        'Otomaties\\Core\\' =>
+        array (
+            0 => __DIR__ . '/../..' . '/app',
+        ),
         'OtomatiesCoreVendor\\voku\\' =>
         array (
             0 => __DIR__ . '/..' . '/voku/portable-ascii/src/voku',
@@ -90,10 +94,6 @@ class ComposerStaticInit019eb709a5d868a1c621127d8aca3084
         'OtomatiesCoreVendor\\Psr\\Clock\\' =>
         array (
             0 => __DIR__ . '/..' . '/psr/clock/src',
-        ),
-        'OtomatiesCoreVendor\\Otomaties\\Core\\' =>
-        array (
-            0 => __DIR__ . '/../..' . '/app',
         ),
         'OtomatiesCoreVendor\\Illuminate\\Support\\' =>
         array (
