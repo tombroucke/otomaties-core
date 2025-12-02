@@ -27,7 +27,7 @@ class HealthTests
 
                     return new ($namespace . $class);
                 })
-                ->filter(fn ($test) => $test->active())
+                ->filter(fn ($test) => $test->isActive())
                 ->mapWithKeys(function ($test, $key) {
                     return [$test->name() => [
                         'label' => $test->name(),
@@ -60,7 +60,7 @@ class HealthTests
                 ];
                 add_action('wp_ajax_' . $key, $test['test']);
             });
-
+            
         return $tests;
     }
 

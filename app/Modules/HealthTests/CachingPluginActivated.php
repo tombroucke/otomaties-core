@@ -3,8 +3,9 @@
 namespace Otomaties\Core\Modules\HealthTests;
 
 use Otomaties\Core\Modules\HealthTests\Enums\HealthCheckCategory;
+use Otomaties\Core\Modules\HealthTests\Dtos\HealthTestResponseDto;
 
-class CachingPluginActivated extends Abstracts\HealthTest implements Contracts\HealthTest
+class CachingPluginActivated extends Abstracts\HealthTest
 {
     private ?string $activePlugin = null;
 
@@ -42,30 +43,29 @@ class CachingPluginActivated extends Abstracts\HealthTest implements Contracts\H
         return false;
     }
 
-    public function passedResponse(): array
+    public function passedResponse(HealthTestResponseDto $response): HealthTestResponseDto
     {
-        return array_merge($this->defaultResponse, [
-            'label' => __('Caching plugin is activated', 'otomaties-health-check'),
-            'description' => sprintf(
+        return $response
+            ->withLabel(__('Caching plugin is activated', 'otomaties-core'))
+            ->withDescription(sprintf(
                 '<p>%s</p>',
-                sprintf(__('%s is installed and activated', 'otomaties-health-check'), $this->activePlugin)
-            ),
-        ]);
+                sprintf(__('%s is installed and activated', 'otomaties-core'), $this->activePlugin)
+            ));
     }
 
-    public function failedResponse(): array
+    public function failedResponse(HealthTestResponseDto $response): HealthTestResponseDto
     {
-        return array_merge($this->defaultResponse, [
-            'label' => __('There is no active caching plugin', 'otomaties-health-check'),
-            'description' => sprintf(
+        return $response
+            ->withStatus('recommended')
+            ->withLabel(__('There is no active caching plugin', 'otomaties-core'))
+            ->withDescription(sprintf(
                 '<p>%s</p>',
-                __('Please install and activate a caching plugin to improve site performance.', 'otomaties-health-check') // phpcs:ignore Generic.Files.LineLength
-            ),
-            'actions' => sprintf(
+                __('Please install and activate a caching plugin to improve site performance.', 'otomaties-core') // phpcs:ignore Generic.Files.LineLength
+            ))
+            ->withActions(sprintf(
                 '<a href="%s" target="_blank">%s</a>',
                 admin_url('plugins.php'),
-                __('Activate Caching plugin', 'otomaties-health-check')
-            ),
-        ]);
+                __('Activate Caching plugin', 'otomaties-core')
+            ));
     }
 }

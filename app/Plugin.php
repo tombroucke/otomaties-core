@@ -85,4 +85,13 @@ class Plugin extends Container
     {
         return $this->version;
     }
+
+    public function findVariable(string $name): mixed
+    {
+        if (defined($name)) {
+            return constant($name);
+        }
+
+        return $_ENV[$name] ?? $_SERVER[$name] ?? getenv($name) ?: null;
+    }
 }

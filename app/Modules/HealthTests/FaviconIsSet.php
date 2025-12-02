@@ -3,8 +3,9 @@
 namespace Otomaties\Core\Modules\HealthTests;
 
 use Otomaties\Core\Modules\HealthTests\Enums\HealthCheckCategory;
+use Otomaties\Core\Modules\HealthTests\Dtos\HealthTestResponseDto;
 
-class FaviconIsSet extends Abstracts\HealthTest implements Contracts\HealthTest
+class FaviconIsSet extends Abstracts\HealthTest
 {
     protected string $category = HealthCheckCategory::APPEARANCE;
 
@@ -14,32 +15,31 @@ class FaviconIsSet extends Abstracts\HealthTest implements Contracts\HealthTest
         return ! empty($favicon);
     }
 
-    public function passedResponse() : array
+    public function passedResponse(HealthTestResponseDto $response) : HealthTestResponseDto
     {
-        return array_merge($this->defaultResponse, [
-            'label' => __('Favicon is set', 'otomaties-health-check'),
-            'description' => sprintf(
+        return $response
+            ->withLabel(__('Favicon is set', 'otomaties-core'))
+            ->withDescription(sprintf(
                 '<p>%s</p>',
-                __('The favicon is set', 'otomaties-health-check')
-            ),
-        ]);
+                __('The favicon is set', 'otomaties-core')
+            ));
     }
 
-    public function failedResponse() : array
+    public function failedResponse(HealthTestResponseDto $response) : HealthTestResponseDto
     {
-        return array_merge($this->defaultResponse, [
-            'label' => __('Favicon is not set', 'otomaties-health-check'),
-            'description' => sprintf(
+        return $response
+            ->withStatus('recommended')
+            ->withLabel(__('Favicon is not set', 'otomaties-core'))
+            ->withDescription(sprintf(
                 '<p>%s</p>',
                 sprintf(
-                    __('The favicon is not set on this website. Visit the %s to set your favicon', 'otomaties-health-check'), // phpcs:ignore Generic.Files.LineLength.TooLong
-                    sprintf(
-                        '<a href="%s" target="_blank">%s</a>',
-                        admin_url('customize.php'),
-                        __('Customizer', 'otomaties-health-check')
-                    )
+                    __('The favicon is not set on this website. Visit the %s to set your favicon', 'otomaties-core'), // phpcs:ignore Generic.Files.LineLength.TooLong
                 )
-            )
-        ]);
+            ))
+            ->withActions(sprintf(
+                '<a href="%s" target="_blank">%s</a>',
+                admin_url('customize.php'),
+                __('Set Favicon', 'otomaties-core')
+            ));
     }
 }

@@ -2,7 +2,9 @@
 
 namespace Otomaties\Core\Modules\HealthTests;
 
-class MollieTestMode extends Abstracts\HealthTest implements Contracts\HealthTest
+use Otomaties\Core\Modules\HealthTests\Dtos\HealthTestResponseDto;
+
+class MollieTestMode extends Abstracts\HealthTest
 {
     public function passes(): bool
     {
@@ -11,44 +13,42 @@ class MollieTestMode extends Abstracts\HealthTest implements Contracts\HealthTes
         return otomatiesCore()->environment() !== 'production' || $testModeEnabled;
     }
 
-    public function active(): bool
+    public function isActive(): bool
     {
         if (! is_plugin_active('mollie-payments-for-woocommerce/mollie-payments-for-woocommerce.php')) {
             return false;
         }
 
-        return parent::active();
+        return parent::isActive();
     }
 
-    public function passedResponse(): array
+    public function passedResponse(HealthTestResponseDto $response): HealthTestResponseDto
     {
         $label = otomatiesCore()->environment() === 'production' ?
-            __('Mollie is in Live mode', 'otomaties-health-check') :
-            __('Mollie is in test mode but the environment is not production', 'otomaties-health-check');
+            __('Mollie is in Live mode', 'otomaties-core') :
+            __('Mollie is in test mode but the environment is not production', 'otomaties-core');
 
-        return array_merge($this->defaultResponse, [
-            'label' => $label,
-            'description' => sprintf(
+        return $response
+            ->withLabel($label)
+            ->withDescription(sprintf(
                 '<p>%s</p>',
                 $label
-            ),
-        ]);
+            ));
     }
 
-    public function failedResponse(): array
+    public function failedResponse(HealthTestResponseDto $response): HealthTestResponseDto
     {
-        return array_merge($this->defaultResponse, [
-            'label' => __('Mollie is in test mode', 'otomaties-health-check'),
-            'status' => 'critical',
-            'description' => sprintf(
+        return $response
+            ->withStatus('critical')
+            ->withLabel(__('Mollie is in test mode', 'otomaties-core'))
+            ->withDescription(sprintf(
                 '<p>%s</p>',
-                __('Mollie is in test mode', 'otomaties-health-check')
-            ),
-            'actions' => sprintf(
+                __('Mollie is in test mode', 'otomaties-core')
+            ))
+            ->withActions(sprintf(
                 '<a href="%s" target="_blank">%s</a>',
                 admin_url('admin.php?page=wc-settings&tab=mollie_settings'),
-                __('Disable test mode', 'otomaties-health-check')
-            ),
-        ]);
+                __('Disable test mode', 'otomaties-core')
+            ));
     }
 }

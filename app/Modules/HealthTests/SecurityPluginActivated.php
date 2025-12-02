@@ -3,8 +3,9 @@
 namespace Otomaties\Core\Modules\HealthTests;
 
 use Otomaties\Core\Modules\HealthTests\Enums\HealthCheckCategory;
+use Otomaties\Core\Modules\HealthTests\Dtos\HealthTestResponseDto;
 
-class SecurityPluginActivated extends Abstracts\HealthTest implements Contracts\HealthTest
+class SecurityPluginActivated extends Abstracts\HealthTest
 {
     protected string $category = HealthCheckCategory::SECURITY;
 
@@ -16,34 +17,33 @@ class SecurityPluginActivated extends Abstracts\HealthTest implements Contracts\
             || is_plugin_active('defender-security/wp-defender.php');
     }
 
-    public function passedResponse() : array
+    public function passedResponse(HealthTestResponseDto $response) : HealthTestResponseDto
     {
-        return array_merge($this->defaultResponse, [
-            'label' => __('Wordfence is activated', 'otomaties-health-check'),
-            'status' => 'good',
-            'description' => sprintf(
+        return $response
+            ->withStatus('good')
+            ->withLabel(__('Wordfence is activated', 'otomaties-core'))
+            ->withDescription(sprintf(
                 '<p>%s</p>',
-                __('Wordfence is installed and activated', 'otomaties-health-check')
-            ),
-        ]);
+                __('Wordfence is installed and activated', 'otomaties-core')
+            ));
     }
 
-    public function failedResponse() : array
+    public function failedResponse(HealthTestResponseDto $response) : HealthTestResponseDto
     {
-        return array_merge($this->defaultResponse, [
-            'label' => __('Wordfence is not activated', 'otomaties-health-check'),
-            'description' => sprintf(
+        return $response
+            ->withStatus('critical')
+            ->withLabel(__('Wordfence is not activated', 'otomaties-core'))
+            ->withDescription(sprintf(
                 '<p>%s</p>',
                 sprintf(
-                    __('Wordfence is not active on this website. Visit %s for more information', 'otomaties-health-check'), // phpcs:ignore Generic.Files.LineLength.TooLong
+                    __('Wordfence is not active on this website. Visit %s for more information', 'otomaties-core'), // phpcs:ignore Generic.Files.LineLength.TooLong
                     '<a href="https://www.wordfence.com/" target="_blank">Wordfence</a>'
                 )
-            ),
-            'actions' => sprintf(
+            ))
+            ->withActions(sprintf(
                 '<a href="%s" target="_blank">%s</a>',
                 admin_url('plugins.php'),
-                __('Activate Wordfence', 'otomaties-health-check')
-            )
-        ]);
+                __('Activate Wordfence', 'otomaties-core')
+            ));
     }
 }

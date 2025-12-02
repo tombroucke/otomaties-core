@@ -150,17 +150,7 @@ class Connect
      */
     private function findConnectionKey(): ?string
     {
-        if (defined('OTOMATIES_CONNECT_KEY')) {
-            return constant('OTOMATIES_CONNECT_KEY');
-        }
-        if (isset($_SERVER['OTOMATIES_CONNECT_KEY'])) {
-            return $_SERVER['OTOMATIES_CONNECT_KEY'];
-        }
-        if (function_exists('env') && env('OTOMATIES_CONNECT_KEY')) {
-            return env('OTOMATIES_CONNECT_KEY');
-        }
-
-        return null;
+        return otomatiesCore()->findVariable('OTOMATIES_CONNECT_KEY');
     }
 
     public function notifyMailFailure(\WP_Error $wpError): void

@@ -2,10 +2,11 @@
 
 namespace Otomaties\Core\Modules\HealthTests;
 
-use Otomaties\Core\Modules\HealthTests\Enums\HealthCheckCategory;
 use OtomatiesCoreVendor\Illuminate\Support\Collection;
+use Otomaties\Core\Modules\HealthTests\Enums\HealthCheckCategory;
+use Otomaties\Core\Modules\HealthTests\Dtos\HealthTestResponseDto;
 
-class NgFirewall extends Abstracts\HealthTest implements Contracts\HealthTest
+class NgFirewall extends Abstracts\HealthTest
 {
     protected string $category = HealthCheckCategory::SECURITY;
 
@@ -27,31 +28,34 @@ class NgFirewall extends Abstracts\HealthTest implements Contracts\HealthTest
         return $unblockedUrls->isEmpty();
     }
 
-    public function passedResponse(): array
+    public function passedResponse(HealthTestResponseDto $response): HealthTestResponseDto
     {
-        return array_merge($this->defaultResponse, [
-            'label' => __('nG Firewall is enabled', 'otomaties-health-check'),
-            'description' => sprintf(
+        return $response
+            ->withLabel(__('nG Firewall is enabled', 'otomaties-core'))
+            ->withDescription(sprintf(
                 '<p>%s</p>',
-                sprintf(
-                    __('Visit %s for more information about the nG Firewall', 'otomaties-health-check'),
-                    '<a href="https://perishablepress.com/ng-firewall/" target="_blank">nG Firewall</a>'
-                )
-            ),
-        ]);
+                __('The nG Firewall is active on this website.', 'otomaties-core')
+            ))
+            ->withActions(sprintf(
+                '<a href="%s" target="_blank">%s</a>',
+                'https://perishablepress.com/ng-firewall/',
+                __('Learn more about nG Firewall', 'otomaties-core')
+            ));
     }
 
-    public function failedResponse(): array
+    public function failedResponse(HealthTestResponseDto $response): HealthTestResponseDto
     {
-        return array_merge($this->defaultResponse, [
-            'label' => __('nG Firewall is not enabled', 'otomaties-health-check'),
-            'description' => sprintf(
+        return $response
+            ->withStatus('critical')
+            ->withLabel(__('nG Firewall is not enabled', 'otomaties-core'))
+            ->withDescription(sprintf(
                 '<p>%s</p>',
-                sprintf(
-                    __('The nG Firewall is not active on this website. Visit %s for more information', 'otomaties-health-check'),  // phpcs:ignore Generic.Files.LineLength.TooLong
-                    '<a href="https://perishablepress.com/ng-firewall/" target="_blank">nG Firewall</a>'
-                )
-            ),
-        ]);
+                __('The nG Firewall is not active on this website.', 'otomaties-core')
+            ))
+            ->withActions(sprintf(
+                '<a href="%s" target="_blank">%s</a>',
+                'https://perishablepress.com/ng-firewall/',
+                __('Learn more about nG Firewall', 'otomaties-core')
+            ));
     }
 }

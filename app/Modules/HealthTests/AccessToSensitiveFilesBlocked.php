@@ -3,8 +3,9 @@
 namespace Otomaties\Core\Modules\HealthTests;
 
 use Otomaties\Core\Modules\HealthTests\Enums\HealthCheckCategory;
+use Otomaties\Core\Modules\HealthTests\Dtos\HealthTestResponseDto;
 
-class AccessToSensitiveFilesBlocked extends Abstracts\HealthTest implements Contracts\HealthTest
+class AccessToSensitiveFilesBlocked extends Abstracts\HealthTest
 {
     protected string $type = 'async';
 
@@ -19,25 +20,24 @@ class AccessToSensitiveFilesBlocked extends Abstracts\HealthTest implements Cont
         return wp_remote_retrieve_response_code($response) === 403;
     }
 
-    public function passedResponse() : array
+    public function passedResponse(HealthTestResponseDto $response) : HealthTestResponseDto
     {
-        return array_merge($this->defaultResponse, [
-            'label' => __('Access to sensitive files is blocked', 'otomaties-health-check'),
-            'description' => sprintf(
+        return $response
+            ->withLabel(__('Access to sensitive files is blocked', 'otomaties-core'))
+            ->withDescription(sprintf(
                 '<p>%s</p>',
-                __('Access to sensitive files is blocked', 'otomaties-health-check')
-            ),
-        ]);
+                __('Access to sensitive files is blocked', 'otomaties-core')
+            ));
     }
-
-    public function failedResponse() : array
+    
+    public function failedResponse(HealthTestResponseDto $response) : HealthTestResponseDto
     {
-        return array_merge($this->defaultResponse, [
-            'label' => __('Access to sensitive files is not blocked', 'otomaties-health-check'),
-            'description' => sprintf(
+        return $response
+            ->withStatus('critical')
+            ->withLabel(__('Access to sensitive files is not blocked', 'otomaties-core'))
+            ->withDescription(sprintf(
                 '<p>%s</p>',
-                __('Add rules to block sensitive files to your .htaccess file', 'otomaties-health-check')
-            )
-        ]);
+                __('Add rules to block sensitive files to your .htaccess file', 'otomaties-core')
+            ));
     }
 }
