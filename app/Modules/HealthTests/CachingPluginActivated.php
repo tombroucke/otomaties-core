@@ -7,10 +7,6 @@ use Otomaties\Core\Modules\HealthTests\Enums\HealthCheckCategory;
 
 class CachingPluginActivated extends Abstracts\HealthTest
 {
-    private ?string $activePlugin = null;
-
-    protected string $category = HealthCheckCategory::PERFORMANCE;
-
     const CACHINGPLUGINS = [
         'wp-rocket' => [
             'label' => 'WP Rocket',
@@ -25,6 +21,10 @@ class CachingPluginActivated extends Abstracts\HealthTest
             'file' => 'wp-cloudflare-page-cache/wp-cloudflare-super-page-cache.php',
         ],
     ];
+
+    protected string $category = HealthCheckCategory::PERFORMANCE;
+
+    private ?string $activePlugin = null;
 
     public function passes(): bool
     {

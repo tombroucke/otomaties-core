@@ -28,11 +28,6 @@ class Plugin extends Container
         //
     }
 
-    private function register()
-    {
-        $this->bind(View::class, fn () => new View($this->config('paths.views')));
-    }
-
     public function config(string $key): mixed
     {
         $config = $this->make(Config::class);
@@ -49,6 +44,30 @@ class Plugin extends Container
         $this->initCommands();
 
         return $this;
+    }
+
+    public function environment(): string
+    {
+        return $this->env;
+    }
+
+    public function version(): string
+    {
+        return $this->version;
+    }
+
+    public function findVariable(string $name): mixed
+    {
+        if (defined($name)) {
+            return constant($name);
+        }
+
+        return $_ENV[$name] ?? $_SERVER[$name] ?? getenv($name) ?: null;
+    }
+
+    private function register()
+    {
+        $this->bind(View::class, fn () => new View($this->config('paths.views')));
     }
 
     private function loadTextDomain(): void
@@ -74,24 +93,5 @@ class Plugin extends Container
             });
 
         return $this;
-    }
-
-    public function environment(): string
-    {
-        return $this->env;
-    }
-
-    public function version(): string
-    {
-        return $this->version;
-    }
-
-    public function findVariable(string $name): mixed
-    {
-        if (defined($name)) {
-            return constant($name);
-        }
-
-        return $_ENV[$name] ?? $_SERVER[$name] ?? getenv($name) ?: null;
     }
 }

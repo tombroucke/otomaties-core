@@ -19,7 +19,7 @@ class Admin
      */
     public function init(): void
     {
-        if (otomatiesCore()->environment() != 'development') {
+        if (otomatiesCore()->environment() !== 'development') {
             add_filter('acf/settings/show_admin', '__return_false');
         }
 

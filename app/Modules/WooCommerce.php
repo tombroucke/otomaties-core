@@ -21,7 +21,7 @@ class WooCommerce
      */
     public function rejectPatternsInOrderKey($key = ''): string
     {
-        if (Str::contains(strtolower($key), 'fck')) {
+        if (Str::contains(mb_strtolower($key), 'fck')) {
             return wc_generate_order_key();
         }
 

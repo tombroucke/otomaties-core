@@ -65,21 +65,21 @@ abstract class HealthTest
         return $response->toArray();
     }
 
-    private function setBadgeColor(string $color, HealthTestResponseDto $response): HealthTestResponseDto
-    {
-        return $response->withBadge(
-            array_merge($response->badge, ['color' => $color])
-        );
-    }
-
     public function isActive(): bool
     {
-        $constant = 'OTOMATIES_CORE_HEALTH_CHECK_' . strtoupper(Str::snake($this->name())) . '_ACTIVE';
+        $constant = 'OTOMATIES_CORE_HEALTH_CHECK_' . mb_strtoupper(Str::snake($this->name())) . '_ACTIVE';
         $constantValue = otomatiesCore()->findVariable($constant);
         if ($constantValue !== null) {
             return filter_var($constantValue, FILTER_VALIDATE_BOOLEAN);
         }
 
         return true;
+    }
+
+    private function setBadgeColor(string $color, HealthTestResponseDto $response): HealthTestResponseDto
+    {
+        return $response->withBadge(
+            array_merge($response->badge, ['color' => $color])
+        );
     }
 }

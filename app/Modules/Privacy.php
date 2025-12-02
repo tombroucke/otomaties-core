@@ -11,7 +11,7 @@ class Privacy
 
     public function replaceYoutubeWithYoutubeNoCookie(string $cachedHtml, string $url): string
     {
-        if (! apply_filters('otomaties_replace_youtube_with_youtube_nocookie', true) || ! strpos($url, 'youtu')) {
+        if (! apply_filters('otomaties_replace_youtube_with_youtube_nocookie', true) || ! mb_strpos($url, 'youtu')) {
             return $cachedHtml;
         }
 

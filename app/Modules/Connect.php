@@ -75,7 +75,7 @@ class Connect
             $builder->security()
                 ->wordfence()
                 ->firewallActive(
-                    $firewall->protectionMode() == \wfFirewall::PROTECTION_MODE_EXTENDED && ! $firewall->isSubDirectoryInstallation() // phpcs:ignore Generic.Files.LineLength
+                    $firewall->protectionMode() === \wfFirewall::PROTECTION_MODE_EXTENDED && ! $firewall->isSubDirectoryInstallation() // phpcs:ignore Generic.Files.LineLength
                 )
                 ->endWordfence()
                 ->endSecurity();
@@ -98,18 +98,6 @@ class Connect
         error_reporting($previousErrorReporting);
 
         return $builder->build();
-    }
-
-    /**
-     * Get all SQL triggers
-     *
-     * @return array<int, mixed>
-     */
-    private function sqlTriggers(): array
-    {
-        global $wpdb;
-
-        return $wpdb->get_results('SHOW TRIGGERS');
     }
 
     /**
@@ -145,14 +133,6 @@ class Connect
         return true;
     }
 
-    /**
-     * Find the connection key in WO config, server or env
-     */
-    private function findConnectionKey(): ?string
-    {
-        return otomatiesCore()->findVariable('OTOMATIES_CONNECT_KEY');
-    }
-
     public function notifyMailFailure(\WP_Error $wpError): void
     {
         try {
@@ -182,5 +162,25 @@ class Connect
         } catch (\Exception $e) {
             // Silent fail
         }
+    }
+
+    /**
+     * Get all SQL triggers
+     *
+     * @return array<int, mixed>
+     */
+    private function sqlTriggers(): array
+    {
+        global $wpdb;
+
+        return $wpdb->get_results('SHOW TRIGGERS');
+    }
+
+    /**
+     * Find the connection key in WO config, server or env
+     */
+    private function findConnectionKey(): ?string
+    {
+        return otomatiesCore()->findVariable('OTOMATIES_CONNECT_KEY');
     }
 }

@@ -13,18 +13,6 @@ class View
     }
 
     /**
-     * Append .php extension to string if no extension is found
-     *
-     * @param  string  $view  The view name
-     */
-    private function appendPhpExtension(string $view): string
-    {
-        $ext = pathinfo($view, PATHINFO_EXTENSION);
-
-        return $ext === '' ? $view . '.php' : $view;
-    }
-
-    /**
      * Render a view
      *
      * @param  string  $view  The view name
@@ -68,5 +56,17 @@ class View
         $this->render($view, $context);
 
         return ob_get_clean();
+    }
+
+    /**
+     * Append .php extension to string if no extension is found
+     *
+     * @param  string  $view  The view name
+     */
+    private function appendPhpExtension(string $view): string
+    {
+        $ext = pathinfo($view, PATHINFO_EXTENSION);
+
+        return $ext === '' ? $view . '.php' : $view;
     }
 }

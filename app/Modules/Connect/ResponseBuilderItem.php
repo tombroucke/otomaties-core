@@ -23,17 +23,17 @@ class ResponseBuilderItem
      *
      * @param  array<int, mixed>  $arguments
      */
-    public function __call(string $name, array $arguments): ResponseBuilderItem|ResponseBuilder
+    public function __call(string $name, array $arguments): self|ResponseBuilder
     {
         $name = Str::snake($name);
 
-        if (substr($name, 0, 4) == 'end_') {
+        if (mb_substr($name, 0, 4) === 'end_') {
             return $this->end();
         }
-        if (count($arguments) == 1) {
+        if (count($arguments) === 1) {
             $this->$name = $arguments[0];
         } else {
-            $this->$name = new ResponseBuilderItem($this);
+            $this->$name = new self($this);
 
             return $this->$name;
         }
@@ -51,7 +51,7 @@ class ResponseBuilderItem
         $response = get_object_vars($this);
         unset($response['parent']);
         foreach ($response as $key => $value) {
-            if ($value instanceof ResponseBuilderItem) {
+            if ($value instanceof self) {
                 $response[$key] = $value->toArray();
             }
         }
@@ -62,7 +62,7 @@ class ResponseBuilderItem
     /**
      * End the current item and return the parent
      */
-    public function end(): ResponseBuilderItem|ResponseBuilder
+    public function end(): self|ResponseBuilder
     {
         return $this->parent;
     }

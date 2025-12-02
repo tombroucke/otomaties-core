@@ -28,11 +28,11 @@ class ResponseBuilder
      *
      * @param  array<int, mixed>  $arguments
      */
-    public function __call(string $name, array $arguments): ResponseBuilder|ResponseBuilderItem
+    public function __call(string $name, array $arguments): self|ResponseBuilderItem
     {
         $name = Str::snake($name);
 
-        if (count($arguments) == 1) {
+        if (count($arguments) === 1) {
             $this->response[$name] = $arguments[0];
 
             return $this;

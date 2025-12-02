@@ -64,22 +64,6 @@ class HealthTests
         return $tests;
     }
 
-    private function directTests(): Collection
-    {
-        return (new Collection($this->tests()))
-            ->filter(function ($test) {
-                return ($test['type'] ?? 'direct') === 'direct';
-            });
-    }
-
-    private function asyncTests(): Collection
-    {
-        return (new Collection($this->tests()))
-            ->filter(function ($test) {
-                return ($test['type'] ?? 'direct') !== 'direct';
-            });
-    }
-
     public function addAsyncTestRoutes(): void
     {
         $this->asyncTests()
@@ -98,6 +82,22 @@ class HealthTests
                         },
                     ]
                 );
+            });
+    }
+
+    private function directTests(): Collection
+    {
+        return (new Collection($this->tests()))
+            ->filter(function ($test) {
+                return ($test['type'] ?? 'direct') === 'direct';
+            });
+    }
+
+    private function asyncTests(): Collection
+    {
+        return (new Collection($this->tests()))
+            ->filter(function ($test) {
+                return ($test['type'] ?? 'direct') !== 'direct';
             });
     }
 

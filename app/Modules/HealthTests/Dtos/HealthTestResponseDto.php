@@ -17,24 +17,6 @@ final class HealthTestResponseDto
         //
     }
 
-    private function with(
-        ?string $test = null,
-        ?string $status = null,
-        ?string $label = null,
-        ?string $description = null,
-        ?array $badge = null,
-        ?string $actions = null,
-    ): self {
-        return new self(
-            test: $test ?? $this->test,
-            status: $status ?? $this->status,
-            label: $label ?? $this->label,
-            description: $description ?? $this->description,
-            badge: $badge ?? $this->badge,
-            actions: $actions ?? $this->actions,
-        );
-    }
-
     public function withStatus(string $status): self
     {
         return $this->with(status: $status);
@@ -70,5 +52,23 @@ final class HealthTestResponseDto
             'badge' => $this->badge,
             'actions' => $this->actions,
         ]);
+    }
+
+    private function with(
+        ?string $test = null,
+        ?string $status = null,
+        ?string $label = null,
+        ?string $description = null,
+        ?array $badge = null,
+        ?string $actions = null,
+    ): self {
+        return new self(
+            test: $test ?? $this->test,
+            status: $status ?? $this->status,
+            label: $label ?? $this->label,
+            description: $description ?? $this->description,
+            badge: $badge ?? $this->badge,
+            actions: $actions ?? $this->actions,
+        );
     }
 }

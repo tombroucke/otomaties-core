@@ -3,7 +3,43 @@
   "rules": {
     "concat_space": {
       "spacing": "one"
-    }
+    },
+    "array_push": true,
+    "date_time_immutable": true,
+    "mb_str_functions": true,
+    "new_with_parentheses": false,
+    "no_superfluous_elseif": true,
+    "no_useless_else": true,
+    "no_multiple_statements_per_line": true,
+    "ordered_class_elements": {
+      "order": [
+        "use_trait",
+        "case",
+        "constant",
+        "constant_public",
+        "constant_protected",
+        "constant_private",
+        "property_public",
+        "property_protected",
+        "property_private",
+        "construct",
+        "destruct",
+        "magic",
+        "phpunit",
+        "method_abstract",
+        "method_public_static",
+        "method_public",
+        "method_protected_static",
+        "method_protected",
+        "method_private_static",
+        "method_private"
+      ],
+      "sort_algorithm": "none"
+    },
+    "ordered_interfaces": true,
+    "ordered_traits": true,
+    "self_accessor": true,
+    "strict_comparison": true
   },
   "exclude": ["vendor_prefixed"]
 }

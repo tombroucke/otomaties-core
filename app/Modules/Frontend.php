@@ -16,6 +16,24 @@ class Frontend
     }
 
     /**
+     * Redirect to result's single page when there is only 1 search result
+     */
+    public function redirectSingleSearchResult(): void
+    {
+        if (! is_search() || ! apply_filters('otomaties_redirect_single_search_result', true)) {
+            return;
+        }
+
+        global $wp_query;
+        if ($wp_query->found_posts === 1) {
+            $redirect = get_permalink($wp_query->posts['0']->ID);
+            if ($redirect) {
+                wp_redirect($redirect);
+            }
+        }
+    }
+
+    /**
      * Clean up wp_head
      */
     private function cleanUpHead(): void
@@ -37,23 +55,5 @@ class Frontend
         remove_action('wp_head', 'wp_oembed_add_host_js');
 
         add_filter('the_generator', '__return_false');
-    }
-
-    /**
-     * Redirect to result's single page when there is only 1 search result
-     */
-    public function redirectSingleSearchResult(): void
-    {
-        if (! is_search() || ! apply_filters('otomaties_redirect_single_search_result', true)) {
-            return;
-        }
-
-        global $wp_query;
-        if ($wp_query->found_posts == 1) {
-            $redirect = get_permalink($wp_query->posts['0']->ID);
-            if ($redirect) {
-                wp_redirect($redirect);
-            }
-        }
     }
 }

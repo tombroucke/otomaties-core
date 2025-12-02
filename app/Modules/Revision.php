@@ -23,6 +23,46 @@ class Revision
     }
 
     /**
+     * Show revision in console
+     */
+    public function showRevisionInConsole(): void
+    {
+        if (! apply_filters('otomaties_display_revision', true)) {
+            return;
+        }
+
+        $releaseInformation = $this->releaseInformation();
+
+        if (empty($releaseInformation) || otomatiesCore()->environment() === 'production') {
+            return;
+        }
+        otomatiesCore()
+            ->make(View::class)
+            ->render('revision/console', [
+                'releaseInformation' => $releaseInformation,
+            ]);
+    }
+
+    /**
+     * Show revision in admin footer
+     */
+    public function showRevisionInAdminFooter(?string $text = ''): string
+    {
+        $text = $text ?? '';
+        $releaseInformation = $this->releaseInformation();
+
+        if (empty($releaseInformation) || ! current_user_can('manage_options')) {
+            return $text;
+        }
+
+        foreach ($releaseInformation as $key => $value) {
+            $text .= sprintf(' | %s: <strong>%s</strong>', $key, $value);
+        }
+
+        return $text;
+    }
+
+    /**
      * Get release information and store it
      */
     private function releaseInformation(): array
@@ -50,8 +90,8 @@ class Revision
         $revisionFileContentArray = explode(' ', $revisionFileContent);
         if (count($revisionFileContentArray) >= 2) {
             $return[__('Timestamp', 'otomaties-core')] = $revisionFileContentArray[0];
-            if (is_numeric($revisionFileContentArray[0]) && strlen($revisionFileContentArray[0]) == 14) {
-                $dateTime = \DateTime::createFromFormat('YmdHis', $revisionFileContentArray[0]);
+            if (is_numeric($revisionFileContentArray[0]) && mb_strlen($revisionFileContentArray[0]) === 14) {
+                $dateTime = \DateTimeImmutable::createFromFormat('YmdHis', $revisionFileContentArray[0]);
                 if ($dateTime) {
                     $return[__('Timestamp', 'otomaties-core')] = $dateTime->format('d-m-y H:i:s');
                 }
@@ -98,45 +138,5 @@ class Revision
         }
 
         return null;
-    }
-
-    /**
-     * Show revision in console
-     */
-    public function showRevisionInConsole(): void
-    {
-        if (! apply_filters('otomaties_display_revision', true)) {
-            return;
-        }
-
-        $releaseInformation = $this->releaseInformation();
-
-        if (empty($releaseInformation) || otomatiesCore()->environment() == 'production') {
-            return;
-        }
-        otomatiesCore()
-            ->make(View::class)
-            ->render('revision/console', [
-                'releaseInformation' => $releaseInformation,
-            ]);
-    }
-
-    /**
-     * Show revision in admin footer
-     */
-    public function showRevisionInAdminFooter(?string $text = ''): string
-    {
-        $text = $text ?? '';
-        $releaseInformation = $this->releaseInformation();
-
-        if (empty($releaseInformation) || ! current_user_can('manage_options')) {
-            return $text;
-        }
-
-        foreach ($releaseInformation as $key => $value) {
-            $text .= sprintf(' | %s: <strong>%s</strong>', $key, $value);
-        }
-
-        return $text;
     }
 }

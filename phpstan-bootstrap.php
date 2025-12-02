@@ -1,7 +1,7 @@
 <?php
 
-define('WFWAF_AUTO_PREPEND', rand(0, 1) == 1);
-define('WFWAF_SUBDIRECTORY_INSTALL', rand(0, 1) == 1);
+define('WFWAF_AUTO_PREPEND', rand(0, 1) === 1);
+define('WFWAF_SUBDIRECTORY_INSTALL', rand(0, 1) === 1);
 
 class wfConfig
 {
@@ -53,7 +53,7 @@ class wfIssues
     {
         static $_issues = null;
         if ($_issues === null) {
-            $_issues = new wfIssues;
+            $_issues = new self;
         }
 
         return $_issues;

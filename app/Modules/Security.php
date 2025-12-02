@@ -62,7 +62,7 @@ class Security
         }
         if (! empty($securityIssues)) {
             $type = 'warning';
-            if (\otomatiesCore()->environment() == 'production') {
+            if (\otomatiesCore()->environment() === 'production') {
                 $type = 'error';
             }
 
@@ -94,7 +94,7 @@ class Security
             return $errors;
         }
 
-        if (strpos($_SERVER['QUERY_STRING'] ?? '', 'action=lostpassword') !== false) {
+        if (mb_strpos($_SERVER['QUERY_STRING'] ?? '', 'action=lostpassword') !== false) {
             return __('Could not reset your password.', 'otomaties-core');
         }
 

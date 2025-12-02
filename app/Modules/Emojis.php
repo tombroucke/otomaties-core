@@ -45,7 +45,7 @@ class Emojis
      */
     public function disableEmojisRemoveDnsPrefetch(array $urls, string $relation_type): array
     {
-        if ($relation_type == 'dns-prefetch') {
+        if ($relation_type === 'dns-prefetch') {
             $emoji_svg_url = apply_filters('emoji_svg_url', 'https://s.w.org/images/core/emoji/2/svg/');
             $urls = array_diff($urls, [$emoji_svg_url]);
         }
