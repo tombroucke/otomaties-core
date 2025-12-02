@@ -9,7 +9,7 @@
  * Text Domain:     otomaties-core
  * Domain Path:     resources/languages
  * Requires PHP:    8.0
- * Version:           2.0.0-beta2
+ * Version:           2.0.0-beta3
  */
 
 // If this file is called directly, abort.
