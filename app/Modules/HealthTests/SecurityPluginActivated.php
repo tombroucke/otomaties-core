@@ -2,14 +2,14 @@
 
 namespace Otomaties\Core\Modules\HealthTests;
 
-use Otomaties\Core\Modules\HealthTests\Enums\HealthCheckCategory;
 use Otomaties\Core\Modules\HealthTests\Dtos\HealthTestResponseDto;
+use Otomaties\Core\Modules\HealthTests\Enums\HealthCheckCategory;
 
 class SecurityPluginActivated extends Abstracts\HealthTest
 {
     protected string $category = HealthCheckCategory::SECURITY;
 
-    public function passes() : bool
+    public function passes(): bool
     {
         return is_plugin_active('sucuri-scanner/sucuri.php')
             || is_plugin_active('wordfence/wordfence.php')
@@ -17,7 +17,7 @@ class SecurityPluginActivated extends Abstracts\HealthTest
             || is_plugin_active('defender-security/wp-defender.php');
     }
 
-    public function passedResponse(HealthTestResponseDto $response) : HealthTestResponseDto
+    public function passedResponse(HealthTestResponseDto $response): HealthTestResponseDto
     {
         return $response
             ->withStatus('good')
@@ -28,7 +28,7 @@ class SecurityPluginActivated extends Abstracts\HealthTest
             ));
     }
 
-    public function failedResponse(HealthTestResponseDto $response) : HealthTestResponseDto
+    public function failedResponse(HealthTestResponseDto $response): HealthTestResponseDto
     {
         return $response
             ->withStatus('critical')

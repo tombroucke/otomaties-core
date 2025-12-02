@@ -2,20 +2,21 @@
 
 namespace Otomaties\Core\Modules\HealthTests;
 
-use Otomaties\Core\Modules\HealthTests\Enums\HealthCheckCategory;
 use Otomaties\Core\Modules\HealthTests\Dtos\HealthTestResponseDto;
+use Otomaties\Core\Modules\HealthTests\Enums\HealthCheckCategory;
 
 class FaviconIsSet extends Abstracts\HealthTest
 {
     protected string $category = HealthCheckCategory::APPEARANCE;
 
-    public function passes() : bool
+    public function passes(): bool
     {
         $favicon = get_site_icon_url();
+
         return ! empty($favicon);
     }
 
-    public function passedResponse(HealthTestResponseDto $response) : HealthTestResponseDto
+    public function passedResponse(HealthTestResponseDto $response): HealthTestResponseDto
     {
         return $response
             ->withLabel(__('Favicon is set', 'otomaties-core'))
@@ -25,7 +26,7 @@ class FaviconIsSet extends Abstracts\HealthTest
             ));
     }
 
-    public function failedResponse(HealthTestResponseDto $response) : HealthTestResponseDto
+    public function failedResponse(HealthTestResponseDto $response): HealthTestResponseDto
     {
         return $response
             ->withStatus('recommended')

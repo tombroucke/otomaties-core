@@ -60,7 +60,7 @@ class HealthTests
                 ];
                 add_action('wp_ajax_' . $key, $test['test']);
             });
-            
+
         return $tests;
     }
 

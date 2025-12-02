@@ -2,9 +2,9 @@
 
 namespace Otomaties\Core\Modules\HealthTests\Abstracts;
 
-use OtomatiesCoreVendor\Illuminate\Support\Str;
-use Otomaties\Core\Modules\HealthTests\Enums\HealthCheckCategory;
 use Otomaties\Core\Modules\HealthTests\Dtos\HealthTestResponseDto;
+use Otomaties\Core\Modules\HealthTests\Enums\HealthCheckCategory;
+use OtomatiesCoreVendor\Illuminate\Support\Str;
 
 abstract class HealthTest
 {
@@ -16,9 +16,9 @@ abstract class HealthTest
 
     abstract public function passes(): bool;
 
-    abstract public function passedResponse(HealthTestResponseDto $response) : HealthTestResponseDto;
+    abstract public function passedResponse(HealthTestResponseDto $response): HealthTestResponseDto;
 
-    abstract public function failedResponse(HealthTestResponseDto $response) : HealthTestResponseDto;
+    abstract public function failedResponse(HealthTestResponseDto $response): HealthTestResponseDto;
 
     public function name(): string
     {
@@ -54,8 +54,8 @@ abstract class HealthTest
             ],
         );
 
-        $response = $this->passes() ? 
-            $this->passedResponse($response) : 
+        $response = $this->passes() ?
+            $this->passedResponse($response) :
             $this->failedResponse($response);
 
         if ($response->status === 'critical') {

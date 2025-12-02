@@ -2,8 +2,8 @@
 
 namespace Otomaties\Core\Modules\HealthTests;
 
-use Otomaties\Core\Modules\HealthTests\Enums\HealthCheckCategory;
 use Otomaties\Core\Modules\HealthTests\Dtos\HealthTestResponseDto;
+use Otomaties\Core\Modules\HealthTests\Enums\HealthCheckCategory;
 
 class XmlrpcIsBlocked extends Abstracts\HealthTest
 {
@@ -11,16 +11,17 @@ class XmlrpcIsBlocked extends Abstracts\HealthTest
 
     protected string $type = 'async';
 
-    public function passes() : bool
+    public function passes(): bool
     {
         $response = wp_remote_get(
             site_url('xmlrpc.php'),
-            ['sslverify' => otomatiesCore()->environment() === 'production',]
+            ['sslverify' => otomatiesCore()->environment() === 'production']
         );
+
         return wp_remote_retrieve_response_code($response) === 403;
     }
 
-    public function passedResponse(HealthTestResponseDto $response) : HealthTestResponseDto
+    public function passedResponse(HealthTestResponseDto $response): HealthTestResponseDto
     {
         return $response
             ->withLabel(__('Access to xmlrpc.php is blocked', 'otomaties-core'))
@@ -30,7 +31,7 @@ class XmlrpcIsBlocked extends Abstracts\HealthTest
             ));
     }
 
-    public function failedResponse(HealthTestResponseDto $response) : HealthTestResponseDto
+    public function failedResponse(HealthTestResponseDto $response): HealthTestResponseDto
     {
         return $response
             ->withStatus('critical')

@@ -2,9 +2,9 @@
 
 namespace Otomaties\Core\Modules\HealthTests;
 
-use OtomatiesCoreVendor\Illuminate\Support\Collection;
-use Otomaties\Core\Modules\HealthTests\Enums\HealthCheckCategory;
 use Otomaties\Core\Modules\HealthTests\Dtos\HealthTestResponseDto;
+use Otomaties\Core\Modules\HealthTests\Enums\HealthCheckCategory;
+use OtomatiesCoreVendor\Illuminate\Support\Collection;
 
 class NgFirewall extends Abstracts\HealthTest
 {

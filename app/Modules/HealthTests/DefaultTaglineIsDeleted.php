@@ -2,19 +2,19 @@
 
 namespace Otomaties\Core\Modules\HealthTests;
 
-use Otomaties\Core\Modules\HealthTests\Enums\HealthCheckCategory;
 use Otomaties\Core\Modules\HealthTests\Dtos\HealthTestResponseDto;
+use Otomaties\Core\Modules\HealthTests\Enums\HealthCheckCategory;
 
 class DefaultTaglineIsDeleted extends Abstracts\HealthTest
 {
     protected string $category = HealthCheckCategory::SEO;
 
-    public function passes() : bool
+    public function passes(): bool
     {
         return ! preg_match('/^Just another .+ site$/', get_option('blogdescription'));
     }
 
-    public function passedResponse(HealthTestResponseDto $response) : HealthTestResponseDto
+    public function passedResponse(HealthTestResponseDto $response): HealthTestResponseDto
     {
         return $response
             ->withLabel(__('The default tagline has been changed', 'otomaties-core'))
@@ -24,7 +24,7 @@ class DefaultTaglineIsDeleted extends Abstracts\HealthTest
             ));
     }
 
-    public function failedResponse(HealthTestResponseDto $response) : HealthTestResponseDto
+    public function failedResponse(HealthTestResponseDto $response): HealthTestResponseDto
     {
         return $response
             ->withStatus('critical')

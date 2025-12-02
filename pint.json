@@ -1,8 +1,9 @@
 {
-    "preset": "laravel",
-    "rules": {
-        "concat_space": {
-            "spacing": "one"
-        }
+  "preset": "laravel",
+  "rules": {
+    "concat_space": {
+      "spacing": "one"
     }
+  },
+  "exclude": ["vendor_prefixed"]
 }

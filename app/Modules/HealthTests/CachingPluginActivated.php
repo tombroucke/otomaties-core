@@ -2,8 +2,8 @@
 
 namespace Otomaties\Core\Modules\HealthTests;
 
-use Otomaties\Core\Modules\HealthTests\Enums\HealthCheckCategory;
 use Otomaties\Core\Modules\HealthTests\Dtos\HealthTestResponseDto;
+use Otomaties\Core\Modules\HealthTests\Enums\HealthCheckCategory;
 
 class CachingPluginActivated extends Abstracts\HealthTest
 {
