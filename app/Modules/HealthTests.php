@@ -11,6 +11,7 @@ class HealthTests
     public function init(): void
     {
         add_filter('site_status_tests', [$this, 'addTests']);
+        add_filter('site_status_tests', [$this, 'removeBackgroundUpdatesTest']);
         add_action('rest_api_init', [$this, 'addAsyncTestRoutes']);
     }
 
@@ -83,6 +84,16 @@ class HealthTests
                     ]
                 );
             });
+    }
+
+    public function removeBackgroundUpdatesTest($tests): array
+    {
+
+        if (class_exists('\\Roots\\WPConfig\\Config') && isset($tests['async']['background_updates'])) {
+            unset($tests['async']['background_updates']);
+        }
+
+        return $tests;
     }
 
     private function directTests(): Collection
