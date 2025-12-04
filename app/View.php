@@ -17,6 +17,8 @@ class View
      *
      * @param  string  $view  The view name
      * @param  array<string, mixed>  $context  The context to pass to the view
+     *
+     * @throws ViewNotFoundException
      */
     public function render(string $view, array $context = []): void
     {
