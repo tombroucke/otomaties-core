@@ -62,7 +62,7 @@ class Security
         }
         if (! empty($securityIssues)) {
             $type = 'warning';
-            if (\otomatiesCore()->environment() === 'production') {
+            if (otomatiesCore()->environment() === 'production') {
                 $type = 'error';
             }
 
