@@ -112,7 +112,7 @@ class Revision
     private function getRevisionFileContent(): ?string
     {
         $revisionFilePath = $this->findRevisionFilePath();
-        if (! $revisionFilePath || ! file_get_contents($revisionFilePath)) {
+        if (! $revisionFilePath || ! file_exists($revisionFilePath)) {
             return null;
         }
         $resource = fopen($revisionFilePath, 'r');
