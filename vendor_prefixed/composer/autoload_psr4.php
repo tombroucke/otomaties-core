@@ -6,12 +6,12 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Symfony\\Polyfill\\Php85\\' => array($vendorDir . '/symfony/polyfill-php85'),
+    'Symfony\\Polyfill\\Php84\\' => array($vendorDir . '/symfony/polyfill-php84'),
+    'Symfony\\Polyfill\\Php83\\' => array($vendorDir . '/symfony/polyfill-php83'),
+    'Symfony\\Polyfill\\Mbstring\\' => array($vendorDir . '/symfony/polyfill-mbstring'),
     'Otomaties\\Core\\' => array($baseDir . '/app'),
     'OtomatiesCoreVendor\\voku\\' => array($vendorDir . '/voku/portable-ascii/src/voku'),
-    'OtomatiesCoreVendor\\Symfony\\Polyfill\\Php85\\' => array($vendorDir . '/symfony/polyfill-php85'),
-    'OtomatiesCoreVendor\\Symfony\\Polyfill\\Php84\\' => array($vendorDir . '/symfony/polyfill-php84'),
-    'OtomatiesCoreVendor\\Symfony\\Polyfill\\Php83\\' => array($vendorDir . '/symfony/polyfill-php83'),
-    'OtomatiesCoreVendor\\Symfony\\Polyfill\\Mbstring\\' => array($vendorDir . '/symfony/polyfill-mbstring'),
     'OtomatiesCoreVendor\\Symfony\\Contracts\\Translation\\' => array($vendorDir . '/symfony/translation-contracts'),
     'OtomatiesCoreVendor\\Symfony\\Component\\Translation\\' => array($vendorDir . '/symfony/translation'),
     'OtomatiesCoreVendor\\Symfony\\Component\\Clock\\' => array($vendorDir . '/symfony/clock'),

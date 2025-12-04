@@ -60,6 +60,26 @@ if (!\function_exists('OtomatiesCoreVendor\\Illuminate\\Support\\now')) {
         return Date::now(enum_value($tz));
     }
 }
+if (!\function_exists('OtomatiesCoreVendor\\Illuminate\\Support\\microseconds')) {
+    /**
+     * Get the current date / time plus the given number of microseconds.
+     * @internal
+     */
+    function microseconds(int $microseconds) : CarbonInterval
+    {
+        return CarbonInterval::microseconds($microseconds);
+    }
+}
+if (!\function_exists('OtomatiesCoreVendor\\Illuminate\\Support\\milliseconds')) {
+    /**
+     * Get the current date / time plus the given number of milliseconds.
+     * @internal
+     */
+    function milliseconds(int $milliseconds) : CarbonInterval
+    {
+        return CarbonInterval::milliseconds($milliseconds);
+    }
+}
 if (!\function_exists('OtomatiesCoreVendor\\Illuminate\\Support\\seconds')) {
     /**
      * Get the current date / time plus the given number of seconds.
@@ -98,6 +118,26 @@ if (!\function_exists('OtomatiesCoreVendor\\Illuminate\\Support\\days')) {
     function days(int $days) : CarbonInterval
     {
         return CarbonInterval::days($days);
+    }
+}
+if (!\function_exists('OtomatiesCoreVendor\\Illuminate\\Support\\weeks')) {
+    /**
+     * Get the current date / time plus the given number of weeks.
+     * @internal
+     */
+    function weeks(int $weeks) : CarbonInterval
+    {
+        return CarbonInterval::weeks($weeks);
+    }
+}
+if (!\function_exists('OtomatiesCoreVendor\\Illuminate\\Support\\months')) {
+    /**
+     * Get the current date / time plus the given number of months.
+     * @internal
+     */
+    function months(int $months) : CarbonInterval
+    {
+        return CarbonInterval::months($months);
     }
 }
 if (!\function_exists('OtomatiesCoreVendor\\Illuminate\\Support\\years')) {

@@ -102,6 +102,8 @@ class Connect
 
     /**
      * Check the public key signature to see if the request is valid
+     *
+     * @param  \WP_REST_Request<array<string,mixed>>  $request
      */
     public function checkPermission(\WP_REST_Request $request): bool
     {

@@ -6,6 +6,8 @@ use Closure;
 use OtomatiesCoreVendor\Illuminate\Support\Collection;
 use OtomatiesCoreVendor\Illuminate\Support\Reflector;
 use ReflectionFunction;
+use ReflectionIntersectionType;
+use ReflectionUnionType;
 use RuntimeException;
 /** @internal */
 trait ReflectsClosures
@@ -73,5 +75,22 @@ trait ReflectsClosures
             }
             return [$parameter->getName() => Reflector::getParameterClassName($parameter)];
         })->all();
+    }
+    /**
+     * Get the class names / types of the return type of the given Closure.
+     *
+     * @param  \Closure  $closure
+     * @return list<class-string>
+     *
+     * @throws \ReflectionException
+     */
+    protected function closureReturnTypes(Closure $closure)
+    {
+        $reflection = new ReflectionFunction($closure);
+        if ($reflection->getReturnType() === null || $reflection->getReturnType() instanceof ReflectionIntersectionType) {
+            return [];
+        }
+        $types = $reflection->getReturnType() instanceof ReflectionUnionType ? $reflection->getReturnType()->getTypes() : [$reflection->getReturnType()];
+        return (new Collection($types))->reject(fn($type) => $type->isBuiltin())->reject(fn($type) => \in_array($type->getName(), ['static', 'self']))->map(fn($type) => $type->getName())->values()->all();
     }
 }

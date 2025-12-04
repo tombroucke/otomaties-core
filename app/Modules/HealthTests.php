@@ -6,6 +6,7 @@ use OtomatiesCoreVendor\Illuminate\Support\Collection;
 
 class HealthTests
 {
+    /** @var ?Collection<string, array<string, mixed>> */
     private ?Collection $tests = null;
 
     public function init(): void
@@ -17,10 +18,13 @@ class HealthTests
 
     /**
      * Get all available test
+     *
+     * @return Collection<string, array<string, mixed>>
      */
     public function tests(): Collection
     {
         if (! isset($this->tests)) {
+            /** @phpstan-ignore-next-line */
             $this->tests = (new Collection(glob(__DIR__ . '/HealthTests/*.php')))
                 ->map(function ($file) {
                     $class = basename($file, '.php');
@@ -41,7 +45,13 @@ class HealthTests
         return $this->tests;
     }
 
-    public function addTests($tests): array
+    /**
+     * Add custom tests
+     *
+     * @param  array<string, array<string, array<string, array<string, mixed>>>>  $tests
+     * @return array<string, array<string, array<string, array<string, mixed>>>>
+     */
+    public function addTests(array $tests): array
     {
         $this->directTests()
             ->each(function ($test, $key) use (&$tests) {
@@ -86,7 +96,13 @@ class HealthTests
             });
     }
 
-    public function removeBackgroundUpdatesTest($tests): array
+    /**
+     * Remove background updates test if Bedrock is managing dependencies
+     *
+     * @param  array<string, array<string, array<string, array<string, mixed>>>>  $tests
+     * @return array<string, array<string, array<string, array<string, mixed>>>>
+     */
+    public function removeBackgroundUpdatesTest(array $tests): array
     {
 
         if (class_exists('\\Roots\\WPConfig\\Config') && isset($tests['async']['background_updates'])) {
@@ -96,6 +112,9 @@ class HealthTests
         return $tests;
     }
 
+    /**
+     * @return Collection<string, array<string, mixed>>
+     */
     private function directTests(): Collection
     {
         return (new Collection($this->tests()))
@@ -104,6 +123,9 @@ class HealthTests
             });
     }
 
+    /**
+     * @return Collection<string, array<string, mixed>>
+     */
     private function asyncTests(): Collection
     {
         return (new Collection($this->tests()))
@@ -112,7 +134,7 @@ class HealthTests
             });
     }
 
-    private function validateRequestPermission($check): bool
+    private function validateRequestPermission(string $check): bool
     {
         $capability = apply_filters(
             "otomaties_core_site_health_test_rest_capability_{$check}",

@@ -199,7 +199,7 @@ class Arr
         return \array_key_exists($key, $array);
     }
     /**
-     * Return the first element in an array passing a given truth test.
+     * Return the first element in an iterable passing a given truth test.
      *
      * @template TKey
      * @template TValue
@@ -217,14 +217,15 @@ class Arr
                 return value($default);
             }
             if (\is_array($array)) {
-                return \OtomatiesCoreVendor\array_first($array);
+                return array_first($array);
             }
             foreach ($array as $item) {
                 return $item;
             }
             return value($default);
         }
-        $key = \OtomatiesCoreVendor\array_find_key($array, $callback);
+        $array = static::from($array);
+        $key = array_find_key($array, $callback);
         return $key !== null ? $array[$key] : value($default);
     }
     /**
@@ -242,7 +243,7 @@ class Arr
     public static function last($array, ?callable $callback = null, $default = null)
     {
         if (\is_null($callback)) {
-            return empty($array) ? value($default) : \OtomatiesCoreVendor\array_last($array);
+            return empty($array) ? value($default) : array_last($array);
         }
         return static::first(\array_reverse($array, \true), $callback, $default);
     }
@@ -469,7 +470,7 @@ class Arr
      */
     public static function every($array, callable $callback)
     {
-        return \OtomatiesCoreVendor\array_all($array, $callback);
+        return array_all($array, $callback);
     }
     /**
      * Determine if some items pass the given truth test.
@@ -480,7 +481,7 @@ class Arr
      */
     public static function some($array, callable $callback)
     {
-        return \OtomatiesCoreVendor\array_any($array, $callback);
+        return array_any($array, $callback);
     }
     /**
      * Get an integer item from an array using "dot" notation.
@@ -536,7 +537,7 @@ class Arr
             return '';
         }
         if (\count($array) === 1) {
-            return \OtomatiesCoreVendor\array_last($array);
+            return array_last($array);
         }
         $finalItem = \array_pop($array);
         return \implode($glue, $array) . $finalGlue . $finalItem;

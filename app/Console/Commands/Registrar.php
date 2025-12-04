@@ -4,11 +4,12 @@ namespace Otomaties\Core\Console\Commands;
 
 class Registrar
 {
+    /** @var array<int, string> */
     protected array $commands = [
         CleanWpSeoTaxonomyMetaCommand::class,
     ];
 
-    public function register()
+    public function register(): void
     {
         if (! defined('WP_CLI') || ! WP_CLI) {
             return;

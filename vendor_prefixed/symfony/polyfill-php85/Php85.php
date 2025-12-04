@@ -8,7 +8,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-namespace OtomatiesCoreVendor\Symfony\Polyfill\Php85;
+namespace Symfony\Polyfill\Php85;
 
 /**
  * @author Pierre Ambroise <pierre27.ambroise@gmail.com>

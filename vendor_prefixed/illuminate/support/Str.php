@@ -490,7 +490,7 @@ class Str
         if (!\is_string($value)) {
             return \false;
         }
-        return \OtomatiesCoreVendor\json_validate($value, 512);
+        return json_validate($value, 512);
     }
     /**
      * Determine if a given value is a valid URL.
@@ -788,7 +788,7 @@ class Str
      */
     public static function padBoth($value, $length, $pad = ' ')
     {
-        return \OtomatiesCoreVendor\mb_str_pad($value, $length, $pad, \STR_PAD_BOTH);
+        return mb_str_pad($value, $length, $pad, \STR_PAD_BOTH);
     }
     /**
      * Pad the left side of a string with another.
@@ -800,7 +800,7 @@ class Str
      */
     public static function padLeft($value, $length, $pad = ' ')
     {
-        return \OtomatiesCoreVendor\mb_str_pad($value, $length, $pad, \STR_PAD_LEFT);
+        return mb_str_pad($value, $length, $pad, \STR_PAD_LEFT);
     }
     /**
      * Pad the right side of a string with another.
@@ -812,7 +812,7 @@ class Str
      */
     public static function padRight($value, $length, $pad = ' ')
     {
-        return \OtomatiesCoreVendor\mb_str_pad($value, $length, $pad, \STR_PAD_RIGHT);
+        return mb_str_pad($value, $length, $pad, \STR_PAD_RIGHT);
     }
     /**
      * Parse a Class[@]method style callback into class and method.
@@ -1440,9 +1440,9 @@ class Str
     public static function substrReplace($string, $replace, $offset = 0, $length = null)
     {
         if ($length === null) {
-            $length = \strlen($string);
+            $length = static::length($string);
         }
-        return \substr_replace($string, $replace, $offset, $length);
+        return \mb_substr($string, 0, $offset) . $replace . \mb_substr($string, $offset + $length);
     }
     /**
      * Swap multiple keywords in a string with other keywords.

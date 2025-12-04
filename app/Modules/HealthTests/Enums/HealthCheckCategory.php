@@ -14,6 +14,11 @@ class HealthCheckCategory
 
     public const SYSTEM = 'System';
 
+    /**
+     * Get all categories
+     *
+     * @return array<string>
+     */
     public static function all(): array
     {
         return [

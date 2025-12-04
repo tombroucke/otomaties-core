@@ -23,7 +23,7 @@ use OtomatiesCoreVendor\Carbon\Month;
 use OtomatiesCoreVendor\Carbon\Translator;
 use OtomatiesCoreVendor\Carbon\WeekDay;
 use Closure;
-use OtomatiesCoreVendor\DateMalformedStringException;
+use DateMalformedStringException;
 use DateTimeImmutable;
 use DateTimeInterface;
 use DateTimeZone;

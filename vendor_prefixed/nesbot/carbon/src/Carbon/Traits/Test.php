@@ -145,7 +145,7 @@ trait Test
         $testInstance = $factory->handleTestNowClosure($testInstance, $timezone);
         $time = $testInstance instanceof self ? $testInstance->rawFormat(static::MOCK_DATETIME_FORMAT) : $testInstance->format(static::MOCK_DATETIME_FORMAT);
     }
-    private function getMockedTestNowClone($timezone) : CarbonInterface|self|null
+    private static function getMockedTestNowClone($timezone) : CarbonInterface|self|null
     {
         $mock = static::getMockedTestNow($timezone);
         return $mock ? clone $mock : null;

@@ -132,7 +132,7 @@ class ServiceProvider extends \OtomatiesCoreVendor\Illuminate\Support\ServicePro
     }
     protected function getGlobalApp(...$args)
     {
-        return \function_exists('OtomatiesCoreVendor\\app') ? \OtomatiesCoreVendor\app(...$args) : null;
+        return \function_exists('app') ? \app(...$args) : null;
     }
     protected function isEventDispatcher($instance)
     {

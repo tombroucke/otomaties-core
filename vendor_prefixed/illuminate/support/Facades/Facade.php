@@ -12,7 +12,7 @@ use OtomatiesCoreVendor\Illuminate\Support\Number;
 use OtomatiesCoreVendor\Illuminate\Support\Str;
 use OtomatiesCoreVendor\Illuminate\Support\Testing\Fakes\Fake;
 use OtomatiesCoreVendor\Illuminate\Support\Uri;
-use OtomatiesCoreVendor\Mockery;
+use Mockery;
 use OtomatiesCoreVendor\Mockery\LegacyMockInterface;
 use RuntimeException;
 /** @internal */

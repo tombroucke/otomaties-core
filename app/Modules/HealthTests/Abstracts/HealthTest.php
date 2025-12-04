@@ -23,7 +23,7 @@ abstract class HealthTest
     public function name(): string
     {
         return $this->name === null ?
-            Str::snake(\OtomatiesCoreVendor\class_basename($this)) :
+            Str::snake(class_basename($this)) :
             Str::snake($this->name);
     }
 
@@ -41,6 +41,11 @@ abstract class HealthTest
         return $this->category;
     }
 
+    /**
+     * Generate response
+     *
+     * @return array<string, mixed>
+     */
     public function respond(): array
     {
         $response = new HealthTestResponseDto(

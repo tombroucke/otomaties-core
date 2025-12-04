@@ -6,6 +6,9 @@ namespace Otomaties\Core\Modules\HealthTests\Dtos;
 
 final class HealthTestResponseDto
 {
+    /**
+     * @param  array<string, string>|null  $badge
+     */
     public function __construct(
         public string $test,
         public string $status,
@@ -32,6 +35,9 @@ final class HealthTestResponseDto
         return $this->with(description: $description);
     }
 
+    /**
+     * @param  array<string, string>  $badge
+     */
     public function withBadge(array $badge): self
     {
         return $this->with(badge: $badge);
@@ -42,6 +48,11 @@ final class HealthTestResponseDto
         return $this->with(actions: $actions);
     }
 
+    /**
+     * Convert to array
+     *
+     * @return array<string, mixed>
+     */
     public function toArray(): array
     {
         return array_filter([
@@ -54,6 +65,11 @@ final class HealthTestResponseDto
         ]);
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param  array<string, string>|null  $badge
+     */
     private function with(
         ?string $test = null,
         ?string $status = null,

@@ -64,6 +64,8 @@ class Revision
 
     /**
      * Get release information and store it
+     *
+     * @return array<string, string>
      */
     private function releaseInformation(): array
     {

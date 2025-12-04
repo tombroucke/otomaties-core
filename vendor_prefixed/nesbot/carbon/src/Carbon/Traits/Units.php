@@ -21,7 +21,7 @@ use OtomatiesCoreVendor\Carbon\Exceptions\UnsupportedUnitException;
 use OtomatiesCoreVendor\Carbon\Unit;
 use Closure;
 use DateInterval;
-use OtomatiesCoreVendor\DateMalformedStringException;
+use DateMalformedStringException;
 use ReturnTypeWillChange;
 /**
  * Trait Units.
@@ -202,9 +202,9 @@ trait Units
      * @example $date->add(15, 'days')
      * @example $date->add(CarbonInterval::days(4))
      *
-     * @param Unit|string|DateInterval|Closure|CarbonConverterInterface $unit
-     * @param int|float                                                 $value
-     * @param bool|null                                                 $overflow
+     * @param Unit|int|string|DateInterval|Closure|CarbonConverterInterface $unit
+     * @param Unit|int|float|string                                         $value
+     * @param bool|null                                                     $overflow
      *
      * @return static
      */
@@ -311,15 +311,17 @@ trait Units
      * @example $date->sub(15, 'days')
      * @example $date->sub(CarbonInterval::days(4))
      *
-     * @param Unit|string|DateInterval|Closure|CarbonConverterInterface $unit
-     * @param int|float                                                 $value
-     * @param bool|null                                                 $overflow
+     * @param Unit|int|string|DateInterval|Closure|CarbonConverterInterface $unit
+     * @param Unit|int|float|string                                         $value
+     * @param bool|null                                                     $overflow
      *
      * @return static
      */
     #[ReturnTypeWillChange]
     public function sub($unit, $value = 1, ?bool $overflow = null) : static
     {
+        $unit = Unit::toNameIfUnit($unit);
+        $value = Unit::toNameIfUnit($value);
         if (\is_string($unit) && \func_num_args() === 1) {
             $unit = CarbonInterval::make($unit, [], \true);
         }
@@ -346,9 +348,9 @@ trait Units
      *
      * @see sub()
      *
-     * @param string|DateInterval $unit
-     * @param int|float           $value
-     * @param bool|null           $overflow
+     * @param Unit|int|string|DateInterval $unit
+     * @param Unit|int|float|string        $value
+     * @param bool|null                    $overflow
      *
      * @return static
      */

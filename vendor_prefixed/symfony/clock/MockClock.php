@@ -33,7 +33,7 @@ final class MockClock implements ClockInterface
             try {
                 $timezone = new \DateTimeZone($timezone);
             } catch (\Exception $e) {
-                throw new \OtomatiesCoreVendor\DateInvalidTimeZoneException($e->getMessage(), $e->getCode(), $e);
+                throw new \DateInvalidTimeZoneException($e->getMessage(), $e->getCode(), $e);
             }
         }
         if (\is_string($now)) {
@@ -63,7 +63,7 @@ final class MockClock implements ClockInterface
     public function modify(string $modifier) : void
     {
         if (\PHP_VERSION_ID < 80300) {
-            $this->now = @$this->now->modify($modifier) ?: throw new \OtomatiesCoreVendor\DateMalformedStringException(\error_get_last()['message'] ?? \sprintf('Invalid modifier: "%s". Could not modify MockClock.', $modifier));
+            $this->now = @$this->now->modify($modifier) ?: throw new \DateMalformedStringException(\error_get_last()['message'] ?? \sprintf('Invalid modifier: "%s". Could not modify MockClock.', $modifier));
             return;
         }
         $this->now = $this->now->modify($modifier);
@@ -79,7 +79,7 @@ final class MockClock implements ClockInterface
             try {
                 $timezone = new \DateTimeZone($timezone);
             } catch (\Exception $e) {
-                throw new \OtomatiesCoreVendor\DateInvalidTimeZoneException($e->getMessage(), $e->getCode(), $e);
+                throw new \DateInvalidTimeZoneException($e->getMessage(), $e->getCode(), $e);
             }
         }
         $clone = clone $this;

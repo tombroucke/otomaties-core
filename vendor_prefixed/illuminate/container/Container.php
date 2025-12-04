@@ -13,19 +13,18 @@ use OtomatiesCoreVendor\Illuminate\Contracts\Container\CircularDependencyExcepti
 use OtomatiesCoreVendor\Illuminate\Contracts\Container\Container as ContainerContract;
 use OtomatiesCoreVendor\Illuminate\Contracts\Container\ContextualAttribute;
 use OtomatiesCoreVendor\Illuminate\Contracts\Container\SelfBuilding;
-use OtomatiesCoreVendor\Illuminate\Support\Collection;
+use OtomatiesCoreVendor\Illuminate\Support\Traits\ReflectsClosures;
 use LogicException;
 use ReflectionAttribute;
 use ReflectionClass;
 use ReflectionException;
 use ReflectionFunction;
-use ReflectionIntersectionType;
 use ReflectionParameter;
-use ReflectionUnionType;
 use TypeError;
 /** @internal */
 class Container implements ArrayAccess, ContainerContract
 {
+    use ReflectsClosures;
     /**
      * The current globally available container (if any).
      *
@@ -486,23 +485,6 @@ class Container implements ArrayAccess, ContainerContract
         foreach ($abstracts as $abstract) {
             $this->bind($abstract, $concrete, $shared);
         }
-    }
-    /**
-     * Get the class names / types of the return type of the given Closure.
-     *
-     * @param  \Closure  $closure
-     * @return list<class-string>
-     *
-     * @throws \ReflectionException
-     */
-    protected function closureReturnTypes(Closure $closure)
-    {
-        $reflection = new ReflectionFunction($closure);
-        if ($reflection->getReturnType() === null || $reflection->getReturnType() instanceof ReflectionIntersectionType) {
-            return [];
-        }
-        $types = $reflection->getReturnType() instanceof ReflectionUnionType ? $reflection->getReturnType()->getTypes() : [$reflection->getReturnType()];
-        return (new Collection($types))->reject(fn($type) => $type->isBuiltin())->reject(fn($type) => \in_array($type->getName(), ['static', 'self']))->map(fn($type) => $type->getName())->values()->all();
     }
     /**
      * "Extend" an abstract type in the container.
@@ -1097,7 +1079,7 @@ class Container implements ArrayAccess, ContainerContract
      */
     protected function getLastParameterOverride()
     {
-        return \count($this->with) ? \OtomatiesCoreVendor\array_last($this->with) : [];
+        return \count($this->with) ? array_last($this->with) : [];
     }
     /**
      * Resolve a non-class hinted primitive dependency.
@@ -1394,7 +1376,7 @@ class Container implements ArrayAccess, ContainerContract
      */
     public function currentlyResolving()
     {
-        return \OtomatiesCoreVendor\array_last($this->buildStack) ?: null;
+        return array_last($this->buildStack) ?: null;
     }
     /**
      * Get the container's bindings.

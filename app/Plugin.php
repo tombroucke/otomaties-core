@@ -8,6 +8,7 @@ use OtomatiesCoreVendor\Illuminate\Support\Collection;
 
 class Plugin extends Container
 {
+    /** @var array<int, string> */
     private array $modules = [
         Modules\Admin::class,
         Modules\Frontend::class,
@@ -65,7 +66,7 @@ class Plugin extends Container
         return $_ENV[$name] ?? $_SERVER[$name] ?? getenv($name) ?: null;
     }
 
-    private function register()
+    private function register(): void
     {
         $this->bind(View::class, fn () => new View($this->config('paths.views')));
     }

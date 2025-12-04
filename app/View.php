@@ -16,7 +16,7 @@ class View
      * Render a view
      *
      * @param  string  $view  The view name
-     * @param  array  $context  The context to pass to the view
+     * @param  array<string, mixed>  $context  The context to pass to the view
      */
     public function render(string $view, array $context = []): void
     {
@@ -48,7 +48,7 @@ class View
      * Return a view as string
      *
      * @param  string  $view  The view name
-     * @param  array  $context  The context to pass to the view
+     * @param  array<string, mixed>  $context  The context to pass to the view
      */
     public function return(string $view, array $context = []): string
     {

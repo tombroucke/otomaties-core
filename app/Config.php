@@ -12,6 +12,11 @@ class Config extends Repository
         $this->items = $this->loadConfig();
     }
 
+    /**
+     * Load all config files
+     *
+     * @return array<string, array<string, mixed>>
+     */
     private function loadConfig(): array
     {
         return (new Collection(glob(dirname(__DIR__) . '/config/*.php')))

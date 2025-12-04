@@ -65,7 +65,7 @@ final class Clock implements ClockInterface
             try {
                 $timezone = new \DateTimeZone($timezone);
             } catch (\Exception $e) {
-                throw new \OtomatiesCoreVendor\DateInvalidTimeZoneException($e->getMessage(), $e->getCode(), $e);
+                throw new \DateInvalidTimeZoneException($e->getMessage(), $e->getCode(), $e);
             }
         }
         $clone = clone $this;

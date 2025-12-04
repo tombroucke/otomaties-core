@@ -50,7 +50,7 @@ class EncodedHtmlString extends HtmlString
      *
      * @return string
      */
-    #[\OtomatiesCoreVendor\Override]
+    #[\Override]
     public function toHtml()
     {
         $value = $this->html;
