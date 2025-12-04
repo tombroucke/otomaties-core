@@ -43,6 +43,7 @@ class Plugin extends Container
         $this->loadTextDomain();
         $this->loadModules();
         $this->initCommands();
+        $this->initMigrations();
 
         return $this;
     }
@@ -83,6 +84,14 @@ class Plugin extends Container
         $this
             ->make(Registrar::class)
             ->register();
+    }
+
+    private function initMigrations(): void
+    {
+        add_action('admin_init', function () {
+            $this->make(Database\Migrations\Migrator::class)
+                ->run();
+        });
     }
 
     private function loadModules(): self
