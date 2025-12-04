@@ -26,9 +26,10 @@ class Frontend
 
         global $wp_query;
         if ($wp_query->found_posts === 1) {
-            $redirect = get_permalink($wp_query->posts['0']->ID);
+            $redirect = get_permalink($wp_query->posts[0]->ID);
             if ($redirect) {
-                wp_redirect($redirect);
+                wp_safe_redirect($redirect);
+                exit;
             }
         }
     }
