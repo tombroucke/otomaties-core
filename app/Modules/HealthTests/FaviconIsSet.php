@@ -33,9 +33,7 @@ class FaviconIsSet extends Abstracts\HealthTest
             ->withLabel(__('Favicon is not set', 'otomaties-core'))
             ->withDescription(sprintf(
                 '<p>%s</p>',
-                sprintf(
-                    __('The favicon is not set on this website. Visit the %s to set your favicon', 'otomaties-core'), // phpcs:ignore Generic.Files.LineLength.TooLong
-                )
+                __('The favicon is not set on this website.', 'otomaties-core')
             ))
             ->withActions(sprintf(
                 '<a href="%s" target="_blank">%s</a>',
