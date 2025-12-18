@@ -20,7 +20,10 @@ class Mollie
      */
     public function webhookBasicAuth(string $returnUrl, \WC_Order $order): string
     {
-        if (! function_exists('env') || ! env('BASIC_AUTH_USER') || ! env('BASIC_AUTH_PASS')) {
+        $basicAuthUser = otomatiesCore()->findVariable('BASIC_AUTH_USER');
+        $basicAuthPass = otomatiesCore()->findVariable('BASIC_AUTH_PASS');
+
+        if (! $basicAuthUser || ! $basicAuthPass) {
             return $returnUrl;
         }
 
@@ -29,7 +32,7 @@ class Mollie
 
         $basicAuthReturnUrl = preg_replace(
             '/^' . preg_quote($protocol, '/') . '/',
-            $protocol . env('BASIC_AUTH_USER') . ':' . env('BASIC_AUTH_PASS') . '@',
+            $protocol . $basicAuthUser . ':' . $basicAuthPass . '@',
             $returnUrl
         );
 
