@@ -83,7 +83,7 @@ class MailFake implements Factory, Fake, Mailer, MailQueue
      * @param  int  $times
      * @return void
      */
-    protected function assertSentTimes($mailable, $times = 1)
+    public function assertSentTimes($mailable, $times = 1)
     {
         $count = $this->sent($mailable)->count();
         PHPUnit::assertSame($times, $count, \sprintf("The expected [{$mailable}] mailable was sent {$count} %s instead of {$times} %s.", Str::plural('time', $count), Str::plural('time', $times)));

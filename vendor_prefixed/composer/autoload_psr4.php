@@ -18,7 +18,7 @@ return array(
     'OtomatiesCoreVendor\\Psr\\SimpleCache\\' => array($vendorDir . '/psr/simple-cache/src'),
     'OtomatiesCoreVendor\\Psr\\Container\\' => array($vendorDir . '/psr/container/src'),
     'OtomatiesCoreVendor\\Psr\\Clock\\' => array($vendorDir . '/psr/clock/src'),
-    'OtomatiesCoreVendor\\Illuminate\\Support\\' => array($vendorDir . '/illuminate/support', $vendorDir . '/illuminate/collections', $vendorDir . '/illuminate/macroable', $vendorDir . '/illuminate/conditionable'),
+    'OtomatiesCoreVendor\\Illuminate\\Support\\' => array($vendorDir . '/illuminate/support', $vendorDir . '/illuminate/reflection', $vendorDir . '/illuminate/collections', $vendorDir . '/illuminate/macroable', $vendorDir . '/illuminate/conditionable'),
     'OtomatiesCoreVendor\\Illuminate\\Contracts\\' => array($vendorDir . '/illuminate/contracts'),
     'OtomatiesCoreVendor\\Illuminate\\Container\\' => array($vendorDir . '/illuminate/container'),
     'OtomatiesCoreVendor\\Illuminate\\Config\\' => array($vendorDir . '/illuminate/config'),

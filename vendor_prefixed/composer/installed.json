@@ -316,17 +316,17 @@
         },
         {
             "name": "illuminate\/collections",
-            "version": "v12.41.1",
-            "version_normalized": "12.41.1.0",
+            "version": "v12.43.1",
+            "version_normalized": "12.43.1.0",
             "source": {
                 "type": "git",
                 "url": "https:\/\/github.com\/illuminate\/collections.git",
-                "reference": "1cf6115f711ff775fcce547dee82d59cac33fedb"
+                "reference": "16657effa6a5a4e728f9aeb3e38fb4fa9ba70e7d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https:\/\/api.github.com\/repos\/illuminate\/collections\/zipball\/1cf6115f711ff775fcce547dee82d59cac33fedb",
-                "reference": "1cf6115f711ff775fcce547dee82d59cac33fedb",
+                "url": "https:\/\/api.github.com\/repos\/illuminate\/collections\/zipball\/16657effa6a5a4e728f9aeb3e38fb4fa9ba70e7d",
+                "reference": "16657effa6a5a4e728f9aeb3e38fb4fa9ba70e7d",
                 "shasum": ""
             },
             "require": {
@@ -341,7 +341,7 @@
                 "illuminate\/http": "Required to convert collections to API resources (^12.0).",
                 "symfony\/var-dumper": "Required to use the dump method (^7.2)."
             },
-            "time": "2025-11-29T13:55:43+00:00",
+            "time": "2025-12-06T18:08:25+00:00",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -378,8 +378,8 @@
         },
         {
             "name": "illuminate\/conditionable",
-            "version": "v12.41.1",
-            "version_normalized": "12.41.1.0",
+            "version": "v12.43.1",
+            "version_normalized": "12.43.1.0",
             "source": {
                 "type": "git",
                 "url": "https:\/\/github.com\/illuminate\/conditionable.git",
@@ -427,8 +427,8 @@
         },
         {
             "name": "illuminate\/config",
-            "version": "v12.41.1",
-            "version_normalized": "12.41.1.0",
+            "version": "v12.43.1",
+            "version_normalized": "12.43.1.0",
             "source": {
                 "type": "git",
                 "url": "https:\/\/github.com\/illuminate\/config.git",
@@ -478,21 +478,22 @@
         },
         {
             "name": "illuminate\/container",
-            "version": "v12.41.1",
-            "version_normalized": "12.41.1.0",
+            "version": "v12.43.1",
+            "version_normalized": "12.43.1.0",
             "source": {
                 "type": "git",
                 "url": "https:\/\/github.com\/illuminate\/container.git",
-                "reference": "0489bc396de1537537750babec3a03ee7b753d1f"
+                "reference": "326667a4c813e3ad5a645969a7e3f5c10d159de2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https:\/\/api.github.com\/repos\/illuminate\/container\/zipball\/0489bc396de1537537750babec3a03ee7b753d1f",
-                "reference": "0489bc396de1537537750babec3a03ee7b753d1f",
+                "url": "https:\/\/api.github.com\/repos\/illuminate\/container\/zipball\/326667a4c813e3ad5a645969a7e3f5c10d159de2",
+                "reference": "326667a4c813e3ad5a645969a7e3f5c10d159de2",
                 "shasum": ""
             },
             "require": {
                 "illuminate\/contracts": "^12.0",
+                "illuminate\/reflection": "^12.0",
                 "php": "^8.2",
                 "psr\/container": "^1.1.1|^2.0.1",
                 "symfony\/polyfill-php84": "^1.33",
@@ -509,7 +510,7 @@
                 "illuminate\/filesystem": "Required to use the Storage attribute",
                 "illuminate\/log": "Required to use the Log or Context attributes"
             },
-            "time": "2025-11-28T18:51:53+00:00",
+            "time": "2025-12-08T22:34:25+00:00",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -542,8 +543,8 @@
         },
         {
             "name": "illuminate\/contracts",
-            "version": "v12.41.1",
-            "version_normalized": "12.41.1.0",
+            "version": "v12.43.1",
+            "version_normalized": "12.43.1.0",
             "source": {
                 "type": "git",
                 "url": "https:\/\/github.com\/illuminate\/contracts.git",
@@ -593,8 +594,8 @@
         },
         {
             "name": "illuminate\/macroable",
-            "version": "v12.41.1",
-            "version_normalized": "12.41.1.0",
+            "version": "v12.43.1",
+            "version_normalized": "12.43.1.0",
             "source": {
                 "type": "git",
                 "url": "https:\/\/github.com\/illuminate\/macroable.git",
@@ -641,18 +642,72 @@
             "install-path": "..\/illuminate\/macroable"
         },
         {
-            "name": "illuminate\/support",
-            "version": "v12.41.1",
-            "version_normalized": "12.41.1.0",
+            "name": "illuminate\/reflection",
+            "version": "v12.43.1",
+            "version_normalized": "12.43.1.0",
             "source": {
                 "type": "git",
-                "url": "https:\/\/github.com\/illuminate\/support.git",
-                "reference": "c65715d8a41863ee3f2e22dc796b75c62143fca2"
+                "url": "https:\/\/github.com\/illuminate\/reflection.git",
+                "reference": "7b86bc570d5b75e4a3ad79f8cca1491ba24b7c75"
             },
             "dist": {
                 "type": "zip",
-                "url": "https:\/\/api.github.com\/repos\/illuminate\/support\/zipball\/c65715d8a41863ee3f2e22dc796b75c62143fca2",
-                "reference": "c65715d8a41863ee3f2e22dc796b75c62143fca2",
+                "url": "https:\/\/api.github.com\/repos\/illuminate\/reflection\/zipball\/7b86bc570d5b75e4a3ad79f8cca1491ba24b7c75",
+                "reference": "7b86bc570d5b75e4a3ad79f8cca1491ba24b7c75",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate\/collections": "^12.0",
+                "illuminate\/contracts": "^12.0",
+                "php": "^8.2"
+            },
+            "time": "2025-12-09T15:11:22+00:00",
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "12.x-dev"
+                }
+            },
+            "installation-source": "dist",
+            "autoload": {
+                "files": [
+                    "helpers.php"
+                ],
+                "psr-4": {
+                    "OtomatiesCoreVendor\\Illuminate\\Support\\": ""
+                }
+            },
+            "notification-url": "https:\/\/packagist.org\/downloads\/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                }
+            ],
+            "description": "The Illuminate Reflection package.",
+            "homepage": "https:\/\/laravel.com",
+            "support": {
+                "issues": "https:\/\/github.com\/laravel\/framework\/issues",
+                "source": "https:\/\/github.com\/laravel\/framework"
+            },
+            "install-path": "..\/illuminate\/reflection"
+        },
+        {
+            "name": "illuminate\/support",
+            "version": "v12.43.1",
+            "version_normalized": "12.43.1.0",
+            "source": {
+                "type": "git",
+                "url": "https:\/\/github.com\/illuminate\/support.git",
+                "reference": "20014564c32e2e8c6a57e03d065bcf8706a458e7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https:\/\/api.github.com\/repos\/illuminate\/support\/zipball\/20014564c32e2e8c6a57e03d065bcf8706a458e7",
+                "reference": "20014564c32e2e8c6a57e03d065bcf8706a458e7",
                 "shasum": ""
             },
             "require": {
@@ -664,6 +719,7 @@
                 "illuminate\/conditionable": "^12.0",
                 "illuminate\/contracts": "^12.0",
                 "illuminate\/macroable": "^12.0",
+                "illuminate\/reflection": "^12.0",
                 "nesbot\/carbon": "^3.8.4",
                 "php": "^8.2",
                 "symfony\/polyfill-php83": "^1.33",
@@ -687,7 +743,7 @@
                 "symfony\/var-dumper": "Required to use the dd function (^7.2).",
                 "vlucas\/phpdotenv": "Required to use the Env class and env helper (^5.6.1)."
             },
-            "time": "2025-12-03T01:01:36+00:00",
+            "time": "2025-12-14T15:58:12+00:00",
             "type": "library",
             "extra": {
                 "branch-alias": {

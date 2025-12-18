@@ -220,7 +220,7 @@ class Number
             $units = [3 => 'K', 6 => 'M', 9 => 'B', 12 => 'T', 15 => 'Q'];
         }
         switch (\true) {
-            case \floatval($number) === 0.0:
+            case (float) $number === 0.0:
                 return $precision > 0 ? static::format(0, $precision, $maxPrecision) : '0';
             case $number < 0:
                 return \sprintf('-%s', static::summarize(\abs($number), $precision, $maxPrecision, $units));

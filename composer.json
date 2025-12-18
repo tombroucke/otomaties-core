@@ -9,11 +9,6 @@
       "email": "tom@tombroucke.be"
     }
   ],
-  "autoload": {
-    "psr-4": {
-      "Otomaties\\Core\\": "app/"
-    }
-  },
   "require": {
     "php": "^8.0",
     "composer/installers": "^1.0 || ^2.0"
@@ -25,10 +20,17 @@
     }
   },
   "extra": {
-    "require-scoped": {
-      "illuminate/container": "^12.40",
-      "illuminate/support": "^12.40",
-      "illuminate/config": "^12.40"
+    "scoper": {
+      "autoload": {
+        "psr-4": {
+          "Otomaties\\Core\\": "app/"
+        }
+      },
+      "require": {
+        "illuminate/container": "^12.40",
+        "illuminate/support": "^12.40",
+        "illuminate/config": "^12.40"
+      }
     }
   },
   "scripts": {

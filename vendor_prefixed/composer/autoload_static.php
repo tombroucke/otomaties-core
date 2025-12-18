@@ -7,13 +7,14 @@ namespace Composer\Autoload;
 class ComposerStaticInitOtomatiesVendorCore
 {
     public static $files = array (
-        '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '606a39d89246991a373564698c2d8383' => __DIR__ . '/..' . '/symfony/polyfill-php85/bootstrap.php',
-        '662a729f963d39afe703c9d9b7ab4a8c' => __DIR__ . '/..' . '/symfony/polyfill-php83/bootstrap.php',
         '9d2b9fc6db0f153a0a149fefb182415e' => __DIR__ . '/..' . '/symfony/polyfill-php84/bootstrap.php',
-        '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
         '23f09fe3194f8c2f70923f90d6702129' => __DIR__ . '/..' . '/illuminate/collections/functions.php',
         '60799491728b879e74601d83e38b2cad' => __DIR__ . '/..' . '/illuminate/collections/helpers.php',
+        '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
+        '662a729f963d39afe703c9d9b7ab4a8c' => __DIR__ . '/..' . '/symfony/polyfill-php83/bootstrap.php',
+        '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
+        '19e6faa27d773988183e0f384143fcad' => __DIR__ . '/..' . '/illuminate/reflection/helpers.php',
         '2203a247e6fda86070a5e4e07aed533a' => __DIR__ . '/..' . '/symfony/clock/Resources/now.php',
         'a1105708a18b76903365ca1c4aa61b02' => __DIR__ . '/..' . '/symfony/translation/Resources/functions.php',
         'f625ee536139dfb962a398b200bdb2bd' => __DIR__ . '/..' . '/illuminate/support/functions.php',
@@ -101,9 +102,10 @@ class ComposerStaticInitOtomatiesVendorCore
         'OtomatiesCoreVendor\\Illuminate\\Support\\' =>
         array (
             0 => __DIR__ . '/..' . '/illuminate/support',
-            1 => __DIR__ . '/..' . '/illuminate/collections',
-            2 => __DIR__ . '/..' . '/illuminate/macroable',
-            3 => __DIR__ . '/..' . '/illuminate/conditionable',
+            1 => __DIR__ . '/..' . '/illuminate/reflection',
+            2 => __DIR__ . '/..' . '/illuminate/collections',
+            3 => __DIR__ . '/..' . '/illuminate/macroable',
+            4 => __DIR__ . '/..' . '/illuminate/conditionable',
         ),
         'OtomatiesCoreVendor\\Illuminate\\Contracts\\' =>
         array (
@@ -639,7 +641,7 @@ class ComposerStaticInitOtomatiesVendorCore
         'OtomatiesCoreVendor\\Illuminate\\Support\\Optional' => __DIR__ . '/..' . '/illuminate/support/Optional.php',
         'OtomatiesCoreVendor\\Illuminate\\Support\\Pluralizer' => __DIR__ . '/..' . '/illuminate/support/Pluralizer.php',
         'OtomatiesCoreVendor\\Illuminate\\Support\\ProcessUtils' => __DIR__ . '/..' . '/illuminate/support/ProcessUtils.php',
-        'OtomatiesCoreVendor\\Illuminate\\Support\\Reflector' => __DIR__ . '/..' . '/illuminate/support/Reflector.php',
+        'OtomatiesCoreVendor\\Illuminate\\Support\\Reflector' => __DIR__ . '/..' . '/illuminate/reflection/Reflector.php',
         'OtomatiesCoreVendor\\Illuminate\\Support\\ServiceProvider' => __DIR__ . '/..' . '/illuminate/support/ServiceProvider.php',
         'OtomatiesCoreVendor\\Illuminate\\Support\\Sleep' => __DIR__ . '/..' . '/illuminate/support/Sleep.php',
         'OtomatiesCoreVendor\\Illuminate\\Support\\Str' => __DIR__ . '/..' . '/illuminate/support/Str.php',
@@ -666,7 +668,7 @@ class ComposerStaticInitOtomatiesVendorCore
         'OtomatiesCoreVendor\\Illuminate\\Support\\Traits\\InteractsWithData' => __DIR__ . '/..' . '/illuminate/support/Traits/InteractsWithData.php',
         'OtomatiesCoreVendor\\Illuminate\\Support\\Traits\\Localizable' => __DIR__ . '/..' . '/illuminate/support/Traits/Localizable.php',
         'OtomatiesCoreVendor\\Illuminate\\Support\\Traits\\Macroable' => __DIR__ . '/..' . '/illuminate/macroable/Traits/Macroable.php',
-        'OtomatiesCoreVendor\\Illuminate\\Support\\Traits\\ReflectsClosures' => __DIR__ . '/..' . '/illuminate/support/Traits/ReflectsClosures.php',
+        'OtomatiesCoreVendor\\Illuminate\\Support\\Traits\\ReflectsClosures' => __DIR__ . '/..' . '/illuminate/reflection/Traits/ReflectsClosures.php',
         'OtomatiesCoreVendor\\Illuminate\\Support\\Traits\\Tappable' => __DIR__ . '/..' . '/illuminate/support/Traits/Tappable.php',
         'OtomatiesCoreVendor\\Illuminate\\Support\\Traits\\TransformsToResourceCollection' => __DIR__ . '/..' . '/illuminate/collections/Traits/TransformsToResourceCollection.php',
         'OtomatiesCoreVendor\\Illuminate\\Support\\Uri' => __DIR__ . '/..' . '/illuminate/support/Uri.php',

@@ -65,7 +65,7 @@ if (!\function_exists('OtomatiesCoreVendor\\Illuminate\\Support\\microseconds'))
      * Get the current date / time plus the given number of microseconds.
      * @internal
      */
-    function microseconds(int $microseconds) : CarbonInterval
+    function microseconds(int|float $microseconds) : CarbonInterval
     {
         return CarbonInterval::microseconds($microseconds);
     }
@@ -75,7 +75,7 @@ if (!\function_exists('OtomatiesCoreVendor\\Illuminate\\Support\\milliseconds'))
      * Get the current date / time plus the given number of milliseconds.
      * @internal
      */
-    function milliseconds(int $milliseconds) : CarbonInterval
+    function milliseconds(int|float $milliseconds) : CarbonInterval
     {
         return CarbonInterval::milliseconds($milliseconds);
     }
@@ -85,7 +85,7 @@ if (!\function_exists('OtomatiesCoreVendor\\Illuminate\\Support\\seconds')) {
      * Get the current date / time plus the given number of seconds.
      * @internal
      */
-    function seconds(int $seconds) : CarbonInterval
+    function seconds(int|float $seconds) : CarbonInterval
     {
         return CarbonInterval::seconds($seconds);
     }
@@ -95,7 +95,7 @@ if (!\function_exists('OtomatiesCoreVendor\\Illuminate\\Support\\minutes')) {
      * Get the current date / time plus the given number of minutes.
      * @internal
      */
-    function minutes(int $minutes) : CarbonInterval
+    function minutes(int|float $minutes) : CarbonInterval
     {
         return CarbonInterval::minutes($minutes);
     }
@@ -105,7 +105,7 @@ if (!\function_exists('OtomatiesCoreVendor\\Illuminate\\Support\\hours')) {
      * Get the current date / time plus the given number of hours.
      * @internal
      */
-    function hours(int $hours) : CarbonInterval
+    function hours(int|float $hours) : CarbonInterval
     {
         return CarbonInterval::hours($hours);
     }
@@ -115,7 +115,7 @@ if (!\function_exists('OtomatiesCoreVendor\\Illuminate\\Support\\days')) {
      * Get the current date / time plus the given number of days.
      * @internal
      */
-    function days(int $days) : CarbonInterval
+    function days(int|float $days) : CarbonInterval
     {
         return CarbonInterval::days($days);
     }
