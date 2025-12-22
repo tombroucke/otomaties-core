@@ -31,6 +31,10 @@ class Branding
      */
     public function adminBarLogo(\WP_Admin_Bar $wp_admin_bar): void
     {
+        if ($this->whiteLabel()) {
+            return;
+        }
+
         ob_start();
         include otomatiesCore()->config('paths.assets') . '/img/minilogo.svg';
         $minilogo = ob_get_clean();
@@ -52,6 +56,10 @@ class Branding
      */
     public function loginLogo(): void
     {
+        if ($this->whiteLabel()) {
+            return;
+        }
+        
         $this->view
             ->render('admin/login-logo', [
                 'logo' => otomatiesCore()->config('assets.baseUri') . '/img/logo.svg',
@@ -65,6 +73,15 @@ class Branding
      */
     public function adminFooterBranding(string $text): string
     {
+        if ($this->whiteLabel()) {
+            return $text;
+        }
+
         return sprintf('<a target="_blank" href="%s">%s</a>', 'https://tombroucke.be', __('Website by', 'otomaties-core') . ' Tom Broucke'); // phpcs:ignore Generic.Files.LineLength
+    }
+
+    private function whiteLabel(): bool
+    {
+        return apply_filters('otomaties_whitelabel', false);
     }
 }

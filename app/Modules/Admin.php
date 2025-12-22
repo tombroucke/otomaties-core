@@ -23,10 +23,6 @@ class Admin
             add_filter('acf/settings/show_admin', '__return_false');
         }
 
-        if (! apply_filters('otomaties_whitelabel', false)) {
-            otomatiesCore()->make(Admin\Branding::class)->init();
-        }
-
         remove_action('welcome_panel', 'wp_welcome_panel');
 
         add_action('admin_menu', [$this, 'removeMenus']);

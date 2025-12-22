@@ -11,6 +11,7 @@ class Plugin extends Container
     /** @var array<int, string> */
     private array $modules = [
         Modules\Admin::class,
+        Modules\Admin\Branding::class,
         Modules\Frontend::class,
         Modules\Emojis::class,
         Modules\Shortcodes::class,
