@@ -32,6 +32,10 @@ class Admin
         add_filter('wpseo_metabox_prio', [$this, 'yoastSeoToBottom']);
         add_action('admin_head', [$this, 'removeUpdateNag'], 1);
         add_action('admin_notices', [$this, 'cacheTtlNotice']);
+
+        // Development environment indicator
+        add_action('admin_bar_menu', [$this, 'addEnvironmentIndicator']);
+        add_action('wp_before_admin_bar_render', [$this, 'environmentIndicatorStyles']);
     }
 
     /**
@@ -149,5 +153,58 @@ class Admin
                 'type' => 'warning',
                 'message' => sprintf(__('Super page cache TTL is not set. Please configure it in the plugin settings to ensure optimal caching performance. Recommendation: %s seconds.', 'otomaties-core'), 28800), // phpcs:ignore Generic.Files.LineLength
             ]);
+    }
+
+    public function addEnvironmentIndicator(\WP_Admin_Bar $wp_admin_bar): void
+    {
+        if (! $this->environmentIndicatorEnabled()) {
+            return;
+        }
+
+        $environment = otomatiesCore()->environment();
+
+        if ($environment === 'production') {
+            return;
+        }
+
+        $wp_admin_bar->add_node([
+            'id' => 'environment-indicator',
+            'parent' => 'top-secondary',
+            'title' => ucfirst($environment),
+            'meta' => [
+                'class' => 'environment-indicator',
+            ],
+        ]);
+    }
+
+    public function environmentIndicatorStyles(): void
+    {
+        if (! $this->environmentIndicatorEnabled()) {
+            return;
+        }
+
+        $environment = otomatiesCore()->environment();
+
+        if ($environment === 'production') {
+            return;
+        }
+
+        $colors = [
+            'staging' => '#dba617',
+            'development' => '#d63638',
+        ];
+
+        $this->view
+            ->render('admin/environment-indicator-style', [
+                'backgroundColor' => $colors[$environment] ?? '#000',
+            ]);
+    }
+
+    /**
+     * Check if environment indicator is enabled
+     */
+    private function environmentIndicatorEnabled(): bool
+    {
+        return apply_filters('otomaties_enable_environment_indicator', true);
     }
 }
