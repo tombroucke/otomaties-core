@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Otomaties Core\n"
-"POT-Creation-Date: 2025-11-28 23:26+0100\n"
+"POT-Creation-Date: 2026-03-10 09:38+0100\n"
 "PO-Revision-Date: 2025-11-28 23:24+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -35,15 +35,192 @@ msgid ""
 "to ensure optimal caching performance. Recommendation: %s seconds."
 msgstr ""
 
-#: app/Modules/Admin/Branding.php:68
+#: app/Modules/Admin/Branding.php:80
 msgid "Website by"
 msgstr ""
 
-#: app/Modules/Revision.php:52 app/Modules/Revision.php:56
+#: app/Modules/HealthTests/AccessToSensitiveFilesBlocked.php:27
+#: app/Modules/HealthTests/AccessToSensitiveFilesBlocked.php:30
+msgid "Access to sensitive files is blocked"
+msgstr ""
+
+#: app/Modules/HealthTests/AccessToSensitiveFilesBlocked.php:38
+msgid "Access to sensitive files is not blocked"
+msgstr ""
+
+#: app/Modules/HealthTests/AccessToSensitiveFilesBlocked.php:41
+msgid "Add rules to block sensitive files to your .htaccess file"
+msgstr ""
+
+#: app/Modules/HealthTests/BlogIsPublic.php:28
+#: app/Modules/HealthTests/BlogIsPublic.php:34
+#: app/Modules/HealthTests/BlogIsPublic.php:48
+msgid "Search engines can crawl the blog"
+msgstr ""
+
+#: app/Modules/HealthTests/BlogIsPublic.php:29
+#: app/Modules/HealthTests/BlogIsPublic.php:35
+#: app/Modules/HealthTests/BlogIsPublic.php:47
+msgid "Search engines are discouraged from crawling the blog"
+msgstr ""
+
+#: app/Modules/HealthTests/BlogIsPublic.php:54
+#, php-format
+msgid ""
+"Search engines are discouraged from crawling the blog. Visit %s to change "
+"this setting"
+msgstr ""
+
+#: app/Modules/HealthTests/BlogIsPublic.php:55
+#, php-format
+msgid "Search engines can crawl the blog. Visit %s to change this setting"
+msgstr ""
+
+#: app/Modules/HealthTests/BlogIsPublic.php:59
+msgid "Reading Settings"
+msgstr ""
+
+#: app/Modules/HealthTests/CachingPluginActivated.php:49
+msgid "Caching plugin is activated"
+msgstr ""
+
+#: app/Modules/HealthTests/CachingPluginActivated.php:52
+#, php-format
+msgid "%s is installed and activated"
+msgstr ""
+
+#: app/Modules/HealthTests/CachingPluginActivated.php:60
+msgid "There is no active caching plugin"
+msgstr ""
+
+#: app/Modules/HealthTests/CachingPluginActivated.php:63
+msgid ""
+"Please install and activate a caching plugin to improve site performance."
+msgstr ""
+
+#: app/Modules/HealthTests/CachingPluginActivated.php:68
+msgid "Activate Caching plugin"
+msgstr ""
+
+#: app/Modules/HealthTests/DefaultTaglineIsDeleted.php:20
+msgid "The default tagline has been changed"
+msgstr ""
+
+#: app/Modules/HealthTests/DefaultTaglineIsDeleted.php:23
+msgid "The default tagline has been changed to something more meaningful"
+msgstr ""
+
+#: app/Modules/HealthTests/DefaultTaglineIsDeleted.php:31
+msgid "The default tagline has not been changed"
+msgstr ""
+
+#: app/Modules/HealthTests/DefaultTaglineIsDeleted.php:34
+msgid ""
+"The default tagline is still active on this website. Change the tagline to "
+"something more meaningful or consider removing the tagline."
+msgstr ""
+
+#: app/Modules/HealthTests/DefaultTaglineIsDeleted.php:39
+msgid "Change the tagline"
+msgstr ""
+
+#: app/Modules/HealthTests/FaviconIsSet.php:22
+msgid "Favicon is set"
+msgstr ""
+
+#: app/Modules/HealthTests/FaviconIsSet.php:25
+msgid "The favicon is set"
+msgstr ""
+
+#: app/Modules/HealthTests/FaviconIsSet.php:33
+msgid "Favicon is not set"
+msgstr ""
+
+#: app/Modules/HealthTests/FaviconIsSet.php:36
+msgid "The favicon is not set on this website."
+msgstr ""
+
+#: app/Modules/HealthTests/FaviconIsSet.php:41
+msgid "Set Favicon"
+msgstr ""
+
+#: app/Modules/HealthTests/MollieTestMode.php:28
+msgid "Mollie is in Live mode"
+msgstr ""
+
+#: app/Modules/HealthTests/MollieTestMode.php:29
+msgid "Mollie is in test mode but the environment is not production"
+msgstr ""
+
+#: app/Modules/HealthTests/MollieTestMode.php:43
+#: app/Modules/HealthTests/MollieTestMode.php:46
+msgid "Mollie is in test mode"
+msgstr ""
+
+#: app/Modules/HealthTests/MollieTestMode.php:51
+msgid "Disable test mode"
+msgstr ""
+
+#: app/Modules/HealthTests/NgFirewall.php:34
+msgid "nG Firewall is enabled"
+msgstr ""
+
+#: app/Modules/HealthTests/NgFirewall.php:37
+msgid "The nG Firewall is active on this website."
+msgstr ""
+
+#: app/Modules/HealthTests/NgFirewall.php:42
+#: app/Modules/HealthTests/NgFirewall.php:58
+msgid "Learn more about nG Firewall"
+msgstr ""
+
+#: app/Modules/HealthTests/NgFirewall.php:50
+msgid "nG Firewall is not enabled"
+msgstr ""
+
+#: app/Modules/HealthTests/NgFirewall.php:53
+msgid "The nG Firewall is not active on this website."
+msgstr ""
+
+#: app/Modules/HealthTests/SecurityPluginActivated.php:24
+msgid "Wordfence is activated"
+msgstr ""
+
+#: app/Modules/HealthTests/SecurityPluginActivated.php:27
+msgid "Wordfence is installed and activated"
+msgstr ""
+
+#: app/Modules/HealthTests/SecurityPluginActivated.php:35
+msgid "Wordfence is not activated"
+msgstr ""
+
+#: app/Modules/HealthTests/SecurityPluginActivated.php:39
+#, php-format
+msgid "Wordfence is not active on this website. Visit %s for more information"
+msgstr ""
+
+#: app/Modules/HealthTests/SecurityPluginActivated.php:46
+msgid "Activate Wordfence"
+msgstr ""
+
+#: app/Modules/HealthTests/XmlrpcIsBlocked.php:27
+#: app/Modules/HealthTests/XmlrpcIsBlocked.php:30
+msgid "Access to xmlrpc.php is blocked"
+msgstr ""
+
+#: app/Modules/HealthTests/XmlrpcIsBlocked.php:38
+msgid "Access to xmlrpc.php is not blocked"
+msgstr ""
+
+#: app/Modules/HealthTests/XmlrpcIsBlocked.php:41
+msgid "Add rules to block xmlrpc.php to your .htaccess file"
+msgstr ""
+
+#: app/Modules/Revision.php:99 app/Modules/Revision.php:103
 msgid "Timestamp"
 msgstr ""
 
-#: app/Modules/Revision.php:59 app/Modules/Revision.php:61
+#: app/Modules/Revision.php:106 app/Modules/Revision.php:108
 msgid "Revision"
 msgstr ""
 

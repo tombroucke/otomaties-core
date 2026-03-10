@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Otomaties Core\n"
-"POT-Creation-Date: 2025-11-28 23:26+0100\n"
-"PO-Revision-Date: 2025-11-28 23:30+0100\n"
+"POT-Creation-Date: 2026-03-10 09:38+0100\n"
+"PO-Revision-Date: 2026-03-10 09:42+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl_NL\n"
@@ -38,15 +38,202 @@ msgstr ""
 "instellingen om optimale cacheprestaties te garanderen. Aanbeveling: %s "
 "seconden."
 
-#: app/Modules/Admin/Branding.php:68
+#: app/Modules/Admin/Branding.php:80
 msgid "Website by"
 msgstr "Website door"
 
-#: app/Modules/Revision.php:52 app/Modules/Revision.php:56
+#: app/Modules/HealthTests/AccessToSensitiveFilesBlocked.php:27
+#: app/Modules/HealthTests/AccessToSensitiveFilesBlocked.php:30
+msgid "Access to sensitive files is blocked"
+msgstr "Toegang tot gevoelige bestanden is geblokkeerd"
+
+#: app/Modules/HealthTests/AccessToSensitiveFilesBlocked.php:38
+msgid "Access to sensitive files is not blocked"
+msgstr "Toegang tot gevoelige bestanden wordt niet geblokkeerd"
+
+#: app/Modules/HealthTests/AccessToSensitiveFilesBlocked.php:41
+msgid "Add rules to block sensitive files to your .htaccess file"
+msgstr ""
+"Voeg regels toe om gevoelige bestanden te blokkeren in uw .htaccess-bestand"
+
+#: app/Modules/HealthTests/BlogIsPublic.php:28
+#: app/Modules/HealthTests/BlogIsPublic.php:34
+#: app/Modules/HealthTests/BlogIsPublic.php:48
+msgid "Search engines can crawl the blog"
+msgstr "Zoekmachines kunnen de blog crawlen"
+
+#: app/Modules/HealthTests/BlogIsPublic.php:29
+#: app/Modules/HealthTests/BlogIsPublic.php:35
+#: app/Modules/HealthTests/BlogIsPublic.php:47
+msgid "Search engines are discouraged from crawling the blog"
+msgstr "Zoekmachines worden ontmoedigd om de blog te crawlen."
+
+#: app/Modules/HealthTests/BlogIsPublic.php:54
+#, php-format
+msgid ""
+"Search engines are discouraged from crawling the blog. Visit %s to change "
+"this setting"
+msgstr ""
+"Zoekmachines worden ontmoedigd om de blog te crawlen. Ga naar %s om deze "
+"instelling te wijzigen."
+
+#: app/Modules/HealthTests/BlogIsPublic.php:55
+#, php-format
+msgid "Search engines can crawl the blog. Visit %s to change this setting"
+msgstr ""
+"Zoekmachines kunnen de blog crawlen. Ga naar %s om deze instelling te "
+"wijzigen."
+
+#: app/Modules/HealthTests/BlogIsPublic.php:59
+msgid "Reading Settings"
+msgstr "Instellingen > Lezen"
+
+#: app/Modules/HealthTests/CachingPluginActivated.php:49
+msgid "Caching plugin is activated"
+msgstr "Cachingplugin is geactiveerd"
+
+#: app/Modules/HealthTests/CachingPluginActivated.php:52
+#, php-format
+msgid "%s is installed and activated"
+msgstr "%s is geïnstalleerd en geactiveerd"
+
+#: app/Modules/HealthTests/CachingPluginActivated.php:60
+msgid "There is no active caching plugin"
+msgstr "Er is geen actieve caching-plugin"
+
+#: app/Modules/HealthTests/CachingPluginActivated.php:63
+msgid ""
+"Please install and activate a caching plugin to improve site performance."
+msgstr ""
+"Installeer en activeer een cachingplugin om de prestaties van de site te "
+"verbeteren."
+
+#: app/Modules/HealthTests/CachingPluginActivated.php:68
+msgid "Activate Caching plugin"
+msgstr "Cachingplugin activeren"
+
+#: app/Modules/HealthTests/DefaultTaglineIsDeleted.php:20
+msgid "The default tagline has been changed"
+msgstr "De standaard slogan is gewijzigd."
+
+#: app/Modules/HealthTests/DefaultTaglineIsDeleted.php:23
+msgid "The default tagline has been changed to something more meaningful"
+msgstr "De standaard slogan is gewijzigd naar iets dat meer betekenis heeft."
+
+#: app/Modules/HealthTests/DefaultTaglineIsDeleted.php:31
+msgid "The default tagline has not been changed"
+msgstr "De standaard slogan is niet gewijzigd."
+
+#: app/Modules/HealthTests/DefaultTaglineIsDeleted.php:34
+msgid ""
+"The default tagline is still active on this website. Change the tagline to "
+"something more meaningful or consider removing the tagline."
+msgstr ""
+"De standaard slogan is nog steeds actief op deze website. Wijzig de slogan "
+"in iets zinvollers of overweeg om de slogan te verwijderen."
+
+#: app/Modules/HealthTests/DefaultTaglineIsDeleted.php:39
+msgid "Change the tagline"
+msgstr "Wijzig de slogan"
+
+#: app/Modules/HealthTests/FaviconIsSet.php:22
+msgid "Favicon is set"
+msgstr "Favicon is ingesteld"
+
+#: app/Modules/HealthTests/FaviconIsSet.php:25
+msgid "The favicon is set"
+msgstr "Het favicon is ingesteld"
+
+#: app/Modules/HealthTests/FaviconIsSet.php:33
+msgid "Favicon is not set"
+msgstr "Favicon is niet ingesteld"
+
+#: app/Modules/HealthTests/FaviconIsSet.php:36
+msgid "The favicon is not set on this website."
+msgstr "De favicon is niet ingesteld op deze website."
+
+#: app/Modules/HealthTests/FaviconIsSet.php:41
+msgid "Set Favicon"
+msgstr "Favicon instellen"
+
+#: app/Modules/HealthTests/MollieTestMode.php:28
+msgid "Mollie is in Live mode"
+msgstr "Mollie is in de Live-modus"
+
+#: app/Modules/HealthTests/MollieTestMode.php:29
+msgid "Mollie is in test mode but the environment is not production"
+msgstr "Mollie bevindt zich in de testmodus, maar de omgeving is productie."
+
+#: app/Modules/HealthTests/MollieTestMode.php:43
+#: app/Modules/HealthTests/MollieTestMode.php:46
+msgid "Mollie is in test mode"
+msgstr "Mollie bevindt zich in de testmodus."
+
+#: app/Modules/HealthTests/MollieTestMode.php:51
+msgid "Disable test mode"
+msgstr "Testmodus uitschakelen"
+
+#: app/Modules/HealthTests/NgFirewall.php:34
+msgid "nG Firewall is enabled"
+msgstr "nG Firewall is ingeschakeld"
+
+#: app/Modules/HealthTests/NgFirewall.php:37
+msgid "The nG Firewall is active on this website."
+msgstr "De nG Firewall is actief op deze website."
+
+#: app/Modules/HealthTests/NgFirewall.php:42
+#: app/Modules/HealthTests/NgFirewall.php:58
+msgid "Learn more about nG Firewall"
+msgstr "Meer informatie over nG Firewall"
+
+#: app/Modules/HealthTests/NgFirewall.php:50
+msgid "nG Firewall is not enabled"
+msgstr "nG Firewall is niet ingeschakeld"
+
+#: app/Modules/HealthTests/NgFirewall.php:53
+msgid "The nG Firewall is not active on this website."
+msgstr "De nG Firewall is niet actief op deze website."
+
+#: app/Modules/HealthTests/SecurityPluginActivated.php:24
+msgid "Wordfence is activated"
+msgstr "Wordfence is geactiveerd"
+
+#: app/Modules/HealthTests/SecurityPluginActivated.php:27
+msgid "Wordfence is installed and activated"
+msgstr "Wordfence is geïnstalleerd en geactiveerd"
+
+#: app/Modules/HealthTests/SecurityPluginActivated.php:35
+msgid "Wordfence is not activated"
+msgstr "Wordfence is niet geactiveerd"
+
+#: app/Modules/HealthTests/SecurityPluginActivated.php:39
+#, php-format
+msgid "Wordfence is not active on this website. Visit %s for more information"
+msgstr ""
+"Wordfence is niet actief op deze website. Ga naar %s voor meer informatie."
+
+#: app/Modules/HealthTests/SecurityPluginActivated.php:46
+msgid "Activate Wordfence"
+msgstr "Wordfence activeren"
+
+#: app/Modules/HealthTests/XmlrpcIsBlocked.php:27
+#: app/Modules/HealthTests/XmlrpcIsBlocked.php:30
+msgid "Access to xmlrpc.php is blocked"
+msgstr "Toegang tot xmlrpc.php wordt geblokkeerd"
+
+#: app/Modules/HealthTests/XmlrpcIsBlocked.php:38
+msgid "Access to xmlrpc.php is not blocked"
+msgstr "Toegang tot xmlrpc.php wordt niet geblokkeerd"
+
+#: app/Modules/HealthTests/XmlrpcIsBlocked.php:41
+msgid "Add rules to block xmlrpc.php to your .htaccess file"
+msgstr "Voeg regels toe om xmlrpc.php te blokkeren in uw .htaccess-bestand"
+
+#: app/Modules/Revision.php:99 app/Modules/Revision.php:103
 msgid "Timestamp"
 msgstr "Tijd"
 
-#: app/Modules/Revision.php:59 app/Modules/Revision.php:61
+#: app/Modules/Revision.php:106 app/Modules/Revision.php:108
 msgid "Revision"
 msgstr "Revisie"
 
