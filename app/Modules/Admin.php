@@ -9,7 +9,7 @@ use Otomaties\Core\View;
  */
 class Admin
 {
-    public function __construct(private View $view)
+    public function __construct(private string $env, private View $view)
     {
         //
     }
@@ -19,7 +19,7 @@ class Admin
      */
     public function init(): void
     {
-        if (otomatiesCore()->environment() !== 'development') {
+        if ($this->env !== 'development') {
             add_filter('acf/settings/show_admin', '__return_false');
         }
 
@@ -77,9 +77,9 @@ class Admin
     /**
      * Remove wp-logo & comments from admin bar
      *
-     * @param  \WP_Admin_Bar  $wp_admin_bar  admin bar object.
+     * @param  \WP_Admin_Bar  $wpAdminBar  admin bar object.
      */
-    public function removeFromAdminBar(\WP_Admin_Bar $wp_admin_bar): void
+    public function removeFromAdminBar(\WP_Admin_Bar $wpAdminBar): void
     {
         $nodes = [
             'wp-logo',
@@ -91,7 +91,7 @@ class Admin
         }
 
         foreach (apply_filters('otomaties_admin_bar_unnecessary_nodes', $nodes) as $node) {
-            $wp_admin_bar->remove_node($node);
+            $wpAdminBar->remove_node($node);
         }
     }
 
@@ -155,37 +155,41 @@ class Admin
             ]);
     }
 
-    public function addEnvironmentIndicator(\WP_Admin_Bar $wp_admin_bar): void
+    /**
+     * Add environment indicator to admin bar
+     *
+     * @param  \WP_Admin_Bar  $wpAdminBar  admin bar object.
+     */
+    public function addEnvironmentIndicator(\WP_Admin_Bar $wpAdminBar): void
     {
         if (! $this->environmentIndicatorEnabled()) {
             return;
         }
 
-        $environment = otomatiesCore()->environment();
-
-        if ($environment === 'production') {
+        if ($this->env === 'production') {
             return;
         }
 
-        $wp_admin_bar->add_node([
+        $wpAdminBar->add_node([
             'id' => 'environment-indicator',
             'parent' => 'top-secondary',
-            'title' => ucfirst($environment),
+            'title' => ucfirst($this->env),
             'meta' => [
                 'class' => 'environment-indicator',
             ],
         ]);
     }
 
+    /**
+     * Add styles for environment indicator
+     */
     public function environmentIndicatorStyles(): void
     {
         if (! $this->environmentIndicatorEnabled()) {
             return;
         }
 
-        $environment = otomatiesCore()->environment();
-
-        if ($environment === 'production') {
+        if ($this->env === 'production') {
             return;
         }
 
@@ -196,7 +200,7 @@ class Admin
 
         $this->view
             ->render('admin/environment-indicator-style', [
-                'backgroundColor' => $colors[$environment] ?? '#000',
+                'backgroundColor' => $colors[$this->env] ?? '#000',
             ]);
     }
 

@@ -99,7 +99,7 @@ class Plugin extends Container
     {
         (new Collection($this->modules))
             ->each(function ($className) {
-                ($this->make($className))
+                ($this->make($className, ['env' => $this->environment()]))
                     ->init();
             });
 

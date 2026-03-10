@@ -13,6 +13,11 @@ class Revision
      */
     private ?array $releaseInformation = null;
 
+    public function __construct(private string $env)
+    {
+        //
+    }
+
     /**
      * Add actions and filters
      */
@@ -33,7 +38,7 @@ class Revision
 
         $releaseInformation = $this->releaseInformation();
 
-        if (empty($releaseInformation) || otomatiesCore()->environment() === 'production') {
+        if (empty($releaseInformation) || $this->env === 'production') {
             return;
         }
         otomatiesCore()

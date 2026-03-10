@@ -9,6 +9,11 @@ use Otomaties\Core\Modules\Connect\ResponseBuilder;
  */
 class Connect
 {
+    public function __construct(private string $env)
+    {
+        //
+    }
+
     /**
      * Add actions and filters
      */
@@ -45,7 +50,7 @@ class Connect
         $debugLogFileUrl = content_url() . '/debug.log';
 
         $builder
-            ->env(otomatiesCore()->environment())
+            ->env($this->env)
             ->bedrock(class_exists('\\Roots\\WPConfig\\Config'))
             ->administratorEmail(get_option('admin_email'))
             ->version()
@@ -159,7 +164,7 @@ class Connect
                 'headers' => $headers,
                 'body' => wp_json_encode($body),
                 'timeout' => 5,
-                'sslverify' => otomatiesCore()->environment() === 'production',
+                'sslverify' => $this->env === 'production',
             ]);
         } catch (\Exception $e) {
             // Silent fail

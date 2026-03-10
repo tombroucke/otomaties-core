@@ -7,7 +7,7 @@ use OtomatiesCoreVendor\Illuminate\Support\Str;
 
 class Security
 {
-    public function __construct(private View $view)
+    public function __construct(private string $env, private View $view)
     {
         //
     }
@@ -62,7 +62,7 @@ class Security
         }
         if (! empty($securityIssues)) {
             $type = 'warning';
-            if (otomatiesCore()->environment() === 'production') {
+            if ($this->env === 'production') {
                 $type = 'error';
             }
 
