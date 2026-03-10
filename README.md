@@ -15,6 +15,7 @@ composer require tombroucke/otomaties-core
 ### Admin
 
 - Disable comments, remove from admin. To enable comments: `add_filter('otomaties_open_comments', '__return_true');`
+- Adds an environment indicator for staging and development environments. To disable: `add_filter('otomaties_enable_environment_indicator', '__return_false');`
 
 ### Branding
 
