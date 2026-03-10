@@ -59,7 +59,7 @@ class Branding
         if ($this->whiteLabel()) {
             return;
         }
-        
+
         $this->view
             ->render('admin/login-logo', [
                 'logo' => otomatiesCore()->config('assets.baseUri') . '/img/logo.svg',
