@@ -193,14 +193,12 @@ class Admin
             return;
         }
 
-        $colors = [
-            'staging' => '#dba617',
-            'development' => '#d63638',
-        ];
-
         $this->view
             ->render('admin/environment-indicator-style', [
-                'backgroundColor' => $colors[$this->env] ?? '#000',
+                'backgroundColor' => match ($this->env) {
+                    'staging' => '#dba617',
+                    default => '#d63638',
+                },
             ]);
     }
 

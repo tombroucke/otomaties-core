@@ -25,7 +25,7 @@ class Plugin extends Container
         Modules\HealthTests::class,
     ];
 
-    public function __construct(private string $version = '1.0.0', private string $env = 'production')
+    public function __construct(private string $version, private string $env)
     {
         //
     }
@@ -82,6 +82,10 @@ class Plugin extends Container
 
     private function initCommands(): void
     {
+        if (! defined('WP_CLI') || ! WP_CLI) {
+            return;
+        }
+
         $this
             ->make(Registrar::class)
             ->register();

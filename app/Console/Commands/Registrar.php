@@ -11,10 +11,6 @@ class Registrar
 
     public function register(): void
     {
-        if (! defined('WP_CLI') || ! WP_CLI) {
-            return;
-        }
-
         foreach ($this->commands as $commandClass) {
             \WP_CLI::add_command(
                 $commandClass::COMMAND_NAME,
