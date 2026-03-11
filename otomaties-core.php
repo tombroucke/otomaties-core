@@ -40,6 +40,7 @@ function otomatiesCore()
             $version,
             $environment
         );
+
         do_action('otomaties_core', $plugin);
     }
 
