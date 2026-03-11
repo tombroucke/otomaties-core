@@ -40,13 +40,13 @@ function otomatiesCore()
             $version,
             $environment
         );
-        do_action('plugin_boilerplate_functionality', $plugin);
+        do_action('otomaties_core', $plugin);
     }
 
     return $plugin;
 }
 
-add_action('plugin_boilerplate_functionality', function ($plugin) {
+add_action('otomaties_core', function ($plugin) {
     $plugin->initialize();
 }, PHP_INT_MAX);
 
