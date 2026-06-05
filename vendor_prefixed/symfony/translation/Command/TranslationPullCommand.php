@@ -76,6 +76,7 @@ Full example:
 This command pulls all translations associated with the <info>messages</> and <info>validators</> domains for the <info>en</> locale.
 Local translations for the specified domains and locale are deleted if they're not present on the provider and overwritten if it's the case.
 Local translations for others domains and locales are ignored.
+
 EOF
 );
     }

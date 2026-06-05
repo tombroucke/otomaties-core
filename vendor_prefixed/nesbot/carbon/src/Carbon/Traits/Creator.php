@@ -47,7 +47,7 @@ trait Creator
     /**
      * The errors that can occur.
      */
-    protected static ?array $lastErrors = null;
+    protected static array|bool $lastErrors = \false;
     /**
      * Create a new Carbon instance.
      *
@@ -645,16 +645,14 @@ trait Creator
      */
     private static function setLastErrors($lastErrors) : void
     {
-        if (\is_array($lastErrors) || $lastErrors === \false) {
-            static::$lastErrors = \is_array($lastErrors) ? $lastErrors : ['warning_count' => 0, 'warnings' => [], 'error_count' => 0, 'errors' => []];
-        }
+        static::$lastErrors = $lastErrors;
     }
     /**
      * {@inheritdoc}
      */
     public static function getLastErrors() : array|false
     {
-        return static::$lastErrors ?? \false;
+        return static::$lastErrors;
     }
     private static function monthToInt(mixed $value, string $unit = 'month') : mixed
     {

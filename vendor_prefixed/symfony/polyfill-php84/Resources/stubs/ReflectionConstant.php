@@ -10,10 +10,8 @@ namespace {
      * file that was distributed with this source code.
      */
     if (\PHP_VERSION_ID < 80400) {
-        /**
-         * @author Daniel Scherzer <daniel.e.scherzer@gmail.com>
-         * @internal
-         */
+        // @author Daniel Scherzer <daniel.e.scherzer@gmail.com>
+        /** @internal */
         final class ReflectionConstant
         {
             /**
@@ -24,6 +22,7 @@ namespace {
             public $name;
             private $value;
             private $deprecated;
+            private $persistent;
             private static $persistentConstants = [];
             public function __construct(string $name)
             {

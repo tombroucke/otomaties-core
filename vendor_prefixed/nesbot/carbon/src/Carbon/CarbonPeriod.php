@@ -11,6 +11,7 @@ declare (strict_types=1);
  */
 namespace OtomatiesCoreVendor\Carbon;
 
+use OtomatiesCoreVendor\Carbon\Constants\UnitValue;
 use OtomatiesCoreVendor\Carbon\Exceptions\EndLessPeriodException;
 use OtomatiesCoreVendor\Carbon\Exceptions\InvalidCastException;
 use OtomatiesCoreVendor\Carbon\Exceptions\InvalidIntervalException;
@@ -175,7 +176,7 @@ require \PHP_VERSION < 8.1999999999999993 ? __DIR__ . '/../../lazy/Carbon/Protec
  * @SuppressWarnings(CouplingBetweenObjects)
  * @internal
  */
-class CarbonPeriod extends DatePeriodBase implements Countable, JsonSerializable
+class CarbonPeriod extends DatePeriodBase implements Countable, JsonSerializable, UnitValue
 {
     use LocalFactory;
     use IntervalRounding;

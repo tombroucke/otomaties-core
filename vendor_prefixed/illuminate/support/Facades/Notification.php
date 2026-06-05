@@ -19,6 +19,10 @@ use OtomatiesCoreVendor\Illuminate\Support\Testing\Fakes\NotificationFake;
  * @method static \Illuminate\Contracts\Container\Container getContainer()
  * @method static \Illuminate\Notifications\ChannelManager setContainer(\Illuminate\Contracts\Container\Container $container)
  * @method static \Illuminate\Notifications\ChannelManager forgetDrivers()
+ * @method static void macro(string $name, object|callable $macro)
+ * @method static void mixin(object $mixin, bool $replace = true)
+ * @method static bool hasMacro(string $name)
+ * @method static void flushMacros()
  * @method static void assertSentOnDemand(string|\Closure $notification, callable|null $callback = null)
  * @method static void assertSentTo(mixed $notifiable, string|\Closure $notification, callable|null $callback = null)
  * @method static void assertSentOnDemandTimes(string $notification, int $times = 1)
@@ -32,10 +36,6 @@ use OtomatiesCoreVendor\Illuminate\Support\Testing\Fakes\NotificationFake;
  * @method static bool hasSent(mixed $notifiable, string $notification)
  * @method static \Illuminate\Support\Testing\Fakes\NotificationFake serializeAndRestore(bool $serializeAndRestore = true)
  * @method static array sentNotifications()
- * @method static void macro(string $name, object|callable $macro)
- * @method static void mixin(object $mixin, bool $replace = true)
- * @method static bool hasMacro(string $name)
- * @method static void flushMacros()
  *
  * @see \Illuminate\Notifications\ChannelManager
  * @see \Illuminate\Support\Testing\Fakes\NotificationFake

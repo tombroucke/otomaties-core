@@ -1,6 +1,7 @@
 <?php
 
 namespace {
+    use OtomatiesCoreVendor\Carbon\CarbonInterval;
     use OtomatiesCoreVendor\Illuminate\Contracts\Support\DeferringDisplayableValue;
     use OtomatiesCoreVendor\Illuminate\Contracts\Support\Htmlable;
     use OtomatiesCoreVendor\Illuminate\Database\Eloquent\Model;
@@ -264,9 +265,7 @@ namespace {
         function preg_replace_array($pattern, array $replacements, $subject) : string
         {
             return \preg_replace_callback($pattern, function () use(&$replacements) {
-                foreach ($replacements as $value) {
-                    return \array_shift($replacements);
-                }
+                return \array_shift($replacements);
             }, $subject);
         }
     }
@@ -278,7 +277,7 @@ namespace {
          *
          * @param  int|array<int, int>  $times
          * @param  callable(int): TValue  $callback
-         * @param  int|\Closure(int, \Throwable): int  $sleepMilliseconds
+         * @param  CarbonInterval|int|\Closure(int, \Throwable): CarbonInterval|int  $sleepMilliseconds
          * @param  (callable(\Throwable): bool)|null  $when
          * @return TValue
          *
@@ -304,7 +303,8 @@ namespace {
                 }
                 $sleepMilliseconds = $backoff[$attempts - 1] ?? $sleepMilliseconds;
                 if ($sleepMilliseconds) {
-                    Sleep::usleep(\value($sleepMilliseconds, $attempts, $e) * 1000);
+                    $duration = \value($sleepMilliseconds, $attempts, $e);
+                    $duration instanceof CarbonInterval ? Sleep::usleep($duration->totalMicroseconds) : Sleep::usleep($duration * 1000);
                 }
                 goto beginning;
             }

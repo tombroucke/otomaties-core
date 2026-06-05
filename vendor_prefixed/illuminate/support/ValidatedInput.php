@@ -4,13 +4,13 @@ namespace OtomatiesCoreVendor\Illuminate\Support;
 
 use ArrayIterator;
 use OtomatiesCoreVendor\Illuminate\Contracts\Support\ValidatedData;
+use OtomatiesCoreVendor\Illuminate\Support\Traits\Dumpable;
 use OtomatiesCoreVendor\Illuminate\Support\Traits\InteractsWithData;
-use OtomatiesCoreVendor\Symfony\Component\VarDumper\VarDumper;
 use Traversable;
 /** @internal */
 class ValidatedInput implements ValidatedData
 {
-    use InteractsWithData;
+    use Dumpable, InteractsWithData;
     /**
      * The underlying input.
      *
@@ -85,26 +85,14 @@ class ValidatedInput implements ValidatedData
         return data_get($this->all(), $key, $default);
     }
     /**
-     * Dump the validated inputs items and end the script.
-     *
-     * @param  mixed  ...$keys
-     * @return never
-     */
-    public function dd(...$keys)
-    {
-        $this->dump(...$keys);
-        exit(1);
-    }
-    /**
      * Dump the items.
      *
-     * @param  mixed  $keys
+     * @param  mixed  ...$keys
      * @return $this
      */
-    public function dump($keys = [])
+    public function dump(...$keys)
     {
-        $keys = \is_array($keys) ? $keys : \func_get_args();
-        VarDumper::dump(\count($keys) > 0 ? $this->only($keys) : $this->all());
+        dump(\count($keys) > 0 ? $this->only($keys) : $this->all());
         return $this;
     }
     /**
@@ -140,6 +128,7 @@ class ValidatedInput implements ValidatedData
     /**
      * Determine if an input item is set.
      *
+     * @param  string  $name
      * @return bool
      */
     public function __isset($name)

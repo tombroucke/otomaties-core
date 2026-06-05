@@ -2,9 +2,12 @@
 
 namespace OtomatiesCoreVendor\Illuminate\Support\Traits;
 
+use OtomatiesCoreVendor\Carbon\CarbonInterval;
+use OtomatiesCoreVendor\Carbon\Unit;
 use OtomatiesCoreVendor\Illuminate\Support\Arr;
 use OtomatiesCoreVendor\Illuminate\Support\Collection;
 use OtomatiesCoreVendor\Illuminate\Support\Facades\Date;
+use OtomatiesCoreVendor\Illuminate\Support\Number;
 use OtomatiesCoreVendor\Illuminate\Support\Str;
 use stdClass;
 use function OtomatiesCoreVendor\Illuminate\Support\enum_value;
@@ -247,6 +250,19 @@ trait InteractsWithData
         return (float) $this->data($key, $default);
     }
     /**
+     * Retrieve data clamped between min and max values.
+     *
+     * @param  string  $key
+     * @param  int|float  $min
+     * @param  int|float  $max
+     * @param  int|float  $default
+     * @return float|int
+     */
+    public function clamp($key, $min, $max, $default = 0)
+    {
+        return Number::clamp($this->data($key, $default), $min, $max);
+    }
+    /**
      * Retrieve data from the instance as a Carbon instance.
      *
      * @param  string  $key
@@ -268,14 +284,34 @@ trait InteractsWithData
         return Date::createFromFormat($format, $this->data($key), $tz);
     }
     /**
+     * Retrieve data from the instance as a CarbonInterval instance.
+     *
+     * @param  string  $key
+     * @param  \Carbon\Unit|string|null  $unit
+     * @return \Carbon\CarbonInterval|null
+     */
+    public function interval($key, $unit = null)
+    {
+        if ($this->isNotFilled($key)) {
+            return null;
+        }
+        $value = $this->data($key);
+        if (\is_null($unit)) {
+            return CarbonInterval::make($value);
+        }
+        $unit = $unit instanceof Unit ? $unit : Unit::fromName($unit);
+        return $unit->interval((float) $value);
+    }
+    /**
      * Retrieve data from the instance as an enum.
      *
      * @template TEnum of \BackedEnum
+     * @template TDefault of TEnum|null
      *
      * @param  string  $key
      * @param  class-string<TEnum>  $enumClass
-     * @param  TEnum|null  $default
-     * @return TEnum|null
+     * @param  TDefault  $default
+     * @return TEnum|TDefault
      */
     public function enum($key, $enumClass, $default = null)
     {
@@ -308,7 +344,7 @@ trait InteractsWithData
      */
     protected function isBackedEnum($enumClass)
     {
-        return \enum_exists($enumClass) && \method_exists($enumClass, 'tryFrom');
+        return \is_a($enumClass, \BackedEnum::class, \true);
     }
     /**
      * Retrieve data from the instance as an array.

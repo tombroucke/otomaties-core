@@ -4,7 +4,10 @@ namespace OtomatiesCoreVendor\Illuminate\Support\Testing\Fakes;
 
 use BadMethodCallException;
 use Closure;
+use OtomatiesCoreVendor\Illuminate\Bus\UniqueLock;
+use OtomatiesCoreVendor\Illuminate\Contracts\Cache\Repository as Cache;
 use OtomatiesCoreVendor\Illuminate\Contracts\Queue\Queue;
+use OtomatiesCoreVendor\Illuminate\Contracts\Queue\ShouldBeUnique;
 use OtomatiesCoreVendor\Illuminate\Events\CallQueuedListener;
 use OtomatiesCoreVendor\Illuminate\Queue\CallQueuedClosure;
 use OtomatiesCoreVendor\Illuminate\Queue\QueueManager;
@@ -49,6 +52,12 @@ class QueueFake extends QueueManager implements Fake, Queue
      * @var list<RawPushType>
      */
     protected $rawPushes = [];
+    /**
+     * All of the unique jobs that were pushed.
+     *
+     * @var array
+     */
+    private $uniqueJobs = [];
     /**
      * Indicates if items should be serialized and restored when pushed to the queue.
      *
@@ -104,7 +113,7 @@ class QueueFake extends QueueManager implements Fake, Queue
      * @param  int  $times
      * @return void
      */
-    protected function assertPushedTimes($job, $times = 1)
+    public function assertPushedTimes($job, $times = 1)
     {
         $count = $this->pushed($job)->count();
         PHPUnit::assertSame($times, $count, \sprintf("The expected [{$job}] job was pushed {$count} %s instead of {$times} %s.", Str::plural('time', $count), Str::plural('time', $times)));
@@ -381,6 +390,9 @@ class QueueFake extends QueueManager implements Fake, Queue
                 $job = CallQueuedClosure::create($job);
             }
             $this->jobs[\is_object($job) ? \get_class($job) : $job][] = ['job' => $this->serializeAndRestore ? $this->serializeAndRestoreJob($job) : $job, 'queue' => $queue, 'data' => $data];
+            if ($job instanceof ShouldBeUnique) {
+                $this->uniqueJobs[] = $job;
+            }
         } else {
             \is_object($job) && isset($job->connection) ? $this->queue->connection($job->connection)->push($job, $data, $queue) : $this->queue->push($job, $data, $queue);
         }
@@ -526,6 +538,19 @@ class QueueFake extends QueueManager implements Fake, Queue
     protected function serializeAndRestoreJob($job)
     {
         return \unserialize(\serialize($job));
+    }
+    /**
+     * Release the locks for all unique jobs that were pushed.
+     *
+     * @return void
+     */
+    public function releaseUniqueJobLocks()
+    {
+        $lock = new UniqueLock($this->app->make(Cache::class));
+        foreach ($this->uniqueJobs as $job) {
+            $lock->release($job);
+        }
+        $this->uniqueJobs = [];
     }
     /**
      * Get the connection name for the queue.

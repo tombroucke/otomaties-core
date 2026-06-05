@@ -4,7 +4,7 @@ namespace OtomatiesCoreVendor\Illuminate\Support\Facades;
 
 use OtomatiesCoreVendor\Illuminate\Contracts\Auth\Access\Gate as GateContract;
 /**
- * @method static bool has(string|array $ability)
+ * @method static bool has(\UnitEnum|array|string $ability)
  * @method static \Illuminate\Auth\Access\Response allowIf(\Illuminate\Auth\Access\Response|\Closure|bool $condition, string|null $message = null, string|null $code = null)
  * @method static \Illuminate\Auth\Access\Response denyIf(\Illuminate\Auth\Access\Response|\Closure|bool $condition, string|null $message = null, string|null $code = null)
  * @method static \Illuminate\Auth\Access\Gate define(\UnitEnum|string $ability, callable|array|string $callback)

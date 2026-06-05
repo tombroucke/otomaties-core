@@ -106,6 +106,13 @@ class Uri implements Htmlable, JsonSerializable, Responsable, Stringable
         return new static(\call_user_func(static::$urlGeneratorResolver)->action($action, $parameters, $absolute));
     }
     /**
+     * Get the URI's authority.
+     */
+    public function authority() : ?string
+    {
+        return $this->uri->getAuthority();
+    }
+    /**
      * Get the URI's scheme.
      */
     public function scheme() : ?string

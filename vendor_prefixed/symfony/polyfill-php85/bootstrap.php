@@ -41,4 +41,22 @@ namespace {
             return p\Php85::array_last($array);
         }
     }
+    if (\extension_loaded('intl') && !\function_exists('locale_is_right_to_left')) {
+        /** @internal */
+        function locale_is_right_to_left(string $locale) : bool
+        {
+            return p\Php85::locale_is_right_to_left($locale);
+        }
+    }
+    if (\PHP_VERSION_ID >= 80000) {
+        require __DIR__ . '/bootstrap80.php';
+        return;
+    }
+    if (\extension_loaded('intl') && !\function_exists('grapheme_levenshtein')) {
+        /** @internal */
+        function grapheme_levenshtein(string $string1, string $string2, int $insertion_cost = 1, int $replacement_cost = 1, int $deletion_cost = 1, string $locale = '')
+        {
+            return p\Php85::grapheme_levenshtein($string1, $string2, $insertion_cost, $replacement_cost, $deletion_cost);
+        }
+    }
 }

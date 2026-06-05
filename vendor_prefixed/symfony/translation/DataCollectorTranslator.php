@@ -11,6 +11,7 @@
 namespace OtomatiesCoreVendor\Symfony\Component\Translation;
 
 use OtomatiesCoreVendor\Symfony\Component\HttpKernel\CacheWarmer\WarmableInterface;
+use OtomatiesCoreVendor\Symfony\Contracts\Service\ResetInterface;
 use OtomatiesCoreVendor\Symfony\Contracts\Translation\LocaleAwareInterface;
 use OtomatiesCoreVendor\Symfony\Contracts\Translation\TranslatorInterface;
 /**
@@ -19,7 +20,7 @@ use OtomatiesCoreVendor\Symfony\Contracts\Translation\TranslatorInterface;
  * @final since Symfony 7.1
  * @internal
  */
-class DataCollectorTranslator implements TranslatorInterface, TranslatorBagInterface, LocaleAwareInterface, WarmableInterface
+class DataCollectorTranslator implements TranslatorInterface, TranslatorBagInterface, LocaleAwareInterface, WarmableInterface, ResetInterface
 {
     public const MESSAGE_DEFINED = 0;
     public const MESSAGE_MISSING = 1;
@@ -27,6 +28,10 @@ class DataCollectorTranslator implements TranslatorInterface, TranslatorBagInter
     private array $messages = [];
     public function __construct(private TranslatorInterface&TranslatorBagInterface&LocaleAwareInterface $translator)
     {
+    }
+    public function reset() : void
+    {
+        $this->messages = [];
     }
     public function trans(?string $id, array $parameters = [], ?string $domain = null, ?string $locale = null) : string
     {

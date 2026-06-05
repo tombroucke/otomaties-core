@@ -3,9 +3,9 @@
 namespace OtomatiesCoreVendor\Illuminate\Container\Attributes;
 
 use Attribute;
-use BackedEnum;
 use InvalidArgumentException;
 use UnitEnum;
+use function OtomatiesCoreVendor\Illuminate\Support\enum_value;
 /** @internal */
 #[Attribute(Attribute::TARGET_CLASS | Attribute::IS_REPEATABLE)]
 class Bind
@@ -37,10 +37,6 @@ class Bind
             throw new InvalidArgumentException('The environment property must be set and cannot be empty.');
         }
         $this->concrete = $concrete;
-        $this->environments = \array_map(fn($environment) => match (\true) {
-            $environment instanceof BackedEnum => $environment->value,
-            $environment instanceof UnitEnum => $environment->name,
-            default => $environment,
-        }, $environments);
+        $this->environments = \array_map(fn($environment) => enum_value($environment), $environments);
     }
 }

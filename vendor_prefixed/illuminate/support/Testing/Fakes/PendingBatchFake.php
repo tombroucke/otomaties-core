@@ -2,11 +2,14 @@
 
 namespace OtomatiesCoreVendor\Illuminate\Support\Testing\Fakes;
 
+use Closure;
 use OtomatiesCoreVendor\Illuminate\Bus\PendingBatch;
 use OtomatiesCoreVendor\Illuminate\Support\Collection;
+use OtomatiesCoreVendor\Illuminate\Support\Traits\ReflectsClosures;
 /** @internal */
 class PendingBatchFake extends PendingBatch
 {
+    use ReflectsClosures;
     /**
      * The fake bus instance.
      *
@@ -22,7 +25,7 @@ class PendingBatchFake extends PendingBatch
     public function __construct(BusFake $bus, Collection $jobs)
     {
         $this->bus = $bus;
-        $this->jobs = $jobs;
+        $this->jobs = $jobs->filter()->values();
     }
     /**
      * Dispatch the batch.
@@ -41,5 +44,35 @@ class PendingBatchFake extends PendingBatch
     public function dispatchAfterResponse()
     {
         return $this->bus->recordPendingBatch($this);
+    }
+    /**
+     * Determine if the jobs in the batch match the given jobs.
+     *
+     * @param  array  $expectedJobs
+     * @return bool
+     */
+    public function hasJobs(array $expectedJobs)
+    {
+        if (\count($this->jobs) !== \count($expectedJobs)) {
+            return \false;
+        }
+        foreach ($expectedJobs as $index => $expectedJob) {
+            if ($expectedJob instanceof Closure) {
+                $expectedType = $this->firstClosureParameterType($expectedJob);
+                if (!$this->jobs[$index] instanceof $expectedType) {
+                    return \false;
+                }
+                if (!$expectedJob($this->jobs[$index])) {
+                    return \false;
+                }
+            } elseif (\is_string($expectedJob)) {
+                if ($expectedJob != \get_class($this->jobs[$index])) {
+                    return \false;
+                }
+            } elseif (\serialize($expectedJob) != \serialize($this->jobs[$index])) {
+                return \false;
+            }
+        }
+        return \true;
     }
 }

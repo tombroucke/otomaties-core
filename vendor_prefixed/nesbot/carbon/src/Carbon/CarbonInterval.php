@@ -11,6 +11,7 @@ declare (strict_types=1);
  */
 namespace OtomatiesCoreVendor\Carbon;
 
+use OtomatiesCoreVendor\Carbon\Constants\UnitValue;
 use OtomatiesCoreVendor\Carbon\Exceptions\BadFluentConstructorException;
 use OtomatiesCoreVendor\Carbon\Exceptions\BadFluentSetterException;
 use OtomatiesCoreVendor\Carbon\Exceptions\InvalidCastException;
@@ -189,7 +190,7 @@ use Throwable;
  * @method $this ceilMicroseconds(int|float $precision = 1) Ceil the current instance microsecond with given precision.
  * @internal
  */
-class CarbonInterval extends DateInterval implements CarbonConverterInterface
+class CarbonInterval extends DateInterval implements CarbonConverterInterface, UnitValue
 {
     use LocalFactory;
     use IntervalRounding;

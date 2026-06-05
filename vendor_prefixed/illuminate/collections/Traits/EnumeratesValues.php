@@ -31,6 +31,8 @@ use function OtomatiesCoreVendor\Illuminate\Support\enum_value;
  * @property-read HigherOrderCollectionProxy<TKey, TValue> $first
  * @property-read HigherOrderCollectionProxy<TKey, TValue> $flatMap
  * @property-read HigherOrderCollectionProxy<TKey, TValue> $groupBy
+ * @property-read HigherOrderCollectionProxy<TKey, TValue> $hasMany
+ * @property-read HigherOrderCollectionProxy<TKey, TValue> $hasSole
  * @property-read HigherOrderCollectionProxy<TKey, TValue> $keyBy
  * @property-read HigherOrderCollectionProxy<TKey, TValue> $last
  * @property-read HigherOrderCollectionProxy<TKey, TValue> $map
@@ -67,7 +69,7 @@ trait EnumeratesValues
      *
      * @var array<int, string>
      */
-    protected static $proxies = ['average', 'avg', 'contains', 'doesntContain', 'each', 'every', 'filter', 'first', 'flatMap', 'groupBy', 'keyBy', 'last', 'map', 'max', 'min', 'partition', 'percentage', 'reject', 'skipUntil', 'skipWhile', 'some', 'sortBy', 'sortByDesc', 'sum', 'takeUntil', 'takeWhile', 'unique', 'unless', 'until', 'when'];
+    protected static $proxies = ['average', 'avg', 'contains', 'doesntContain', 'each', 'every', 'filter', 'first', 'flatMap', 'groupBy', 'hasMany', 'hasSole', 'keyBy', 'last', 'map', 'max', 'min', 'partition', 'percentage', 'reject', 'skipUntil', 'skipWhile', 'some', 'sortBy', 'sortByDesc', 'sum', 'takeUntil', 'takeWhile', 'unique', 'unless', 'until', 'when'];
     /**
      * Create a new collection instance if the value isn't one already.
      *
@@ -264,6 +266,19 @@ trait EnumeratesValues
     public function firstWhere($key, $operator = null, $value = null)
     {
         return $this->first($this->operatorForWhere(...\func_get_args()));
+    }
+    /**
+     * Determine if the collection contains multiple items, optionally matching the given criteria.
+     *
+     * @param  (callable(TValue, TKey): bool)|string|null  $key
+     * @param  mixed  $operator
+     * @param  mixed  $value
+     * @return bool
+     */
+    public function hasMany($key = null, $operator = null, $value = null) : bool
+    {
+        $filter = \func_num_args() > 1 ? $this->operatorForWhere(...\func_get_args()) : $key;
+        return $this->unless($filter == null)->filter($filter)->take(2)->count() === 2;
     }
     /**
      * Get a single key's value from the first matching item in the collection.
