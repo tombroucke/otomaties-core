@@ -24,7 +24,6 @@ class HealthTests
     public function tests(): Collection
     {
         if (! isset($this->tests)) {
-            /** @phpstan-ignore-next-line */
             $this->tests = (new Collection(glob(__DIR__ . '/HealthTests/*.php')))
                 ->map(function ($file) {
                     $class = basename($file, '.php');
@@ -33,6 +32,7 @@ class HealthTests
                     return new ($namespace . $class);
                 })
                 ->filter(fn ($test) => $test->isActive())
+                /** @phpstan-ignore-next-line */
                 ->mapWithKeys(function ($test, $key) {
                     return [$test->name() => [
                         'label' => $test->name(),

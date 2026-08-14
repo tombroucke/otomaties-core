@@ -59,16 +59,9 @@ class Admin
      */
     public function removeMenus(): void
     {
-        $menus = [
-            'edit-comments.php',
-        ];
-
-        if (apply_filters('otomaties_open_comments', false)) {
-            $key = array_search('edit-comments.php', $menus);
-            if ($key !== false) {
-                unset($menus[$key]);
-            }
-        }
+        $menus = apply_filters('otomaties_open_comments', false)
+            ? []
+            : ['edit-comments.php'];
         foreach (apply_filters('otomaties_admin_bar_unnecessary_menus', $menus) as $menu) {
             remove_menu_page($menu);
         }
@@ -81,14 +74,9 @@ class Admin
      */
     public function removeFromAdminBar(\WP_Admin_Bar $wpAdminBar): void
     {
-        $nodes = [
-            'wp-logo',
-            'comments',
-        ];
-
-        if (apply_filters('otomaties_open_comments', false) && ($key = array_search('comment', $nodes)) !== false) {
-            unset($nodes[$key]);
-        }
+        $nodes = apply_filters('otomaties_open_comments', false)
+            ? ['wp-logo']
+            : ['wp-logo', 'comments'];
 
         foreach (apply_filters('otomaties_admin_bar_unnecessary_nodes', $nodes) as $node) {
             $wpAdminBar->remove_node($node);

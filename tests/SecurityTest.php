@@ -48,15 +48,19 @@ final class SecurityTest extends TestCase
         $view = new View('resources/views');
         $security = new Security('production', $view);
 
-        // expect output to contain "Otomaties core has disabled updating of"
         $this->expectOutputRegex('/Otomaties core has disabled updating of/');
         $security->showSecurityNotices();
+    }
+
+    public function test_if_critical_options_update_notice_is_not_displayed_on_plugins_screen()
+    {
+        $view = new View('resources/views');
+        $security = new Security('production', $view);
 
         custom_change_current_screen((object) [
             'id' => 'plugins',
             'base' => 'plugins',
         ]);
-        // expect no output
         $this->expectOutputString('');
         $security->showSecurityNotices();
     }

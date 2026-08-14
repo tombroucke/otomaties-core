@@ -149,7 +149,6 @@ class Security
     {
         $currentScreen = get_current_screen();
         if (! $currentScreen
-            || ! property_exists($currentScreen, 'base')
             || $currentScreen->base !== 'options-general') {
             return;
         }
@@ -200,7 +199,7 @@ class Security
     }
 
     /**
-     * @param array<string, mixed> $endpoints
+     * @param  array<string, mixed>  $endpoints
      * @return array<string, mixed>
      */
     public function disableUserEndpoints(array $endpoints): array
@@ -218,8 +217,8 @@ class Security
     }
 
     /**
-     * @param array<string, mixed> $data
-     * @param array<string, mixed> $userdata
+     * @param  array<string, mixed>  $data
+     * @param  array<string, mixed>  $userdata
      * @return array<string, mixed>|bool|\WP_Error
      */
     public function disableAdministratorPromotion(array $data, bool $update, ?int $userId, array $userdata): array|bool|\WP_Error // phpcs:ignore Generic.Files.LineLength
@@ -244,7 +243,7 @@ class Security
         return $data;
     }
 
-    public function preventCapabilityEscalation(null|int|false $check, int $userId, string $metaKey, mixed $metaValue): null|int|false
+    public function preventCapabilityEscalation(null|int|false $check, int $userId, string $metaKey, mixed $metaValue): null|int|false // phpcs:ignore Generic.Files.LineLength
     {
         if (! apply_filters('otomaties_disable_administrator_promotion', true)) {
             return $check;
@@ -269,7 +268,7 @@ class Security
     }
 
     /**
-     * @param array<string, mixed> $context
+     * @param  array<string, mixed>  $context
      */
     private function reportIncident(string $message, array $context = []): void
     {
