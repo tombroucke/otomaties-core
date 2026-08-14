@@ -152,7 +152,7 @@ class Connect
     }
 
     /**
-     * @param array<string, mixed> $context
+     * @param  array<string, mixed>  $context
      */
     public function reportIncident(string $message, array $context = []): void
     {
@@ -163,7 +163,7 @@ class Connect
     }
 
     /**
-     * @param array<string, mixed> $body
+     * @param  array<string, mixed>  $body
      */
     public function doRequest(string $method, string $endpoint, array $body = []): void
     {
