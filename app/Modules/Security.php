@@ -24,6 +24,13 @@ class Security
         add_filter('wp_get_attachment_url', [$this, 'forceAttachmentHttps']);
         add_filter('pre_update_option', [$this, 'disableUpdateCriticalOptions'], 10, 3);
         add_action('admin_notices', [$this, 'showSecurityNotices']);
+        add_filter('rest_pre_insert_user', [$this, 'disableInsertAdminUser'], 10, 2);
+        add_filter('rest_pre_dispatch', [$this, 'requireAuthForRestBatch'], 10, 3);
+        add_filter('rest_endpoints', [$this, 'disableUserEndpoints']);
+
+        add_filter('wp_pre_insert_user_data', [$this, 'disableAdministratorPromotion'], 10, 4);
+        add_filter('add_user_metadata', [$this, 'preventCapabilityEscalation'], 10, 4);
+        add_filter('update_user_metadata', [$this, 'preventCapabilityEscalation'], 10, 4);
     }
 
     /**
@@ -155,5 +162,117 @@ class Security
                     'message' => __('Otomaties core has disabled updating of <code>users_can_register</code> & <code>default_role</code>.', 'otomaties-core'), // phpcs:ignore Generic.Files.LineLength
                 ]
             );
+    }
+
+    public function disableInsertAdminUser(mixed $preparedUser, \WP_REST_Request $request): mixed
+    {
+        if (! apply_filters('otomaties_disable_insert_admin_user', true)) {
+            return $preparedUser;
+        }
+
+        $roles = $request->get_param('roles') ?? [];
+        if (in_array('administrator', (array) $roles, true)) {
+            return new \WP_Error(
+                'rest_cannot_assign_administrator',
+                'Assigning the administrator role via the REST API is not allowed.',
+                ['status' => 403]
+            );
+        }
+
+        return $preparedUser;
+    }
+
+    public function requireAuthForRestBatch(mixed $result, \WP_REST_Server $server, \WP_REST_Request $request): mixed
+    {
+        if (! apply_filters('otomaties_require_auth_for_batch', true)) {
+            return $result;
+        }
+
+        if ($request->get_route() === '/batch/v1' && ! current_user_can('edit_posts')) {
+            return new \WP_Error(
+                'rest_forbidden',
+                'Batch endpoint requires authentication.',
+                ['status' => 401]
+            );
+        }
+
+        return $result;
+    }
+
+    /**
+     * @param array<string, mixed> $endpoints
+     * @return array<string, mixed>
+     */
+    public function disableUserEndpoints(array $endpoints): array
+    {
+        if (! apply_filters('otomaties_disable_user_endpoints', true)) {
+            return $endpoints;
+        }
+
+        if (! current_user_can('edit_posts')) {
+            unset($endpoints['/wp/v2/users']);
+            unset($endpoints['/wp/v2/users/(?P<id>[\d]+)']);
+        }
+
+        return $endpoints;
+    }
+
+    /**
+     * @param array<string, mixed> $data
+     * @param array<string, mixed> $userdata
+     * @return array<string, mixed>|bool|\WP_Error
+     */
+    public function disableAdministratorPromotion(array $data, bool $update, ?int $userId, array $userdata): array|bool|\WP_Error // phpcs:ignore Generic.Files.LineLength
+    {
+        if (! apply_filters('otomaties_disable_administrator_promotion', true)) {
+            return $data;
+        }
+
+        if (isset($userdata['role']) && $userdata['role'] === 'administrator') {
+            $this->reportIncident('Attempt to promote user to administrator role.', [
+                'data' => $data,
+                'user_id' => $userId,
+            ]);
+
+            // This error will not be displayed, "Not enough data to create this user." is displayed instead.
+            return new \WP_Error(
+                'admin_promotion_not_allowed',
+                __('Promoting a user to administrator is not allowed.', 'otomaties-core'),
+            );
+        }
+
+        return $data;
+    }
+
+    public function preventCapabilityEscalation(null|int|false $check, int $userId, string $metaKey, mixed $metaValue): null|int|false
+    {
+        if (! apply_filters('otomaties_disable_administrator_promotion', true)) {
+            return $check;
+        }
+
+        global $wpdb;
+        if ($metaKey !== $wpdb->get_blog_prefix() . 'capabilities') {
+            return $check;
+        }
+
+        if (is_array($metaValue) && ! empty($metaValue['administrator'])) {
+            $this->reportIncident('Attempt to escalate user capabilities to administrator.', [
+                'user_id' => $userId,
+                'meta_key' => $metaKey,
+                'meta_value' => $metaValue,
+            ]);
+
+            return false;
+        }
+
+        return $check;
+    }
+
+    /**
+     * @param array<string, mixed> $context
+     */
+    private function reportIncident(string $message, array $context = []): void
+    {
+        otomatiesCore()->make(Connect::class)->reportIncident($message, $context);
     }
 }

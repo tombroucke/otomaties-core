@@ -1,5 +1,7 @@
 <?php
 
+use Otomaties\Core\Plugin;
+
 /**
  * Plugin Name:     Otomaties Core
  * Plugin URI:      https://github.com/tombroucke/otomaties-core
@@ -26,7 +28,7 @@ if (file_exists($prefixedAutoloadPath)) {
 /**
  * Get main plugin class instance
  *
- * @return \Otomaties\Core\Plugin
+ * @return Plugin
  */
 function otomatiesCore()
 {
@@ -36,7 +38,7 @@ function otomatiesCore()
         $version = get_plugin_data(__FILE__, false, false)['Version'];
         $environment = defined('WP_ENV') && is_string(constant('WP_ENV')) ? constant('WP_ENV') : null;
 
-        $plugin = new \Otomaties\Core\Plugin(
+        $plugin = new Plugin(
             $version,
             $environment
         );

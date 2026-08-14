@@ -3,6 +3,7 @@
 namespace Otomaties\Core;
 
 use Otomaties\Core\Console\Commands\Registrar;
+use Otomaties\Core\Modules\Connect;
 use OtomatiesCoreVendor\Illuminate\Container\Container;
 use OtomatiesCoreVendor\Illuminate\Support\Collection;
 
@@ -21,7 +22,7 @@ class Plugin extends Container
         Modules\Revision::class,
         Modules\Discussion::class,
         Modules\Security::class,
-        Modules\Connect::class,
+        Connect::class,
         Modules\HealthTests::class,
     ];
 
@@ -71,6 +72,7 @@ class Plugin extends Container
     private function register(): void
     {
         $this->bind(View::class, fn () => new View($this->config('paths.views')));
+        $this->bind(Connect::class, fn () => new Connect($this->environment()));
     }
 
     private function loadTextDomain(): void

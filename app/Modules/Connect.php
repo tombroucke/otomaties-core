@@ -9,6 +9,8 @@ use Otomaties\Core\Modules\Connect\ResponseBuilder;
  */
 class Connect
 {
+    const API_URL = 'https://connect.otomaties.be/api/v1/wp';
+
     public function __construct(private string $env)
     {
         //
@@ -142,30 +144,49 @@ class Connect
 
     public function notifyMailFailure(\WP_Error $wpError): void
     {
+        $this->doRequest('POST', 'mail-failed', [
+            'site_url' => get_site_url(),
+            'error' => $wpError->get_error_message(),
+            'email' => $wpError->get_error_data(),
+        ]);
+    }
+
+    /**
+     * @param array<string, mixed> $context
+     */
+    public function reportIncident(string $message, array $context = []): void
+    {
+        $this->doRequest('POST', 'incident/report', [
+            'message' => $message,
+            'context' => $context,
+        ]);
+    }
+
+    /**
+     * @param array<string, mixed> $body
+     */
+    public function doRequest(string $method, string $endpoint, array $body = []): void
+    {
         try {
             $connectionKey = $this->findConnectionKey();
             if (! $connectionKey) {
                 return;
             }
 
-            $endpoint = 'https://connect.otomaties.be/api/v1/wp/mail-failed';
-            $body = [
-                'site_url' => get_site_url(),
-                'error' => $wpError->get_error_message(),
-                'email' => $wpError->get_error_data(),
-            ];
+            $url = self::API_URL . '/' . ltrim($endpoint, '/');
 
             $headers = [
                 'Content-Type' => 'application/json',
                 'X-Otomaties-Connection-Key' => $connectionKey,
             ];
 
-            wp_remote_post($endpoint, [
+            $args = [
                 'headers' => $headers,
                 'body' => wp_json_encode($body),
                 'timeout' => 5,
                 'sslverify' => $this->env === 'production',
-            ]);
+            ];
+            $response = wp_remote_request($url, array_merge($args, ['method' => mb_strtoupper($method)]));
         } catch (\Exception $e) {
             // Silent fail
         }
