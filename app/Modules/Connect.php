@@ -156,7 +156,7 @@ class Connect
      */
     public function reportIncident(string $message, array $context = []): void
     {
-        $this->doRequest('POST', 'incident/report', [
+        $this->doRequest('POST', 'incident', [
             'message' => $message,
             'context' => $context,
         ]);
