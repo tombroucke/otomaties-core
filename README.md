@@ -52,12 +52,14 @@ To disable: `add_filter('otomaties_whitelabel', '__return_true');` or installed 
 #### General
 
 - Disable updating of critical options `users_can_register` & `default_role`. To disable: `add_filter('otomaties_disable_update_critical_options', '__return_false');`
+- Disable promotion of users to administrator. We can't provide a custom message, instead `Not enough data to create this user.` will be displayed.
 
-#### Otomaties Connect
+### Otomaties Connect
 
 - Otomaties connect can fetch data over the rest API. Secured authentication with a public/private key pair.
+- Incidents can be reported to Otomaties Connect using `otomatiesCore()->make(Connect::class)->reportIncident($message, $context)`
 
-###### Connection
+#### Connection
 
 In your `.env` file or `wp-config.php` file, add the `OTOMATIES_CONNECT_KEY` constant from the Otomaties connect portal.
 
