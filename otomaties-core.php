@@ -1,5 +1,6 @@
 <?php
 
+use Otomaties\Core\Helpers\WpEnvironment;
 use Otomaties\Core\Plugin;
 
 /**
@@ -36,7 +37,7 @@ function otomatiesCore()
 
     if (! $plugin) {
         $version = get_plugin_data(__FILE__, false, false)['Version'];
-        $environment = defined('WP_ENV') && is_string(constant('WP_ENV')) ? constant('WP_ENV') : null;
+        $environment = WpEnvironment::get();
 
         $plugin = new Plugin(
             $version,

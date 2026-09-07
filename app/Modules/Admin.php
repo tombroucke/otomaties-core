@@ -2,6 +2,7 @@
 
 namespace Otomaties\Core\Modules;
 
+use Otomaties\Core\Helpers\WpEnvironment;
 use Otomaties\Core\View;
 
 /**
@@ -32,6 +33,7 @@ class Admin
         add_filter('wpseo_metabox_prio', [$this, 'yoastSeoToBottom']);
         add_action('admin_head', [$this, 'removeUpdateNag'], 1);
         add_action('admin_notices', [$this, 'cacheTtlNotice']);
+        add_action('admin_notices', [$this, 'wpEnvNotice']);
 
         // Development environment indicator
         add_action('admin_bar_menu', [$this, 'addEnvironmentIndicator']);
@@ -140,6 +142,19 @@ class Admin
             ->render('admin/notice', [
                 'type' => 'warning',
                 'message' => sprintf(__('Super page cache TTL is not set. Please configure it in the plugin settings to ensure optimal caching performance. Recommendation: %s seconds.', 'otomaties-core'), 28800), // phpcs:ignore Generic.Files.LineLength
+            ]);
+    }
+
+    public function wpEnvNotice(): void
+    {
+        if (WpEnvironment::defined()) {
+            return;
+        }
+
+        $this->view
+            ->render('admin/notice', [
+                'type' => 'warning',
+                'message' => __('The <strong>WP_ENV</strong> constant is not defined. Please define it in your <code>wp-config.php</code> file.', 'otomaties-core'), // phpcs:ignore Generic.Files.LineLength
             ]);
     }
 
