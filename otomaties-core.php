@@ -12,7 +12,7 @@ use Otomaties\Core\Plugin;
  * Text Domain:     otomaties-core
  * Domain Path:     resources/languages
  * Requires PHP:    8.0
- * Version:           2.3.0
+ * Version:           2.3.1
  */
 
 // If this file is called directly, abort.
