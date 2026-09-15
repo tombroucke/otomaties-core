@@ -52,7 +52,7 @@ To disable: `add_filter('otomaties_whitelabel', '__return_true');` or installed 
 #### General
 
 - Disable updating of critical options `users_can_register` & `default_role`. To disable: `add_filter('otomaties_disable_update_critical_options', '__return_false');`
-- Disable promotion of users to administrator. We can't provide a custom message, instead `Not enough data to create this user.` will be displayed.
+- Disable promotion of users to administrator. We can't provide a custom message, instead `Not enough data to create this user.` will be displayed. To temporarily circumvent or disable: `add_filter('otomaties_disable_administrator_promotion', '__return_false');`
 
 ### Otomaties Connect
 
