@@ -125,6 +125,7 @@ class Revision
             return null;
         }
         $content = fgets($resource);
+        fclose($resource);
 
         return $content ? $content : '';
     }

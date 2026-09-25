@@ -2,7 +2,7 @@
 
 <style>
 	#wpadminbar .environment-indicator > .ab-item {
-		background-color: <?php echo $backgroundColor; ?>;
+		background-color: <?php esc_attr_e($backgroundColor); ?>;
 		color: #fff;
 	}
 	#wpadminbar .environment-indicator > .ab-item:before {
