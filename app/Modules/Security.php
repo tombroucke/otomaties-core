@@ -119,11 +119,11 @@ class Security
      */
     public function forceAttachmentHttps($url): string
     {
-        if (is_ssl()) {
-            $url = Str::replaceStart('http://', 'https://', $url);
+        if (! is_ssl()) {
+            return $url;
         }
 
-        return $url;
+        return Str::replaceStart('http://', 'https://', $url);
     }
 
     /**
@@ -255,12 +255,17 @@ class Security
         }
 
         if (is_array($metaValue) && ! empty($metaValue['administrator'])) {
+            $user = get_userdata($userId);
+            if ($user && in_array('administrator', $user->roles, true)) {
+                return $check;
+            }
+
             $this->reportIncident('Attempt to escalate user capabilities to administrator.', [
                 'user_id' => $userId,
                 'meta_key' => $metaKey,
                 'meta_value' => $metaValue,
             ]);
-
+            
             return false;
         }
 
