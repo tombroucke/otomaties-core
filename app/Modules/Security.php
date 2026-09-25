@@ -250,26 +250,31 @@ class Security
         }
 
         global $wpdb;
-        if ($metaKey !== $wpdb->get_blog_prefix() . 'capabilities') {
+        $capabilityKeys = array_unique([
+            $wpdb->get_blog_prefix() . 'capabilities', 
+            'wp_capabilities'
+        ]);
+
+        if (! in_array($metaKey, $capabilityKeys, true)) {
             return $check;
         }
 
-        if (is_array($metaValue) && ! empty($metaValue['administrator'])) {
-            $user = get_userdata($userId);
-            if ($user && in_array('administrator', $user->roles, true)) {
-                return $check;
-            }
-
-            $this->reportIncident('Attempt to escalate user capabilities to administrator.', [
-                'user_id' => $userId,
-                'meta_key' => $metaKey,
-                'meta_value' => $metaValue,
-            ]);
-            
-            return false;
+        if (! is_array($metaValue) || empty($metaValue['administrator'])) {
+            return $check;
         }
 
-        return $check;
+        $user = get_userdata($userId);
+        if ($user && in_array('administrator', $user->roles, true)) {
+            return $check;
+        }
+
+        $this->reportIncident('Attempt to escalate user capabilities to administrator.', [
+            'user_id' => $userId,
+            'meta_key' => $metaKey,
+            'meta_value' => $metaValue,
+        ]);
+
+        return false;
     }
 
     /**
