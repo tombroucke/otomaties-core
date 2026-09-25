@@ -175,18 +175,16 @@ class Connect
 
             $url = self::API_URL . '/' . ltrim($endpoint, '/');
 
-            $headers = [
-                'Content-Type' => 'application/json',
-                'X-Otomaties-Connection-Key' => $connectionKey,
-            ];
-
-            $args = [
-                'headers' => $headers,
+            wp_remote_request($url, [
+                'method' => mb_strtoupper($method),
+                'headers' => [
+                    'Content-Type' => 'application/json',
+                    'X-Otomaties-Connection-Key' => $connectionKey,
+                ],
                 'body' => wp_json_encode($body),
                 'timeout' => 5,
                 'sslverify' => $this->env === 'production',
-            ];
-            $response = wp_remote_request($url, array_merge($args, ['method' => mb_strtoupper($method)]));
+            ]);
         } catch (\Exception $e) {
             // Silent fail
         }
