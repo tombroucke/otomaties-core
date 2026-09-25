@@ -136,8 +136,8 @@ class Revision
     private function findRevisionFilePath(): ?string
     {
         $possibleLocations = [
-            ABSPATH . 'revision.txt',
             str_replace('/wp/', '/', ABSPATH . 'revision.txt'),
+            ABSPATH . 'revision.txt',
         ];
         foreach ($possibleLocations as $location) {
             if (file_exists($location)) {
