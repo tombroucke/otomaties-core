@@ -251,7 +251,7 @@ class Security
 
         global $wpdb;
         $capabilityKeys = array_unique([
-            $wpdb->get_blog_prefix() . 'capabilities', 
+            $wpdb->get_blog_prefix() . 'capabilities',
             'wp_capabilities'
         ]);
 
