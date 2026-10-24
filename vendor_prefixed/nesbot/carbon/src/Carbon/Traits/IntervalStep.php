@@ -11,6 +11,7 @@ declare (strict_types=1);
  */
 namespace OtomatiesCoreVendor\Carbon\Traits;
 
+use BadMethodCallException;
 use OtomatiesCoreVendor\Carbon\Callback;
 use OtomatiesCoreVendor\Carbon\Carbon;
 use OtomatiesCoreVendor\Carbon\CarbonImmutable;
@@ -26,11 +27,11 @@ trait IntervalStep
      *
      * @var Closure|null
      */
-    protected $step;
+    protected ?Closure $step = null;
     /**
      * Get the dynamic step in use.
      *
-     * @return Closure
+     * @return Closure|null
      */
     public function getStep() : ?Closure
     {
@@ -59,8 +60,7 @@ trait IntervalStep
      */
     public function convertDate(DateTimeInterface $dateTime, bool $negated = \false) : CarbonInterface
     {
-        /** @var CarbonInterface $carbonDate */
-        $carbonDate = $dateTime instanceof CarbonInterface ? $dateTime : $this->resolveCarbon($dateTime);
+        $carbonDate = $this->carbonOrResolve($dateTime);
         if ($this->step) {
             $carbonDate = Callback::parameter($this->step, $carbonDate->avoidMutation());
             return $carbonDate->modify(($this->step)($carbonDate, $negated)->format('Y-m-d H:i:s.u e O'));
@@ -79,5 +79,17 @@ trait IntervalStep
             return CarbonImmutable::instance($dateTime);
         }
         return Carbon::instance($dateTime);
+    }
+    private function carbonOrResolve(mixed $dateTime) : CarbonInterface
+    {
+        return $dateTime instanceof CarbonInterface ? $dateTime : $this->resolveCarbon($dateTime);
+    }
+    private function checkNoStepIsDefined(string $method) : void
+    {
+        if ($this->step !== null) {
+            $chunks = \explode('::', $method, 2);
+            $method = $chunks[1] ?? $method;
+            throw new BadMethodCallException("->{$method}() cannot be called on an interval with a step");
+        }
     }
 }

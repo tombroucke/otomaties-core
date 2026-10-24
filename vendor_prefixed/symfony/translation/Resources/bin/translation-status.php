@@ -177,7 +177,7 @@ END;
             }
             if ($translation['translated'] > $translation['total']) {
                 \textColorRed();
-            } elseif (\count($translation['mismatches']) > 0) {
+            } elseif ($translation['mismatches']) {
                 \textColorRed();
             } elseif ($translation['is_completed']) {
                 \textColorGreen();
@@ -185,14 +185,14 @@ END;
             echo \sprintf('|  Locale: %-' . $longestLocaleNameLength . 's  |  Translated: %2d/%2d  |  Mismatches: %d  |', $locale, $translation['translated'], $translation['total'], \count($translation['mismatches'])) . \PHP_EOL;
             \textColorNormal();
             $shouldBeClosed = \false;
-            if (\true === $verboseOutput && \count($translation['missingKeys']) > 0) {
+            if ($verboseOutput && $translation['missingKeys']) {
                 echo '|    Missing Translations:' . \PHP_EOL;
                 foreach ($translation['missingKeys'] as $id => $content) {
                     echo \sprintf('|      (id=%s) %s', $id, $content) . \PHP_EOL;
                 }
                 $shouldBeClosed = \true;
             }
-            if (\true === $verboseOutput && \count($translation['mismatches']) > 0) {
+            if ($verboseOutput && $translation['mismatches']) {
                 echo '|    Mismatches between trans-unit id and source:' . \PHP_EOL;
                 foreach ($translation['mismatches'] as $id => $content) {
                     echo \sprintf('|      (id=%s) Expected: %s', $id, $content['expected']) . \PHP_EOL;

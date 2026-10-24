@@ -19,7 +19,7 @@ namespace OtomatiesCoreVendor\PhpOption;
 
 use Traversable;
 /**
- * @template T
+ * @template-covariant T
  *
  * @extends Option<T>
  * @internal
@@ -46,6 +46,8 @@ final class LazyOption extends Option
     /**
      * @param callable(mixed...):(Option<T>) $callback
      * @param array<int, mixed>              $arguments
+     *
+     * @throws \InvalidArgumentException If the callback is not callable.
      */
     public function __construct($callback, array $arguments = [])
     {

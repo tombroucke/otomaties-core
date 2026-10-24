@@ -38,6 +38,8 @@ class Admin
         // Development environment indicator
         add_action('admin_bar_menu', [$this, 'addEnvironmentIndicator']);
         add_action('wp_before_admin_bar_render', [$this, 'environmentIndicatorStyles']);
+
+        add_filter('gform_settings_display_license_details', '__return_false');
     }
 
     /**

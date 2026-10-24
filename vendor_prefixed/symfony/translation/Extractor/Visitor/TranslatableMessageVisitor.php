@@ -12,6 +12,7 @@ namespace OtomatiesCoreVendor\Symfony\Component\Translation\Extractor\Visitor;
 
 use OtomatiesCoreVendor\PhpParser\Node;
 use OtomatiesCoreVendor\PhpParser\NodeVisitor;
+use OtomatiesCoreVendor\Symfony\Component\Translation\TranslatableMessage;
 /**
  * @author Mathieu Santostefano <msantostefano@protonmail.com>
  * @internal
@@ -34,7 +35,9 @@ final class TranslatableMessageVisitor extends AbstractVisitor implements NodeVi
         if (!($className = $node->class) instanceof Node\Name) {
             return null;
         }
-        if (!\in_array('TranslatableMessage', $className->getParts(), \true)) {
+        // the name resolver gives a fully qualified name; templates without a "use"
+        // statement resolve to the global namespace, which is accepted as well
+        if (!\in_array($className->toString(), [TranslatableMessage::class, 'TranslatableMessage'], \true)) {
             return null;
         }
         $firstNamedArgumentIndex = $this->nodeFirstNamedArgumentIndex($node);

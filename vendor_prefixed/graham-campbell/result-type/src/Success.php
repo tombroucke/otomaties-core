@@ -14,10 +14,9 @@ namespace OtomatiesCoreVendor\GrahamCampbell\ResultType;
 use OtomatiesCoreVendor\PhpOption\None;
 use OtomatiesCoreVendor\PhpOption\Some;
 /**
- * @template T
- * @template E
+ * @template-covariant T
  *
- * @extends \GrahamCampbell\ResultType\Result<T,E>
+ * @extends \GrahamCampbell\ResultType\Result<T,never>
  * @internal
  */
 final class Success extends Result
@@ -38,13 +37,13 @@ final class Success extends Result
         $this->value = $value;
     }
     /**
-     * Create a new error value.
+     * Create a new success value.
      *
      * @template S
      *
      * @param S $value
      *
-     * @return \GrahamCampbell\ResultType\Result<S,E>
+     * @return \GrahamCampbell\ResultType\Success<S>
      */
     public static function create($value)
     {
@@ -66,7 +65,7 @@ final class Success extends Result
      *
      * @param callable(T):S $f
      *
-     * @return \GrahamCampbell\ResultType\Result<S,E>
+     * @return \GrahamCampbell\ResultType\Success<S>
      */
     public function map(callable $f)
     {
@@ -89,7 +88,7 @@ final class Success extends Result
     /**
      * Get the error option value.
      *
-     * @return \PhpOption\Option<E>
+     * @return \PhpOption\Option<never>
      */
     public function error()
     {
@@ -100,9 +99,9 @@ final class Success extends Result
      *
      * @template F
      *
-     * @param callable(E):F $f
+     * @param callable(never):F $f
      *
-     * @return \GrahamCampbell\ResultType\Result<T,F>
+     * @return \GrahamCampbell\ResultType\Success<T>
      */
     public function mapError(callable $f)
     {

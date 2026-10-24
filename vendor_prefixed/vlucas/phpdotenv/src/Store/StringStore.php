@@ -30,6 +30,9 @@ final class StringStore implements StoreInterface
      */
     public function read()
     {
+        if (\substr($this->content, 0, 3) === "﻿") {
+            return \substr($this->content, 3);
+        }
         return $this->content;
     }
 }

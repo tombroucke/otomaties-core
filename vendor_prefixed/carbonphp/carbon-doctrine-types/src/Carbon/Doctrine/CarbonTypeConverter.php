@@ -50,7 +50,7 @@ trait CarbonTypeConverter
     /**
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public function convertToDatabaseValue($value, AbstractPlatform $platform) : ?string
+    public function convertToDatabaseValue(mixed $value, AbstractPlatform $platform) : ?string
     {
         if ($value === null) {
             return $value;
@@ -60,10 +60,10 @@ trait CarbonTypeConverter
         }
         throw InvalidType::new($value, static::class, ['null', 'DateTime', 'Carbon']);
     }
-    private function doConvertToPHPValue(mixed $value)
+    private function doConvertToPHPValue(mixed $value) : ?CarbonInterface
     {
         $class = $this->getCarbonClassName();
-        if ($value === null || \is_a($value, $class)) {
+        if ($value === null || \is_object($value) && \is_a($value, $class)) {
             return $value;
         }
         if ($value instanceof DateTimeInterface) {

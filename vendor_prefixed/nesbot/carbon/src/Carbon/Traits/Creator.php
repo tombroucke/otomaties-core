@@ -83,7 +83,7 @@ trait Creator
         } catch (Exception $exception) {
             throw new InvalidFormatException($exception->getMessage(), 0, $exception);
         }
-        $this->constructedObjectId = \spl_object_hash($this);
+        $this->constructedObjectId = \spl_object_id($this);
         self::setLastErrors(parent::getLastErrors());
     }
     /**
@@ -106,7 +106,7 @@ trait Creator
      */
     public function __clone() : void
     {
-        $this->constructedObjectId = \spl_object_hash($this);
+        $this->constructedObjectId = \spl_object_id($this);
     }
     /**
      * Create a Carbon instance from a DateTime one.
@@ -185,7 +185,8 @@ trait Creator
      */
     public static function parseFromLocale(string $time, ?string $locale = null, DateTimeZone|string|int|null $timezone = null) : static
     {
-        return static::rawParse(static::translateTimeString($time, $locale, static::DEFAULT_LOCALE), $timezone);
+        $text = static::translateTimeString($time, $locale, static::DEFAULT_LOCALE);
+        return static::rawParse(\str_replace("'", '', $text), $timezone);
     }
     /**
      * Get a Carbon instance for the current date and time.
@@ -537,6 +538,10 @@ trait Creator
     /**
      * Create a Carbon instance from a specific ISO format (same replacements as ->isoFormat()).
      *
+     * Era tokens (N to NNNNN, y, yy, yyy, yyyy, yo) are read with the "eras" of $locale: the era name gives the
+     * era and the year is the year of this era, so 'D MMMM N y' with 'th' reads '29 กุมภาพันธ์ พ.ศ. 2567' as
+     * 2024-02-29. Without any N token, the era of today's date in this locale is used.
+     *
      * @param string                       $format     Datetime format
      * @param string                       $time
      * @param DateTimeZone|string|int|null $timezone   optional timezone
@@ -558,8 +563,14 @@ trait Creator
             }
             return $formats[$code] ?? \preg_replace_callback('/MMMM|MM|DD|dddd/', static fn(array $code) => \mb_substr($code[0], 1), $formats[\strtoupper($code)] ?? '');
         }, $format);
-        $format = \preg_replace_callback('/(?<!\\\\)(\\\\{2})*(' . CarbonInterface::ISO_FORMAT_REGEXP . '|[A-Za-z])/', function ($match) {
+        [$format, $time] = self::resolveIsoFormatEras($format, $time, $locale, $translator);
+        $dayOfYearUsed = \false;
+        $format = \preg_replace_callback('/(?<!\\\\)(\\\\{2})*(' . CarbonInterface::ISO_FORMAT_REGEXP . '|[A-Za-z])/', function ($match) use(&$dayOfYearUsed) {
             [$code] = $match;
+            // ISO day of year starts at 1 while the native "z" starts at 0
+            if ($code === 'DDD' || $code === 'DDDD' || $code === 'DDDo') {
+                $dayOfYearUsed = \true;
+            }
             static $replacements = null;
             if ($replacements === null) {
                 $replacements = ['OD' => 'd', 'OM' => 'M', 'OY' => 'Y', 'OH' => 'G', 'Oh' => 'g', 'Om' => 'i', 'Os' => 's', 'D' => 'd', 'DD' => 'd', 'Do' => 'd', 'd' => '!', 'dd' => '!', 'ddd' => 'D', 'dddd' => 'D', 'DDD' => 'z', 'DDDD' => 'z', 'DDDo' => 'z', 'e' => '!', 'E' => '!', 'H' => 'G', 'HH' => 'H', 'h' => 'g', 'hh' => 'h', 'k' => 'G', 'kk' => 'G', 'hmm' => 'gi', 'hmmss' => 'gis', 'Hmm' => 'Gi', 'Hmmss' => 'Gis', 'm' => 'i', 'mm' => 'i', 'a' => 'a', 'A' => 'a', 's' => 's', 'ss' => 's', 'S' => '*', 'SS' => '*', 'SSS' => '*', 'SSSS' => '*', 'SSSSS' => '*', 'SSSSSS' => 'u', 'SSSSSSS' => 'u*', 'SSSSSSSS' => 'u*', 'SSSSSSSSS' => 'u*', 'M' => 'm', 'MM' => 'm', 'MMM' => 'M', 'MMMM' => 'M', 'Mo' => 'm', 'Q' => '!', 'Qo' => '!', 'G' => '!', 'GG' => '!', 'GGG' => '!', 'GGGG' => '!', 'GGGGG' => '!', 'g' => '!', 'gg' => '!', 'ggg' => '!', 'gggg' => '!', 'ggggg' => '!', 'W' => '!', 'WW' => '!', 'Wo' => '!', 'w' => '!', 'ww' => '!', 'wo' => '!', 'x' => 'U???', 'X' => 'U', 'Y' => 'Y', 'YY' => 'y', 'YYYY' => 'Y', 'YYYYY' => 'Y', 'YYYYYY' => 'Y', 'z' => 'e', 'zz' => 'e', 'Z' => 'e', 'ZZ' => 'e'];
@@ -570,7 +581,11 @@ trait Creator
             }
             return $format;
         }, $format);
-        return static::rawCreateFromFormat($format, $time, $timezone);
+        $date = static::rawCreateFromFormat($format, $time, $timezone);
+        if ($dayOfYearUsed && $date) {
+            $date = $date->subDay();
+        }
+        return $date;
     }
     /**
      * Create a Carbon instance from a specific format and a string in a given language.
@@ -607,8 +622,16 @@ trait Creator
      */
     public static function createFromLocaleIsoFormat(string $format, string $locale, string $time, $timezone = null) : ?static
     {
-        $time = static::translateTimeString($time, $locale, static::DEFAULT_LOCALE, CarbonInterface::TRANSLATE_MONTHS | CarbonInterface::TRANSLATE_DAYS | CarbonInterface::TRANSLATE_MERIDIEM);
-        return static::createFromIsoFormat($format, $time, $timezone, $locale);
+        $translatedTime = static::translateTimeString($time, $locale, static::DEFAULT_LOCALE, CarbonInterface::TRANSLATE_MONTHS | CarbonInterface::TRANSLATE_DAYS | CarbonInterface::TRANSLATE_MERIDIEM);
+        try {
+            return static::createFromIsoFormat($format, $translatedTime, $timezone, $locale);
+        } catch (InvalidFormatException $exception) {
+            // Show the given string in error messages rather than its translation to English
+            if ($translatedTime === $time || !\str_contains($exception->getMessage(), "'{$translatedTime}'")) {
+                throw $exception;
+            }
+            throw new InvalidFormatException(\str_replace("'{$translatedTime}'", "'{$time}'", $exception->getMessage()), $exception->getCode(), $exception);
+        }
     }
     /**
      * Make a Carbon instance from given variable if possible.

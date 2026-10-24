@@ -11,6 +11,7 @@ declare (strict_types=1);
  */
 namespace OtomatiesCoreVendor\Carbon;
 
+use OtomatiesCoreVendor\Carbon\Constants\UnitValue;
 use OtomatiesCoreVendor\Carbon\Exceptions\InvalidCastException;
 use OtomatiesCoreVendor\Carbon\Exceptions\InvalidTimeZoneException;
 use OtomatiesCoreVendor\Carbon\Traits\LocalFactory;
@@ -236,7 +237,7 @@ class CarbonTimeZone extends DateTimeZone
      */
     public static function createFromHourOffset(float $hourOffset)
     {
-        return static::createFromMinuteOffset($hourOffset * Carbon::MINUTES_PER_HOUR);
+        return static::createFromMinuteOffset($hourOffset * UnitValue::MINUTES_PER_HOUR);
     }
     /**
      * Create a CarbonTimeZone from int/float minute offset.

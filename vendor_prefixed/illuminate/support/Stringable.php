@@ -812,11 +812,12 @@ class Stringable implements JsonSerializable, ArrayAccess, BaseStringable
     /**
      * Convert the given string to only its initials.
      *
+     * @param  bool  $capitalize
      * @return static
      */
-    public function initials()
+    public function initials($capitalize = \false)
     {
-        return new static(Str::initials($this->value));
+        return new static(Str::initials($this->value, $capitalize));
     }
     /**
      * Convert the given string to APA-style title case.

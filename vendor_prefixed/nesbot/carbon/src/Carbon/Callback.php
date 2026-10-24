@@ -20,6 +20,7 @@ use DateTimeZone;
 use ReflectionFunction;
 use ReflectionNamedType;
 use ReflectionType;
+use OtomatiesCoreVendor\Time\Duration;
 /** @internal */
 final class Callback
 {
@@ -58,6 +59,9 @@ final class Callback
         $class = $this->getPromotedClass($value);
         if ($class && \is_a($name, $class, \true)) {
             return $name::instance($value);
+        }
+        if ($name === Duration::class && $value instanceof DateInterval) {
+            return DurationConverter::createDurationFromInterval($value);
         }
         return $value;
     }

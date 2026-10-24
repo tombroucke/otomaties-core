@@ -19,7 +19,7 @@ namespace OtomatiesCoreVendor\PhpOption;
 
 use EmptyIterator;
 /**
- * @extends Option<mixed>
+ * @extends Option<never>
  * @internal
  */
 final class None extends Option
@@ -40,10 +40,24 @@ final class None extends Option
     {
         throw new \RuntimeException('None has no value.');
     }
+    /**
+     * @template S
+     *
+     * @param callable():S $callable
+     *
+     * @return S
+     */
     public function getOrCall($callable)
     {
         return $callable();
     }
+    /**
+     * @template S
+     *
+     * @param S $default
+     *
+     * @return S
+     */
     public function getOrElse($default)
     {
         return $default;
@@ -100,10 +114,28 @@ final class None extends Option
     {
         return new EmptyIterator();
     }
+    /**
+     * @template S
+     * @template R
+     *
+     * @param S                    $initialValue
+     * @param callable(S, never):R $callable
+     *
+     * @return S
+     */
     public function foldLeft($initialValue, $callable)
     {
         return $initialValue;
     }
+    /**
+     * @template S
+     * @template R
+     *
+     * @param S                    $initialValue
+     * @param callable(never, S):R $callable
+     *
+     * @return S
+     */
     public function foldRight($initialValue, $callable)
     {
         return $initialValue;

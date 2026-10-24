@@ -42,6 +42,18 @@ final class Value
         return new self('', []);
     }
     /**
+     * Create a new value instance.
+     *
+     * @param string $chars
+     * @param int[]  $vars
+     *
+     * @return \Dotenv\Parser\Value
+     */
+    public static function create(string $chars, array $vars)
+    {
+        return new self($chars, $vars);
+    }
+    /**
      * Create a new value instance, appending the characters.
      *
      * @param string $chars

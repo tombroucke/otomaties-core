@@ -4,7 +4,6 @@ declare (strict_types=1);
 namespace OtomatiesCoreVendor\Dotenv\Parser;
 
 use OtomatiesCoreVendor\Dotenv\Util\Regex;
-use OtomatiesCoreVendor\Dotenv\Util\Str;
 /** @internal */
 final class Lines
 {
@@ -76,9 +75,15 @@ final class Lines
      */
     private static function looksLikeMultilineStart(string $line)
     {
-        return Str::pos($line, '="')->map(static function () use($line) {
-            return self::looksLikeMultilineStop($line, \true) === \false;
-        })->getOrElse(\false);
+        $pos = \strpos($line, '="');
+        if ($pos === \false) {
+            return \false;
+        }
+        $hash = \strpos($line, '#');
+        if ($hash !== \false && $hash < $pos) {
+            return \false;
+        }
+        return self::looksLikeMultilineStop($line, \true) === \false;
     }
     /**
      * Determine if the given line can be the start of a multiline variable.
@@ -106,7 +111,7 @@ final class Lines
      */
     private static function isCommentOrWhitespace(string $line)
     {
-        $line = \trim($line);
+        $line = \trim($line, " \n\r\t\x00\v");
         return $line === '' || isset($line[0]) && $line[0] === '#';
     }
 }

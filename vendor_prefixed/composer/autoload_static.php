@@ -26,6 +26,7 @@ class ComposerStaticInitOtomatiesVendorCore
     public static $prefixLengthsPsr4 = array (
         'S' =>
         array (
+            'Symfony\\Polyfill\\Time\\' => 22,
             'Symfony\\Polyfill\\Php85\\' => 23,
             'Symfony\\Polyfill\\Php84\\' => 23,
             'Symfony\\Polyfill\\Php83\\' => 23,
@@ -58,6 +59,10 @@ class ComposerStaticInitOtomatiesVendorCore
     );
 
     public static $prefixDirsPsr4 = array (
+        'Symfony\\Polyfill\\Time\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-time',
+        ),
         'Symfony\\Polyfill\\Php85\\' =>
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-php85',
@@ -201,6 +206,7 @@ class ComposerStaticInitOtomatiesVendorCore
         'OtomatiesCoreVendor\\Carbon\\Doctrine\\DateTimeDefaultPrecision' => __DIR__ . '/..' . '/carbonphp/carbon-doctrine-types/src/Carbon/Doctrine/DateTimeDefaultPrecision.php',
         'OtomatiesCoreVendor\\Carbon\\Doctrine\\DateTimeImmutableType' => __DIR__ . '/..' . '/carbonphp/carbon-doctrine-types/src/Carbon/Doctrine/DateTimeImmutableType.php',
         'OtomatiesCoreVendor\\Carbon\\Doctrine\\DateTimeType' => __DIR__ . '/..' . '/carbonphp/carbon-doctrine-types/src/Carbon/Doctrine/DateTimeType.php',
+        'OtomatiesCoreVendor\\Carbon\\DurationConverter' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/DurationConverter.php',
         'OtomatiesCoreVendor\\Carbon\\Exceptions\\BadComparisonUnitException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/BadComparisonUnitException.php',
         'OtomatiesCoreVendor\\Carbon\\Exceptions\\BadFluentConstructorException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/BadFluentConstructorException.php',
         'OtomatiesCoreVendor\\Carbon\\Exceptions\\BadFluentSetterException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/BadFluentSetterException.php',
@@ -222,6 +228,7 @@ class ComposerStaticInitOtomatiesVendorCore
         'OtomatiesCoreVendor\\Carbon\\Exceptions\\NotLocaleAwareException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/NotLocaleAwareException.php',
         'OtomatiesCoreVendor\\Carbon\\Exceptions\\OutOfRangeException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/OutOfRangeException.php',
         'OtomatiesCoreVendor\\Carbon\\Exceptions\\ParseErrorException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/ParseErrorException.php',
+        'OtomatiesCoreVendor\\Carbon\\Exceptions\\PeriodFilterSafetyException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/PeriodFilterSafetyException.php',
         'OtomatiesCoreVendor\\Carbon\\Exceptions\\RuntimeException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/RuntimeException.php',
         'OtomatiesCoreVendor\\Carbon\\Exceptions\\UnitException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/UnitException.php',
         'OtomatiesCoreVendor\\Carbon\\Exceptions\\UnitNotConfiguredException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/UnitNotConfiguredException.php',
@@ -237,6 +244,7 @@ class ComposerStaticInitOtomatiesVendorCore
         'OtomatiesCoreVendor\\Carbon\\Laravel\\ServiceProvider' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Laravel/ServiceProvider.php',
         'OtomatiesCoreVendor\\Carbon\\MessageFormatter\\MessageFormatterMapper' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/MessageFormatter/MessageFormatterMapper.php',
         'OtomatiesCoreVendor\\Carbon\\Month' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Month.php',
+        'OtomatiesCoreVendor\\Carbon\\OverflowMode' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/OverflowMode.php',
         'OtomatiesCoreVendor\\Carbon\\PHPStan\\MacroExtension' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/PHPStan/MacroExtension.php',
         'OtomatiesCoreVendor\\Carbon\\PHPStan\\MacroMethodReflection' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/PHPStan/MacroMethodReflection.php',
         'OtomatiesCoreVendor\\Carbon\\Traits\\Boundaries' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Traits/Boundaries.php',
@@ -247,6 +255,7 @@ class ComposerStaticInitOtomatiesVendorCore
         'OtomatiesCoreVendor\\Carbon\\Traits\\Date' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Traits/Date.php',
         'OtomatiesCoreVendor\\Carbon\\Traits\\DeprecatedPeriodProperties' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Traits/DeprecatedPeriodProperties.php',
         'OtomatiesCoreVendor\\Carbon\\Traits\\Difference' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Traits/Difference.php',
+        'OtomatiesCoreVendor\\Carbon\\Traits\\Eras' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Traits/Eras.php',
         'OtomatiesCoreVendor\\Carbon\\Traits\\IntervalRounding' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Traits/IntervalRounding.php',
         'OtomatiesCoreVendor\\Carbon\\Traits\\IntervalStep' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Traits/IntervalStep.php',
         'OtomatiesCoreVendor\\Carbon\\Traits\\LocalFactory' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Traits/LocalFactory.php',
@@ -265,6 +274,7 @@ class ComposerStaticInitOtomatiesVendorCore
         'OtomatiesCoreVendor\\Carbon\\Traits\\Test' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Traits/Test.php',
         'OtomatiesCoreVendor\\Carbon\\Traits\\Timestamp' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Traits/Timestamp.php',
         'OtomatiesCoreVendor\\Carbon\\Traits\\ToStringFormat' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Traits/ToStringFormat.php',
+        'OtomatiesCoreVendor\\Carbon\\Traits\\TogglableDetection' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Traits/TogglableDetection.php',
         'OtomatiesCoreVendor\\Carbon\\Traits\\Units' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Traits/Units.php',
         'OtomatiesCoreVendor\\Carbon\\Traits\\Week' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Traits/Week.php',
         'OtomatiesCoreVendor\\Carbon\\Translator' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Translator.php',
@@ -882,6 +892,8 @@ class ComposerStaticInitOtomatiesVendorCore
         'OtomatiesCoreVendor\\Symfony\\Contracts\\Translation\\TranslatableInterface' => __DIR__ . '/..' . '/symfony/translation-contracts/TranslatableInterface.php',
         'OtomatiesCoreVendor\\Symfony\\Contracts\\Translation\\TranslatorInterface' => __DIR__ . '/..' . '/symfony/translation-contracts/TranslatorInterface.php',
         'OtomatiesCoreVendor\\Symfony\\Contracts\\Translation\\TranslatorTrait' => __DIR__ . '/..' . '/symfony/translation-contracts/TranslatorTrait.php',
+        'OtomatiesCoreVendor\\Time\\Duration' => __DIR__ . '/..' . '/symfony/polyfill-time/Resources/stubs/Time/Duration.php',
+        'OtomatiesCoreVendor\\Time\\TimeException' => __DIR__ . '/..' . '/symfony/polyfill-time/Resources/stubs/Time/TimeException.php',
         'OtomatiesCoreVendor\\voku\\helper\\ASCII' => __DIR__ . '/..' . '/voku/portable-ascii/src/voku/helper/ASCII.php',
         'Override' => __DIR__ . '/..' . '/symfony/polyfill-php83/Resources/stubs/Override.php',
         'PhpToken' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/PhpToken.php',

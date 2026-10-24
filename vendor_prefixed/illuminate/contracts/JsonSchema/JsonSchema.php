@@ -43,4 +43,11 @@ interface JsonSchema
      * @return \Illuminate\JsonSchema\Types\BooleanType
      */
     public function boolean();
+    /**
+     * Create a new multi-type union instance.
+     *
+     * @param  array<int, string>  $types
+     * @return \Illuminate\JsonSchema\Types\UnionType
+     */
+    public function union(array $types);
 }

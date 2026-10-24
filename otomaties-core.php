@@ -11,7 +11,7 @@ use Otomaties\Core\Plugin;
  * Author URI:      https://tombroucke.be
  * Text Domain:     otomaties-core
  * Domain Path:     resources/languages
- * Requires PHP:    8.0
+ * Requires PHP:    8.3
  * Version:           2.3.2
  */
 

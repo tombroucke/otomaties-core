@@ -14,6 +14,7 @@ namespace OtomatiesCoreVendor\Carbon\Traits;
 use OtomatiesCoreVendor\Carbon\CarbonInterval;
 use OtomatiesCoreVendor\Carbon\Exceptions\InvalidIntervalException;
 use DateInterval;
+use OtomatiesCoreVendor\Time\Duration;
 /**
  * Trait to call rounding methods to interval or the interval of a period.
  * @internal
@@ -31,10 +32,10 @@ trait IntervalRounding
         }
         return null;
     }
-    protected function roundWith(DateInterval|string|float|int $precision, callable|string $function) : ?static
+    protected function roundWith(DateInterval|Duration|string|float|int $precision, callable|string $function) : ?static
     {
         $unit = 'second';
-        if ($precision instanceof DateInterval) {
+        if ($precision instanceof DateInterval || $precision instanceof Duration) {
             $precision = CarbonInterval::instance($precision)->forHumans(['locale' => 'en']);
         }
         if (\is_string($precision) && \preg_match('/^\\s*(?<precision>\\d+)?\\s*(?<unit>\\w+)(?<other>\\W.*)?$/', $precision, $match)) {

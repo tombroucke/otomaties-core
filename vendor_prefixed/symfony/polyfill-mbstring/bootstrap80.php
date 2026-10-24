@@ -267,8 +267,7 @@ namespace {
         /** @internal */
         function mb_scrub(?string $string, ?string $encoding = null) : string
         {
-            $encoding ??= \mb_internal_encoding();
-            return \mb_convert_encoding((string) $string, $encoding, $encoding);
+            return p\Mbstring::mb_scrub($string, $encoding);
         }
     }
     if (!\function_exists('mb_str_split')) {

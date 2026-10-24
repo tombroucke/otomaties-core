@@ -12,8 +12,8 @@ declare (strict_types=1);
 namespace OtomatiesCoreVendor\GrahamCampbell\ResultType;
 
 /**
- * @template T
- * @template E
+ * @template-covariant T
+ * @template-covariant E
  * @internal
  */
 abstract class Result
@@ -42,7 +42,7 @@ abstract class Result
      *
      * @param callable(T):\GrahamCampbell\ResultType\Result<S,F> $f
      *
-     * @return \GrahamCampbell\ResultType\Result<S,F>
+     * @return \GrahamCampbell\ResultType\Result<S,E|F>
      */
     public abstract function flatMap(callable $f);
     /**

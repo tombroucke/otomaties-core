@@ -32,13 +32,11 @@ final class Str
      */
     public static function utf8(string $input, ?string $encoding = null)
     {
-        if ($encoding !== null && !\in_array($encoding, \mb_list_encodings(), \true)) {
-            /** @var \GrahamCampbell\ResultType\Result<string, string> */
+        if ($encoding !== null && !self::isValidEncoding($encoding)) {
             return Error::create(\sprintf('Illegal character encoding [%s] specified.', $encoding));
         }
         $converted = $encoding === null ? @\mb_convert_encoding($input, 'UTF-8') : @\mb_convert_encoding($input, 'UTF-8', $encoding);
         if (!\is_string($converted)) {
-            /** @var \GrahamCampbell\ResultType\Result<string, string> */
             return Error::create(\sprintf('Conversion from encoding [%s] failed.', $encoding ?? 'NULL'));
         }
         /**
@@ -46,11 +44,31 @@ final class Str
          * @see https://en.wikipedia.org/wiki/Byte_order_mark
          * @see https://github.com/vlucas/phpdotenv/issues/500
          */
-        if (\substr($converted, 0, 3) == "﻿") {
+        if (\substr($converted, 0, 3) === "﻿") {
             $converted = \substr($converted, 3);
         }
-        /** @var \GrahamCampbell\ResultType\Result<string, string> */
         return Success::create($converted);
+    }
+    /**
+     * Is the given character encoding valid?
+     *
+     * @param string $encoding
+     *
+     * @return bool
+     */
+    private static function isValidEncoding(string $encoding)
+    {
+        foreach (\mb_list_encodings() as $candidate) {
+            if (\strcasecmp($candidate, $encoding) === 0) {
+                return \true;
+            }
+            foreach (@\mb_encoding_aliases($candidate) as $alias) {
+                if (\strcasecmp($alias, $encoding) === 0) {
+                    return \true;
+                }
+            }
+        }
+        return \false;
     }
     /**
      * Search for a given substring of the input.
@@ -58,11 +76,11 @@ final class Str
      * @param string $haystack
      * @param string $needle
      *
-     * @return \PhpOption\Option<int>
+     * @return \PhpOption\Option<int<0, max>>
      */
     public static function pos(string $haystack, string $needle)
     {
-        /** @var \PhpOption\Option<int> */
+        /** @var \PhpOption\Option<int<0, max>> */
         return Option::fromValue(\mb_strpos($haystack, $needle, 0, 'UTF-8'), \false);
     }
     /**

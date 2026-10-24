@@ -5,7 +5,7 @@ namespace OtomatiesCoreVendor\Dotenv\Parser;
 
 use OtomatiesCoreVendor\Dotenv\Exception\InvalidFileException;
 use OtomatiesCoreVendor\Dotenv\Util\Regex;
-use OtomatiesCoreVendor\GrahamCampbell\ResultType\Result;
+use OtomatiesCoreVendor\GrahamCampbell\ResultType\Error;
 use OtomatiesCoreVendor\GrahamCampbell\ResultType\Success;
 /** @internal */
 final class Parser implements ParserInterface
@@ -38,14 +38,15 @@ final class Parser implements ParserInterface
      */
     private static function process(array $entries)
     {
-        /** @var \GrahamCampbell\ResultType\Result<\Dotenv\Parser\Entry[], string> */
-        return \array_reduce($entries, static function (Result $result, string $raw) {
-            return $result->flatMap(static function (array $entries) use($raw) {
-                return EntryParser::parse($raw)->map(static function (Entry $entry) use($entries) {
-                    /** @var \Dotenv\Parser\Entry[] */
-                    return \array_merge($entries, [$entry]);
-                });
-            });
-        }, Success::create([]));
+        /** @var \Dotenv\Parser\Entry[] */
+        $output = [];
+        foreach ($entries as $raw) {
+            $entry = EntryParser::parse($raw);
+            if ($entry->error()->isDefined()) {
+                return Error::create($entry->error()->get());
+            }
+            $output[] = $entry->success()->get();
+        }
+        return Success::create($output);
     }
 }
